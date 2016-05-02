@@ -1,4 +1,4 @@
-package io.github.yuly94.sectionedrecyclerviewadapter.demo;
+package io.github.yuly94.elaundry.demo;
 
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -6,6 +6,8 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+
+import io.github.yuly94.sectionedrecyclerviewadapter.demo.R;
 
 public class HomeFragment extends Fragment {
 

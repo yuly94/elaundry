@@ -19,8 +19,8 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.Random;
 
-import io.github.yuly94.sectionedrecyclerviewadapter.Section;
-import io.github.yuly94.sectionedrecyclerviewadapter.SectionedRecyclerViewAdapter;
+import io.github.luizgrp.sectionedrecyclerviewadapter.Section;
+import io.github.luizgrp.sectionedrecyclerviewadapter.SectionedRecyclerViewAdapter;
 import io.github.yuly94.sectionedrecyclerviewadapter.demo.R;
 
 public class Example7Fragment extends Fragment {

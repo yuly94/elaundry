@@ -1,4 +1,4 @@
-package io.github.yuly94.sectionedrecyclerviewadapter.demo;
+package io.github.yuly94.elaundry.demo;
 
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -16,8 +16,9 @@ import android.widget.Toast;
 import java.util.ArrayList;
 import java.util.List;
 
-import io.github.yuly94.sectionedrecyclerviewadapter.SectionedRecyclerViewAdapter;
-import io.github.yuly94.sectionedrecyclerviewadapter.StatelessSection;
+import io.github.luizgrp.sectionedrecyclerviewadapter.SectionedRecyclerViewAdapter;
+import io.github.luizgrp.sectionedrecyclerviewadapter.StatelessSection;
+import io.github.yuly94.sectionedrecyclerviewadapter.demo.R;
 
 public class Example4Fragment extends Fragment {
 
