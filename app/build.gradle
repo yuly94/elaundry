@@ -1,11 +1,15 @@
 apply plugin: 'com.android.application'
 
 android {
+    signingConfigs {
+        config {
+        }
+    }
     compileSdkVersion 23
     buildToolsVersion "23.0.2"
     defaultConfig {
-        applicationId "io.github.luizgrp.sectionedrecyclerviewadapter.demo"
-        minSdkVersion 8
+        applicationId 'io.github.yuly94.elaundry.demo'
+        minSdkVersion 10
         targetSdkVersion 23
         versionCode 1
         versionName "1.0"
@@ -32,4 +36,6 @@ dependencies {
     compile 'com.android.support:design:23.1.1'
     compile 'com.android.support:recyclerview-v7:23.1.1'
     compile 'com.android.support:cardview-v7:23.1.1'
+    compile 'com.mikepenz:aboutlibraries:5.6.5'
+    compile 'com.mcxiaoke.volley:library:1.0.19'
 }
