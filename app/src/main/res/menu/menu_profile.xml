@@ -1,0 +1,16 @@
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context=".activity.PemesananActivity">
+    <item
+        android:id="@+id/action_change_pass"
+        android:orderInCategory="100"
+        android:title="change password"
+        app:showAsAction="never" />
+
+    <item
+        android:id="@+id/action_exit"
+        android:orderInCategory="100"
+        android:title="exit"
+        app:showAsAction="never" />
+</menu>

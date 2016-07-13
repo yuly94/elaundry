@@ -1,0 +1,51 @@
+        setContentView(R.layout.fragment_login);  // Progress dialog
+        pDialog = new ProgressDialog(this);
+        pDialog.setCancelable(false);
+
+
+
+        // SQLite database handler
+        db = new SQLiteHandler(getApplicationContext());
+
+        // Session manager
+        session = new SessionManager(getApplicationContext());
+
+        // Check if user is already logged in or not
+        if (session.isLoggedIn()) {
+            // User is already logged in. Take him to main activity
+            Intent intent = new Intent(LoginFragmentVolley.this, MainActivity.class);
+            startActivity(intent);
+            finish();
+        }
+
+        // Login button Click Event
+        btnLogin.setOnClickListener(new View.OnClickListener() {
+
+            public void onClick(View view) {
+                String email = inputEmail.getText().toString().trim();
+                String password = inputPassword.getText().toString().trim();
+
+                // Check for empty data in the form
+                if (!email.isEmpty() && !password.isEmpty()) {
+                    // login user
+                    checkLogin(email, password);
+                } else {
+                    // Prompt user to enter credentials
+                    Toast.makeText(getApplicationContext(),
+                            "Please enter the credentials!", Toast.LENGTH_LONG)
+                            .show();
+                }
+            }
+
+        });
+
+        // Link to Register Screen
+        btnLinkToRegister.setOnClickListener(new View.OnClickListener() {
+
+            public void onClick(View view) {
+                Intent i = new Intent(getApplicationContext(),
+                        RegisterActivity.class);
+                startActivity(i);
+                finish();
+            }
+        });

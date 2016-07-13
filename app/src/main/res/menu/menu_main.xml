@@ -1,0 +1,36 @@
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context=".activity.MainActivity">
+    <item
+        android:id="@+id/action_change_pass"
+        android:orderInCategory="100"
+        android:title="@string/action_exit"
+        app:showAsAction="never" />
+
+
+    <item
+        android:checkable="true"
+        android:checked="false"
+        android:orderInCategory="100"
+        android:icon="@drawable/ic_search_24dp"
+        android:title="@string/action_zoom"
+        android:id="@+id/action_zoom"
+        app:showAsAction="never" />
+
+    <item
+        android:id="@+id/action_exit"
+        android:orderInCategory="100"
+        android:title="@string/action_logout"
+        app:showAsAction="never" />
+
+    <item
+        android:checkable="true"
+        android:checked="false"
+        android:orderInCategory="100"
+        android:id="@+id/menu_item_share"
+        app:showAsAction="never"
+        android:icon="@drawable/ic_share_24dp"
+        android:title="@string/nav_share" />
+</menu>
