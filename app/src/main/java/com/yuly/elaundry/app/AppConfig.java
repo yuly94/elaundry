@@ -7,13 +7,13 @@ public class AppConfig {
 	// Server user register url
 	public static String URL_REGISTER = "http://yuly.besaba.com/elaundry/v1/index.php/register";
 
-	// Server user register url
+	// Server user request password reset
 	public static String URL_FORGOT = "http://yuly.besaba.com/elaundry/v1/index.php/resetpassreq";
 
-	// Server user register url
+	// Server user reset password
 	public static String URL_RESET = "http://yuly.besaba.com/elaundry/v1/index.php/resetpass";
 
-	// Server user register url
+	// Server user change password
 	public static String URL_CHANGEPASS = "http://yuly.besaba.com/elaundry/v1/changepass";
 
 	// Server user register url
