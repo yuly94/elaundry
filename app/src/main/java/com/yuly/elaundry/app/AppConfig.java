@@ -16,6 +16,7 @@ public class AppConfig {
 	// Server user change password
 	public static String URL_CHANGEPASS = "http://yuly.besaba.com/elaundry/v1/changepass";
 
+
 	// Server user register url
 	public static String URL_TASK = "http://yuly.besaba.com/elaundry/v1/index.php/tasks";
 

@@ -24,37 +24,28 @@ import android.widget.Toast;
 
 import com.android.volley.AuthFailureError;
 import com.android.volley.Request;
+import com.android.volley.RequestQueue;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.VolleyLog;
-import com.android.volley.toolbox.JsonArrayRequest;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.StringRequest;
+import com.android.volley.toolbox.Volley;
 import com.yuly.elaundry.R;
-import com.yuly.elaundry.activity.MainActivity;
 import com.yuly.elaundry.activity.PemesananActivity;
 import com.yuly.elaundry.app.AppConfig;
 import com.yuly.elaundry.app.AppController;
 import com.yuly.elaundry.app.Constants;
-import com.yuly.elaundry.app.RequestInterface;
 import com.yuly.elaundry.helper.SQLiteHandler;
 import com.yuly.elaundry.helper.SessionManager;
 import com.yuly.elaundry.helper.VolleyErrorHelper;
-import com.yuly.elaundry.models.ServerRequest;
-import com.yuly.elaundry.models.ServerResponse;
-import com.yuly.elaundry.models.User;
 
-import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.HashMap;
 import java.util.Map;
 
-import retrofit2.Call;
-import retrofit2.Callback;
-import retrofit2.Retrofit;
-import retrofit2.converter.gson.GsonConverterFactory;
 
 /**
  * Created by samsung on 21/02/16.
@@ -180,7 +171,7 @@ public class ProfileFragment extends Fragment {
 
                     progress.setVisibility(View.VISIBLE);
                     //changePasswordProcess(old_password,new_password);
-                    changePasswordProcess(old_password,new_password);
+                    makeJsonObjectRequest(old_password,new_password);
 
 
                 }else {
@@ -231,6 +222,10 @@ public class ProfileFragment extends Fragment {
 
 
 
+    public String getBodyContentType()
+    {
+        return "application/json; charset=utf-8";
+    }
 
 
 
@@ -240,11 +235,149 @@ public class ProfileFragment extends Fragment {
      * @param old_password
      * @param new_password
      */
-    private void makeJsonArryReq(String old_password,String new_password) {
+    private void makeJsonObjectRequest(String old_password, String new_password) {
 
-        showDialog();
+        Map<String,String> jsonParams = new HashMap<String, String>();
+        jsonParams.put("old_password", old_password);
+        jsonParams.put("new_password", new_password);
+        JsonObjectRequest request = new JsonObjectRequest(Request.Method.POST,AppConfig.URL_CHANGEPASS,new JSONObject(jsonParams), new Response.Listener<JSONObject>(){
+            @Override
+            public void onResponse(JSONObject response) {
+                Log.d(TAG,"User creation completed successfully");
+                // Go to next activity
+            }
+        },new Response.ErrorListener(){
 
-            /*Post data*/
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                error.printStackTrace();
+            }
+        }) {
+            @Override
+            public Map<String,String> getHeaders(){
+                HashMap<String, String> headers = new HashMap<String, String>();
+
+                headers.put("Content-Type", "application/json; charset=utf-8");
+                headers.put("Authorization",apiKey);
+                headers.put("User-agent", "My useragent");
+                return headers;
+            }
+        };
+
+
+/*
+        Map<String, String> jsonParams = new HashMap<String, String>();
+        jsonParams.put("old_password", old_password);
+        jsonParams.put("new_password", new_password);
+
+        JsonObjectRequest myRequest = new JsonObjectRequest(
+                Request.Method.POST,
+                AppConfig.URL_CHANGEPASS,
+                new JSONObject(jsonParams),
+
+                new Response.Listener<JSONObject>() {
+                    @Override
+                    public void onResponse(JSONObject response) {
+                        try {
+                            VolleyLog.v("Response:%n %s", response.toString(4));
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                        }
+                    }
+                }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                VolleyLog.e("Error: ", error.getMessage());
+            }
+                }) {
+
+            @Override
+            public Map<String, String> getHeaders() throws AuthFailureError {
+                HashMap<String, String> headers = new HashMap<String, String>();
+                headers.put("Content-Type", "application/json; charset=utf-8");
+                headers.put("User-agent", "My useragent");
+                headers.put("Authorization", apiKey);
+                return headers;
+            }
+        };
+        AppController.getInstance().addToRequestQueue(myRequest, "tag");
+*/
+
+      /*  // HTTP POST
+        String url = AppConfig.URL_CHANGEPASS;
+        RequestQueue requestQueue = Volley.newRequestQueue(getContext());
+        JSONObject jsonObject = new JSONObject();
+        try {
+            jsonObject.put("old_password", old_password);
+            jsonObject.put("new_password", new_password);
+            JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.POST, url, jsonObject, new Response.Listener<JSONObject>() {
+                @Override
+                public void onResponse(JSONObject response) {
+                    // do something...
+                }
+            }, new Response.ErrorListener() {
+                @Override
+                public void onErrorResponse(VolleyError error) {
+                    // do something...
+                }
+            }) {
+                @Override
+                public Map<String, String> getHeaders() throws AuthFailureError {
+                    final Map<String, String> headers = new HashMap<String, String>();
+                    headers.put("Authorization", apiKey);
+                    headers.put("Content-Type", "application/json");
+                    return headers;
+                }
+            };
+            requestQueue.add(jsonObjectRequest);
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+
+*/
+
+     /*   HashMap<String, String> params = new HashMap<String, String>();
+        params.put("old_password", old_password);
+        params.put("new_password", new_password);
+
+
+
+        JsonObjectRequest req = new JsonObjectRequest(AppConfig.URL_CHANGEPASS, new JSONObject(params),
+                new Response.Listener<JSONObject>() {
+                    @Override
+                    public void onResponse(JSONObject response) {
+                        try {
+                            VolleyLog.v("Response:%n %s", response.toString(4));
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                        }
+                    }
+                }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                VolleyLog.e("Error: ", error.getMessage());
+            }
+        }) {
+
+            @Override
+            public Map<String, String> getHeaders() throws AuthFailureError {
+                HashMap<String, String> headers = new HashMap<String, String>();
+                headers.put("Content-Type", "application/json");
+                headers.put("Authorization", apiKey);
+                return headers;
+            }
+        };
+
+
+// add the request object to the queue to be executed
+        AppController.getInstance().addToRequestQueue(req);
+*/
+/*
+    //    showDialog();
+
+            */
+/*Post data*//*
+
         Map<String, String> jsonParams = new HashMap<String, String>();
 
         jsonParams.put("old_password", old_password);
@@ -259,10 +392,17 @@ public class ProfileFragment extends Fragment {
                     @Override
                     public void onResponse(JSONObject response) {
 
-                    hideDialog();
+            //        hideDialog();
                         //   Success Handler
                         try {
                             VolleyLog.v("Response:%n %s", response.toString(4));
+
+                            Log.d(Constants.TAG,"failed");
+                            progress.setVisibility(View.GONE);
+                            tv_message.setVisibility(View.VISIBLE);
+                            tv_message.setText(response.toString(4));
+
+
                         } catch (JSONException e) {
                             e.printStackTrace();
                         }
@@ -274,27 +414,52 @@ public class ProfileFragment extends Fragment {
                     public void onErrorResponse(VolleyError error) {
                         //   Handle Error
 
-                        hideDialog();
-                        VolleyLog.e("Error: ", error.getMessage());
+                        String e = VolleyErrorHelper.getMessage(error, getActivity());
+
+                        VolleyLog.d(AppController.TAG, "Error: " + e);
+
+
+                        Toast.makeText(getActivity(),
+                                e, Toast.LENGTH_LONG).show();
+
+                        Log.d(Constants.TAG,"failed");
+                        progress.setVisibility(View.GONE);
+                        tv_message.setVisibility(View.VISIBLE);
+                        tv_message.setText(e);
+
+                  //      hideDialog();
+
 
                     }
                 }) {
-            @Override
+*/
+/*            @Override
             public Map<String, String> getHeaders() throws AuthFailureError {
                 HashMap<String, String> headers = new HashMap<String, String>();
                 headers.put("Content-Type", "application/json; charset=utf-8");
-                headers.put("User-agent", System.getProperty("http.agent"));
+                headers.put("Authorization", apiKey);
+                return headers;
+            }*//*
+
+
+            @Override
+            public Map<String, String> getHeaders() throws AuthFailureError {
+                HashMap<String, String> headers = new HashMap<String, String>();
+                headers.put("Content-Type", "application/json");
+                headers.put("Authorization", apiKey);
                 return headers;
             }
+
         };
 
 
         // Adding request to request queue
         String tag_json_object = "object_req";
-        AppController.getInstance().addToRequestQueue(postRequest, tag_json_object);
+     //   AppController.getInstance().addToRequestQueue(postRequest, tag_json_object);
+        RequestQueue queue = Volley.newRequestQueue(getActivity());
+        queue.add(postRequest);
+*/
 
-        // Cancelling request
-        // ApplicationController.getInstance().getRequestQueue().cancelAll(tag_json_arry);
     }
 
 
@@ -310,6 +475,7 @@ public class ProfileFragment extends Fragment {
 
         pDialog.setMessage("Logging in ...");
         showDialog();
+
 
         StringRequest strReq = new StringRequest(Request.Method.POST,
                 AppConfig.URL_CHANGEPASS, new Response.Listener<String>() {
@@ -346,6 +512,7 @@ public class ProfileFragment extends Fragment {
                         // Error in login. Get the error message
                         String errorMsg = jObj.getString("message");
 
+                        Log.d(Constants.TAG,"failed");
                         progress.setVisibility(View.GONE);
                         tv_message.setVisibility(View.VISIBLE);
                         tv_message.setText(errorMsg);
@@ -374,7 +541,7 @@ public class ProfileFragment extends Fragment {
                 Toast.makeText(getActivity(),
                         e, Toast.LENGTH_LONG).show();
 
-
+                Log.d(Constants.TAG,"failed");
                 progress.setVisibility(View.GONE);
                 tv_message.setVisibility(View.VISIBLE);
                 tv_message.setText(e);
@@ -412,7 +579,8 @@ public class ProfileFragment extends Fragment {
 
 
 
-    private void changePasswordProcess(String email,String old_password,String new_password){
+/*
+    private void changePasswordProcess(String old_password,String new_password){
 
         Retrofit retrofit = new Retrofit.Builder()
                 .baseUrl(Constants.BASE_URL)
@@ -422,7 +590,7 @@ public class ProfileFragment extends Fragment {
         RequestInterface requestInterface = retrofit.create(RequestInterface.class);
 
         User user = new User();
-        user.setEmail(email);
+      //  user.setEmail(email);
         user.setOld_password(old_password);
         user.setNew_password(new_password);
         ServerRequest request = new ServerRequest();
@@ -461,6 +629,7 @@ public class ProfileFragment extends Fragment {
             }
         });
     }
+*/
 
 
     private void showDialog() {
