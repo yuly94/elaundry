@@ -1,0 +1,177 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:orientation="vertical"
+    android:layout_height="match_parent"
+
+    tools:context=".MainActivity">
+
+
+    <android.support.v7.widget.AppCompatSpinner
+
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:id="@+id/spinner_paket"
+        android:hint="@string/about_follow"
+        android:layout_weight="0.09"
+        android:layout_below="@+id/title_paket_laundry"
+        android:layout_alignLeft="@+id/view_alamat"
+        android:layout_alignStart="@+id/view_alamat"
+        android:layout_alignRight="@+id/spinner_tempat"
+        android:layout_alignEnd="@+id/spinner_tempat"
+        android:spinnerMode="dialog" />
+
+    <android.support.v7.widget.AppCompatSpinner
+
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:id="@+id/spinner_tempat"
+        android:hint="@string/about_follow"
+        android:layout_weight="0.09"
+        android:layout_below="@+id/title_tempat_pengambilan"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_marginLeft="15dp"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true"
+        android:layout_marginRight="15dp"
+        android:spinnerMode="dialog" />
+
+    <android.support.v7.widget.AppCompatTextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="@android:style/TextAppearance.Small"
+        android:text="Tempat"
+        android:id="@+id/title_tempat"
+        android:layout_marginTop="10dp"
+        android:layout_below="@+id/spinner_tempat"
+        android:layout_alignLeft="@+id/spinner_tempat"
+        android:layout_alignStart="@+id/spinner_tempat" />
+
+    <android.support.v7.widget.AppCompatTextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="@android:style/TextAppearance.Small"
+        android:text="Alamat"
+        android:id="@+id/title_alamat"
+        android:layout_marginTop="7dp"
+        android:layout_below="@+id/view_tempat"
+        android:layout_alignLeft="@+id/view_tempat"
+        android:layout_alignStart="@+id/view_tempat" />
+
+
+    <android.support.v7.widget.AppCompatTextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="@android:style/TextAppearance.Small"
+        android:text="Paket Laundry"
+        android:id="@+id/title_paket_laundry"
+        android:layout_marginTop="24dp"
+        android:layout_below="@+id/view_alamat"
+        android:layout_alignLeft="@+id/spinner_paket"
+        android:layout_alignStart="@+id/spinner_paket" />
+
+    <android.support.v7.widget.AppCompatTextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:text="Output Harga Paket"
+        android:id="@+id/view_harga_paket"
+        android:layout_below="@+id/title_harga_paket"
+        android:layout_alignLeft="@+id/title_harga_paket"
+        android:layout_alignStart="@+id/title_harga_paket" />
+
+
+
+    <android.support.v7.widget.AppCompatTextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:text="Output Keterangan Paket"
+        android:id="@+id/view_keterangan_paket"
+        android:layout_below="@+id/title_keterangan_paket"
+        android:layout_alignLeft="@+id/view_harga_paket"
+        android:layout_alignStart="@+id/view_harga_paket"
+        android:layout_alignRight="@+id/spinner_paket"
+        android:layout_alignEnd="@+id/spinner_paket" />
+
+    <android.support.v7.widget.AppCompatTextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="@android:style/TextAppearance.Small"
+        android:text="Keterangan Paket"
+        android:id="@+id/title_keterangan_paket"
+        android:layout_below="@+id/view_harga_paket"
+        android:layout_alignLeft="@+id/view_keterangan_paket"
+        android:layout_alignStart="@+id/view_keterangan_paket"
+        android:layout_marginTop="13dp" />
+
+    <android.support.v7.widget.AppCompatTextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="@android:style/TextAppearance.Small"
+        android:text="Harga Paket"
+        android:id="@+id/title_harga_paket"
+        android:layout_centerVertical="true"
+        android:layout_alignLeft="@+id/view_tempat"
+        android:layout_alignStart="@+id/view_tempat" />
+
+    <android.support.v7.widget.AppCompatTextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:text="Alamat here"
+        android:id="@+id/view_alamat"
+        android:layout_below="@+id/title_alamat"
+        android:layout_alignLeft="@+id/title_alamat"
+        android:layout_alignStart="@+id/title_alamat"
+        android:layout_alignRight="@+id/spinner_tempat"
+        android:layout_alignEnd="@+id/spinner_tempat" />
+
+
+    <android.support.v7.widget.AppCompatTextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:text="Tempat here"
+        android:id="@+id/view_tempat"
+        android:layout_below="@+id/title_tempat"
+        android:layout_alignLeft="@+id/title_tempat"
+        android:layout_alignStart="@+id/title_tempat" />
+
+
+    <android.support.design.widget.TextInputLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:layout_alignParentTop="true"
+        android:layout_alignLeft="@+id/spinner_paket"
+        android:layout_alignStart="@+id/spinner_paket"
+        android:id="@+id/view"/>
+
+
+
+
+
+    <android.support.design.widget.TextInputLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+
+        android:layout_alignRight="@+id/spinner_paket"
+        android:layout_alignEnd="@+id/spinner_paket"
+        android:layout_alignLeft="@+id/view_tempat"
+        android:layout_alignStart="@+id/view_tempat"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="@android:style/TextAppearance.Small"
+        android:text="Tempat Pengambilan"
+        android:id="@+id/title_tempat_pengambilan"
+        android:layout_marginTop="20dp"
+        android:layout_below="@+id/view"
+        android:layout_alignLeft="@+id/spinner_tempat"
+        android:layout_alignStart="@+id/spinner_tempat" />
+
+</RelativeLayout>

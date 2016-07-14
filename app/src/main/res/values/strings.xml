@@ -1,0 +1,189 @@
+<resources>
+    <string name="app_name">E-Laundry</string>
+    <string name="action_settings">Settings</string>
+
+    <string name="hint_email">Email</string>
+    <string name="hint_password">Password</string>
+    <string name="hint_name">Fullname</string>
+    <string name="btn_login">LOGIN</string>
+    <string name="btn_register">REGISTER</string>
+    <string name="btn_link_to_register">Not a member? Sign up now.</string>
+    <string name="btn_link_to_login">Already registred! Login Me.</string>
+    <string name="btn_logout">LOGOUT</string>
+
+
+    <string name="action_logout">logout</string>
+    <string name="action_exit">exit</string>
+    <string name="action_zoom">zoom</string>
+    <string name="action_setting">setting</string>
+
+    <!--    Permissions    -->
+    <string name="permission_rationale_location">Access to the location service is required to demonstrate the \'my location\' feature, which shows your current location on the map.</string>
+    <string name="location_permission_denied">This sample requires location permission to enable the \'my location\' layer. Please try again and grant access to use the location.\nIf the permission has been permanently denied, it can be enabled from the System Settings &gt; Apps &gt; \'Google Maps API Demos\'.</string>
+    <string name="permission_required_toast">Location permission is required for this demo.</string>
+
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+
+    <string name="nav_others">others</string>
+
+    <string name="nav_normal">normal</string>
+    <string name="nav_terrain">terrain</string>
+    <string name="nav_sattelite">sattelite</string>
+    <string name="nav_hibryd">hibryd</string>
+
+    <string name="nav_share">share</string>
+    <string name="nav_logout">logout</string>
+    <string name="nav_exit">exit</string>
+
+
+    <string name="generic_server_down">generic server down</string>
+    <string name="no_internet">no internet connection</string>
+    <string name="generic_error">generic error</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="hint_no_handphone">no handphone</string>
+    <string name="hint_alamat">alamat</string>
+    <string name="about_developer">about developer</string>
+    <string name="about_follow">follow</string>
+    <string name="about_thanks">thanks</string>
+    <string name="action_ok">ok</string>
+    <string name="my_name">Yuly Nurhidayati</string>
+
+
+    <string name="title_activity_login_activity_">Sign in</string>
+
+    <!-- Strings related to login -->
+    <string name="prompt_email">Email</string>
+    <string name="prompt_password">Password (optional)</string>
+    <string name="action_sign_in">Sign in or register</string>
+    <string name="action_sign_in_short">Sign in</string>
+    <string name="error_invalid_email">This email address is invalid</string>
+    <string name="error_invalid_password">This password is too short</string>
+    <string name="error_incorrect_password">This password is incorrect</string>
+    <string name="error_field_required">This field is required</string>
+    <string name="permission_rationale">"Contacts permissions are needed for providing email
+        completions."
+    </string>
+    <string name="prompt_name">Name</string>
+    <string name="prompt_address">Address</string>
+    <string name="prompt_nohp">No Handphone</string>
+    <string name="action_signup">sign up</string>
+    <string name="hint_confirm_password">Confirm password</string>
+    <string name="title_activity_settings">Settings</string>
+
+    <!-- Strings related to Settings -->
+
+    <!-- Example General settings -->
+    <string name="pref_header_general">General</string>
+
+    <string name="pref_title_social_recommendations">Enable social recommendations</string>
+    <string name="pref_description_social_recommendations">Recommendations for people to contact
+        based on your message history
+    </string>
+
+    <string name="pref_title_display_name">Display name</string>
+    <string name="pref_default_display_name">John Smith</string>
+
+    <string name="pref_title_add_friends_to_messages">Add friends to messages</string>
+    <string-array name="pref_example_list_titles">
+        <item>Always</item>
+        <item>When possible</item>
+        <item>Never</item>
+    </string-array>
+    <string-array name="pref_example_list_values">
+        <item>1</item>
+        <item>0</item>
+        <item>-1</item>
+    </string-array>
+
+    <!-- Example settings for Data & Sync -->
+    <string name="pref_header_data_sync">Data &amp; sync</string>
+
+    <string name="pref_title_sync_frequency">Sync frequency</string>
+    <string-array name="pref_sync_frequency_titles">
+        <item>15 minutes</item>
+        <item>30 minutes</item>
+        <item>1 hour</item>
+        <item>3 hours</item>
+        <item>6 hours</item>
+        <item>Never</item>
+    </string-array>
+    <string-array name="pref_sync_frequency_values">
+        <item>15</item>
+        <item>30</item>
+        <item>60</item>
+        <item>180</item>
+        <item>360</item>
+        <item>-1</item>
+    </string-array>
+
+    <string name="pref_title_system_sync_settings">System sync settings</string>
+
+    <!-- Example settings for Notifications -->
+    <string name="pref_header_notifications">Notifications</string>
+
+    <string name="pref_title_new_message_notifications">New message notifications</string>
+
+    <string name="pref_title_ringtone">Ringtone</string>
+    <string name="pref_ringtone_silent">Silent</string>
+
+    <string name="pref_title_vibrate">Vibrate</string>
+    <string name="title_activity_main2">Main2Activity</string>
+    <string name="action_search">search</string>
+    <string name="title_activity_scrolling">ScrollingActivity</string>
+
+
+    <string name="nav_stateless">Stateless Section</string>
+    <string name="nav_example1">Section with Header</string>
+    <string name="nav_example2">Section with Header and Footer</string>
+    <string name="nav_example4">Expandable Section</string>
+    <string name="nav_example5">Grid Section with Header</string>
+    <string name="nav_example6">Expandable Grid Section</string>
+    <string name="nav_stateful">Stateful Section</string>
+    <string name="nav_example3">Section with Header and Footer</string>
+
+    <string name="world_topic">World</string>
+    <string name="biz_topic">Business</string>
+    <string name="tech_topic">Technology</string>
+    <string name="sports_topic">Sports</string>
+
+    <string name="top_rated_movies_topic">Top Rated Movies</string>
+    <string name="most_popular_movies_topic">Most Popular Movies</string>
+
+    <string name="more">MORE</string>
+    <string name="see_more">See more..</string>
+    <string name="failed_load">Failed to load, tap to try again.</string>
+    <string name="list_empty">list is empty</string>
+
+    <string name="search">search</string>
+    <string name="promp_old_password">old password</string>
+
+    <!-- login register form -->
+    <string name="change_password">Change Password</string>
+    <string name="time_remaining">Time remaining </string>
+    <string name="time_out">"Time Out ! Request again to reset password. : </string>
+    <string name="failed">Failed</string>
+    <string name="field_empty">Fields are empty !</string>
+    <string name="welcome">Welcome</string>
+    <string name="cancel">Cancel</string>
+    <string name="email">Email</string>
+    <string name="password">Password</string>
+    <string name="register">Register</string>
+    <string name="already_registered_login_now">Already Registered ? Login Now !</string>
+    <string name="name">Name</string>
+    <string name="e_laundry">E-Laundry</string>
+    <string name="address">Address</string>
+    <string name="phone">Phone</string>
+    <string name="confirm_password">Confirm Password</string>
+    <string name="not_registered_register_now">Not Registered ? Register Now !</string>
+    <string name="forgot_password">Forgot Password</string>
+    <string name="login">Login</string>
+
+    <string name="error_in_creating_fragment">Error in creating fragment</string>
+    <string name="edit">edit</string>
+    <string name="save">save</string>
+
+
+</resources>

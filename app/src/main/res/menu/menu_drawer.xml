@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <group android:checkableBehavior="single">
+
+        <item
+            android:id="@+id/nav_terrain"
+            android:icon="@drawable/ic_terrain_24dp"
+            android:title="@string/nav_terrain" />
+        <item
+            android:id="@+id/nav_satellite"
+            android:icon="@drawable/ic_satellite_24dp"
+            android:title="@string/nav_sattelite" />
+        <item
+            android:id="@+id/nav_hybrid"
+            android:icon="@drawable/ic_collections_24dp"
+            android:title="@string/nav_hibryd" />
+    </group>
+
+    <item android:title="@string/nav_others">
+        <menu>
+            <item
+                android:id="@+id/nav_share"
+                android:icon="@drawable/ic_share_24dp"
+                android:title="@string/nav_share" />
+            <item
+                android:id="@+id/nav_logout"
+                android:icon="@drawable/ic_lock_open_24dp"
+                android:title="@string/nav_logout" />
+            <item
+                android:id="@+id/nav_exit"
+                android:icon="@drawable/ic_exit_to_app_24dp"
+                android:title="@string/nav_exit" />
+        </menu>
+    </item>
+
+</menu>
