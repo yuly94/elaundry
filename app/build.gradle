@@ -50,4 +50,6 @@ dependencies {
     compile 'com.google.code.gson:gson:2.4'
     compile 'com.amulyakhare:com.amulyakhare.textdrawable:1.0.1'
     compile 'com.mcxiaoke.volley:library:1.0.19'
+    compile 'com.squareup.retrofit2:retrofit:2.0.0'
+    compile 'com.squareup.retrofit2:converter-gson:2.0.0'
 }

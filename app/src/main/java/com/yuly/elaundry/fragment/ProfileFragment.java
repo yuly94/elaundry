@@ -27,21 +27,34 @@ import com.android.volley.Request;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.VolleyLog;
+import com.android.volley.toolbox.JsonArrayRequest;
+import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.StringRequest;
 import com.yuly.elaundry.R;
 import com.yuly.elaundry.activity.MainActivity;
 import com.yuly.elaundry.activity.PemesananActivity;
 import com.yuly.elaundry.app.AppConfig;
 import com.yuly.elaundry.app.AppController;
+import com.yuly.elaundry.app.Constants;
+import com.yuly.elaundry.app.RequestInterface;
 import com.yuly.elaundry.helper.SQLiteHandler;
 import com.yuly.elaundry.helper.SessionManager;
 import com.yuly.elaundry.helper.VolleyErrorHelper;
+import com.yuly.elaundry.models.ServerRequest;
+import com.yuly.elaundry.models.ServerResponse;
+import com.yuly.elaundry.models.User;
 
+import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.HashMap;
 import java.util.Map;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Retrofit;
+import retrofit2.converter.gson.GsonConverterFactory;
 
 /**
  * Created by samsung on 21/02/16.
@@ -166,9 +179,9 @@ public class ProfileFragment extends Fragment {
                 if(!old_password.isEmpty() && !new_password.isEmpty()){
 
                     progress.setVisibility(View.VISIBLE);
+                    //changePasswordProcess(old_password,new_password);
                     changePasswordProcess(old_password,new_password);
-                    tv_message.setVisibility(View.VISIBLE);
-                    tv_message.setText(apiKey);
+
 
                 }else {
 
@@ -216,6 +229,73 @@ public class ProfileFragment extends Fragment {
         return super.onOptionsItemSelected(item);
     }
 
+
+
+
+
+
+
+    /**
+     * Making json array request
+     * @param old_password
+     * @param new_password
+     */
+    private void makeJsonArryReq(String old_password,String new_password) {
+
+        showDialog();
+
+            /*Post data*/
+        Map<String, String> jsonParams = new HashMap<String, String>();
+
+        jsonParams.put("old_password", old_password);
+        jsonParams.put("new_password", new_password);
+
+
+
+        JsonObjectRequest postRequest = new JsonObjectRequest( Request.Method.POST, AppConfig.URL_CHANGEPASS,
+
+                new JSONObject(jsonParams),
+                new Response.Listener<JSONObject>() {
+                    @Override
+                    public void onResponse(JSONObject response) {
+
+                    hideDialog();
+                        //   Success Handler
+                        try {
+                            VolleyLog.v("Response:%n %s", response.toString(4));
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                        }
+
+                    }
+                },
+                new Response.ErrorListener() {
+                    @Override
+                    public void onErrorResponse(VolleyError error) {
+                        //   Handle Error
+
+                        hideDialog();
+                        VolleyLog.e("Error: ", error.getMessage());
+
+                    }
+                }) {
+            @Override
+            public Map<String, String> getHeaders() throws AuthFailureError {
+                HashMap<String, String> headers = new HashMap<String, String>();
+                headers.put("Content-Type", "application/json; charset=utf-8");
+                headers.put("User-agent", System.getProperty("http.agent"));
+                return headers;
+            }
+        };
+
+
+        // Adding request to request queue
+        String tag_json_object = "object_req";
+        AppController.getInstance().addToRequestQueue(postRequest, tag_json_object);
+
+        // Cancelling request
+        // ApplicationController.getInstance().getRequestQueue().cancelAll(tag_json_arry);
+    }
 
 
 
@@ -331,9 +411,62 @@ public class ProfileFragment extends Fragment {
 
 
 
+
+    private void changePasswordProcess(String email,String old_password,String new_password){
+
+        Retrofit retrofit = new Retrofit.Builder()
+                .baseUrl(Constants.BASE_URL)
+                .addConverterFactory(GsonConverterFactory.create())
+                .build();
+
+        RequestInterface requestInterface = retrofit.create(RequestInterface.class);
+
+        User user = new User();
+        user.setEmail(email);
+        user.setOld_password(old_password);
+        user.setNew_password(new_password);
+        ServerRequest request = new ServerRequest();
+        request.setOperation(Constants.CHANGE_PASSWORD_OPERATION);
+        request.setUser(user);
+        Call<ServerResponse> response = requestInterface.operation(request);
+
+        response.enqueue(new Callback<ServerResponse>() {
+            @Override
+            public void onResponse(Call<ServerResponse> call, retrofit2.Response<ServerResponse> response) {
+
+                ServerResponse resp = response.body();
+                if(resp.getResult().equals(Constants.SUCCESS)){
+                    progress.setVisibility(View.GONE);
+                    tv_message.setVisibility(View.GONE);
+                    dialog.dismiss();
+                    Snackbar.make(getView(), resp.getMessage(), Snackbar.LENGTH_LONG).show();
+
+                }else {
+                    progress.setVisibility(View.GONE);
+                    tv_message.setVisibility(View.VISIBLE);
+                    tv_message.setText(resp.getMessage());
+
+                }
+            }
+
+            @Override
+            public void onFailure(Call<ServerResponse> call, Throwable t) {
+
+                Log.d(Constants.TAG,"failed");
+                progress.setVisibility(View.GONE);
+                tv_message.setVisibility(View.VISIBLE);
+                tv_message.setText(t.getLocalizedMessage());
+
+
+            }
+        });
+    }
+
+
     private void showDialog() {
         if (!pDialog.isShowing())
             pDialog.show();
+            pDialog.setMessage("Loading...");
     }
 
     private void hideDialog() {
