@@ -11,6 +11,7 @@ import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
 
+import android.support.design.widget.Snackbar;
 import android.support.v7.widget.AppCompatButton;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -52,8 +53,6 @@ public class RegisterFragmentVolley extends Fragment implements View.OnClickList
     private EditText inputPassword;
     private EditText inputConfirm;
     private SQLiteHandler db;
-    private Button btnRegister;
-    private TextView btnLinkToLogin;
     private ProgressDialog pDialog;
     private SessionManager session;
 
@@ -64,9 +63,9 @@ public class RegisterFragmentVolley extends Fragment implements View.OnClickList
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 
-        View view = inflater.inflate(R.layout.fragment_login,container,false);
+        View view = inflater.inflate(R.layout.fragment_register,container,false);
         initViews(view);
-        checkSesi();
+
         pDialog = new ProgressDialog(getActivity());
         pDialog.setCancelable(false);
 
@@ -100,30 +99,14 @@ public class RegisterFragmentVolley extends Fragment implements View.OnClickList
         inputPassword = (EditText) view.findViewById(R.id.et_password);
         inputConfirm = (EditText) view.findViewById(R.id.et_confirm_password);
 
-        // Progress dialog
-        pDialog = new ProgressDialog(getActivity());
-        pDialog.setCancelable(false);
-
-
         btn_register = (AppCompatButton)view.findViewById(R.id.btn_register);
         tv_login = (TextView)view.findViewById(R.id.tv_login);
 
         btn_register.setOnClickListener(this);
         tv_login.setOnClickListener(this);
 
-/*
-        // Link to Login Screen
-        btnLinkToLogin.setOnClickListener(new View.OnClickListener() {
-
-            public void onClick(View view) {
-                Intent i = new Intent(getActivity(),
-                        LoginActivity.class);
-                startActivity(i);
-                finish();
-            }
-        });*/
-
     }
+
 
 
     @Override
@@ -135,7 +118,6 @@ public class RegisterFragmentVolley extends Fragment implements View.OnClickList
                 break;
 
             case R.id.btn_register:
-
 
                 // Register Button Click event
 
