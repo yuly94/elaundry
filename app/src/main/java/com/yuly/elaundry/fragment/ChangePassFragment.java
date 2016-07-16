@@ -9,18 +9,14 @@ package com.yuly.elaundry.fragment;
 
 import android.app.ProgressDialog;
 import android.content.Intent;
-
 import android.os.Bundle;
-
 import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentManager;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
-
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -43,22 +39,21 @@ import org.json.JSONObject;
 import java.util.HashMap;
 import java.util.Map;
 
-public class LoginFragmentVolley extends Fragment implements View.OnClickListener{
-    private static final String TAG = LoginFragmentVolley.class.getSimpleName();
-    private EditText inputEmail;
-    private EditText inputPassword;
+public class ChangePassFragment extends Fragment implements View.OnClickListener{
+    private static final String TAG = ChangePassFragment.class.getSimpleName();
+    private EditText inputOldPass;
+    private EditText inputNewPass;
     private ProgressDialog pDialog;
     private SessionManager session;
     private SQLiteHandler db;
     private TextView tv_register,tv_reset_password;
-    private Button btnLogin;
+    private Button btn_ChangePass;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 
-        View view = inflater.inflate(R.layout.fragment_login,container,false);
+        View view = inflater.inflate(R.layout.fragment_changepass,container,false);
         initViews(view);
-        checkSesi();
 
         pDialog = new ProgressDialog(getActivity());
         pDialog.setCancelable(false);
@@ -70,61 +65,35 @@ public class LoginFragmentVolley extends Fragment implements View.OnClickListene
     public void onResume() {
         super.onResume();  // Always call the superclass method first
 
-        checkSesi();
     }
 
 
     private void initViews(View view){
 
-        inputEmail = (EditText) view.findViewById(R.id.et_email);
-        inputPassword = (EditText) view.findViewById(R.id.et_password);
+        inputOldPass = (EditText) view.findViewById(R.id.et_email);
+        inputNewPass = (EditText) view.findViewById(R.id.et_password);
 
-        tv_register = (TextView)view.findViewById(R.id.tv_register);
-        tv_reset_password = (TextView)view.findViewById(R.id.tv_reset_password);
-        btnLogin = (Button) view.findViewById(R.id.btn_ChangePass);
+        btn_ChangePass = (Button) view.findViewById(R.id.btn_ChangePass);
 
-        btnLogin.setOnClickListener(this);
-        tv_register.setOnClickListener(this);
-        tv_reset_password.setOnClickListener(this);
-    }
-
-
-    private void checkSesi(){
-
-        // SQLite database handler
-        db = new SQLiteHandler(getActivity());
-
-        // Session manager
-        session = new SessionManager(getActivity());
-
-        // Check if user is already logged in or not
-        if (session.isLoggedIn()) {
-            // User is already logged in. Take him to main activity
-            Intent intent = new Intent(getActivity(), MainActivity.class);
-            startActivity(intent);
-          //  finish();
-        }
+        btn_ChangePass.setOnClickListener(this);
 
     }
+
 
     @Override
     public void onClick(View v) {
 
         switch (v.getId()){
 
-            case R.id.tv_register:
-                goToRegister();
-                break;
-
             case R.id.btn_ChangePass:
 
-                String email = inputEmail.getText().toString().trim();
-                String password = inputPassword.getText().toString().trim();
+                String oldPass = inputOldPass.getText().toString().trim();
+                String newPass = inputNewPass.getText().toString().trim();
 
                 // Check for empty data in the form
-                if (!email.isEmpty() && !password.isEmpty()) {
+                if (!oldPass.isEmpty() && !newPass.isEmpty()) {
                     // login user
-                    checkLogin(email, password);
+                    checkLogin(oldPass, newPass);
                 } else {
                     // Prompt user to enter credentials
                     Toast.makeText(getActivity(),
@@ -132,9 +101,6 @@ public class LoginFragmentVolley extends Fragment implements View.OnClickListene
                             .show();
                 }
 
-                break;
-            case R.id.tv_reset_password:
-                goToResetPassword();
                 break;
         }
     }
@@ -251,25 +217,6 @@ public class LoginFragmentVolley extends Fragment implements View.OnClickListene
     private void hideDialog() {
         if (pDialog.isShowing())
             pDialog.dismiss();
-    }
-    private void goToResetPassword(){
-
-        Fragment reset = new ResetPasswordFragment();
-
-
-        FragmentManager fragmentManager = getActivity().getSupportFragmentManager();
-        fragmentManager.beginTransaction()
-                .replace(R.id.fragment_frame, reset).commit();
-
-    }
-
-    private void goToRegister(){
-
-        Fragment register = new RegisterFragmentVolley();
-
-        FragmentManager fragmentManager = getActivity().getSupportFragmentManager();
-        fragmentManager.beginTransaction()
-                .replace(R.id.fragment_frame, register).commit();
     }
 
 

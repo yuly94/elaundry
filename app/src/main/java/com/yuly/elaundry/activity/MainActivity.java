@@ -33,7 +33,8 @@ import com.google.android.gms.maps.SupportMapFragment;
 import com.yuly.elaundry.R;
 import com.yuly.elaundry.fragment.AboutFragment;
 
-import com.yuly.elaundry.fragment.LoginFragment;
+import com.yuly.elaundry.fragment.ChangePassFragment;
+import com.yuly.elaundry.fragment.MapsFragmentLocation;
 import com.yuly.elaundry.fragment.TransaksiFragment;
 import com.yuly.elaundry.fragment.TempatFragment;
 import com.yuly.elaundry.fragment.ProfileFragment;
@@ -243,17 +244,20 @@ public class MainActivity extends AppCompatActivity {
 				fragment = new TempatFragment();
 				break;
 			case 2:
-			  	fragment = new SupportMapFragment();
+			  	fragment = new MapsFragmentLocation();
 			//	fragment =new Example3Fragment();
 				break;
 			case 3:
-			 	fragment = new ProfileFragment();
+				fragment = new ChangePassFragment();
 				break;
 			case 4:
+			 	fragment = new ProfileFragment();
+				break;
+			case 5:
 				//	themes
 				HelpUtils.showThemes(this);
 				break;
-			case 5:
+			case 6:
 
 		/*		//	About
 				//HelpUtils.showAbout(this);
@@ -280,7 +284,7 @@ public class MainActivity extends AppCompatActivity {
                 fragment = new AboutFragment();
 
 				break;
-			case 6:
+			case 7:
 				// Logout
 				logoutUser();
 				break;

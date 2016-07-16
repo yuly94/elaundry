@@ -6,58 +6,63 @@
 package com.yuly.elaundry.activity;
 
 import android.app.Activity;
-import android.app.Fragment;
-import android.app.FragmentTransaction;
-import android.app.ProgressDialog;
+
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
-import android.view.View;
-import android.widget.Button;
-import android.widget.EditText;
-import android.widget.TextView;
-import android.widget.Toast;
+import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
+import android.support.v7.app.AppCompatActivity;
 
-import com.android.volley.Request.Method;
-import com.android.volley.Response;
-import com.android.volley.VolleyError;
-import com.android.volley.VolleyLog;
-import com.android.volley.toolbox.StringRequest;
 import com.yuly.elaundry.R;
-import com.yuly.elaundry.app.AppConfig;
-import com.yuly.elaundry.app.AppController;
-import com.yuly.elaundry.fragment.LoginFragment;
+
 import com.yuly.elaundry.fragment.LoginFragmentVolley;
 import com.yuly.elaundry.helper.SQLiteHandler;
 import com.yuly.elaundry.helper.SessionManager;
-import com.yuly.elaundry.helper.VolleyErrorHelper;
 
-import org.json.JSONException;
-import org.json.JSONObject;
-
-import java.util.HashMap;
-import java.util.Map;
-
-public class LoginActivityNew extends Activity {
+public class LoginActivityNew extends AppCompatActivity {
     private static final String TAG = RegisterActivity.class.getSimpleName();
 
+    private SessionManager session;
+    private SQLiteHandler db;
 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
         // pref = getPreferences(0);
         initFragment();
+
+     //   checkSesi();
     }
 
 
     private void initFragment() {
-        Fragment fragment;
 
-        fragment = new LoginFragmentVolley();
 
-        FragmentTransaction ft = getFragmentManager().beginTransaction();
-        ft.replace(R.id.fragment_frame, fragment);
-        ft.commit();
+        Fragment login = new LoginFragmentVolley();
+
+        FragmentManager fragmentManager = getSupportFragmentManager();
+        fragmentManager.beginTransaction()
+                .replace(R.id.frame_container, login).commit();
+    }
+
+    private void checkSesi(){
+
+        // SQLite database handler
+        db = new SQLiteHandler(this);
+
+        // Session manager
+        session = new SessionManager(this);
+
+        // Check if user is already logged in or not
+        if (session.isLoggedIn()) {
+            // User is already logged in. Take him to main activity
+            Intent intent = new Intent(this, MainActivity.class);
+            startActivity(intent);
+            //  finish();
+        }
 
     }
+
+
+
 }

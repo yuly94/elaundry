@@ -55,7 +55,7 @@ public class LoginActivity extends Activity {
         inputEmail = (EditText) findViewById(R.id.et_email);
         inputPassword = (EditText) findViewById(R.id.et_password);
 
-        Button btnLogin = (Button) findViewById(R.id.btn_login);
+        Button btnLogin = (Button) findViewById(R.id.btn_ChangePass);
         TextView btnLinkToRegister = (TextView) findViewById(R.id.tv_register);
 
         checkSesi();

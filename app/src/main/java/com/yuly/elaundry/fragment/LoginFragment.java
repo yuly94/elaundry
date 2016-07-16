@@ -1,12 +1,12 @@
 package com.yuly.elaundry.fragment;
 
+
+
 import android.app.Fragment;
-import android.app.FragmentTransaction;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.design.widget.Snackbar;
 import android.support.v7.widget.AppCompatButton;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -39,7 +39,7 @@ public class LoginFragment extends Fragment implements View.OnClickListener{
 
         pref = getActivity().getPreferences(0);
 
-        btn_login = (AppCompatButton)view.findViewById(R.id.btn_login);
+        btn_login = (AppCompatButton)view.findViewById(R.id.btn_ChangePass);
         tv_register = (TextView)view.findViewById(R.id.tv_register);
         tv_reset_password = (TextView)view.findViewById(R.id.tv_reset_password);
         et_email = (EditText)view.findViewById(R.id.et_email);
@@ -61,7 +61,7 @@ public class LoginFragment extends Fragment implements View.OnClickListener{
              //   goToRegister();
                 break;
 
-            case R.id.btn_login:
+            case R.id.btn_ChangePass:
                 String email = et_email.getText().toString();
                 String password = et_password.getText().toString();
 

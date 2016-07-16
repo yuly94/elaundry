@@ -178,6 +178,7 @@ public class ProfileFragment extends Fragment {
 
                     tv_message.setVisibility(View.VISIBLE);
                     tv_message.setText(R.string.field_empty);
+                    progress.setVisibility(View.INVISIBLE);
                 }
             }
         });
@@ -237,7 +238,47 @@ public class ProfileFragment extends Fragment {
      */
     private void makeJsonObjectRequest(String old_password, String new_password) {
 
-        Map<String,String> jsonParams = new HashMap<String, String>();
+        // Tag used to cancel the request
+        String tag_json_obj = "json_obj_req";
+
+        String url = AppConfig.URL_CHANGEPASS;
+showDialog();
+
+        JsonObjectRequest jsonObjReq = new JsonObjectRequest(Request.Method.POST,
+                url,
+                new Response.Listener<JSONObject>() {
+
+                    @Override
+                    public void onResponse(JSONObject response) {
+                        Log.d(TAG + " On Response", response.toString());
+hideDialog();
+                    }
+                }, new Response.ErrorListener() {
+
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                VolleyLog.d(TAG + " On Error Response",error.getMessage());
+                hideDialog();
+            }
+        }) {
+
+            /**
+             * Passing some request headers
+             * */
+            @Override
+            public Map<String, String> getHeaders() throws AuthFailureError {
+                HashMap<String, String> headers = new HashMap<String, String>();
+                headers.put("Content-Type", "application/json");
+                headers.put("Authorization", apiKey);
+                return headers;
+            }
+
+        };
+
+// Adding request to request queue
+        AppController.getInstance().addToRequestQueue(jsonObjReq, tag_json_obj);
+
+   /*     Map<String,String> jsonParams = new HashMap<String, String>();
         jsonParams.put("old_password", old_password);
         jsonParams.put("new_password", new_password);
         JsonObjectRequest request = new JsonObjectRequest(Request.Method.POST,AppConfig.URL_CHANGEPASS,new JSONObject(jsonParams), new Response.Listener<JSONObject>(){
@@ -263,7 +304,7 @@ public class ProfileFragment extends Fragment {
                 return headers;
             }
         };
-
+*/
 
 /*
         Map<String, String> jsonParams = new HashMap<String, String>();
