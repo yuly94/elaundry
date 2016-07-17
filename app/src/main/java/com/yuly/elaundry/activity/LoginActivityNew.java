@@ -20,7 +20,7 @@ import com.yuly.elaundry.helper.SQLiteHandler;
 import com.yuly.elaundry.helper.SessionManager;
 
 public class LoginActivityNew extends AppCompatActivity {
-    private static final String TAG = RegisterActivity.class.getSimpleName();
+    private static final String TAG = LoginActivityNew.class.getSimpleName();
 
     private SessionManager session;
     private SQLiteHandler db;

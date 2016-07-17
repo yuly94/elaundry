@@ -33,7 +33,8 @@ import com.google.android.gms.maps.model.BitmapDescriptorFactory;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MarkerOptions;
 import com.yuly.elaundry.R;
-import com.yuly.elaundry.activity.LoginActivity;
+
+import com.yuly.elaundry.activity.LoginActivityNew;
 import com.yuly.elaundry.app.AppConfig;
 import com.yuly.elaundry.app.AppController;
 import com.yuly.elaundry.function.LocationPermissionUtils;
@@ -217,6 +218,9 @@ public class MapsFragment extends FragmentActivity implements GoogleMap.OnMyLoca
         }
     }
 
+
+
+
     @Override
     public boolean onMyLocationButtonClick() {
         Toast.makeText(this, "MyLocation button clicked", Toast.LENGTH_SHORT).show();
@@ -272,7 +276,7 @@ public class MapsFragment extends FragmentActivity implements GoogleMap.OnMyLoca
         db.deleteUsers();
 
         // Launching the login activity
-        Intent intent = new Intent(MapsFragment.this, LoginActivity.class);
+        Intent intent = new Intent(MapsFragment.this, LoginActivityNew.class);
         startActivity(intent);
         finish();
     }

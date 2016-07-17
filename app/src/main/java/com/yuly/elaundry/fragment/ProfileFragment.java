@@ -241,265 +241,40 @@ public class ProfileFragment extends Fragment {
         // Tag used to cancel the request
         String tag_json_obj = "json_obj_req";
 
-        String url = AppConfig.URL_CHANGEPASS;
+        String URL = AppConfig.URL_CHANGEPASS;
 showDialog();
 
-        JsonObjectRequest jsonObjReq = new JsonObjectRequest(Request.Method.POST,
-                url,
-                new Response.Listener<JSONObject>() {
-
-                    @Override
-                    public void onResponse(JSONObject response) {
-                        Log.d(TAG + " On Response", response.toString());
-hideDialog();
-                    }
-                }, new Response.ErrorListener() {
-
-            @Override
-            public void onErrorResponse(VolleyError error) {
-                VolleyLog.d(TAG + " On Error Response",error.getMessage());
-                hideDialog();
-            }
-        }) {
-
-            /**
-             * Passing some request headers
-             * */
-            @Override
-            public Map<String, String> getHeaders() throws AuthFailureError {
-                HashMap<String, String> headers = new HashMap<String, String>();
-                headers.put("Content-Type", "application/json");
-                headers.put("Authorization", apiKey);
-                return headers;
-            }
-
-        };
-
-// Adding request to request queue
-        AppController.getInstance().addToRequestQueue(jsonObjReq, tag_json_obj);
-
-   /*     Map<String,String> jsonParams = new HashMap<String, String>();
-        jsonParams.put("old_password", old_password);
-        jsonParams.put("new_password", new_password);
-        JsonObjectRequest request = new JsonObjectRequest(Request.Method.POST,AppConfig.URL_CHANGEPASS,new JSONObject(jsonParams), new Response.Listener<JSONObject>(){
-            @Override
-            public void onResponse(JSONObject response) {
-                Log.d(TAG,"User creation completed successfully");
-                // Go to next activity
-            }
-        },new Response.ErrorListener(){
-
-            @Override
-            public void onErrorResponse(VolleyError error) {
-                error.printStackTrace();
-            }
-        }) {
-            @Override
-            public Map<String,String> getHeaders(){
-                HashMap<String, String> headers = new HashMap<String, String>();
-
-                headers.put("Content-Type", "application/json; charset=utf-8");
-                headers.put("Authorization",apiKey);
-                headers.put("User-agent", "My useragent");
-                return headers;
-            }
-        };
-*/
-
-/*
-        Map<String, String> jsonParams = new HashMap<String, String>();
-        jsonParams.put("old_password", old_password);
-        jsonParams.put("new_password", new_password);
-
-        JsonObjectRequest myRequest = new JsonObjectRequest(
-                Request.Method.POST,
-                AppConfig.URL_CHANGEPASS,
-                new JSONObject(jsonParams),
-
-                new Response.Listener<JSONObject>() {
-                    @Override
-                    public void onResponse(JSONObject response) {
-                        try {
-                            VolleyLog.v("Response:%n %s", response.toString(4));
-                        } catch (JSONException e) {
-                            e.printStackTrace();
-                        }
-                    }
-                }, new Response.ErrorListener() {
-            @Override
-            public void onErrorResponse(VolleyError error) {
-                VolleyLog.e("Error: ", error.getMessage());
-            }
-                }) {
-
-            @Override
-            public Map<String, String> getHeaders() throws AuthFailureError {
-                HashMap<String, String> headers = new HashMap<String, String>();
-                headers.put("Content-Type", "application/json; charset=utf-8");
-                headers.put("User-agent", "My useragent");
-                headers.put("Authorization", apiKey);
-                return headers;
-            }
-        };
-        AppController.getInstance().addToRequestQueue(myRequest, "tag");
-*/
-
-      /*  // HTTP POST
-        String url = AppConfig.URL_CHANGEPASS;
-        RequestQueue requestQueue = Volley.newRequestQueue(getContext());
-        JSONObject jsonObject = new JSONObject();
-        try {
-            jsonObject.put("old_password", old_password);
-            jsonObject.put("new_password", new_password);
-            JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.POST, url, jsonObject, new Response.Listener<JSONObject>() {
-                @Override
-                public void onResponse(JSONObject response) {
-                    // do something...
-                }
-            }, new Response.ErrorListener() {
-                @Override
-                public void onErrorResponse(VolleyError error) {
-                    // do something...
-                }
-            }) {
-                @Override
-                public Map<String, String> getHeaders() throws AuthFailureError {
-                    final Map<String, String> headers = new HashMap<String, String>();
-                    headers.put("Authorization", apiKey);
-                    headers.put("Content-Type", "application/json");
-                    return headers;
-                }
-            };
-            requestQueue.add(jsonObjectRequest);
-        } catch (JSONException e) {
-            e.printStackTrace();
-        }
-
-*/
-
-     /*   HashMap<String, String> params = new HashMap<String, String>();
+// Post params to be sent to the server
+        HashMap<String, String> params = new HashMap<String, String>();
         params.put("old_password", old_password);
         params.put("new_password", new_password);
 
 
 
-        JsonObjectRequest req = new JsonObjectRequest(AppConfig.URL_CHANGEPASS, new JSONObject(params),
+        JsonObjectRequest req = new JsonObjectRequest(URL, new JSONObject(params),
                 new Response.Listener<JSONObject>() {
                     @Override
                     public void onResponse(JSONObject response) {
-                        try {
-                            VolleyLog.v("Response:%n %s", response.toString(4));
-                        } catch (JSONException e) {
-                            e.printStackTrace();
-                        }
+                        // handle response
                     }
                 }, new Response.ErrorListener() {
             @Override
             public void onErrorResponse(VolleyError error) {
-                VolleyLog.e("Error: ", error.getMessage());
+                // handle error
             }
         }) {
 
             @Override
             public Map<String, String> getHeaders() throws AuthFailureError {
                 HashMap<String, String> headers = new HashMap<String, String>();
-                headers.put("Content-Type", "application/json");
                 headers.put("Authorization", apiKey);
                 return headers;
             }
         };
 
+// Adding request to request queue
+        AppController.getInstance().addToRequestQueue(req, tag_json_obj);
 
-// add the request object to the queue to be executed
-        AppController.getInstance().addToRequestQueue(req);
-*/
-/*
-    //    showDialog();
-
-            */
-/*Post data*//*
-
-        Map<String, String> jsonParams = new HashMap<String, String>();
-
-        jsonParams.put("old_password", old_password);
-        jsonParams.put("new_password", new_password);
-
-
-
-        JsonObjectRequest postRequest = new JsonObjectRequest( Request.Method.POST, AppConfig.URL_CHANGEPASS,
-
-                new JSONObject(jsonParams),
-                new Response.Listener<JSONObject>() {
-                    @Override
-                    public void onResponse(JSONObject response) {
-
-            //        hideDialog();
-                        //   Success Handler
-                        try {
-                            VolleyLog.v("Response:%n %s", response.toString(4));
-
-                            Log.d(Constants.TAG,"failed");
-                            progress.setVisibility(View.GONE);
-                            tv_message.setVisibility(View.VISIBLE);
-                            tv_message.setText(response.toString(4));
-
-
-                        } catch (JSONException e) {
-                            e.printStackTrace();
-                        }
-
-                    }
-                },
-                new Response.ErrorListener() {
-                    @Override
-                    public void onErrorResponse(VolleyError error) {
-                        //   Handle Error
-
-                        String e = VolleyErrorHelper.getMessage(error, getActivity());
-
-                        VolleyLog.d(AppController.TAG, "Error: " + e);
-
-
-                        Toast.makeText(getActivity(),
-                                e, Toast.LENGTH_LONG).show();
-
-                        Log.d(Constants.TAG,"failed");
-                        progress.setVisibility(View.GONE);
-                        tv_message.setVisibility(View.VISIBLE);
-                        tv_message.setText(e);
-
-                  //      hideDialog();
-
-
-                    }
-                }) {
-*/
-/*            @Override
-            public Map<String, String> getHeaders() throws AuthFailureError {
-                HashMap<String, String> headers = new HashMap<String, String>();
-                headers.put("Content-Type", "application/json; charset=utf-8");
-                headers.put("Authorization", apiKey);
-                return headers;
-            }*//*
-
-
-            @Override
-            public Map<String, String> getHeaders() throws AuthFailureError {
-                HashMap<String, String> headers = new HashMap<String, String>();
-                headers.put("Content-Type", "application/json");
-                headers.put("Authorization", apiKey);
-                return headers;
-            }
-
-        };
-
-
-        // Adding request to request queue
-        String tag_json_object = "object_req";
-     //   AppController.getInstance().addToRequestQueue(postRequest, tag_json_object);
-        RequestQueue queue = Volley.newRequestQueue(getActivity());
-        queue.add(postRequest);
-*/
 
     }
 
@@ -619,58 +394,6 @@ hideDialog();
 
 
 
-
-/*
-    private void changePasswordProcess(String old_password,String new_password){
-
-        Retrofit retrofit = new Retrofit.Builder()
-                .baseUrl(Constants.BASE_URL)
-                .addConverterFactory(GsonConverterFactory.create())
-                .build();
-
-        RequestInterface requestInterface = retrofit.create(RequestInterface.class);
-
-        User user = new User();
-      //  user.setEmail(email);
-        user.setOld_password(old_password);
-        user.setNew_password(new_password);
-        ServerRequest request = new ServerRequest();
-        request.setOperation(Constants.CHANGE_PASSWORD_OPERATION);
-        request.setUser(user);
-        Call<ServerResponse> response = requestInterface.operation(request);
-
-        response.enqueue(new Callback<ServerResponse>() {
-            @Override
-            public void onResponse(Call<ServerResponse> call, retrofit2.Response<ServerResponse> response) {
-
-                ServerResponse resp = response.body();
-                if(resp.getResult().equals(Constants.SUCCESS)){
-                    progress.setVisibility(View.GONE);
-                    tv_message.setVisibility(View.GONE);
-                    dialog.dismiss();
-                    Snackbar.make(getView(), resp.getMessage(), Snackbar.LENGTH_LONG).show();
-
-                }else {
-                    progress.setVisibility(View.GONE);
-                    tv_message.setVisibility(View.VISIBLE);
-                    tv_message.setText(resp.getMessage());
-
-                }
-            }
-
-            @Override
-            public void onFailure(Call<ServerResponse> call, Throwable t) {
-
-                Log.d(Constants.TAG,"failed");
-                progress.setVisibility(View.GONE);
-                tv_message.setVisibility(View.VISIBLE);
-                tv_message.setText(t.getLocalizedMessage());
-
-
-            }
-        });
-    }
-*/
 
 
     private void showDialog() {

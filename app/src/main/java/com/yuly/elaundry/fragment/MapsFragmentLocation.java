@@ -3,134 +3,121 @@ package com.yuly.elaundry.fragment;
 import android.Manifest;
 import android.app.Activity;
 
-
+import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
+import android.location.Criteria;
+import android.location.Location;
+import android.location.LocationManager;
 import android.os.Bundle;
+import android.provider.Settings;
+
+import android.support.annotation.NonNull;
+import android.support.annotation.Nullable;
 import android.support.v4.app.ActivityCompat;
+
 import android.support.v4.app.Fragment;
-import android.text.TextUtils;
+import android.text.Html;
 import android.util.Log;
 import android.view.LayoutInflater;
-import android.view.Menu;
-import android.view.MenuInflater;
-import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.AdapterView;
-import android.widget.AutoCompleteTextView;
+import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.GooglePlayServicesNotAvailableException;
 import com.google.android.gms.common.GooglePlayServicesRepairableException;
 import com.google.android.gms.common.api.GoogleApiClient;
-import com.google.android.gms.common.api.PendingResult;
-import com.google.android.gms.common.api.ResultCallback;
+import com.google.android.gms.location.LocationListener;
+import com.google.android.gms.location.LocationServices;
 import com.google.android.gms.location.places.Place;
-import com.google.android.gms.location.places.PlaceBuffer;
-import com.google.android.gms.location.places.PlaceLikelihood;
-import com.google.android.gms.location.places.PlaceLikelihoodBuffer;
-import com.google.android.gms.location.places.Places;
 import com.google.android.gms.location.places.ui.PlacePicker;
+import com.google.android.gms.maps.model.LatLng;
+import com.google.android.gms.maps.model.LatLngBounds;
 import com.yuly.elaundry.R;
-import com.yuly.elaundry.adapter.AutoCompleteAdapter;
-import com.yuly.elaundry.adapter.AutoCompletePlace;
 
 
-public class MapsFragmentLocation extends Fragment implements GoogleApiClient.OnConnectionFailedListener,
-        GoogleApiClient.ConnectionCallbacks {
+public class MapsFragmentLocation extends Fragment implements LocationListener, GoogleApiClient.ConnectionCallbacks, GoogleApiClient.OnConnectionFailedListener {
+    private static final int PLACE_PICKER_REQUEST = 1;
+    private TextView mName;
+    private TextView mAddress;
+    private TextView mAttributions;
+    private LocationManager locationManager;
+    private String provider;
+    private Double longitude;
+    private Double latitude;
 
-    private GoogleApiClient mGoogleApiClient;
-
-    private int PLACE_PICKER_REQUEST = 1;
-    private AutoCompleteAdapter mAdapter;
-
-    private TextView mTextView;
-    private AutoCompleteTextView mPredictTextView;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
 
-
-
-        View v = inflater.inflate(R.layout.map_location, container,
+        View v = inflater.inflate(R.layout.activity_place_picker, container,
                 false);
 
 
-        mTextView = (TextView) v.findViewById(R.id.textview);
+        final LatLngBounds BOUNDS_MOUNTAIN_VIEW = new LatLngBounds(
+                new LatLng(37.398160, -122.180831), new LatLng(37.430610, -121.972090));
 
-        mPredictTextView = (AutoCompleteTextView) v.findViewById(R.id.predicttextview);
-        mAdapter = new AutoCompleteAdapter(getActivity());
-        mPredictTextView.setAdapter(mAdapter);
-
-        mPredictTextView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+        mName = (TextView) v.findViewById(R.id.textView);
+        mAddress = (TextView) v.findViewById(R.id.textView2);
+        mAttributions = (TextView) v.findViewById(R.id.textView3);
+        Button pickerButton = (Button) v.findViewById(R.id.pickerButton);
+        pickerButton.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                AutoCompletePlace place = (AutoCompletePlace) parent.getItemAtPosition(position);
-                findPlaceById(place.getId());
+            public void onClick(View v) {
+                try {
+
+
+
+                    PlacePicker.IntentBuilder intentBuilder =
+                            new PlacePicker.IntentBuilder();
+                    intentBuilder.setLatLngBounds(BOUNDS_MOUNTAIN_VIEW);
+                    Intent intent = intentBuilder.build(getActivity());
+                    startActivityForResult(intent, PLACE_PICKER_REQUEST);
+
+                } catch (GooglePlayServicesRepairableException
+                        | GooglePlayServicesNotAvailableException e) {
+                    e.printStackTrace();
+                }
             }
         });
-
-        mGoogleApiClient = new GoogleApiClient
-                .Builder(getActivity())
-                .enableAutoManage(getActivity(), 0, this)
-                .addApi(Places.GEO_DATA_API)
-                .addApi(Places.PLACE_DETECTION_API)
-                .addConnectionCallbacks(this)
-                .addOnConnectionFailedListener(this)
-                .build();
         return v;
 
     }
 
-    @Override
-    public void onViewCreated(View view, Bundle savedInstanceState) {
-        super.onViewCreated(view, savedInstanceState);
-        // findViews();
-        setHasOptionsMenu(true);
-    }
 
 
-    @Override
-    public void onStart() {
-        super.onStart();
-        if (mGoogleApiClient != null)
-            mGoogleApiClient.connect();
-    }
 
-    @Override
-    public void onStop() {
-        if (mGoogleApiClient != null && mGoogleApiClient.isConnected()) {
-            mAdapter.setGoogleApiClient(null);
-            mGoogleApiClient.disconnect();
+    private void checkGps() {
+
+        LocationManager service = (LocationManager) getActivity().getSystemService(Context.LOCATION_SERVICE);
+        boolean enabled = service
+                .isProviderEnabled(LocationManager.GPS_PROVIDER);
+
+// check if enabled and if not send user to the GSP settings
+// Better solution would be to display a dialog and suggesting to
+// go to the settings
+        if (!enabled) {
+            Intent intent = new Intent(Settings.ACTION_LOCATION_SOURCE_SETTINGS);
+            startActivity(intent);
         }
-        super.onStop();
+
     }
 
-    private void findPlaceById(String id) {
-        if (TextUtils.isEmpty(id) || mGoogleApiClient == null || !mGoogleApiClient.isConnected())
-            return;
+    public void getLocation() {
 
-        Places.GeoDataApi.getPlaceById(mGoogleApiClient, id).setResultCallback(new ResultCallback<PlaceBuffer>() {
-            @Override
-            public void onResult(PlaceBuffer places) {
-                if (places.getStatus().isSuccess()) {
-                    Place place = places.get(0);
-                    displayPlace(place);
-                    mPredictTextView.setText("");
-                    mAdapter.clear();
-                }
-
-                //Release the PlaceBuffer to prevent a memory leak
-                places.release();
-            }
-        });
-    }
-
-    private void guessCurrentPlace() {
-        if (ActivityCompat.checkSelfPermission(getActivity(), Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
+        // Get the location manager
+        locationManager = (LocationManager) getActivity().getSystemService(Context.LOCATION_SERVICE);
+        // Define the criteria how to select the locatioin provider -> use
+        // default
+        Criteria criteria = new Criteria();
+        String provider = locationManager.getBestProvider(criteria, false);
+        if (ActivityCompat.checkSelfPermission(getActivity(),
+                Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(getActivity(),
+                Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
             // TODO: Consider calling
             //    ActivityCompat#requestPermissions
             // here to request the missing permissions, and then overriding
@@ -140,102 +127,107 @@ public class MapsFragmentLocation extends Fragment implements GoogleApiClient.On
             // for ActivityCompat#requestPermissions for more details.
             return;
         }
-        PendingResult<PlaceLikelihoodBuffer> result = Places.PlaceDetectionApi.getCurrentPlace(mGoogleApiClient, null);
-        result.setResultCallback( new ResultCallback<PlaceLikelihoodBuffer>() {
-            @Override
-            public void onResult( PlaceLikelihoodBuffer likelyPlaces ) {
+        Location location = locationManager.getLastKnownLocation(provider);
 
-                PlaceLikelihood placeLikelihood = likelyPlaces.get( 0 );
-                String content = "";
-                if( placeLikelihood != null && placeLikelihood.getPlace() != null && !TextUtils.isEmpty( placeLikelihood.getPlace().getName() ) )
-                    content = "Most likely place: " + placeLikelihood.getPlace().getName() + "\n";
-                if( placeLikelihood != null )
-                    content += "Percent change of being there: " + (int) ( placeLikelihood.getLikelihood() * 100 ) + "%";
-                mTextView.setText( content );
+        // Initialize the location fields
+        if (location != null) {
+            System.out.println("Provider " + provider + " has been selected.");
+            onLocationChanged(location);
+        } else {
+            GoogleApiClient mGoogleApiClient = null;
+            //latituteField.setText("Location not available");
+            //longitudeField.setText("Location not available");
+            Location mLastLocation = LocationServices.FusedLocationApi.getLastLocation(
+                    mGoogleApiClient);
+            if (mLastLocation != null) {
 
-                likelyPlaces.release();
+                Log.d("on location LA", String.valueOf(location.getLatitude()));
+                Log.d("on location LO", String.valueOf(location.getLongitude()));
+                Log.d("on location AC", String.valueOf(location.getAccuracy()));
+
+
+
+
             }
-        });
+
+
+        }
+
+
     }
 
-    private void displayPlacePicker() {
-        if( mGoogleApiClient == null || !mGoogleApiClient.isConnected() )
+
+
+    /* Remove the locationlistener updates when Activity is paused */
+    @Override
+    public void onPause() {
+        super.onPause();
+        if (ActivityCompat.checkSelfPermission(getActivity(),
+                Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(getActivity(),
+                Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
+            // TODO: Consider calling
+            //    ActivityCompat#requestPermissions
+            // here to request the missing permissions, and then overriding
+            //   public void onRequestPermissionsResult(int requestCode, String[] permissions,
+            //                                          int[] grantResults)
+            // to handle the case where the user grants the permission. See the documentation
+            // for ActivityCompat#requestPermissions for more details.
             return;
-
-        PlacePicker.IntentBuilder builder = new PlacePicker.IntentBuilder();
-
-        try {
-            startActivityForResult( builder.build((Activity) getActivity()), PLACE_PICKER_REQUEST );
-        } catch ( GooglePlayServicesRepairableException e ) {
-            Log.d( "PlacesAPI Demo", "GooglePlayServicesRepairableException thrown" );
-        } catch ( GooglePlayServicesNotAvailableException e ) {
-            Log.d( "PlacesAPI Demo", "GooglePlayServicesNotAvailableException thrown" );
         }
+        locationManager.removeUpdates((android.location.LocationListener) this);
     }
 
-    public void onActivityResult(int requestCode, int resultCode, Intent data) {
-        int RESULT_OK = 0;
-        if( requestCode == PLACE_PICKER_REQUEST && resultCode == RESULT_OK ) {
-            displayPlace( PlacePicker.getPlace( data, getContext() ) );
-        }
+    @Override
+    public void onLocationChanged(Location location) {
+        int lat = (int) (location.getLatitude());
+        int lng = (int) (location.getLongitude());
+
+        Log.d("on location changed", String.valueOf(lat));
+        Log.d("on location changed", String.valueOf(lng));
+
+
+
     }
 
-    private void displayPlace( Place place ) {
-        if( place == null )
-            return;
-
-        String content = "";
-        if( !TextUtils.isEmpty( place.getName() ) ) {
-            content += "Name: " + place.getName() + "\n";
-        }
-        if( !TextUtils.isEmpty( place.getAddress() ) ) {
-            content += "Address: " + place.getAddress() + "\n";
-        }
-        if( !TextUtils.isEmpty( place.getPhoneNumber() ) ) {
-            content += "Phone: " + place.getPhoneNumber();
-        }
-
-        mTextView.setText( content );
-    }
 
 
 
     @Override
-    public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
-        super.onCreateOptionsMenu(menu, inflater);
+    public void onActivityResult(int requestCode,
+                                 int resultCode, Intent data) {
 
-        inflater.inflate(R.menu.place_menu, menu );
-    }
+        if (requestCode == PLACE_PICKER_REQUEST
+                && resultCode == Activity.RESULT_OK) {
 
+            final Place place = PlacePicker.getPlace(getActivity(), data);
+            final CharSequence name = place.getName();
+            final CharSequence address = place.getAddress();
+            String attributions = (String) place.getAttributions();
+            if (attributions == null) {
+                attributions = "";
+            }
 
-    @Override
-    public boolean onOptionsItemSelected( MenuItem item ) {
-        int id = item.getItemId();
+            mName.setText(name);
+            mAddress.setText(address);
+            mAttributions.setText(Html.fromHtml(attributions));
 
-        if( id == R.id.action_place_picker ) {
-            displayPlacePicker();
-            return true;
-        } else if( id == R.id.action_guess_current_place ) {
-            guessCurrentPlace();
-            return true;
+        } else {
+            super.onActivityResult(requestCode, resultCode, data);
         }
-
-        return super.onOptionsItemSelected( item );
     }
 
     @Override
-    public void onConnected( Bundle bundle ) {
-        if( mAdapter != null )
-            mAdapter.setGoogleApiClient( mGoogleApiClient );
-    }
-
-    @Override
-    public void onConnectionSuspended( int i ) {
+    public void onConnected(@Nullable Bundle bundle) {
 
     }
 
     @Override
-    public void onConnectionFailed( ConnectionResult connectionResult ) {
+    public void onConnectionSuspended(int i) {
+
+    }
+
+    @Override
+    public void onConnectionFailed(@NonNull ConnectionResult connectionResult) {
 
     }
 }

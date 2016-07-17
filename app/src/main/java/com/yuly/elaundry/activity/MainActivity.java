@@ -31,7 +31,7 @@ import com.amulyakhare.textdrawable.util.ColorGenerator;
 
 import com.google.android.gms.maps.SupportMapFragment;
 import com.yuly.elaundry.R;
-import com.yuly.elaundry.fragment.AboutFragment;
+//import com.yuly.elaundry.fragment.AboutFragment;
 
 import com.yuly.elaundry.fragment.ChangePassFragment;
 import com.yuly.elaundry.fragment.MapsFragmentLocation;
@@ -281,7 +281,7 @@ public class MainActivity extends AppCompatActivity {
 
                 fragment = AboutFragment;
 */
-                fragment = new AboutFragment();
+            //    fragment = new AboutFragment();
 
 				break;
 			case 7:

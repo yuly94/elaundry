@@ -1,6 +1,7 @@
 package com.yuly.elaundry.app;
 
 import android.app.Application;
+
 import android.text.TextUtils;
 
 import com.android.volley.Request;
@@ -9,6 +10,15 @@ import com.android.volley.toolbox.ImageLoader;
 import com.android.volley.toolbox.Volley;
 
 public class AppController extends Application {
+
+
+/*
+	@Override
+	protected void attachBaseContext(Context base) {
+		super.attachBaseContext(base);
+		MultiDex.install(this);
+	}*/
+
 
 	public static final String TAG = AppController.class
 			.getSimpleName();

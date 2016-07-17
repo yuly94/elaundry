@@ -1,8 +1,6 @@
 package com.yuly.elaundry.fragment;
 
-import android.app.FragmentTransaction;
 import android.app.ProgressDialog;
-import android.content.Intent;
 import android.os.Bundle;
 import android.os.CountDownTimer;
 import android.support.design.widget.Snackbar;
@@ -25,8 +23,6 @@ import com.android.volley.VolleyError;
 import com.android.volley.VolleyLog;
 import com.android.volley.toolbox.StringRequest;
 import com.yuly.elaundry.R;
-import com.yuly.elaundry.activity.MainActivity;
-import com.yuly.elaundry.activity.RegisterActivity;
 import com.yuly.elaundry.app.AppConfig;
 import com.yuly.elaundry.app.AppController;
 import com.yuly.elaundry.helper.VolleyErrorHelper;
