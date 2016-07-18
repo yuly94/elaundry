@@ -40,6 +40,12 @@
     <string name="generic_server_down">generic server down</string>
     <string name="no_internet">no internet connection</string>
     <string name="generic_error">generic error</string>
+    <string name="generic_server_timeout">server time out</string>
+    <string name="auth_failed">auth failure</string>
+    <string name="no_network_connection">no network connection</string>
+    <string name="parsing_failed">parsing failed</string>
+
+
 
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
@@ -184,6 +190,8 @@
     <string name="error_in_creating_fragment">Error in creating fragment</string>
     <string name="edit">edit</string>
     <string name="save">save</string>
+    <string name="update_profile_success">Update Profile Success</string>
+    <string name="update_profile_failed">Update Profile Failed, Please try again</string>
 
 
 </resources>

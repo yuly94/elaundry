@@ -57,8 +57,6 @@ public class TransaksiFragment extends Fragment implements SearchView.OnQueryTex
 
     //Creating Views
 
-
-
     private SQLiteHandler db;
     private SessionManager session;
 
@@ -115,7 +113,7 @@ public class TransaksiFragment extends Fragment implements SearchView.OnQueryTex
 
 
 
-mRecyclerView = (RecyclerView) v.findViewById(R.id.recycler_view);
+        mRecyclerView = (RecyclerView) v.findViewById(R.id.recycler_view);
 
         mFastScroller = (FastScroller) v.findViewById(R.id.fastscroller);
 
@@ -130,7 +128,7 @@ mRecyclerView = (RecyclerView) v.findViewById(R.id.recycler_view);
         loadingView = inflater.inflate(R.layout.view_loading, mRecyclerView, false);
         emptyView = inflater.inflate(R.layout.view_empty, mRecyclerView, false);
         errorView = inflater.inflate(R.layout.view_error, mRecyclerView, false);
-      //  adapter = new SimpleStringAdapter(Cheeses.sCheeseStrings);
+      //adapter = new SimpleStringAdapter(Cheeses.sCheeseStrings);
         statesRecyclerViewAdapter = new StatesRecyclerViewAdapter(adapter, loadingView, emptyView, errorView);
         mRecyclerView.setAdapter(statesRecyclerViewAdapter);
         mRecyclerView.addItemDecoration(new DividerItemDecoration(getContext(), DividerItemDecoration.VERTICAL_LIST));
@@ -382,7 +380,7 @@ mRecyclerView = (RecyclerView) v.findViewById(R.id.recycler_view);
 
     private void showProgressDialog() {
         if (!pDialog.isShowing()){
-            pDialog.hide();
+            pDialog.show();
         }
 
        //  getLoading();

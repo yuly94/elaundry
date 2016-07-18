@@ -6,6 +6,7 @@ import com.android.volley.AuthFailureError;
 import com.android.volley.NetworkError;
 import com.android.volley.NetworkResponse;
 import com.android.volley.NoConnectionError;
+import com.android.volley.ParseError;
 import com.android.volley.ServerError;
 import com.android.volley.TimeoutError;
 import com.android.volley.VolleyError;
@@ -28,7 +29,7 @@ public class VolleyErrorHelper {
      * @param context
      * @return
      */
-    public static String getMessage(Object error, Context context) {
+    public static String getMessagex(Object error, Context context) {
         if (error instanceof TimeoutError) {
             return context.getResources().getString(R.string.generic_server_down);
         }
@@ -57,6 +58,31 @@ public class VolleyErrorHelper {
     private static boolean isServerProblem(Object error) {
         return (error instanceof ServerError) || (error instanceof AuthFailureError);
     }
+
+    /**
+     *
+     * @param error
+     * @param context
+     * @return Return generic message for errors
+     */
+    public static String getMessage(Object error, Context context) {
+        if (error instanceof TimeoutError) {
+            return context.getResources().getString(R.string.generic_server_timeout);
+        } else if (error instanceof ServerError) {
+            return context.getResources().getString(R.string.generic_server_down);
+        } else if (error instanceof AuthFailureError) {
+            return context.getResources().getString(R.string.auth_failed);
+        } else if (error instanceof NetworkError) {
+            return context.getResources().getString(R.string.no_internet);
+        } else if (error instanceof NoConnectionError) {
+            return context.getResources().getString(R.string.no_network_connection);
+        } else if (error instanceof ParseError) {
+            return context.getResources().getString(R.string.parsing_failed);
+        }
+        return context.getResources().getString(R.string.generic_error);
+    }
+
+
     /**
      * Handles the server error, tries to determine whether to show a stock message or to
      * show a message retrieved from the server.
@@ -74,6 +100,7 @@ public class VolleyErrorHelper {
             switch (response.statusCode) {
                 case 404:
                 case 422:
+                case 400:
                 case 401:
                     try {
                         // server might return error like this { "error": "Some error occured" }

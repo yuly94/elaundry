@@ -1,38 +1,48 @@
 package com.yuly.elaundry.app;
 
+import com.android.volley.toolbox.StringRequest;
+
 public class AppConfig {
 
 	private static String URL = "http://yuly.besaba.com";
+
+	private static String API = "/elaundry/v1/index.php/";
+
+	public static String LINKAPI = URL+API;
+
 	// Server user login url
-	public static String URL_LOGIN = URL+"/elaundry/v1/index.php/login";
+	public static String URL_LOGIN = LINKAPI+"login";
 
 	// Server user register url
-	public static String URL_REGISTER = URL+"/elaundry/v1/index.php/register";
+	public static String URL_REGISTER = LINKAPI+"register";
 
 	// Server user request password reset
-	public static String URL_FORGOT = URL+"/elaundry/v1/index.php/resetpassreq";
+	public static String URL_FORGOT = LINKAPI+"resetpassreq";
 
 	// Server user reset password
-	public static String URL_RESET = URL+"/elaundry/v1/index.php/resetpass";
+	public static String URL_RESET = LINKAPI+"resetpass";
 
 	// Server user change password
-	public static String URL_CHANGEPASS = URL+"/elaundry/v1/index.php/changepass";
+	public static String URL_CHANGEPASS = LINKAPI+"changepass";
+
+	// Server user change password
+	public static String URL_CHANGEPROFILE = LINKAPI+"updateProfile";
 
 	// Server user register url
-	public static String URL_TASK = URL+"/elaundry/v1/index.php/tasks";
+	public static String URL_TASK = LINKAPI+"tasks";
 
 	// Server user register url
-	public static String URL_MAPS = URL+"/elaundry/v1/index.php/maps";
+	public static String URL_MAPS = LINKAPI+"maps";
 
 	// Server user register url
-	public static String URL_PAKET= URL+"/elaundry/v1/index.php/paket";
+	public static String URL_PAKET= LINKAPI+"paket";
 
 	// Server user register url
-	public static String URL_PESANAN= URL+"/elaundry/v1/index.php/pesanan";
+	public static String URL_PESANAN= LINKAPI+"pesanan";
 
 	// Server user register url
-	public static String URL_TEMPAT= URL+"/elaundry/v1/index.php/tempat";
+	public static String URL_TEMPAT= LINKAPI+"tempat";
 
 	// Server user register url
-	public static String URL_TRANSAKSI= URL+"/elaundry/v1/index.php/transaksi";
+	public static String URL_TRANSAKSI= LINKAPI+"transaksi";
 }

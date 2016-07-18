@@ -17,7 +17,7 @@
         android:layout_height="wrap_content"
         android:text="@string/welcome"
         android:textSize="20dp"
-        android:id="@+id/textView" />
+        android:id="@+id/tv_alamat1" />
 
     <TextView
         android:id="@+id/input_nama"
@@ -26,7 +26,7 @@
         android:padding="10dp"
         android:textColor="@color/lbl_name"
         android:textSize="24dp"
-        android:layout_below="@+id/textView"
+        android:layout_below="@+id/tv_alamat1"
         android:layout_marginTop="35dp" />
 
     <Button
@@ -58,7 +58,7 @@
         android:layout_height="wrap_content"
         android:id="@+id/inputTask"
         android:layout_alignBottom="@+id/input_nama"
-        android:layout_toRightOf="@+id/textView" />
+        android:layout_toRightOf="@+id/tv_alamat1" />
 
     <EditText
         android:layout_width="wrap_content"

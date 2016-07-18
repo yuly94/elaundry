@@ -87,6 +87,43 @@ public class SQLiteHandler extends SQLiteOpenHelper {
 	}
 
 	/**
+	 * Storing user details in database
+	 * */
+	public int updatePassword(String api, String uid, String created_at) {
+		SQLiteDatabase db = this.getWritableDatabase();
+
+		ContentValues values = new ContentValues();
+
+		values.put(KEY_API, api); // API
+		values.put(KEY_CREATED_AT, created_at); // Created At
+
+		// updating row
+		return db.update(TABLE_KONSUMEN, values, KEY_UID + " = ?",
+				new String[] {uid });
+	}
+
+	/**
+	 * Storing user details in database
+	 * */
+	public int updateProfile(String nama,String alamat,String telepon,String email, String uid, String created_at) {
+		SQLiteDatabase db = this.getWritableDatabase();
+
+		ContentValues values = new ContentValues();
+
+		values.put(KEY_NAMA, nama); // API
+		values.put(KEY_ALAMAT, alamat); // API
+		values.put(KEY_TELEPON, telepon); // API
+		values.put(KEY_EMAIL, email); // API
+		values.put(KEY_CREATED_AT, created_at); // Created At
+
+		// updating row
+		return db.update(TABLE_KONSUMEN, values, KEY_UID + " = ?",
+				new String[] {uid });
+	}
+
+
+
+	/**
 	 * Getting user data from database
 	 * */
 	public HashMap<String, String> getUserDetails() {

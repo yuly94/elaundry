@@ -2,11 +2,17 @@ apply plugin: 'com.android.application'
 
 android {
     signingConfigs {
-        config {
-            keyAlias 'wachid.sst'
+        release {
+            keyAlias 'yuly.skom'
             keyPassword 'rahasia'
-            storeFile file('/media/anonymous/data/Android/Key/wachid.sst.jks')
+            storeFile file('/media/anonymous/data/Android/Key/yuly.skom.jks')
             storePassword 'rahasia'
+        }
+        debug {
+            keyAlias 'androiddebugkey'
+            keyPassword 'android'
+            storeFile file('/home/anonymous/.android/debug.keystore')
+            storePassword 'android'
         }
     }
     compileSdkVersion 23
@@ -17,18 +23,20 @@ android {
         targetSdkVersion 23
         versionCode 1
         versionName "1.0"
-   //     multiDexEnabled true
-
-
+        //multiDexEnabled true
+        signingConfig signingConfigs.release
     }
     buildTypes {
         release {
             minifyEnabled true
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+            signingConfig signingConfigs.release
+            proguardFile '/home/anonymous/AndroidStudioProjects/myelaundry/app/proguard-android-optimize.txt'
         }
         debug {
             debuggable true
             minifyEnabled false
+            signingConfig signingConfigs.debug
         }
     }
     productFlavors {
@@ -51,8 +59,7 @@ dependencies {
     compile 'com.google.android.gms:play-services-places:9.2.1'
     compile 'com.google.code.gson:gson:2.4'
     compile 'com.amulyakhare:com.amulyakhare.textdrawable:1.0.1'
-    compile 'com.mcxiaoke.volley:library:1.0.19'
     compile 'com.android.support:support-v4:23.4.0'
     //compile 'com.android.support:multidex:1.0.1'
-
+    compile project(':libs_volley')
 }

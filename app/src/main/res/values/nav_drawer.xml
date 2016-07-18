@@ -7,6 +7,7 @@
         <item>@drawable/ic_shopping_cart_24dp</item>
         <item>@drawable/ic_map_24dp</item>
         <item>@drawable/ic_dashboard_24dp</item>
+        <item>@drawable/ic_dashboard_24dp</item>
         <item>@drawable/ic_face_24dp</item>
         <item>@drawable/ic_color_lens_24dp</item>
         <item>@drawable/ic_info_outline_24dp</item>
@@ -21,6 +22,7 @@
     <item>Lokasi Saya</item>
     <item>Maps</item>
     <item>My Profile</item>
+    <item>Change Pass</item>
     <item>Themes</item>
     <item>About</item>
     <item>Log Out</item>

@@ -42,7 +42,7 @@ public class LoginActivityNew extends AppCompatActivity {
 
         FragmentManager fragmentManager = getSupportFragmentManager();
         fragmentManager.beginTransaction()
-                .replace(R.id.frame_container, login).commit();
+                .replace(R.id.fragment_frame, login).commit();
     }
 
     private void checkSesi(){

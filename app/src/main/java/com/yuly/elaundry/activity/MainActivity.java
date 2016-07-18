@@ -64,6 +64,7 @@ public class MainActivity extends AppCompatActivity {
 	private CharSequence mDrawerTitle;
 	private CharSequence mTitle;
 	private String[] navMenuTitles;
+	private ImageView myNamaHuruf;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -73,12 +74,23 @@ public class MainActivity extends AppCompatActivity {
 		mTitle = mDrawerTitle = getTitle();
 		navMenuTitles = getResources().getStringArray(R.array.nav_drawer_items);
 
-		TypedArray navMenuIcons = getResources().obtainTypedArray(R.array.nav_drawer_icons);
 		mDrawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout);
 		mLiearLayout = (LinearLayout) findViewById(R.id.drawer_view);
 		mDrawerList = (ListView) findViewById(R.id.list_slidermenu);
 
-		ImageView myNama = (ImageView) findViewById(R.id.draw_nama);
+		// SqLite database handler
+		db = new SQLiteHandler(getApplicationContext());
+
+		// session manager
+		session = new SessionManager(getApplicationContext());
+
+		if (!session.isLoggedIn()) {
+			logoutUser();
+		} else {
+
+		myNamaHuruf = (ImageView) findViewById(R.id.draw_nama);
+
+		TypedArray navMenuIcons = getResources().obtainTypedArray(R.array.nav_drawer_icons);
 
 		ArrayList<NavDrawerItem> navDrawerItems = new ArrayList<NavDrawerItem>();
 		navDrawerItems.add(new NavDrawerItem(navMenuTitles[0], navMenuIcons.getResourceId(0, -1)));
@@ -88,6 +100,7 @@ public class MainActivity extends AppCompatActivity {
 		navDrawerItems.add(new NavDrawerItem(navMenuTitles[4], navMenuIcons.getResourceId(4, -1)));
 		navDrawerItems.add(new NavDrawerItem(navMenuTitles[5], navMenuIcons.getResourceId(5, -1)));
 		navDrawerItems.add(new NavDrawerItem(navMenuTitles[6], navMenuIcons.getResourceId(6, -1)));
+		navDrawerItems.add(new NavDrawerItem(navMenuTitles[7], navMenuIcons.getResourceId(7, -1)));
 
 		navMenuIcons.recycle();
 
@@ -99,8 +112,6 @@ public class MainActivity extends AppCompatActivity {
 		Toolbar mToolbar = (Toolbar) findViewById(R.id.toolbar);
 
 		setSupportActionBar(mToolbar);
-
-
 
 		// Thema
 	 	themeUtils.onActivityCreateSetTheme(this,getSupportActionBar(),this);
@@ -126,6 +137,8 @@ public class MainActivity extends AppCompatActivity {
 		};
 		mDrawerLayout.setDrawerListener(mDrawerToggle);
 
+
+
 		if (savedInstanceState == null) {
 
 			displayView(0);
@@ -138,43 +151,44 @@ public class MainActivity extends AppCompatActivity {
 		ProgressDialog pDialog = new ProgressDialog(this);
 		pDialog.setCancelable(false);
 
-		// SqLite database handler
-		db = new SQLiteHandler(getApplicationContext());
 
-		// session manager
-		session = new SessionManager(getApplicationContext());
 
-		if (!session.isLoggedIn()) {
-			logoutUser();
+			// Fetching user details from SQLite
+			HashMap<String, String> user = db.getUserDetails();
+
+			if (user!=null) {
+
+				String nama = user.get("nama");
+				//String alamat = user.get("alamat");
+				//String telepon = user.get("telepon");
+				String email = user.get("email");
+				api_key = user.get("api");
+
+
+				// Displaying the user details on the screen
+				if (txtName != null) {
+					txtName.setText(nama);
+				}
+				if (txtEmail != null) {
+					txtEmail.setText(email);
+				}
+
+				if(nama!=null) {
+					String letter = String.valueOf(nama.charAt(0));
+
+					// Create a new TextDrawable for our image's background
+					TextDrawable drawable = TextDrawable.builder()
+							.buildRound(letter, generator.getRandomColor());
+
+					if (myNamaHuruf != null) {
+						myNamaHuruf.setImageDrawable(drawable);
+					}
+				}
+			} else {
+				Log.d("Main Activity","User not found");
+			}
+
 		}
-
-		// Fetching user details from SQLite
-		HashMap<String, String> user = db.getUserDetails();
-
-		String nama = user.get("nama");
-		//String alamat = user.get("alamat");
-		//String telepon = user.get("telepon");
-		String email = user.get("email");
-		api_key = user.get("api");
-
-
-		// Displaying the user details on the screen
-		if (txtName != null) {
-			txtName.setText(nama);
-		}
-		if (txtEmail != null) {
-			txtEmail.setText(email);
-		}
-		String letter = String.valueOf(nama.charAt(0));
-
-		// Create a new TextDrawable for our image's background
-		TextDrawable drawable = TextDrawable.builder()
-				.buildRound(letter, generator.getRandomColor());
-
-		if (myNama != null) {
-			myNama.setImageDrawable(drawable);
-		}
-
 	}
 
 
