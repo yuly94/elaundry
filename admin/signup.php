@@ -2,7 +2,6 @@
 <html lang="en">
 
 
-
   <!-- #Head. -->
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
@@ -10,19 +9,6 @@
     <title>Materialize Landing Page</title>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.6/css/materialize.min.css" type="text/css" rel="stylesheet" media="screen,projection"/>
      <link href="https://yuly94.github.io/assets/css/login-style.css"       type="text/css" rel="stylesheet" media="screen,projection"/>
- 
-     <script src="http://s.codepen.io/assets/libs/modernizr.js" type="text/javascript"></script>
-
-
-    
-    <link rel="stylesheet" href="css/normalize.css">
-
-    
-        <link rel="stylesheet" href="css/style.css">
-
-    
-    
- 
   </head>
 
 
@@ -69,37 +55,21 @@
 
 
 
- 
- <script src='js/epmrgo.js'></script>
-
-            <div id="Clouds">
-  <div class="Cloud Foreground"></div>
-  <div class="Cloud Background"></div>
-  <div class="Cloud Foreground"></div>
-  <div class="Cloud Background"></div>
-  <div class="Cloud Foreground"></div>
-  <div class="Cloud Background"></div>
-  <div class="Cloud Background"></div>
-  <div class="Cloud Foreground"></div>
-  <div class="Cloud Background"></div>
-  <div class="Cloud Background"></div>
-<!--  <svg viewBox="0 0 40 24" class="Cloud"><use xlink:href="#Cloud"></use></svg>-->
-</div>
 
     <!-- #Hero Section -->
     <div class="section section__hero" id="index-banner">
-    
-    
       <div class="container">
-      
-
-      
                 <div class="row">
           <div class="col s12 m5 section__login">
             
           
              <form class=" card z-depth-3" action="" method="" id="form-element" >
-           
+            <div class="row">
+            <div class="input-field | col s12">
+                <input id="firstName" type="text" class="validate" name="firstName" >
+                <label for="firstName">Name <span class="required">(required)</span></label>
+              </div>
+              </div>
             <div class="row">
               <div class="input-field | col s12">
                 <input id="email" type="email" class="validate" name="email" >
@@ -121,9 +91,6 @@
               <span id="email_message"></span>
             </div>
             
- <a id="cta__main" href="#!" >Lupa Password &raquo;</a>
-
-            
           </form>
           
          
@@ -137,7 +104,7 @@
 
 
 
-  <a id="cta__main" href="signup.php" class="btn btn-large">Daftar sekarang &raquo;</a>
+  <a id="cta__main" href="signin.php" class="btn btn-large">Masuk sekarang &raquo;</a>
         </div>
         </div>
 

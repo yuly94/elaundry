@@ -2,7 +2,6 @@
 <html lang="en">
 
 
-
   <!-- #Head. -->
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
@@ -10,18 +9,7 @@
     <title>Materialize Landing Page</title>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.6/css/materialize.min.css" type="text/css" rel="stylesheet" media="screen,projection"/>
      <link href="https://yuly94.github.io/assets/css/login-style.css"       type="text/css" rel="stylesheet" media="screen,projection"/>
- 
-     <script src="http://s.codepen.io/assets/libs/modernizr.js" type="text/javascript"></script>
-
-
-    
-    <link rel="stylesheet" href="css/normalize.css">
-
-    
-        <link rel="stylesheet" href="css/style.css">
-
-    
-    
+      <link href="https://yuly94.github.io/assets/css/weather-style.css"       type="text/css" rel="stylesheet" media="screen,projection"/>
  
   </head>
 
@@ -69,31 +57,10 @@
 
 
 
- 
- <script src='js/epmrgo.js'></script>
-
-            <div id="Clouds">
-  <div class="Cloud Foreground"></div>
-  <div class="Cloud Background"></div>
-  <div class="Cloud Foreground"></div>
-  <div class="Cloud Background"></div>
-  <div class="Cloud Foreground"></div>
-  <div class="Cloud Background"></div>
-  <div class="Cloud Background"></div>
-  <div class="Cloud Foreground"></div>
-  <div class="Cloud Background"></div>
-  <div class="Cloud Background"></div>
-<!--  <svg viewBox="0 0 40 24" class="Cloud"><use xlink:href="#Cloud"></use></svg>-->
-</div>
 
     <!-- #Hero Section -->
     <div class="section section__hero" id="index-banner">
-    
-    
       <div class="container">
-      
-
-      
                 <div class="row">
           <div class="col s12 m5 section__login">
             
@@ -121,7 +88,7 @@
               <span id="email_message"></span>
             </div>
             
- <a id="cta__main" href="#!" >Lupa Password &raquo;</a>
+ <a id="lupa_pass" class"lupa_pass" href="#!" >Lupa Password &raquo;</a>
 
             
           </form>
@@ -130,9 +97,12 @@
           <!-- End of the form -->
           </div>
           
+        
           
               <div class="col s12 m7 gorilla"> </div>
               
+              
+                	<div class="stormy"></div>
                       <div class="row center">
 
 
@@ -214,8 +184,7 @@
     </div>
     
  
- 
-
+   
 
 
       <!--  #Scripts -->

@@ -9,6 +9,8 @@
     <title>Materialize Landing Page</title>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.6/css/materialize.min.css" type="text/css" rel="stylesheet" media="screen,projection"/>
      <link href="https://yuly94.github.io/assets/css/login-style.css"       type="text/css" rel="stylesheet" media="screen,projection"/>
+      <link href="https://yuly94.github.io/assets/css/weather-style.css"       type="text/css" rel="stylesheet" media="screen,projection"/>
+ 
   </head>
 
 
@@ -64,12 +66,7 @@
             
           
              <form class=" card z-depth-3" action="" method="" id="form-element" >
-            <div class="row">
-            <div class="input-field | col s12">
-                <input id="firstName" type="text" class="validate" name="firstName" >
-                <label for="firstName">Name <span class="required">(required)</span></label>
-              </div>
-              </div>
+           
             <div class="row">
               <div class="input-field | col s12">
                 <input id="email" type="email" class="validate" name="email" >
@@ -77,12 +74,6 @@
               </div>
             </div>
             
-              <div class="row">
-              <div class="input-field | col s12">
-                <input id="company" type="text" name="company">
-                <label for="company">Company <span class="optional" >(optional)</span></label>
-              </div>
-            </div>
             
             <div class="row">
               <div class="col s12">
@@ -91,21 +82,28 @@
               <span id="email_message"></span>
             </div>
             
+ 
+            
           </form>
           
          
           <!-- End of the form -->
           </div>
           
+        
           
               <div class="col s12 m7 gorilla"> </div>
-        </div>
-        <div class="row center">
+              
+              
+                	<div class="stormy"></div>
+                      <div class="row center">
 
 
 
   <a id="cta__main" href="signup.php" class="btn btn-large">Masuk sekarang &raquo;</a>
         </div>
+        </div>
+
       </div>
     </div>
 
@@ -179,8 +177,7 @@
     </div>
     
  
- 
-
+   
 
 
       <!--  #Scripts -->
