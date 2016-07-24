@@ -1,0 +1,26 @@
+      
+			}  else // check brute force
+            if ( $db->checkbrute($email) =="4"){
+            $response["error"] = true;
+            $response['message'] = 'Login failed. Login attemp remain 1, please try again in 60 menit future';
+             
+			} else // check brute force
+            if ( $db->checkbrute($email) =="4"){
+            $response["error"] = true;
+            $response['message'] = 'Login failed. Login attemp remain 2, please try again in 60 menit future';
+             
+			} else // check brute force
+            if ( $db->checkbrute($email) =="3"){
+            $response["error"] = true;
+            $response['message'] = 'Login failed. Login attemp remain 3, please try again in 60 menit future';
+             
+			} else  // check brute force
+            if ( $db->checkbrute($email) =="2"){
+            $response["error"] = true;
+            $response['message'] = 'Login failed. Login attemp remain 4, please try again in 60 menit future';
+             
+			} else // check brute force
+            if ( $db->checkbrute($email) =="1"){
+            $response["error"] = true;
+            $response['message'] = 'Login failed. Login attemp remain 5, please try again in 60 menit future';
+             
