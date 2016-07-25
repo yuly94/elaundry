@@ -1,0 +1,71 @@
+body, html
+{
+	background-color: #EDEDED !important;
+}
+
+nav
+{
+	margin-bottom: 30px;
+}
+
+.post-index
+{
+	background-color: white;
+	margin-bottom: 30px;
+}
+
+.post-index h5
+{
+	padding-left: 15px;
+	padding-right: 15px;
+	padding-top: 15px;
+	padding-bottom: 2px;
+	margin: 0px;
+}
+
+.post-index h6
+{
+	opacity: 0.7;
+	padding-left: 15px;
+	padding-right: 15px;
+	padding-bottom: 10px;
+}
+
+.post-index p
+{
+	padding-left: 15px;
+	padding-right: 15px;
+	padding-bottom: 15px;
+}
+
+.widget-item
+{
+	background-color: white;
+	margin-bottom: 30px;
+	padding-top: 15px;
+	padding-bottom: 15px;
+	padding-left: 15px;
+	padding-right: 15px;
+}
+
+.widget-item b
+{
+	display: block;
+	margin-bottom: 15px;
+}
+
+.widget-item .row, .widget-item .input-field, .widget-item .col
+{
+	margin: 0px; 
+	padding: 0px;
+}
+
+.widget-item .btn
+{
+	margin: 0px; 
+}
+
+footer
+{
+	padding-top: 0px;
+}

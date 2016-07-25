@@ -1,5 +1,40 @@
+<?php 
+include("config.php");
+include('class/userClass.php');
+$userClass = new userClass();
+
+$errorMsgReg='';
+$errorMsgLogin='';
+if (!empty($_POST['loginSubmit'])) 
+{
+$usernameEmail=$_POST['usernameEmail'];
+$password=$_POST['password'];
+ if(strlen(trim($usernameEmail))>1 && strlen(trim($password))>1 )
+   {
+    $uid=$userClass->userLogin($usernameEmail,$password);
+    if($uid)
+    {
+        $url=BASE_URL.'home.php';
+        header("Location: $url");
+    }
+    else
+    {
+        $errorMsgLogin="Please check login details.";
+    }
+   }
+}
+
+ 
+
+?>
+
+<style>
+.errorMsg{color: #cc0000;margin-bottom: 10px}
+</style>
+
 <!DOCTYPE html>
 <html lang="en">
+
 
 
   <!-- #Head. -->
@@ -7,8 +42,22 @@
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0, user-scalable=no"/>
     <title>Materialize Landing Page</title>
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.6/css/materialize.min.css" type="text/css" rel="stylesheet" media="screen,projection"/>
+          	<link type="text/css" rel="stylesheet" href="css/materialize.min.css"  media="screen,projection"/>
+    <link type="text/css"  href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.6/css/materialize.min.css" type="text/css" rel="stylesheet" media="screen,projection"/>
      <link href="https://yuly94.github.io/assets/css/login-style.css"       type="text/css" rel="stylesheet" media="screen,projection"/>
+ 
+     <script src="http://s.codepen.io/assets/libs/modernizr.js" type="text/javascript"></script>
+
+
+    
+    <link rel="stylesheet" href="css/normalize.css">
+
+    
+        <link rel="stylesheet" href="css/awan-style.css">
+
+    
+    
+ 
   </head>
 
 
@@ -55,43 +104,54 @@
 
 
 
+ 
+ <script src='js/epmrgo.js'></script>
+
+            <div id="Clouds">
+  <div class="Cloud Foreground"></div>
+  <div class="Cloud Background"></div>
+  <div class="Cloud Foreground"></div>
+  <div class="Cloud Background"></div>
+  <div class="Cloud Foreground"></div>
+  <div class="Cloud Background"></div>
+  <div class="Cloud Background"></div>
+  <div class="Cloud Foreground"></div>
+  <div class="Cloud Background"></div>
+  <div class="Cloud Background"></div>
+<!--  <svg viewBox="0 0 40 24" class="Cloud"><use xlink:href="#Cloud"></use></svg>-->
+</div>
 
     <!-- #Hero Section -->
     <div class="section section__hero" id="index-banner">
+    
+    
       <div class="container">
+      
+
+      
                 <div class="row">
-          <div class="col s12 m5 section__login">
+          <div class="col s12 m5 section__login" id="login">
             
-          
-             <form class=" card z-depth-3" action="" method="" id="form-element" >
-            <div class="row">
-            <div class="input-field | col s12">
-                <input id="firstName" type="text" class="validate" name="firstName" >
-                <label for="firstName">Name <span class="required">(required)</span></label>
-              </div>
-              </div>
-            <div class="row">
-              <div class="input-field | col s12">
-                <input id="email" type="email" class="validate" name="email" >
-                <label for="email">Email <span class="required">(required)</span></label>
-              </div>
-            </div>
             
+            <form class=" card z-depth-3" method="post" action="" name="login">
+            <div class="row">
+  <div class="input-field | col s12">
+<input type="text" name="usernameEmail" autocomplete="off" />
+  <label for="usernameEmail">Email <span class="required">(required)</span></label>
+              </div>
+              </div>
               <div class="row">
-              <div class="input-field | col s12">
-                <input id="company" type="text" name="company">
-                <label for="company">Company <span class="optional" >(optional)</span></label>
-              </div>
-            </div>
-            
-            <div class="row">
-              <div class="col s12">
-                <button class="btn btn-large" type="submit" id="send_mail">Submit</button>
-              </div>
-              <span id="email_message"></span>
-            </div>
-            
-          </form>
+ <div class="input-field | col s12">
+<input type="password" name="password" autocomplete="off"/>
+<label for="password">Password <span class="optional" ></span></label>
+</div>
+</div>
+<div class="errorMsg"><?php echo $errorMsgLogin; ?></div>
+<input type="submit" class="btn btn-large tooltipped" data-position="bottom" data-delay="50" data-tooltip="Silahkan tekan untuk masuk" name="loginSubmit" value="Login">
+<br></br>
+ <a id="cta__main" class =" tooltipped" data-position="bottom" data-delay="50" data-tooltip="Silahkan tekan jika anda lupa password" href="#!" >Lupa Password &raquo;</a>
+</form>
+          
           
          
           <!-- End of the form -->
@@ -104,7 +164,7 @@
 
 
 
-  <a id="cta__main" href="signin.php" class="btn btn-large">Masuk sekarang &raquo;</a>
+  <a id="cta__main" href="signup.php" class="btn btn-large tooltipped" data-position="bottom" data-delay="50" data-tooltip="Silahkan tekan untuk mendaftar" >Daftar sekarang &raquo;</a>
         </div>
         </div>
 

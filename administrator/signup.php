@@ -4,37 +4,43 @@ include('class/userClass.php');
 $userClass = new userClass();
 
 $errorMsgReg='';
-$errorMsgLogin='';
-if (!empty($_POST['loginSubmit'])) 
+if (!empty($_POST['signupSubmit'])) 
 {
-$usernameEmail=$_POST['usernameEmail'];
-$password=$_POST['password'];
- if(strlen(trim($usernameEmail))>1 && strlen(trim($password))>1 )
-   {
-    $uid=$userClass->userLogin($usernameEmail,$password);
+
+	$username=$_POST['usernameReg'];
+	$email=$_POST['emailReg'];
+	$password=$_POST['passwordReg'];
+    $name=$_POST['nameReg'];
+	$username_check = preg_match('~^[A-Za-z0-9_]{3,20}$~i', $username);
+	$email_check = preg_match('~^[a-zA-Z0-9._-]+@[a-zA-Z0-9._-]+\.([a-zA-Z]{2,4})$~i', $email);
+	$password_check = preg_match('~^[A-Za-z0-9!@#$%^&*()_]{6,20}$~i', $password);
+
+	if($username_check && $email_check && $password_check && strlen(trim($name))>0) 
+	{
+    $uid=$userClass->userRegistration($username,$password,$email,$name);
     if($uid)
     {
-        $url=BASE_URL.'home.php';
-        header("Location: $url");
+    	$url=BASE_URL.'home.php';
+    	header("Location: $url");
     }
     else
     {
-        $errorMsgLogin="Please check login details.";
+      $errorMsgReg="Username or Email already exits.";
     }
-   }
+    
+	}
+
+
 }
 
- 
-
 ?>
-
 <style>
 .errorMsg{color: #cc0000;margin-bottom: 10px}
 </style>
 
+
 <!DOCTYPE html>
 <html lang="en">
-
 
 
   <!-- #Head. -->
@@ -42,22 +48,8 @@ $password=$_POST['password'];
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0, user-scalable=no"/>
     <title>Materialize Landing Page</title>
-          	<link type="text/css" rel="stylesheet" href="css/materialize.min.css"  media="screen,projection"/>
-    <link type="text/css"  href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.6/css/materialize.min.css" type="text/css" rel="stylesheet" media="screen,projection"/>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.6/css/materialize.min.css" type="text/css" rel="stylesheet" media="screen,projection"/>
      <link href="https://yuly94.github.io/assets/css/login-style.css"       type="text/css" rel="stylesheet" media="screen,projection"/>
- 
-     <script src="http://s.codepen.io/assets/libs/modernizr.js" type="text/javascript"></script>
-
-
-    
-    <link rel="stylesheet" href="css/normalize.css">
-
-    
-        <link rel="stylesheet" href="css/awan-style.css">
-
-    
-    
- 
   </head>
 
 
@@ -104,54 +96,48 @@ $password=$_POST['password'];
 
 
 
- 
- <script src='js/epmrgo.js'></script>
-
-            <div id="Clouds">
-  <div class="Cloud Foreground"></div>
-  <div class="Cloud Background"></div>
-  <div class="Cloud Foreground"></div>
-  <div class="Cloud Background"></div>
-  <div class="Cloud Foreground"></div>
-  <div class="Cloud Background"></div>
-  <div class="Cloud Background"></div>
-  <div class="Cloud Foreground"></div>
-  <div class="Cloud Background"></div>
-  <div class="Cloud Background"></div>
-<!--  <svg viewBox="0 0 40 24" class="Cloud"><use xlink:href="#Cloud"></use></svg>-->
-</div>
 
     <!-- #Hero Section -->
     <div class="section section__hero" id="index-banner">
-    
-    
       <div class="container">
-      
-
-      
                 <div class="row">
-          <div class="col s12 m5 section__login" id="login">
-            
-            
-            <form class=" card z-depth-3" method="post" action="" name="login">
-            <div class="row">
-  <div class="input-field | col s12">
-<input type="text" name="usernameEmail" autocomplete="off" />
-  <label for="usernameEmail">Email <span class="required">(required)</span></label>
-              </div>
-              </div>
-              <div class="row">
- <div class="input-field | col s12">
-<input type="password" name="password" autocomplete="off"/>
-<label for="password">Password <span class="optional" ></span></label>
-</div>
-</div>
-<div class="errorMsg"><?php echo $errorMsgLogin; ?></div>
-<input type="submit" class="btn btn-large tooltipped" data-position="bottom" data-delay="50" data-tooltip="Silahkan tekan untuk masuk" name="loginSubmit" value="Login">
-<br></br>
- <a id="cta__main" class =" tooltipped" data-position="bottom" data-delay="50" data-tooltip="Silahkan tekan jika anda lupa password" href="#!" >Lupa Password &raquo;</a>
-</form>
+          <div class="col s12 m5 section__login" id="signup">
+        
+        
+        <form class=" card z-depth-3" method="post" action="" name="signup">
           
+   <div class="row">
+            <div class="input-field | col s12">
+<input type="text" name="nameReg" autocomplete="off" />
+<label for="Name">Name <span class="required">(required)</span></label>
+</div>
+</div>
+
+<div class="row">
+              <div class="input-field | col s12">
+<input type="text" name="emailReg" autocomplete="off" />
+<label for="Email">Email <span class="required">(required)</span></label>
+</div>
+</div>
+
+<div class="row">
+              <div class="input-field | col s12">
+<input type="text" name="usernameReg" autocomplete="off" />
+<label for="Username">Username <span class="required">(required)</span></label>
+</div>
+</div>
+              <div class="row">
+              <div class="input-field | col s12">
+<input type="password" name="passwordReg" autocomplete="off"/>
+                <label for="password">Password <span class="optional" >(required)</span></label>
+              </div>
+            </div>
+
+<div class="errorMsg"><?php echo $errorMsgReg; ?></div>
+<input type="submit" class="btn btn-large tooltipped" data-position="bottom" data-delay="50" data-tooltip="Silahkan tekan untuk mendaftar" name="loginSubmit"  name="signupSubmit" value="Signup">
+
+
+          </form>
           
          
           <!-- End of the form -->
@@ -164,7 +150,7 @@ $password=$_POST['password'];
 
 
 
-  <a id="cta__main" href="signup.php" class="btn btn-large tooltipped" data-position="bottom" data-delay="50" data-tooltip="Silahkan tekan untuk mendaftar" >Daftar sekarang &raquo;</a>
+  <a id="cta__main" href="index.php" class="btn btn-large tooltipped" data-position="bottom" data-delay="50" data-tooltip="Silahkan tekan untuk masuk" name="loginSubmit"  >Masuk sekarang &raquo;</a>
         </div>
         </div>
 
