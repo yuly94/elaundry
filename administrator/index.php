@@ -1,46 +1,102 @@
-<?php
-session_start();
-require_once 'class.user.php';
-$user_login = new USER();
+<?php 
+include("config.php");
+include('class/userClass.php');
+$userClass = new userClass();
 
-if($user_login->is_logged_in()!="")
+$errorMsgReg='';
+$errorMsgLogin='';
+if (!empty($_POST['loginSubmit'])) 
 {
-	$user_login->redirect('index.php');
-	
-	//header("location:../index.php");
+$usernameEmail=$_POST['usernameEmail'];
+$password=$_POST['password'];
+ if(strlen(trim($usernameEmail))>1 && strlen(trim($password))>1 )
+   {
+    $uid=$userClass->userLogin($usernameEmail,$password);
+    if($uid)
+    {
+        $url=BASE_URL.'home.php';
+        header("Location: $url");
+    }
+    else
+    {
+        $errorMsgLogin="Please check login details.";
+    }
+   }
 }
 
-
-if(isset($_POST['btn-login']))
+if (!empty($_POST['signupSubmit'])) 
 {
-	$email = trim($_POST['txtemail']);
-	$upass = trim($_POST['txtupass']);
-	
-	if($user_login->login($email,$upass))
+
+	$username=$_POST['usernameReg'];
+	$email=$_POST['emailReg'];
+	$password=$_POST['passwordReg'];
+    $name=$_POST['nameReg'];
+	$username_check = preg_match('~^[A-Za-z0-9_]{3,20}$~i', $username);
+	$email_check = preg_match('~^[a-zA-Z0-9._-]+@[a-zA-Z0-9._-]+\.([a-zA-Z]{2,4})$~i', $email);
+	$password_check = preg_match('~^[A-Za-z0-9!@#$%^&*()_]{6,20}$~i', $password);
+
+	if($username_check && $email_check && $password_check && strlen(trim($name))>0) 
 	{
-		$user_login->redirect('index.php');
+    $uid=$userClass->userRegistration($username,$password,$email,$name);
+    if($uid)
+    {
+    	$url=BASE_URL.'home.php';
+    	header("Location: $url");
+    }
+    else
+    {
+      $errorMsgReg="Username or Email already exits.";
+    }
+    
 	}
+
+
 }
+
 ?>
+
+<style>
+.errorMsg{color: #cc0000;margin-bottom: 10px}
+</style>
 
 <!DOCTYPE html>
 <html lang="en">
+
+
 
   <!-- #Head. -->
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0, user-scalable=no"/>
     <title>Materialize Landing Page</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.6/css/materialize.min.css" type="text/css" rel="stylesheet" media="screen,projection"/>
+     <link href="https://yuly94.github.io/assets/css/login-style.css"       type="text/css" rel="stylesheet" media="screen,projection"/>
+ 
+     <script src="http://s.codepen.io/assets/libs/modernizr.js" type="text/javascript"></script>
+
+
     
-   
-   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.6/css/materialize.min.css" type="text/css" rel="stylesheet" media="screen,projection"/>
-   <link href="https://yuly94.github.io/assets/css/login-style.css"       type="text/css" rel="stylesheet" media="screen,projection"/>
-   <link href="https://yuly94.github.io/assets/css/weather-style.css"       type="text/css" rel="stylesheet" media="screen,projection"/>
-   <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link rel="stylesheet" href="css/normalize.css">
+
+    
+        <link rel="stylesheet" href="css/style.css">
+
+    
+    
+ 
   </head>
 
+
+
+
+
+
   <!-- #Let's Begin -->
-   <body id="login">
+  <body>
+
+
+
+
 
     <!-- #Dropdown Structure (Must Be Before Nav) -->
     <ul id='dropdown1' class='dropdown-content'>
@@ -50,6 +106,9 @@ if(isset($_POST['btn-login']))
       <li class="divider">&nbsp;</li>
       <li><a id="cta__nav" href="#!"><strong>Hire Me</strong></a></li>
     </ul>
+
+
+
 
     <!-- #Main Nav (Must Be After Dropdown Structure) -->
     <nav role="navigation">
@@ -71,87 +130,67 @@ if(isset($_POST['btn-login']))
 
 
 
+ 
+ <script src='js/epmrgo.js'></script>
+
+            <div id="Clouds">
+  <div class="Cloud Foreground"></div>
+  <div class="Cloud Background"></div>
+  <div class="Cloud Foreground"></div>
+  <div class="Cloud Background"></div>
+  <div class="Cloud Foreground"></div>
+  <div class="Cloud Background"></div>
+  <div class="Cloud Background"></div>
+  <div class="Cloud Foreground"></div>
+  <div class="Cloud Background"></div>
+  <div class="Cloud Background"></div>
+<!--  <svg viewBox="0 0 40 24" class="Cloud"><use xlink:href="#Cloud"></use></svg>-->
+</div>
 
     <!-- #Hero Section -->
     <div class="section section__hero" id="index-banner">
+    
+    
       <div class="container">
       
-      		<?php 
-		if(isset($_GET['inactive']))
-		{
-			?>
-            <div class='alert alert-error'>
-				<button class='close' data-dismiss='alert'>&times;</button>
-				<strong>Sorry!</strong> This Account is not Activated Go to your Inbox and Activate it. 
-			</div>
-            <?php
-		}
-		?>
-   
-                <div class="row">
-          <div class="col s12 m5 section__login">
-            
-          
-             <form class=" card z-depth-3" action="" method="post" id="form-element" >
-           
-                   <?php
-        if(isset($_GET['error']))
-		{
-			?>
-            <div class='alert alert-success'>
-				<button class='close' data-dismiss='alert'>&times;</button>
-				<strong>Wrong Details!</strong> 
-			</div>
-            <?php
-		}
-		?>
-           
-            <div class="row margin">
-          <div class="input-field col s12">
-            <i class="mdi-social-person-outline prefix"></i>
-            <input class="validate" id="email" type="email">
-            <label for="email" data-error="wrong" data-success="right" class="center-align">Email</label>
-          </div>
-        </div>
-        <div class="row margin">
-          <div class="input-field col s12">
-            <i class="mdi-action-lock-outline prefix"></i>
-            <input id="password" type="password">
-            <label for="password">Password</label>
-          </div>
-        </div>
-        <div class="row">          
-          <div class="input-field col s12 m12 l12  login-text">
-              <input type="checkbox" id="remember-me" />
-              <label for="remember-me">Remember me</label>
-          </div>
-        </div>
-        <div class="row">
-          <div class="input-field col s12">
-            <a href="login.html" class="btn waves-effect waves-light col s12">Login</a>
-          </div>
-        </div>
-            
- <a id="lupa_pass" class"lupa_pass" href="lupapassword.php" >Lupa Password &raquo;</a>
 
+      
+                <div class="row">
+          <div class="col s12 m5 section__login" id="login">
             
-          </form>
+            
+            <form class=" card z-depth-3" method="post" action="" name="login">
+            <div class="row">
+  <div class="input-field | col s12">
+<input type="text" name="usernameEmail" autocomplete="off" />
+  <label for="usernameEmail">Email <span class="required">(required)</span></label>
+              </div>
+              </div>
+              <div class="row">
+ <div class="input-field | col s12">
+<input type="password" name="password" autocomplete="off"/>
+<label for="password">Password <span class="optional" ></span></label>
+</div>
+</div>
+<div class="errorMsg"><?php echo $errorMsgLogin; ?></div>
+<input type="submit" class="btn btn-large tooltipped" data-position="bottom" data-delay="50" data-tooltip="Silahkan tekan untuk masuk" name="loginSubmit" value="Login">
+<br></br>
+ <a id="cta__main" class =" tooltipped" data-position="bottom" data-delay="50" data-tooltip="Silahkan tekan jika anda lupa password" href="#!" >Lupa Password &raquo;</a>
+</form>
+          
           
          
           <!-- End of the form -->
           </div>
           
-        
           
               <div class="col s12 m7 gorilla"> </div>
               
-              
-                	<div class="stormy"></div>
                       <div class="row center">
 
 
 
-  <a id="cta__main" href="signup.php" class="btn btn-large">Daftar sekarang &raquo;</a>
+  <a id="cta__main" href="signup.php" class="btn btn-large tooltipped" data-position="bottom" data-delay="50" data-tooltip="Silahkan tekan untuk mendaftar" >Daftar sekarang &raquo;</a>
         </div>
         </div>
 
@@ -216,6 +255,9 @@ if(isset($_POST['btn-login']))
     </div> 
 
 
+        
+
+
         <small>
           <a href="#" class="btn__modal | modal-action modal-close">
             <i class="large mdi-navigation-close flow-text">&nbsp;</i>
@@ -224,6 +266,10 @@ if(isset($_POST['btn-login']))
       </div>
     </div>
     
+ 
+ 
+
+
 
       <!--  #Scripts -->
       <script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
