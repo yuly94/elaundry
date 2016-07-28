@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<buildpath>
+	<buildpathentry kind="src" path="customer/libs/phpmailer"/>
+	<buildpathentry kind="src" path="customer/libs/PhpMailer"/>
+	<buildpathentry kind="src" path="customer/libs/Slim"/>
+	<buildpathentry kind="src" path="customer/src/v1"/>
+	<buildpathentry kind="src" path="customer/src/v2"/>
+	<buildpathentry kind="src" path="customer/v1"/>
+	<buildpathentry kind="src" path="customer/vendor"/>
+	<buildpathentry kind="src" path="mvc"/>
+	<buildpathentry kind="con" path="org.eclipse.php.core.LANGUAGE"/>
+</buildpath>
