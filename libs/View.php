@@ -1,7 +1,7 @@
 <?php
 class View{
 	function __construct() {
-		echo "this is view </br>";
+	//	echo "this is view </br>";
 	}
 	
 	public function render($name) {

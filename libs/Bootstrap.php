@@ -14,7 +14,7 @@ class Bootstrap {
 			return false;
 		}
 		
-		$file = 'controllers'.$url[0].'.php';
+		$file = 'controllers/'.$url[0].'.php';
 		if (file_exists($file)){
 			require $file;
 		} else {
