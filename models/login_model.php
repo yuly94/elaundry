@@ -1,7 +1,7 @@
 <?php
-class Help_Model extends Model {
+class Login_Model extends Model {
 	function __construct() {
-		echo "this help model";
+		echo "this login model";
 	}
 	
 	function blah(){
