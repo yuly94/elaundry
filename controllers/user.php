@@ -48,7 +48,8 @@ class User extends Controller {
 	 
 	public function edit($id) {
 		// fetch individual user
-		$this->view->user = $this->model->userSingleList($id);
+		
+		$this->view->user_data = $this->model->userSingleList($id);
 		$this->view->render('user/edit');
 	}
 	
@@ -63,8 +64,8 @@ class User extends Controller {
 		// @TODO : Do your error checking
 		
 		$this->model->editSave($data);
-		
-		header ('location: ' .URL. 'user');
+		header('location: ' . URL . 'user');
+	 
 	}
 	
 	public function delete($id) {

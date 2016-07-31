@@ -6,24 +6,34 @@ class User_Model extends Model {
 	}
 	
 	public function userList() {
-		$sth = $this->db->prepare('SELECT id, users, role FROM users');
+/* 		$sth = $this->db->prepare('SELECT id, user, role FROM users');
 		$sth->execute();
-		return $sth->fetchAll();
+		return $sth->fetchAll(); */
+		
+		return $this->db->select('SELECT id, user, role FROM users');
 	}
 	
 	public function userSingleList($id) {
-		$sth = $this->db->prepare('SELECT id, users, role FROM users WHERE id =:id');
+		/* $sth = $this->db->prepare('SELECT id, user, role FROM users WHERE id =:id');
 		$sth->execute(array(
 				':id'=> $id
 		));
-		return $sth->fetch();
+		return $sth->fetch(); */
+		
+		return $this->db->selectSingle("SELECT id, user, role FROM users WHERE id = :id", array(':id' => $id));
+	 	//return  $this->db->select("SELECT id, user, role FROM users WHERE id = :id", array('id' => $id));
+	 	
+		
+		 
+		
 	}
+	
 		
 	public function create($data)
 	{	
  
 	 	$this->db->insert('users', array(
-				'users' => $data['username'],
+				'user' => $data['username'],
 				'password' => Hash::create('sha1', $data['password'], HASH_PASSWORD_KEY),
 				'role' => $data['role']
 				
@@ -54,9 +64,9 @@ class User_Model extends Model {
 		
 		
 		$postData = array(
-				'users' => $data['username'],
-				'password' => Hash::create('md5', $data['password'], HASH_PASSWORD_KEY),
-				'role' => $data['role']
+			'user' => $data['username'],
+			'password' => Hash::create('sha256', $data['password'], HASH_PASSWORD_KEY),
+			'role' => $data['role']
 		);
 		
 		$this->db->update('users', $postData, "`id` = {$data['id']}");
@@ -88,10 +98,37 @@ class User_Model extends Model {
 	
 	
 	public function delete($id) {
-		$sth = $this->db->prepare('DELETE FROM users WHERE id = :id');
+		
+		$result = $this->db->select("SELECT role FROM users WHERE id = :id", array(':id' => $id));
+		
+		if ($result[0]['role'] == 'owner')
+			return false;
+		
+			$this->db->delete('users', "id = '$id'");
+		
+/* 		$sth = $this->db->prepare('SELECT role FROM users WHERE id = :id');
 		$sth->execute(array(
 				':id' => $id
 		));
+		$data = $sth->fetch();
+		if ($data['role']=='owner') {
+			return false;
+		}
+		print_r($data);
+		
+		
+		$sth = $this->db->prepare('DELETE FROM users WHERE id = :id');
+		$sth->execute(array(
+				':id' => $id
+		)); */
 	}
 	
+	
+	
 }
+
+
+
+
+
+

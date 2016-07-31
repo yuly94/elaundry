@@ -5,7 +5,7 @@ class Dashboard_Model extends Model {
 	//	echo "this dashboard model";
 	}
 	
-	function xhrInsert(){
+/* 	function xhrInsert(){
 		$text =  $_POST['text'];
 		
 		$sth = $this->db->prepare('INSERT INTO data (text) VALUES (:text)');
@@ -29,5 +29,28 @@ class Dashboard_Model extends Model {
 		$id = $_POST['id'];
 		$sth = $this->db->prepare('DELETE FROM data WHERE id = "'.$id.'"');
 		$sth->execute();
+	} */
+	
+	public function xhrInsert()
+	{
+		$text = $_POST['text'];
+	
+		$this->db->insert('data', array('text' => $text));
+	
+		$data = array('text' => $text, 'id' => $this->db->lastInsertId());
+		echo json_encode($data);
 	}
+	
+	public function xhrGetListings()
+	{
+		$result = $this->db->select("SELECT * FROM data");
+		echo json_encode($result);
+	}
+	
+	public function xhrDeleteListing()
+	{
+		$id = (int) $_POST['id'];
+		$this->db->delete('data', "id = '$id'");
+	}
+	
 }

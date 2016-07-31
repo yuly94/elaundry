@@ -33,7 +33,7 @@
 				foreach ($this -> userList as $key => $value){
 					echo '<tr>';
 					echo '<td>'.$value['id'] .'</td>';
-					echo '<td>'.$value['users'] .'</td>';
+					echo '<td>'.$value['user'] .'</td>';
 					echo '<td>'.$value['role'] .'</td>';
 					echo '<td>
           				<a href="'.URL.'user/edit/'.$value['id'].'">Edit</a> 

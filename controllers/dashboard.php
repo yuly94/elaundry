@@ -31,17 +31,19 @@ class Dashboard extends Controller {
 		header('location: '.URL.'login');
 		exit;
 	}
-	
-	function xhrInsert() {
+
+	function xhrInsert()
+	{
 		$this->model->xhrInsert();
 	}
-
+	
 	function xhrGetListings()
 	{
 		$this->model->xhrGetListings();
 	}
 	
-	function xhrDeleteListing() {
+	function xhrDeleteListing()
+	{
 		$this->model->xhrDeleteListing();
 	}
  
