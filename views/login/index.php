@@ -14,6 +14,8 @@
           		<label for="password"><?php echo $this->label_password;?></label>
        		 </div>
       	</div>
+      	
+      	
 		<input class="btn btn-large" type="submit" />
 	</form>
 
