@@ -1,5 +1,7 @@
 <?php
 
+// selalu pergunanakan tanda / pada setiap akhir path
+
 define('URL', 'http://ravael.example.com/dev-admin/');
-define('SITE_NAME','E-LAUNDRY');
-define('LOGO_NAME','E-LAUNDRY');
+
+define('LIBS', 'libs/');

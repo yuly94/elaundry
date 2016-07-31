@@ -20,25 +20,56 @@ class User_Model extends Model {
 	}
 		
 	public function create($data)
-	{
-		 
+	{	
+ 
+	 	$this->db->insert('users', array(
+				'users' => $data['username'],
+				'password' => Hash::create('sha1', $data['password'], HASH_PASSWORD_KEY),
+				'role' => $data['role']
+				
+		));
+		/*
 		$sth = $this->db->prepare('INSERT INTO users
 				(users, password, role)
 				VALUES (:users,:password,:role)
 				');
 		$sth->execute(array(
 				':users'=>$data['username'],
-				':password'=>$data['password'],
+				':password'=> Hash::create('sha1', $data['password'], HASH_PASSWORD_KEY),
 				':role'=>$data['role']
 	
 		));
-			
+			 */
 	}
 	
 	public function editSave($data)
 	{
-
-		$sth = $this->db->prepare('UPDATE users
+/* 		$this->db->update('users',array(
+				'users'=>$data['username'],
+				'password'=> Hash::create('sha1',$data['password'],HASH_PASSWORD_KEY),
+				'role'=>$data['role'] 
+				
+		
+		),"'id'={$data['id']}"); */
+		
+		
+		$postData = array(
+				'users' => $data['username'],
+				'password' => Hash::create('md5', $data['password'], HASH_PASSWORD_KEY),
+				'role' => $data['role']
+		);
+		
+		$this->db->update('users', $postData, "`id` = {$data['id']}");
+		
+/* 		$postData = array(
+				'users'=>$data['username'],
+				'password'=> Hash::create('sha1',$data['password'],HASH_PASSWORD_KEY),
+				'role'=>$data['role']	
+				);
+		
+			$this->db->update('users',$postData,"'id' = {$data['id']}"); */
+		
+/* 		$sth = $this->db->prepare('UPDATE users
 				SET users  = :username, 
 					password  = :password,
 					 role  = :role
@@ -51,7 +82,7 @@ class User_Model extends Model {
 				':password'=>$data['password'],
 				':role'=>$data['role']
 	
-		));
+		)); */
 			
 	}
 	

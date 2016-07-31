@@ -21,6 +21,8 @@ class User extends Controller {
 		//	require 'models/login_model.php'; // have creted autoload in controller
 		//	$model = new Login_Model();  // have creted autoload in controller
 	
+		
+		
 		$this->view->label_username = "Username";
 		$this->view->label_password = "Password";
 		$this->view->label_role = "Role";

@@ -1,7 +1,16 @@
 <?php
 
-//Use an autoloader
-require 'libs/Bootstrap.php';
+//require the files
+
+require 'config/paths.php';
+require 'config/database.php';
+require 'config/constants.php';
+
+//Also spl_autoload_register
+function __autoload($class){
+	require LIBS.$class.'.php';
+}
+/* require 'libs/Bootstrap.php';
 require 'libs/Controller.php';
 require 'libs/Model.php';
 require 'libs/View.php';
@@ -9,9 +18,8 @@ require 'libs/View.php';
 //library
 require 'libs/Database.php';
 require 'libs/Session.php';
-
-require 'config/paths.php';
-require 'config/database.php';
+require 'libs/Hash.php';
+ */
 
 $app = new Bootstrap();
 

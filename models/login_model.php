@@ -14,10 +14,12 @@ class Login_Model extends Model {
 		//$uname = $_POST['username'];
 		//$upass = $_POST['password'];
 		
-		$sth = $this->db->prepare("SELECT * FROM users WHERE users=:username AND password=:password LIMIT 1");
+		$sth = $this->db->prepare("SELECT * FROM users 
+				WHERE users=:username AND 
+				password=:password LIMIT 1");
 		$sth->execute(array(
 				':username'=>$_POST['username'], 
-				':password'=>$_POST['password']
+				':password'=>Hash::create('sha1',$_POST['password'],HASH_PASSWORD_KEY)
 				
 		));
 		//$userRow=$stmt->fetch(PDO::FETCH_ASSOC);
