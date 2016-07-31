@@ -12,7 +12,7 @@ class Login extends Controller {
 	//	require 'models/login_model.php'; // have creted autoload in controller
 	//	$model = new Login_Model();  // have creted autoload in controller
 	
-		echo Hash::create('sha1','test',HASH_PASSWORD_KEY);
+		echo Hash::create('sha256','test',HASH_PASSWORD_KEY);
 		
 		$this->view->label_username = "Username";
 		$this->view->label_password = "Password";

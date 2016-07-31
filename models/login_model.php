@@ -19,7 +19,7 @@ class Login_Model extends Model {
 				password=:password LIMIT 1");
 		$sth->execute(array(
 				':username'=>$_POST['username'], 
-				':password'=>Hash::create('sha1',$_POST['password'],HASH_PASSWORD_KEY)
+				':password'=>Hash::create('sha256',$_POST['password'],HASH_PASSWORD_KEY)
 				
 		));
 		//$userRow=$stmt->fetch(PDO::FETCH_ASSOC);
