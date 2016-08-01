@@ -10,10 +10,10 @@ $(function(){
 			}
 		//$('#parentElement').on('click', '.myButton', function)
 		//$('.del').live('click', function() {
-		$('.container').on('click','.del',function(){ 
+		$('.del').live('click', function() {
 			delItem = $(this);
 			var id = $(this).attr('rel');
-			alert(id);
+			//alert(id);
 			
 			$.post('dashboard/xhrDeleteListing', {'id': id}, function(o){
 				delItem.parent().remove();

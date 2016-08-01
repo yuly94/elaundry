@@ -15,7 +15,7 @@ class Login_Model extends Model {
 		//$upass = $_POST['password'];
 		
 		$sth = $this->db->prepare("SELECT * FROM users 
-				WHERE users=:username AND 
+				WHERE user=:username AND 
 				password=:password LIMIT 1");
 		$sth->execute(array(
 				':username'=>$_POST['username'], 
