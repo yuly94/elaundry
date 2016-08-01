@@ -112,7 +112,7 @@ class Form {
 			$str = '';
 			foreach ($this->_error as $key => $value)
 			{
-				$str .= $key . ' => ' . $value . "\n";
+				$str .= $key . '=> ' . $value . "\n";
 			}
 			throw new Exception($str);
 		}

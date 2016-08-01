@@ -6,7 +6,7 @@
   <title><?php echo SITE_NAME;?></title>
   
   <!-- Compiled and minified JavaScript -->
-  <script src='http://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js'></script>
+  <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
 
   <!-- Font  -->
   <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">

@@ -24,15 +24,19 @@ if (isset($_REQUEST['run'])) {
 		echo 'The form passed!';
 		$data = $form->fetch();
 		
+	 
+		
 		echo '<pre>';
 		print_r($data);
 		echo '</pre>';
+		
 		
 		$db = new Database(DB_TYPE, DB_HOST, DB_NAME, DB_USER, DB_PASS);
 		$db->insert('person', $data);
  
 	} catch (Exception $e) {
 		echo $e->getMessage();
+		
 	}
 }
 ?>
