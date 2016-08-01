@@ -10,6 +10,8 @@ require 'config/constants.php';
 function __autoload($class){
 	require LIBS.$class.'.php';
 }
+
+ 
 /* require 'libs/Bootstrap.php';
 require 'libs/Controller.php';
 require 'libs/Model.php';
