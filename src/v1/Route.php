@@ -156,13 +156,13 @@ $app->post('/login', function() use ($app) {
                 $response["error"] = FALSE;
                 $response["uid"] = $user["uid"];
                 $response["user"]["nama"] = $user["nama"];
-		$response["user"]["alamat"] = $user["alamat"];
-		$response["user"]["nohp"] = $user["nohp"];
+		        $response["user"]["alamat"] = $user["alamat"];
+		        $response["user"]["nohp"] = $user["nohp"];
                 $response["user"]["email"] = $user["email"];
                 $response["user"]["api_key"] = $user["api_key"];
                 $response["user"]["status"] = $user["status"];
                 $response["user"]["created_at"] = $user["created_at"];
-		$response["user"]["last_login"] = $user["last_login"];
+		        $response["user"]["last_login"] = $user["last_login"];
                 $response["user"]["updated_at"] = $user["updated_at"];
         
                 } else {
@@ -300,7 +300,7 @@ $app->post('/changepass', 'authenticate', function() use ($app) {
 
 
             global $konsumen_id;
-	        global $konsumen_email;
+	        global $api_email;
 
 
             // check for required params
@@ -321,20 +321,41 @@ $app->post('/changepass', 'authenticate', function() use ($app) {
 	  
 			if ($db->changePass($konsumen_id,  $password_baru)) {
 
-			//send email
-			$to = $konsumen_email;
-			$subject = "Password Change Nofification $konsumen_email";
-			$body = "<p>Someone change the password.</p>
-			<p>Please ignore if that is you </p>";
 
-			sentEmail($to,$subject,$body);
-		  
-			$response["error"] = false;
-			$response["message"] = "Password Changed Successfully";
-		  
-			} else {
-			$response["error"] = true;
-			$response["message"] = "Error Updating Password";
+
+                // get the user by email
+            $user = $db->getUserByEmail($api_email);
+
+            if ($user != NULL) {
+    
+                // user is found
+                $response["error"] = FALSE;
+                $response["message"] = "Password Changed Successfully";
+                $response["uid"] = $user["uid"];
+                $response["user"]["nama"] = $user["nama"];
+                $response["user"]["alamat"] = $user["alamat"];
+                $response["user"]["nohp"] = $user["nohp"];
+                $response["user"]["email"] = $user["email"];
+                $response["user"]["api_key"] = $user["api_key"];
+                $response["user"]["status"] = $user["status"];
+                $response["user"]["created_at"] = $user["created_at"];
+                $response["user"]["last_login"] = $user["last_login"];
+                $response["user"]["updated_at"] = $user["updated_at"];
+        
+
+                //send email
+                $to = $konsumen_email;
+                $subject = "Password Change Nofification $konsumen_email";
+                $body = "<p>Someone change the password.</p>
+                <p>Please ignore if that is you </p>";
+
+                sentEmail($to,$subject,$body);
+
+                } else {
+                    // unknown error occurred
+                    $response['error'] = true;
+                    $response['message'] = "An error occurred. Please try again";
+                }
 		  
 	  }
   }
@@ -342,6 +363,74 @@ $app->post('/changepass', 'authenticate', function() use ($app) {
         echoRespnse(200, $response);
     });
 
+
+
+$app->post('/updateProfile', 'authenticate', function() use ($app) {
+
+
+            global $konsumen_id;
+            global $api_email;
+
+
+            // check for required params
+            verifyRequiredParams(array('nama', 'alamat', 'email', 'telepon'));
+
+            // reading post params
+            $konsumen_nama = $app->request->post('nama');
+            $konsumen_alamat = $app->request->post('alamat');
+            $konsumen_email = $app->request->post('email');
+            $konsumen_telepon = $app->request->post('telepon');
+            
+
+
+            $response = array();
+
+            $db = new DbHandlerAuth();
+            
+      
+            if ($db->updateProfile($konsumen_nama,  $konsumen_alamat, $konsumen_email, $konsumen_telepon, $konsumen_id)) {
+
+
+
+                // get the user by email
+            $user = $db->getUserByEmail($api_email);
+
+            if ($user != NULL) {
+    
+                // user is found
+                $response["error"] = FALSE;
+                $response["message"] = "Successfully update you";
+                $response["uid"] = $user["uid"];
+                $response["user"]["nama"] = $user["nama"];
+                $response["user"]["alamat"] = $user["alamat"];
+                $response["user"]["nohp"] = $user["nohp"];
+                $response["user"]["email"] = $user["email"];
+                $response["user"]["api_key"] = $user["api_key"];
+                $response["user"]["status"] = $user["status"];
+                $response["user"]["created_at"] = $user["created_at"];
+                $response["user"]["last_login"] = $user["last_login"];
+                $response["user"]["updated_at"] = $user["updated_at"];
+        
+
+                //send email
+                $to = $konsumen_email;
+                $subject = "Password Change Nofification $konsumen_email";
+                $body = "<p>Someone change the password.</p>
+                <p>Please ignore if that is you </p>";
+
+                sentEmail($to,$subject,$body);
+
+                } else {
+                    // unknown error occurred
+                    $response['error'] = true;
+                    $response['message'] = "An error occurred. Please try again";
+                }
+          
+      
+  }
+  
+        echoRespnse(200, $response);
+    });
 
  
 $app->post('/resetpassreq', function() use ($app) { //1
@@ -559,7 +648,7 @@ $app->get('/tempat', 'authenticate', function() {
  * method GET
  * url /tasks          
  */
-$app->post('/transaksi', 'authenticate', function() {
+$app->get('/transaksi', 'authenticate', function() {
            
             global $konsumen_id; 
             $response = array();  
@@ -897,7 +986,7 @@ function echoRespnse($status_code, $response) {
     $app->status($status_code);
 
     // setting response content type to json
-    $app->contentType('application/json;charset=utf-8');
+    $app->contentType("application/json; charset=utf-8");
 
     echo json_encode($response);
 }

@@ -210,6 +210,8 @@ public function checkChange($konsumen_id, $password_lama) {
         }
     }
 
+
+
     /* ------------- `fungsi update api konsumen ketika login` ------------------ */
 
 public function updateApi($email) {
@@ -253,6 +255,33 @@ public function changePass($konsumen_id, $password_baru) {
 	$sql = "UPDATE konsumen SET password_hash =?, api_key =?, updated_at = NOW() WHERE konsumen_id = ?";
 	$stmt = $this->conn->prepare($sql);
         $stmt->bind_param("sss", $password_hash, $api_key,  $konsumen_id);
+
+        $stmt->execute();
+        $num_affected_rows = $stmt->affected_rows;
+		
+        // Check for successful insertion
+        if ($num_affected_rows > 0) {
+                //Update user password success
+                return TRUE;
+            } else {
+               //Update user password failed
+				
+            $stmt->close();
+            return FALSE;
+        }
+    }
+	
+
+	
+    /* ------------- `fungsi ganti password konsumen` ------------------ */	
+	
+public function updateProfile($nama, $alamat, $email, $telepon, $konsumen_id) {
+        // fetching user by email
+
+	$update = time();
+	$sql = "UPDATE konsumen SET nama =?, alamat =?, email =?, nohp =?, updated_at = NOW() WHERE konsumen_id = ?";
+	$stmt = $this->conn->prepare($sql);
+        $stmt->bind_param("sssss", $nama, $alamat, $email, $telepon, $konsumen_id);
 
         $stmt->execute();
         $num_affected_rows = $stmt->affected_rows;
