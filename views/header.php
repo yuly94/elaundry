@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+ 
 
 <!--================================================================================
 	Item Name: Admin page E-Laundry
@@ -18,22 +18,46 @@
   
   <title><?php echo SITE_NAME;?></title>
   
-        <!-- Vendor CSS -->
-        <link href="vendors/bower_components/animate.css/animate.min.css" rel="stylesheet">
-        <link href="vendors/bower_components/material-design-iconic-font/dist/css/material-design-iconic-font.min.css" rel="stylesheet">
-        <link href="vendors/bower_components/bootstrap-sweetalert/lib/sweet-alert.css" rel="stylesheet">
-        <link href="vendors/bower_components/angular-loading-bar/src/loading-bar.css" rel="stylesheet">
-        <link href="vendors/bower_components/malihu-custom-scrollbar-plugin/jquery.mCustomScrollbar.min.css" rel="stylesheet">
+<!-- Compiled and minified JavaScript -->
+  <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.2.3/jquery.min.js"></script>
 
-        <!-- CSS -->
-        <link href="css/app.min.1.css" rel="stylesheet" id="app-level">
-        <link href="css/app.min.2.css" rel="stylesheet">
-        <link href="css/demo.css" rel="stylesheet">
+  <!-- Font  -->
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  
+  <!-- Compiled and minified CSS -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.7/css/materialize.min.css">
+
+  <!-- Custom Compiled CSS -->
+  <link rel="stylesheet" href="<?php echo URL;?>public/css/header.css">
+
+  <!-- Compiled and minified JavaScript -->
+  <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.7/js/materialize.min.js"></script>
+
+	<?php 
+		if (isset($this->js)) {
+			foreach ($this->js as $js)
+			{
+				echo '  <script type="text/javascript" src="'.URL.'views/'.$js.'"></script>';
+			}
+		}
+	?>
+
+    </head>
+
+    <body data-ng-class="{ 'sw-toggled': mactrl.layoutType === '1'}">
+
+        <data ui-view></data>
+
+ 
+        <link href="<?php echo URL;?>public/css/app.min.1.css" rel="stylesheet" id="app-level">
+        <link href="<?php echo URL;?>public/css/app.min.2.css" rel="stylesheet">
+        <link href="<?php echo URL;?>public/css/demo.css" rel="stylesheet">
 
 </head>
 
 
 <body>
+
  <?php Session::init();?>  
  <?php 
  $url = isset($_GET['url']) ? $_GET['url']:null;
@@ -41,6 +65,8 @@
  $url = explode('/', $url);
  
  ?>
+ 
+ 
  
  <!-- Dropdown 2 Structure -->
 <ul id="dropdown" class="dropdown-content collection">
@@ -142,8 +168,3 @@
  
   <!-- Compiled and minified JavaScript -->
   <script type="text/javascript" src="<?php echo URL;?>public/js/header.js"></script>
- 
- 
-
- 
-
