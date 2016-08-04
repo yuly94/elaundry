@@ -24,13 +24,5 @@ require 'libs/Session.php';
 require 'libs/Hash.php';
  */
 
-// Load the Bootstrap!
-$bootstrap = new Bootstrap();
+$app = new Bootstrap();
 
-// Optional Path Settings
-//$bootstrap->setControllerPath();
-//$bootstrap->setModelPath();
-//$bootstrap->setDefaultFile();
-//$bootstrap->setErrorFile();
-
-$bootstrap->init();
