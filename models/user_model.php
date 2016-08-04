@@ -6,22 +6,22 @@ class User_Model extends Model {
 	}
 	
 	public function userList() {
-/* 		$sth = $this->db->prepare('SELECT id, user, role FROM users');
+/* 		$sth = $this->db->prepare('SELECT id, username, role FROM users');
 		$sth->execute();
 		return $sth->fetchAll(); */
 		
-		return $this->db->select('SELECT id, user, role FROM users');
+		return $this->db->select('SELECT userid, username, role FROM users');
 	}
 	
 	public function userSingleList($id) {
-		/* $sth = $this->db->prepare('SELECT id, user, role FROM users WHERE id =:id');
+		/* $sth = $this->db->prepare('SELECT userid, user, role FROM users WHERE id =:id');
 		$sth->execute(array(
 				':id'=> $id
 		));
 		return $sth->fetch(); */
 		
-		return $this->db->selectSingle("SELECT id, user, role FROM users WHERE id = :id", array(':id' => $id));
-	 	//return  $this->db->select("SELECT id, user, role FROM users WHERE id = :id", array('id' => $id));
+		return $this->db->selectSingle("SELECT userid, username, role FROM users WHERE userid = :id", array(':id' => $id));
+	 	//return  $this->db->select("SELECT id, usernama, role FROM users WHERE id = :id", array('id' => $id));
 	 	
 		
 		 
@@ -33,7 +33,7 @@ class User_Model extends Model {
 	{	
  
 	 	$this->db->insert('users', array(
-				'user' => $data['username'],
+				'username' => $data['username'],
 				'password' => Hash::create('sha1', $data['password'], HASH_PASSWORD_KEY),
 				'role' => $data['role']
 				
@@ -64,12 +64,12 @@ class User_Model extends Model {
 		
 		
 		$postData = array(
-			'user' => $data['username'],
+			'username' => $data['username'],
 			'password' => Hash::create('sha256', $data['password'], HASH_PASSWORD_KEY),
 			'role' => $data['role']
 		);
 		
-		$this->db->update('users', $postData, "`id` = {$data['id']}");
+		$this->db->update('users', $postData, "`userid` = {$data['id']}");
 		
 /* 		$postData = array(
 				'users'=>$data['username'],
@@ -99,7 +99,7 @@ class User_Model extends Model {
 	
 	public function delete($id) {
 		
-		$result = $this->db->select("SELECT role FROM users WHERE id = :id", array(':id' => $id));
+		$result = $this->db->select("SELECT role FROM users WHERE userid = :id", array(':id' => $id));
 		
 		if ($result[0]['role'] == 'owner')
 			return false;

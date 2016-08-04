@@ -15,7 +15,7 @@ class Login_Model extends Model {
 		//$upass = $_POST['password'];
 		
 		$sth = $this->db->prepare("SELECT * FROM users 
-				WHERE user=:username AND 
+				WHERE username=:username AND 
 				password=:password LIMIT 1");
 		$sth->execute(array(
 				':username'=>$_POST['username'], 
@@ -34,8 +34,9 @@ class Login_Model extends Model {
 		if($sth->rowCount() > 0){
 			//login
 			Session::init();
+                        Session::set('userid', $data['userid']);
 			Session::set('role', $data['role']);
-			Session::set('users', $data['users']);
+			Session::set('users', $data['username']);                
 			Session::set('loggedIn',true);
 			header('location: ../dashboard');
 		} else {

@@ -6,5 +6,13 @@
             <name>dev-admin</name>
         </data>
         <libraries xmlns="http://www.netbeans.org/ns/cdnjs-libraries/1"/>
+        <spellchecker-wordlist xmlns="http://www.netbeans.org/ns/spellchecker-wordlist/1">
+            <word>Admin</word>
+            <word>http</word>
+            <word>Nurhidayati</word>
+            <word>URL</word>
+            <word>www</word>
+            <word>Yuly</word>
+        </spellchecker-wordlist>
     </configuration>
 </project>

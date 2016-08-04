@@ -1,12 +1,25 @@
 <!DOCTYPE html>
 <html lang="en">
+
+<!--================================================================================
+	Item Name: Admin page E-Laundry
+	Version: 1.1
+	Author: Yuly Nurhidayati
+	Author URL: http://www.yuly.besaba.com/elaundry
+================================================================================ -->
+
 <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0"/>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0, user-scalable=no">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="msapplication-tap-highlight" content="no">
+    <meta name="description" content="Materialize is a Material Design Admin Template,It's modern, responsive and based on Material Design by Google. ">
+    <meta name="keywords" content="materialize, admin template, dashboard template, flat admin template, responsive admin template,">
+  
   <title><?php echo SITE_NAME;?></title>
   
   <!-- Compiled and minified JavaScript -->
-  <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
+  <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.2.3/jquery.min.js"></script>
 
   <!-- Font  -->
   <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
@@ -80,10 +93,10 @@
 	    <!-- <a id="logo-container" href="</?php echo URL; ?>" class="brand-logo center"></?php echo LOGO_NAME;?></a>
           -->
      	   <a href="<?php echo URL; ?>" class="breadcrumb">Home</a>
-        	<?php if ($url[0]!=''):?>
+        	<?php if (!empty($url[0])):?>
         	<a href="<?php echo $url[0]; ?>" class="breadcrumb"><?php echo $url[0];?></a>
         	<?php endif;?>
-        	<?php if ($url[1]==false):?>
+        	<?php if (!empty($url[1])):?> 
         	<a href="<?php echo $url[1]; ?>" class="breadcrumb"><?php echo $url[1];?></a>
         	<?php endif;?>
      
@@ -95,6 +108,7 @@
          <li><a href="">Message<span class="new badge">4</span></a></li>
         	<?php if (Session::get('loggedIn')==true):?>
          		<li><a href="dashboard">Dashboard</a></li>
+                        <li><a href="note">Notes</a></li>
          		
          		<?php if (Session::get('role')=='owner'):?>
          		<li><a href="<?php echo URL;?>user">User</a></li>
@@ -140,11 +154,11 @@
       <a href="#" data-activates="nav-mobile" class="button-collapse"><i class="material-icons">menu</i></a>
     </div>
   </nav>
-</body>
+ 
   <!-- Compiled and minified JavaScript -->
   <script type="text/javascript" src="<?php echo URL;?>public/js/header.js"></script>
  
  
 
-</html>
+ 
 

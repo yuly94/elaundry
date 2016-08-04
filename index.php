@@ -5,6 +5,7 @@
 require 'config/paths.php';
 require 'config/database.php';
 require 'config/constants.php';
+require 'util/Auth.php';
 
 //Also spl_autoload_register
 function __autoload($class){

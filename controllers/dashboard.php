@@ -1,17 +1,17 @@
 <?php
+/**
+ * Controler
+ *      My_COntroller extend controller
+ *          Dashboaard extend my_controller
+ */
+
 
 class Dashboard extends Controller {
 	
 	function __construct(){
 		parent::__construct();
 		//echo 'we are in login dashboard';
-		Session::init();
-		$logged = Session::get('loggedIn');
-		if ($logged==false) {
-			Session::destroy();
-			header('location: login');
-			exit;
-		}
+                Auth::handleLogin();
 		
 		//print_r($_SESSION);
 		

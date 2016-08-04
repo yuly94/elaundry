@@ -8,14 +8,11 @@ $(function(){
 			{			
 				$('#listInserts').append('<div>' + o[i].text + '<a class="del" rel="'+o[i].id+'"href="#">X</a></div>');
 			}
-		//$('#parentElement').on('click', '.myButton', function)
-		//$('.del').live('click', function() {
-                //$('#containt').on('click', '.del', function() {
-                    $('body').on('click', '.del', function(){
-                    
+		
+		$('.del').click(function(){ 
 			delItem = $(this);
 			var id = $(this).attr('rel');
-			//alert(id);
+			alert(id);
 			
 			$.post('dashboard/xhrDeleteListing', {'id': id}, function(o){
 				delItem.parent().remove();

@@ -12,7 +12,7 @@ class Bootstrap {
 		if (empty($url[0])) {
 			require 'controllers/index.php';
 			$controller = new Index();
-			$controller->index();
+//			$controller->index();
 			return false;
 		}
 		
