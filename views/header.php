@@ -18,33 +18,18 @@
   
   <title><?php echo SITE_NAME;?></title>
   
-  <!-- Compiled and minified JavaScript -->
-  <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.2.3/jquery.min.js"></script>
+        <!-- Vendor CSS -->
+        <link href="vendors/bower_components/animate.css/animate.min.css" rel="stylesheet">
+        <link href="vendors/bower_components/material-design-iconic-font/dist/css/material-design-iconic-font.min.css" rel="stylesheet">
+        <link href="vendors/bower_components/bootstrap-sweetalert/lib/sweet-alert.css" rel="stylesheet">
+        <link href="vendors/bower_components/angular-loading-bar/src/loading-bar.css" rel="stylesheet">
+        <link href="vendors/bower_components/malihu-custom-scrollbar-plugin/jquery.mCustomScrollbar.min.css" rel="stylesheet">
 
-  <!-- Font  -->
-  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-  
-  <!-- Compiled and minified CSS -->
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.7/css/materialize.min.css">
+        <!-- CSS -->
+        <link href="css/app.min.1.css" rel="stylesheet" id="app-level">
+        <link href="css/app.min.2.css" rel="stylesheet">
+        <link href="css/demo.css" rel="stylesheet">
 
-  <!-- Custom Compiled CSS -->
-  <link rel="stylesheet" href="<?php echo URL;?>public/css/header.css">
-
-  <!-- Compiled and minified JavaScript -->
-  <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.7/js/materialize.min.js"></script>
-
-
-	<?php 
-		if (isset($this->js)) {
-			foreach ($this->js as $js)
-			{
-				echo '  <script type="text/javascript" src="'.URL.'views/'.$js.'"></script>';
-			}
-		}
-	?>
-
- 
-   
 </head>
 
 
