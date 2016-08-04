@@ -1,5 +1,5 @@
 <!DOCTYPE html>
- 
+<html lang="en">
 
 <!--================================================================================
 	Item Name: Admin page E-Laundry
@@ -18,7 +18,7 @@
   
   <title><?php echo SITE_NAME;?></title>
   
-<!-- Compiled and minified JavaScript -->
+  <!-- Compiled and minified JavaScript -->
   <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.2.3/jquery.min.js"></script>
 
   <!-- Font  -->
@@ -33,6 +33,7 @@
   <!-- Compiled and minified JavaScript -->
   <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.7/js/materialize.min.js"></script>
 
+
 	<?php 
 		if (isset($this->js)) {
 			foreach ($this->js as $js)
@@ -42,22 +43,12 @@
 		}
 	?>
 
-    </head>
-
-    <body data-ng-class="{ 'sw-toggled': mactrl.layoutType === '1'}">
-
-        <data ui-view></data>
-
  
-        <link href="<?php echo URL;?>public/css/app.min.1.css" rel="stylesheet" id="app-level">
-        <link href="<?php echo URL;?>public/css/app.min.2.css" rel="stylesheet">
-        <link href="<?php echo URL;?>public/css/demo.css" rel="stylesheet">
-
+   
 </head>
 
 
 <body>
-
  <?php Session::init();?>  
  <?php 
  $url = isset($_GET['url']) ? $_GET['url']:null;
@@ -65,8 +56,6 @@
  $url = explode('/', $url);
  
  ?>
- 
- 
  
  <!-- Dropdown 2 Structure -->
 <ul id="dropdown" class="dropdown-content collection">
@@ -168,3 +157,7 @@
  
   <!-- Compiled and minified JavaScript -->
   <script type="text/javascript" src="<?php echo URL;?>public/js/header.js"></script>
+ 
+ 
+
+ 
