@@ -102,7 +102,7 @@ class Bootstrap {
             $this->_controller = new $this->_url[0];
             $this->_controller->loadModel($this->_url[0], $this->_modelPath);
         } else {
-         //   $this->_error();
+            $this->_error();
             return false;
         }
     }
@@ -124,7 +124,7 @@ class Bootstrap {
         // Make sure the method we are calling exists
         if ($length > 1) {
             if (!method_exists($this->_controller, $this->_url[1])) {
-             //   $this->_error();
+                $this->_error();
             }
         }
         
