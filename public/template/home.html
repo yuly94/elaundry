@@ -1,12 +1,10 @@
- 
-<section id="main">
-    
-    
-    
-    
-    <aside id="sidebar" data-ng-include="'<?php echo URL; ?>public/template/sidebar-left.html'" data-ng-class="{ 'toggled': mactrl.sidebarToggle.left === true }"></aside>
 
-    <aside id="chat" data-ng-include="'<?php echo URL; ?>public/template/chat.html'" data-ng-class="{ 'toggled': mactrl.sidebarToggle.right === true }"></aside>
+<header id="header" data-current-skin={{mactrl.currentSkin}} data-ng-include="'template/header.html'" data-ng-controller="headerCtrl as hctrl"></header>
+
+<section id="main">
+    <aside id="sidebar" data-ng-include="'template/sidebar-left.html'" data-ng-class="{ 'toggled': mactrl.sidebarToggle.left === true }"></aside>
+
+    <aside id="chat" data-ng-include="'template/chat.html'" data-ng-class="{ 'toggled': mactrl.sidebarToggle.right === true }"></aside>
 
     <section id="content">
 
@@ -389,7 +387,7 @@
                     <!-- Recent Posts -->
                     <div class="card" data-ng-controller="recentpostCtrl as rpctrl">
                         <div class="card-header ch-alt m-b-20">
-                            <h2>Recent Posts x <small>Phasellus condimentum ipsum id auctor imperdie</small></h2>
+                            <h2>Recent Posts <small>Phasellus condimentum ipsum id auctor imperdie</small></h2>
                             <ul class="actions">
                                 <li>
                                     <a href="">
@@ -420,8 +418,7 @@
                                 </li>
                             </ul>
 
-                            <button class="btn bgm-cyan btn-float">
-                                <i class="zmdi zmdi-plus"></i></button>
+                            <button class="btn bgm-cyan btn-float"><i class="zmdi zmdi-plus"></i></button>
                         </div>
 
                         <div class="card-body">
@@ -430,7 +427,7 @@
                                 <a class="lv-item" href="" data-ng-repeat="w in rpctrl.rpResult.list">
                                     <div class="media">
                                         <div class="pull-left">
-                                            <img class="lv-img-sm" data-ng-src="<?php echo URL; ?>public/img/profile-pics/{{ w.img }}" alt="">
+                                            <img class="lv-img-sm" data-ng-src="img/profile-pics/{{ w.img }}" alt="">
                                         </div>
                                         <div class="media-body">
                                             <div class="lv-title">{{ w.user }}</div>

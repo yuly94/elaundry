@@ -1,5 +1,11 @@
 $(function(){
 	
+        // A $( document ).ready() block.
+$( document ).ready(function() {
+    console.log( "ready!" );
+        
+});
+        
 	$.get('dashboard/xhrGetListings',function(o){
 		
 		console.log(o);

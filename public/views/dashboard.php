@@ -1,12 +1,18 @@
+<?php
+
+/* 
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
+
+?>
+
  
 <section id="main">
-    
-    
-    
-    
-    <aside id="sidebar" data-ng-include="'<?php echo URL; ?>public/template/sidebar-left.html'" data-ng-class="{ 'toggled': mactrl.sidebarToggle.left === true }"></aside>
+    <aside id="sidebar" data-ng-include="'public/template/sidebar-left.html'" data-ng-class="{ 'toggled': mactrl.sidebarToggle.left === true }"></aside>
 
-    <aside id="chat" data-ng-include="'<?php echo URL; ?>public/template/chat.html'" data-ng-class="{ 'toggled': mactrl.sidebarToggle.right === true }"></aside>
+    <aside id="chat" data-ng-include="'public/template/chat.html'" data-ng-class="{ 'toggled': mactrl.sidebarToggle.right === true }"></aside>
 
     <section id="content">
 
@@ -231,7 +237,7 @@
                         <div id="best-selling" class="dash-widget-item" data-ng-controller="bestsellingCtrl as wctrl">
                             <div class="dash-widget-header">
                                 <div class="dash-widget-title">Best Sellings</div>
-                                <img src="img/widgets/alpha.jpg" alt="">
+                                <img src="public/img/widgets/alpha.jpg" alt="">
                                 <div class="main-item">
                                     <small>Samsung Galaxy Alpha</small>
                                     <h2>$799.99</h2>
@@ -242,7 +248,7 @@
                                 <a class="lv-item" href="" data-ng-repeat="w in wctrl.bsResult.list">
                                     <div class="media">
                                         <div class="pull-left">
-                                            <img class="lv-img-sm" data-ng-src="img/widgets/{{ w.img }}" alt="">
+                                            <img class="lv-img-sm" data-ng-src="public/img/widgets/{{ w.img }}" alt="">
                                         </div>
                                         <div class="media-body">
                                             <div class="lv-title">{{ w.name }}</div>
@@ -389,7 +395,7 @@
                     <!-- Recent Posts -->
                     <div class="card" data-ng-controller="recentpostCtrl as rpctrl">
                         <div class="card-header ch-alt m-b-20">
-                            <h2>Recent Posts x <small>Phasellus condimentum ipsum id auctor imperdie</small></h2>
+                            <h2>Recent Posts <small>Phasellus condimentum ipsum id auctor imperdie</small></h2>
                             <ul class="actions">
                                 <li>
                                     <a href="">
@@ -420,8 +426,7 @@
                                 </li>
                             </ul>
 
-                            <button class="btn bgm-cyan btn-float">
-                                <i class="zmdi zmdi-plus"></i></button>
+                            <button class="btn bgm-cyan btn-float"><i class="zmdi zmdi-plus"></i></button>
                         </div>
 
                         <div class="card-body">
@@ -430,7 +435,7 @@
                                 <a class="lv-item" href="" data-ng-repeat="w in rpctrl.rpResult.list">
                                     <div class="media">
                                         <div class="pull-left">
-                                            <img class="lv-img-sm" data-ng-src="<?php echo URL; ?>public/img/profile-pics/{{ w.img }}" alt="">
+                                            <img class="lv-img-sm" data-ng-src="public/img/profile-pics/{{ w.img }}" alt="">
                                         </div>
                                         <div class="media-body">
                                             <div class="lv-title">{{ w.user }}</div>
@@ -450,6 +455,4 @@
         </div>
     </section>
 </section>
-
-<footer id="footer" data-ng-include="'template/footer.html'"></footer>
 

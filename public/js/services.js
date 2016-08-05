@@ -6,7 +6,7 @@ materialAdmin
 
     .service('messageService', ['$resource', function($resource){
         this.getMessage = function(img, user, text) {
-            var gmList = $resource("data/messages-notifications.json");
+            var gmList = $resource("public/data/messages-notifications.json");
             
             return gmList.get({
                 img: img,
@@ -23,7 +23,7 @@ materialAdmin
 
     .service('bestsellingService', ['$resource', function($resource){
         this.getBestselling = function(img, name, range) {
-            var gbList = $resource("data/best-selling.json");
+            var gbList = $resource("public/data/best-selling.json");
             
             return gbList.get({
                 img: img,
@@ -40,7 +40,7 @@ materialAdmin
 
     .service('todoService', ['$resource', function($resource){
         this.getTodo = function(todo) {
-            var todoList = $resource("data/todo.json");
+            var todoList = $resource("public/data/todo.json");
             
             return todoList.get({
                 todo: todo
@@ -55,7 +55,7 @@ materialAdmin
     
     .service('recentitemService', ['$resource', function($resource){
         this.getRecentitem = function(id, name, price) {
-            var recentitemList = $resource("data/recent-items.json");
+            var recentitemList = $resource("public/data/recent-items.json");
             
             return recentitemList.get ({
                 id: id,
@@ -72,7 +72,7 @@ materialAdmin
     
     .service('recentpostService', ['$resource', function($resource){
         this.getRecentpost = function(img, user, text) {
-            var recentpostList = $resource("data/messages-notifications.json");
+            var recentpostList = $resource("public/data/messages-notifications.json");
             
             return recentpostList.get ({
                 img: img,

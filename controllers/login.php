@@ -17,7 +17,7 @@ class Login extends Controller {
 		$this->view->label_username = "Username";
 		$this->view->label_password = "Password";
 		
-		$this->view->render('login/index',false);
+		$this->view->render('login/index',true);
 	}
 	
 	function run() {

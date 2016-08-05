@@ -1,7 +1,8 @@
 materialAdmin
     .config(function ($stateProvider, $urlRouterProvider){
-        $urlRouterProvider.otherwise("/home");
-
+       $urlRouterProvider.otherwise("/home");
+          // enable HTML5mode to disable hashbang urls
+    // $urlRouterProvider.html5Mode(true);
 
         $stateProvider
         
@@ -11,7 +12,7 @@ materialAdmin
 
             .state ('home', {
                 url: '/home',
-                templateUrl: 'views/home.html',
+                templateUrl: 'public/views/dashboard.php',
                 resolve: {
                     loadPlugin: function($ocLazyLoad) {
                         return $ocLazyLoad.load ([
@@ -19,16 +20,16 @@ materialAdmin
                                 name: 'css',
                                 insertBefore: '#app-level',
                                 files: [
-                                    'vendors/bower_components/fullcalendar/dist/fullcalendar.min.css',
+                                    'public/vendors/bower_components/fullcalendar/dist/fullcalendar.min.css',
                                 ]
                             },
                             {
                                 name: 'vendors',
                                 insertBefore: '#app-level-js',
                                 files: [
-                                    'vendors/sparklines/jquery.sparkline.min.js',
-                                    'vendors/bower_components/jquery.easy-pie-chart/dist/jquery.easypiechart.min.js',
-                                    'vendors/bower_components/simpleWeather/jquery.simpleWeather.min.js'
+                                    'public/vendors/sparklines/jquery.sparkline.min.js',
+                                    'public/vendors/bower_components/jquery.easy-pie-chart/dist/jquery.easypiechart.min.js',
+                                    'public/vendors/bower_components/simpleWeather/jquery.simpleWeather.min.js'
                                 ]
                             }
                         ])
@@ -42,22 +43,22 @@ materialAdmin
             //------------------------------
             .state ('headers', {
                 url: '/headers',
-                templateUrl: 'views/common-2.html'
+                templateUrl: 'public/views/common-2.html'
             })
 
             .state('headers.textual-menu', {
                 url: '/textual-menu',
-                templateUrl: 'views/textual-menu.html'
+                templateUrl: 'public/views/textual-menu.html'
             })
 
             .state('headers.image-logo', {
                 url: '/image-logo',
-                templateUrl: 'views/image-logo.html'
+                templateUrl: 'public/views/image-logo.html'
             })
 
             .state('headers.mainmenu-on-top', {
                 url: '/mainmenu-on-top',
-                templateUrl: 'views/mainmenu-on-top.html'
+                templateUrl: 'public/views/mainmenu-on-top.html'
             })
 
 
@@ -67,7 +68,7 @@ materialAdmin
         
             .state ('typography', {
                 url: '/typography',
-                templateUrl: 'views/typography.html'
+                templateUrl: 'public/views/typography.html'
             })
 
 
@@ -77,12 +78,12 @@ materialAdmin
         
             .state ('widgets', {
                 url: '/widgets',
-                templateUrl: 'views/common.html'
+                templateUrl: 'public/views/common.html'
             })
 
             .state ('widgets.widgets', {
                 url: '/widgets',
-                templateUrl: 'views/widgets.html',
+                templateUrl: 'public/views/widgets.html',
                 resolve: {
                     loadPlugin: function($ocLazyLoad) {
                         return $ocLazyLoad.load ([
@@ -90,14 +91,14 @@ materialAdmin
                                 name: 'css',
                                 insertBefore: '#app-level',
                                 files: [
-                                    'vendors/bower_components/mediaelement/build/mediaelementplayer.css',
+                                    'public/vendors/bower_components/mediaelement/build/mediaelementplayer.css',
                                 ]
                             },
                             {
                                 name: 'vendors',
                                 files: [
-                                    'vendors/bower_components/mediaelement/build/mediaelement-and-player.js',
-                                    'vendors/bower_components/autosize/dist/autosize.min.js'
+                                    'public/vendors/bower_components/mediaelement/build/mediaelement-and-player.js',
+                                    'public/vendors/bower_components/autosize/dist/autosize.min.js'
                                 ]
                             }
                         ])
@@ -107,7 +108,7 @@ materialAdmin
 
             .state ('widgets.widget-templates', {
                 url: '/widget-templates',
-                templateUrl: 'views/widget-templates.html',
+                templateUrl: 'public/views/widget-templates.html',
             })
 
 
@@ -117,17 +118,17 @@ materialAdmin
         
             .state ('tables', {
                 url: '/tables',
-                templateUrl: 'views/common.html'
+                templateUrl: 'public/views/common.html'
             })
             
             .state ('tables.tables', {
                 url: '/tables',
-                templateUrl: 'views/tables.html'
+                templateUrl: 'public/views/tables.html'
             })
             
             .state ('tables.data-table', {
                 url: '/data-table',
-                templateUrl: 'views/data-table.html'
+                templateUrl: 'public/views/data-table.html'
             })
 
         
@@ -136,19 +137,19 @@ materialAdmin
             //------------------------------
             .state ('form', {
                 url: '/form',
-                templateUrl: 'views/common.html'
+                templateUrl: 'public/views/common.html'
             })
 
             .state ('form.basic-form-elements', {
                 url: '/basic-form-elements',
-                templateUrl: 'views/form-elements.html',
+                templateUrl: 'public/views/form-elements.html',
                 resolve: {
                     loadPlugin: function($ocLazyLoad) {
                         return $ocLazyLoad.load ([
                             {
                                 name: 'vendors',
                                 files: [
-                                    'vendors/bower_components/autosize/dist/autosize.min.js'
+                                    'public/vendors/bower_components/autosize/dist/autosize.min.js'
                                 ]
                             }
                         ])
@@ -158,7 +159,7 @@ materialAdmin
 
             .state ('form.form-components', {
                 url: '/form-components',
-                templateUrl: 'views/form-components.html',
+                templateUrl: 'public/views/form-components.html',
                 resolve: {
                     loadPlugin: function($ocLazyLoad) {
                         return $ocLazyLoad.load ([
@@ -166,25 +167,25 @@ materialAdmin
                                 name: 'css',
                                 insertBefore: '#app-level',
                                 files: [
-                                    'vendors/bower_components/nouislider/jquery.nouislider.css',
-                                    'vendors/farbtastic/farbtastic.css',
-                                    'vendors/bower_components/summernote/dist/summernote.css',
-                                    'vendors/bower_components/eonasdan-bootstrap-datetimepicker/build/css/bootstrap-datetimepicker.min.css',
-                                    'vendors/bower_components/chosen/chosen.min.css'
+                                    'public/vendors/bower_components/nouislider/jquery.nouislider.css',
+                                    'public/vendors/farbtastic/farbtastic.css',
+                                    'public/vendors/bower_components/summernote/dist/summernote.css',
+                                    'public/vendors/bower_components/eonasdan-bootstrap-datetimepicker/build/css/bootstrap-datetimepicker.min.css',
+                                    'public/vendors/bower_components/chosen/chosen.min.css'
                                 ]
                             },
                             {
                                 name: 'vendors',
                                 files: [
-                                    'vendors/input-mask/input-mask.min.js',
-                                    'vendors/bower_components/nouislider/jquery.nouislider.min.js',
-                                    'vendors/bower_components/moment/min/moment.min.js',
-                                    'vendors/bower_components/eonasdan-bootstrap-datetimepicker/build/js/bootstrap-datetimepicker.min.js',
-                                    'vendors/bower_components/summernote/dist/summernote.min.js',
-                                    'vendors/fileinput/fileinput.min.js',
-                                    'vendors/bower_components/chosen/chosen.jquery.js',
-                                    'vendors/bower_components/angular-chosen-localytics/chosen.js',
-                                    'vendors/bower_components/angular-farbtastic/angular-farbtastic.js'
+                                    'public/vendors/input-mask/input-mask.min.js',
+                                    'public/vendors/bower_components/nouislider/jquery.nouislider.min.js',
+                                    'public/vendors/bower_components/moment/min/moment.min.js',
+                                    'public/vendors/bower_components/eonasdan-bootstrap-datetimepicker/build/js/bootstrap-datetimepicker.min.js',
+                                    'public/vendors/bower_components/summernote/dist/summernote.min.js',
+                                    'public/vendors/fileinput/fileinput.min.js',
+                                    'public/vendors/bower_components/chosen/chosen.jquery.js',
+                                    'public/vendors/bower_components/angular-chosen-localytics/chosen.js',
+                                    'public/vendors/bower_components/angular-farbtastic/angular-farbtastic.js'
                                 ]
                             }
                         ])
@@ -194,12 +195,12 @@ materialAdmin
         
             .state ('form.form-examples', {
                 url: '/form-examples',
-                templateUrl: 'views/form-examples.html'
+                templateUrl: 'public/views/form-examples.html'
             })
         
             .state ('form.form-validations', {
                 url: '/form-validations',
-                templateUrl: 'views/form-validations.html'
+                templateUrl: 'public/views/form-validations.html'
             })
         
             
@@ -209,57 +210,57 @@ materialAdmin
         
             .state ('user-interface', {
                 url: '/user-interface',
-                templateUrl: 'views/common.html'
+                templateUrl: 'public/views/common.html'
             })
         
             .state ('user-interface.ui-bootstrap', {
                 url: '/ui-bootstrap',
-                templateUrl: 'views/ui-bootstrap.html'
+                templateUrl: 'public/public/views/ui-bootstrap.html'
             })
 
             .state ('user-interface.colors', {
                 url: '/colors',
-                templateUrl: 'views/colors.html'
+                templateUrl: 'public/public/views/colors.html'
             })
 
             .state ('user-interface.animations', {
                 url: '/animations',
-                templateUrl: 'views/animations.html'
+                templateUrl: 'public/views/animations.html'
             })
         
             .state ('user-interface.box-shadow', {
                 url: '/box-shadow',
-                templateUrl: 'views/box-shadow.html'
+                templateUrl: 'public/views/box-shadow.html'
             })
         
             .state ('user-interface.buttons', {
                 url: '/buttons',
-                templateUrl: 'views/buttons.html'
+                templateUrl: 'public/views/buttons.html'
             })
         
             .state ('user-interface.icons', {
                 url: '/icons',
-                templateUrl: 'views/icons.html'
+                templateUrl: 'public/views/icons.html'
             })
         
             .state ('user-interface.alerts', {
                 url: '/alerts',
-                templateUrl: 'views/alerts.html'
+                templateUrl: 'public/views/alerts.html'
             })
 
             .state ('user-interface.preloaders', {
                 url: '/preloaders',
-                templateUrl: 'views/preloaders.html'
+                templateUrl: 'public/views/preloaders.html'
             })
 
             .state ('user-interface.notifications-dialogs', {
                 url: '/notifications-dialogs',
-                templateUrl: 'views/notification-dialog.html'
+                templateUrl: 'public/views/notification-dialog.html'
             })
         
             .state ('user-interface.media', {
                 url: '/media',
-                templateUrl: 'views/media.html',
+                templateUrl: 'public/views/media.html',
                 resolve: {
                     loadPlugin: function($ocLazyLoad) {
                         return $ocLazyLoad.load ([
@@ -267,15 +268,15 @@ materialAdmin
                                 name: 'css',
                                 insertBefore: '#app-level',
                                 files: [
-                                    'vendors/bower_components/mediaelement/build/mediaelementplayer.css',
-                                    'vendors/bower_components/lightgallery/light-gallery/css/lightGallery.css'
+                                    'public/vendors/bower_components/mediaelement/build/mediaelementplayer.css',
+                                    'public/vendors/bower_components/lightgallery/light-gallery/css/lightGallery.css'
                                 ]
                             },
                             {
-                                name: 'vendors',
+                                name: 'public/vendors',
                                 files: [
-                                    'vendors/bower_components/mediaelement/build/mediaelement-and-player.js',
-                                    'vendors/bower_components/lightgallery/light-gallery/js/lightGallery.min.js'
+                                    'public/vendors/bower_components/mediaelement/build/mediaelement-and-player.js',
+                                    'public/vendors/bower_components/lightgallery/light-gallery/js/lightGallery.min.js'
                                 ]
                             }
                         ])
@@ -285,7 +286,7 @@ materialAdmin
         
             .state ('user-interface.other-components', {
                 url: '/other-components',
-                templateUrl: 'views/other-components.html'
+                templateUrl: 'public/views/other-components.html'
             })
             
         
@@ -295,25 +296,25 @@ materialAdmin
             
             .state ('charts', {
                 url: '/charts',
-                templateUrl: 'views/common.html'
+                templateUrl: 'public/views/common.html'
             })
 
             .state ('charts.flot-charts', {
                 url: '/flot-charts',
-                templateUrl: 'views/flot-charts.html',
+                templateUrl: 'public/views/flot-charts.html',
             })
 
             .state ('charts.other-charts', {
                 url: '/other-charts',
-                templateUrl: 'views/other-charts.html',
+                templateUrl: 'public/views/other-charts.html',
                 resolve: {
                     loadPlugin: function($ocLazyLoad) {
                         return $ocLazyLoad.load ([
                             {
-                                name: 'vendors',
+                                name: 'public/vendors',
                                 files: [
-                                    'vendors/sparklines/jquery.sparkline.min.js',
-                                    'vendors/bower_components/jquery.easy-pie-chart/dist/jquery.easypiechart.min.js',
+                                    'public/vendors/sparklines/jquery.sparkline.min.js',
+                                    'public/vendors/bower_components/jquery.easy-pie-chart/dist/jquery.easypiechart.min.js',
                                 ]
                             }
                         ])
@@ -328,7 +329,7 @@ materialAdmin
             
             .state ('calendar', {
                 url: '/calendar',
-                templateUrl: 'views/calendar.html',
+                templateUrl: 'public/views/calendar.html',
                 resolve: {
                     loadPlugin: function($ocLazyLoad) {
                         return $ocLazyLoad.load ([
@@ -336,14 +337,14 @@ materialAdmin
                                 name: 'css',
                                 insertBefore: '#app-level',
                                 files: [
-                                    'vendors/bower_components/fullcalendar/dist/fullcalendar.min.css',
+                                    'public/vendors/bower_components/fullcalendar/dist/fullcalendar.min.css',
                                 ]
                             },
                             {
-                                name: 'vendors',
+                                name: 'public/vendors',
                                 files: [
-                                    'vendors/bower_components/moment/min/moment.min.js',
-                                    'vendors/bower_components/fullcalendar/dist/fullcalendar.min.js'
+                                    'public/vendors/bower_components/moment/min/moment.min.js',
+                                    'public/vendors/bower_components/fullcalendar/dist/fullcalendar.min.js'
                                 ]
                             }
                         ])
@@ -358,7 +359,7 @@ materialAdmin
             
              .state ('photo-gallery', {
                 url: '/photo-gallery',
-                templateUrl: 'views/common.html',
+                templateUrl: 'public/views/common.html',
                 resolve: {
                     loadPlugin: function($ocLazyLoad) {
                         return $ocLazyLoad.load ([
@@ -366,13 +367,13 @@ materialAdmin
                                 name: 'css',
                                 insertBefore: '#app-level',
                                 files: [
-                                    'vendors/bower_components/lightgallery/light-gallery/css/lightGallery.css'
+                                    'public/vendors/bower_components/lightgallery/light-gallery/css/lightGallery.css'
                                 ]
                             },
                             {
-                                name: 'vendors',
+                                name: 'public/vendors',
                                 files: [
-                                    'vendors/bower_components/lightgallery/light-gallery/js/lightGallery.min.js'
+                                    'public/vendors/bower_components/lightgallery/light-gallery/js/lightGallery.min.js'
                                 ]
                             }
                         ])
@@ -384,14 +385,14 @@ materialAdmin
         
             .state ('photo-gallery.photos', {
                 url: '/photos',
-                templateUrl: 'views/photos.html'
+                templateUrl: 'public/views/photos.html'
             })
         
             //Timeline
     
             .state ('photo-gallery.timeline', {
                 url: '/timeline',
-                templateUrl: 'views/photo-timeline.html'
+                templateUrl: 'public/views/photo-timeline.html'
             })
         
         
@@ -401,7 +402,7 @@ materialAdmin
             
             .state ('generic-classes', {
                 url: '/generic-classes',
-                templateUrl: 'views/generic-classes.html'
+                templateUrl: 'public/views/generic-classes.html'
             })
         
             
@@ -411,7 +412,7 @@ materialAdmin
             
             .state ('pages', {
                 url: '/pages',
-                templateUrl: 'views/common.html'
+                templateUrl: 'public/views/common.html'
             })
             
         
@@ -419,17 +420,17 @@ materialAdmin
         
             .state ('pages.profile', {
                 url: '/profile',
-                templateUrl: 'views/profile.html'
+                templateUrl: 'public/views/profile.html'
             })
         
             .state ('pages.profile.profile-about', {
                 url: '/profile-about',
-                templateUrl: 'views/profile-about.html'
+                templateUrl: 'public/views/profile-about.html'
             })
         
             .state ('pages.profile.profile-timeline', {
                 url: '/profile-timeline',
-                templateUrl: 'views/profile-timeline.html',
+                templateUrl: 'public/views/profile-timeline.html',
                 resolve: {
                     loadPlugin: function($ocLazyLoad) {
                         return $ocLazyLoad.load ([
@@ -437,13 +438,13 @@ materialAdmin
                                 name: 'css',
                                 insertBefore: '#app-level',
                                 files: [
-                                    'vendors/bower_components/lightgallery/light-gallery/css/lightGallery.css'
+                                    'public/vendors/bower_components/lightgallery/light-gallery/css/lightGallery.css'
                                 ]
                             },
                             {
-                                name: 'vendors',
+                                name: 'public/vendors',
                                 files: [
-                                    'vendors/bower_components/lightgallery/light-gallery/js/lightGallery.min.js'
+                                    'public/vendors/bower_components/lightgallery/light-gallery/js/lightGallery.min.js'
                                 ]
                             }
                         ])
@@ -453,7 +454,7 @@ materialAdmin
 
             .state ('pages.profile.profile-photos', {
                 url: '/profile-photos',
-                templateUrl: 'views/profile-photos.html',
+                templateUrl: 'public/views/profile-photos.html',
                 resolve: {
                     loadPlugin: function($ocLazyLoad) {
                         return $ocLazyLoad.load ([
@@ -461,13 +462,13 @@ materialAdmin
                                 name: 'css',
                                 insertBefore: '#app-level',
                                 files: [
-                                    'vendors/bower_components/lightgallery/light-gallery/css/lightGallery.css'
+                                    'public/vendors/bower_components/lightgallery/light-gallery/css/lightGallery.css'
                                 ]
                             },
                             {
-                                name: 'vendors',
+                                name: 'public/vendors',
                                 files: [
-                                    'vendors/bower_components/lightgallery/light-gallery/js/lightGallery.min.js'
+                                    'public/vendors/bower_components/lightgallery/light-gallery/js/lightGallery.min.js'
                                 ]
                             }
                         ])
@@ -477,7 +478,7 @@ materialAdmin
         
             .state ('pages.profile.profile-connections', {
                 url: '/profile-connections',
-                templateUrl: 'views/profile-connections.html'
+                templateUrl: 'public/views/profile-connections.html'
             })
         
         
@@ -485,48 +486,48 @@ materialAdmin
         
             .state ('pages.listview', {
                 url: '/listview',
-                templateUrl: 'views/list-view.html'
+                templateUrl: 'public/views/list-view.html'
             })
         
             .state ('pages.messages', {
                 url: '/messages',
-                templateUrl: 'views/messages.html'
+                templateUrl: 'public/views/messages.html'
             })
         
             .state ('pages.pricing-table', {
                 url: '/pricing-table',
-                templateUrl: 'views/pricing-table.html'
+                templateUrl: 'public/views/pricing-table.html'
             })
         
             .state ('pages.contacts', {
                 url: '/contacts',
-                templateUrl: 'views/contacts.html'
+                templateUrl: 'public/views/contacts.html'
             })
         
             .state ('pages.invoice', {
                 url: '/invoice',
-                templateUrl: 'views/invoice.html'
+                templateUrl: 'public/views/invoice.html'
             })
                                 
             .state ('pages.wall', {
                 url: '/wall',
-                templateUrl: 'views/wall.html',
+                templateUrl: 'public/views/wall.html',
                 resolve: {
                     loadPlugin: function($ocLazyLoad) {
                         return $ocLazyLoad.load ([
                             {
-                                name: 'vendors',
+                                name: 'public/vendors',
                                 insertBefore: '#app-level',
                                 files: [
-                                    'vendors/bower_components/autosize/dist/autosize.min.js',
-                                    'vendors/bower_components/lightgallery/light-gallery/css/lightGallery.css'
+                                    'public/vendors/bower_components/autosize/dist/autosize.min.js',
+                                    'public/vendors/bower_components/lightgallery/light-gallery/css/lightGallery.css'
                                 ]
                             },
                             {
-                                name: 'vendors',
+                                name: 'public/vendors',
                                 files: [
-                                    'vendors/bower_components/mediaelement/build/mediaelement-and-player.js',
-                                    'vendors/bower_components/lightgallery/light-gallery/js/lightGallery.min.js'
+                                    'public/vendors/bower_components/mediaelement/build/mediaelement-and-player.js',
+                                    'public/vendors/bower_components/lightgallery/light-gallery/js/lightGallery.min.js'
                                 ]
                             }
                         ])
@@ -539,6 +540,6 @@ materialAdmin
             //------------------------------
             .state ('breadcrumb-demo', {
                 url: '/breadcrumb-demo',
-                templateUrl: 'views/breadcrumb-demo.html'
+                templateUrl: 'public/views/breadcrumb-demo.html'
             })
     });
