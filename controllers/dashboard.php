@@ -22,8 +22,11 @@ class Dashboard extends Controller {
 	function index() {
 	//	require 'models/login_model.php'; // have creted autoload in controller
 	//	$model = new Login_Model();  // have creted autoload in controller
-	
-		$this->view->render('dashboard/index');
+            
+             //   $this->view->sidebarLeft = 'dashboard/inc/sidebar-left.php';
+                $this->view->title = '404 Error';
+                $this->view->render('dashboard/inc/sidebar-left',1);
+		$this->view->render('dashboard/index',3);
 	}
 	
 	function logout() {

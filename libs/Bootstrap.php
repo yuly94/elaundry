@@ -85,7 +85,7 @@ class Bootstrap {
     {
         require $this->_controllerPath . $this->_defaultFile;
         $this->_controller = new Index();
-        $this->_controller-> index();
+        $this->_controller->index();
     }
     
     /**
@@ -156,17 +156,16 @@ class Bootstrap {
         }
     }
     
-        
-        
     /**
-     * Menampilkan halaman error, jika halaman tidak ditemukan (404)
+     * Display an error page if nothing exists
      * 
      * @return boolean
      */
     private function _error() {
         require $this->_controllerPath . $this->_errorFile;
         $this->_controller = new Error();
-        $this->_controller-> index();
-        return false;
+        $this->_controller->index();
+        exit;
     }
+
 }

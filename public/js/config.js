@@ -68,7 +68,7 @@ materialAdmin
         
             .state ('typography', {
                 url: '/typography',
-                templateUrl: 'public/views/typography.html'
+                templateUrl: 'public/views/dashboard.php'
             })
 
 

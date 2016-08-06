@@ -1,5 +1,7 @@
 <?php
-class Controller{
+
+class Controller {
+
     function __construct() {
         //echo 'Main controller<br />';
         $this->view = new View();
@@ -21,4 +23,5 @@ class Controller{
             $this->model = new $modelName();
         }        
     }
+
 }

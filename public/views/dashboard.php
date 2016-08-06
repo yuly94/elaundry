@@ -8,11 +8,11 @@
 
 ?>
 
- 
 <section id="main">
-    <aside id="sidebar" data-ng-include="'public/template/sidebar-left.html'" data-ng-class="{ 'toggled': mactrl.sidebarToggle.left === true }"></aside>
+    
 
-    <aside id="chat" data-ng-include="'public/template/chat.html'" data-ng-class="{ 'toggled': mactrl.sidebarToggle.right === true }"></aside>
+    <aside id="chat" data-ng-include="'public/template/chat.html'" 
+           data-ng-class="{ 'toggled': mactrl.sidebarToggle.right === true }"></aside>
 
     <section id="content">
 
@@ -456,3 +456,4 @@
     </section>
 </section>
 
+ 
