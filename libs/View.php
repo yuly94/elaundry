@@ -10,12 +10,16 @@ class View{
 
     
 
-    public function render($name, $noInclude = false)
+    public function render($name, $noInclude = 1)
     {
-        if ($noInclude == true) {
+        if ($noInclude == 1) {
             require 'views/' . $name . '.php';    
         }
-        else {
+        else  if ($noInclude == 2) {
+            require 'views/header.php';
+            require 'views/' . $name . '.php';
+        }
+         else  if ($noInclude == 3) {
             require 'views/header.php';
             require 'views/' . $name . '.php';
             require 'views/footer.php';    
