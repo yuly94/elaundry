@@ -9,10 +9,10 @@ class Login_Model extends Model
 
     public function run()
     {
-        $sth = $this->db->prepare("SELECT userid, role FROM users WHERE 
+        $sth = $this->db->prepare("SELECT userid, username, role FROM users WHERE 
                 username = :username AND password = :password");
         $sth->execute(array(
-            ':username' => $_POST['login'],
+            ':username' => $_POST['username'],
             ':password' => Hash::create('sha256', $_POST['password'], HASH_PASSWORD_KEY)
         ));
         
@@ -21,14 +21,22 @@ class Login_Model extends Model
         $count =  $sth->rowCount();
         if ($count > 0) {
             // login
+           
             Session::init();
             Session::set('role', $data['role']);
+            Session::set('username', $data['username']);
             Session::set('loggedIn', true);
             Session::set('userid', $data['userid']);
-            header('location: ../dashboard');
+            echo 'correct';
+           // header('location: ../dashboard');
+            
         } else {
-            header('location: ../login');
+            echo 'wrong';
+           // header('location: ../login');
+
         }
+        
+        
         
     }
     

@@ -30,12 +30,14 @@
 
         <!-- Login -->
         <div class="lc-block" id="l-login" data-ng-class="{ 'toggled': lctrl.login === 1 }" data-ng-if="lctrl.login === 1">
-          
+          <form action="login/run" method="post">
+    
+   
                     <div class="input-group fg-float m-b-20">
                         <span class="input-group-addon">
                             <i class="zmdi zmdi-account"></i></span>
                         <div class="fg-line">
-                            <input type="text" class="form-control">
+                            <input type="text" name="login" class="form-control">
                             <label class="fg-label">Full Name</label>
                         </div>
                     </div>
@@ -44,10 +46,14 @@
                     <span class="input-group-addon">
                         <i class="zmdi zmdi-male"></i></span>
                         <div class="fg-line">
-                            <input type="text" class="form-control">
-                            <label class="fg-label">Full Name</label>
+                            <input type="password" name="password" class="form-control">
+                            <label class="fg-label">Password</label>
                         </div>
             </div>
+              
+ 
+     
+            
 
             <div class="clearfix"></div>
 
@@ -59,8 +65,9 @@
                 </label>
             </div>
 
-            <a href="" class="btn btn-login btn-danger btn-float"><i class="zmdi zmdi-arrow-forward"></i></a>
+           <input type="submit" class="btn btn-login btn-danger btn-float"><i class="zmdi zmdi-arrow-forward"></i></a>
 
+          </form>
             <ul class="login-navigation">
                 <li data-block="#l-register" class="bgm-red" data-ng-click="lctrl.login = 0; lctrl.register = 1">Register</li>
                 <li data-block="#l-forget-password" class="bgm-orange" data-ng-click="lctrl.login = 0; lctrl.forgot = 1">Forgot Password?</li>
@@ -195,7 +202,7 @@
                 
         <!-- App level -->
         <script src="<?php echo URL; ?>public/js/appLogin.js"></script>
-        <script src="<?php echo URL; ?>public/js/controllers/main.js"></script>
+        <script src="<?php echo URL; ?>public/js/controllers/mainLogin.js"></script>
         <script src="<?php echo URL; ?>public/js/controllers/ui-bootstrap.js"></script>
  
 

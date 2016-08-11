@@ -29,7 +29,7 @@ class Login extends Controller {
             
             
                 $this->view->jsVendors = array(
-                    'libs/angularjs/1.5.5/angular.min.js',
+                    'libs/angularjs/1.5.5/angular.js',
                     'libs/angularjs/1.5.5/angular-animate.min.js',
                     'libs/angularjs/1.5.5/angular-route.min.js',
                     'libs/angularjs/1.5.5/angular-aria.min.js',
@@ -37,15 +37,16 @@ class Login extends Controller {
                     'libs/svg-assets-cache/svg-assets-cache.js',
                     'libs/angular-material/1.1.0/angular-material.js'
                     );
-                
-                
+            
                 $this->view->jsCdn= array(
                 
                 
                 );
                 
 
-                $this->view->js = array('login/js/App.js','login/js/loginController.js');
+                $this->view->js = array(
+                   
+                    'login/js/loginController.js');
 
                 
 		$this->view->title = 'Login';

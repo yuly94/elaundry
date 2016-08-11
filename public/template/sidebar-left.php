@@ -15,7 +15,8 @@
             </div>
 
             <div class="profile-info">
-                Malinda Ho 
+              
+       <?php echo Session::get('username'); ?> 
 
                 <i class="zmdi zmdi-caret-down"></i>
             </div>

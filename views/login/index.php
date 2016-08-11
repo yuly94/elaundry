@@ -5,79 +5,109 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
+?>     
 
-?>
 
-<!DOCTYPE html>
-<html lang="en">
-  <head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>AngularJS Posting Login Form</title>
-	<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.3.14/angular.min.js"></script>
-    <link href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css" rel="stylesheet">
-	<style type="text/css">
-		.login-form {
-			max-width: 300px;
-			margin: 0 auto;
-		}
-		#inputUsername {
-		  margin-bottom: -1px;
-		  border-bottom-right-radius: 0;
-		  border-bottom-left-radius: 0;
-		}
-		#inputPassword {
-			border-top-left-radius: 0;
-  			border-top-right-radius: 0;
-		}
-	</style>
-  </head>
-  <body ng-app="postExample" ng-controller="PostController as postCtrl">
-    <div class="container">
-      <form class="login-form" ng-submit="postCtrl.postForm()">
-        <h2>Please sign in</h2>
-        <label for="inputUsername" class="sr-only">Username</label>
-        <input type="text" id="inputUsername" class="form-control" placeholder="Username" required autofocus ng-model="postCtrl.inputData.username">
-        <label for="inputPassword" class="sr-only">Password</label>
-        <input type="password" id="inputPassword" class="form-control" placeholder="Password" required ng-model="postCtrl.inputData.password">
-		<br>
-		<div class="alert alert-danger" role="alert" ng-show="errorMsg">{{errorMsg}}</div>
-        <button class="btn btn-lg btn-primary btn-block" type="submit">Sign in</button>
-		
-      </form>
-    </div> 
-	<script>
-	angular.module('postExample', [])
-	.controller('PostController', ['$scope', '$http', function($scope, $http) {
-		
-		this.postForm = function() {
-		
-			var encodedString = 'username=' +
-				encodeURIComponent(this.inputData.username) +
-				'&password=' +
-				encodeURIComponent(this.inputData.password);
-				
-			$http({
-				method: 'POST',
-				url: 'login/run',
-				data: encodedString,
-				headers: {'Content-Type': 'application/x-www-form-urlencoded'}
-			})
-			.success(function(data, status, headers, config) {
-				console.log(data);
-				if ( data.trim() === 'correct') {
-					window.location.href = 'dashboard';
-				} else {
-					$scope.errorMsg = "Login not correct";
-				}
-			})
-			.error(function(data, status, headers, config) {
-				$scope.errorMsg = 'Unable to submit form';
-			})
-		}
-		
-	}]);
-	</script>
-  </body>
-</html>
+    
+    </head>
+
+  <body>
+
+    <div ng-controller="AppCtrl as postCtrl" ng-cloak="" class="inputdemoErrorsAdvanced" ng-app="MyApp"
+         layout="column" layout-align="center center" layout-fill="layout-fill">
+   <div layout="column" class="loginBox md-whiteframe-z1">
+    <md-toolbar>
+      <h2 class="md-toolbar-tools"><span>Login</span></h2>
+    </md-toolbar>
+  <md-content layout="column" class="md-padding">
+    <form name="userForm" ng-submit="postCtrl.postForm()">
+<!--      <div layout="row" layout-xs="column" layout-sm="column" layout-align="space-between center">
+        <md-input-container>
+          <md-switch ng-model="showHints">Showing {{showHints ? "Hints" : "Errors"}}</md-switch>
+        </md-input-container>
+      </div>-->
+
+      <div layout-gt-sm="row">
+         <md-input-container class="md-block" flex-gt-sm="">
+          <label>Email</label>
+           <md-icon md-svg-src="img/icons/ic_email_24px.svg" class="email"></md-icon>
+          <input name="email" ng-model="postCtrl.inputData.username" required="" minlength="10" 
+                 maxlength="100" ng-pattern="/^.+@.+\..+$/">
+          <div class="hint" ng-if="!userForm.email.$touched">Please enter your email here</div>
+          <div ng-messages="userForm.email.$error" ng-hide="Errors" ng-if="userForm.email.$touched">
+            <div ng-message-exp="['required', 'minlength', 'maxlength', 'pattern']">
+              Your email must be between 10 and 100 characters long and look like an e-mail address.
+            </div>
+          </div>
+          <div class="errorhint" ng-messages="userForm.email.$error" ng-show="errorMsg" ng-if="!userForm.email.$touched">
+              Login Failed, Please check your username or password
+          </div>
+        </md-input-container>
+
+        <div flex="5" hide-xs="" hide-sm="">
+          <!-- Spacer //-->
+        </div>
+
+      </div>
+
+      <div layout-gt-sm="row">
+
+        <md-input-container class="md-block" flex-gt-sm="">
+         <label>Password</label>
+           <md-icon md-svg-src="img/icons/ic_lock_open_outline_24px.svg" class="email"></md-icon>
+          <input name="password" ng-model="postCtrl.inputData.password" required="" minlength="2" maxlength="100">
+          <div class="hint" ng-if="!userForm.password.$touched" >Please enter your credential here</div>
+          <div ng-messages="userForm.password.$error">
+            <div ng-message-exp="['required', 'minlength', 'maxlength', 'pattern']">
+              Your email must be between 2 and 100 characters long and look like an e-mail address.
+            </div>
+          </div>
+          
+           <div class="errorhint" ng-messages="userForm.password.$error" ng-show="errorMsg">
+              Login Failed, Please check your username or password
+          </div>
+
+        </md-input-container>
+      <div flex="5" hide-xs="" hide-sm="">
+          <!-- Spacer //-->
+        </div>
+        <style>
+          /*
+           * The Material demos system does not currently allow targeting the body element, so this
+           * must go here in the HTML.
+           */
+          body[dir=rtl] .hint {
+            right: 2px;
+            left: auto;
+          }
+        </style>
+      </div>
+
+           
+            <div layout="row" layout-align="center center" style="padding-top:20px;">
+                <md-button class="md-raised md-primary" type="submit">Login</md-button> 
+                    <div flex="flex"></div>
+                <md-button href="" md-no-ink="md-no-ink"ng-click="openToast()">Forgot Password</md-button>
+            </div> 
+      </div>
+    </form>
+  </md-content>
+</div>
+   </div>       
+ 
+
+<!--
+Copyright 2016 Google Inc. All Rights Reserved. 
+Use of this source code is governed by an MIT-style license that can be in foundin the LICENSE file at http://material.angularjs.org/license.
+-->
+
+
+
+ 
+      <!-- Your application bootstrap  -->
+    <script type="text/javascript">    
+    /**
+     * You must include the dependency on 'ngMaterial' 
+     */
+    </script> 
+  

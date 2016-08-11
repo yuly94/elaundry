@@ -13,13 +13,13 @@
      
 <div class="sidebar-inner c-overflow">    
     <div class="profile-menu">
-        <a href="" toggle-submenu>
+        <a href='' toggle-submenu>
             <div class="profile-pic">
-                <img src="public/img/profile-pics/1.jpg" alt="">
+                <img src="<?php echo URL; ?>public/img/profile-pics/1.jpg" alt="">
             </div>
 
             <div class="profile-info">
-                Malinda Ho 
+                 <?php echo Session::get('username'); ?> 
 
                 <i class="zmdi zmdi-caret-down"></i>
             </div>
@@ -27,7 +27,7 @@
 
         <ul class="main-menu">
             <li>
-                <a data-ui-sref="pages.profile.profile-about" data-ng-click="mactrl.sidebarStat($event)">
+                <a href="<?php echo URL; ?>dashboard/profile" data-ng-click="mactrl.sidebarStat($event)">
                     <i class="zmdi zmdi-account"></i> View Profile</a>
             </li>
             <li>
@@ -37,7 +37,7 @@
                 <a href=""><i class="zmdi zmdi-settings"></i> Settings</a>
             </li>
             <li>
-                <a href=""><i class="zmdi zmdi-time-restore"></i> Logouxt</a>
+                <a href="<?php echo URL; ?>dashboard/logout"><i class="zmdi zmdi-time-restore"></i> Logout</a>
             </li>
         </ul>
     </div>
@@ -45,7 +45,7 @@
     <ul class="main-menu">
         
         <li data-ui-sref-active="active">
-            <a data-ui-sref="home" data-ng-click="mactrl.sidebarStat($event)"><i class="zmdi zmdi-home"></i> Home</a>
+            <a data-ui-sref="<?php echo URL; ?>dashboard" data-ng-click="mactrl.sidebarStat($event)"><i class="zmdi zmdi-home"></i> Home</a>
         </li>
         <li class="sub-menu" data-ng-class="{ 'active toggled': mactrl.$state.includes('headers') }">
             <a href="" toggle-submenu><i class="zmdi zmdi-view-compact"></i> Headers</a>
