@@ -1,3 +1,4 @@
-# elaundry
+# elaundy
+my project elaundry
 
-Add Readme
+percobaan
