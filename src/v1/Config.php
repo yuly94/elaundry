@@ -4,7 +4,7 @@
  */
 define('DB_USERNAME', 'u119861978_yuly');
 define('DB_PASSWORD', 'rahasia');
-define('DB_HOST', 'mysql.idhostinger.com');
+define('DB_HOST', 'localhost');
 define('DB_NAME', 'u119861978_lond');
 
 define('USER_CREATED_SUCCESSFULLY', 0);

@@ -5,7 +5,7 @@ require_once '.././src/v1/DbHandlerTasks.php';
 require_once '.././src/v1/PassHash.php';
 
 
-include('.././libs/phpmailer/mail.php');
+//include('.././libs/phpmailer/mail.php');
 
 //require '.././libs/Slim/Slim.php';
 require '.././vendor/autoload.php';
