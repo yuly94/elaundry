@@ -1,7 +1,7 @@
 <?php
 
 use \FB;
-use \My\Helper;
+use \MyConn\Helper;
 
 $app->get('/', function () use ($app) {
 

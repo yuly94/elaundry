@@ -2,7 +2,7 @@
 <html>
 <head>
 <title>Skeleton Application</title>
-<link rel="stylesheet" href="/css/style.css" type="text/css">
+<link rel="stylesheet" href="/elaundry/public/css/style.css" type="text/css">
 </head>
 <body>
 <h1>API v1.0 Test</h1>
@@ -18,7 +18,7 @@
 </form>
 
 <div id="test_result_target"></div>
-<script src="/lib/jquery.min.js"></script>
-<script src="/js/test.js"></script>
+<script src="/elaundry/public/lib/jquery.min.js"></script>
+<script src="/elaundry/public/js/test.js"></script>
 </body>
 </html>

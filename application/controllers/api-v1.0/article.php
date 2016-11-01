@@ -1,7 +1,7 @@
 <?php
 
 use \FB;
-use \My\Helper;
+use \MyConn\Helper;
 
 $app->get('/api-v1.0/article/list/', function () use ($app) {
 
