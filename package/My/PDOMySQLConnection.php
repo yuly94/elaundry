@@ -1,6 +1,6 @@
 <?php
 
-namespace MyConn;
+namespace My;
 
 class PDOMySQLConnection{
 
@@ -26,8 +26,8 @@ class PDOMySQLConnection{
         }
         catch (\PDOException $p) {
 
-            //$this->slim->log->error('BAD THINGS');
-            return $app->halt(500, $app->view()->fetch('error/500.php'));
+           // $app->log->error('DB Connection Error');
+            return $app->halt(500, $app->view()->fetch('error/700.php'));
         }
 
         return $instance;

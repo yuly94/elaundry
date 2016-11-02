@@ -1,20 +1,18 @@
 <?php
 
-//require '../vendor/slim/slim/Slim/Slim.php';
-//\Slim\Slim::registerAutoloader();
-
-require '../vendor/autoload.php';
+require '../vendor/SlimFramework/Slim/Slim.php';
+\Slim\Slim::registerAutoloader();
 
 require_once '../package/Package.php';
 \Package\Package::registerAutoloader();
 
 $app = new \Slim\Slim(array(
     'debug' => true,
-    'templates.path' => '../application/views/'
+    'templates.path' => '../application/view/'
 ));
 
-require_once '../application/controllers/index.php';
-require_once '../application/controllers/error.php';
+require_once '../application/controller/index.php';
+require_once '../application/controller/error.php';
 
 $app->hook('slim.before.router', function () use ($app) {
 
@@ -22,7 +20,7 @@ $app->hook('slim.before.router', function () use ($app) {
 
     $pieces = explode('/', $uri);
 
-    $basePath = $path = realpath('../application/controllers').'/';
+    $basePath = $path = realpath('../application/controller').'/';
 
     foreach($pieces as $value){
 
@@ -51,14 +49,14 @@ $app->hook('slim.before.router', function () use ($app) {
     }
 });
 
-$filesList = scandir('../config');
+$filesList = scandir('../config_2');
 
 foreach($filesList as $fileName){
 
     if(substr($fileName, -11)=='.config.php'){
 
         $key = substr($fileName, 0, -11);
-        $value = include '../config/'.$fileName;
+        $value = include '../config_2/'.$fileName;
         $app->config($key, $value);
     }
 }
@@ -70,18 +68,10 @@ $app->container->singleton('db', function () use ($app) {
 
 spl_autoload_register(function($className){
 
-    if(substr($className, -5)=='Model' && file_exists('../application/models/'.$className.'.php')){
+    if(substr($className, -5)=='Model' && file_exists('../application/model/'.$className.'.php')){
 
-        require_once '../application/models/'.$className.'.php';
+        require_once '../application/model/'.$className.'.php';
     }
 });
-
-
-$app->container->singleton('log', function () {
-    $log = new \Monolog\Logger();
-    $log->pushHandler(new \Monolog\Handler\StreamHandler('../data/log/log.txt'));
-    return $log;
-});
-
 
 $app->run();

@@ -608,17 +608,28 @@ function generateHash($random_string) {
 
 public function verifyHash($password, $hash) {
 
-    return password_verify ($password, $hash);
+    //return password_verify ($password, $hash);
+    return password_hash ($password, $hash);
 }
 
 public function passwordResetRequest($konsumen_email){
  
 	$user = array();
 
-        $random_string = substr(str_shuffle(str_repeat("0123456789abcdefghijklmnopqrstuvwxyz", 6)), 0, 6);
-      	$hash = $this->getHash($random_string);
-        $encrypted_temp_password = $hash["encrypted"];
-        $salt = $hash["salt"];
+      //  $random_string = substr(str_shuffle(str_repeat("0123456789abcdefghijklmnopqrstuvwxyz", 6)), 0, 6);
+      //  $hash = $this->getHash($random_string);
+      //  $encrypted_temp_password = $hash["encrypted"];
+      //  $salt = $hash["salt"];
+        
+        require_once 'PassHash.php';
+        
+        
+
+    // Generating password hash
+        $salt = "salat";
+        $token = PassHash::resetpass_unique_salt();
+        $encrypted_temp_password = PassHash::resetpass_hash($token, $salt);
+        
 	$tanggal = date("Y-m-d H:i:s");
  	$sql = "SELECT * FROM password_reset_request WHERE email = ?";
 	$stmt = $this->conn->prepare($sql);
@@ -644,8 +655,8 @@ public function passwordResetRequest($konsumen_email){
 
             if ($insert_query) {
 
-                $user["email_user"] = $konsumen_email;
-                $user["temppass_user"] = $random_string;
+                              $user["email_user"] = $konsumen_email;
+              $user["temppass_user"] = "$token";
 
                 return $user;
 
@@ -668,7 +679,8 @@ public function passwordResetRequest($konsumen_email){
          if ($update_query) {
         
               $user["email_user"] = $konsumen_email;
-              $user["temppass_user"] = $random_string;
+              $user["temppass_user"] = "$token";
+              
              return $user;
 
             } else {
@@ -701,10 +713,11 @@ public function passwordResetRequest($konsumen_email){
 
   	$stmt->close();
 
-
-$verify=password_verify($code.$salt,$encrypted_temp_password);
-
-        if ($verify) {
+//$verify=verifyHash($code.$salt,$encrypted_temp_password);
+       // if ($verify) {
+           // if ($this -> verifyHash($code.$salt,$encrypted_temp_password) ) {
+        
+        if (PassHash::check_password($password_hash, $encrypted_temp_password)) {
  
             $old = new DateTime($created_at);
             $now = new DateTime(date("Y-m-d H:i:s"));

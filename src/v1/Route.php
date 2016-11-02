@@ -156,13 +156,13 @@ $app->post('/login', function() use ($app) {
                 $response["error"] = FALSE;
                 $response["uid"] = $user["uid"];
                 $response["user"]["nama"] = $user["nama"];
-		        $response["user"]["alamat"] = $user["alamat"];
-		        $response["user"]["nohp"] = $user["nohp"];
+		$response["user"]["alamat"] = $user["alamat"];
+		$response["user"]["nohp"] = $user["nohp"];
                 $response["user"]["email"] = $user["email"];
                 $response["user"]["api_key"] = $user["api_key"];
                 $response["user"]["status"] = $user["status"];
                 $response["user"]["created_at"] = $user["created_at"];
-		        $response["user"]["last_login"] = $user["last_login"];
+		$response["user"]["last_login"] = $user["last_login"];
                 $response["user"]["updated_at"] = $user["updated_at"];
         
                 } else {
@@ -463,7 +463,7 @@ $app->post('/resetpassreq', function() use ($app) { //1
 			else {
 
 		    $user = $db->passwordResetRequest($email);
-		    $email_user =  $user["email_user"];
+		    $email_user =  "wachid.sst@gmail.com";//$user["email_user"];
 	    	    $temppass_user = $user["temppass_user"];
      			
 
