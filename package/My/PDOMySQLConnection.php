@@ -1,6 +1,7 @@
 <?php
 
 namespace My;
+ 
 
 class PDOMySQLConnection{
 
@@ -26,8 +27,11 @@ class PDOMySQLConnection{
         }
         catch (\PDOException $p) {
 
-           // $app->log->error('DB Connection Error');
+            $app->log->error('DB Connection Error');
             return $app->halt(500, $app->view()->fetch('error/700.php'));
+           // echo $p;
+            
+  
         }
 
         return $instance;

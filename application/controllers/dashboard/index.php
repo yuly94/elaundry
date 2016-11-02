@@ -3,9 +3,9 @@
 use \FB;
 use \My\Helper;
 
-$app->get('/login/', function () use ($app) {
+$app->get('/home/', function () use ($app) {
     
-    Helper::response(FALSE, array('version'=>'1.0'),'test login',200);
+    Helper::response(FALSE, array('version'=>'1.0'),'welcome home',200);
     
     $response["error"] = FALSE;
     $response["version"] = '1.0';

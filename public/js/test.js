@@ -55,7 +55,7 @@ function addArticleTest(secret, callback){
 
     $.ajax({
         type: 'POST',
-        url: '/elaundry/public/api-v1.0/article/add/',
+        url: '/elaundry/public/api-test/article/add/',
         data: {art_title:"Lorem Ipsum Article Title", art_body:"Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.", secret:secret},
         success: function(result, textStatus, jqXHR){
 
@@ -86,7 +86,7 @@ function getArticleTest(artId, callback){
 
     $.ajax({
         type: 'GET',
-        url: '/elaundry/public/api-v1.0/article/get/' + artId + '/',
+        url: '/elaundry/public/api-test/article/get/' + artId + '/',
         success: function(result, textStatus, jqXHR){
 
             if(result.success){
@@ -116,7 +116,7 @@ function patchArticleTest(artId, secret, callback){
 
     $.ajax({
         type: 'POST',
-        url: '/elaundry/public/api-v1.0/article/patch/',
+        url: '/elaundry/public/api-test/article/patch/',
         data: {art_id:artId, art_title:"Patched Article Title", art_body:"Patched Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.", secret:secret},
         success: function(result, textStatus, jqXHR){
 
@@ -147,7 +147,7 @@ function deleteArticleTest(artId, secret, callback){
 
     $.ajax({
         type: 'POST',
-        url: '/elaundry/public/api-v1.0/article/delete/',
+        url: '/elaundry/public/api-test/article/delete/',
         data: {art_id:artId, secret:secret},
         success: function(result, textStatus, jqXHR){
 
@@ -178,7 +178,7 @@ function listArticlesTest(callback){
 
     $.ajax({
         type: 'GET',
-        url: '/elaundry/public/api-v1.0/article/list/',
+        url: '/elaundry/public/api-test/article/list/',
         success: function(result, textStatus, jqXHR){
 
             if(result.success){

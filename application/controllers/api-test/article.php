@@ -3,7 +3,7 @@
 use \FB;
 use \My\Helper;
 
-$app->get('/api-v1.0/article/list/', function () use ($app) {
+$app->get('/api-test/article/list/', function () use ($app) {
 
     $articles = ArticleModel::listArticles();
 
@@ -15,7 +15,7 @@ $app->get('/api-v1.0/article/list/', function () use ($app) {
     return Helper::response(true, $articles);
 });
 
-$app->get('/api-v1.0/article/get/:id/', function ($id) use ($app) {
+$app->get('/api-test/article/get/:id/', function ($id) use ($app) {
 
     $article = ArticleModel::getArticle($id);
 
@@ -27,7 +27,7 @@ $app->get('/api-v1.0/article/get/:id/', function ($id) use ($app) {
     return Helper::response(true, $article);
 });
 
-$app->post('/api-v1.0/article/add/', function () use ($app) {
+$app->post('/api-test/article/add/', function () use ($app) {
 
     if(!$account = Helper::checkSecret()){
         
@@ -48,7 +48,7 @@ $app->post('/api-v1.0/article/add/', function () use ($app) {
     return Helper::response(true, array('art_id'=>$artId));
 });
 
-$app->post('/api-v1.0/article/patch/', function () use ($app) {
+$app->post('/api-test/article/patch/', function () use ($app) {
 
     if(!$account = Helper::checkSecret()){
 
@@ -87,7 +87,7 @@ $app->post('/api-v1.0/article/patch/', function () use ($app) {
     return Helper::response(true);
 });
 
-$app->post('/api-v1.0/article/delete/', function () use ($app) {
+$app->post('/api-test/article/delete/', function () use ($app) {
 
     if(!$account = Helper::checkSecret()){
 

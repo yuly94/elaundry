@@ -3,16 +3,6 @@
 namespace My;
 
 class Helper{
-
-    public static function old_response($success, $data=array(), $message='', $status=0, $contentType='application/json'){
-
-        if($contentType=='application/json'){
-
-            $app = \Slim\Slim::getInstance();
-            $app->response->headers->set('Content-Type', 'application/json');
-            echo json_encode(array('success'=>$success, 'data'=>$data, 'message'=>$message, 'status'=>$status));
-        }
-    }
     
     public static function response(
             $success, 
