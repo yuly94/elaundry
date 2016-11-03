@@ -76,12 +76,20 @@ spl_autoload_register(function($className){
     }
 });
 
-
-$app->container->singleton('log', function () {
-    $log = new \Monolog\Logger();
-    $log->pushHandler(new \Monolog\Handler\StreamHandler('../data/log/log.txt'));
-    return $log;
-});
+//
+//$app->container->singleton('log', function () {
+//   // $log = new \Monolog\Logger();
+//   // $log->pushHandler(new \Monolog\Handler\StreamHandler('../data/log/log.txt'));
+//    
+//    $log = new \Flynsarmy\SlimMonolog\Log\MonologWriter(array(
+//    'handlers' => array(
+//        new \Monolog\Handler\StreamHandler('../data/log/'.date('Y-m-d').'.log'),
+//    ),
+//));
+//
+//    
+//    return $log;
+//});
 
 
 $app->run();

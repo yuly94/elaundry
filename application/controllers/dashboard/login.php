@@ -5,7 +5,7 @@ use \My\Helper;
 
 $app->get('/home/article/list/', function () use ($app) {
 
-    $articles = ArticleModel::listArticles();
+    $articles = KonsumenModel::login();
 
     if(!is_array($articles)){
 
@@ -14,6 +14,10 @@ $app->get('/home/article/list/', function () use ($app) {
 
     return Helper::response(true, $articles);
 });
+
+
+
+
 
 $app->get('/home/article/get/:id/', function ($id) use ($app) {
 
@@ -27,12 +31,8 @@ $app->get('/home/article/get/:id/', function ($id) use ($app) {
     return Helper::response(true, $article);
 });
 
-$app->post('/home/article/add/', function () use ($app) {
+$app->post('/home/login/', function () use ($app) {
 
-    if(!$account = Helper::checkSecret()){
-        
-        return;
-    }
 
     $artId = ArticleModel::addArticle(array(
         'acc_id'=>$account['acc_id'],

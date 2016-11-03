@@ -3,7 +3,7 @@
 use \My\PassHash;
 use \My\Helper;
 
-class KonsumenModel{
+class LoginModel{
     
     /* ------------- `login konsumen` ------------------ */
     
@@ -155,7 +155,7 @@ class KonsumenModel{
 public function updateApi($email) {
 
         // Generating API key
-        $api_key = Helper::generateApiKey();
+        $api_key = GeneratorModel::generateApiKey();
 		
         $app = \Slim\Slim::getInstance();
         
