@@ -4,6 +4,25 @@
 class GeneratorModel{
     
     
+    // blowfish
+    private static $algo = '$2a';
+    // cost parameter
+    private static $cost = '$10';
+    
+            // mainly for internal use
+    public static function unique_salt() {
+        return substr(sha1(mt_rand()), 0, 22);
+    }
+
+    // this will be used to generate a hash
+    public static function hash($password) {
+
+        return crypt($password, self::$algo .
+                self::$cost .
+                '$' . self::unique_salt());
+    }
+    
+    
     /**
      * Generating random Unique MD5 String for user Api key
      */
@@ -19,7 +38,16 @@ class GeneratorModel{
         return md5(uniqid(rand(), true));
     }
     
+
     
+     public function getHash($password, $salt) {
+     $encrypted = password_hash($password.$salt, PASSWORD_DEFAULT);
+     $hash = array("salt" => $salt, "encrypted" => $encrypted);
+     return $hash;
+}
+public function verifyHash($password, $hash) {
+    return password_verify ($password, $hash);
+}
     
     
     public function generateHash($random_string) {
@@ -29,17 +57,7 @@ class GeneratorModel{
         }
     }
 
-    public function getHash($password) {
-
-     $salt = sha1(rand());
-     $salt = substr($salt, 0, 10);
-     $encrypted = password_hash($password.$salt, PASSWORD_DEFAULT);
-     $hash = array("salt" => $salt, "encrypted" => $encrypted);
-
-     return $hash;
-
-}
-
+ 
     public function randStrGen($len){
     $result = "";
     $chars = "abcdefghijklmnopqrstuvwxyz0123456789";

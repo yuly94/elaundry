@@ -1,74 +1,7 @@
-<?php
-
-include('../libs/PhpMailer/phpmailer.php');
-
-//require '../vendor/autoload.php';
-
-class EmailModel extends PhpMailer
-{
-    
-  
-
-
-    public function sentEmail($to,$subject,$body){
-
-			$mail = new EmailModel();
-			$mail->setFrom(SITEEMAIL);
-			$mail->addAddress($to);
-			$mail->subject($subject);
-			$mail->body($body);
-			$mail->send();
-
-if(!$mail->send()) {
-
-   return $mail->ErrorInfo;
-
-  } else {
-
-    return true;
-
-  }
-
-}
- 
-  // Set default variables for all new objects
-    public $From     = 'noreply@yuly-laundry.com';
-    public $FromName = 'Yuly Laundry';
-    //public $Host     = 'smtp.gmail.com';
-    //public $Mailer   = 'smtp';
-    //public $SMTPAuth = true;
-    //public $Username = 'email';
-    //public $Password = 'password';
-    //public $SMTPSecure = 'tls';
-    public $WordWrap = 75;
-
-    public function subject($subject)
-    {
-        $this->Subject = $subject;
-    }
-
-    public function body($body)
-    {
-        $this->Body = $body;
-    }
-
-    public function send()
-    {
-         
-        $this->AltBody = strip_tags(stripslashes($this->Body))."\n\n";
-        $this->AltBody = str_replace("&nbsp;", "\n\n", $this->AltBody);
-        return parent::send();
-    }
-    
-    
-
-    public function sentEmailRegistrasi($to,$subject){
-            
-    $subject = "Pendaftaran berhasil";
-    $body = '<html xmlns="http://www.w3.org/1999/xhtml"><head>
+<html xmlns="http://www.w3.org/1999/xhtml"><head>
   <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Neopolitan Confirm Email</title>
+  <title>Neopolitan Welcome Email</title>
   <!-- Designed by https://github.com/kaytcat -->
   <!-- Robot header image designed by Freepik.com -->
 
@@ -129,9 +62,8 @@ if(!$mail->send()) {
   width: 100% !important;
  }
 
- .force-width-80 {
-  width: 80% !important;
- }
+
+
 
   </style>
 
@@ -139,7 +71,7 @@ if(!$mail->send()) {
       @media screen {
          /*Thanks Outlook 2013! http://goo.gl/XLxpyl*/
         td, h1, h2, h3 {
-          font-family: `Droid Sans`, `Helvetica Neue`, `Arial`, `sans-serif` !important;
+          font-family: 'Droid Sans', 'Helvetica Neue', 'Arial', 'sans-serif' !important;
         }
       }
   </style>
@@ -152,17 +84,12 @@ if(!$mail->send()) {
         width: 320px !important;
       }
 
-      td[class="mobile-block"] {
-        width: 100% !important;
-        display: block !important;
-      }
-
 
     }
   </style>
 </head>
 <body class="body" style="padding:0; margin:0; display:block; background:#ffffff; -webkit-text-size-adjust:none" bgcolor="#ffffff">
-<table align="center" cellpadding="0" cellspacing="0" class="force-full-width" height="100%">
+<table align="center" cellpadding="0" cellspacing="0" width="100%" height="100%">
   <tbody><tr>
     <td align="center" valign="top" bgcolor="#ffffff" width="100%">
       <center>
@@ -170,37 +97,36 @@ if(!$mail->send()) {
           <tbody><tr>
             <td align="center" valign="top">
 
-                <table style="margin: 0 auto;" cellpadding="0" cellspacing="0" class="force-full-width">
+                <table style="margin: 0 auto;" cellpadding="0" cellspacing="0" width="100%">
                   <tbody><tr>
                     <td style="font-size: 30px; text-align:center;">
                       <br>
-                        Awesome Co
-                      <br>
-                      <br>
+                     
                     </td>
                   </tr>
                 </tbody></table>
 
-                <table style="margin: 0 auto;" cellpadding="0" cellspacing="0" class="force-full-width" bgcolor="#4dbfbf">
+                <table style="margin: 0 auto;" cellpadding="0" cellspacing="0" width="100%" bgcolor="#4dbfbf">
                   <tbody><tr>
                     <td>
                     <br>
-                      <img src="https://www.filepicker.io/api/file/carctJpuT0exMaN8WUYQ" width="224" height="240" alt="robot picture">
+                      <img src="https://www.filepicker.io/api/file/Pv8CShvQHeBXdhYu9aQE" width="216" height="189" alt="robot picture">
                     </td>
                   </tr>
                   <tr>
                     <td class="headline">
-                      Good News!
+                      Welcome <?=$nama;?> !
                     </td>
                   </tr>
                   <tr>
                     <td>
+
                       <center>
                         <table style="margin: 0 auto;" cellpadding="0" cellspacing="0" width="60%">
                           <tbody><tr>
                             <td style="color:#187272;">
                             <br>
-                             Your order has shipped! To track your order or make any changes please click the button below.
+                             To the awesomest place on earth! We're sure you will feel right at home with Elaundry.
                             <br>
                             <br>
                             </td>
@@ -217,7 +143,7 @@ if(!$mail->send()) {
                           <w:anchorlock/>
                           <center>
                         <![endif]-->
-                            <a href="http://" style="background-color:#178f8f;border-radius:4px;color:#ffffff;display:inline-block;font-family:Helvetica, Arial, sans-serif;font-size:16px;font-weight:bold;line-height:50px;text-align:center;text-decoration:none;width:200px;-webkit-text-size-adjust:none;">My Order</a>
+                            <a href="<?=$token;?>" style="background-color:#178f8f;border-radius:4px;color:#ffffff;display:inline-block;font-family:Helvetica, Arial, sans-serif;font-size:16px;font-weight:bold;line-height:50px;text-align:center;text-decoration:none;width:200px;-webkit-text-size-adjust:none;">Activate Account!</a>
                         <!--[if mso]>
                           </center>
                         </v:roundrect>
@@ -227,6 +153,9 @@ if(!$mail->send()) {
                     </td>
                   </tr>
                 </tbody></table>
+
+                
+
                 <table style="margin: 0 auto;" cellpadding="0" cellspacing="0" class="force-full-width" bgcolor="#414141">
                   <tbody><tr>
                     <td style="background-color:#414141;">
@@ -253,6 +182,11 @@ if(!$mail->send()) {
                     </td>
                   </tr>
                 </tbody></table>
+
+
+
+
+
             </td>
           </tr>
         </tbody></table>
@@ -261,28 +195,4 @@ if(!$mail->send()) {
   </tr>
 </tbody></table>
 
-</body></html>';
-            
-
-			$mail = new EmailModel();
-			$mail->setFrom(SITEEMAIL);
-			$mail->addAddress($to);
-			$mail->subject($subject);
-			$mail->body($body);
-			$mail->send();
-
-if(!$mail->send()) {
-
-   return $mail->ErrorInfo;
-
-  } else {
-
-    return true;
-
-  }
-
-}
-    
-		
-
-}
+</body></html>

@@ -73,17 +73,22 @@ public function validasiPassword($password){
         
         $app = \Slim\Slim::getInstance();
         
-        $sql = "SELECT id from konsumen WHERE email = :email";
+        $sql = "SELECT id , nama, konsumen_id from konsumen WHERE email = :email";
              
         $stmt = $app->db->prepare($sql);
         $stmt->execute(array('email'=>$email));
         
-        $stmt->fetch(PDO::FETCH_ASSOC);
-   
+        $res=$stmt->fetch(PDO::FETCH_ASSOC);
+        
         if($stmt->rowCount() > 0)
-        {
-	
-        return TRUE;
+            {
+
+         $user["nama"] = $res['nama'];
+              $user["konsumen_id"] = $res['konsumen_id'];
+
+                return $user;
+        } else {
+            return FALSE;
         }
 
     

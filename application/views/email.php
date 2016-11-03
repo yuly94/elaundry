@@ -1,71 +1,14 @@
 <?php
 
-include('../libs/PhpMailer/phpmailer.php');
+/* 
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
 
-//require '../vendor/autoload.php';
+?>
 
-class EmailModel extends PhpMailer
-{
-    
-  
-
-
-    public function sentEmail($to,$subject,$body){
-
-			$mail = new EmailModel();
-			$mail->setFrom(SITEEMAIL);
-			$mail->addAddress($to);
-			$mail->subject($subject);
-			$mail->body($body);
-			$mail->send();
-
-if(!$mail->send()) {
-
-   return $mail->ErrorInfo;
-
-  } else {
-
-    return true;
-
-  }
-
-}
- 
-  // Set default variables for all new objects
-    public $From     = 'noreply@yuly-laundry.com';
-    public $FromName = 'Yuly Laundry';
-    //public $Host     = 'smtp.gmail.com';
-    //public $Mailer   = 'smtp';
-    //public $SMTPAuth = true;
-    //public $Username = 'email';
-    //public $Password = 'password';
-    //public $SMTPSecure = 'tls';
-    public $WordWrap = 75;
-
-    public function subject($subject)
-    {
-        $this->Subject = $subject;
-    }
-
-    public function body($body)
-    {
-        $this->Body = $body;
-    }
-
-    public function send()
-    {
-         
-        $this->AltBody = strip_tags(stripslashes($this->Body))."\n\n";
-        $this->AltBody = str_replace("&nbsp;", "\n\n", $this->AltBody);
-        return parent::send();
-    }
-    
-    
-
-    public function sentEmailRegistrasi($to,$subject){
-            
-    $subject = "Pendaftaran berhasil";
-    $body = '<html xmlns="http://www.w3.org/1999/xhtml"><head>
+<html xmlns="http://www.w3.org/1999/xhtml"><head>
   <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Neopolitan Confirm Email</title>
@@ -133,13 +76,16 @@ if(!$mail->send()) {
   width: 80% !important;
  }
 
+
+
+
   </style>
 
   <style type="text/css" media="screen">
       @media screen {
          /*Thanks Outlook 2013! http://goo.gl/XLxpyl*/
         td, h1, h2, h3 {
-          font-family: `Droid Sans`, `Helvetica Neue`, `Arial`, `sans-serif` !important;
+          font-family: 'Droid Sans', 'Helvetica Neue', 'Arial', 'sans-serif' !important;
         }
       }
   </style>
@@ -195,6 +141,7 @@ if(!$mail->send()) {
                   </tr>
                   <tr>
                     <td>
+
                       <center>
                         <table style="margin: 0 auto;" cellpadding="0" cellspacing="0" width="60%">
                           <tbody><tr>
@@ -227,6 +174,9 @@ if(!$mail->send()) {
                     </td>
                   </tr>
                 </tbody></table>
+
+                
+
                 <table style="margin: 0 auto;" cellpadding="0" cellspacing="0" class="force-full-width" bgcolor="#414141">
                   <tbody><tr>
                     <td style="background-color:#414141;">
@@ -253,6 +203,11 @@ if(!$mail->send()) {
                     </td>
                   </tr>
                 </tbody></table>
+
+
+
+
+
             </td>
           </tr>
         </tbody></table>
@@ -261,28 +216,4 @@ if(!$mail->send()) {
   </tr>
 </tbody></table>
 
-</body></html>';
-            
-
-			$mail = new EmailModel();
-			$mail->setFrom(SITEEMAIL);
-			$mail->addAddress($to);
-			$mail->subject($subject);
-			$mail->body($body);
-			$mail->send();
-
-if(!$mail->send()) {
-
-   return $mail->ErrorInfo;
-
-  } else {
-
-    return true;
-
-  }
-
-}
-    
-		
-
-}
+</body></html>
