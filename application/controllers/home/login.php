@@ -20,7 +20,7 @@ $app->post('/home/login/', function() use ($app) {
             $response = array();
     
             // validating email address
-            ValidasiModel::validateEmail($email);
+            ValidasiModel::validasiEmail($email);
             	
             // check brute force
             if ( LoginModel::checkbrute($email) =="6"){
