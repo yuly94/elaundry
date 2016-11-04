@@ -63,17 +63,34 @@ foreach($filesList as $fileName){
     }
 }
 
+$app->hook('slim.before', function () use ($app) {
+    $app->view()->appendData(array('baseUrl' => '/base/url/here'));
+});
+
 $app->container->singleton('db', function () use ($app) {
 
     return \My\PDOMySQLConnection::newInstance($app);
 });
 
-spl_autoload_register(function($className){
+spl_autoload_register(function($className) use ($app) {
 
     if(substr($className, -5)=='Model' && file_exists('../application/models/'.$className.'.php')){
 
         require_once '../application/models/'.$className.'.php';
+    }  else {
+        
+                // Get request object
+        $req = $app->request;
+
+        //Get resource URI
+        $resourceUri = $req->getResourceUri();
+        $expl = explode("/", $resourceUri);
+           
+        if(substr($className, -5)=='Model' && file_exists('../application/models/'.$expl[1].'/'.$className.'.php')){
+        require_once '../application/models/'.$expl[1].'/'.$className.'.php';
+    }  
     }
+     
 });
 
 //
@@ -91,5 +108,33 @@ spl_autoload_register(function($className){
 //    return $log;
 //});
 
+// Get request object
+$req = $app->request;
+
+//Get root URI
+$rootUri = $req->getRootUri();
+
+//Get resource URI
+$resourceUri = $req->getResourceUri();
+$uri = substr(preg_replace('/(\/+)/','/', $app->request->getResourceUri()), 1);//
+
+    
+
+
+
+echo 'ini 1 '. $resourceUri;
+echo 'ini 2 '. $uri;
+
+
+    $ltrims = ltrim($uri, '\\');
+    //ltrim($className, '\\');
+    $sub = substr($uri, 1);
+    $expl = explode("/", $resourceUri);
+    print_r (explode("/",$resourceUri));
+     print_r  (str_replace(' ', '\\', $resourceUri)) ;
+
+echo 'ini 3 '. $ltrims;
+echo 'ini 4 '. $sub;
+echo 'ini 5 '. $expl[1];
 
 $app->run();
