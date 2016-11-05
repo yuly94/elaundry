@@ -43,44 +43,13 @@ public function ResetRequest($konsumen_email,$kon_id,$nama){
 
         if($stmt->rowCount() > 0)
             {
-
-          //  $stmt->close();
-            
-             $user["email_user"] = $konsumen_email;
-             $user["token"] = $token;
-         
-
-            
-           // return $user;
-            
-            //disini
              
-			$to = $email_user;
-			$subject = "Password Reset Nofification";
-			$body = 'Hai '.$nama.',<br><br> Kode untuk mereset password kamu adalah : <b>'.$token.'
-			</b> Kode ini akan kadaluarsa setelah 180 detik. 
-			Masukkan kode ini sebelum 180 detik untuk mereset password anda.<br><br>Thanks';
-
-			$sent = EmailModel::sentEmail($to,$subject,$body);
-
-				if($sent) { //4
-         			$response["error"] = "false";
-      				$response["message"] = "Email Reset Password Success";
-      				Helper::echoRespnse(200, $response);
-
-  						    } //4
-				else {
-
-				$response["error"] = "true";
-      				$response["message"] = "Email Reset Password Failure sent";
-      				Helper::echoRespnse(200, $response);
-				}
-            
+            KirimEmailModel::kirimReset($konsumen_email, $nama,  $token);
 
             } else {
 		$response["error"] = "true";
       		$response["message"] = "Email Reset Password Failure";
-      		Helper::echoRespnse(200, $response);
+      		HelperModel::echoRespnse(200, $response);
                 
                 //return false;
 
@@ -106,14 +75,18 @@ public function ResetRequest($konsumen_email,$kon_id,$nama){
 
           //  $stmt->close();
             
-             $user["email_user"] = $konsumen_email;
-             $user["token"] = $token;
+           //  $user["email_user"] = $konsumen_email;
+            // $user["token"] = $token;
             
-            return $user;
+            //return $user;
+            
+             KirimEmailModel::kirimReset($konsumen_email,$nama,  $token);
 
             } else {
-
-            return false;
+		$response["error"] = "true";
+      		$response["message"] = "Email Reset Password Failure";
+      		HelperModel::echoRespnse(200, $response);
+            //return false;
 
             }
 
@@ -122,11 +95,11 @@ public function ResetRequest($konsumen_email,$kon_id,$nama){
     }
     
 
-    public function resetPassword($email,$code,$password){
+    public function resetPassword($email,$code,$password, $nama){
         
         $app = \Slim\Slim::getInstance();
  
-        $sql = 'SELECT nama, encrypted_temp_password, konsumen_id, salt, created_at FROM password_reset_request WHERE email = :email';
+        $sql = 'SELECT  encrypted_temp_password, konsumen_id, salt, created_at FROM password_reset_request WHERE email = :email';
 
         $stmt = $app->db->prepare($sql);
         $stmt->execute(array(
@@ -137,7 +110,7 @@ public function ResetRequest($konsumen_email,$kon_id,$nama){
         
         $encrypted_temp_password = $reset["encrypted_temp_password"];
         $konsumen_id = $reset["konsumen_id"];
-        $nama = $reset["nama"];
+     
         $salt = $reset["salt"];
         $created_at = $reset["created_at"];
         
@@ -159,20 +132,20 @@ public function ResetRequest($konsumen_email,$kon_id,$nama){
 
 			EmailModel::sentEmail($to,$subject,$body);
 
-			return true;
+			return 0;
 		  
 			} else {
-			return false;
+			return 1;
 
 		  	  }
 
             } else {
  
-                return false;
+                return 2;
             }
         } else {
  
-            return false;
+            return 3;
         }
     }
 

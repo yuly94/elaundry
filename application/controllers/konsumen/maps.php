@@ -4,7 +4,7 @@ use \FB;
 use \My\Helper;
 
 
-$app->get('/elaundry/maps/', function () use ($app) {
+$app->get('/konsumen/maps/', function () use ($app) {
 
           
     $maps_status = "1";

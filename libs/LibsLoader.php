@@ -1,8 +1,8 @@
 <?php
 
-namespace Package;
+namespace Libs;
 
-class Package{
+class Libs{
 
     public static function autoload($className){
 

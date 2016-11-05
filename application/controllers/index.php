@@ -1,12 +1,17 @@
 <?php
 
-use \FB;
-use \MyConn\Helper;
+ 
 
 $app->get('/', function () use ($app) {
 
     $app->render('index.php');
 });
+
+$app->get('/error/', function () use ($app) {
+
+    $app->render('error.php');
+});
+
 
 $app->get('/api-test/test/(:secret(/))', function () use ($app) {
 

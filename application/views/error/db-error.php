@@ -15,7 +15,7 @@ strong{
 </style>
 </head>
 <body>
-<h1>700 Database Connection Error</h1>
+<h1>Database Connection Error</h1>
 <hr />
 <p>An internal error occurred, we are sorry for inconvenience.</p>
 <a href="/">Visit the Home Page</a>

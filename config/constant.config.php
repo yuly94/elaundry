@@ -15,6 +15,7 @@ define('EMAIL_IS_INVALID', 3);
 
 //application address
 define('DIR','http://localhost/elaundry/');
+define('BASE_URL','http://localhost/elaundry/');
 define('SITEEMAIL','noreply@elaundry.com');
 
 

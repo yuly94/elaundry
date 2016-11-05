@@ -14,13 +14,18 @@
     ],
     "require": {
         "slim/slim": "2.*",
-        "phpmailer/phpmailer": "~5.2",
-        "monolog/monolog": ">=1.6.0"
-     },
-    "autoload": {
-        "psr-0": {
-            "Flynsarmy\\SlimMonolog": "."
-        }
-    },
-    "target-dir": "Flynsarmy/SlimMonolog"
+        "phpmailer/phpmailer": "5.2.7",
+        "monolog/monolog": ">=1.6.0",
+        "flynsarmy/slim-monolog": "^1.0"
+     }, 
+     "autoload" : {
+         "classmap" : 
+            [
+                "libs/LibsLoader.php",
+                "application/controllers/index.php",
+                "application/controllers/error.php"
+            ]
+             
+         }
+     
 }

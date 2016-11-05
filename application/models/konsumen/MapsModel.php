@@ -1,7 +1,7 @@
 <?php
 
 
-class LoginModel{
+class MapsModel{
     
     /* ------------- `login konsumen` ------------------ */
     
@@ -30,7 +30,7 @@ class LoginModel{
 
             $stmt->fetch();
 
-            if (GeneratorModel::check_password($password_hash, $password)) {
+            if (PassHash::check_password($password_hash, $password)) {
                 // User password is correct
                 return TRUE;
             } else {
@@ -126,7 +126,7 @@ class LoginModel{
 
             $stmt->fetch();
 
-            if (PassHashModel::check_password($password_hash, $password)) {
+            if (PassHash::check_password($password_hash, $password)) {
                 // User password is correct
                 return TRUE;
             } else {

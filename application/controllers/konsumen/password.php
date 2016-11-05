@@ -1,13 +1,9 @@
 <?php
 
-use \FB;
-use \My\Helper;
-
-
-$app->post('/home/password/lupa/', function () use ($app) {
+$app->post('/konsumen/password/lupa/', function () use ($app) {
 
             // check for required params
-            Helper::verifyRequiredParams(array('email'));
+            HelperModel::verifyRequiredParams(array('email'));
 
             // reading post params
             $email = $app->request()->post('email');
@@ -21,7 +17,7 @@ $app->post('/home/password/lupa/', function () use ($app) {
            
 		$response["error"] = "true";
       		$response["message"] = "Email Not Found";
-      		Helper::echoRespnse(200, $response);
+      		HelperModel::echoRespnse(200, $response);
            
 
 		     }  //3
@@ -29,20 +25,18 @@ $app->post('/home/password/lupa/', function () use ($app) {
                     $kon_id = $checkuser["konsumen_id"];
                     $nama = $checkuser["nama"];
 		    $user = PasswordModel::ResetRequest($email,$kon_id,$nama);
-		    $email_user =  $user["email_user"];
-	    	    $token = $user["token"];
+		 //   $email_user =  $user["email_user"];
+	    	  //  $token = $user["token"];
      			
-
-
 		}
     }); //1
 
 
 
-$app->post('/home/password/reset/', function () use ($app) {
+$app->post('/konsumen/password/reset/', function () use ($app) {
 
             // check for required params
-            Helper::verifyRequiredParams(array('email','code','password'));
+            HelperModel::verifyRequiredParams(array('email','code','password'));
 
             // reading post params
             $email = $app->request()->post('email');
@@ -54,24 +48,37 @@ $app->post('/home/password/reset/', function () use ($app) {
             // validating email address
             ValidasiModel::validasiEmail($email);
 
-	      
-  if ( ValidasiModel::isUserExists($email)) {
+	      $checkuser = ValidasiModel::isUserExists($email);
+  if ( $checkuser ) {
+    $nama = $checkuser["nama"];
+    $result =  PasswordModel::resetPassword($email,$code,$password, $nama);
 
-    $result =  PasswordModel::resetPassword($email,$code,$password);
 
 
-
-    if(!$result){
+    if($result==1){
 
       $response["error"] = "true";
-      $response["message"] = "Reset Password Failure";
-      Helper::echoRespnse(200, $response);
+      $response["message"] = "Reset Password Failure, please try again";
+      HelperModel::echoRespnse(200, $response);
 
-    } else {
+    }  else if($result==2){
+
+      $response["error"] = "true";
+      $response["message"] = "Reset Password Failure, Your reset code expired, please resent your reset";
+      HelperModel::echoRespnse(200, $response);
+
+    }  else  if($result==3){
+
+      $response["error"] = "true";
+      $response["message"] = "Reset Password Failure, Your token incorrect";
+      HelperModel::echoRespnse(200, $response);
+
+    }
+    else {
 
       $response["error"] = "false";
       $response["message"] = "Password Changed Successfully";
-      Helper::echoRespnse(200, $response);
+      HelperModel::echoRespnse(200, $response);
 
     }
 
@@ -80,7 +87,7 @@ $app->post('/home/password/reset/', function () use ($app) {
 
     $response["error"] = "true";
     $response["message"] = "Email does not exist";
-    Helper::echoRespnse(200, $response);
+    HelperModel::echoRespnse(200, $response);
 
       }
 

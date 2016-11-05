@@ -4,9 +4,55 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "a9727e3f240ef1706343bdd107b45450",
-    "content-hash": "f7f8d5efcf05a58c90f7602e1496de0f",
+    "hash": "8967e480500823823a9bae55f228e506",
+    "content-hash": "7c0ea7277a2f56e4f4f003251dbf9cdd",
     "packages": [
+        {
+            "name": "flynsarmy/slim-monolog",
+            "version": "v1.0.1",
+            "target-dir": "Flynsarmy/SlimMonolog",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/Flynsarmy/Slim-Monolog.git",
+                "reference": "2a3a20671cc14372424085d563991c90ba7818e8"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/Flynsarmy/Slim-Monolog/zipball/2a3a20671cc14372424085d563991c90ba7818e8",
+                "reference": "2a3a20671cc14372424085d563991c90ba7818e8",
+                "shasum": ""
+            },
+            "require": {
+                "monolog/monolog": ">=1.6.0",
+                "php": ">=5.3.0",
+                "slim/slim": ">=2.3.0"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-0": {
+                    "Flynsarmy\\SlimMonolog": "."
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Flyn San",
+                    "email": "flynsarmy@gmail.com",
+                    "homepage": "http://www.flynsarmy.com/"
+                }
+            ],
+            "description": "Monolog logging support Slim Framework",
+            "homepage": "http://github.com/flynsarmy/Slim-Monolog",
+            "keywords": [
+                "extensions",
+                "logging",
+                "middleware"
+            ],
+            "time": "2015-07-15 22:14:44"
+        },
         {
             "name": "monolog/monolog",
             "version": "1.21.0",
@@ -87,16 +133,16 @@
         },
         {
             "name": "phpmailer/phpmailer",
-            "version": "v5.2.16",
+            "version": "v5.2.7",
             "source": {
                 "type": "git",
                 "url": "https://github.com/PHPMailer/PHPMailer.git",
-                "reference": "1d85f9ef3ecfc42bbc4f3c70d5e37ca9a65f629a"
+                "reference": "8717a79565b2c0ed67f851d70e1949febdf3b226"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/PHPMailer/PHPMailer/zipball/1d85f9ef3ecfc42bbc4f3c70d5e37ca9a65f629a",
-                "reference": "1d85f9ef3ecfc42bbc4f3c70d5e37ca9a65f629a",
+                "url": "https://api.github.com/repos/PHPMailer/PHPMailer/zipball/8717a79565b2c0ed67f851d70e1949febdf3b226",
+                "reference": "8717a79565b2c0ed67f851d70e1949febdf3b226",
                 "shasum": ""
             },
             "require": {
@@ -104,21 +150,14 @@
             },
             "require-dev": {
                 "phpdocumentor/phpdocumentor": "*",
-                "phpunit/phpunit": "4.7.*"
-            },
-            "suggest": {
-                "league/oauth2-google": "Needed for Google XOAUTH2 authentication"
+                "phpunit/phpunit": "*"
             },
             "type": "library",
             "autoload": {
                 "classmap": [
                     "class.phpmailer.php",
-                    "class.phpmaileroauth.php",
-                    "class.phpmaileroauthgoogle.php",
-                    "class.smtp.php",
                     "class.pop3.php",
-                    "extras/EasyPeasyICS.php",
-                    "extras/ntlm_sasl_client.php"
+                    "class.smtp.php"
                 ]
             },
             "notification-url": "https://packagist.org/downloads/",
@@ -143,7 +182,7 @@
                 }
             ],
             "description": "PHPMailer is a full-featured email creation and transfer class for PHP",
-            "time": "2016-06-06 09:09:37"
+            "time": "2013-09-12 07:52:38"
         },
         {
             "name": "psr/log",

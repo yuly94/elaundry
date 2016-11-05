@@ -1,13 +1,9 @@
 <?php
 
-use \FB;
-use \My\Helper;
-
-
-$app->post('/home/registrasi/', function () use ($app) {
+$app->post('/konsumen/registrasi/', function () use ($app) {
 
             // check for required params
-            Helper::verifyRequiredParams(array('nama', 'alamat','nohp','email', 'password'));
+            HelperModel::verifyRequiredParams(array('nama', 'alamat','nohp','email', 'password'));
             
             $response = array();
 
@@ -48,23 +44,12 @@ $app->post('/home/registrasi/', function () use ($app) {
                 $response["message"] = "Sorry, this email already existed";
             } 
             // echo json response
-            Helper::echoRespnse(201, $response);
+            HelperModel::echoRespnse(201, $response);
         });
 
 
-$app->get('/home/registrasix/aktifasi/:id/', function ($id) use ($app) {
 
-    $article = ArticleModel::getArticle($id);
-
-    if(empty($article)){
-
-        return Helper::response(false, array(), 'Article not found', 404);
-    }
-
-    return Helper::response(true, $article);
-});
-
-$app->get('/home/registrasi/aktifasi/:nama/(:token(/))', function () use ($app) {
+$app->get('/konsumen/registrasi/aktifasi/:nama/(:token(/))', function () use ($app) {
 
     $args = func_get_args();
 
@@ -74,7 +59,7 @@ $app->get('/home/registrasi/aktifasi/:nama/(:token(/))', function () use ($app) 
     $app->render('aktifasi.php');
 });
 
-$app->get('/home/registrasi/aktifasi/:nama/:token/(:aktifkan(/))', function () use ($app) {
+$app->get('/konsumen/registrasi/aktifasi/:nama/:token/(:aktifkan(/))', function () use ($app) {
 
             $response = array();
             
@@ -88,7 +73,7 @@ $app->get('/home/registrasi/aktifasi/:nama/:token/(:aktifkan(/))', function () u
 
                 $user = RegistrasiModel::getUserByToken($token);
                 
-                 // use is found
+                // user is found
                 $response["error"] = FALSE;
                 $response["uid"] = $user["konsumen_id"];
                 $response["user"]["nama"] = $user["nama"];
@@ -105,12 +90,12 @@ $app->get('/home/registrasi/aktifasi/:nama/:token/(:aktifkan(/))', function () u
                 $response["message"] = "Sorry, failed to activate, please check your token";
             } 
             // echo json response
-            Helper::echoRespnse(201, $response);
+            HelperModel::echoRespnse(201, $response);
         
 });
 
 
-$app->get('/home/registrasi/success/(:secret(/))', function () use ($app) {
+$app->get('/konsumen/registrasi/success/(:secret(/))', function () use ($app) {
 
     $args = func_get_args();
 

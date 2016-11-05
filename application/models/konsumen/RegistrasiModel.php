@@ -1,8 +1,5 @@
 <?php
 
-use \My\PassHash;
-use \My\Helper;
-
 class RegistrasiModel{
     
    
@@ -30,7 +27,7 @@ class RegistrasiModel{
         if (!ValidasiModel::isUserExists($email)) {
             
             // Generating password hash
-            $password_hash = PassHash::hash($password);
+            $password_hash = GeneratorModel::hash($password);
 
             // Generating API key
             $api_key = GeneratorModel::generateApiKey();
@@ -66,7 +63,7 @@ class RegistrasiModel{
 		$body = "<p>Selamat datang $nama.</p>
 		<p>Pendaftaran anda di elaundry telah berhasil dilakukan</p>
 		<p>Silahkan melakukan aktifasi dengan mengklik link berikut ini :
-                <a href='".DIR."public/home/registrasi/aktifasi/$nama/$token_aktifasi'>".DIR."public/home/registrasi/aktifasi/$nama/$token_aktifasi</a></p>
+                <a href='".DIR."/konsumen/registrasi/aktifasi/$nama/$token_aktifasi'>".DIR."/konsumen/registrasi/aktifasi/$nama/$token_aktifasi</a></p>
                 <p>Regards Site Admin</p>";
 
                 EmailModel::sentEmail($to,$subject,$body);

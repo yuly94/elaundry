@@ -1,9 +1,5 @@
 <?php
 
-use \FB;
-use \My\Helper;
- 
-
     
 /**
  * User Login
@@ -13,7 +9,7 @@ use \My\Helper;
  */
 $app->post('/konsumen/login/', function() use ($app) {
             // check for required params
-            Helper::verifyRequiredParams(array('email', 'password'));
+            HelperModel::verifyRequiredParams(array('email', 'password'));
 
             // reading post params
             $email = $app->request()->post('email');
@@ -108,7 +104,7 @@ $app->post('/konsumen/login/', function() use ($app) {
             }    
 	}			             
            // echoRespnse(200, $response);
-           Helper::echoRespnse (200, $response);
+           HelperModel::echoRespnse (200, $response);
 });
 
     
