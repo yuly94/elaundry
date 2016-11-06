@@ -6,24 +6,24 @@
  * and open the template in the editor.
  */
 
-class PetaModel {
+class LaundryModel {
                 /**
      * Fetching all alamat
      * @param String $konsumen_id
      */
-    public function getAllPeta($konsumen_id) {
+    public function getAllPaket($paket_status) {
         $app = \Slim\Slim::getInstance();
         
-        $sql = "SELECT * FROM pemesanan WHERE konsumen_id = :konsumen_id ";
+        $sql = "SELECT * FROM paket WHERE paket_status = :paket_status ";
 
         $stmt = $app->db->prepare($sql);
-        $stmt->execute(array('konsumen_id'=>$konsumen_id));
+        $stmt->execute(array('paket_status'=>$paket_status));
         
-        $alamat=$stmt->fetchAll(PDO::FETCH_OBJ);
+        $paket=$stmt->fetchAll(PDO::FETCH_OBJ);
         
         if($stmt->rowCount() > 0)
         {  
-            return $alamat;
+            return $paket;
         } else {
             return NULL;
                }

@@ -6,12 +6,12 @@
  * and open the template in the editor.
  */
 
-class PetaModel {
+class PemesananModel {
                 /**
      * Fetching all alamat
      * @param String $konsumen_id
      */
-    public function getAllPeta($konsumen_id) {
+    public function getPesanan($konsumen_id) {
         $app = \Slim\Slim::getInstance();
         
         $sql = "SELECT * FROM pemesanan WHERE konsumen_id = :konsumen_id ";

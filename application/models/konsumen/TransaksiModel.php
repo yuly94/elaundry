@@ -6,24 +6,24 @@
  * and open the template in the editor.
  */
 
-class PetaModel {
+class TransaksiModel {
                 /**
      * Fetching all alamat
      * @param String $konsumen_id
      */
-    public function getAllPeta($konsumen_id) {
+    public function getAllTransaksi($konsumen_id) {
         $app = \Slim\Slim::getInstance();
         
-        $sql = "SELECT * FROM pemesanan WHERE konsumen_id = :konsumen_id ";
+        $sql = "SELECT * FROM transaksi WHERE konsumen_id = :konsumen_id ";
 
         $stmt = $app->db->prepare($sql);
         $stmt->execute(array('konsumen_id'=>$konsumen_id));
         
-        $alamat=$stmt->fetchAll(PDO::FETCH_OBJ);
+        $transaksi=$stmt->fetchAll(PDO::FETCH_OBJ);
         
         if($stmt->rowCount() > 0)
         {  
-            return $alamat;
+            return $transaksi;
         } else {
             return NULL;
                }

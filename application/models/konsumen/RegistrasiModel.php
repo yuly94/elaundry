@@ -75,7 +75,9 @@ public function aktifkanUser( $konsumen_kode_aktifasi) {
     
         $app = \Slim\Slim::getInstance();
 
-	$sql = "UPDATE konsumen SET konsumen_status =:konsumen_status, konsumen_status_aktifasi =:konsumen_status_aktifasi WHERE konsumen_kode_aktifasi = :konsumen_kode_aktifasi";
+	$sql = "UPDATE konsumen SET konsumen_status =:konsumen_status,"
+                . " konsumen_status_aktifasi =:konsumen_status_aktifasi"
+                . " WHERE konsumen_kode_aktifasi = :konsumen_kode_aktifasi";
 
 	$konsumen_status_aktifasi = "sudah diaktifasi";
         $konsumen_status = "aktif";
@@ -153,9 +155,6 @@ public function aktifkanUser( $konsumen_kode_aktifasi) {
         }
     }
 
-    public function redirect(){
-         $app->redirect("sukses");
-    }
 
     
 }

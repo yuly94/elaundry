@@ -12,22 +12,17 @@
 $app->get('/konsumen/alamat/','authKonsumen' ,function() use ($app){
            
             global $api_konsumen_id;
-            $response = array();
 
             // fetching all user tasks
-            $result = AlamatModel::getAlamat($api_konsumen_id);
-  
-            if ($result != NULL) {
-            $items = array();
+            $result= AlamatModel::getAlamat($api_konsumen_id);
+            
+            if ($result != NULL) { 
+                
             $response["error"] = false;
-            foreach ($result as $rez) {
-            $response = $rez;
- 
-            $items[] = $response;
-    }
-
-        BantuanModel::echoRespnse(200, $items);
-    }       
+            $response["message"] = "alamat berhasil di dapatkan"; 
+            $response["alamat"] = $result;
+            BantuanModel::echoRespnse(200, $response);
+}      
     else {
         $response["error"] = true;
         $response["message"] = "The requested resource doesn't exists";

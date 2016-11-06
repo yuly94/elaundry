@@ -5,38 +5,27 @@
  * Listing all maps of particual user
  * method GET
  * url /tasks          
- */
-$app->get('/maps', 'authenticate', function() {
-           
-            $maps_status = "1";
-            $response = array();
-            $dbt = new DbHandlerTasks();
-            // fetching all user tasks
-            $result = $dbt->getAllMaps($maps_status);
-  
-  
-            if ($result != NULL) {
-            $items = array();
-            $response["error"] = false;
-            foreach ($result as $rez) {
-            
-            $response["maps"]["maps_id"] = $rez["maps_id"];
-            $response["maps"]["name"] = $rez["name"];
-            $response["maps"]["address"] = $rez["address"];
-            $response["maps"]["city"] = $rez["city"];
-            $response["maps"]["province"] = $rez["province"];
-            $response["maps"]["latitude"] = $rez["latitude"];
-            $response["maps"]["longitude"] = $rez["longitude"];
-            
-            $items[] = $response;
-    }
+ */ 
 
-        echoRespnse(200, $items);
-    }       
+$app->get('/konsumen/peta/', function () use ($app) {
+           
+            global $api_konsumen_id;
+                $maps_status = "1";
+
+            // fetching all user tasks
+            $result= PetaModel::getAllPeta($maps_status);
+ 
+            if ($result != NULL) { 
+                
+            $response["error"] = false;
+            $response["message"] = "peta berhasil di dapatkan"; 
+            $response["peta"] = $result;
+            BantuanModel::echoRespnse(200, $response);
+}      
     else {
         $response["error"] = true;
         $response["message"] = "The requested resource doesn't exists";
-        echoRespnse(404, $response);
+        BantuanModel::echoRespnse(404, $response);
         }
     });
 

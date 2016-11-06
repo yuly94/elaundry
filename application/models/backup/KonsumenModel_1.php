@@ -17,10 +17,9 @@ class KonsumenModel{
         $app = \Slim\Slim::getInstance();
         
         $sql = "SELECT konsumen_id, konsumen_nama, konsumen_alamat, "
-                . "konsumen_nohp, konsumen_email, konsumen_kunci_api,"
-                . " konsumen_dibuat_pada, konsumen_status_aktifasi,"
-                . "konsumen_status_reset,konsumen_login_terahir, "
-                . "konsumen_update_pada FROM konsumen "
+                . "konsumen_nohp, konsumen_email, konsumen_password, konsumen_kunci_api, "
+                . "konsumen_kode_aktifasi, konsumen_kode_reset, konsumen_dibuat_pada, "
+                . "konsumen_status_aktifasi,konsumen_status_reset,konsumen_login_terahir, konsumen_update_pada FROM konsumen "
                 . "WHERE konsumen_email =:login_email";        
 
         $stmt = $app->db->prepare($sql);
@@ -30,42 +29,21 @@ class KonsumenModel{
         
         if($stmt->rowCount() > 0)
             {
-    // fetching all user tasks
-     
-
+                // konsumen di temukan mengirim data konsumen
+                $response["error"] = FALSE;
+                $response["konsumen_id"] = $konsumen["konsumen_id"];
+                $response["konsumen"]["konsumen_nama"] = $konsumen["konsumen_nama"];
+		$response["konsumen"]["konsumen_alamat"] = $konsumen["konsumen_alamat"];
+		$response["konsumen"]["konsumen_nohp"] = $konsumen["konsumen_nohp"];
+                $response["konsumen"]["konsumen_email"] = $konsumen["konsumen_email"];
+                $response["konsumen"]["konsumen_kunci_api"] = $konsumen["konsumen_kunci_api"];
+                $response["konsumen"]["konsumen_status_aktifasi"] = $konsumen["konsumen_status_aktifasi"];
+                $response["konsumen"]["konsumen_dibuat_pada"] = $konsumen["konsumen_dibuat_pada"];
+		$response["konsumen"]["konsumen_login_terahir"] = $konsumen["konsumen_login_terahir"];
+                $response["konsumen"]["konsumen_update_pada"] = $konsumen["konsumen_update_pada"];
+                
               // echo json response
-            return $konsumen;
-        } else {
-            return false;
-        }
-    }
-    
-        /**
-     * Fetching user by email
-     * @param String $login_email User email id
-     */
-    public function konsumenByKodeAktifasi($kode_aktifasi) {
-		
-        $app = \Slim\Slim::getInstance();
-        
-        $sql = "SELECT konsumen_id, konsumen_nama, konsumen_alamat, "
-                . "konsumen_nohp, konsumen_email, konsumen_kunci_api,"
-                . " konsumen_dibuat_pada, konsumen_status_aktifasi,"
-                . "konsumen_status_reset,konsumen_login_terahir, "
-                . "konsumen_update_pada FROM konsumen "
-                . "WHERE konsumen_kode_aktifasi =:konsumen_kode_aktifasi";        
-
-        $stmt = $app->db->prepare($sql);
-        $stmt->execute(array('kode_aktifasi'=>$kode_aktifasi));
-        
-        $konsumen=$stmt->fetch(PDO::FETCH_ASSOC);
-        
-        if($stmt->rowCount() > 0)
-            {
-    // fetching all user tasks   
-
-              // echo json response
-            return $konsumen;
+            return $response;
         } else {
             return false;
         }

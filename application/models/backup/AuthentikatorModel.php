@@ -23,6 +23,8 @@ class AuthentikatorModel{
             $response["error"] = true;
             $response["message"] = "Access Denied. Invalid Api key";
             BantuanModel::echoRespnse(401, $response);
+            
+            $app->stop;
          
             
         } else {

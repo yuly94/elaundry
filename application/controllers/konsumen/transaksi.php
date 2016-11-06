@@ -6,25 +6,18 @@
  * and open the template in the editor.
  */
 
-   
- /**
- * Listing all paket of particual user
- * method GET
- * url /tasks          
- */
-
-$app->get('/konsumen/laundry/paket/','authKonsumen' ,function() use ($app){
-            
-            $paket_status = "1";
+$app->get('/konsumen/transaksi/','authKonsumen' ,function() use ($app){
+           
+            global $api_konsumen_id;
 
             // fetching all user tasks
-            $result= LaundryModel::getAllPaket($paket_status);
+            $result= TransaksiModel::getAllTransaksi($api_konsumen_id);
             
             if ($result != NULL) { 
                 
             $response["error"] = false;
-            $response["message"] = "paket berhasil di dapatkan"; 
-            $response["paket"] = $result;
+            $response["message"] = "transaksi berhasil di dapatkan"; 
+            $response["transaksi"] = $result;
             BantuanModel::echoRespnse(200, $response);
 }      
     else {

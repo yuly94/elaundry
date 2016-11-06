@@ -27,7 +27,10 @@ $app->post('/konsumen/registrasi/', function () use ($app) {
 
             if ($result == USER_CREATED_SUCCESSFULLY) {
 
-                $response = KonsumenModel::konsumenByEmail($konsumen_email);
+                $result = KonsumenModel::konsumenByEmail($konsumen_email);
+                $response["error"] = false;
+                $response["message"] = "pendaftaran account berhasil";
+                $response["konsumen"] = $result;  
                
             } else if ($result == USER_CREATE_FAILED) {
                 $response["error"] = true;
@@ -69,19 +72,10 @@ $app->get('/konsumen/registrasi/aktifasi/:nama/:token/(aktifkan(/))', function (
 
         $konsumen = RegistrasiModel::getUserByToken($kode_aktifasi);
 
-        // konsumen di temukan mengirim data konsumen
-        $response["error"] = FALSE;
-        $response["message"] = "Selamat account anda berhasil di aktifkan";
-        $response["konsumen_id"] = $konsumen["konsumen_id"];
-        $response["konsumen"]["konsumen_nama"] = $konsumen["konsumen_nama"];
-        $response["konsumen"]["konsumen_alamat"] = $konsumen["konsumen_alamat"];
-        $response["konsumen"]["konsumen_nohp"] = $konsumen["konsumen_nohp"];
-        $response["konsumen"]["konsumen_email"] = $konsumen["konsumen_email"];
-        $response["konsumen"]["konsumen_kunci_api"] = $konsumen["konsumen_kunci_api"];
-        $response["konsumen"]["konsumen_status_aktifasi"] = $konsumen["konsumen_status_aktifasi"];
-        $response["konsumen"]["konsumen_dibuat_pada"] = $konsumen["konsumen_dibuat_pada"];
-        $response["konsumen"]["konsumen_login_terahir"] = $konsumen["konsumen_login_terahir"];
-        $response["konsumen"]["konsumen_update_pada"] = $konsumen["konsumen_update_pada"];
+            // konsumen di temukan mengirim data konsumen
+            $response["error"] = FALSE;
+            $response["message"] = "Selamat account anda berhasil di aktifkan";
+            $response["konsumen"] = $konsumen;  
 
         KirimEmailModel::emailAktifasiSukses($konsumen["konsumen_email"], $konsumen["konsumen_nama"]);
 

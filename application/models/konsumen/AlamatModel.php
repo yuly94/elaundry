@@ -19,13 +19,13 @@ class AlamatModel {
         $stmt = $app->db->prepare($sql);
         $stmt->execute(array('konsumen_id'=>$konsumen_id));
         
-        $alamat=$stmt->fetch(PDO::FETCH_ASSOC);
+        $alamat=$stmt->fetchAll(PDO::FETCH_OBJ);
         
         if($stmt->rowCount() > 0)
-        {
+        {  
             return $alamat;
         } else {
-            return FALSE;
+            return NULL;
                }
         }
     
