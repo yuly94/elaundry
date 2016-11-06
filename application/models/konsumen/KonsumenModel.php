@@ -12,7 +12,7 @@ class KonsumenModel{
      * Fetching user by email
      * @param String $login_email User email id
      */
-    public function konsumenByEmail($login_email) {
+    public static function konsumenByEmail($login_email) {
 		
         $app = \Slim\Slim::getInstance();
         
@@ -44,7 +44,7 @@ class KonsumenModel{
      * Fetching user by email
      * @param String $login_email User email id
      */
-    public function konsumenByKodeAktifasi($kode_aktifasi) {
+    public static function konsumenByKodeAktifasi($kode_aktifasi) {
 		
         $app = \Slim\Slim::getInstance();
         
@@ -97,7 +97,7 @@ class KonsumenModel{
      * Fetching user api key
      * @param String $konsumen_id user id primary key in user table
      */
-    public function getApiKeyById($konsumen_id) {
+    public static function getApiKeyById($konsumen_id) {
         $app = \Slim\Slim::getInstance();
         
         $sql = "SELECT konsumen_kunci_api FROM konsumen WHERE konsumen_id = :konsumen_id?";
@@ -122,7 +122,7 @@ class KonsumenModel{
      * Fetching user id by api key
      * @param String $konsumen_kunci_api user api key
      */
-    public function getKonsumenByApi($konsumen_kunci_api) {
+    public static function getKonsumenByApi($konsumen_kunci_api) {
         $app = \Slim\Slim::getInstance();
         
         $sql = "SELECT konsumen_no, konsumen_id, konsumen_email FROM konsumen WHERE konsumen_kunci_api = :konsumen_kunci_api";
@@ -145,7 +145,7 @@ class KonsumenModel{
      * Fetching user id by api key
      * @param String $konsumen_kunci_api user api key
      */
-    public function getKonsumenIdByApi($konsumen_kunci_api) {
+    public static function getKonsumenIdByApi($konsumen_kunci_api) {
         $app = \Slim\Slim::getInstance();
         
         $sql = "SELECT konsumen_no FROM konsumen WHERE konsumen_kunci_api = :konsumen_kunci_api";
@@ -167,7 +167,7 @@ class KonsumenModel{
      * Fetching konsumen id by api key
      * @param String $konsumen_kunci_api user api key
      */
-    public function getKonsumenUnikId($konsumen_kunci_api) {
+    public static function getKonsumenUnikId($konsumen_kunci_api) {
         $app = \Slim\Slim::getInstance();
         
         $sql = "SELECT konsumen_id FROM konsumen WHERE konsumen_kunci_api = :konsumen_kunci_api";
@@ -189,7 +189,7 @@ class KonsumenModel{
      * Fetching email by api key
      * @param String $konsumen_kunci_api user api key
      */
-    public function getKonsumenEmail($konsumen_kunci_api) {
+    public static function getKonsumenEmail($konsumen_kunci_api) {
         
         $app = \Slim\Slim::getInstance();
 
@@ -215,7 +215,7 @@ class KonsumenModel{
      * @param String $konsumen_kunci_api user api key
      * @return boolean
      */
-    public function isValidApiKey($konsumen_kunci_api) {
+    public static function isValidApiKey($konsumen_kunci_api) {
         
         $app = \Slim\Slim::getInstance();
 

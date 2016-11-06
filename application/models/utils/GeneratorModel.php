@@ -26,7 +26,7 @@ class GeneratorModel{
     /**
      * Generating random Unique MD5 String for user Api key
      */
-    public function generateApiKey() {
+    public static function generateApiKey() {
         return sha1(md5(uniqid(rand(), true)));
     }
 
@@ -34,23 +34,24 @@ class GeneratorModel{
      * Generating random Unique MD5 String for konsumen id
      */
 
-    public function generateUID() {
+    public static function generateUID() {
         return md5(uniqid(rand(), true));
     }
     
 
     
-     public function getHash($password, $salt) {
+    public static function getHash($password, $salt) {
      $encrypted = password_hash($password.$salt, PASSWORD_DEFAULT);
      $hash = array("salt" => $salt, "encrypted" => $encrypted);
      return $hash;
 }
-public function verifyHash($password, $hash) {
-    return password_verify ($password, $hash);
+
+    public static function verifyHash($password, $hash) {
+        return password_verify ($password, $hash);
 }
     
     
-    public function generateHash($random_string) {
+    public static function generateHash($random_string) {
     if (defined("CRYPT_BLOWFISH") && CRYPT_BLOWFISH) {
         $salt = '$2y$11$' . substr(md5(uniqid(rand(), true)), 0, 22);
         return crypt($password, $salt);
@@ -58,7 +59,7 @@ public function verifyHash($password, $hash) {
     }
 
  
-    public function randStrGen($len){
+    public static function randStrGen($len){
     $result = "";
     $chars = "abcdefghijklmnopqrstuvwxyz0123456789";
     $charArray = str_split($chars);
@@ -70,7 +71,7 @@ public function verifyHash($password, $hash) {
 }
 
 
-    public function acakan_kunci($password){
+    public static function acakan_kunci($password){
 
                 // Generating password hash
             $password_hash = GeneratorModel::hash($password);

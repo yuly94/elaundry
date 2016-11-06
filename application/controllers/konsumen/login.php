@@ -35,12 +35,10 @@ $app->post('/konsumen/login/', function() use ($app) {
             // get the user by email
              
             if (($konsumen = KonsumenModel::konsumenByEmail($login_email))) {
-	 
-                $response = $konsumen ;
+	        $response['error'] = false;
+                $response['message'] = "selamat datang, anda berhasil login";
+                $response["login"] = $konsumen ;
                 
-                
-                
-            
                 } else {
                     // unknown error occurred
                     $response['error'] = true;

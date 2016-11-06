@@ -11,10 +11,10 @@ class LaundryModel {
      * Fetching all alamat
      * @param String $konsumen_id
      */
-    public function getAllPaket($paket_status) {
+    public static function getAllPaket($paket_status) {
         $app = \Slim\Slim::getInstance();
         
-        $sql = "SELECT * FROM paket WHERE paket_status = :paket_status ";
+        $sql = "SELECT * FROM laundry_paket WHERE paket_status = :paket_status ";
 
         $stmt = $app->db->prepare($sql);
         $stmt->execute(array('paket_status'=>$paket_status));

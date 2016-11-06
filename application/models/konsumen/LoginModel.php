@@ -20,17 +20,12 @@ class LoginModel{
         $stmt = $app->db->prepare($sql);
         $stmt->execute(array('konsumen_email'=>$login_email));
         
-        while($result=$stmt->fetch()){ //for each result, do the following
-         $konsumen_password=$result['konsumen_password'];
-        }
-
-        if ($stmt->rowCount() > 0) {
-            // Found user with the email
-            // Now verify the password
-
-            $stmt->fetch();
-
-            if (GeneratorModel::check_password($konsumen_password, $login_password)) {
+        $konsumen=$stmt->fetch(PDO::FETCH_ASSOC);
+        
+        if($stmt->rowCount() > 0)
+            {
+   
+            if (GeneratorModel::check_password($konsumen["konsumen_password"], $login_password)) {
                 // User password is correct
                 return TRUE;
             } else {
@@ -87,7 +82,7 @@ class LoginModel{
      * @param String $password User login password
      * @return boolean User login status success/fail
      */
-    public function cekLogin($login_email, $login_password) {
+    public static function cekLogin($login_email, $login_password) {
         
         $app = \Slim\Slim::getInstance();
     
@@ -132,7 +127,7 @@ class LoginModel{
     
     /* ------------- `fungsi update api konsumen ketika login` ------------------ */
 
-public function updateKunciApi($login_email) {
+    public static function updateKunciApi($login_email) {
 
         // Generating API key
         $konsumen_kunci_api = GeneratorModel::generateApiKey();
@@ -158,7 +153,7 @@ public function updateKunciApi($login_email) {
 	
     
 
-public function loginGagal($login_email) {
+    public static function loginGagal($login_email) {
     
     $app = \Slim\Slim::getInstance();
     
@@ -183,7 +178,7 @@ public function loginGagal($login_email) {
 	
     
 
-    public function cekPercobaanLogin($login_email) {
+    public static function cekPercobaanLogin($login_email) {
         
     $app = \Slim\Slim::getInstance();    
     

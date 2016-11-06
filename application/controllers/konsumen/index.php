@@ -1,9 +1,6 @@
 <?php
 
-use \FB;
-use \My\Helper;
-
-$app->get('/home/', function () use ($app) {
+$app->get('/konsumen/home/', function () use ($app) {
     
     Helper::response(FALSE, array('version'=>'1.0'),'welcome home',200);
     

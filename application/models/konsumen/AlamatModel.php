@@ -11,7 +11,7 @@ class AlamatModel {
      * Fetching all alamat
      * @param String $konsumen_id
      */
-    public function getAlamat($konsumen_id) {
+    public static function getAlamat($konsumen_id) {
         $app = \Slim\Slim::getInstance();
         
         $sql = "SELECT * FROM alamat_konsumen WHERE konsumen_id = :konsumen_id ";

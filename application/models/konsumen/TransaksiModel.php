@@ -11,7 +11,7 @@ class TransaksiModel {
      * Fetching all alamat
      * @param String $konsumen_id
      */
-    public function getAllTransaksi($konsumen_id) {
+    public static function getAllTransaksi($konsumen_id) {
         $app = \Slim\Slim::getInstance();
         
         $sql = "SELECT * FROM transaksi WHERE konsumen_id = :konsumen_id ";

@@ -4,7 +4,7 @@
 class PasswordModel{
     
    
-public function ResetRequest($konsumen_email,$konsumen_id,$konsumen_nama){
+public static function ResetRequest($konsumen_email,$konsumen_id,$konsumen_nama){
 
         $app = \Slim\Slim::getInstance();
         $user = array();
@@ -82,7 +82,7 @@ public function ResetRequest($konsumen_email,$konsumen_id,$konsumen_nama){
     }
     
 
-    public function resetPassword($email,$code,$reset_password, $nama){
+    public static function resetPassword($email,$code,$reset_password, $nama){
         
         $app = \Slim\Slim::getInstance();
  
@@ -123,7 +123,7 @@ public function ResetRequest($konsumen_email,$konsumen_id,$konsumen_nama){
 
     /* ------------- `fungsi ganti password konsumen` ------------------ */	
 	
-public function ganti_password($konsumen_id, $password_baru) {
+public static function ganti_password($konsumen_id, $password_baru) {
     
         $app = \Slim\Slim::getInstance();
         // fetching user by email

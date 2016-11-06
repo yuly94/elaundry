@@ -28,7 +28,7 @@ class BantuanModel{
  * @param String $status_code Http response code
  * @param Int $response Json response
  */
-function echoRespnse($status_code, $response) {
+public static function echoRespnse($status_code, $response) {
     $app = \Slim\Slim::getInstance();
     // Http response code
     $app->status($status_code);
@@ -73,7 +73,7 @@ function echoRespnse($status_code, $response) {
 /**
  * Verifying required params posted or not
  */
-function verifyRequiredParams($required_fields) {
+public static function verifyRequiredParams($required_fields) {
     $error = false;
     $error_fields = "";
     $request_params = array();
@@ -107,7 +107,7 @@ function verifyRequiredParams($required_fields) {
  * Adding Middle Layer to authenticate every request
  * Checking if the request has valid api key in the 'Authorization' header
  */
-function authenticate(\Slim\Route $route) {
+public static function authenticate(\Slim\Route $route) {
     // Getting request headers
     $headers = apache_request_headers();
     $response = array();

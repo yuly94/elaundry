@@ -7,7 +7,7 @@ class ValidasiModel{
 /**
  * Validating email address
  */
-function validasiEmail($email) {
+public static function validasiEmail($email) {
     $app = \Slim\Slim::getInstance();
     if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
         $response["error"] = true;
@@ -19,7 +19,7 @@ function validasiEmail($email) {
 
  // basic name validation
 
-function validasiNama($nama) {
+public static function validasiNama($nama) {
   if (empty($nama)) {
 
     $response["error"] = true;
@@ -46,7 +46,7 @@ function validasiNama($nama) {
 }
 
 
-public function validasiPassword($password){
+public static function validasiPassword($password){
       // password validation
   if (empty($password)){
    $response["error"] = true;
@@ -68,7 +68,7 @@ public function validasiPassword($password){
      * @param String $email email to check in db
      * @return boolean
      */
-    public function cekKonsumen($konsumen_email) {
+    public static function cekKonsumen($konsumen_email) {
         
         $app = \Slim\Slim::getInstance();
         

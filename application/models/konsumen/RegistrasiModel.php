@@ -11,7 +11,7 @@ class RegistrasiModel{
      * @param String $email User login email id
      * @param String $password User login password
      */
-    public function membuatUser($konsumen_nama, $konsumen_alamat, $konsumen_nohp, $konsumen_email, $konsumen_password) {
+    public static function membuatUser($konsumen_nama, $konsumen_alamat, $konsumen_nohp, $konsumen_email, $konsumen_password) {
         
         $app = \Slim\Slim::getInstance();
        
@@ -71,7 +71,7 @@ class RegistrasiModel{
      * @param String $activator User activation code
      */
     
-public function aktifkanUser( $konsumen_kode_aktifasi) {
+public static function aktifkanUser( $konsumen_kode_aktifasi) {
     
         $app = \Slim\Slim::getInstance();
 
@@ -109,7 +109,7 @@ public function aktifkanUser( $konsumen_kode_aktifasi) {
      * Fetching user by email
      * @param String $email User email id
      */
-    public function konsumenByEmail($email) {
+    public static function konsumenByEmail($email) {
 		
         $app = \Slim\Slim::getInstance();
         
@@ -134,7 +134,7 @@ public function aktifkanUser( $konsumen_kode_aktifasi) {
      * Fetching user by email
      * @param String $email User email id
      */
-    public function getUserByToken($konsumen_kode_aktifasi) {
+    public static function getUserByToken($konsumen_kode_aktifasi) {
 		
         $app = \Slim\Slim::getInstance();
         
