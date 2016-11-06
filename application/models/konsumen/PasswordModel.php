@@ -27,7 +27,7 @@ public function ResetRequest($konsumen_email,$konsumen_id,$konsumen_nama){
 
         if ($stmt->rowCount() == 0){
 
- 	$sql = "INSERT INTO password_reset(email,user_id, password_sementara, salt, created_at) , konsumen (konsumen_reset_status) values(:email, :user_id, :encrypted_temp_password, :salt, :created_at, konsumen_reset_status)";
+ 	$sql = "INSERT INTO password_reset(email,user_id, password_sementara, salt, created_at) values(:email, :user_id, :encrypted_temp_password, :salt, :created_at)";
         // insert query        
    
         $stmt = $app->db->prepare($sql);
@@ -36,8 +36,7 @@ public function ResetRequest($konsumen_email,$konsumen_id,$konsumen_nama){
             'user_id'=>$konsumen_id,
             'password_sementara'=>$password_sementara,
             'salt'=>$salt,
-            'created_at'=>$tanggal,
-            'konsumen_reset_status'=>"meminta reset"
+            'created_at'=>$tanggal
         ));
 
         if($stmt->rowCount() > 0)
@@ -54,10 +53,7 @@ public function ResetRequest($konsumen_email,$konsumen_id,$konsumen_nama){
 
         } else {
  
-        $sql = "UPDATE password_reset, konsumen SET password_reset.email =:email, "
-                . "password_reset.user_id=:user_id, password_reset.password_sementara=:password_sementara, "
-                . "password_reset.salt=:salt, password_reset.dibuat_pada=:dibuat_pada,"
-                . "konsumen.konsumen_reset_status =:konsumen_reset_status";
+        $sql = "UPDATE password_reset SET email =:email, user_id=:user_id, password_sementara=:password_sementara, salt=:salt, dibuat_pada=:dibuat_pada";
 
         $stmt = $app->db->prepare($sql);
         $stmt->execute(array(
@@ -65,8 +61,7 @@ public function ResetRequest($konsumen_email,$konsumen_id,$konsumen_nama){
             'user_id'=>$konsumen_id,
             'password_sementara'=>$password_sementara,
             'salt'=>$salt,
-            'dibuat_pada'=>$tanggal,
-            'konsumen_reset_status'=>"meminta reset"
+            'dibuat_pada'=>$tanggal
         ));
         
         if($stmt->rowCount() > 0)
