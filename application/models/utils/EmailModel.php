@@ -6,9 +6,6 @@
 
 class EmailModel extends PHPMailer
 {
-    
-  
-
 
     public function sentEmail($to,$subject,$body){
 
@@ -21,7 +18,7 @@ class EmailModel extends PHPMailer
 
 if(!$mail->send()) {
 
-   return $mail->ErrorInfo;
+    return $mail->ErrorInfo;
 
   } else {
 
@@ -32,8 +29,8 @@ if(!$mail->send()) {
 }
  
   // Set default variables for all new objects
-    public $From     = 'noreply@yuly-laundry.com';
-    public $FromName = 'Yuly Laundry';
+    public $From     = EMAIL_FROM;
+    public $FromName = EMAIL_NAMA_PENGIRIM;
     //public $Host     = 'smtp.gmail.com';
     //public $Mailer   = 'smtp';
     //public $SMTPAuth = true;

@@ -9,57 +9,46 @@
  */
 $app->post('/konsumen/login/', function() use ($app) {
             // check for required params
-            HelperModel::verifyRequiredParams(array('email', 'password'));
+            BantuanModel::verifyRequiredParams(array('konsumen_email', 'konsumen_password'));
 
             // reading post params
-            $email = $app->request()->post('email');
-            $password = $app->request()->post('password');
+            $login_email = $app->request()->post('konsumen_email');
+            $login_password = $app->request()->post('konsumen_password');
             $response = array();
     
             // validating email address
-            ValidasiModel::validasiEmail($email);
+            ValidasiModel::validasiEmail($login_email);
             	
             // check brute force
-            if ( LoginModel::checkbrute($email) =="6"){
+            if ( LoginModel::cekPemaksaan($login_email) =="6"){
             $response["error"] = true;
-            $response['message'] = 'Login failed. Login attemp exceed, please try again in 60 menit future';
+            $response['message'] = 'Login gagal, anda melebihi jumlah gagal yang di izinkan, silahkan coba lagi 60 menit kedepan';
        
 		}
                     else {
             
             // check for correct email and password
-            if (LoginModel::checkLogin($email, $password)) {
+            if (LoginModel::cekLogin($login_email, $login_password)) {
 				
-		if (LoginModel::updateApi($email)) {
+		if (LoginModel::updateKunciApi($login_email)) {
 
             // get the user by email
-            $user = LoginModel::getUserByEmail($email);
-
-            if ($user != NULL) {
-	
-                // user is found
-                $response["error"] = FALSE;
-                $response["uid"] = $user["konsumen_id"];
-                $response["user"]["nama"] = $user["nama"];
-		$response["user"]["alamat"] = $user["alamat"];
-		$response["user"]["nohp"] = $user["nohp"];
-                $response["user"]["email"] = $user["email"];
-                $response["user"]["api_key"] = $user["api_key"];
-                $response["user"]["status"] = $user["status"];
-                $response["user"]["created_at"] = $user["created_at"];
-		$response["user"]["last_login"] = $user["last_login"];
-                $response["user"]["updated_at"] = $user["updated_at"];
-        
+             
+            if (($konsumen = KonsumenModel::konsumenByEmail($login_email))) {
+	 
+                $response = $konsumen ;
+                
+            
                 } else {
                     // unknown error occurred
                     $response['error'] = true;
-                    $response['message'] = "Fetching user failed. Please try again";
+                    $response['message'] = "gagal untuk mendapatkan data konsumen silahkan coba lagi";
                 }
 				
                	} else {
 					// unknown error occurred
                     $response['error'] = true;
-                    $response['message'] = "Update Api failed. Please try again";
+                    $response['message'] = "Update kunci api gagal, silahkan coba lagi";
 				}			
             } else {
                 // user credentials are wrong
@@ -68,43 +57,43 @@ $app->post('/konsumen/login/', function() use ($app) {
 			// check brute force
             if ( KonsumenModel::checkAttemp($email) =="6"){
             $response["error"] = true;
-            $response['message'] = 'Login failed. Login attemp Exceed, please try again in 60 menit future';
+            $response['message'] = 'Login gagal, anda melebihi jumlah gagal yang di izinkan, silahkan coba lagi 60 menit kedepan';
              
 			} else // check brute force
             if ( KonsumenModel::checkAttemp($email) =="5"){
             $response["error"] = true;
-            $response['message'] = 'Login failed. Login attemp remain 1, please be carefull';
+            $response['message'] = 'Login gagal, kesempatan kurang 1 lagi, harap berhati hati';
              
 			} else // check brute force
             if ( LoginModel::checkAttemp($email) =="4"){
             $response["error"] = true;
-            $response['message'] = 'Login failed. Login attemp remain 2, please try again';
+            $response['message'] = 'Login gagal, kesempatan kurang 2 lagi, silahkan coba kembali';
              
 			} else // check brute force
             if ( LoginModel::checkAttemp($email) =="3"){
             $response["error"] = true;
-            $response['message'] = 'Login failed. Login attemp remain 3, please try again';
+            $response['message'] = 'Login gagal, kesempatan kurang 3 lagi, silahkan coba kembali';
              
 			} else  // check brute force
             if ( LoginModel::checkAttemp($email) =="2"){
             $response["error"] = true;
-            $response['message'] = 'Login failed. Login attemp remain 4, please try again';
+            $response['message'] = 'Login gagal, kesempatan kurang 4 lagi, silahkan coba kembali';
              
 			} else // check brute force
             if ( LoginModel::checkAttemp($email) =="1"){
             $response["error"] = true;
-            $response['message'] = 'Login failed. Login attemp remain 5, please try again';
+            $response['message'] = 'Login gagal, kesempatan kurang 5 lagi, silahkan coba kembali';
 			}			
 			} else {
 	    $response['error'] = true;
-            $response['message'] = 'Login failed. Incorrect credentials';	
+            $response['message'] = 'Login gagal, email atau password anda salah, silahkan coba kembali';	
 					
 			};
         
             }    
 	}			             
            // echoRespnse(200, $response);
-           HelperModel::echoRespnse (200, $response);
+           BantuanModel::echoRespnse (200, $response);
 });
 
     

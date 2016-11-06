@@ -3,48 +3,43 @@
 $app->post('/konsumen/registrasi/', function () use ($app) {
 
             // check for required params
-            HelperModel::verifyRequiredParams(array('nama', 'alamat','nohp','email', 'password'));
+            BantuanModel::verifyRequiredParams(array('konsumen_nama', 'konsumen_alamat','konsumen_nohp','konsumen_email', 'konsumen_password'));
             
             $response = array();
 
             // reading post params
-            $nama = $app->request->post('nama');
-            $alamat = $app->request->post('alamat');
-            $nohp = $app->request->post('nohp');
-            $email = $app->request->post('email');
-            $password = $app->request->post('password');
+            $konsumen_nama = $app->request->post('konsumen_nama');
+            $konsumen_alamat = $app->request->post('konsumen_alamat');
+            $konsumen_nohp = $app->request->post('konsumen_nohp');
+            $konsumen_email = $app->request->post('konsumen_email');
+            $konsumen_password = $app->request->post('konsumen_password');
 
             // validating email address
-            ValidasiModel::validasiEmail($email);
+            ValidasiModel::validasiEmail($konsumen_email);
+            
+            // validating email address
+            ValidasiModel::validasiNama($konsumen_nama);
+            
+            // validating email address
+            ValidasiModel::validasiPassword($konsumen_password);
 
-
-            $result = RegistrasiModel::membuatUser($nama, $alamat, $nohp, $email, $password);
+            $result = RegistrasiModel::membuatUser($konsumen_nama, $konsumen_alamat, $konsumen_nohp, $konsumen_email, $konsumen_password);
 
             if ($result == USER_CREATED_SUCCESSFULLY) {
 
-                $user = RegistrasiModel::getUserByEmail($email);
-                
-                 // use is found
-                $response["error"] = FALSE;
-                $response["uid"] = $user["konsumen_id"];
-                $response["user"]["nama"] = $user["nama"];
-                $response["user"]["alamat"] = $user["alamat"];
-                $response["user"]["nohp"] = $user["nohp"];
-                $response["user"]["email"] = $user["email"];
-                $response["user"]["api_key"] = $user["api_key"];
-                $response["user"]["status"] = $user["status"];
-                $response["user"]["created_at"] = $user["created_at"];
-                $response["user"]["updated_at"] = $user["updated_at"];
-                
+                $response = KonsumenModel::konsumenByEmail($konsumen_email);
+               
             } else if ($result == USER_CREATE_FAILED) {
                 $response["error"] = true;
                 $response["message"] = "Oops! An error occurred while registering";
+                
             } else if ($result == USER_ALREADY_EXISTED) {
                 $response["error"] = true;
                 $response["message"] = "Sorry, this email already existed";
             } 
             // echo json response
-            HelperModel::echoRespnse(201, $response);
+            BantuanModel::echoRespnse(201, $response);           
+            
         });
 
 
@@ -56,51 +51,58 @@ $app->get('/konsumen/registrasi/aktifasi/:nama/(:token(/))', function () use ($a
     $app->view()->set('nama', empty($args[0])?'':$args[0]);
     $app->view()->set('token', empty($args[1])?'':$args[1]);
 
-    $app->render('aktifasi.php');
+    $app->render('konsumen/aktifasi.php');
 });
 
-$app->get('/konsumen/registrasi/aktifasi/:nama/:token/(:aktifkan(/))', function () use ($app) {
+$app->get('/konsumen/registrasi/aktifasi/:nama/:token/(aktifkan(/))', function () use ($app) {
 
-            $response = array();
-            
-            $args = func_get_args();
+    $response = array();
 
-            $token = (empty($args[1])?'':$args[1]);
+    $args = func_get_args();
 
-            $result = RegistrasiModel::aktifkanUser($token);
+    $kode_aktifasi = (empty($args[1])?'':$args[1]);
+        $app->view()->set('nama', empty($args[0])?'':$args[0]);
 
-            if ($result) {
+    $result = RegistrasiModel::aktifkanUser( $kode_aktifasi);
 
-                $user = RegistrasiModel::getUserByToken($token);
-                
-                // user is found
-                $response["error"] = FALSE;
-                $response["uid"] = $user["konsumen_id"];
-                $response["user"]["nama"] = $user["nama"];
-                $response["user"]["alamat"] = $user["alamat"];
-                $response["user"]["nohp"] = $user["nohp"];
-                $response["user"]["email"] = $user["email"];
-                $response["user"]["api_key"] = $user["api_key"];
-                $response["user"]["status"] = $user["status"];
-                $response["user"]["created_at"] = $user["created_at"];
-                $response["user"]["updated_at"] = $user["updated_at"];
-                
-            } else {
-                $response["error"] = true;
-                $response["message"] = "Sorry, failed to activate, please check your token";
-            } 
-            // echo json response
-            HelperModel::echoRespnse(201, $response);
+    if ($result) {
+
+        $konsumen = RegistrasiModel::getUserByToken($kode_aktifasi);
+
+        // konsumen di temukan mengirim data konsumen
+        $response["error"] = FALSE;
+        $response["message"] = "Selamat account anda berhasil di aktifkan";
+        $response["konsumen_id"] = $konsumen["konsumen_id"];
+        $response["konsumen"]["konsumen_nama"] = $konsumen["konsumen_nama"];
+        $response["konsumen"]["konsumen_alamat"] = $konsumen["konsumen_alamat"];
+        $response["konsumen"]["konsumen_nohp"] = $konsumen["konsumen_nohp"];
+        $response["konsumen"]["konsumen_email"] = $konsumen["konsumen_email"];
+        $response["konsumen"]["konsumen_kunci_api"] = $konsumen["konsumen_kunci_api"];
+        $response["konsumen"]["konsumen_status_aktifasi"] = $konsumen["konsumen_status_aktifasi"];
+        $response["konsumen"]["konsumen_dibuat_pada"] = $konsumen["konsumen_dibuat_pada"];
+        $response["konsumen"]["konsumen_login_terahir"] = $konsumen["konsumen_login_terahir"];
+        $response["konsumen"]["konsumen_update_pada"] = $konsumen["konsumen_update_pada"];
+
+        KirimEmailModel::emailAktifasiSukses($konsumen["konsumen_email"], $konsumen["konsumen_nama"]);
+
+            $app->redirect('sukses');
+
+        } else {
+            $response["error"] = true;
+            $response["message"] = "Sorry, failed to activate, please check your token";
+        } 
+        // echo json response
+        BantuanModel::echoRespnse(201, $response);
         
 });
 
 
-$app->get('/konsumen/registrasi/success/(:secret(/))', function () use ($app) {
+$app->get('/konsumen/registrasi/aktifasi/:nama/:token/aktifkan/(sukses(/))', function () use ($app) {
 
     $args = func_get_args();
+    $app->view()->set('nama', empty($args[0])?'':$args[0]);
+    $app->view()->set('token', empty($args[1])?'':$args[1]);
 
-    $app->view()->set('secret', empty($args[0])?'':$args[0]);
-
-    $app->render('aktifasi_sukses.php');
+    $app->render('konsumen/aktifasi_sukses.php');
 });
 

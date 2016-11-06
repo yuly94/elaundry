@@ -11,62 +11,45 @@ class RegistrasiModel{
      * @param String $email User login email id
      * @param String $password User login password
      */
-    public function membuatUser($nama, $alamat, $nohp, $email, $password) {
+    public function membuatUser($konsumen_nama, $konsumen_alamat, $konsumen_nohp, $konsumen_email, $konsumen_password) {
         
         $app = \Slim\Slim::getInstance();
        
         $response = array();
 
-        // Validating Email
-	ValidasiModel::validasiEmail($email);
-
-	//create the activasion code
-	$token_aktifasi = md5(uniqid(rand(),true));
-        
         // First check if user already existed in db
-        if (!ValidasiModel::isUserExists($email)) {
+        if (!ValidasiModel::cekKonsumen($konsumen_email)) {
             
-            // Generating password hash
-            $password_hash = GeneratorModel::hash($password);
-
-            // Generating API key
-            $api_key = GeneratorModel::generateApiKey();
-        
-	    // Generating UID key
-	    $konsumen_id = GeneratorModel::generateUID();
-            
+            $token_aktifasi = GeneratorModel::randStrGen(50);
             // insert query        
-            $sql = "INSERT INTO konsumen(konsumen_id, nama, alamat, nohp, email, password_hash, api_key, activation, reset_token, actived, reset_complete, created_at, status) values(:konsumen_id, :nama, :alamat, :nohp, :email, :password_hash, :api_key, :activation,:reset_token, :actived, :reset_complete,NOW(),1)";
+            $sql = "INSERT INTO konsumen(konsumen_id, konsumen_nama, konsumen_alamat, "
+                    . "konsumen_nohp, konsumen_email, konsumen_password, konsumen_kunci_api, "
+                    . "konsumen_kode_aktifasi, konsumen_kode_reset, konsumen_dibuat_pada, konsumen_status_aktifasi,konsumen_status,konsumen_status_reset) "
+                    . "values(:konsumen_id, :konsumen_nama, :konsumen_alamat, :konsumen_nohp,"
+                    . ":konsumen_email, :konsumen_password, :konsumen_kunci_api, :konsumen_kode_aktifasi,"
+                    . ":konsumen_kode_reset,   NOW(), :konsumen_status_aktifasi,:konsumen_status,:konsumen_status_reset)";
        
             $stmt = $app->db->prepare($sql);
             $result = $stmt->execute(array(
-            'konsumen_id'=>$konsumen_id,
-            'nama'=>$nama,
-            'alamat'=>$alamat,
-            'nohp'=>$nohp,
-            'email'=>$email,
-            'password_hash'=>$password_hash,
-            'api_key'=>$api_key,
-            'activation'=>$token_aktifasi,
-            'reset_token'=>'0',
-            'actived'=>'0',
-            'reset_complete'=>'0'
+            'konsumen_id'=>GeneratorModel::generateUID(),
+            'konsumen_nama'=>$konsumen_nama,
+            'konsumen_alamat'=>$konsumen_alamat,
+            'konsumen_nohp'=>$konsumen_nohp,
+            'konsumen_email'=>$konsumen_email,
+            'konsumen_password'=> GeneratorModel::hash($konsumen_password),
+            'konsumen_kunci_api'=> GeneratorModel::generateApiKey(),
+            'konsumen_kode_aktifasi'=> $token_aktifasi,
+            'konsumen_kode_reset'=> NULL,
+            'konsumen_status_aktifasi'=>"belum aktifasi",
+            'konsumen_status'=>"menunggu aktifasi",
+            'konsumen_status_reset'=>"none"
         ));
             
             // Check for successful insertion
             if ($result) {
                 // User successfully inserted
                 
-                //send email
-                $to = $email;
-		$subject = "Pendaftaran berhasil";
-		$body = "<p>Selamat datang $nama.</p>
-		<p>Pendaftaran anda di elaundry telah berhasil dilakukan</p>
-		<p>Silahkan melakukan aktifasi dengan mengklik link berikut ini :
-                <a href='".DIR."/konsumen/registrasi/aktifasi/$nama/$token_aktifasi'>".DIR."/konsumen/registrasi/aktifasi/$nama/$token_aktifasi</a></p>
-                <p>Regards Site Admin</p>";
-
-                EmailModel::sentEmail($to,$subject,$body);
+                KirimEmailModel::emailAktifasi($konsumen_email, $token_aktifasi, $konsumen_nama);
 
                 return USER_CREATED_SUCCESSFULLY;
             } else {
@@ -88,34 +71,28 @@ class RegistrasiModel{
      * @param String $activator User activation code
      */
     
-public function aktifkanUser($activator) {
+public function aktifkanUser( $konsumen_kode_aktifasi) {
     
         $app = \Slim\Slim::getInstance();
 
-	$sql = "UPDATE konsumen SET actived =:actived WHERE activation = :activation";
+	$sql = "UPDATE konsumen SET konsumen_status =:konsumen_status, konsumen_status_aktifasi =:konsumen_status_aktifasi WHERE konsumen_kode_aktifasi = :konsumen_kode_aktifasi";
 
-	$active = "1";
+	$konsumen_status_aktifasi = "sudah diaktifasi";
+        $konsumen_status = "aktif";
 
         $stmt = $app->db->prepare($sql);
         $result = $stmt->execute(array(
-            'actived'=>$active,
-            'activation'=>$activator       
+            'konsumen_status'=>$konsumen_status,
+            'konsumen_status_aktifasi'=>$konsumen_status_aktifasi,
+            'konsumen_kode_aktifasi'=>$konsumen_kode_aktifasi       
         ));
 
         // Check for successful insertion
         if($result){
 
-            //send email
-            $to = "wachid.sst@gmail.com"; 
-            $subject = "aktifasi berhasil";
-            $body = "<p>Selamat datang . </p>
-            <p>Selamat Aktifasi anda di Elaundry telah berhasil</p>
-            <p></p>
-            <p>Regards Site Admin</p>";
-
-            EmailModel::sentEmail($to,$subject,$body);
 
             //Update user password success
+
             return TRUE;
 
             } else {
@@ -130,7 +107,7 @@ public function aktifkanUser($activator) {
      * Fetching user by email
      * @param String $email User email id
      */
-    public function getUserByEmail($email) {
+    public function konsumenByEmail($email) {
 		
         $app = \Slim\Slim::getInstance();
         
@@ -155,27 +132,30 @@ public function aktifkanUser($activator) {
      * Fetching user by email
      * @param String $email User email id
      */
-    public function getUserByToken($token) {
+    public function getUserByToken($konsumen_kode_aktifasi) {
 		
         $app = \Slim\Slim::getInstance();
         
-        $sql = "SELECT konsumen_id, nama, alamat, nohp, email, api_key, status, created_at, last_login, updated_at FROM konsumen WHERE activation =:activation";        
+        $sql = "SELECT konsumen_id, konsumen_nama, konsumen_alamat, konsumen_nohp, konsumen_email, konsumen_kunci_api, konsumen_status_aktifasi, konsumen_dibuat_pada, konsumen_login_terahir, konsumen_update_pada FROM konsumen WHERE konsumen_kode_aktifasi =:konsumen_kode_aktifasi";        
                 
         $stmt = $app->db->prepare($sql);
-        $stmt->execute(array('activation'=>$token));
+        $stmt->execute(array('konsumen_kode_aktifasi'=>$konsumen_kode_aktifasi));
         
-        $user=$stmt->fetch(PDO::FETCH_ASSOC);
+        $konsumen=$stmt->fetch(PDO::FETCH_ASSOC);
         
         if($stmt->rowCount() > 0)
             {
 
           //  $stmt->close();
-            return $user;
+            return $konsumen;
         } else {
             return FALSE;
         }
     }
 
+    public function redirect(){
+         $app->redirect("sukses");
+    }
 
     
 }

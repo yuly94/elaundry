@@ -1,7 +1,5 @@
 <?php
 
-use \My\PassHash;
-use \My\Helper;
 
 class KonsumenModel{
     
@@ -32,7 +30,7 @@ class KonsumenModel{
 
             $stmt->fetch();
 
-            if (PassHash::check_password($password_hash, $password)) {
+            if (ValidasiModel::check_password($password_hash, $password)) {
                 // User password is correct
                 return TRUE;
             } else {
@@ -128,7 +126,7 @@ class KonsumenModel{
 
             $stmt->fetch();
 
-            if (PassHash::check_password($password_hash, $password)) {
+            if (ValidasiModel::check_password($password_hash, $password)) {
                 // User password is correct
                 return TRUE;
             } else {
@@ -155,7 +153,7 @@ class KonsumenModel{
 public function updateApi($email) {
 
         // Generating API key
-        $api_key = Helper::generateApiKey();
+        $api_key = BantuanModel::generateApiKey();
 		
         $app = \Slim\Slim::getInstance();
         

@@ -11,17 +11,17 @@ class LoginModel{
      * @param String $password User login password
      * @return boolean User login status success/fail
      */
-    public static function Login($email, $password) {
+    public static function Login($login_email, $login_password) {
         // fetching user by email
         $app = \Slim\Slim::getInstance();
         
-        $sql= "SELECT password_hash FROM konsumen WHERE email =:email";
+        $sql= "SELECT konsumen_password FROM konsumen WHERE email =:email";
         
         $stmt = $app->db->prepare($sql);
-        $stmt->execute(array('email'=>$email));
+        $stmt->execute(array('konsumen_email'=>$login_email));
         
         while($result=$stmt->fetch()){ //for each result, do the following
-         $password_hash=$result['password_hash'];
+         $konsumen_password=$result['konsumen_password'];
         }
 
         if ($stmt->rowCount() > 0) {
@@ -30,7 +30,7 @@ class LoginModel{
 
             $stmt->fetch();
 
-            if (GeneratorModel::check_password($password_hash, $password)) {
+            if (GeneratorModel::check_password($konsumen_password, $login_password)) {
                 // User password is correct
                 return TRUE;
             } else {
@@ -51,27 +51,9 @@ class LoginModel{
     }
 
 
-    public static function getAccountByAPISecretKey($secret, $activeKeyOnly = true){
 
-        $app = \Slim\Slim::getInstance();
-
-        $sql = "SELECT * FROM account_api_keys k
-        JOIN account a ON k.acc_id=a.acc_id
-        WHERE k.key_secret=:key_secret";
-
-        if($activeKeyOnly){
-
-            $sql .= " AND k.key_status='On' AND a.locked='No' AND a.deleted='No'";
-        }
-
-        $stmt = $app->db->prepare($sql);
-        $stmt->execute(array('key_secret'=>$secret));
-
-        return $stmt->fetch();
-    }
     
-    
-    public static function checkbrute($email) {
+    public static function cekPemaksaan($cek_email) {
         
     $app = \Slim\Slim::getInstance();
     
@@ -79,12 +61,12 @@ class LoginModel{
     $now = time();
  
     // All login attempts are counted from the past  hours. 
-    $valid_attempts = $now - (1 * 60 * 60);
+    $percobaan_login = $now - (1 * 60 * 60);
  
-        $sql = "SELECT waktu FROM login_attemps WHERE email=:email AND waktu > :valid_attempts";        
+        $sql = "SELECT waktu FROM mencoba_login WHERE email=:email AND waktu > :percobaan_login";        
                 
         $stmt = $app->db->prepare($sql);
-        $stmt->execute(array('email'=>$email,'valid_attempts'=>$valid_attempts));
+        $stmt->execute(array('email'=>$cek_email,'percobaan_login'=>$percobaan_login));
               
         // If there have been more than 5 failed logins 
         if ($stmt->rowCount() > 5) {
@@ -105,19 +87,19 @@ class LoginModel{
      * @param String $password User login password
      * @return boolean User login status success/fail
      */
-    public function checkLogin($email, $password) {
+    public function cekLogin($login_email, $login_password) {
         
         $app = \Slim\Slim::getInstance();
     
         // fetching user by email
         
-        $sql = "SELECT password_hash FROM konsumen WHERE email =:email";        
+        $sql = "SELECT konsumen_password FROM konsumen WHERE konsumen_email =:login_email";        
                 
         $stmt = $app->db->prepare($sql);
-        $stmt->execute(array('email'=>$email));
+        $stmt->execute(array('login_email'=>$login_email));
         
         while($result=$stmt->fetch()){ //for each result, do the following
-         $password_hash=$result['password_hash'];
+         $konsumen_password=$result['konsumen_password'];
         }
 
         if ($stmt->rowCount() > 0) {
@@ -126,7 +108,7 @@ class LoginModel{
 
             $stmt->fetch();
 
-            if (PassHashModel::check_password($password_hash, $password)) {
+            if (PassHashModel::cek_password($konsumen_password, $login_password)) {
                 // User password is correct
                 return TRUE;
             } else {
@@ -150,17 +132,17 @@ class LoginModel{
     
     /* ------------- `fungsi update api konsumen ketika login` ------------------ */
 
-public function updateApi($email) {
+public function updateKunciApi($login_email) {
 
         // Generating API key
-        $api_key = GeneratorModel::generateApiKey();
+        $konsumen_kunci_api = GeneratorModel::generateApiKey();
 		
         $app = \Slim\Slim::getInstance();
         
-        $sql = "UPDATE konsumen SET api_key = :api_key, last_login = NOW() WHERE email =:email";        
+        $sql = "UPDATE konsumen SET konsumen_kunci_api = :konsumen_kunci_api, konsumen_login_terahir = NOW() WHERE konsumen_email =:login_email";        
                 
         $stmt = $app->db->prepare($sql);
-        $stmt->execute(array('api_key'=>$api_key,'email'=>$email));
+        $stmt->execute(array('konsumen_kunci_api'=>$konsumen_kunci_api,'login_email'=>$login_email));
 		
         // Check for successful insertion
         if ($stmt->rowCount() > 0) {
@@ -175,45 +157,18 @@ public function updateApi($email) {
     }
 	
     
-    
-    /**
-     * Fetching user by email
-     * @param String $email User email id
-     */
-    public function getUserByEmail($email) {
-		
-        $app = \Slim\Slim::getInstance();
-        
-        $sql = "SELECT konsumen_id, nama, alamat, nohp, email, api_key, status, created_at, last_login, updated_at FROM konsumen WHERE email =:email";        
-                
-        $stmt = $app->db->prepare($sql);
-        $stmt->execute(array('email'=>$email));
-        
-        $user=$stmt->fetch(PDO::FETCH_ASSOC);
-        
-        if($stmt->rowCount() > 0)
-            {
 
-          //  $stmt->close();
-            return $user;
-        } else {
-            return NULL;
-        }
-    }
-
-    
-
-public function loginFailed($email) {
+public function loginGagal($login_email) {
     
     $app = \Slim\Slim::getInstance();
     
     $now = time();
 	      
-    $sql = "INSERT INTO login_attemps(email, waktu)  VALUES ( :email, :now);";
+    $sql = "INSERT INTO mencoba_login(email, waktu)  VALUES ( :email, :now);";
     
     $stmt = $app->db->prepare($sql);
    
-    $result = $stmt->execute(array('email'=>$email,'now'=>$now));
+    $result = $stmt->execute(array('email'=>$login_email,'now'=>$now));
 
    // $stmt->close();	
 		// Check for successful insertion
@@ -228,19 +183,19 @@ public function loginFailed($email) {
 	
     
 
-    public function checkAttemp($email) {
+    public function cekPercobaanLogin($login_email) {
         
     $app = \Slim\Slim::getInstance();    
     
     // All login attempts are counted from the past  hours. 
-    $valid_attempts = time() - (1 * 60 * 60);
+    $percobaan_login = time() - (1 * 60 * 60);
  
-	$sql = "SELECT waktu FROM login_attemps WHERE email = :email AND waktu > :valid_attempts";
+	$sql = "SELECT waktu FROM mencoba_login WHERE email = :email AND waktu > :valid_attempts";
  
         $stmt = $app->db->prepare($sql);
         
         // Execute the prepared query. 
-        $stmt->execute(array('email'=>$email,'valid_attempts'=>$valid_attempts));
+        $stmt->execute(array('email'=>$login_email,'valid_attempts'=>$percobaan_login));
 
       //  $stmt->store_result();
  

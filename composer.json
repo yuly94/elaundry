@@ -24,6 +24,7 @@
                 "libs/LibsLoader.php",
                 "application/controllers/index.php",
                 "application/controllers/error.php"
+                
             ]
              
          }

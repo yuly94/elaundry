@@ -70,5 +70,23 @@ public function verifyHash($password, $hash) {
 }
 
 
+    public function acakan_kunci($password){
+
+                // Generating password hash
+            $password_hash = GeneratorModel::hash($password);
+
+            // Generating API key
+            $api_key = GeneratorModel::generateApiKey();
+        
+	    // Generating UID key
+	    $konsumen_id = GeneratorModel::generateUID();
+
+            $acakan = array(
+                "password_hash" => $password_hash, 
+                "api_key" => $api_key, 
+                "konsumen_id" => $konsumen_id);
+            
+        return $acakan ($password_hash, $api_key, $konsumen_id);
     
+    }
 }

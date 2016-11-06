@@ -595,8 +595,6 @@ $app->get('/maps', 'authenticate', function() {
     });
 
 
-    
-    
     /**
  * Listing all tempat of particual user
  * method GET

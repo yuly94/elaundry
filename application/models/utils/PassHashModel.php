@@ -21,7 +21,7 @@ class PassHashModel {
     }
 
     // this will be used to compare a password against a hash
-    public static function check_password($hash, $password) {
+    public static function cek_password($hash, $password) {
         $full_salt = substr($hash, 0, 29);
         $new_hash = crypt($password, $full_salt);
         return ($hash == $new_hash);

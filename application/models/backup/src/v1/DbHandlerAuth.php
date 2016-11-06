@@ -701,7 +701,7 @@ public function passwordResetRequest($konsumen_email){
 
     public function resetPassword($email,$code,$password){
  
-        $sql = 'SELECT encrypted_temp_password, salt, created_at FROM password_reset_request WHERE email = ?';
+        $sql = 'SELECT password_sementara, salt, created_at FROM password_reset WHERE email = ?';
 	$stmt = $this->conn->prepare($sql);
 
         $stmt->bind_param("s", $email);

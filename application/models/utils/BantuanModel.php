@@ -1,7 +1,7 @@
 <?php
 
 
-class HelperModel{
+class BantuanModel{
     
     public static function response(
             $success, 
@@ -97,7 +97,7 @@ function verifyRequiredParams($required_fields) {
         $app = \Slim\Slim::getInstance();
         $response["error"] = true;
         $response["message"] = 'Required field(s) ' . substr($error_fields, 0, -2) . ' is missing or empty';
-        echoRespnse(400, $response);
+        BantuanModel::echoRespnse(400, $response);
         $app->stop();
     }
 }

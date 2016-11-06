@@ -28,8 +28,6 @@ class PDOMySQLConnectionModel{
             $app->log->error('DB Connection Error '.$p);
             return $app->halt(500, $app->view()->fetch('error/db-error.php'));
 
-            
-  
         }
 
         return $instance;
