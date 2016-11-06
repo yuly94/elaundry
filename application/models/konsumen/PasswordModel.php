@@ -27,7 +27,7 @@ public function ResetRequest($konsumen_email,$konsumen_id,$konsumen_nama){
 
         if ($stmt->rowCount() == 0){
 
- 	$sql = "INSERT INTO password_reset(email,user_id, password_sementara, salt, created_at) values(:email, :user_id, :encrypted_temp_password, :salt, :created_at)";
+ 	$sql = "INSERT INTO password_reset(email,user_id, password_sementara, salt, dibuat_pada) values(:email, :user_id, :password_sementara, :salt, :dibuat_pada)";
         // insert query        
    
         $stmt = $app->db->prepare($sql);
@@ -36,7 +36,7 @@ public function ResetRequest($konsumen_email,$konsumen_id,$konsumen_nama){
             'user_id'=>$konsumen_id,
             'password_sementara'=>$password_sementara,
             'salt'=>$salt,
-            'created_at'=>$tanggal
+            'dibuat_pada'=>$tanggal
         ));
 
         if($stmt->rowCount() > 0)

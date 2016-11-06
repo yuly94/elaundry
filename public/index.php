@@ -9,9 +9,7 @@ require '../vendor/autoload.php'; #composer autoloader
 //require_once '../package/Package.php'; # replace with composer autoloader
 //\Package\Package::registerAutoloader(); # replace with composer autoloader
 
-
-
-$appconfig = require_once '../config/application.config.slim.php' ;
+$appconfig = require_once '../config/config.slim.php' ;
 $app = new \Slim\Slim($appconfig);
 
 
@@ -70,6 +68,17 @@ foreach($filesList as $fileName){
     }
 }
 
+    // Get request object
+    $req = $app->request;
+    //Get resource URI
+    $resourceUri = $req->getResourceUri();
+    $expl = explode("/", $resourceUri);
+
+    if(file_exists('../config/'.$expl[1].'.auth.php')){
+    require_once '../config/'.$expl[1].'.auth.php';
+    
+    }  
+
 
 $app->container->singleton('db', function () use ($app) {
 
@@ -107,5 +116,4 @@ spl_autoload_register(function($className) use ($app) {
 });
  
  
-
 $app->run();

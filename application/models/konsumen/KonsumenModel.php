@@ -95,7 +95,30 @@ class KonsumenModel{
         }
     }
 
-     
+    
+        /**
+     * Fetching user id by api key
+     * @param String $konsumen_kunci_api user api key
+     */
+    public function getKonsumenByApi($konsumen_kunci_api) {
+        $app = \Slim\Slim::getInstance();
+        
+        $sql = "SELECT konsumen_no, konsumen_id, konsumen_email FROM konsumen WHERE konsumen_kunci_api = :konsumen_kunci_api";
+   
+        $stmt = $app->db->prepare($sql);
+        $stmt->execute(array('konsumen_kunci_api'=>$konsumen_kunci_api));
+        
+        $konsumen=$stmt->fetch(PDO::FETCH_ASSOC);
+        
+        if($stmt->rowCount() > 0)
+            {
+            return $konsumen;
+        } else {
+            return FALSE;
+        }
+    }
+    
+    
     /**
      * Fetching user id by api key
      * @param String $konsumen_kunci_api user api key
@@ -103,7 +126,7 @@ class KonsumenModel{
     public function getKonsumenIdByApi($konsumen_kunci_api) {
         $app = \Slim\Slim::getInstance();
         
-        $sql = "SELECT konsumen_no FROM konsumen WHERE konsumen_kunci_api = :konsumen_kunci_api?";
+        $sql = "SELECT konsumen_no FROM konsumen WHERE konsumen_kunci_api = :konsumen_kunci_api";
    
         $stmt = $app->db->prepare($sql);
         $stmt->execute(array('konsumen_kunci_api'=>$konsumen_kunci_api));
@@ -112,7 +135,7 @@ class KonsumenModel{
         
         if($stmt->rowCount() > 0)
             {
-            return $konsumen_id;
+            return $konsumen_id["konsumen_no"];
         } else {
             return FALSE;
         }
@@ -134,7 +157,7 @@ class KonsumenModel{
         
         if($stmt->rowCount() > 0)
             {
-            return $konsumen_id;
+            return $konsumen_id["konsumen_id"];
         } else {
             return FALSE;
         }
@@ -148,7 +171,7 @@ class KonsumenModel{
         
         $app = \Slim\Slim::getInstance();
 
-        $sql = "SELECT email FROM konsumen WHERE konsumen_kunci_api = :konsumen_kunci_api";
+        $sql = "SELECT konsumen_email FROM konsumen WHERE konsumen_kunci_api = :konsumen_kunci_api";
 
         $stmt = $app->db->prepare($sql);
         $stmt->execute(array('konsumen_kunci_api'=>$konsumen_kunci_api));

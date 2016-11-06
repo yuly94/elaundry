@@ -6,12 +6,11 @@
  * and open the template in the editor.
  */
 
-function authenticate(\Slim\Route $route) {
+function authKonsumen(\Slim\Route $route) {
     // Getting request headers
     $headers = apache_request_headers();
     $response = array();
-    $app = \Slim\Slim::getInstance();
-
+ 
     // Verifying Authorization Header
     if (isset($headers['Authorization'])) {
 
@@ -23,21 +22,20 @@ function authenticate(\Slim\Route $route) {
             $response["error"] = true;
             $response["message"] = "Access Denied. Invalid Api key";
             BantuanModel::echoRespnse(401, $response);
-            
-            $app->stop();
+         
             
         } else {
 
+            global $api_konsumen_no;
+            global $api_konsumen_id;
+	    global $api_konsumen_email;
+
             // get user primary key id
-            $api_email = KonsumenModel::getKonsumenEmail($api_key);
-            // get user primary key id
-            $konsumen_id = KonsumenModel::getKonsumenUnikId($api_key);
-            // get user primary key id
-            $id = KonsumenModel::getKonsumenId($api_key);
-            
-            global $id;
-            global $konsumen_id;
-	    global $api_email;
+            $konsumen = KonsumenModel::getKonsumenByApi($api_key);
+
+            $api_konsumen_no = $konsumen["konsumen_no"];
+            $api_konsumen_id = $konsumen["konsumen_id"];
+            $api_konsumen_email = $konsumen["konsumen_email"];
 
                 }
                 
@@ -46,6 +44,6 @@ function authenticate(\Slim\Route $route) {
         $response["error"] = true;
         $response["message"] = "Api key is misssing";
         BantuanModel::echoRespnse(401, $response);
-        $app->stop();
+       
     }
 }
