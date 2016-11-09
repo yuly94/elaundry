@@ -46,8 +46,8 @@ class KonsumenModel{
     
     /**
      * Checking user login
-     * @param String $email User login email id
-     * @param String $password User login password
+     * @param String $login_email User login email id
+     * @param String $login_password User login password
      * @return boolean User login status success/fail
      */
     public static function cekPassword($login_email, $login_password) {
@@ -61,17 +61,17 @@ class KonsumenModel{
         $stmt = $app->db->prepare($sql);
         $stmt->execute(array('login_email'=>$login_email));
         
-        while($result=$stmt->fetch()){ //for each result, do the following
-         $konsumen_password=$result['konsumen_password'];
-        }
-
-        if ($stmt->rowCount() > 0) {
+        //for each result, do the following
+        $konsumen=$stmt->fetch(PDO::FETCH_ASSOC);
+        
+        if($stmt->rowCount() > 0)
+            {
             // Found user with the email
             // Now verify the password
 
             $stmt->fetch();
 
-            if (PassHashModel::cek_password($konsumen_password, $login_password)) {
+            if (PassHashModel::cek_password($konsumen["konsumen_password"], $login_password)) {
                 // User password is correct
                 return TRUE;
             } else {
@@ -91,38 +91,34 @@ class KonsumenModel{
         }
     }
 
-      /* ------------- `login konsumen` ------------------ */
-    
+ 
     /**
-     * Checking user login
-     * @param String $email User login email id
-     * @param String $password User login password
+     * Checking password dengan menggunakan 
+     * @param String $konsumen_id User login email id
+     * @param String $password_lama User login password
      * @return boolean User login status success/fail
      */
-    public static function cekPasswordById($konsumen_id, $konsumen_password) {
+    public static function cekPasswordById($konsumen_id, $password_lama) {
         
         $app = \Slim\Slim::getInstance();
     
         // fetching user by email
         
-        $sql = "SELECT konsumen_password FROM konsumen WHERE konsumen_id =:konsumen_id";        
+        $sql = "SELECT konsumen_password, konsumen_email, konsumen_nama FROM konsumen WHERE konsumen_id =:konsumen_id";        
                 
         $stmt = $app->db->prepare($sql);
         $stmt->execute(array('konsumen_id'=>$konsumen_id));
         
-        while($result=$stmt->fetch()){ //for each result, do the following
-         $konsumen_password=$result['konsumen_password'];
-        }
-
-        if ($stmt->rowCount() > 0) {
+        $konsumen=$stmt->fetch(PDO::FETCH_ASSOC);
+        
+        if($stmt->rowCount() > 0)
+            {
             // Found user with the email
             // Now verify the password
 
-            $stmt->fetch();
-
-            if (PassHashModel::cek_password($konsumen_password, $login_password)) {
+            if (PassHashModel::cek_password($konsumen["konsumen_password"], $password_lama)) {
                 // User password is correct
-                return TRUE;
+                return $konsumen;
             } else {
                 // user password is incorrect
                                 
@@ -249,9 +245,7 @@ class KonsumenModel{
 
         return $stmt->fetch();
     }
-
-
-    	
+ 	
     /**
      * Fetching user api key
      * @param String $konsumen_id user id primary key in user table

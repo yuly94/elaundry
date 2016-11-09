@@ -30,7 +30,7 @@ $app->post('/konsumen/registrasi/', function () use ($app) {
                 $result = KonsumenModel::konsumenByEmail($konsumen_email);
                 $response["error"] = false;
                 $response["message"] = "pendaftaran account berhasil";
-                $response["konsumen"] = $result;  
+                $response["registrasi"] = $result;  
                
             } else if ($result == USER_CREATE_FAILED) {
                 $response["error"] = true;
@@ -76,8 +76,9 @@ $app->get('/konsumen/registrasi/aktifasi/:nama/:token/(aktifkan(/))', function (
             $response["error"] = FALSE;
             $response["message"] = "Selamat account anda berhasil di aktifkan";
             $response["konsumen"] = $konsumen;  
- $kirim_email = new KirimEmailModel();  
-        $kirim_email->emailAktifasiSukses($konsumen["konsumen_email"], $konsumen["konsumen_nama"]);
+            
+            $kirim_email = new KirimEmailModel();  
+            $kirim_email->emailAktifasiSukses($konsumen["konsumen_email"], $konsumen["konsumen_nama"]);
 
             $app->redirect('sukses');
 

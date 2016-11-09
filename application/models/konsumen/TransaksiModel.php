@@ -14,7 +14,7 @@ class TransaksiModel {
     public static function getAllTransaksi($konsumen_id) {
         $app = \Slim\Slim::getInstance();
         
-        $sql = "SELECT * FROM transaksi WHERE konsumen_id = :konsumen_id ";
+        $sql = "SELECT * FROM laundry_transaksi WHERE konsumen_id = :konsumen_id ";
 
         $stmt = $app->db->prepare($sql);
         $stmt->execute(array('konsumen_id'=>$konsumen_id));

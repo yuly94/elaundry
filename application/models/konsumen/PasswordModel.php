@@ -58,7 +58,7 @@ public static function ResetRequest($konsumen_email,$konsumen_id,$konsumen_nama)
         } else {
  
         $sql = "UPDATE password_reset SET email =:email,  password_sementara=:password_sementara, "
-                . "salt=:salt, dibuat_pada=:dibuat_pada WHERE user_id=:user_id";
+                . "salt=:salt, diupdate=:diupdate_pada WHERE user_id=:user_id";
 
         $stmt = $app->db->prepare($sql);
         $stmt->execute(array(
@@ -66,7 +66,7 @@ public static function ResetRequest($konsumen_email,$konsumen_id,$konsumen_nama)
             'user_id'=>$konsumen_id,
             'password_sementara'=>$password_sementara,
             'salt'=>$salt,
-            'dibuat_pada'=>$tanggal
+            'diupdate_pada'=>$tanggal
         ));
         
         if($stmt->rowCount() > 0)

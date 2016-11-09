@@ -90,12 +90,11 @@ $app->post('/konsumen/password/reset/', function () use ($app) {
 
     }); //1
  
-    
-    
-    $app->get('/konsumen/password/ganti/','authKonsumen' ,function() use ($app){
+      
+    $app->post('/konsumen/password/ganti/','authKonsumen' ,function() use ($app){
         
             // check for required params
-            BantuanModel::verifyRequiredParams(array('konsumen_password_lama, konsumen_password_baru'));
+            BantuanModel::verifyRequiredParams(array('konsumen_password_lama', 'konsumen_password_baru'));
 
             // reading post params
             $konsumen_password_lama = $app->request()->post('konsumen_password_lama');
@@ -103,21 +102,18 @@ $app->post('/konsumen/password/reset/', function () use ($app) {
             $konsumen_password_baru = $app->request()->post('konsumen_password_baru');
            
             global $api_konsumen_id;
-
-            if(KonsumenModel::cekPasswordById($api_konsumen_id, $konsumen_password_lama)){
+            $konsumen = KonsumenModel::cekPasswordById($api_konsumen_id, $konsumen_password_lama);
+            if($konsumen){
                 
-                    // fetching all user tasks
-                    $result= PasswordModel::menggantiPassword($api_konsumen_id, $konsumen_password_baru);
+                // fetching all user tasks
+                if (PasswordModel::menggantiPassword($api_konsumen_id, $konsumen_password_baru)) { 
 
-                    if ($result != NULL) { 
+                $response["error"] = false;
+                $response["message"] = "password anda berhasil diganti"; 
+                BantuanModel::echoRespnse(200, $response);
 
-                    $response["error"] = false;
-                    $response["message"] = "password anda berhasil diganti"; 
-                    $response["alamat"] = $result;
-                    BantuanModel::echoRespnse(200, $response);
-                    
-                    $kirim_email = new KirimEmailModel();
-                    $kirim_email->gantiPassword($konsumen_email);
+                $kirim_email = new KirimEmailModel();
+                $kirim_email->gantiPassword($konsumen["konsumen_email"],$konsumen["konsumen_nama"]);
                     
                     }      
                     else {
@@ -130,7 +126,6 @@ $app->post('/konsumen/password/reset/', function () use ($app) {
                 
                     $response["error"] = true;
                     $response["message"] = "password lama anda salah"; 
-                    $response["alamat"] = $result;
                     BantuanModel::echoRespnse(200, $response);
                 
             }

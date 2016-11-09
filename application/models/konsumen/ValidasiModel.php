@@ -20,19 +20,23 @@ public static function validasiEmail($email) {
  // basic name validation
 
 public static function validasiNama($nama) {
+    
+        $app = \Slim\Slim::getInstance();
   if (empty($nama)) {
 
     $response["error"] = true;
     $response["message"] = 'Please enter your full name.';
     
-    BantuanModel::echoRespnse(400, $response);
+    BantuanModel::echoRespnse(200, $response);
+    $app->stop();
    
   } else if (strlen($nama) < 3) {
 
     $response["error"] = true;
     $response["message"] = 'Name must have atleat 3 characters.';
     
-    BantuanModel::echoRespnse(400, $response);
+    BantuanModel::echoRespnse(200, $response);
+     $app->stop();
 
    
   } else if (!preg_match("/^[a-zA-Z ]+$/",$nama)) {
@@ -41,12 +45,15 @@ public static function validasiNama($nama) {
    $response["message"] = 'Name must contain alphabets and space.';   
    
    BantuanModel::echoRespnse(400, $response);
+    $app->stop();
    
   }
 }
 
 
 public static function validasiPassword($password){
+    
+    $app = \Slim\Slim::getInstance();
       // password validation
   if (empty($password)){
    $response["error"] = true;
@@ -57,7 +64,8 @@ public static function validasiPassword($password){
    $response["message"] = 'Password must have atleast 6 characters.';   
    
    
-   BantuanModel::echoRespnse(400, $response);
+   BantuanModel::echoRespnse(200, $response);
+    $app->stop();
   }
 }
 
