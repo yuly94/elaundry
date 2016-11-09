@@ -47,7 +47,6 @@ class LoginModel{
 
 
 
-    
     public static function cekPemaksaan($cek_email) {
         
     $app = \Slim\Slim::getInstance();
@@ -65,6 +64,8 @@ class LoginModel{
               
         // If there have been more than 5 failed logins 
         if ($stmt->rowCount() > 5) {
+            
+            
             return true;
             
         } else {
@@ -123,36 +124,8 @@ class LoginModel{
         }
     }
 
+  
     
-    
-    /* ------------- `fungsi update api konsumen ketika login` ------------------ */
-
-    public static function updateKunciApi($login_email) {
-
-        // Generating API key
-        $konsumen_kunci_api = GeneratorModel::generateApiKey();
-		
-        $app = \Slim\Slim::getInstance();
-        
-        $sql = "UPDATE konsumen SET konsumen_kunci_api = :konsumen_kunci_api, konsumen_login_terahir = NOW() WHERE konsumen_email =:login_email";        
-                
-        $stmt = $app->db->prepare($sql);
-        $stmt->execute(array('konsumen_kunci_api'=>$konsumen_kunci_api,'login_email'=>$login_email));
-		
-        // Check for successful insertion
-        if ($stmt->rowCount() > 0) {
-                //Update user password success
-                return TRUE;
-            } else {
-               //Update user password failed
-				
-            //$stmt->close();
-            return FALSE;
-        }
-    }
-	
-    
-
     public static function loginGagal($login_email) {
     
     $app = \Slim\Slim::getInstance();
@@ -177,7 +150,6 @@ class LoginModel{
     }
 	
     
-
     public static function cekPercobaanLogin($login_email) {
         
     $app = \Slim\Slim::getInstance();    
@@ -190,7 +162,9 @@ class LoginModel{
         $stmt = $app->db->prepare($sql);
         
         // Execute the prepared query. 
-        $stmt->execute(array('email'=>$login_email,'valid_attempts'=>$percobaan_login));
+        $stmt->execute(array(
+            'email'=>$login_email,
+            'valid_attempts'=>$percobaan_login));
 
       //  $stmt->store_result();
  

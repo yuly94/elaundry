@@ -725,9 +725,7 @@ public function passwordResetRequest($konsumen_email){
 
  
             if($diff < 180) {
- 
-//
-
+                
 			if ( $this->changePassByEmail($email, $password)) {
 
 			$to = $email;

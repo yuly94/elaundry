@@ -1,12 +1,18 @@
 <?php
 
+/* 
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
+
 return array(
     'mysql' => array(
-        'host'      => 'localhost',
+        'host'      => 'mysql.idhostinger.com',
         'port'      => '3306',
-        'user'      => 'u119861978_yuly',
-        'password'  => 'rahasia',
-        'database'  => 'u119861978_lond',
+        'user'      => 'u442980053_yuly',
+        'password'  => 'elaundry',
+        'database'  => 'u442980053_elaun',
         'options'   => array(
             PDO::ATTR_PERSISTENT=>false,
             PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION,

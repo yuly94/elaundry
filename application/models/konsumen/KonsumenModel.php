@@ -40,6 +40,165 @@ class KonsumenModel{
         }
     }
     
+    
+     
+    /* ------------- `login konsumen` ------------------ */
+    
+    /**
+     * Checking user login
+     * @param String $email User login email id
+     * @param String $password User login password
+     * @return boolean User login status success/fail
+     */
+    public static function cekPassword($login_email, $login_password) {
+        
+        $app = \Slim\Slim::getInstance();
+    
+        // fetching user by email
+        
+        $sql = "SELECT konsumen_password FROM konsumen WHERE konsumen_email =:login_email";        
+                
+        $stmt = $app->db->prepare($sql);
+        $stmt->execute(array('login_email'=>$login_email));
+        
+        while($result=$stmt->fetch()){ //for each result, do the following
+         $konsumen_password=$result['konsumen_password'];
+        }
+
+        if ($stmt->rowCount() > 0) {
+            // Found user with the email
+            // Now verify the password
+
+            $stmt->fetch();
+
+            if (PassHashModel::cek_password($konsumen_password, $login_password)) {
+                // User password is correct
+                return TRUE;
+            } else {
+                // user password is incorrect
+                                
+               // Password is not correct
+               // We record this attempt in the database
+               // loginFailed($email);
+                return FALSE;
+               
+            }
+        } else {
+           // $stmt->close();
+
+            // user not existed with the email
+            return FALSE;
+        }
+    }
+
+      /* ------------- `login konsumen` ------------------ */
+    
+    /**
+     * Checking user login
+     * @param String $email User login email id
+     * @param String $password User login password
+     * @return boolean User login status success/fail
+     */
+    public static function cekPasswordById($konsumen_id, $konsumen_password) {
+        
+        $app = \Slim\Slim::getInstance();
+    
+        // fetching user by email
+        
+        $sql = "SELECT konsumen_password FROM konsumen WHERE konsumen_id =:konsumen_id";        
+                
+        $stmt = $app->db->prepare($sql);
+        $stmt->execute(array('konsumen_id'=>$konsumen_id));
+        
+        while($result=$stmt->fetch()){ //for each result, do the following
+         $konsumen_password=$result['konsumen_password'];
+        }
+
+        if ($stmt->rowCount() > 0) {
+            // Found user with the email
+            // Now verify the password
+
+            $stmt->fetch();
+
+            if (PassHashModel::cek_password($konsumen_password, $login_password)) {
+                // User password is correct
+                return TRUE;
+            } else {
+                // user password is incorrect
+                                
+               // Password is not correct
+               // We record this attempt in the database
+               // loginFailed($email);
+                return FALSE;
+               
+            }
+        } else {
+           // $stmt->close();
+
+            // user not existed with the email
+            return FALSE;
+        }
+    }
+
+    
+    
+    
+       
+    /* ------------- `fungsi update api konsumen ketika login` ------------------ */
+
+    public static function updateKunciApiById($konsumen_id) {
+
+        // Generating API key
+        $konsumen_kunci_api = GeneratorModel::generateApiKey();
+		
+        $app = \Slim\Slim::getInstance();
+        
+        $sql = "UPDATE konsumen SET konsumen_kunci_api = :konsumen_kunci_api, konsumen_login_terahir = NOW() WHERE konsumen_id =:konsumen_id";        
+                
+        $stmt = $app->db->prepare($sql);
+        $stmt->execute(array('konsumen_kunci_api'=>$konsumen_kunci_api,'konsumen_id'=>$konsumen_id));
+		
+        // Check for successful insertion
+        if ($stmt->rowCount() > 0) {
+                //Update user password success
+                return TRUE;
+            } else {
+               //Update user password failed
+				
+            //$stmt->close();
+            return FALSE;
+        }
+    }
+    
+        
+    /* ------------- `fungsi update api konsumen ketika login` ------------------ */
+
+    public static function updateKunciApiByEmail($login_email) {
+
+        // Generating API key
+        $konsumen_kunci_api = GeneratorModel::generateApiKey();
+		
+        $app = \Slim\Slim::getInstance();
+        
+        $sql = "UPDATE konsumen SET konsumen_kunci_api = :konsumen_kunci_api, konsumen_login_terahir = NOW() WHERE konsumen_email =:login_email";        
+                
+        $stmt = $app->db->prepare($sql);
+        $stmt->execute(array('konsumen_kunci_api'=>$konsumen_kunci_api,'login_email'=>$login_email));
+		
+        // Check for successful insertion
+        if ($stmt->rowCount() > 0) {
+                //Update user password success
+                return TRUE;
+            } else {
+               //Update user password failed
+				
+            //$stmt->close();
+            return FALSE;
+        }
+    }
+	
+    
+    
         /**
      * Fetching user by email
      * @param String $login_email User email id

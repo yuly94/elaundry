@@ -48,8 +48,8 @@ class RegistrasiModel{
             // Check for successful insertion
             if ($result) {
                 // User successfully inserted
-                
-                KirimEmailModel::emailAktifasi($konsumen_email, $token_aktifasi, $konsumen_nama);
+                $kirim_email = new KirimEmailModel();
+                $kirim_email->emailAktifasi($konsumen_email, $token_aktifasi, $konsumen_nama);
 
                 return USER_CREATED_SUCCESSFULLY;
             } else {

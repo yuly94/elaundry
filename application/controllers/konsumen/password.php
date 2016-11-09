@@ -50,7 +50,7 @@ $app->post('/konsumen/password/reset/', function () use ($app) {
 
     if ( $cek_konsumen ) {
         $konsumen_nama = $cek_konsumen["konsumen_nama"];
-        $result =  PasswordModel::resetPassword($konsumen_email,$konsumen_kode_reset,$konsumen_password, $konsumen_nama);
+        $result =  PasswordModel::meresetPassword($konsumen_email,$konsumen_kode_reset,$konsumen_password, $konsumen_nama);
 
         if($result==1){
 
@@ -90,3 +90,50 @@ $app->post('/konsumen/password/reset/', function () use ($app) {
 
     }); //1
  
+    
+    
+    $app->get('/konsumen/password/ganti/','authKonsumen' ,function() use ($app){
+        
+            // check for required params
+            BantuanModel::verifyRequiredParams(array('konsumen_password_lama, konsumen_password_baru'));
+
+            // reading post params
+            $konsumen_password_lama = $app->request()->post('konsumen_password_lama');
+            // reading post params
+            $konsumen_password_baru = $app->request()->post('konsumen_password_baru');
+           
+            global $api_konsumen_id;
+
+            if(KonsumenModel::cekPasswordById($api_konsumen_id, $konsumen_password_lama)){
+                
+                    // fetching all user tasks
+                    $result= PasswordModel::menggantiPassword($api_konsumen_id, $konsumen_password_baru);
+
+                    if ($result != NULL) { 
+
+                    $response["error"] = false;
+                    $response["message"] = "password anda berhasil diganti"; 
+                    $response["alamat"] = $result;
+                    BantuanModel::echoRespnse(200, $response);
+                    
+                    $kirim_email = new KirimEmailModel();
+                    $kirim_email->gantiPassword($konsumen_email);
+                    
+                    }      
+                    else {
+                        $response["error"] = true;
+                        $response["message"] = "password anda belum berhasil diganti, silahkan coba lagi";
+                        BantuanModel::echoRespnse(404, $response);
+                        }
+                
+            } else {
+                
+                    $response["error"] = true;
+                    $response["message"] = "password lama anda salah"; 
+                    $response["alamat"] = $result;
+                    BantuanModel::echoRespnse(200, $response);
+                
+            }
+            
+
+    });

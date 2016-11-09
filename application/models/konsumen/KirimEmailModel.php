@@ -18,16 +18,17 @@ class KirimEmailModel{
      * @param String $password User login password
      * @return boolean User login status success/fail
      */
-    public static function kirimReset($email,  $nama, $token) {
+    public function lupaPassword($email,  $nama, $token) {
 			$to = $email;
 			$subject = "Password Reset Nofification";
 			$body = 'Hai '.$nama.',<br><br> Kode untuk mereset password kamu adalah : <b>'.$token.'
 			</b> Kode ini akan kadaluarsa setelah 180 detik. 
 			Masukkan kode ini sebelum 180 detik untuk mereset password anda.<br><br>Thanks';
 
-			$sent = EmailModel::sentEmail($to,$subject,$body);
+                        $kirim_email = new EmailModel();
+			$terkirim = $kirim_email->sentEmail($to,$subject,$body);
 
-				if($sent) { //4
+				if($terkirim) { //4
          			$response["error"] = "false";
       				$response["message"] = "Email Reset Password Success";
       				BantuanModel::echoRespnse(200, $response);
@@ -42,9 +43,9 @@ class KirimEmailModel{
                                 
 }
 
- public static function ganti_password($konsumen_id, $reset_password) {
+ public function menggantiPassword($konsumen_id, $reset_password) {
 
-if ( PasswordModel::changePass($konsumen_id, $reset_password)) {
+if ( PasswordModel::menggantiPassword($konsumen_id, $reset_password)) {
 
 			$to = $email;
 			$subject = "Pemberitahuan pembaruan password";
@@ -63,8 +64,21 @@ if ( PasswordModel::changePass($konsumen_id, $reset_password)) {
 
  }
  
+
  
-  public static function emailAktifasi($konsumen_email, $token_aktifasi, $konsumen_nama) {
+  public function  resetPassword( $konsumen_email) {
+      
+			$to = $konsumen_email;
+			$subject = "Pemberitahuan pembaruan password";
+			$body = "'Hai '.$nama.',<br><br> <p>Password account anda berhasil diperbarui</p>
+			<p> Jika anda tidak merasa memperbarui password anda atau memiliki account, maka abaikan saja email ini</p>";
+                     
+                        $kirim_email = new EmailModel();   
+                        $kirim_email->sentEmail($to,$subject,$body);
+ }
+ 
+ 
+  public  function emailAktifasi($konsumen_email, $token_aktifasi, $konsumen_nama) {
                  //send email
                 $to = $konsumen_email;
 		$subject = "Pendaftaran berhasil";
@@ -276,13 +290,13 @@ if ( PasswordModel::changePass($konsumen_id, $reset_password)) {
                         ;
                 
                 
-                
+                $kirim_email = new EmailModel();
 
-                $result = EmailModel::sentEmail($to,$subject,$body);
+                $kirim_email->sentEmail($to,$subject,$body);
                 
   }
     
-    public static function emailAktifasiSukses($konsumen_email, $konsumen_nama) {
+    public function emailAktifasiSukses($konsumen_email, $konsumen_nama) {
      //send email
             $to = $konsumen_email; 
             $subject = "aktifasi berhasil";
@@ -564,9 +578,9 @@ if ( PasswordModel::changePass($konsumen_id, $reset_password)) {
 '
  // Akhir body email disini
  ;
-                   
+            $kirim_email = new EmailModel();   
                     
-            EmailModel::sentEmail($to,$subject,$body);
+            $kirim_email->sentEmail($to,$subject,$body);
             
     }
   

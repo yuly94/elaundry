@@ -1,3 +1,1 @@
-connection.config.php
-
-application.config.php
+connection.config.php,application.config.php,constant.config.php

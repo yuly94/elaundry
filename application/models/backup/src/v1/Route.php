@@ -179,8 +179,8 @@ $app->post('/login', function() use ($app) {
 					
             } else {
                 // user credentials are wrong
-				if ($db->loginFailed($email))
-				{		
+		if ($db->loginFailed($email))
+		{		
 			// check brute force
             if ( $db->checkAttemp($email) =="6"){
             $response["error"] = true;

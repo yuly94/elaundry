@@ -14,7 +14,7 @@ class AlamatModel {
     public static function getAlamat($konsumen_id) {
         $app = \Slim\Slim::getInstance();
         
-        $sql = "SELECT * FROM alamat_konsumen WHERE konsumen_id = :konsumen_id ";
+        $sql = "SELECT * FROM konsumen_alamat WHERE konsumen_id = :konsumen_id ";
 
         $stmt = $app->db->prepare($sql);
         $stmt->execute(array('konsumen_id'=>$konsumen_id));

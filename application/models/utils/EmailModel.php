@@ -10,7 +10,7 @@ class EmailModel extends PHPMailer
     public function sentEmail($to,$subject,$body){
 
 			$mail = new EmailModel();
-			$mail->setFrom(SITEEMAIL);
+			$mail->setFrom(SITE_EMAIL);
 			$mail->addAddress($to);
 			$mail->subject($subject);
 			$mail->body($body);
@@ -31,6 +31,8 @@ if(!$mail->send()) {
   // Set default variables for all new objects
     public $From     = EMAIL_FROM;
     public $FromName = EMAIL_NAMA_PENGIRIM;
+    //Address to which recipient will reply
+    public $addReplyTo = EMAIL_BALAS_KE;
     //public $Host     = 'smtp.gmail.com';
     //public $Mailer   = 'smtp';
     //public $SMTPAuth = true;

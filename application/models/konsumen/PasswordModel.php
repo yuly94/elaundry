@@ -7,7 +7,7 @@ class PasswordModel{
 public static function ResetRequest($konsumen_email,$konsumen_id,$konsumen_nama){
 
         $app = \Slim\Slim::getInstance();
-        $user = array();
+        //$user = array();
         
         // Generating password hash
         $random = GeneratorModel::randStrGen(20);
@@ -27,7 +27,9 @@ public static function ResetRequest($konsumen_email,$konsumen_id,$konsumen_nama)
 
         if ($stmt->rowCount() == 0){
 
- 	$sql = "INSERT INTO password_reset(email,user_id, password_sementara, salt, dibuat_pada) values(:email, :user_id, :password_sementara, :salt, :dibuat_pada)";
+ 	$sql = "INSERT INTO password_reset(email,user_id, password_sementara, salt, dibuat_pada) "
+                . "values(:email, :user_id, :password_sementara, :salt, :dibuat_pada)";
+
         // insert query        
    
         $stmt = $app->db->prepare($sql);
@@ -36,13 +38,14 @@ public static function ResetRequest($konsumen_email,$konsumen_id,$konsumen_nama)
             'user_id'=>$konsumen_id,
             'password_sementara'=>$password_sementara,
             'salt'=>$salt,
-            'dibuat_pada'=>$tanggal
+            'dibuat_pada'=>$tanggal,
+            'konsumen_status_reset'=>"permintaan reset"
         ));
 
         if($stmt->rowCount() > 0)
             {
              
-            KirimEmailModel::kirimReset($konsumen_email, $konsumen_nama,  $konsumen_token);
+            KirimEmailModel::lupaPassword($konsumen_email, $konsumen_nama,  $konsumen_token);
 
             } else {
 		$response["error"] = "true";
@@ -53,7 +56,8 @@ public static function ResetRequest($konsumen_email,$konsumen_id,$konsumen_nama)
 
         } else {
  
-        $sql = "UPDATE password_reset SET email =:email, user_id=:user_id, password_sementara=:password_sementara, salt=:salt, dibuat_pada=:dibuat_pada";
+        $sql = "UPDATE password_reset SET email =:email,  password_sementara=:password_sementara, "
+                . "salt=:salt, dibuat_pada=:dibuat_pada WHERE user_id=:user_id";
 
         $stmt = $app->db->prepare($sql);
         $stmt->execute(array(
@@ -67,7 +71,8 @@ public static function ResetRequest($konsumen_email,$konsumen_id,$konsumen_nama)
         if($stmt->rowCount() > 0)
             {
             
-             KirimEmailModel::kirimReset($konsumen_email,$konsumen_nama,  $konsumen_token);
+            $kirim_email = new KirimEmailModel();
+            $kirim_email->lupaPassword($konsumen_email,$konsumen_nama,  $konsumen_token);
 
             } else {
 		$response["error"] = "true";
@@ -82,7 +87,7 @@ public static function ResetRequest($konsumen_email,$konsumen_id,$konsumen_nama)
     }
     
 
-    public static function resetPassword($email,$code,$reset_password, $nama){
+    public static function meresetPassword($konsumen_email,$kode,$password_baru, $nama){
         
         $app = \Slim\Slim::getInstance();
  
@@ -90,7 +95,7 @@ public static function ResetRequest($konsumen_email,$konsumen_id,$konsumen_nama)
 
         $stmt = $app->db->prepare($sql);
         $stmt->execute(array(
-            'email'=>$email           
+            'email'=>$konsumen_email         
         ));
 
 	$reset = $stmt->fetch();
@@ -101,29 +106,36 @@ public static function ResetRequest($konsumen_email,$konsumen_id,$konsumen_nama)
         $salt = $reset["salt"];
         $dibuat_pada = $reset["dibuat_pada"];
         
-        if (GeneratorModel::verifyHash($code.$salt, $password_sementara)) {
+        if (GeneratorModel::verifyHash($kode.$salt, $password_sementara)) {
  
             $lampau = new DateTime($dibuat_pada);
             $sekarang = new DateTime(date("Y-m-d H:i:s"));
             $perbedaan_waktu = $sekarang->getTimestamp() - $lampau->getTimestamp();
 
             if($perbedaan_waktu < 180) {
+                
+                if (PasswordModel::menggantiPassword($konsumen_id, $password_baru)){
+                    $kirim_email = new KirimEmailModel();
+                    $kirim_email->resetPassword($konsumen_email);
+                   
+                } else {
+                    
+                    return 1;
+                }
+       
+                } else {
  
-		KirimEmailModel::ganti_password($konsumen_id, $reset_password);
-
-            } else {
+                    return 2;
+                }
+                } else {
  
-                return 2;
-            }
-            } else {
- 
-                return 3;
+                    return 3;
             }
     }
 
     /* ------------- `fungsi ganti password konsumen` ------------------ */	
 	
-public static function ganti_password($konsumen_id, $password_baru) {
+public static function menggantiPassword($konsumen_id, $password_baru) {
     
         $app = \Slim\Slim::getInstance();
         // fetching user by email
@@ -134,17 +146,20 @@ public static function ganti_password($konsumen_id, $password_baru) {
         // Generating API key
         $konsumen_kunci_api = GeneratorModel::generateApiKey();
 		
-	$sql = "UPDATE konsumen SET password_hash =:konsumen_password, konsumen_kunci_api =:konsumen_kunci_api, konsumen_update_pada = NOW() WHERE konsumen_id = :konsumen_id";
-        
+	$sql = "UPDATE konsumen SET konsumen_password =:konsumen_password, konsumen_kunci_api =:konsumen_kunci_api, konsumen_update_pada = NOW(), konsumen_status_reset =:konsumen_status_reset WHERE konsumen_id = :konsumen_id";
+        //$sekarang = new DateTime(date("Y-m-d H:i:s"));
         $stmt = $app->db->prepare($sql);
-        $change=$stmt->execute(array(
+        $mengganti=$stmt->execute(array(
             'konsumen_password'=>$konsumen_password,
-            'konsumen_kunci_api'=>$konsumen_kunci_api,
-            'konsumen_id'=>$konsumen_id,
+            'konsumen_kunci_api'=>$konsumen_kunci_api, 
+            //'konsumen_update_pada'=>$sekarang,
+            'konsumen_status_reset'=>"berhasil di reset",
+            'konsumen_id'=>$konsumen_id
+            
         ));
 		
         // Check for successful insertion
-        if ($change) {
+        if ($mengganti) {
                 //Update user password success
                 return TRUE;
             } else {
@@ -156,3 +171,4 @@ public static function ganti_password($konsumen_id, $password_baru) {
     }
 
 }
+
