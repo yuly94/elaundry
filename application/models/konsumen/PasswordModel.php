@@ -38,14 +38,15 @@ public static function ResetRequest($konsumen_email,$konsumen_id,$konsumen_nama)
             'user_id'=>$konsumen_id,
             'password_sementara'=>$password_sementara,
             'salt'=>$salt,
-            'dibuat_pada'=>$tanggal,
-            'konsumen_status_reset'=>"permintaan reset"
+            'dibuat_pada'=>$tanggal
         ));
 
         if($stmt->rowCount() > 0)
             {
              
-            KirimEmailModel::lupaPassword($konsumen_email, $konsumen_nama,  $konsumen_token);
+     
+            $kirim_email = new KirimEmailModel();
+            $kirim_email->lupaPassword($konsumen_email,$konsumen_nama,  $konsumen_token);
 
             } else {
 		$response["error"] = "true";
