@@ -70,7 +70,7 @@ public class PemesananActivity extends AppCompatActivity implements AppCompatSpi
 
         private ProgressDialog pDialog;
 
-        private String apiKey;
+        private String konsumen_kunci_api;
 
 
         @Override
@@ -101,7 +101,7 @@ public class PemesananActivity extends AppCompatActivity implements AppCompatSpi
             // Fetching user details from SQLite
             HashMap<String, String> user = db.getUserDetails();
             // Get apikey from DB
-            apiKey = user.get("api");
+            konsumen_kunci_api = user.get("konsumen_kunci_api");
             // Show Progress dialog
             pDialog = new ProgressDialog(this);
             pDialog.setMessage("Loading...");
@@ -158,7 +158,7 @@ public class PemesananActivity extends AppCompatActivity implements AppCompatSpi
             public Map<String, String> getHeaders() throws AuthFailureError {
                 HashMap<String, String> headers = new HashMap<String, String>();
                 headers.put("Content-Type", "application/json");
-                headers.put("Authorization", apiKey);
+                headers.put("Authorization", konsumen_kunci_api);
                 return headers;
             }
 
@@ -217,7 +217,7 @@ public class PemesananActivity extends AppCompatActivity implements AppCompatSpi
             public Map<String, String> getHeaders() throws AuthFailureError {
                 HashMap<String, String> headers = new HashMap<String, String>();
                 headers.put("Content-Type", "application/json");
-                headers.put("Authorization", apiKey);
+                headers.put("Authorization", konsumen_kunci_api);
                 return headers;
             }
 
@@ -289,7 +289,7 @@ public class PemesananActivity extends AppCompatActivity implements AppCompatSpi
                 boolean error = jObj.getBoolean("error");
                 if (!error) {
 
-                    JSONObject tempat = jObj.getJSONObject("tempat");
+                    JSONObject tempat = jObj.getJSONObject("alamat");
 
                     String id = tempat.getString("id");
                     String nama = tempat.getString("nama");

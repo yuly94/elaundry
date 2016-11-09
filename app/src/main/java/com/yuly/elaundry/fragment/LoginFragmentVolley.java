@@ -121,14 +121,14 @@ public class LoginFragmentVolley extends Fragment implements View.OnClickListene
                 String email = inputEmail.getText().toString().trim();
                 String password = inputPassword.getText().toString().trim();
 
-                // Check for empty data in the form
+                // Apibila isian email dan password tidak kosong
                 if (!email.isEmpty() && !password.isEmpty()) {
-                    // login user
+                    // memanggil fungsi chek login
                     checkLogin(email, password);
                 } else {
-                    // Prompt user to enter credentials
+                    // Memberitahu konsumen untuk memasukkan password
                     Toast.makeText(getActivity(),
-                            "Please enter the credentials!", Toast.LENGTH_LONG)
+                            "Mohon masukkan password anda ", Toast.LENGTH_LONG)
                             .show();
                 }
 
@@ -140,13 +140,12 @@ public class LoginFragmentVolley extends Fragment implements View.OnClickListene
     }
 
 
-
-
     /**
-     * function to verify login details in mysql db
+     * function to verifikasi login dengan mengirimkan username dan password ke webserver
      * */
-    private void checkLogin(final String email, final String password) {
-        // Tag used to cancel the request
+    private void checkLogin(final String konsumen_email, final String konsumen_password) {
+
+        // Tag berikut digunakan untuk membatalkan request login
         String tag_string_req = "req_login";
 
         pDialog.setMessage("Logging in ...");
@@ -157,7 +156,7 @@ public class LoginFragmentVolley extends Fragment implements View.OnClickListene
 
             @Override
             public void onResponse(String response) {
-                Log.d(TAG, "Login Response: " + response);
+                Log.d(TAG, "Login Response : " + response);
                 hideDialog();
 
                 try {
@@ -166,26 +165,25 @@ public class LoginFragmentVolley extends Fragment implements View.OnClickListene
 
                     boolean error = jObj.getBoolean("error");
 
-                    // Check for error node in json
+                    // Mengecek respon webservice json apakah ada yang error atau tidak
                     if (!error) {
-                        // user successfully logged in
-                        // Create login session
+                        // Jika konsumen berhasil login
+                        // Mengecek sesi login
                         session.setLogin(true);
 
-                        // Now store the user in SQLite
-                        String uid = jObj.getString("uid");
+                        // Menyimpan data hasil respon webserver ke database sqlite
 
-                        JSONObject user = jObj.getJSONObject("user");
-                        String nama = user.getString("nama");
-                        String alamat = user.getString("alamat");
-                        String nohp = user.getString("nohp");
-                        String email = user.getString("email");
-                        String api = user.getString("api_key");
-                        String created_at = user
-                                .getString("created_at");
+                        JSONObject konsumen = jObj.getJSONObject("login");
+                        String konsumen_id = konsumen.getString("konsumen_id");
+                        String konsumen_nama = konsumen.getString("konsumen_nama");
+                        String konsumen_alamat = konsumen.getString("konsumen_alamat");
+                        String konsumen_nohp = konsumen.getString("konsumen_nohp");
+                        String konsumen_email = konsumen.getString("konsumen_email");
+                        String konsumen_kunci_api = konsumen.getString("konsumen_kunci_api");
+                        String konsumen_dibuat_pada = konsumen.getString("konsumen_dibuat_pada");
 
                         // Inserting row in users table
-                        db.addUser(nama, alamat, nohp, email, api, uid, created_at);
+                        db.addUser(konsumen_nama, konsumen_alamat, konsumen_nohp, konsumen_email, konsumen_kunci_api, konsumen_id, konsumen_dibuat_pada);
 
                         // Launch main activity
                        Intent intent = new Intent(getActivity(),
@@ -231,8 +229,8 @@ public class LoginFragmentVolley extends Fragment implements View.OnClickListene
             protected Map<String, String> getParams() {
                 // Posting parameters to login url
                 Map<String, String> params = new HashMap<String, String>();
-                params.put("email", email);
-                params.put("password", password);
+                params.put("konsumen_email", konsumen_email);
+                params.put("konsumen_password", konsumen_password);
 
                 return params;
             }

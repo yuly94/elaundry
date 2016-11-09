@@ -33,6 +33,7 @@ import com.google.android.gms.maps.SupportMapFragment;
 import com.yuly.elaundry.R;
 //import com.yuly.elaundry.fragment.AboutFragment;
 
+import com.yuly.elaundry.fragment.AlamatFragment;
 import com.yuly.elaundry.fragment.ChangePassFragment;
 import com.yuly.elaundry.fragment.MapsFragmentLocation;
 import com.yuly.elaundry.fragment.TransaksiFragment;
@@ -255,7 +256,7 @@ public class MainActivity extends AppCompatActivity {
 				break;
 			case 1:
 			//  fragment tempat
-				fragment = new TempatFragment();
+				fragment = new AlamatFragment();
 				break;
 			case 2:
 			  	fragment = new MapsFragmentLocation();

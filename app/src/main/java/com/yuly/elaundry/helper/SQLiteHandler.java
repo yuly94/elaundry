@@ -26,17 +26,17 @@ public class SQLiteHandler extends SQLiteOpenHelper {
 	private static final String DATABASE_NAME = "android_api";
 
 	// Login table name
-	private static final String TABLE_KONSUMEN = "user";
+	private static final String TABLE_KONSUMEN = "konsumen";
 
 	// Login Table Columns names
-	private static final String KEY_ID = "id";
-	private static final String KEY_NAMA = "nama";
-	private static final String KEY_ALAMAT = "alamat";
-	private static final String KEY_TELEPON = "telepon";
-	private static final String KEY_EMAIL = "email";
-	private static final String KEY_API = "api";
-	private static final String KEY_UID = "uid";
-	private static final String KEY_CREATED_AT = "created_at";
+	private static final String KEY_ID = "konsumen_no";
+	private static final String KEY_NAMA = "konsumen_nama";
+	private static final String KEY_ALAMAT = "konsumen_alamat";
+	private static final String KEY_TELEPON = "konsumen_telepon";
+	private static final String KEY_EMAIL = "konsumen_email";
+	private static final String KEY_API = "konsumen_kunci_api";
+	private static final String KEY_UID = "konsumen_id";
+	private static final String KEY_CREATED_AT = "konsumen_dibuat_pada";
 
 	public SQLiteHandler(Context context) {
 		super(context, DATABASE_NAME, null, DATABASE_VERSION);
@@ -67,23 +67,23 @@ public class SQLiteHandler extends SQLiteOpenHelper {
 	/**
 	 * Storing user details in database
 	 * */
-	public void addUser(String nama, String alamat, String telepon,  String email, String api, String uid, String created_at) {
+	public void addUser(String konsumen_nama, String konsumen_alamat, String konsumen_telepon,  String konsumen_email, String konsumen_kunci_api, String konsumen_id, String konsumen_dibuat_pada) {
 		SQLiteDatabase db = this.getWritableDatabase();
 
 		ContentValues values = new ContentValues();
-		values.put(KEY_NAMA, nama); // Name
-		values.put(KEY_ALAMAT, alamat); // Name
-		values.put(KEY_TELEPON, telepon); // Name
-		values.put(KEY_EMAIL, email); // Email
-		values.put(KEY_API, api); // API
-		values.put(KEY_UID, uid); // Email
-		values.put(KEY_CREATED_AT, created_at); // Created At
+		values.put(KEY_NAMA, konsumen_nama); // Name
+		values.put(KEY_ALAMAT, konsumen_alamat); // Name
+		values.put(KEY_TELEPON, konsumen_telepon); // Name
+		values.put(KEY_EMAIL, konsumen_email); // Email
+		values.put(KEY_API, konsumen_kunci_api); // API
+		values.put(KEY_UID, konsumen_id); // Email
+		values.put(KEY_CREATED_AT, konsumen_dibuat_pada); // Created At
 
 		// Inserting Row
 		long id = db.insert(TABLE_KONSUMEN, null, values);
 		db.close(); // Closing database connection
 
-		Log.d(TAG, "New user inserted into sqlite : " + id);
+		Log.d(TAG, "User baru dimasukkan ke db sqlite : " + id);
 	}
 
 	/**
@@ -105,20 +105,20 @@ public class SQLiteHandler extends SQLiteOpenHelper {
 	/**
 	 * Storing user details in database
 	 * */
-	public int updateProfile(String nama,String alamat,String telepon,String email, String uid, String created_at) {
+	public int updateProfile(String konsumen_nama,String konsumen_alamat,String konsumen_telepon,String konsumen_email, String konsumen_id, String konsumen_dibuat_pada) {
 		SQLiteDatabase db = this.getWritableDatabase();
 
 		ContentValues values = new ContentValues();
 
-		values.put(KEY_NAMA, nama); // API
-		values.put(KEY_ALAMAT, alamat); // API
-		values.put(KEY_TELEPON, telepon); // API
-		values.put(KEY_EMAIL, email); // API
-		values.put(KEY_CREATED_AT, created_at); // Created At
+		values.put(KEY_NAMA, konsumen_nama); // API
+		values.put(KEY_ALAMAT, konsumen_alamat); // API
+		values.put(KEY_TELEPON, konsumen_telepon); // API
+		values.put(KEY_EMAIL, konsumen_email); // API
+		values.put(KEY_CREATED_AT, konsumen_dibuat_pada); // Created At
 
 		// updating row
 		return db.update(TABLE_KONSUMEN, values, KEY_UID + " = ?",
-				new String[] {uid });
+				new String[] {konsumen_id });
 	}
 
 
@@ -135,13 +135,13 @@ public class SQLiteHandler extends SQLiteOpenHelper {
 		// Move to first row
 		cursor.moveToFirst();
 		if (cursor.getCount() > 0) {
-			user.put("nama", cursor.getString(1));
-			user.put("alamat", cursor.getString(2));
-			user.put("telepon", cursor.getString(3));
-			user.put("email", cursor.getString(4));
-			user.put("api", cursor.getString(5));
-			user.put("uid", cursor.getString(6));
-			user.put("created_at", cursor.getString(7));
+			user.put("konsumen_nama", cursor.getString(1));
+			user.put("konsumen_alamat", cursor.getString(2));
+			user.put("konsumen_telepon", cursor.getString(3));
+			user.put("konsumen_email", cursor.getString(4));
+			user.put("konsumen_kunci_api", cursor.getString(5));
+			user.put("konsumen_id", cursor.getString(6));
+			user.put("konsumen_dibuat_pada", cursor.getString(7));
 		}
 		cursor.close();
 		db.close();

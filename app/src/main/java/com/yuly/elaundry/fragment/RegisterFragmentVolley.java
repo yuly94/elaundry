@@ -120,25 +120,25 @@ public class RegisterFragmentVolley extends Fragment implements View.OnClickList
 
                 // Register Button Click event
 
-                        String nama = inputNama.getText().toString().trim();
-                        String alamat = inputAlamat.getText().toString().trim();
-                        String noHp = inputNoHp.getText().toString().trim();
-                        String email = inputEmail.getText().toString().trim();
-                        String password = inputPassword.getText().toString().trim();
-                        String password_confirm = inputConfirm.getText().toString().trim();
+                        String konsumen_nama = inputNama.getText().toString().trim();
+                        String konsumen_alamat = inputAlamat.getText().toString().trim();
+                        String konsumen_noHp = inputNoHp.getText().toString().trim();
+                        String konsumen_email = inputEmail.getText().toString().trim();
+                        String konsumen_password = inputPassword.getText().toString().trim();
+                        String konsumen_password_confirm = inputConfirm.getText().toString().trim();
 
 
-                        if (!nama.isEmpty() && !alamat.isEmpty() && !noHp.isEmpty() && !email.isEmpty() && !password.isEmpty() && !password_confirm.isEmpty()) {
-                            if (password.equals(password_confirm)) {
-                                registerUser(nama, alamat, noHp, email, password);
+                        if (!konsumen_nama.isEmpty() && !konsumen_alamat.isEmpty() && !konsumen_noHp.isEmpty() && !konsumen_email.isEmpty() && !konsumen_password.isEmpty() && !konsumen_password_confirm.isEmpty()) {
+                            if (konsumen_password.equals(konsumen_password_confirm)) {
+                                registerUser(konsumen_nama, konsumen_alamat, konsumen_noHp, konsumen_email, konsumen_password);
                             } else {
                                 Toast.makeText(getActivity(),
-                                        "The Password Confirm not same", Toast.LENGTH_LONG)
+                                        "Password konfirmasi tidak sama", Toast.LENGTH_LONG)
                                         .show();
                             }
                         } else {
                             Toast.makeText(getActivity(),
-                                    "Please enter your details!", Toast.LENGTH_LONG)
+                                    "Mohon masukkan data secara lengkap", Toast.LENGTH_LONG)
                                     .show();
                         }
 
@@ -153,42 +153,48 @@ public class RegisterFragmentVolley extends Fragment implements View.OnClickList
      * Function to store user in MySQL database will post params(tag, name,
      * email, password) to register url
      * */
-    private void registerUser(final String nama, final String alamat, final String nohp, final String email,
-                              final String password) {
+    private void registerUser(final String konsumen_nama, final String konsumen_alamat, final String konsumen_nohp, final String konsumen_email,
+                              final String konsumen_password) {
         // Tag used to cancel the request
-        String tag_string_req = "req_register";
+        String tag_string_req = "req_registrasi";
 
-        pDialog.setMessage("Registering ...");
+        pDialog.setMessage("Mendaftarkan, mohon tunggu ...");
         showDialog();
 
         StringRequest strReq = new StringRequest(Method.POST,
-                AppConfig.URL_REGISTER, new Response.Listener<String>() {
+                AppConfig.URL_REGISTRASI, new Response.Listener<String>() {
 
             @Override
             public void onResponse(String response) {
-                Log.d(TAG, "Register Response: " + response);
+                Log.d(TAG, "Response registrasi: " + response);
                 hideDialog();
 
                 try {
                     JSONObject jObj = new JSONObject(response);
+
                     boolean error = jObj.getBoolean("error");
+
+                    // Mengecek respon webservice json apakah ada yang error atau tidak
                     if (!error) {
-                        // User successfully stored in MySQL
-                        // Now store the user in sqlite
-                        String uid = jObj.getString("uid");
 
-                        JSONObject user = jObj.getJSONObject("user");
-                        String nama = user.getString("nama");
-                        String alamat = user.getString("alamat");
-                        String noHp = user.getString("nohp");
-                        String email = user.getString("email");
-                        String api = user.getString("api_key");
-                        String created_at = user.getString("created_at");
+/*
+                        // Menyimpan data hasil respon webserver ke database sqlite
 
-                        // Inserting row in users table
-                        db.addUser(nama, alamat, noHp, email, api, uid, created_at);
+                        JSONObject user = jObj.getJSONObject("registrasi");
+                        String konsumen_id = jObj.getString("konsumen_id");
+                        String konsumen_nama = user.getString("konsumen_nama");
+                        String konsumen_alamat = user.getString("konsumen_alamat");
+                        String konsumen_nohp = user.getString("konsumen_nohp");
+                        String konsumen_email = user.getString("konsumen_email");
+                        String konsumen_kunci_api = user.getString("konsumen_kunci_api");
+                        String konsumen_dibuat_pada = user.getString("konsumen_dibuat_pada");
 
-                        Toast.makeText(getActivity(), "User successfully registered. Try login now!", Toast.LENGTH_LONG).show();
+                        // memasukkan data user ke database sqlite
+                        db.addUser(konsumen_nama, konsumen_alamat, konsumen_nohp, konsumen_email, konsumen_kunci_api, konsumen_id, konsumen_dibuat_pada);
+
+*/
+
+                        Toast.makeText(getActivity(), "Registrasi anda berhasil, silahkan check email untuk aktifasi", Toast.LENGTH_LONG).show();
 
                         // Launch login activity
                         goToLogin();
@@ -227,11 +233,11 @@ public class RegisterFragmentVolley extends Fragment implements View.OnClickList
             protected Map<String, String> getParams() {
                 // Posting params to register url
                 Map<String, String> params = new HashMap<String, String>();
-                params.put("nama", nama);
-                params.put("alamat",alamat);
-                params.put("nohp",nohp);
-                params.put("email", email);
-                params.put("password", password);
+                params.put("konsumen_nama", konsumen_nama);
+                params.put("konsumen_alamat",konsumen_alamat);
+                params.put("konsumen_nohp",konsumen_nohp);
+                params.put("konsumen_email", konsumen_email);
+                params.put("konsumen_password", konsumen_password);
 
                 return params;
             }

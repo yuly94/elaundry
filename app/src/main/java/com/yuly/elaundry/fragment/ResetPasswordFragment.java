@@ -46,6 +46,8 @@ public class ResetPasswordFragment extends Fragment implements View.OnClickListe
     private String email;
     private CountDownTimer countDownTimer;
     private ProgressDialog pDialog;
+    private TextView tv_login;
+
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -72,6 +74,10 @@ public class ResetPasswordFragment extends Fragment implements View.OnClickListe
         btn_reset.setOnClickListener(this);
         progress = (ProgressBar)view.findViewById(R.id.progress);
 
+        tv_login = (TextView)view.findViewById(R.id.tv_login);
+        tv_login.setOnClickListener(this);
+
+
 
     }
 
@@ -79,7 +85,11 @@ public class ResetPasswordFragment extends Fragment implements View.OnClickListe
     public void onClick(View v) {
         switch (v.getId()){
 
-            case R.id.btn_reset:
+                case R.id.tv_login:
+                    goToLogin();
+                    break;
+
+                case R.id.btn_reset:
 
                 if(!isResetInitiated) {
 
@@ -109,6 +119,8 @@ public class ResetPasswordFragment extends Fragment implements View.OnClickListe
                 break;
         }
     }
+
+
 
 /*
     private void initiateResetPasswordProcess(String email){
@@ -219,11 +231,11 @@ public class ResetPasswordFragment extends Fragment implements View.OnClickListe
     /**
      * function to verify login details in mysql db
      * */
-    private void initiateResetPasswordProcess(final String email) {
+    private void initiateResetPasswordProcess(final String konsumen_email) {
         // Tag used to cancel the request
-        String tag_string_req = "req_login";
+        String tag_string_req = "req_Mereset";
 
-        pDialog.setMessage("Logging in ...");
+        pDialog.setMessage("Mereset password ...");
         showDialog();
 
         StringRequest strReq = new StringRequest(Request.Method.POST,
@@ -231,7 +243,7 @@ public class ResetPasswordFragment extends Fragment implements View.OnClickListe
 
             @Override
             public void onResponse(String response) {
-                Log.d(TAG, "Login Response: " + response);
+                Log.d(TAG, "Mereset Response: " + response);
                 hideDialog();
 
                 try {
@@ -299,7 +311,7 @@ public class ResetPasswordFragment extends Fragment implements View.OnClickListe
             protected Map<String, String> getParams() {
                 // Posting parameters to login url
                 Map<String, String> params = new HashMap<String, String>();
-                params.put("email", email);
+                params.put("konsumen_email", konsumen_email);
 
                 return params;
             }
@@ -313,11 +325,11 @@ public class ResetPasswordFragment extends Fragment implements View.OnClickListe
     /**
      * function to verify login details in mysql db
      * */
-    private void finishResetPasswordProcess(final String email,final String code,final String password) {
+    private void finishResetPasswordProcess(final String konsumen_email,final String konsumen_kode_password,final String konsumen_password) {
         // Tag used to cancel the request
-        String tag_string_req = "req_login";
+        String tag_string_req = "req_Mereset";
 
-        pDialog.setMessage("Logging in ...");
+        pDialog.setMessage("Memperbarui password ...");
         showDialog();
 
         StringRequest strReq = new StringRequest(Request.Method.POST,
@@ -325,7 +337,7 @@ public class ResetPasswordFragment extends Fragment implements View.OnClickListe
 
             @Override
             public void onResponse(String response) {
-                Log.d(TAG, "Login Response: " + response);
+                Log.d(TAG, "Mereset Response: " + response);
                 hideDialog();
 
                 try {
@@ -389,9 +401,9 @@ public class ResetPasswordFragment extends Fragment implements View.OnClickListe
             protected Map<String, String> getParams() {
                 // Posting parameters to login url
                 Map<String, String> params = new HashMap<String, String>();
-                params.put("email", email);
-                params.put("code", code);
-                params.put("password", password);
+                params.put("konsumen_email", konsumen_email);
+                params.put("konsumen_kode_reset", konsumen_kode_password);
+                params.put("konsumen_password", konsumen_password);
 
                 return params;
             }
@@ -402,8 +414,7 @@ public class ResetPasswordFragment extends Fragment implements View.OnClickListe
         AppController.getInstance().addToRequestQueue(strReq, tag_string_req);
     }
 
-
-
+    
     private void startCountdownTimer(){
         countDownTimer = new CountDownTimer(180000, 1000) {
 
@@ -412,7 +423,7 @@ public class ResetPasswordFragment extends Fragment implements View.OnClickListe
             }
 
             public void onFinish() {
-                Snackbar.make(getView(), "Time Out ! Request again to reset password.", Snackbar.LENGTH_LONG).show();
+                Snackbar.make(getView(), "Waktu habis, silahkan mencoba kembali", Snackbar.LENGTH_LONG).show();
                  goToLogin();
             }
         }.start();
