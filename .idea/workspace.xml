@@ -10,9 +10,8 @@
     <option name="TOOL_WINDOW_CONFIGURED_FILTER" value="Show only selected application" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="79627681-5094-4df5-9f4f-e0da1fc243a5" name="Default" comment="Memperbaiki registrasi, sekarang sudah bisa registrasi dan login serta lupa password dan reset">
+    <list default="true" id="79627681-5094-4df5-9f4f-e0da1fc243a5" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="/media/anonymous/data/AndroidStudioProjects/elaundry/.idea/workspace.xml" afterPath="/media/anonymous/data/AndroidStudioProjects/elaundry/.idea/workspace.xml" />
     </list>
     <list id="bf8c04de-1dbb-4a5f-a27e-6c2d7c2c198e" name="New changelist" comment="Commit update compiler 23 =&gt; 24&#10;" />
     <ignored path="elaundry_backup.iws" />
