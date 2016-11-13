@@ -99,17 +99,14 @@ $app->post('/konsumen/password/reset/', function () use ($app) {
             $konsumen_password_baru = $app->request()->post('konsumen_password_baru');
            
             global $api_konsumen_id;
-            
             $konsumen = KonsumenModel::cekPasswordById($api_konsumen_id, $konsumen_password_lama);
             if($konsumen){
                 
                 // fetching all user tasks
                 if (PasswordModel::menggantiPassword($api_konsumen_id, $konsumen_password_baru)) { 
 
-                $response["error"] = FALSE;
+                $response["error"] = false;
                 $response["message"] = "password anda berhasil diganti"; 
-                $response["konsumen"] = KonsumenModel::konsumenById($api_konsumen_id);
-                
                 BantuanModel::echoRespnse(200, $response);
 
                 $kirim_email = new KirimEmailModel();

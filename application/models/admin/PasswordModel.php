@@ -160,7 +160,6 @@ public static function menggantiPassword($konsumen_id, $password_baru) {
 		
         // Check for successful insertion
         if ($mengganti) {
-            
                 //Update user password success
                 return TRUE;
             } else {

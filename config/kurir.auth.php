@@ -19,7 +19,7 @@ function authKonsumen(\Slim\Route $route) {
         // get the api key
         $api_key = $headers['Authorization'];
         // validating api key
-        if (!KonsumenModel::isValidApiKey($api_key)) {
+        if (!KurirModel::isValidApiKey($api_key)) {
             
             // api key is not present in users table
             $response["error"] = true;
@@ -31,16 +31,16 @@ function authKonsumen(\Slim\Route $route) {
             
         } else {
 
-            global $api_konsumen_no;
-            global $api_konsumen_id;
-	    global $api_konsumen_email;
+            global $api_kurir_no;
+            global $api_kurir_id;
+	    global $api_kurir_email;
 
             // get user primary key id
-            $konsumen = KonsumenModel::getKonsumenByApi($api_key);
+            $konsumen = KurirModel::getKonsumenByApi($api_key);
 
-            $api_konsumen_no = $konsumen["konsumen_no"];
-            $api_konsumen_id = $konsumen["konsumen_id"];
-            $api_konsumen_email = $konsumen["konsumen_email"];
+            $api_kurir_no = $konsumen["kurir_no"];
+            $api_kurir_id = $konsumen["kurir_id"];
+            $api_kurir_email = $konsumen["kurir_email"];
 
                 }
                 

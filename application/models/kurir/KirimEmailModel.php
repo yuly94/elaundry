@@ -78,7 +78,7 @@ class KirimEmailModel{
             $body = 'Selamat '.$konsumen_nama.' !              
             <p>Pendaftaran anda di elaundry telah berhasil dilakukan</p>
             <p>Silahkan melakukan aktifasi dengan mengklik link berikut ini :
-            <a href="'.DIR.'/konsumen/registrasi/aktifasi/'.$konsumen_nama.'/'.$token_aktifasi.'">'.DIR.'/konsumen/registrasi/aktifasi/'.$konsumen_nama.'/'.$token_aktifasi.'</a></p>' ;
+            <a href="'.DIR.'/kurir/registrasi/aktifasi/'.$konsumen_nama.'/'.$token_aktifasi.'">'.DIR.'/kurir/registrasi/aktifasi/'.$konsumen_nama.'/'.$token_aktifasi.'</a></p>' ;
 
             $kirim_email = new EmailModel();
             $kirim_email->sentEmail($to,$subject,$body);

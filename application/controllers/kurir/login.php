@@ -7,13 +7,13 @@
  * method - POST
  * params - email, password
  */
-$app->post('/konsumen/login/', function() use ($app) {
+$app->post('/kurir/login/', function() use ($app) {
             // check for required params
-            BantuanModel::verifyRequiredParams(array('konsumen_email', 'konsumen_password'));
+            BantuanModel::verifyRequiredParams(array('kurir_email', 'kurir_password'));
 
             // reading post params
-            $login_email = $app->request()->post('konsumen_email');
-            $login_password = $app->request()->post('konsumen_password');
+            $login_email = $app->request()->post('kurir_email');
+            $login_password = $app->request()->post('kurir_password');
             $response = array();
     
             // validating email address
@@ -28,21 +28,21 @@ $app->post('/konsumen/login/', function() use ($app) {
                     else {
             
             // check for correct email and password
-            if (KonsumenModel::cekPassword($login_email, $login_password)) {
+            if (KurirModel::cekPassword($login_email, $login_password)) {
 				
-		if (KonsumenModel::updateKunciApiByEmail($login_email)) {
+		if (KurirModel::updateKunciApiByEmail($login_email)) {
 
             // get the user by email
              
-            if (($konsumen = KonsumenModel::konsumenByEmail($login_email))) {
+            if (($kurir = KurirModel::kurirByEmail($login_email))) {
 	        $response['error'] = false;
                 $response['message'] = "selamat datang, anda berhasil login";
-                $response["login"] = $konsumen ;
+                $response["login"] = $kurir ;
                 
                 } else {
                     // unknown error occurred
                     $response['error'] = true;
-                    $response['message'] = "gagal untuk mendapatkan data konsumen silahkan coba lagi";
+                    $response['message'] = "gagal untuk mendapatkan data kurir silahkan coba lagi";
                 }
 				
                	} else {
@@ -71,7 +71,6 @@ $app->post('/konsumen/login/', function() use ($app) {
                 $response['message'] = 'Login gagal, email atau password anda salah, silahkan coba kembali';	
 
                             }
-        
             }    
 	}			             
            // echoRespnse(200, $response);

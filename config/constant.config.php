@@ -14,8 +14,8 @@ define('EMAIL_IS_INVALID', 3);
 
 
 //application address
-define('DIR','http://localhost/elaundry/public/');
-define('BASE_URL','http://localhost/elaundry/');
+define('DIR','elaundry.pe.hu');
+define('BASE_URL','elaundry.pe.hu');
 define('SITE_EMAIL','noreply@elaundry.com');
 
 define('EMAIL_FROM','support@elaundry.pe.hu');

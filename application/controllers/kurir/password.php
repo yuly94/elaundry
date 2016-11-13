@@ -1,19 +1,19 @@
 <?php
 
-$app->post('/konsumen/password/lupa/', function () use ($app) {
+$app->post('/kurir/password/lupa/', function () use ($app) {
 
         // check for required params
-        BantuanModel::verifyRequiredParams(array('konsumen_email'));
+        BantuanModel::verifyRequiredParams(array('kurir_email'));
 
         // reading post params
-        $konsumen_email = $app->request()->post('konsumen_email');
+        $kurir_email = $app->request()->post('kurir_email');
 
         // validating email address
-        ValidasiModel::validasiEmail($konsumen_email);
+        ValidasiModel::validasiEmail($kurir_email);
         $response = array();
 
-        $cek_konsumen = ValidasiModel::cekKonsumen($konsumen_email);
-        if ($cek_konsumen == "0") {   //2
+        $cek_kurir = ValidasiModel::cekKonsumen($kurir_email);
+        if ($cek_kurir == "0") {   //2
 
         $response["error"] = "true";
         $response["message"] = "Email tidak ditemukan";
@@ -22,32 +22,32 @@ $app->post('/konsumen/password/lupa/', function () use ($app) {
 
          }  //3
             else {
-        $konsumen_id = $cek_konsumen["konsumen_id"];
-        $konsumen_nama = $cek_konsumen["konsumen_nama"];
-        PasswordModel::ResetRequest($konsumen_email,$konsumen_id,$konsumen_nama);
+        $kurir_id = $cek_kurir["kurir_id"];
+        $kurir_nama = $cek_kurir["kurir_nama"];
+        PasswordModel::ResetRequest($kurir_email,$kurir_id,$kurir_nama);
 
         }
     }); //1
 
 
 
-$app->post('/konsumen/password/reset/', function () use ($app) {
+$app->post('/kurir/password/reset/', function () use ($app) {
 
     // check for required params
-    BantuanModel::verifyRequiredParams(array('konsumen_email','konsumen_kode_reset','konsumen_password'));
+    BantuanModel::verifyRequiredParams(array('kurir_email','kurir_kode_reset','kurir_password'));
 
     // reading post params
-    $konsumen_email = $app->request()->post('konsumen_email');
-    $konsumen_kode_reset = $app->request()->post('konsumen_kode_reset');
-    $konsumen_password = $app->request()->post('konsumen_password');
+    $kurir_email = $app->request()->post('kurir_email');
+    $kurir_kode_reset = $app->request()->post('kurir_kode_reset');
+    $kurir_password = $app->request()->post('kurir_password');
 
     $response = array();
 
     // validating email address
-    ValidasiModel::validasiEmail($konsumen_email);
+    ValidasiModel::validasiEmail($kurir_email);
 
-    if ( ValidasiModel::cekKonsumen($konsumen_email) ) {
-        $result =  PasswordModel::meresetPassword($konsumen_email,$konsumen_kode_reset,$konsumen_password);
+    if ( ValidasiModel::cekKonsumen($kurir_email) ) {
+        $result =  PasswordModel::meresetPassword($kurir_email,$kurir_kode_reset,$kurir_password);
 
         if($result==1){
 
@@ -76,7 +76,6 @@ $app->post('/konsumen/password/reset/', function () use ($app) {
 
         }
 
-
       } else {
 
         $response["error"] = "true";
@@ -88,32 +87,29 @@ $app->post('/konsumen/password/reset/', function () use ($app) {
     }); //1
  
       
-    $app->post('/konsumen/password/ganti/','authKonsumen' ,function() use ($app){
+    $app->post('/kurir/password/ganti/','authKonsumen' ,function() use ($app){
         
             // check for required params
-            BantuanModel::verifyRequiredParams(array('konsumen_password_lama', 'konsumen_password_baru'));
+            BantuanModel::verifyRequiredParams(array('kurir_password_lama', 'kurir_password_baru'));
 
             // reading post params
-            $konsumen_password_lama = $app->request()->post('konsumen_password_lama');
+            $kurir_password_lama = $app->request()->post('kurir_password_lama');
             // reading post params
-            $konsumen_password_baru = $app->request()->post('konsumen_password_baru');
+            $kurir_password_baru = $app->request()->post('kurir_password_baru');
            
-            global $api_konsumen_id;
-            
-            $konsumen = KonsumenModel::cekPasswordById($api_konsumen_id, $konsumen_password_lama);
-            if($konsumen){
+            global $api_kurir_id;
+            $kurir = KonsumenModel::cekPasswordById($api_kurir_id, $kurir_password_lama);
+            if($kurir){
                 
                 // fetching all user tasks
-                if (PasswordModel::menggantiPassword($api_konsumen_id, $konsumen_password_baru)) { 
+                if (PasswordModel::menggantiPassword($api_kurir_id, $kurir_password_baru)) { 
 
-                $response["error"] = FALSE;
+                $response["error"] = false;
                 $response["message"] = "password anda berhasil diganti"; 
-                $response["konsumen"] = KonsumenModel::konsumenById($api_konsumen_id);
-                
                 BantuanModel::echoRespnse(200, $response);
 
                 $kirim_email = new KirimEmailModel();
-                $kirim_email->gantiPassword($konsumen["konsumen_email"],$konsumen["konsumen_nama"]);
+                $kirim_email->gantiPassword($kurir["kurir_email"],$kurir["kurir_nama"]);
                     
                     }      
                     else {

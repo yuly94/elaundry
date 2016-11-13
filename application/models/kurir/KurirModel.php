@@ -6,27 +6,27 @@
  * and open the template in the editor.
  */
 
-class KonsumenModel{
+class KurirModel{
     
     /**
      * Fetching user by email
      * @param String $login_email User email id
      */
-    public static function konsumenByEmail($login_email) {
+    public static function kurirByEmail($login_email) {
 		
         $app = \Slim\Slim::getInstance();
         
-        $sql = "SELECT konsumen_id, konsumen_nama, konsumen_alamat, "
-                . "konsumen_nohp, konsumen_email, konsumen_kunci_api,"
-                . " konsumen_dibuat_pada, konsumen_status_aktifasi,"
-                . "konsumen_status_reset,konsumen_login_terahir, "
-                . "konsumen_update_pada FROM konsumen "
-                . "WHERE konsumen_email =:login_email";        
+        $sql = "SELECT kurir_id, kurir_nama, kurir_alamat, "
+                . "kurir_nohp, kurir_email, kurir_kunci_api,"
+                . "kurir_dibuat_pada, kurir_status_aktifasi,"
+                . "kurir_status_reset,kurir_login_terahir, "
+                . "kurir_update_pada FROM kurir "
+                . "WHERE kurir_email =:login_email";        
 
         $stmt = $app->db->prepare($sql);
         $stmt->execute(array('login_email'=>$login_email));
         
-        $konsumen=$stmt->fetch(PDO::FETCH_ASSOC);
+        $kurir=$stmt->fetch(PDO::FETCH_ASSOC);
         
         if($stmt->rowCount() > 0)
             {
@@ -34,7 +34,7 @@ class KonsumenModel{
      
 
               // echo json response
-            return $konsumen;
+            return $kurir;
         } else {
             return false;
         }
@@ -43,23 +43,23 @@ class KonsumenModel{
        
        /**
      * Fetching user by email
-     * @param String $konsumen_id User email id
+     * @param String $kurir_id User email id
      */
-    public static function konsumenById($konsumen_id) {
+    public static function kurirById($kurir_id) {
 		
         $app = \Slim\Slim::getInstance();
         
-        $sql = "SELECT konsumen_id, konsumen_nama, konsumen_alamat, "
-                . "konsumen_nohp, konsumen_email, konsumen_kunci_api,"
-                . " konsumen_dibuat_pada, konsumen_status_aktifasi,"
-                . "konsumen_status_reset,konsumen_login_terahir, "
-                . "konsumen_update_pada FROM konsumen "
-                . "WHERE konsumen_id =:konsumen_id";        
+        $sql = "SELECT kurir_id, kurir_nama, kurir_alamat, "
+                . "kurir_nohp, kurir_email, kurir_kunci_api,"
+                . " kurir_dibuat_pada, kurir_status_aktifasi,"
+                . "kurir_status_reset,kurir_login_terahir, "
+                . "kurir_update_pada FROM kurir "
+                . "WHERE kurir_id =:kurir_id";        
 
         $stmt = $app->db->prepare($sql);
-        $stmt->execute(array('konsumen_id'=>$konsumen_id));
+        $stmt->execute(array('kurir_id'=>$kurir_id));
         
-        $konsumen=$stmt->fetch(PDO::FETCH_ASSOC);
+        $kurir=$stmt->fetch(PDO::FETCH_ASSOC);
         
         if($stmt->rowCount() > 0)
             {
@@ -67,30 +67,30 @@ class KonsumenModel{
      
 
               // echo json response
-            return $konsumen;
+            return $kurir;
         } else {
             return false;
         }
     } 
        /**
      * Fetching user by email
-     * @param String $login_email User email id
+     * @param String $kurir_kunci_api User email id
      */
-    public static function konsumenByApi($konsumen_kunci_api) {
+    public static function kurirByApi($kurir_kunci_api) {
 		
         $app = \Slim\Slim::getInstance();
         
-        $sql = "SELECT konsumen_id, konsumen_nama, konsumen_alamat, "
-                . "konsumen_nohp, konsumen_email, konsumen_kunci_api,"
-                . " konsumen_dibuat_pada, konsumen_status_aktifasi,"
-                . "konsumen_status_reset,konsumen_login_terahir, "
-                . "konsumen_update_pada FROM konsumen "
-                . "WHERE konsumen_kunci_api =:konsumen_kunci_api";        
+        $sql = "SELECT kurir_id, kurir_nama, kurir_alamat, "
+                . "kurir_nohp, kurir_email, kurir_kunci_api,"
+                . " kurir_dibuat_pada, kurir_status_aktifasi,"
+                . "kurir_status_reset,kurir_login_terahir, "
+                . "kurir_update_pada FROM kurir "
+                . "WHERE kurir_kunci_api =:kurir_kunci_api";        
 
         $stmt = $app->db->prepare($sql);
-        $stmt->execute(array('konsumen_kunci_api'=>$konsumen_kunci_api));
+        $stmt->execute(array('kurir_kunci_api'=>$kurir_kunci_api));
         
-        $konsumen=$stmt->fetch(PDO::FETCH_ASSOC);
+        $kurir=$stmt->fetch(PDO::FETCH_ASSOC);
         
         if($stmt->rowCount() > 0)
             {
@@ -98,7 +98,7 @@ class KonsumenModel{
      
 
               // echo json response
-            return $konsumen;
+            return $kurir;
         } else {
             return false;
         }
@@ -106,7 +106,7 @@ class KonsumenModel{
 
     
      
-    /* ------------- `login konsumen` ------------------ */
+    /* ------------- `login kurir` ------------------ */
     
     /**
      * Checking user login
@@ -120,13 +120,13 @@ class KonsumenModel{
     
         // fetching user by email
         
-        $sql = "SELECT konsumen_password FROM konsumen WHERE konsumen_email =:login_email";        
+        $sql = "SELECT kurir_password FROM kurir WHERE kurir_email =:login_email";        
                 
         $stmt = $app->db->prepare($sql);
         $stmt->execute(array('login_email'=>$login_email));
         
         //for each result, do the following
-        $konsumen=$stmt->fetch(PDO::FETCH_ASSOC);
+        $kurir=$stmt->fetch(PDO::FETCH_ASSOC);
         
         if($stmt->rowCount() > 0)
             {
@@ -135,7 +135,7 @@ class KonsumenModel{
 
             $stmt->fetch();
 
-            if (PassHashModel::cek_password($konsumen["konsumen_password"], $login_password)) {
+            if (PassHashModel::cek_password($kurir["kurir_password"], $login_password)) {
                 // User password is correct
                 return TRUE;
             } else {
@@ -158,31 +158,31 @@ class KonsumenModel{
  
     /**
      * Checking password dengan menggunakan 
-     * @param String $konsumen_id User login email id
+     * @param String $kurir_id User login email id
      * @param String $password_lama User login password
      * @return boolean User login status success/fail
      */
-    public static function cekPasswordById($konsumen_id, $password_lama) {
+    public static function cekPasswordById($kurir_id, $password_lama) {
         
         $app = \Slim\Slim::getInstance();
     
         // fetching user by email
         
-        $sql = "SELECT konsumen_password, konsumen_email, konsumen_nama FROM konsumen WHERE konsumen_id =:konsumen_id";        
+        $sql = "SELECT kurir_password, kurir_email, kurir_nama FROM kurir WHERE kurir_id =:kurir_id";        
                 
         $stmt = $app->db->prepare($sql);
-        $stmt->execute(array('konsumen_id'=>$konsumen_id));
+        $stmt->execute(array('kurir_id'=>$kurir_id));
         
-        $konsumen=$stmt->fetch(PDO::FETCH_ASSOC);
+        $kurir=$stmt->fetch(PDO::FETCH_ASSOC);
         
         if($stmt->rowCount() > 0)
             {
             // Found user with the email
             // Now verify the password
 
-            if (PassHashModel::cek_password($konsumen["konsumen_password"], $password_lama)) {
+            if (PassHashModel::cek_password($kurir["kurir_password"], $password_lama)) {
                 // User password is correct
-                return $konsumen;
+                return $kurir;
             } else {
                 // user password is incorrect
                                 
@@ -204,19 +204,19 @@ class KonsumenModel{
     
     
        
-    /* ------------- `fungsi update api konsumen ketika login` ------------------ */
+    /* ------------- `fungsi update api kurir ketika login` ------------------ */
 
-    public static function updateKunciApiById($konsumen_id) {
+    public static function updateKunciApiById($kurir_id) {
 
         // Generating API key
-        $konsumen_kunci_api = GeneratorModel::generateApiKey();
+        $kurir_kunci_api = GeneratorModel::generateApiKey();
 		
         $app = \Slim\Slim::getInstance();
         
-        $sql = "UPDATE konsumen SET konsumen_kunci_api = :konsumen_kunci_api, konsumen_login_terahir = NOW() WHERE konsumen_id =:konsumen_id";        
+        $sql = "UPDATE kurir SET kurir_kunci_api = :kurir_kunci_api, kurir_login_terahir = NOW() WHERE kurir_id =:kurir_id";        
                 
         $stmt = $app->db->prepare($sql);
-        $stmt->execute(array('konsumen_kunci_api'=>$konsumen_kunci_api,'konsumen_id'=>$konsumen_id));
+        $stmt->execute(array('kurir_kunci_api'=>$kurir_kunci_api,'kurir_id'=>$kurir_id));
 		
         // Check for successful insertion
         if ($stmt->rowCount() > 0) {
@@ -231,19 +231,19 @@ class KonsumenModel{
     }
     
         
-    /* ------------- `fungsi update api konsumen ketika login` ------------------ */
+    /* ------------- `fungsi update api kurir ketika login` ------------------ */
 
     public static function updateKunciApiByEmail($login_email) {
 
         // Generating API key
-        $konsumen_kunci_api = GeneratorModel::generateApiKey();
+        $kurir_kunci_api = GeneratorModel::generateApiKey();
 		
         $app = \Slim\Slim::getInstance();
         
-        $sql = "UPDATE konsumen SET konsumen_kunci_api = :konsumen_kunci_api, konsumen_login_terahir = NOW() WHERE konsumen_email =:login_email";        
+        $sql = "UPDATE kurir SET kurir_kunci_api = :kurir_kunci_api, kurir_login_terahir = NOW() WHERE kurir_email =:login_email";        
                 
         $stmt = $app->db->prepare($sql);
-        $stmt->execute(array('konsumen_kunci_api'=>$konsumen_kunci_api,'login_email'=>$login_email));
+        $stmt->execute(array('kurir_kunci_api'=>$kurir_kunci_api,'login_email'=>$login_email));
 		
         // Check for successful insertion
         if ($stmt->rowCount() > 0) {
@@ -261,37 +261,37 @@ class KonsumenModel{
     
         /**
      * Fetching user by email
-     * @param String $login_email User email id
+     * @param String $kode_aktifasi User email id
      */
-    public static function konsumenByKodeAktifasi($kode_aktifasi) {
+    public static function kurirByKodeAktifasi($kode_aktifasi) {
 		
         $app = \Slim\Slim::getInstance();
         
-        $sql = "SELECT konsumen_id, konsumen_nama, konsumen_alamat, "
-                . "konsumen_nohp, konsumen_email, konsumen_kunci_api,"
-                . " konsumen_dibuat_pada, konsumen_status_aktifasi,"
-                . "konsumen_status_reset,konsumen_login_terahir, "
-                . "konsumen_update_pada FROM konsumen "
-                . "WHERE konsumen_kode_aktifasi =:konsumen_kode_aktifasi";        
+        $sql = "SELECT kurir_id, kurir_nama, kurir_alamat, "
+                . "kurir_nohp, kurir_email, kurir_kunci_api,"
+                . "kurir_dibuat_pada, kurir_status_aktifasi,"
+                . "kurir_status_reset,kurir_login_terahir, "
+                . "kurir_update_pada FROM kurir "
+                . "WHERE kurir_kode_aktifasi =:kurir_kode_aktifasi";        
 
         $stmt = $app->db->prepare($sql);
         $stmt->execute(array('kode_aktifasi'=>$kode_aktifasi));
         
-        $konsumen=$stmt->fetch(PDO::FETCH_ASSOC);
+        $kurir=$stmt->fetch(PDO::FETCH_ASSOC);
         
         if($stmt->rowCount() > 0)
             {
     // fetching all user tasks   
 
               // echo json response
-            return $konsumen;
+            return $kurir;
         } else {
             return false;
         }
     }
     
     
-    public static function konsumenByApixx($secret, $activeKeyOnly = true){
+    public static function kurirByApixx($secret, $activeKeyOnly = true){
 
         $app = \Slim\Slim::getInstance();
 
@@ -312,15 +312,15 @@ class KonsumenModel{
  	
     /**
      * Fetching user api key
-     * @param String $konsumen_id user id primary key in user table
+     * @param String $kurir_id user id primary key in user table
      */
-    public static function getApiKeyById($konsumen_id) {
+    public static function getApiKeyById($kurir_id) {
         $app = \Slim\Slim::getInstance();
         
-        $sql = "SELECT konsumen_kunci_api FROM konsumen WHERE konsumen_id = :konsumen_id?";
+        $sql = "SELECT kurir_kunci_api FROM kurir WHERE kurir_id = :kurir_id?";
         
         $stmt = $app->db->prepare($sql);
-        $stmt->execute(array('konsumen_id'=>$konsumen_id));
+        $stmt->execute(array('kurir_id'=>$kurir_id));
         
         $kunci_api=$stmt->fetch(PDO::FETCH_ASSOC);
         
@@ -337,21 +337,21 @@ class KonsumenModel{
     
         /**
      * Fetching user id by api key
-     * @param String $konsumen_kunci_api user api key
+     * @param String $kurir_kunci_api user api key
      */
-    public static function getKonsumenByApi($konsumen_kunci_api) {
+    public static function getKurirByApi($kurir_kunci_api) {
         $app = \Slim\Slim::getInstance();
         
-        $sql = "SELECT konsumen_no, konsumen_id, konsumen_email FROM konsumen WHERE konsumen_kunci_api = :konsumen_kunci_api";
+        $sql = "SELECT kurir_no, kurir_id, kurir_email FROM kurir WHERE kurir_kunci_api = :kurir_kunci_api";
    
         $stmt = $app->db->prepare($sql);
-        $stmt->execute(array('konsumen_kunci_api'=>$konsumen_kunci_api));
+        $stmt->execute(array('kurir_kunci_api'=>$kurir_kunci_api));
         
-        $konsumen=$stmt->fetch(PDO::FETCH_ASSOC);
+        $kurir=$stmt->fetch(PDO::FETCH_ASSOC);
         
         if($stmt->rowCount() > 0)
             {
-            return $konsumen;
+            return $kurir;
         } else {
             return FALSE;
         }
@@ -360,43 +360,43 @@ class KonsumenModel{
     
     /**
      * Fetching user id by api key
-     * @param String $konsumen_kunci_api user api key
+     * @param String $kurir_kunci_api user api key
      */
-    public static function getKonsumenIdByApi($konsumen_kunci_api) {
+    public static function getKurirIdByApi($kurir_kunci_api) {
         $app = \Slim\Slim::getInstance();
         
-        $sql = "SELECT konsumen_no FROM konsumen WHERE konsumen_kunci_api = :konsumen_kunci_api";
+        $sql = "SELECT kurir_no FROM kurir WHERE kurir_kunci_api = :kurir_kunci_api";
    
         $stmt = $app->db->prepare($sql);
-        $stmt->execute(array('konsumen_kunci_api'=>$konsumen_kunci_api));
+        $stmt->execute(array('kurir_kunci_api'=>$kurir_kunci_api));
         
-        $konsumen_id=$stmt->fetch(PDO::FETCH_ASSOC);
+        $kurir_id=$stmt->fetch(PDO::FETCH_ASSOC);
         
         if($stmt->rowCount() > 0)
             {
-            return $konsumen_id["konsumen_no"];
+            return $kurir_id["kurir_no"];
         } else {
             return FALSE;
         }
     }
     
     /**
-     * Fetching konsumen id by api key
-     * @param String $konsumen_kunci_api user api key
+     * Fetching kurir id by api key
+     * @param String $kurir_kunci_api user api key
      */
-    public static function getKonsumenUnikId($konsumen_kunci_api) {
+    public static function getKurirUnikId($kurir_kunci_api) {
         $app = \Slim\Slim::getInstance();
         
-        $sql = "SELECT konsumen_id FROM konsumen WHERE konsumen_kunci_api = :konsumen_kunci_api";
+        $sql = "SELECT kurir_id FROM kurir WHERE kurir_kunci_api = :kurir_kunci_api";
 
         $stmt = $app->db->prepare($sql);
-        $stmt->execute(array('konsumen_kunci_api'=>$konsumen_kunci_api));
+        $stmt->execute(array('kurir_kunci_api'=>$kurir_kunci_api));
         
-        $konsumen_id=$stmt->fetch(PDO::FETCH_ASSOC);
+        $kurir_id=$stmt->fetch(PDO::FETCH_ASSOC);
         
         if($stmt->rowCount() > 0)
             {
-            return $konsumen_id["konsumen_id"];
+            return $kurir_id["kurir_id"];
         } else {
             return FALSE;
         }
@@ -404,22 +404,22 @@ class KonsumenModel{
 
     /**
      * Fetching email by api key
-     * @param String $konsumen_kunci_api user api key
+     * @param String $kurir_kunci_api user api key
      */
-    public static function getKonsumenEmail($konsumen_kunci_api) {
+    public static function getKurirEmail($kurir_kunci_api) {
         
         $app = \Slim\Slim::getInstance();
 
-        $sql = "SELECT konsumen_email FROM konsumen WHERE konsumen_kunci_api = :konsumen_kunci_api";
+        $sql = "SELECT kurir_email FROM kurir WHERE kurir_kunci_api = :kurir_kunci_api";
 
         $stmt = $app->db->prepare($sql);
-        $stmt->execute(array('konsumen_kunci_api'=>$konsumen_kunci_api));
+        $stmt->execute(array('kurir_kunci_api'=>$kurir_kunci_api));
         
-        $konsumen_email=$stmt->fetch(PDO::FETCH_ASSOC);
+        $kurir_email=$stmt->fetch(PDO::FETCH_ASSOC);
         
         if($stmt->rowCount() > 0)
             {
-            return $konsumen_email;
+            return $kurir_email;
         } else {
             return NULL;
         }
@@ -429,17 +429,17 @@ class KonsumenModel{
     /**
      * Validating user api key
      * If the api key is there in db, it is a valid key
-     * @param String $konsumen_kunci_api user api key
+     * @param String $kurir_kunci_api user api key
      * @return boolean
      */
-    public static function isValidApiKey($konsumen_kunci_api) {
+    public static function isValidApiKey($kurir_kunci_api) {
         
         $app = \Slim\Slim::getInstance();
 
-        $sql = "SELECT konsumen_id FROM konsumen WHERE konsumen_kunci_api = :konsumen_kunci_api";
+        $sql = "SELECT kurir_id FROM kurir WHERE kurir_kunci_api = :kurir_kunci_api";
 
         $stmt = $app->db->prepare($sql);
-        $stmt->execute(array('konsumen_kunci_api'=>$konsumen_kunci_api));
+        $stmt->execute(array('kurir_kunci_api'=>$kurir_kunci_api));
         
         $stmt->fetch(PDO::FETCH_ASSOC);
         

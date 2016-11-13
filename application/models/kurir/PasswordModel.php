@@ -4,15 +4,15 @@
 class PasswordModel{
     
    
-public static function ResetRequest($konsumen_email,$konsumen_id,$konsumen_nama){
+public static function ResetRequest($kurir_email,$kurir_id,$kurir_nama){
 
         $app = \Slim\Slim::getInstance();
         //$user = array();
         
         // Generating password hash
         $random = GeneratorModel::randStrGen(20);
-        $konsumen_token = GeneratorModel::randStrGen(6);
-        $hash = GeneratorModel::getHash($konsumen_token, $random);
+        $kurir_token = GeneratorModel::randStrGen(6);
+        $hash = GeneratorModel::getHash($kurir_token, $random);
         
         $password_sementara = $hash["encrypted"];
         $salt = $hash["salt"];
@@ -22,7 +22,7 @@ public static function ResetRequest($konsumen_email,$konsumen_id,$konsumen_nama)
         
         $stmt = $app->db->prepare($sql);
         $stmt->execute(array(
-            'email'=>$konsumen_email           
+            'email'=>$kurir_email           
         ));
 
         if ($stmt->rowCount() == 0){
@@ -34,8 +34,8 @@ public static function ResetRequest($konsumen_email,$konsumen_id,$konsumen_nama)
    
         $stmt = $app->db->prepare($sql);
         $stmt->execute(array(
-            'email'=>$konsumen_email,
-            'user_id'=>$konsumen_id,
+            'email'=>$kurir_email,
+            'user_id'=>$kurir_id,
             'password_sementara'=>$password_sementara,
             'salt'=>$salt,
             'dibuat_pada'=>$tanggal
@@ -46,7 +46,7 @@ public static function ResetRequest($konsumen_email,$konsumen_id,$konsumen_nama)
              
      
             $kirim_email = new KirimEmailModel();
-            $kirim_email->lupaPassword($konsumen_email,$konsumen_nama,  $konsumen_token);
+            $kirim_email->lupaPassword($kurir_email,$kurir_nama,  $kurir_token);
 
             } else {
 		$response["error"] = "true";
@@ -62,8 +62,8 @@ public static function ResetRequest($konsumen_email,$konsumen_id,$konsumen_nama)
 
         $stmt = $app->db->prepare($sql);
         $stmt->execute(array(
-            'email'=>$konsumen_email,
-            'user_id'=>$konsumen_id,
+            'email'=>$kurir_email,
+            'user_id'=>$kurir_id,
             'password_sementara'=>$password_sementara,
             'salt'=>$salt,
             'diupdate_pada'=>$tanggal
@@ -73,7 +73,7 @@ public static function ResetRequest($konsumen_email,$konsumen_id,$konsumen_nama)
             {
             
             $kirim_email = new KirimEmailModel();
-            $kirim_email->lupaPassword($konsumen_email,$konsumen_nama,  $konsumen_token);
+            $kirim_email->lupaPassword($kurir_email,$kurir_nama,  $kurir_token);
 
             } else {
 		$response["error"] = "true";
@@ -88,17 +88,17 @@ public static function ResetRequest($konsumen_email,$konsumen_id,$konsumen_nama)
     }
     
 
-    public static function meresetPassword($konsumen_email,$kode,$password_baru){
+    public static function meresetPassword($kurir_email,$kode,$password_baru){
         
         $app = \Slim\Slim::getInstance();
  
-        $sql = 'SELECT  password_sementara, user_id, salt, dibuat_pada, konsumen_nama '
-                . 'FROM password_reset pas JOIN konsumen kon ON pas.user_id = kon.konsumen_id '
+        $sql = 'SELECT  password_sementara, user_id, salt, dibuat_pada, kurir_nama '
+                . 'FROM password_reset pas JOIN kurir kon ON pas.user_id = kon.kurir_id '
                 . 'WHERE pas.email = :email';
         
         $stmt = $app->db->prepare($sql);
         $stmt->execute(array(
-            'email'=>$konsumen_email         
+            'email'=>$kurir_email         
         ));
 
 	$reset = $stmt->fetch(PDO::FETCH_ASSOC);
@@ -114,7 +114,7 @@ public static function ResetRequest($konsumen_email,$konsumen_id,$konsumen_nama)
                 if (PasswordModel::menggantiPassword($reset["user_id"], $password_baru)){
                     
                     $kirim_email = new KirimEmailModel();
-                    $kirim_email->resetPassword($konsumen_email, $reset["konsumen_nama"]);
+                    $kirim_email->resetPassword($kurir_email, $reset["kurir_nama"]);
                    
                 } else {
                     
@@ -131,36 +131,35 @@ public static function ResetRequest($konsumen_email,$konsumen_id,$konsumen_nama)
             }
     }
 
-    /* ------------- `fungsi ganti password konsumen` ------------------ */	
+    /* ------------- `fungsi ganti password kurir` ------------------ */	
 	
-public static function menggantiPassword($konsumen_id, $password_baru) {
+public static function menggantiPassword($kurir_id, $password_baru) {
     
         $app = \Slim\Slim::getInstance();
         // fetching user by email
         // 
         // Generating password hash
-        $konsumen_password = GeneratorModel::hash($password_baru);
+        $kurir_password = GeneratorModel::hash($password_baru);
 
         // Generating API key
-        $konsumen_kunci_api = GeneratorModel::generateApiKey();
+        $kurir_kunci_api = GeneratorModel::generateApiKey();
 		
-	$sql = "UPDATE konsumen SET konsumen_password =:konsumen_password, "
-                . "konsumen_kunci_api =:konsumen_kunci_api, konsumen_update_pada = NOW(),"
-                . " konsumen_status_reset =:konsumen_status_reset WHERE konsumen_id = :konsumen_id";
+	$sql = "UPDATE kurir SET kurir_password =:kurir_password, "
+                . "kurir_kunci_api =:kurir_kunci_api, kurir_update_pada = NOW(),"
+                . " kurir_status_reset =:kurir_status_reset WHERE kurir_id = :kurir_id";
         //$sekarang = new DateTime(date("Y-m-d H:i:s"));
         $stmt = $app->db->prepare($sql);
         $mengganti=$stmt->execute(array(
-            'konsumen_password'=>$konsumen_password,
-            'konsumen_kunci_api'=>$konsumen_kunci_api, 
-            //'konsumen_update_pada'=>$sekarang,
-            'konsumen_status_reset'=>"berhasil di reset",
-            'konsumen_id'=>$konsumen_id
+            'kurir_password'=>$kurir_password,
+            'kurir_kunci_api'=>$kurir_kunci_api, 
+            //'kurir_update_pada'=>$sekarang,
+            'kurir_status_reset'=>"berhasil di reset",
+            'kurir_id'=>$kurir_id
             
         ));
 		
         // Check for successful insertion
         if ($mengganti) {
-            
                 //Update user password success
                 return TRUE;
             } else {

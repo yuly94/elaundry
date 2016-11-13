@@ -55,22 +55,40 @@ $app->post('/konsumen/login/', function() use ($app) {
 		if (LoginModel::loginGagal($login_email))
 		{		
 			// check brute force
-                     $cek_percobaan = LoginModel::cekPercobaanLogin($login_email);
-                if ( $cek_percobaan =="6"){
-                $response["error"] = true;
-                $response['message'] = 'Login gagal, anda melebihi jumlah gagal yang di izinkan, silahkan coba lagi 60 menit kedepan';
-
-                            } else // check brute force
-                if ( $cek_percobaan){
-                $response["error"] = true;
-                $response['message'] = 'Login gagal, kesempatan kurang '.(6 - $cek_percobaan).' silahkan coba kembali';
-
-                            }  			
-                            } else {
-                $response['error'] = true;
-                $response['message'] = 'Login gagal, email atau password anda salah, silahkan coba kembali';	
-
-                            }
+            if ( LoginModel::cekPercobaanLogin($login_email) =="6"){
+            $response["error"] = true;
+            $response['message'] = 'Login gagal, anda melebihi jumlah gagal yang di izinkan, silahkan coba lagi 60 menit kedepan';
+             
+			} else // check brute force
+            if ( LoginModel::cekPercobaanLogin($login_email) =="5"){
+            $response["error"] = true;
+            $response['message'] = 'Login gagal, kesempatan kurang 1 lagi, harap berhati hati';
+             
+			} else // check brute force
+            if ( LoginModel::cekPercobaanLogin($login_email) =="4"){
+            $response["error"] = true;
+            $response['message'] = 'Login gagal, kesempatan kurang 2 lagi, silahkan coba kembali';
+             
+			} else // check brute force
+            if ( LoginModel::cekPercobaanLogin($login_email) =="3"){
+            $response["error"] = true;
+            $response['message'] = 'Login gagal, kesempatan kurang 3 lagi, silahkan coba kembali';
+             
+			} else  // check brute force
+            if ( LoginModel::cekPercobaanLogin($login_email) =="2"){
+            $response["error"] = true;
+            $response['message'] = 'Login gagal, kesempatan kurang 4 lagi, silahkan coba kembali';
+             
+			} else // check brute force
+            if ( LoginModel::cekPercobaanLogin($login_email) =="1"){
+            $response["error"] = true;
+            $response['message'] = 'Login gagal, kesempatan kurang 5 lagi, silahkan coba kembali';
+			}			
+			} else {
+	    $response['error'] = true;
+            $response['message'] = 'Login gagal, email atau password anda salah, silahkan coba kembali';	
+					
+			};
         
             }    
 	}			             
