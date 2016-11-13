@@ -17,7 +17,7 @@ $app->get('/konsumen/pemesanan/','authKonsumen' ,function() use ($app){
                 
             $response["error"] = false;
             $response["message"] = "alamat berhasil di dapatkan"; 
-            $response["pasanan"] = $result;
+            $response["pesanan"] = $result;
             BantuanModel::echoRespnse(200, $response);
 }      
     else {

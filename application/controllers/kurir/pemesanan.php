@@ -6,12 +6,12 @@
  * and open the template in the editor.
  */
 
-$app->get('/konsumen/pemesanan/','authKonsumen' ,function() use ($app){
+$app->get('/kurir/pemesanan/','authKurir' ,function() use ($app){
            
-            global $api_konsumen_id;
+            global $api_kurir_id;
 
             // fetching all user tasks
-            $result= PemesananModel::getPesanan($api_konsumen_id);
+            $result= PemesananModel::getPesanan($api_kurir_id);
             
             if ($result != NULL) { 
                 
@@ -27,9 +27,9 @@ $app->get('/konsumen/pemesanan/','authKonsumen' ,function() use ($app){
         }
     });
 
-$app->post('/konsumen/pemesanan/tambah/','authKonsumen' ,function() use ($app){
+$app->post('/kurir/pemesanan/tambah/','authKurir' ,function() use ($app){
            
-            global $api_konsumen_id;
+            global $api_kurir_id;
 
             // check for required params
             BantuanModel::verifyRequiredParams(array( 
@@ -45,7 +45,7 @@ $app->post('/konsumen/pemesanan/tambah/','authKonsumen' ,function() use ($app){
             $catatan = $app->request->post('catatan');
             
             // fetching all user tasks
-            $result= PemesananModel::tambahPesanan($api_konsumen_id, $paket_id,$pesanan_satuan,$koordinat_id,$catatan);
+            $result= PemesananModel::tambahPesanan($api_kurir_id, $paket_id,$pesanan_satuan,$koordinat_id,$catatan);
             
             if ($result != NULL) { 
                 

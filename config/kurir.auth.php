@@ -6,7 +6,7 @@
  * and open the template in the editor.
  */
 
-function authKonsumen(\Slim\Route $route) {
+function authKurir(\Slim\Route $route) {
     
     $app = \Slim\Slim::getInstance();
     // Getting request headers
@@ -36,11 +36,11 @@ function authKonsumen(\Slim\Route $route) {
 	    global $api_kurir_email;
 
             // get user primary key id
-            $konsumen = KurirModel::getKonsumenByApi($api_key);
+            $kurir = KurirModel::getKurirByApi($api_key);
 
-            $api_kurir_no = $konsumen["kurir_no"];
-            $api_kurir_id = $konsumen["kurir_id"];
-            $api_kurir_email = $konsumen["kurir_email"];
+            $api_kurir_no = $kurir["kurir_no"];
+            $api_kurir_id = $kurir["kurir_id"];
+            $api_kurir_email = $kurir["kurir_email"];
 
                 }
                 

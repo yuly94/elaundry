@@ -9,15 +9,15 @@
 class PemesananModel {
                 /**
      * Fetching all alamat
-     * @param String $konsumen_id
+     * @param String $kurir_id
      */
-    public static function getPesanan($konsumen_id) {
+    public static function getPesanan($kurir_id) {
         $app = \Slim\Slim::getInstance();
         
-        $sql = "SELECT * FROM pemesanan WHERE konsumen_id = :konsumen_id ";
+        $sql = "SELECT * FROM pemesanan WHERE kurir_id = :kurir_id ";
 
         $stmt = $app->db->prepare($sql);
-        $stmt->execute(array('konsumen_id'=>$konsumen_id));
+        $stmt->execute(array('kurir_id'=>$kurir_id));
         
         $alamat=$stmt->fetchAll(PDO::FETCH_OBJ);
         
@@ -38,45 +38,45 @@ class PemesananModel {
      * @param String $email User login email id
      * @param String $password User login password
      */
-    public static function tambahPesanan($api_konsumen_id, $paket_id,$pesanan_satuan,$koordinat_id,$catatan) {
+    public static function tambahPesanan($api_kurir_id, $paket_id,$pesanan_satuan,$koordinat_id,$catatan) {
         
         $app = \Slim\Slim::getInstance();
        
         $response = array();
 
         // First check if user already existed in db
-        if (!ValidasiModel::cekKonsumen($konsumen_email)) {
+        if (!ValidasiModel::cekKurir($kurir_email)) {
             
             $token_aktifasi = GeneratorModel::randStrGen(50);
             // insert query        
-            $sql = "INSERT INTO konsumen(konsumen_id, konsumen_nama, konsumen_alamat, "
-                    . "konsumen_nohp, konsumen_email, konsumen_password, konsumen_kunci_api, "
-                    . "konsumen_kode_aktifasi, konsumen_kode_reset, konsumen_dibuat_pada, konsumen_status_aktifasi,konsumen_status,konsumen_status_reset) "
-                    . "values(:konsumen_id, :konsumen_nama, :konsumen_alamat, :konsumen_nohp,"
-                    . ":konsumen_email, :konsumen_password, :konsumen_kunci_api, :konsumen_kode_aktifasi,"
-                    . ":konsumen_kode_reset,   NOW(), :konsumen_status_aktifasi,:konsumen_status,:konsumen_status_reset)";
+            $sql = "INSERT INTO kurir(kurir_id, kurir_nama, kurir_alamat, "
+                    . "kurir_nohp, kurir_email, kurir_password, kurir_kunci_api, "
+                    . "kurir_kode_aktifasi, kurir_kode_reset, kurir_dibuat_pada, kurir_status_aktifasi,kurir_status,kurir_status_reset) "
+                    . "values(:kurir_id, :kurir_nama, :kurir_alamat, :kurir_nohp,"
+                    . ":kurir_email, :kurir_password, :kurir_kunci_api, :kurir_kode_aktifasi,"
+                    . ":kurir_kode_reset,   NOW(), :kurir_status_aktifasi,:kurir_status,:kurir_status_reset)";
        
             $stmt = $app->db->prepare($sql);
             $result = $stmt->execute(array(
-            'konsumen_id'=>GeneratorModel::generateUID(),
-            'konsumen_nama'=>$konsumen_nama,
-            'konsumen_alamat'=>$konsumen_alamat,
-            'konsumen_nohp'=>$konsumen_nohp,
-            'konsumen_email'=>$konsumen_email,
-            'konsumen_password'=> GeneratorModel::hash($konsumen_password),
-            'konsumen_kunci_api'=> GeneratorModel::generateApiKey(),
-            'konsumen_kode_aktifasi'=> $token_aktifasi,
-            'konsumen_kode_reset'=> NULL,
-            'konsumen_status_aktifasi'=>"belum aktifasi",
-            'konsumen_status'=>"menunggu aktifasi",
-            'konsumen_status_reset'=>"none"
+            'kurir_id'=>GeneratorModel::generateUID(),
+            'kurir_nama'=>$kurir_nama,
+            'kurir_alamat'=>$kurir_alamat,
+            'kurir_nohp'=>$kurir_nohp,
+            'kurir_email'=>$kurir_email,
+            'kurir_password'=> GeneratorModel::hash($kurir_password),
+            'kurir_kunci_api'=> GeneratorModel::generateApiKey(),
+            'kurir_kode_aktifasi'=> $token_aktifasi,
+            'kurir_kode_reset'=> NULL,
+            'kurir_status_aktifasi'=>"belum aktifasi",
+            'kurir_status'=>"menunggu aktifasi",
+            'kurir_status_reset'=>"none"
         ));
             
             // Check for successful insertion
             if ($result) {
                 // User successfully inserted
                 
-                KirimEmailModel::emailAktifasi($konsumen_email, $token_aktifasi, $konsumen_nama);
+                KirimEmailModel::emailAktifasi($kurir_email, $token_aktifasi, $kurir_nama);
 
                 return USER_CREATED_SUCCESSFULLY;
             } else {

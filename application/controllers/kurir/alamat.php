@@ -7,14 +7,14 @@
  * url /tasks          
  */
 
-//$auth = AuthentikatorModel::authKonsumen();
+//$auth = AuthentikatorModel::authKurir();
 
-$app->get('/konsumen/alamat/','authKonsumen' ,function() use ($app){
+$app->get('/kurir/alamat/','authKurir' ,function() use ($app){
            
-            global $api_konsumen_id;
+            global $api_kurir_id;
 
             // fetching all user tasks
-            $result= AlamatModel::getAlamat($api_konsumen_id);
+            $result= AlamatModel::getAlamat($api_kurir_id);
             
             if ($result != NULL) { 
                 

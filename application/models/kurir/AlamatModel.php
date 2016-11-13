@@ -9,15 +9,15 @@
 class AlamatModel {
                 /**
      * Fetching all alamat
-     * @param String $konsumen_id
+     * @param String $kurir_id
      */
-    public static function getAlamat($konsumen_id) {
+    public static function getAlamat($kurir_id) {
         $app = \Slim\Slim::getInstance();
         
-        $sql = "SELECT * FROM konsumen_alamat WHERE konsumen_id = :konsumen_id ";
+        $sql = "SELECT * FROM kurir_alamat WHERE kurir_id = :kurir_id ";
 
         $stmt = $app->db->prepare($sql);
-        $stmt->execute(array('konsumen_id'=>$konsumen_id));
+        $stmt->execute(array('kurir_id'=>$kurir_id));
         
         $alamat=$stmt->fetchAll(PDO::FETCH_OBJ);
         

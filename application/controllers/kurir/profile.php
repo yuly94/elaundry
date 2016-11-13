@@ -19,36 +19,36 @@
  */
 
 
-$app->post('/konsumen/profile/update/','authKonsumen', function() use ($app) {
+$app->post('/kurir/profile/update/','authKurir', function() use ($app) {
 
-            global $api_konsumen_id;
+            global $api_kurir_id;
             // check for required params
-            BantuanModel::verifyRequiredParams(array('konsumen_nama', 'konsumen_alamat', 'konsumen_email', 'konsumen_nohp'));
+            BantuanModel::verifyRequiredParams(array('kurir_nama', 'kurir_alamat', 'kurir_email', 'kurir_nohp'));
 
             // reading post params
-            $konsumen_id = $api_konsumen_id;
-            $konsumen_nama = $app->request->post('konsumen_nama');
-            $konsumen_alamat = $app->request->post('konsumen_alamat');
-            $konsumen_email = $app->request->post('konsumen_email');
-            $konsumen_nohp = $app->request->post('konsumen_nohp');
+            $kurir_id = $api_kurir_id;
+            $kurir_nama = $app->request->post('kurir_nama');
+            $kurir_alamat = $app->request->post('kurir_alamat');
+            $kurir_email = $app->request->post('kurir_email');
+            $kurir_nohp = $app->request->post('kurir_nohp');
                  
-            if (ProfileModel::updateProfile($konsumen_nama,  $konsumen_alamat, $konsumen_email, $konsumen_nohp, $konsumen_id)) {
+            if (ProfileModel::updateProfile($kurir_nama,  $kurir_alamat, $kurir_email, $kurir_nohp, $kurir_id)) {
 
              // get the user by email
-            $konsumen = KonsumenModel::konsumenById($api_konsumen_id);
+            $kurir = KurirModel::kurirById($api_kurir_id);
 
-            if ($konsumen) {
+            if ($kurir) {
     
                 // user is found
 
                 $response["error"] = FALSE;
                 $response["message"] = "Successfully update you";
-                $response["konsumen"] = $konsumen;
+                $response["kurir"] = $kurir;
                 
                 //send email
                 
                 $kirim_email = new KirimEmailModel();
-                $kirim_email->updateProfile($konsumen_email,$konsumen_nama);
+                $kirim_email->updateProfile($kurir_email,$kurir_nama);
                 
 
                 } else {

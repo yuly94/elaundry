@@ -73,7 +73,7 @@ public static function validasiPassword($password){
 
     /**
      * Checking for duplicate user by email address
-     * @param String $email email to check in db
+     * @param String $kurir_email email to check in db
      * @return boolean
      */
     public static function cekKurir($kurir_email) {

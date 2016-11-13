@@ -12,7 +12,7 @@ $app->post('/kurir/password/lupa/', function () use ($app) {
         ValidasiModel::validasiEmail($kurir_email);
         $response = array();
 
-        $cek_kurir = ValidasiModel::cekKonsumen($kurir_email);
+        $cek_kurir = ValidasiModel::cekKurir($kurir_email);
         if ($cek_kurir == "0") {   //2
 
         $response["error"] = "true";
@@ -46,7 +46,7 @@ $app->post('/kurir/password/reset/', function () use ($app) {
     // validating email address
     ValidasiModel::validasiEmail($kurir_email);
 
-    if ( ValidasiModel::cekKonsumen($kurir_email) ) {
+    if ( ValidasiModel::cekKurir($kurir_email) ) {
         $result =  PasswordModel::meresetPassword($kurir_email,$kurir_kode_reset,$kurir_password);
 
         if($result==1){
@@ -87,7 +87,7 @@ $app->post('/kurir/password/reset/', function () use ($app) {
     }); //1
  
       
-    $app->post('/kurir/password/ganti/','authKonsumen' ,function() use ($app){
+    $app->post('/kurir/password/ganti/','authKurir' ,function() use ($app){
         
             // check for required params
             BantuanModel::verifyRequiredParams(array('kurir_password_lama', 'kurir_password_baru'));
@@ -98,7 +98,7 @@ $app->post('/kurir/password/reset/', function () use ($app) {
             $kurir_password_baru = $app->request()->post('kurir_password_baru');
            
             global $api_kurir_id;
-            $kurir = KonsumenModel::cekPasswordById($api_kurir_id, $kurir_password_lama);
+            $kurir = KurirModel::cekPasswordById($api_kurir_id, $kurir_password_lama);
             if($kurir){
                 
                 // fetching all user tasks

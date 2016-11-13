@@ -13,7 +13,7 @@
  * url /tasks          
  */
 
-$app->get('/konsumen/laundry/paket/','authKonsumen' ,function() use ($app){
+$app->get('/kurir/laundry/paket/','authKurir' ,function() use ($app){
             
             $paket_status = "1";
 

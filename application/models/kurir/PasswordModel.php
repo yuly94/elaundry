@@ -57,7 +57,7 @@ public static function ResetRequest($kurir_email,$kurir_id,$kurir_nama){
 
         } else {
  
-        $sql = "UPDATE password_reset SET email =:email,  password_sementara=:password_sementara, "
+        $sql = "UPDATE password_reset SET email =:email, password_sementara=:password_sementara, "
                 . "salt=:salt, diupdate_pada=:diupdate_pada WHERE user_id=:user_id";
 
         $stmt = $app->db->prepare($sql);
@@ -73,14 +73,15 @@ public static function ResetRequest($kurir_email,$kurir_id,$kurir_nama){
             {
             
             $kirim_email = new KirimEmailModel();
-            $kirim_email->lupaPassword($kurir_email,$kurir_nama,  $kurir_token);
+            $kirim_email->lupaPassword($kurir_email,$kurir_nama, $kurir_token);
 
             } else {
+                
 		$response["error"] = "true";
-      		$response["message"] = "Email Reset Password Failure";
+      		$response["message"] = "Email Reset Password Failure x";
       		BantuanModel::echoRespnse(200, $response);
-            //return false;
-
+                //return false;
+                
             }
 
         } 
@@ -93,7 +94,7 @@ public static function ResetRequest($kurir_email,$kurir_id,$kurir_nama){
         $app = \Slim\Slim::getInstance();
  
         $sql = 'SELECT  password_sementara, user_id, salt, dibuat_pada, kurir_nama '
-                . 'FROM password_reset pas JOIN kurir kon ON pas.user_id = kon.kurir_id '
+                . 'FROM password_reset pas JOIN kurir kur ON pas.user_id = kur.kurir_id '
                 . 'WHERE pas.email = :email';
         
         $stmt = $app->db->prepare($sql);
@@ -146,7 +147,7 @@ public static function menggantiPassword($kurir_id, $password_baru) {
 		
 	$sql = "UPDATE kurir SET kurir_password =:kurir_password, "
                 . "kurir_kunci_api =:kurir_kunci_api, kurir_update_pada = NOW(),"
-                . " kurir_status_reset =:kurir_status_reset WHERE kurir_id = :kurir_id";
+                . "kurir_status_reset =:kurir_status_reset WHERE kurir_id = :kurir_id";
         //$sekarang = new DateTime(date("Y-m-d H:i:s"));
         $stmt = $app->db->prepare($sql);
         $mengganti=$stmt->execute(array(

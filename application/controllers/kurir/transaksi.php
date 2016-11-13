@@ -6,12 +6,12 @@
  * and open the template in the editor.
  */
 
-$app->get('/konsumen/transaksi/','authKonsumen' ,function() use ($app){
+$app->get('/kurir/transaksi/','authKurir' ,function() use ($app){
            
-            global $api_konsumen_id;
+            global $api_kurir_id;
 
             // fetching all user tasks
-            $result= TransaksiModel::getAllTransaksi($api_konsumen_id);
+            $result= TransaksiModel::getAllTransaksi($api_kurir_id);
             
             if ($result != NULL) { 
                 

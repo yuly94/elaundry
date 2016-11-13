@@ -45,10 +45,10 @@ class KirimEmailModel{
  }
  
  
-  public function updateProfile($konsumen_password, $konsumen_nama) {
-            $to = $konsumen_password;
+  public function updateProfile($kurir_password, $kurir_nama) {
+            $to = $kurir_password;
             $subject = "Pemberitahuan pembaruan password";
-            $body = "Hai $konsumen_nama ,<br><br>
+            $body = "Hai $kurir_nama ,<br><br>
             <p>Profile anda berhasil diperbarui</p>
             <p> Jika anda tidak merasa memperbarui profile anda atau memiliki account, maka abaikan saja email ini</p>";
 
@@ -58,11 +58,11 @@ class KirimEmailModel{
  }
 
  
-  public function  resetPassword( $konsumen_email, $konsumen_nama) {
+  public function  resetPassword( $kurir_email, $kurir_nama) {
       
-            $to = $konsumen_email;
+            $to = $kurir_email;
             $subject = "Pemberitahuan pembaruan password";
-            $body = "'Hai $konsumen_nama',<br><br> 
+            $body = "'Hai $kurir_nama',<br><br> 
             <p>Password account anda berhasil diperbarui</p>
             <p> Jika anda tidak merasa memperbarui password anda atau memiliki account, maka abaikan saja email ini</p>";
 
@@ -71,25 +71,25 @@ class KirimEmailModel{
  }
  
  
-  public  function emailAktifasi($konsumen_email, $token_aktifasi, $konsumen_nama) {
+  public  function emailAktifasi($kurir_email, $token_aktifasi, $kurir_nama) {
              //send email
-            $to = $konsumen_email;
+            $to = $kurir_email;
             $subject = "Pendaftaran berhasil";
-            $body = 'Selamat '.$konsumen_nama.' !              
+            $body = 'Selamat '.$kurir_nama.' !              
             <p>Pendaftaran anda di elaundry telah berhasil dilakukan</p>
             <p>Silahkan melakukan aktifasi dengan mengklik link berikut ini :
-            <a href="'.DIR.'/kurir/registrasi/aktifasi/'.$konsumen_nama.'/'.$token_aktifasi.'">'.DIR.'/kurir/registrasi/aktifasi/'.$konsumen_nama.'/'.$token_aktifasi.'</a></p>' ;
+            <a href="'.DIR.'/kurir/registrasi/aktifasi/'.$kurir_nama.'/'.$token_aktifasi.'">'.DIR.'/kurir/registrasi/aktifasi/'.$kurir_nama.'/'.$token_aktifasi.'</a></p>' ;
 
             $kirim_email = new EmailModel();
             $kirim_email->sentEmail($to,$subject,$body);
                 
   }
     
-    public function emailAktifasiSukses($konsumen_email, $konsumen_nama) {
+    public function emailAktifasiSukses($kurir_email, $kurir_nama) {
             //send email
-            $to = $konsumen_email; 
+            $to = $kurir_email; 
             $subject = "aktifasi berhasil";
-            $body = 'Selamat '.$konsumen_nama.' !              
+            $body = 'Selamat '.$kurir_nama.' !              
             <p>Account anda telah aktif</p>';
             
             $kirim_email = new EmailModel();           
