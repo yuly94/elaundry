@@ -99,7 +99,7 @@ public class LoginFragmentVolley extends Fragment implements View.OnClickListene
 
         // Check if user is already logged in or not
         if (session.isLoggedIn()) {
-            // User is already logged in. Take him to main activity
+            // UserModels is already logged in. Take him to main activity
             Intent intent = new Intent(getActivity(), MainActivity.class);
             startActivity(intent);
           //  finish();

@@ -51,7 +51,7 @@ public class RegisterFragmentVolley extends Fragment implements View.OnClickList
     private EditText inputEmail;
     private EditText inputPassword;
     private EditText inputConfirm;
-    private SQLiteHandler db;
+
     private ProgressDialog pDialog;
     private SessionManager session;
 
@@ -74,14 +74,14 @@ public class RegisterFragmentVolley extends Fragment implements View.OnClickList
     private void checkSesi(){
 
         // SQLite database handler
-        db = new SQLiteHandler(getActivity());
+        //db = new SQLiteHandler(getActivity());
 
         // Session manager
         session = new SessionManager(getActivity());
 
         // Check if user is already logged in or not
         if (session.isLoggedIn()) {
-            // User is already logged in. Take him to main activity
+            // UserModels is already logged in. Take him to main activity
             Intent intent = new Intent(getActivity(), MainActivity.class);
             startActivity(intent);
             //  finish();
@@ -133,12 +133,12 @@ public class RegisterFragmentVolley extends Fragment implements View.OnClickList
                                 registerUser(konsumen_nama, konsumen_alamat, konsumen_noHp, konsumen_email, konsumen_password);
                             } else {
                                 Toast.makeText(getActivity(),
-                                        "Password konfirmasi tidak sama", Toast.LENGTH_LONG)
+                                        R.string.password_konfirm_tidak_sama, Toast.LENGTH_LONG)
                                         .show();
                             }
                         } else {
                             Toast.makeText(getActivity(),
-                                    "Mohon masukkan data secara lengkap", Toast.LENGTH_LONG)
+                                    R.string.lengkapi_data, Toast.LENGTH_LONG)
                                     .show();
                         }
 
@@ -156,9 +156,9 @@ public class RegisterFragmentVolley extends Fragment implements View.OnClickList
     private void registerUser(final String konsumen_nama, final String konsumen_alamat, final String konsumen_nohp, final String konsumen_email,
                               final String konsumen_password) {
         // Tag used to cancel the request
-        String tag_string_req = "req_registrasi";
+        String tag_string_req = getString(R.string.permintaan_registrasi);
 
-        pDialog.setMessage("Mendaftarkan, mohon tunggu ...");
+        pDialog.setMessage(getString(R.string.mendaftarkan_mohon_tunggu));
         showDialog();
 
         StringRequest strReq = new StringRequest(Method.POST,
@@ -166,7 +166,7 @@ public class RegisterFragmentVolley extends Fragment implements View.OnClickList
 
             @Override
             public void onResponse(String response) {
-                Log.d(TAG, "Response registrasi: " + response);
+                Log.d(TAG, "Response registrasi : " + response);
                 hideDialog();
 
                 try {
@@ -194,7 +194,7 @@ public class RegisterFragmentVolley extends Fragment implements View.OnClickList
 
 */
 
-                        Toast.makeText(getActivity(), "Registrasi anda berhasil, silahkan check email untuk aktifasi", Toast.LENGTH_LONG).show();
+                        Toast.makeText(getActivity(), R.string.registrasi_berhasil, Toast.LENGTH_LONG).show();
 
                         // Launch login activity
                         goToLogin();

@@ -36,6 +36,7 @@ import com.yuly.elaundry.R;
 import com.yuly.elaundry.fragment.AlamatFragment;
 import com.yuly.elaundry.fragment.ChangePassFragment;
 import com.yuly.elaundry.fragment.MapsFragmentLocation;
+import com.yuly.elaundry.fragment.PemesananFragment;
 import com.yuly.elaundry.fragment.TransaksiFragment;
 import com.yuly.elaundry.fragment.TempatFragment;
 import com.yuly.elaundry.fragment.ProfileFragment;
@@ -186,7 +187,7 @@ public class MainActivity extends AppCompatActivity {
 					}
 				}
 			} else {
-				Log.d("Main Activity","User not found");
+				Log.d("Main Activity","UserModels not found");
 			}
 
 		}
@@ -252,7 +253,7 @@ public class MainActivity extends AppCompatActivity {
 		switch (position) {
 			case 0:
 			//  fragment pesanan
-				fragment = new TransaksiFragment();
+				fragment = new PemesananFragment();
 				break;
 			case 1:
 			//  fragment tempat
@@ -294,9 +295,10 @@ public class MainActivity extends AppCompatActivity {
 
 *//*
 
-                fragment = AboutFragment;
+
 */
-            //    fragment = new AboutFragment();
+
+             //   fragment = new AboutFragment();
 
 				break;
 			case 7:

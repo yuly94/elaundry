@@ -1,7 +1,6 @@
 package com.yuly.elaundry.fragment;
 
 import android.app.ProgressDialog;
-import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.Fragment;
@@ -27,17 +26,14 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.VolleyLog;
 import com.android.volley.toolbox.JsonArrayRequest;
-
 import com.yuly.elaundry.R;
-import com.yuly.elaundry.adapter.TempatAdapter;
+import com.yuly.elaundry.adapter.TransaksiAdapter;
 import com.yuly.elaundry.app.AppConfig;
 import com.yuly.elaundry.app.AppController;
-import com.yuly.elaundry.models.PesananModels;
 import com.yuly.elaundry.helper.SQLiteHandler;
 import com.yuly.elaundry.helper.SessionManager;
 import com.yuly.elaundry.helper.VolleyErrorHelper;
-import com.yuly.elaundry.peta.PetaActivity;
-import com.yuly.elaundry.widgets.DividerItemDecoration;
+import com.yuly.elaundry.models.PesananModels;
 import com.yuly.elaundry.widgets.FastScroller;
 
 import org.json.JSONArray;
@@ -52,12 +48,10 @@ import java.util.Map;
 /**
  * Created by anonymous on 21/02/16.
  */
-public class TempatFragment extends Fragment implements SearchView.OnQueryTextListener{
-
-
+public class PemesananFragment extends Fragment implements SearchView.OnQueryTextListener{
 
     //Creating a List of superheroes
-    private List<PesananModels> daftarTempat;
+    private List<PesananModels> listPemesanan;
 
     //Creating Views
 
@@ -66,10 +60,10 @@ public class TempatFragment extends Fragment implements SearchView.OnQueryTextLi
 
     private ProgressDialog pDialog;
 
-    private String apiKey;
+    private String konsumen_kunci_api;
 
     private FastScroller mFastScroller;
-    private FloatingActionButton fab;
+    private FloatingActionButton mFab;
 
     //JSON Array
     private JSONArray result;
@@ -77,11 +71,18 @@ public class TempatFragment extends Fragment implements SearchView.OnQueryTextLi
 
     private static final String TAG = "RecyclerViewExample";
     //  private List<Anggota> feedItemList = new ArrayList<Anggota>();
+    private RecyclerView mRecyclerView;
+ //   private RecyclerView rv;
+
+ //   private StatesRecyclerViewAdapter statesRecyclerViewAdapter;
+    private View loadingView;
+    private View emptyView;
+    private View errorView;
 
     //Creating Views
-    private RecyclerView mRecyclerView;
     private LayoutManager layoutManager;
-    private TempatAdapter adapter;
+    private TransaksiAdapter adapter;
+   // private SimpleStringAdapter adapter;
 
     private  SwipeRefreshLayout mSwipeRefreshLayout;
 
@@ -93,9 +94,22 @@ public class TempatFragment extends Fragment implements SearchView.OnQueryTextLi
                 false);
 
         final ActionBar ab = ((AppCompatActivity) getActivity()).getSupportActionBar();
-        //      ab.setHomeAsUpIndicator(R.drawable.ic_menu);
-        //       ab.setDisplayHomeAsUpEnabled(true);
-   
+        //ab.setHomeAsUpIndicator(R.drawable.ic_menu);
+        // ab.setDisplayHomeAsUpEnabled(true);
+      //  rv = (RecyclerView) v.findViewById(R.id.recycler_view);
+        mFastScroller = (FastScroller) v.findViewById(R.id.fastscroller);
+
+      //  setContentView(R.layout.activity_main);
+     //   final RecyclerView rv = (RecyclerView) findViewById(R.id.recycler_view);
+      //  rv.setLayoutManager(new LinearLayoutManager(getContext()));
+      //  rv.setHasFixedSize(true);
+     //   loadingView = inflater.inflate(R.layout.view_loading, rv, false);
+     //   emptyView = inflater.inflate(R.layout.view_empty, rv, false);
+     //   errorView = inflater.inflate(R.layout.view_error, rv, false);
+     //   adapter = new SimpleStringAdapter(Cheeses.sCheeseStrings);
+
+
+
 
         mRecyclerView = (RecyclerView) v.findViewById(R.id.recycler_view);
 
@@ -103,37 +117,45 @@ public class TempatFragment extends Fragment implements SearchView.OnQueryTextLi
 
         mRecyclerView.setHasFixedSize(true);
         mRecyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
-        mRecyclerView.addItemDecoration(new DividerItemDecoration(getContext(), LinearLayoutManager.VERTICAL));
+     //   mRecyclerView.addItemDecoration(new DividerItemDecoration(getContext(), LinearLayoutManager.VERTICAL));
         mFastScroller.setRecyclerView(mRecyclerView);
-        fab = (FloatingActionButton)v.findViewById(R.id.floating_button);
-        fab.setOnClickListener(new View.OnClickListener() {
+
+       /*
+      //  rv.setLayoutManager(new LinearLayoutManager(this));
+      //  rv.setHasFixedSize(true);
+        loadingView = inflater.inflate(R.layout.view_loading, mRecyclerView, false);
+        emptyView = inflater.inflate(R.layout.view_empty, mRecyclerView, false);
+        errorView = inflater.inflate(R.layout.view_error, mRecyclerView, false);
+      //adapter = new SimpleStringAdapter(Cheeses.sCheeseStrings);
+        statesRecyclerViewAdapter = new StatesRecyclerViewAdapter(adapter, loadingView, emptyView, errorView);
+        mRecyclerView.setAdapter(statesRecyclerViewAdapter);
+        mRecyclerView.addItemDecoration(new DividerItemDecoration(getContext(), DividerItemDecoration.VERTICAL_LIST));
+*/
+
+        mFab = (FloatingActionButton)v.findViewById(R.id.floating_button);
+        mFab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 
-                startActivity(new Intent(getActivity(), PetaActivity.class));
+//                startActivity(new Intent(getActivity(), ActivityPemesanan.class));
             }
         });
 
         //Initializing our superheroes list
-        daftarTempat = new ArrayList<PesananModels>();
+        listPemesanan = new ArrayList<PesananModels>();
 
         // SqLite database handler
-        db = new SQLiteHandler(getContext());
+        // Fetching user api from SQLite
+        konsumen_kunci_api = new SQLiteHandler(getContext()).getUserApi();
 
-        // session manager
+        Log.d(AppController.TAG, "ini " + konsumen_kunci_api);
+
+                // session manager
         session = new SessionManager(getContext());
 
-        // Fetching user details from SQLite
-        HashMap<String, String> user = db.getUserDetails();
-
-        apiKey = user.get("api");
-
-
-       pDialog = new ProgressDialog(getContext());
-       pDialog.setMessage("Loading...");
-       pDialog.setCancelable(false);
-
-
+        pDialog = new ProgressDialog(getContext());
+        pDialog.setMessage("Loading...");
+        pDialog.setCancelable(false);
 
         // Lookup the swipe container view
         mSwipeRefreshLayout = (SwipeRefreshLayout) v.findViewById(R.id.my_swipeContainer);
@@ -147,7 +169,7 @@ public class TempatFragment extends Fragment implements SearchView.OnQueryTextLi
 
                 makeJsonArryReq();
 
-                adapter.clear();
+                 adapter.clear();
             }
         });
 
@@ -166,14 +188,32 @@ public class TempatFragment extends Fragment implements SearchView.OnQueryTextLi
 
     }
 
+/*
+    public void getLoading() {
+
+        statesRecyclerViewAdapter.setState(StatesRecyclerViewAdapter.STATE_LOADING);
+    }
+
+    public void onEmptyClicked(View view) {
+        statesRecyclerViewAdapter.setState(StatesRecyclerViewAdapter.STATE_EMPTY);
+    }
+
+    public void onErrorClicked(View view) {
+        statesRecyclerViewAdapter.setState(StatesRecyclerViewAdapter.STATE_ERROR);
+    }
+
+    public void getList() {
+        statesRecyclerViewAdapter.setState(StatesRecyclerViewAdapter.STATE_NORMAL);
+    }
+*/
+
 
     @Override
     public void onViewCreated(View view, Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-       // findViews();
+        // findViews();
         setHasOptionsMenu(true);
     }
-
 
 
     /**
@@ -182,7 +222,7 @@ public class TempatFragment extends Fragment implements SearchView.OnQueryTextLi
     private void makeJsonArryReq() {
         showProgressDialog();
         mSwipeRefreshLayout.setRefreshing(true);
-        JsonArrayRequest req = new JsonArrayRequest(AppConfig.URL_TEMPAT,
+        JsonArrayRequest req = new JsonArrayRequest(AppConfig.URL_PEMESANAN,
                 new Response.Listener<JSONArray>() {
                     @Override
                     public void onResponse(JSONArray response) {
@@ -190,20 +230,16 @@ public class TempatFragment extends Fragment implements SearchView.OnQueryTextLi
                         Log.d(AppController.TAG, "on Response " + response.toString());
 
                         //   msgResponse.setText(response.toString());
-                         hideProgressDialog();
-
-
+                        hideProgressDialog();
 
                         mSwipeRefreshLayout.setRefreshing(false);
-
-                        //   parseJson(response);
 
 
                         //Storing the Array of JSON String to our JSON Array
                         result = response;
 
-                        //Calling method getTempat to get the students from the JSON Array
-                        getTempat(result);
+                        //Calling method getStudents to get the students from the JSON Array
+                        getStudents(result);
 
 
 
@@ -218,12 +254,14 @@ public class TempatFragment extends Fragment implements SearchView.OnQueryTextLi
                 String e = VolleyErrorHelper.getMessage(error, getContext());
                 VolleyLog.d(AppController.TAG, "Error: " + e);
 
-
-                mSwipeRefreshLayout.setRefreshing(false);
-
                 hideProgressDialog();
+
+               // Toast.makeText(getContext(),
+                  //      e, Toast.LENGTH_LONG).show();
+
+
                 Toast.makeText(getContext(),
-                        e, Toast.LENGTH_LONG).show();
+                        "gagal mendapatkan data", Toast.LENGTH_LONG).show();
             }
         }) {
 
@@ -236,7 +274,7 @@ public class TempatFragment extends Fragment implements SearchView.OnQueryTextLi
             public Map<String, String> getHeaders() throws AuthFailureError {
                 HashMap<String, String> headers = new HashMap<String, String>();
                 headers.put("Content-Type", "application/json");
-                headers.put("Authorization", apiKey);
+                headers.put("Authorization", konsumen_kunci_api);
                 return headers;
             }
 
@@ -253,43 +291,43 @@ public class TempatFragment extends Fragment implements SearchView.OnQueryTextLi
 
 
 
-    private void getTempat(JSONArray j){
+    private void getStudents(JSONArray j){
         //Traversing through all the items in the json array
         for(int i=0;i<j.length();i++){
-            PesananModels listTempat = new PesananModels();
+            PesananModels listPesanan = new PesananModels();
             try {
 
                 JSONObject jObj = j.getJSONObject(i);
 
                 boolean error = jObj.getBoolean("error");
                 if (!error) {
-                    JSONObject tempat = jObj.getJSONObject("tempat");
 
-                    String id = tempat.getString("id");
-                    String nama = tempat.getString("nama");
-                    String alamat = tempat.getString("alamat");
-                    String kota = tempat.getString("kota");
-                    String provinsi = tempat.getString("provinsi");
-                    String latitude = tempat.getString("latitude");
-                    String longitude = tempat.getString("longitude");
-                    String created = tempat.getString("created");
 
-                    String updated = tempat.getString("updated");
+                    JSONObject tempat = jObj.getJSONObject("transaksi");
 
-                    Log.d(AppController.TAG, "id : " + id);
-                    Log.d(AppController.TAG, "nama : " + nama);
-                    Log.d(AppController.TAG, "alamat : " + alamat);
-                    Log.d(AppController.TAG, "kota : " + kota);
-                    Log.d(AppController.TAG, "provinsi : " + provinsi);
-                    Log.d(AppController.TAG, "latitude : " + latitude);
-                    Log.d(AppController.TAG, "longitude : " + longitude);
-                    Log.d(AppController.TAG, "creates : " + created);
-                    Log.d(AppController.TAG, "updated : " + updated);
+                    String transaksi_id = tempat.getString("transaksi_id");
+                    String konsumen_id = tempat.getString("konsumen_id");
+                    String pemesanan_id = tempat.getString("pemesanan_id");
+                    String kurir_pengambil_id = tempat.getString("kurir_pengambil_id");
+                    String kurir_pengantar_id = tempat.getString("kurir_pengantar_id");
+                    String alamat_id = tempat.getString("alamat_id");
+                    String pembayaran_id = tempat.getString("pembayaran_id");
+                    String tanggal_transaksi = tempat.getString("tanggal_transaksi");
 
-                    listTempat.setNama(nama);
-                    listTempat.setAlamat(alamat);
-                    listTempat.setKota(kota);
 
+                    Log.d(AppController.TAG, "id : " + transaksi_id);
+                    Log.d(AppController.TAG, "nama : " + konsumen_id);
+                    Log.d(AppController.TAG, "alamat : " + pemesanan_id);
+                    Log.d(AppController.TAG, "kota : " + kurir_pengambil_id);
+                    Log.d(AppController.TAG, "provinsi : " + kurir_pengantar_id);
+                    Log.d(AppController.TAG, "latitude : " + alamat_id);
+                    Log.d(AppController.TAG, "longitude : " + pembayaran_id);
+                    Log.d(AppController.TAG, "creates : " + tanggal_transaksi);
+
+
+                    listPesanan.setName(transaksi_id);
+                    listPesanan.setRank(Integer.parseInt(pemesanan_id));
+                    listPesanan.setRealName(tanggal_transaksi);
 
                 } else {
 
@@ -306,21 +344,13 @@ public class TempatFragment extends Fragment implements SearchView.OnQueryTextLi
                 e.printStackTrace();
             }
 
-            daftarTempat.add(listTempat);
+            listPemesanan.add(listPesanan);
         }
 
 
 
-        updateList();
-        // Remember to CLEAR OUT old items before appending in the new ones
+         updateList();
 
-  /*          adapter.clear();
-            // ...the data has come back, add new items to your adapter...
-            adapter.addAll(daftarTempat);
-*/
-
-        //Setting adapter to show the items in the spinner
-     //   spinner.setAdapter(new ArrayAdapter<String>(PemesananActivity.this, android.R.layout.simple_spinner_dropdown_item, students));
     }
 
 
@@ -328,12 +358,19 @@ public class TempatFragment extends Fragment implements SearchView.OnQueryTextLi
     private void updateList() {
 
         //Finally initializing our adapter
-        adapter = new TempatAdapter(daftarTempat, getContext());
-
-
+       adapter = new TransaksiAdapter(listPemesanan, getContext());
 
         //Adding adapter to recyclerview
-        mRecyclerView.setAdapter(adapter);
+      mRecyclerView.setAdapter(adapter);
+
+    //    statesRecyclerViewAdapter = new StatesRecyclerViewAdapter(adapter, loadingView, emptyView, errorView);
+    //    rv.setAdapter(adapter);
+    //    rv.setAdapter(statesRecyclerViewAdapter);
+    //    mFastScroller.setRecyclerView(rv);
+    //    rv.addItemDecoration(new DividerItemDecoration(getContext(), DividerItemDecoration.VERTICAL_LIST));
+
+
+
 
         if (mSwipeRefreshLayout.isRefreshing()) {
             mSwipeRefreshLayout.setRefreshing(false);
@@ -341,22 +378,38 @@ public class TempatFragment extends Fragment implements SearchView.OnQueryTextLi
     }
 
 
-
-
-
     private void showProgressDialog() {
-        if (!pDialog.isShowing())
+        if (!pDialog.isShowing()){
             pDialog.show();
+        }
+
+       //  getLoading();
+
+    /*     try {
+            statesRecyclerViewAdapter.setState(StatesRecyclerViewAdapter.STATE_LOADING);
+        } catch (Exception e){
+            Log.d("Error", String.valueOf(e));
+        }*/
+
+        Log.d("Show Progress", "here");
+
     }
 
     private void hideProgressDialog() {
-        if (pDialog.isShowing())
+        if (pDialog.isShowing()){
             pDialog.hide();
+        }
 
+    //  getList();
+       /* statesRecyclerViewAdapter.setState(StatesRecyclerViewAdapter.STATE_NORMAL);*/
 
+/*
+        try {
+            statesRecyclerViewAdapter.setState(StatesRecyclerViewAdapter.STATE_NORMAL);
+        } catch (Exception e){
+            Log.d("Error", String.valueOf(e));
+        }*/
     }
-
-
 
 
 
@@ -376,7 +429,7 @@ public class TempatFragment extends Fragment implements SearchView.OnQueryTextLi
                     public boolean onMenuItemActionCollapse(MenuItem item) {
                         // Do something when collapsed
                         //adapter.setFilter(mCountryModel);
-                        adapter.setFilter(daftarTempat);
+                       adapter.setFilter(listPemesanan);
                         return true; // Return true to collapse action view
                     }
 
@@ -391,7 +444,7 @@ public class TempatFragment extends Fragment implements SearchView.OnQueryTextLi
 
     @Override
     public boolean onQueryTextChange(String newText) {
-        final List<PesananModels> filteredModelList = filter(daftarTempat, newText);
+        final List<PesananModels> filteredModelList = filter(listPemesanan, newText);
         adapter.setFilter(filteredModelList);
         return true;
     }
@@ -407,7 +460,7 @@ public class TempatFragment extends Fragment implements SearchView.OnQueryTextLi
 
         final List<PesananModels> filteredModelList = new ArrayList<PesananModels>();
         for (PesananModels model : models) {
-            final String text = model.getNama().toLowerCase();
+            final String text = model.getRealName().toLowerCase();
             if (text.contains(query)) {
                 filteredModelList.add(model);
             }

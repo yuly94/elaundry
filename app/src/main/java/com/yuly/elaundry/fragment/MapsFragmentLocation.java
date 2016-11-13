@@ -632,7 +632,7 @@ public class MapsFragmentLocation extends Fragment  implements AdapterView.OnIte
 
 
 
-    private void lakukanPemesanan(final String nama,final String alamat,final String telepon,final String email){
+    private void lakukanPemesanan(final String konsumen_nama,final String konsumen_alamat,final String konsumen_telepon,final String konsumen_email){
 
         // Tag used to cancel the request
         String tag_string_req = "req_profile";
@@ -657,21 +657,21 @@ public class MapsFragmentLocation extends Fragment  implements AdapterView.OnIte
                     // Check for error node in json
                     if (!error) {
                         // Now store the user in SQLite
-                        String uid = jObj.getString("uid");
+                        String konsumen_id = jObj.getString("konsumen_id");
 
-                        JSONObject user = jObj.getJSONObject("user");
-                        String nama = user.getString("nama");
-                        String alamat = user.getString("alamat");
-                        String telepon = user.getString("nohp");
-                        String email = user.getString("email");
-                        String api = user.getString("api_key");
-                        String created_at = user
+                        JSONObject user = jObj.getJSONObject("konsumen");
+                        String konsumen_nama = user.getString("konsumen_nama");
+                        String konsumen_alamat = user.getString("konsumen_alamat");
+                        String konsumen_telepon = user.getString("konsumen_nohp");
+                        String konsumen_email = user.getString("konsumen_email");
+                        String konsumen_kunci_api = user.getString("konsumen_kunci_api");
+                        String konsumen_dibuat_pada = user
                                 .getString("created_at");
 
                         // Inserting row in users table
                         //   db.updatePassword(api, uid, created_at);
 
-                        if (db.updateProfile(nama, alamat, telepon, email, uid, created_at)!=0) {
+                        if (db.updateProfile(konsumen_nama, konsumen_alamat, konsumen_telepon, konsumen_email, konsumen_kunci_api, konsumen_id, konsumen_dibuat_pada)!=0) {
 
                             if(getView()!=null) {
                                 Snackbar.make(getView(), R.string.update_profile_success, Snackbar.LENGTH_LONG).show();
@@ -737,10 +737,10 @@ public class MapsFragmentLocation extends Fragment  implements AdapterView.OnIte
             protected Map<String, String> getParams() {
                 // Posting parameters to change password
                 Map<String, String> params = new HashMap<String, String>();
-                params.put("nama", nama);
-                params.put("alamat", alamat);
-                params.put("telepon", telepon);
-                params.put("email",email);
+                params.put("konsumen_nama", konsumen_nama);
+                params.put("konsumen_alamat", konsumen_alamat);
+                params.put("konsumen_telepon", konsumen_telepon);
+                params.put("konsumen_email",konsumen_email);
 
                 Log.d("Params",params.toString());
 

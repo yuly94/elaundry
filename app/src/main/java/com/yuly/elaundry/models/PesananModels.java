@@ -1,4 +1,4 @@
-package com.yuly.elaundry.helper;
+package com.yuly.elaundry.models;
 
 import java.util.ArrayList;
 /**

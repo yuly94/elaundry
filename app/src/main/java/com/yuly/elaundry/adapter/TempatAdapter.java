@@ -14,7 +14,7 @@ import android.widget.TextView;
 import com.amulyakhare.textdrawable.TextDrawable;
 import com.amulyakhare.textdrawable.util.ColorGenerator;
 import com.yuly.elaundry.R;
-import com.yuly.elaundry.helper.PesananModels;
+import com.yuly.elaundry.models.PesananModels;
 import com.yuly.elaundry.widgets.BubbleTextGetter;
 
 import java.util.ArrayList;

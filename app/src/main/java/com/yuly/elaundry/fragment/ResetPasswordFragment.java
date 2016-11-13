@@ -132,7 +132,7 @@ public class ResetPasswordFragment extends Fragment implements View.OnClickListe
 
         RequestInterface requestInterface = retrofit.create(RequestInterface.class);
 
-        User user = new User();
+        UserModels user = new UserModels();
         user.setEmail(email);
         ServerRequest request = new ServerRequest();
         request.setOperation(Constants.RESET_PASSWORD_INITIATE);
@@ -185,7 +185,7 @@ public class ResetPasswordFragment extends Fragment implements View.OnClickListe
 
         RequestInterface requestInterface = retrofit.create(RequestInterface.class);
 
-        User user = new User();
+        UserModels user = new UserModels();
         user.setEmail(email);
         user.setCode(code);
         user.setPassword(password);

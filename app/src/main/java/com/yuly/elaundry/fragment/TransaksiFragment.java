@@ -1,7 +1,6 @@
 package com.yuly.elaundry.fragment;
 
 import android.app.ProgressDialog;
-import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.Fragment;
@@ -32,7 +31,7 @@ import com.yuly.elaundry.R;
 import com.yuly.elaundry.adapter.TransaksiAdapter;
 import com.yuly.elaundry.app.AppConfig;
 import com.yuly.elaundry.app.AppController;
-import com.yuly.elaundry.helper.PesananModels;
+import com.yuly.elaundry.models.PesananModels;
 import com.yuly.elaundry.helper.SQLiteHandler;
 import com.yuly.elaundry.helper.SessionManager;
 import com.yuly.elaundry.helper.VolleyErrorHelper;

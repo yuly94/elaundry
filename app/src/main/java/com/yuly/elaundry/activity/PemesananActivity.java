@@ -178,7 +178,7 @@ public class PemesananActivity extends AppCompatActivity implements AppCompatSpi
      */
     private void makeTempatJsonArryReq() {
         showProgressDialog();
-        JsonArrayRequest req = new JsonArrayRequest(AppConfig.URL_TEMPAT,
+        JsonArrayRequest req = new JsonArrayRequest(AppConfig.URL_PEMESANAN,
                 new Response.Listener<JSONArray>() {
                     @Override
                     public void onResponse(JSONArray response) {

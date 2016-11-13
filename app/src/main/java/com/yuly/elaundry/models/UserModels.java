@@ -1,7 +1,7 @@
 package com.yuly.elaundry.models;
 
 
-public class User {
+public class UserModels {
 
     private String name;
     private String email;
