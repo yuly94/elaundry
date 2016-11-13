@@ -1,7 +1,6 @@
 package com.yuly.elaundry.fragment;
 
 import android.app.ProgressDialog;
-import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.Fragment;
@@ -32,7 +31,7 @@ import com.yuly.elaundry.R;
 import com.yuly.elaundry.adapter.TransaksiAdapter;
 import com.yuly.elaundry.app.AppConfig;
 import com.yuly.elaundry.app.AppController;
-import com.yuly.elaundry.helper.PesananModels;
+import com.yuly.elaundry.models.PesananModels;
 import com.yuly.elaundry.helper.SQLiteHandler;
 import com.yuly.elaundry.helper.SessionManager;
 import com.yuly.elaundry.helper.VolleyErrorHelper;
@@ -155,7 +154,7 @@ public class TransaksiFragment extends Fragment implements SearchView.OnQueryTex
         // Fetching user details from SQLite
         HashMap<String, String> user = db.getUserDetails();
 
-        apiKey = user.get("api");
+        apiKey = user.get("kurir_kunci_api");
 
         pDialog = new ProgressDialog(getContext());
         pDialog.setMessage("Loading...");

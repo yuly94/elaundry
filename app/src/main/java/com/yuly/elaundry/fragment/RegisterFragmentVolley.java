@@ -120,17 +120,17 @@ public class RegisterFragmentVolley extends Fragment implements View.OnClickList
 
                 // Register Button Click event
 
-                        String konsumen_nama = inputNama.getText().toString().trim();
-                        String konsumen_alamat = inputAlamat.getText().toString().trim();
-                        String konsumen_noHp = inputNoHp.getText().toString().trim();
-                        String konsumen_email = inputEmail.getText().toString().trim();
-                        String konsumen_password = inputPassword.getText().toString().trim();
-                        String konsumen_password_confirm = inputConfirm.getText().toString().trim();
+                        String kurir_nama = inputNama.getText().toString().trim();
+                        String kurir_alamat = inputAlamat.getText().toString().trim();
+                        String kurir_noHp = inputNoHp.getText().toString().trim();
+                        String kurir_email = inputEmail.getText().toString().trim();
+                        String kurir_password = inputPassword.getText().toString().trim();
+                        String kurir_password_confirm = inputConfirm.getText().toString().trim();
 
 
-                        if (!konsumen_nama.isEmpty() && !konsumen_alamat.isEmpty() && !konsumen_noHp.isEmpty() && !konsumen_email.isEmpty() && !konsumen_password.isEmpty() && !konsumen_password_confirm.isEmpty()) {
-                            if (konsumen_password.equals(konsumen_password_confirm)) {
-                                registerUser(konsumen_nama, konsumen_alamat, konsumen_noHp, konsumen_email, konsumen_password);
+                        if (!kurir_nama.isEmpty() && !kurir_alamat.isEmpty() && !kurir_noHp.isEmpty() && !kurir_email.isEmpty() && !kurir_password.isEmpty() && !kurir_password_confirm.isEmpty()) {
+                            if (kurir_password.equals(kurir_password_confirm)) {
+                                registerUser(kurir_nama, kurir_alamat, kurir_noHp, kurir_email, kurir_password);
                             } else {
                                 Toast.makeText(getActivity(),
                                         "Password konfirmasi tidak sama", Toast.LENGTH_LONG)
@@ -153,8 +153,8 @@ public class RegisterFragmentVolley extends Fragment implements View.OnClickList
      * Function to store user in MySQL database will post params(tag, name,
      * email, password) to register url
      * */
-    private void registerUser(final String konsumen_nama, final String konsumen_alamat, final String konsumen_nohp, final String konsumen_email,
-                              final String konsumen_password) {
+    private void registerUser(final String kurir_nama, final String kurir_alamat, final String kurir_nohp, final String kurir_email,
+                              final String kurir_password) {
         // Tag used to cancel the request
         String tag_string_req = "req_registrasi";
 
@@ -181,16 +181,16 @@ public class RegisterFragmentVolley extends Fragment implements View.OnClickList
                         // Menyimpan data hasil respon webserver ke database sqlite
 
                         JSONObject user = jObj.getJSONObject("registrasi");
-                        String konsumen_id = jObj.getString("konsumen_id");
-                        String konsumen_nama = user.getString("konsumen_nama");
-                        String konsumen_alamat = user.getString("konsumen_alamat");
-                        String konsumen_nohp = user.getString("konsumen_nohp");
-                        String konsumen_email = user.getString("konsumen_email");
-                        String konsumen_kunci_api = user.getString("konsumen_kunci_api");
-                        String konsumen_dibuat_pada = user.getString("konsumen_dibuat_pada");
+                        String kurir_id = jObj.getString("kurir_id");
+                        String kurir_nama = user.getString("kurir_nama");
+                        String kurir_alamat = user.getString("kurir_alamat");
+                        String kurir_nohp = user.getString("kurir_nohp");
+                        String kurir_email = user.getString("kurir_email");
+                        String kurir_kunci_api = user.getString("kurir_kunci_api");
+                        String kurir_dibuat_pada = user.getString("kurir_dibuat_pada");
 
                         // memasukkan data user ke database sqlite
-                        db.addUser(konsumen_nama, konsumen_alamat, konsumen_nohp, konsumen_email, konsumen_kunci_api, konsumen_id, konsumen_dibuat_pada);
+                        db.addUser(kurir_nama, kurir_alamat, kurir_nohp, kurir_email, kurir_kunci_api, kurir_id, kurir_dibuat_pada);
 
 */
 
@@ -233,11 +233,11 @@ public class RegisterFragmentVolley extends Fragment implements View.OnClickList
             protected Map<String, String> getParams() {
                 // Posting params to register url
                 Map<String, String> params = new HashMap<String, String>();
-                params.put("konsumen_nama", konsumen_nama);
-                params.put("konsumen_alamat",konsumen_alamat);
-                params.put("konsumen_nohp",konsumen_nohp);
-                params.put("konsumen_email", konsumen_email);
-                params.put("konsumen_password", konsumen_password);
+                params.put("kurir_nama", kurir_nama);
+                params.put("kurir_alamat",kurir_alamat);
+                params.put("kurir_nohp",kurir_nohp);
+                params.put("kurir_email", kurir_email);
+                params.put("kurir_password", kurir_password);
 
                 return params;
             }

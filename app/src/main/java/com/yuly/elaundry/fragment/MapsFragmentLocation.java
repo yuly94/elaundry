@@ -632,7 +632,7 @@ public class MapsFragmentLocation extends Fragment  implements AdapterView.OnIte
 
 
 
-    private void lakukanPemesanan(final String nama,final String alamat,final String telepon,final String email){
+    private void lakukanPemesanan(final String kurir_nama,final String kurir_alamat,final String kurir_telepon,final String kurir_email){
 
         // Tag used to cancel the request
         String tag_string_req = "req_profile";
@@ -641,7 +641,7 @@ public class MapsFragmentLocation extends Fragment  implements AdapterView.OnIte
         showDialog();
 
         StringRequest strReq = new StringRequest(Request.Method.POST,
-                AppConfig.URL_CHANGEPROFILE, new Response.Listener<String>() {
+                AppConfig.URL_UPDATE_PROFILE, new Response.Listener<String>() {
 
             @Override
             public void onResponse(String response) {
@@ -657,21 +657,22 @@ public class MapsFragmentLocation extends Fragment  implements AdapterView.OnIte
                     // Check for error node in json
                     if (!error) {
                         // Now store the user in SQLite
-                        String uid = jObj.getString("uid");
 
-                        JSONObject user = jObj.getJSONObject("user");
-                        String nama = user.getString("nama");
-                        String alamat = user.getString("alamat");
-                        String telepon = user.getString("nohp");
-                        String email = user.getString("email");
-                        String api = user.getString("api_key");
-                        String created_at = user
-                                .getString("created_at");
+                        JSONObject user = jObj.getJSONObject("kurir_user");
+                        String kurir_id = user.getString("kurir_id");
+                        String kurir_nama = user.getString("kurir_nama");
+                        String kurir_alamat = user.getString("kurir_alamat");
+                        String kurir_telepon = user.getString("kurir_nohp");
+                        String kurir_email = user.getString("kurir_email");
+                        String kurir_kunci_api = user.getString("kurir_kunci_api");
+                        String kurir_dibuat_pada = user
+                                .getString("kurir_dibuat_pada");
 
                         // Inserting row in users table
                         //   db.updatePassword(api, uid, created_at);
 
-                        if (db.updateProfile(nama, alamat, telepon, email, uid, created_at)!=0) {
+
+                        if (db.updateProfile(kurir_nama, kurir_alamat, kurir_telepon, kurir_email, kurir_kunci_api, kurir_id,kurir_dibuat_pada)!=0) {
 
                             if(getView()!=null) {
                                 Snackbar.make(getView(), R.string.update_profile_success, Snackbar.LENGTH_LONG).show();
@@ -737,10 +738,10 @@ public class MapsFragmentLocation extends Fragment  implements AdapterView.OnIte
             protected Map<String, String> getParams() {
                 // Posting parameters to change password
                 Map<String, String> params = new HashMap<String, String>();
-                params.put("nama", nama);
-                params.put("alamat", alamat);
-                params.put("telepon", telepon);
-                params.put("email",email);
+                params.put("kurir_nama", kurir_nama);
+                params.put("kurir_alamat", kurir_alamat);
+                params.put("kurir_telepon", kurir_telepon);
+                params.put("kurir_email",kurir_email);
 
                 Log.d("Params",params.toString());
 

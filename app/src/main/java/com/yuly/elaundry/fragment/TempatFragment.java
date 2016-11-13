@@ -32,7 +32,7 @@ import com.yuly.elaundry.R;
 import com.yuly.elaundry.adapter.TempatAdapter;
 import com.yuly.elaundry.app.AppConfig;
 import com.yuly.elaundry.app.AppController;
-import com.yuly.elaundry.helper.PesananModels;
+import com.yuly.elaundry.models.PesananModels;
 import com.yuly.elaundry.helper.SQLiteHandler;
 import com.yuly.elaundry.helper.SessionManager;
 import com.yuly.elaundry.helper.VolleyErrorHelper;
@@ -126,7 +126,7 @@ public class TempatFragment extends Fragment implements SearchView.OnQueryTextLi
         // Fetching user details from SQLite
         HashMap<String, String> user = db.getUserDetails();
 
-        apiKey = user.get("api");
+        apiKey = user.get("kurir_kunci_api");
 
 
        pDialog = new ProgressDialog(getContext());

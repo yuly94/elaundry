@@ -231,7 +231,7 @@ public class ResetPasswordFragment extends Fragment implements View.OnClickListe
     /**
      * function to verify login details in mysql db
      * */
-    private void initiateResetPasswordProcess(final String konsumen_email) {
+    private void initiateResetPasswordProcess(final String kurir_email) {
         // Tag used to cancel the request
         String tag_string_req = "req_Mereset";
 
@@ -311,7 +311,7 @@ public class ResetPasswordFragment extends Fragment implements View.OnClickListe
             protected Map<String, String> getParams() {
                 // Posting parameters to login url
                 Map<String, String> params = new HashMap<String, String>();
-                params.put("konsumen_email", konsumen_email);
+                params.put("kurir_email", kurir_email);
 
                 return params;
             }
@@ -325,7 +325,7 @@ public class ResetPasswordFragment extends Fragment implements View.OnClickListe
     /**
      * function to verify login details in mysql db
      * */
-    private void finishResetPasswordProcess(final String konsumen_email,final String konsumen_kode_password,final String konsumen_password) {
+    private void finishResetPasswordProcess(final String kurir_email,final String kurir_kode_password,final String kurir_password) {
         // Tag used to cancel the request
         String tag_string_req = "req_Mereset";
 
@@ -401,9 +401,9 @@ public class ResetPasswordFragment extends Fragment implements View.OnClickListe
             protected Map<String, String> getParams() {
                 // Posting parameters to login url
                 Map<String, String> params = new HashMap<String, String>();
-                params.put("konsumen_email", konsumen_email);
-                params.put("konsumen_kode_reset", konsumen_kode_password);
-                params.put("konsumen_password", konsumen_password);
+                params.put("kurir_email", kurir_email);
+                params.put("kurir_kode_reset", kurir_kode_password);
+                params.put("kurir_password", kurir_password);
 
                 return params;
             }

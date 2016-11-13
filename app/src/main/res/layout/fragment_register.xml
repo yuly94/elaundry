@@ -29,7 +29,7 @@
         android:layout_height="wrap_content">
 
         <EditText
-            android:hint="@string/app_name"
+            android:hint="@string/nama_lengkap"
             android:id="@+id/et_name"
             android:drawableRight="@drawable/ic_face"
             android:inputType="textPersonName"
@@ -45,7 +45,7 @@
         android:layout_height="wrap_content">
 
         <EditText
-            android:hint="@string/address"
+            android:hint="@string/alamat"
             android:id="@+id/et_address"
             android:drawableRight="@drawable/ic_address"
             android:inputType="textPostalAddress"
@@ -61,7 +61,7 @@
         android:layout_height="wrap_content">
 
         <EditText
-            android:hint="@string/phone"
+            android:hint="@string/no_telephone"
             android:id="@+id/et_phone"
             android:drawableRight="@drawable/ic_phone"
             android:inputType="phone"
@@ -109,7 +109,7 @@
         android:layout_height="wrap_content">
 
         <EditText
-            android:hint="@string/confirm_password"
+            android:hint="@string/konfirmasi_password"
             android:id="@+id/et_confirm_password"
             android:drawableRight="@drawable/ic_key"
             android:inputType="textPassword"
@@ -121,7 +121,7 @@
 
     <android.support.v7.widget.AppCompatButton
         android:id="@+id/btn_register"
-        android:text="@string/register"
+        android:text="@string/mendaftar"
         android:background="@color/colorPrimary"
         android:textColor="@android:color/white"
         android:layout_width="match_parent"
@@ -131,7 +131,7 @@
         android:id="@+id/tv_login"
         android:layout_marginTop="20dp"
         android:textColor="@color/colorAccent"
-        android:text="@string/already_registered_login_now"
+        android:text="@string/sudah_terdaftar_login_sekarang"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content" />
 

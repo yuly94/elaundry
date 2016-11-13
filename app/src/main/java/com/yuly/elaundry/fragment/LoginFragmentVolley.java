@@ -126,7 +126,7 @@ public class LoginFragmentVolley extends Fragment implements View.OnClickListene
                     // memanggil fungsi chek login
                     checkLogin(email, password);
                 } else {
-                    // Memberitahu konsumen untuk memasukkan password
+                    // Memberitahu kurir untuk memasukkan password
                     Toast.makeText(getActivity(),
                             "Mohon masukkan password anda ", Toast.LENGTH_LONG)
                             .show();
@@ -143,7 +143,7 @@ public class LoginFragmentVolley extends Fragment implements View.OnClickListene
     /**
      * function to verifikasi login dengan mengirimkan username dan password ke webserver
      * */
-    private void checkLogin(final String konsumen_email, final String konsumen_password) {
+    private void checkLogin(final String kurir_email, final String kurir_password) {
 
         // Tag berikut digunakan untuk membatalkan request login
         String tag_string_req = "req_login";
@@ -167,23 +167,23 @@ public class LoginFragmentVolley extends Fragment implements View.OnClickListene
 
                     // Mengecek respon webservice json apakah ada yang error atau tidak
                     if (!error) {
-                        // Jika konsumen berhasil login
+                        // Jika kurir berhasil login
                         // Mengecek sesi login
                         session.setLogin(true);
 
                         // Menyimpan data hasil respon webserver ke database sqlite
 
-                        JSONObject konsumen = jObj.getJSONObject("login");
-                        String konsumen_id = konsumen.getString("konsumen_id");
-                        String konsumen_nama = konsumen.getString("konsumen_nama");
-                        String konsumen_alamat = konsumen.getString("konsumen_alamat");
-                        String konsumen_nohp = konsumen.getString("konsumen_nohp");
-                        String konsumen_email = konsumen.getString("konsumen_email");
-                        String konsumen_kunci_api = konsumen.getString("konsumen_kunci_api");
-                        String konsumen_dibuat_pada = konsumen.getString("konsumen_dibuat_pada");
+                        JSONObject kurir = jObj.getJSONObject("login");
+                        String kurir_id = kurir.getString("kurir_id");
+                        String kurir_nama = kurir.getString("kurir_nama");
+                        String kurir_alamat = kurir.getString("kurir_alamat");
+                        String kurir_nohp = kurir.getString("kurir_nohp");
+                        String kurir_email = kurir.getString("kurir_email");
+                        String kurir_kunci_api = kurir.getString("kurir_kunci_api");
+                        String kurir_dibuat_pada = kurir.getString("kurir_dibuat_pada");
 
                         // Inserting row in users table
-                        db.addUser(konsumen_nama, konsumen_alamat, konsumen_nohp, konsumen_email, konsumen_kunci_api, konsumen_id, konsumen_dibuat_pada);
+                        db.addUser(kurir_nama, kurir_alamat, kurir_nohp, kurir_email, kurir_kunci_api, kurir_id, kurir_dibuat_pada);
 
                         // Launch main activity
                        Intent intent = new Intent(getActivity(),
@@ -229,8 +229,8 @@ public class LoginFragmentVolley extends Fragment implements View.OnClickListene
             protected Map<String, String> getParams() {
                 // Posting parameters to login url
                 Map<String, String> params = new HashMap<String, String>();
-                params.put("konsumen_email", konsumen_email);
-                params.put("konsumen_password", konsumen_password);
+                params.put("kurir_email", kurir_email);
+                params.put("kurir_password", kurir_password);
 
                 return params;
             }

@@ -29,10 +29,8 @@ import com.android.volley.VolleyLog;
 import com.android.volley.toolbox.JsonArrayRequest;
 import com.yuly.elaundry.R;
 import com.yuly.elaundry.adapter.AlamatAdapter;
-import com.yuly.elaundry.adapter.TempatAdapter;
 import com.yuly.elaundry.app.AppConfig;
 import com.yuly.elaundry.app.AppController;
-import com.yuly.elaundry.helper.PesananModels;
 import com.yuly.elaundry.helper.SQLiteHandler;
 import com.yuly.elaundry.helper.SessionManager;
 import com.yuly.elaundry.helper.VolleyErrorHelper;
@@ -127,7 +125,7 @@ public class AlamatFragment extends Fragment implements SearchView.OnQueryTextLi
         // Fetching user details from SQLite
         HashMap<String, String> user = db.getUserDetails();
 
-        konsumen_kunci_api = user.get("konsumen_kunci_api");
+        konsumen_kunci_api = user.get("kurir_kunci_api");
 
 
        pDialog = new ProgressDialog(getContext());
