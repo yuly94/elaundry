@@ -126,7 +126,7 @@ public class TempatFragment extends Fragment implements SearchView.OnQueryTextLi
         // Fetching user details from SQLite
         HashMap<String, String> user = db.getUserDetails();
 
-        apiKey = user.get("api");
+        apiKey = user.get("kurir_kunci_api");
 
 
        pDialog = new ProgressDialog(getContext());

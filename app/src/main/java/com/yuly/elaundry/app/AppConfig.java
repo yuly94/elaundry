@@ -6,7 +6,7 @@ public class AppConfig {
 
 	private static String URL = "http://elaundry.pe.hu/";
 
-	private static String API = "konsumen/";
+	private static String API = "kurir/";
 
 	public static String LINKAPI = URL+API;
 
@@ -25,10 +25,10 @@ public class AppConfig {
 	// Server user change password
 	public static String URL_GANTI_PASSWORD = LINKAPI+"password/ganti/";
 
-	//public static String URL_ALAMAT = LINKAPI+"profile/update/";
+	public static String URL_ALAMAT = LINKAPI+"profile/update/";
 
 	// Server user change password
-	public static String URL_CHANGEPROFILE = LINKAPI+"profile/update/";
+	public static String URL_UPDATE_PROFILE = LINKAPI+"profile/update/";
 
 	// Server user register url
 	public static String URL_TASK = LINKAPI+"tasks";
@@ -37,17 +37,16 @@ public class AppConfig {
 	public static String URL_MAPS = LINKAPI+"peta/";
 
 	// Server user register url
-	public static String URL_PAKET= LINKAPI+"laundry/paket/";
+	public static String URL_PAKET= LINKAPI+"paket";
 
 	// Server user register url
-	public static String URL_PEMESANAN= LINKAPI+"pemesanan/";
-
-	// Server user register url
-	public static String URL_ALAMAT= LINKAPI+"alamat/";
+	public static String URL_PESANAN= LINKAPI+"pesanan";
 
 	// Server user register url
 	public static String URL_TEMPAT= LINKAPI+"alamat/";
 
 	// Server user register url
 	public static String URL_TRANSAKSI= LINKAPI+"transaksi";
+
+
 }

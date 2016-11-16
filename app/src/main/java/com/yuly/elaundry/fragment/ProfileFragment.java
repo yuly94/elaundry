@@ -54,12 +54,12 @@ public class ProfileFragment extends Fragment {
     private SessionManager session;
 
     private TextView tv_name,tv_email,tv_message;
-  //  private SharedPreferences pref;
+    //  private SharedPreferences pref;
     private EditText et_password_lama,et_password_baru;
     private AlertDialog dialog;
-   // private ProgressBar progress;
+    // private ProgressBar progress;
     private ProgressDialog pDialog;
-    private String konsumen_kunci_api_auth;
+    private String kurir_kunci_api_auth;
     private SQLiteHandler db;
     private EditText et_Nama,et_Alamat,et_Email,et_Telepon;
     private Button btnEdit,btnSave;
@@ -94,15 +94,15 @@ public class ProfileFragment extends Fragment {
             @Override
             public void onClick(View v) {
 
-                String konsumen_nama = et_Nama.getText().toString();
-                String konsumen_alamat = et_Alamat.getText().toString();
+                String kurir_nama = et_Nama.getText().toString();
+                String kurir_alamat = et_Alamat.getText().toString();
 
-                String konsumen_nohp = et_Telepon.getText().toString();
-                String konsumen_email = et_Email.getText().toString();
-                if(!konsumen_nama.isEmpty() && !konsumen_alamat.isEmpty()&&
-                        !konsumen_nohp.isEmpty()&& !konsumen_email.isEmpty()){
+                String kurir_nohp = et_Telepon.getText().toString();
+                String kurir_email = et_Email.getText().toString();
+                if(!kurir_nama.isEmpty() && !kurir_alamat.isEmpty()&&
+                        !kurir_nohp.isEmpty()&& !kurir_email.isEmpty()){
 
-                    updateProfile(konsumen_nama,konsumen_alamat,konsumen_nohp,konsumen_email);
+                    updateProfile(kurir_nama,kurir_alamat,kurir_nohp,kurir_email);
 
                 }else {
                     if (getView()!=null){
@@ -140,18 +140,18 @@ public class ProfileFragment extends Fragment {
         session = new SessionManager(getContext());
 
         // Fetching user details from SQLite
-        HashMap<String, String> konsumen = db.getUserDetails();
+        HashMap<String, String> kurir = db.getUserDetails();
 
-        String konsumen_nama = konsumen.get("konsumen_nama");
-        String konsumen_alamat = konsumen.get("konsumen_alamat");
-        String konsumen_nohp = konsumen.get("konsumen_nohp");
-        String konsumen_email = konsumen.get("konsumen_email");
-        konsumen_kunci_api_auth = konsumen.get("konsumen_kunci_api");
+        String kurir_nama = kurir.get("kurir_nama");
+        String kurir_alamat = kurir.get("kurir_alamat");
+        String kurir_nohp = kurir.get("kurir_nohp");
+        String kurir_email = kurir.get("kurir_email");
+        kurir_kunci_api_auth = kurir.get("kurir_kunci_api");
 
-        et_Nama.setText(konsumen_nama);
-        et_Email.setText(konsumen_email);
-        et_Alamat.setText(konsumen_alamat);
-        et_Telepon.setText(konsumen_nohp);
+        et_Nama.setText(kurir_nama);
+        et_Email.setText(kurir_email);
+        et_Alamat.setText(kurir_alamat);
+        et_Telepon.setText(kurir_nohp);
     }
 
 
@@ -205,11 +205,11 @@ public class ProfileFragment extends Fragment {
         dialog.getButton(AlertDialog.BUTTON_POSITIVE).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                String konsumen_password_lama = et_password_lama.getText().toString();
-                String konsumen_password_baru = et_password_baru.getText().toString();
-                if(!konsumen_password_lama.isEmpty() && !konsumen_password_baru.isEmpty()){
+                String kurir_password_lama = et_password_lama.getText().toString();
+                String kurir_password_baru = et_password_baru.getText().toString();
+                if(!kurir_password_lama.isEmpty() && !kurir_password_baru.isEmpty()){
 
-                     changePasswordProcess(konsumen_password_lama,konsumen_password_baru);
+                    changePasswordProcess(kurir_password_lama,kurir_password_baru);
 
 
                 }else {
@@ -264,13 +264,13 @@ public class ProfileFragment extends Fragment {
 
     /**
      * Making json array request
-     * @param konsumen_nama   nama konsumen
-     * @param konsumen_email  email konsumen
-     * @param konsumen_alamat alamat konsumen
-     * @param konsumen_nohp   nohp konsumen
+     * @param kurir_nama   nama kurir
+     * @param kurir_email  email kurir
+     * @param kurir_alamat alamat kurir
+     * @param kurir_nohp   nohp kurir
      */
 
-    private void updateProfile(final String konsumen_nama, final String konsumen_alamat, final String konsumen_nohp, final String konsumen_email){
+    private void updateProfile(final String kurir_nama, final String kurir_alamat, final String kurir_nohp, final String kurir_email){
 
         // Tag used to cancel the request
         String tag_string_req = "req_profile";
@@ -279,7 +279,7 @@ public class ProfileFragment extends Fragment {
         showDialog();
 
         StringRequest strReq = new StringRequest(Request.Method.POST,
-                AppConfig.URL_CHANGEPROFILE, new Response.Listener<String>() {
+                AppConfig.URL_UPDATE_PROFILE, new Response.Listener<String>() {
 
             @Override
             public void onResponse(String response) {
@@ -297,20 +297,20 @@ public class ProfileFragment extends Fragment {
                         // Now store the user in SQLite
 
 
-                        JSONObject user = jObj.getJSONObject("konsumen");
-                        String konsumen_id = user.getString("konsumen_id");
-                        String konsumen_nama = user.getString("konsumen_nama");
-                        String konsumen_alamat = user.getString("konsumen_alamat");
-                        String konsumen_nohp = user.getString("konsumen_nohp");
-                        String konsumen_email = user.getString("konsumen_email");
-                        String konsumen_kunci_api = user.getString("konsumen_kunci_api");
-                        String konsumen_dibuat_pada = user
-                                .getString("konsumen_dibuat_pada");
+                        JSONObject user = jObj.getJSONObject("kurir");
+                        String kurir_id = user.getString("kurir_id");
+                        String kurir_nama = user.getString("kurir_nama");
+                        String kurir_alamat = user.getString("kurir_alamat");
+                        String kurir_nohp = user.getString("kurir_nohp");
+                        String kurir_email = user.getString("kurir_email");
+                        String kurir_kunci_api = user.getString("kurir_kunci_api");
+                        String kurir_dibuat_pada = user
+                                .getString("kurir_dibuat_pada");
 
                         // Inserting row in users table
                         //   db.updatePassword(api, uid, created_at);
 
-                        if (db.updateProfile(konsumen_nama, konsumen_alamat, konsumen_nohp, konsumen_email, konsumen_kunci_api, konsumen_id, konsumen_dibuat_pada)!=0) {
+                        if (db.updateProfile(kurir_nama, kurir_alamat, kurir_nohp, kurir_email, kurir_kunci_api, kurir_id, kurir_dibuat_pada)!=0) {
 
 
                             updateDataProfile();
@@ -362,7 +362,7 @@ public class ProfileFragment extends Fragment {
                         e, Toast.LENGTH_LONG).show();
 
                 Log.d(Constants.TAG,"failed");
-             //   progress.setVisibility(View.GONE);
+                //   progress.setVisibility(View.GONE);
                 tv_message.setVisibility(View.VISIBLE);
                 tv_message.setText(e);
 
@@ -375,7 +375,7 @@ public class ProfileFragment extends Fragment {
             public Map<String, String> getHeaders() throws AuthFailureError {
                 HashMap<String, String> params = new HashMap<>();
                 params.put("Content-Type","application/x-www-form-urlencoded");
-                params.put("Authorization", konsumen_kunci_api_auth );
+                params.put("Authorization", kurir_kunci_api_auth );
 
                 Log.d("Params",params.toString());
                 return params;
@@ -386,10 +386,10 @@ public class ProfileFragment extends Fragment {
             protected Map<String, String> getParams() {
                 // Posting parameters to change password
                 Map<String, String> params = new HashMap<>();
-                params.put("konsumen_nama", konsumen_nama);
-                params.put("konsumen_alamat", konsumen_alamat);
-                params.put("konsumen_nohp", konsumen_nohp);
-                params.put("konsumen_email",konsumen_email);
+                params.put("kurir_nama", kurir_nama);
+                params.put("kurir_alamat", kurir_alamat);
+                params.put("kurir_nohp", kurir_nohp);
+                params.put("kurir_email",kurir_email);
 
                 Log.d("Params",params.toString());
 
@@ -404,11 +404,11 @@ public class ProfileFragment extends Fragment {
 
     /**
      * Making json array request
-     * @param konsumen_password_lama password lama
-     * @param konsumen_password_baru password baru
+     * @param kurir_password_lama password lama
+     * @param kurir_password_baru password baru
      */
 
-    private void changePasswordProcess(final String konsumen_password_lama,final String konsumen_password_baru){
+    private void changePasswordProcess(final String kurir_password_lama,final String kurir_password_baru){
 
         // Tag used to cancel the request
         String tag_string_req = getString(R.string.permintaan_mengganti_password);
@@ -437,15 +437,15 @@ public class ProfileFragment extends Fragment {
                         // Now store the user in SQLite
 
 
-                        JSONObject user = jObj.getJSONObject("konsumen");
-                        String konsumen_id = user.getString("konsumen_id");
-                        String konsumen_kunci_api = user.getString("konsumen_kunci_api");
-                        String konsumen_dibuat_pada = user
-                                .getString("konsumen_dibuat_pada");
+                        JSONObject user = jObj.getJSONObject("kurir");
+                        String kurir_id = user.getString("kurir_id");
+                        String kurir_kunci_api = user.getString("kurir_kunci_api");
+                        String kurir_dibuat_pada = user
+                                .getString("kurir_dibuat_pada");
 
                         // Inserting row in users table
 
-                        if (db.updatePassword(konsumen_kunci_api, konsumen_id, konsumen_dibuat_pada) !=0){
+                        if (db.updatePassword(kurir_kunci_api, kurir_id, kurir_dibuat_pada) !=0){
 
 
                             updateDataProfile();
@@ -513,7 +513,7 @@ public class ProfileFragment extends Fragment {
             public Map<String, String> getHeaders() throws AuthFailureError {
                 HashMap<String, String> params = new HashMap<>();
                 params.put("Content-Type","application/x-www-form-urlencoded");
-                params.put("Authorization", konsumen_kunci_api_auth );
+                params.put("Authorization", kurir_kunci_api_auth );
 
                 Log.d("Params",params.toString());
                 return params;
@@ -524,8 +524,8 @@ public class ProfileFragment extends Fragment {
             protected Map<String, String> getParams() {
                 // Posting parameters to change password
                 Map<String, String> params = new HashMap<>();
-                params.put("konsumen_password_lama", konsumen_password_lama);
-                params.put("konsumen_password_baru", konsumen_password_baru);
+                params.put("kurir_password_lama", kurir_password_lama);
+                params.put("kurir_password_baru", kurir_password_baru);
 
                 Log.d("Params",params.toString());
 
@@ -542,7 +542,7 @@ public class ProfileFragment extends Fragment {
     private void showDialog() {
         if (!pDialog.isShowing())
             pDialog.show();
-            pDialog.setMessage(getString(R.string.memuat));
+        pDialog.setMessage(getString(R.string.memuat));
     }
 
     private void hideDialog() {

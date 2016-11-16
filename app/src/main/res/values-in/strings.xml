@@ -14,7 +14,7 @@
     <string name="email">Email</string>
     <string name="name">Nama</string>
     <string name="password">Kata kunci</string>
-    <string name="register">Mendaftar</string>
+    <string name="register">Daftar</string>
     <string name="confirm_password">Konfirmasi kata kunci</string>
     <string name="phone">Telepon</string>
     <string name="address">Alamat</string>
@@ -37,14 +37,4 @@
     <string name="error_field_required">Kolom ini harus diisi</string>
     <string name="label_fake_login_loading">Memuat ...</string>
     <string name="label_fake_login_success">Berhasil masuk  ☺</string>
-    <string name="update_password_berhasil">password berhasil diperbarui</string>
-    <string name="update_password_gagal">password gagal diperbarui</string>
-    <string name="see_more">lebih detail</string>
-    <string name="registrasi_berhasil">Registrasi anda berhasil, silahkan check email untuk aktifasi</string>
-    <string name="requet_json_array">permintaan dalam bentuk json array</string>
-    <string name="save">simpan</string>
-    <string name="search">cari</string>
-    <string name="user_disimpan_di_database">User baru dimasukkan ke db sqlite :</string>
-    <string name="update_profile_gagal">gagal memperbarui profile</string>
-    <string name="update_profile_berhasil">berhasil memperbarui profile</string>
 </resources>

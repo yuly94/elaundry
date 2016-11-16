@@ -154,7 +154,7 @@ public class TransaksiFragment extends Fragment implements SearchView.OnQueryTex
         // Fetching user details from SQLite
         HashMap<String, String> user = db.getUserDetails();
 
-        apiKey = user.get("api");
+        apiKey = user.get("kurir_kunci_api");
 
         pDialog = new ProgressDialog(getContext());
         pDialog.setMessage("Loading...");

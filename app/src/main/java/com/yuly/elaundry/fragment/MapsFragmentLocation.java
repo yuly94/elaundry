@@ -165,7 +165,7 @@ public class MapsFragmentLocation extends Fragment  implements AdapterView.OnIte
         // Fetching user details from SQLite
         HashMap<String, String> user = db.getUserDetails();
         // Get apikey from DB
-        apiKey = user.get("konsumen_kunci_api");
+        apiKey = user.get("api");
         // Show Progress dialog
         pDialog = new ProgressDialog(getActivity());
         pDialog.setMessage("Loading...");
@@ -632,7 +632,7 @@ public class MapsFragmentLocation extends Fragment  implements AdapterView.OnIte
 
 
 
-    private void lakukanPemesanan(final String konsumen_nama,final String konsumen_alamat,final String konsumen_telepon,final String konsumen_email){
+    private void lakukanPemesanan(final String kurir_nama,final String kurir_alamat,final String kurir_telepon,final String kurir_email){
 
         // Tag used to cancel the request
         String tag_string_req = "req_profile";
@@ -641,7 +641,7 @@ public class MapsFragmentLocation extends Fragment  implements AdapterView.OnIte
         showDialog();
 
         StringRequest strReq = new StringRequest(Request.Method.POST,
-                AppConfig.URL_CHANGEPROFILE, new Response.Listener<String>() {
+                AppConfig.URL_UPDATE_PROFILE, new Response.Listener<String>() {
 
             @Override
             public void onResponse(String response) {
@@ -657,21 +657,22 @@ public class MapsFragmentLocation extends Fragment  implements AdapterView.OnIte
                     // Check for error node in json
                     if (!error) {
                         // Now store the user in SQLite
-                        String konsumen_id = jObj.getString("konsumen_id");
 
-                        JSONObject user = jObj.getJSONObject("konsumen");
-                        String konsumen_nama = user.getString("konsumen_nama");
-                        String konsumen_alamat = user.getString("konsumen_alamat");
-                        String konsumen_telepon = user.getString("konsumen_nohp");
-                        String konsumen_email = user.getString("konsumen_email");
-                        String konsumen_kunci_api = user.getString("konsumen_kunci_api");
-                        String konsumen_dibuat_pada = user
-                                .getString("created_at");
+                        JSONObject user = jObj.getJSONObject("kurir_user");
+                        String kurir_id = user.getString("kurir_id");
+                        String kurir_nama = user.getString("kurir_nama");
+                        String kurir_alamat = user.getString("kurir_alamat");
+                        String kurir_telepon = user.getString("kurir_nohp");
+                        String kurir_email = user.getString("kurir_email");
+                        String kurir_kunci_api = user.getString("kurir_kunci_api");
+                        String kurir_dibuat_pada = user
+                                .getString("kurir_dibuat_pada");
 
                         // Inserting row in users table
                         //   db.updatePassword(api, uid, created_at);
 
-                        if (db.updateProfile(konsumen_nama, konsumen_alamat, konsumen_telepon, konsumen_email, konsumen_kunci_api, konsumen_id, konsumen_dibuat_pada)!=0) {
+
+                        if (db.updateProfile(kurir_nama, kurir_alamat, kurir_telepon, kurir_email, kurir_kunci_api, kurir_id,kurir_dibuat_pada)!=0) {
 
                             if(getView()!=null) {
                                 Snackbar.make(getView(), R.string.update_profile_success, Snackbar.LENGTH_LONG).show();
@@ -737,10 +738,10 @@ public class MapsFragmentLocation extends Fragment  implements AdapterView.OnIte
             protected Map<String, String> getParams() {
                 // Posting parameters to change password
                 Map<String, String> params = new HashMap<String, String>();
-                params.put("konsumen_nama", konsumen_nama);
-                params.put("konsumen_alamat", konsumen_alamat);
-                params.put("konsumen_telepon", konsumen_telepon);
-                params.put("konsumen_email",konsumen_email);
+                params.put("kurir_nama", kurir_nama);
+                params.put("kurir_alamat", kurir_alamat);
+                params.put("kurir_telepon", kurir_telepon);
+                params.put("kurir_email",kurir_email);
 
                 Log.d("Params",params.toString());
 

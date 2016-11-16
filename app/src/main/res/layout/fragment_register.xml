@@ -61,7 +61,7 @@
         android:layout_height="wrap_content">
 
         <EditText
-            android:hint="@string/no_handphone"
+            android:hint="@string/no_telephone"
             android:id="@+id/et_phone"
             android:drawableRight="@drawable/ic_phone"
             android:inputType="phone"
@@ -121,7 +121,7 @@
 
     <android.support.v7.widget.AppCompatButton
         android:id="@+id/btn_register"
-        android:text="@string/register"
+        android:text="@string/mendaftar"
         android:background="@color/colorPrimary"
         android:textColor="@android:color/white"
         android:layout_width="match_parent"
@@ -131,7 +131,7 @@
         android:id="@+id/tv_login"
         android:layout_marginTop="20dp"
         android:textColor="@color/colorAccent"
-        android:text="@string/already_registered_login_now"
+        android:text="@string/sudah_terdaftar_login_sekarang"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content" />
 

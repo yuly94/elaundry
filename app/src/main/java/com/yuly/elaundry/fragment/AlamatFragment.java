@@ -1,6 +1,5 @@
 package com.yuly.elaundry.fragment;
 
-
 import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
@@ -8,10 +7,11 @@ import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.Fragment;
 import android.support.v4.view.MenuItemCompat;
 import android.support.v4.widget.SwipeRefreshLayout;
-
+import android.support.v7.app.ActionBar;
+import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-
+import android.support.v7.widget.RecyclerView.LayoutManager;
 import android.support.v7.widget.SearchView;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -49,10 +49,8 @@ import java.util.List;
 import java.util.Map;
 
 /**
- * Author: Yuly Nurhidayati
- * URL: elaundry.pe.hu
- * */
-
+ * Created by anonymous on 21/02/16.
+ */
 public class AlamatFragment extends Fragment implements SearchView.OnQueryTextListener{
 
 
@@ -61,6 +59,8 @@ public class AlamatFragment extends Fragment implements SearchView.OnQueryTextLi
     private List<AlamatModels> daftarAlamat;
 
     //Creating Views
+
+    private SQLiteHandler db;
     private SessionManager session;
 
     private ProgressDialog pDialog;
@@ -74,12 +74,12 @@ public class AlamatFragment extends Fragment implements SearchView.OnQueryTextLi
     private JSONArray result;
 
 
-    private String TAG = AlamatFragment.class.getSimpleName();
+    private static final String TAG = "RecyclerViewExample";
     //  private List<Anggota> feedItemList = new ArrayList<Anggota>();
 
     //Creating Views
     private RecyclerView mRecyclerView;
-   // private LayoutManager layoutManager;
+    private LayoutManager layoutManager;
     private AlamatAdapter adapter;
 
     private  SwipeRefreshLayout mSwipeRefreshLayout;
@@ -91,7 +91,7 @@ public class AlamatFragment extends Fragment implements SearchView.OnQueryTextLi
         View v = inflater.inflate(R.layout.fragment_transaksi, container,
                 false);
 
-      //  final ActionBar ab = ((AppCompatActivity) getActivity()).getSupportActionBar();
+        final ActionBar ab = ((AppCompatActivity) getActivity()).getSupportActionBar();
         //      ab.setHomeAsUpIndicator(R.drawable.ic_menu);
         //       ab.setDisplayHomeAsUpEnabled(true);
    
@@ -114,21 +114,23 @@ public class AlamatFragment extends Fragment implements SearchView.OnQueryTextLi
         });
 
         //Initializing our superheroes list
-        daftarAlamat = new ArrayList<>();
+        daftarAlamat = new ArrayList<AlamatModels>();
 
         // SqLite database handler
-        // Fetching user api from SQLite
-        konsumen_kunci_api = new SQLiteHandler(getContext()).getUserApi();
-
-        Log.d(AppController.TAG, konsumen_kunci_api);
-
+        db = new SQLiteHandler(getContext());
 
         // session manager
         session = new SessionManager(getContext());
 
-        pDialog = new ProgressDialog(getContext());
-        pDialog.setMessage("Loading...");
-        pDialog.setCancelable(false);
+        // Fetching user details from SQLite
+        HashMap<String, String> user = db.getUserDetails();
+
+        konsumen_kunci_api = user.get("kurir_kunci_api");
+
+
+       pDialog = new ProgressDialog(getContext());
+       pDialog.setMessage("Loading...");
+       pDialog.setCancelable(false);
 
 
 
@@ -199,8 +201,8 @@ public class AlamatFragment extends Fragment implements SearchView.OnQueryTextLi
                         //Storing the Array of JSON String to our JSON Array
                         result = response;
 
-                        //Calling method getAlamat to get the students from the JSON Array
-                        getAlamat(result);
+                        //Calling method getTempat to get the students from the JSON Array
+                        getTempat(result);
 
 
 
@@ -213,10 +215,8 @@ public class AlamatFragment extends Fragment implements SearchView.OnQueryTextLi
 
 
                 String e = VolleyErrorHelper.getMessage(error, getContext());
-                VolleyLog.d(AppController.TAG, " Error: " + e);
+                VolleyLog.d(AppController.TAG, "Error: " + e);
 
-
-                Log.d("errr","eeee");
 
                 mSwipeRefreshLayout.setRefreshing(false);
 
@@ -233,7 +233,7 @@ public class AlamatFragment extends Fragment implements SearchView.OnQueryTextLi
 
             @Override
             public Map<String, String> getHeaders() throws AuthFailureError {
-                HashMap<String, String> headers = new HashMap<>();
+                HashMap<String, String> headers = new HashMap<String, String>();
                 headers.put("Content-Type", "application/json");
                 headers.put("Authorization", konsumen_kunci_api);
                 return headers;
@@ -243,7 +243,7 @@ public class AlamatFragment extends Fragment implements SearchView.OnQueryTextLi
         };
 
         // Adding request to request queue
-        String tag_json_arry = getString(R.string.requet_json_array);
+        String tag_json_arry = "jarray_req";
         AppController.getInstance().addToRequestQueue(req, tag_json_arry);
 
         // Cancelling request
@@ -252,7 +252,7 @@ public class AlamatFragment extends Fragment implements SearchView.OnQueryTextLi
 
 
 
-    private void getAlamat(JSONArray j){
+    private void getTempat(JSONArray j){
         //Traversing through all the items in the json array
         for(int i=0;i<j.length();i++){
             AlamatModels listAlamat = new AlamatModels();
@@ -272,7 +272,8 @@ public class AlamatFragment extends Fragment implements SearchView.OnQueryTextLi
                     String alamat_latitude = tempat.getString("alamat_latitude");
                     String alamat_longitude = tempat.getString("alamat_longitude");
                     String alamat_dibuat_pada = tempat.getString("alamat_dibuat_pada");
-                    String alamat_diupdate_pada = tempat.getString("alamat_diupdate_pada");
+
+                    String alamat_diupdate_pada = tempat.getString("diupdate_pada");
 
                     Log.d(AppController.TAG, "alamat_id : " + id);
                     Log.d(AppController.TAG, "alamat_nama : " + alamat_nama);
@@ -338,6 +339,10 @@ public class AlamatFragment extends Fragment implements SearchView.OnQueryTextLi
         }
     }
 
+
+
+
+
     private void showProgressDialog() {
         if (!pDialog.isShowing())
             pDialog.show();
@@ -349,6 +354,10 @@ public class AlamatFragment extends Fragment implements SearchView.OnQueryTextLi
 
 
     }
+
+
+
+
 
     @Override
     public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
@@ -395,7 +404,7 @@ public class AlamatFragment extends Fragment implements SearchView.OnQueryTextLi
     private List<AlamatModels> filter(List<AlamatModels> models, String query) {
         query = query.toLowerCase();
 
-        final List<AlamatModels> filteredModelList = new ArrayList<>();
+        final List<AlamatModels> filteredModelList = new ArrayList<AlamatModels>();
         for (AlamatModels model : models) {
             final String text = model.getAlamatNama().toLowerCase();
             if (text.contains(query)) {

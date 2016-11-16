@@ -36,7 +36,7 @@ public class SessionManager {
 		// commit changes
 		editor.commit();
 
-		Log.d(TAG, "UserModels login session modified!");
+		Log.d(TAG, "User login session modified!");
 	}
 	
 	public boolean isLoggedIn(){
