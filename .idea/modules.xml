@@ -4,7 +4,7 @@
     <modules>
       <module fileurl="file:///media/anonymous/data/AndroidStudioProjects/elaundry-kurir/app/app.iml" filepath="/media/anonymous/data/AndroidStudioProjects/elaundry-kurir/app/app.iml" />
       <module fileurl="file:///media/anonymous/data/AndroidStudioProjects/elaundry-kurir/elaundry-kurir.iml" filepath="/media/anonymous/data/AndroidStudioProjects/elaundry-kurir/elaundry-kurir.iml" />
-      <module fileurl="file:///media/anonymous/data/AndroidStudioProjects/elaundry-kurir/libs_volley/libs_volley.iml" filepath="/media/anonymous/data/AndroidStudioProjects/elaundry-kurir/libs_volley/libs_volley.iml" />
+      <module fileurl="file:///media/anonymous/data/AndroidStudioProjects/elaundry-kurir/libs_google_volley/libs_google_volley.iml" filepath="/media/anonymous/data/AndroidStudioProjects/elaundry-kurir/libs_google_volley/libs_google_volley.iml" />
     </modules>
   </component>
 </project>

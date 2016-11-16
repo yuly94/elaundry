@@ -22,7 +22,7 @@ android {
         minSdkVersion 15
         targetSdkVersion 25
         versionCode 1
-        versionName "1.0"
+        versionName '1.0.1'
         //multiDexEnabled true
         signingConfig signingConfigs.release
     }
@@ -61,5 +61,5 @@ dependencies {
     compile 'com.amulyakhare:com.amulyakhare.textdrawable:1.0.1'
     compile 'com.android.support:support-v4:25.0.0'
     //compile 'com.android.support:multidex:1.0.1'
-    compile project(':libs_volley')
+    compile project(':libs_google_volley')
 }
