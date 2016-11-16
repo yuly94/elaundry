@@ -11,118 +11,29 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="79627681-5094-4df5-9f4f-e0da1fc243a5" name="Default" comment="">
-      <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/libraries/accessibility_test_framework_1_0.xml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/libraries/animated_vector_drawable_24_2_1.xml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/libraries/ant_1_8_0.xml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/libraries/ant_launcher_1_8_0.xml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/libraries/appcompat_v7_24_2_1.xml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/libraries/asm_5_0_1.xml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/libraries/asm_analysis_5_0_1.xml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/libraries/asm_commons_5_0_1.xml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/libraries/asm_tree_5_0_1.xml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/libraries/asm_util_5_0_1.xml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/libraries/bcprov_jdk16_1_46.xml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/libraries/com_amulyakhare_textdrawable_1_0_1.xml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/libraries/design_24_2_1.xml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/libraries/firebase_common_9_6_1.xml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/libraries/gson_2_4.xml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/libraries/hamcrest_core_1_1.xml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/libraries/hamcrest_core_1_3.xml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/libraries/icu4j_53_1.xml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/libraries/junit_4_10.xml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/libraries/junit_4_12.xml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/libraries/maven_ant_tasks_2_1_3.xml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/libraries/mockito_core_1_9_5.xml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/libraries/objenesis_1_0.xml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/libraries/play_services_appindexing_9_6_1.xml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/libraries/play_services_base_9_6_1.xml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/libraries/play_services_basement_9_6_1.xml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/libraries/play_services_location_9_6_1.xml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/libraries/play_services_maps_9_6_1.xml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/libraries/play_services_places_9_6_1.xml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/libraries/play_services_tasks_9_6_1.xml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/libraries/recyclerview_v7_24_2_1.xml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/libraries/robolectric_3_0.xml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/libraries/robolectric_annotations_3_0.xml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/libraries/robolectric_resources_3_0.xml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/libraries/robolectric_utils_3_0.xml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/libraries/shadows_core_3_0.xml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/libraries/sqlite4java_0_282.xml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/libraries/support_annotations_24_2_1.xml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/libraries/support_compat_24_2_1.xml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/libraries/support_core_ui_24_2_1.xml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/libraries/support_core_utils_24_2_1.xml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/libraries/support_fragment_24_2_1.xml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/libraries/support_media_compat_24_2_1.xml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/libraries/support_v4_24_2_1.xml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/libraries/support_vector_drawable_24_2_1.xml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/libraries/vtd_xml_2_11.xml" afterPath="" />
-      <change type="DELETED" beforePath="/media/anonymous/data/AndroidStudioProjects/elaundry/.idea/libraries/accessibility_test_framework_1_0.xml" afterPath="" />
-      <change type="DELETED" beforePath="/media/anonymous/data/AndroidStudioProjects/elaundry/.idea/libraries/animated_vector_drawable_24_2_1.xml" afterPath="" />
-      <change type="DELETED" beforePath="/media/anonymous/data/AndroidStudioProjects/elaundry/.idea/libraries/ant_1_8_0.xml" afterPath="" />
-      <change type="DELETED" beforePath="/media/anonymous/data/AndroidStudioProjects/elaundry/.idea/libraries/ant_launcher_1_8_0.xml" afterPath="" />
-      <change type="DELETED" beforePath="/media/anonymous/data/AndroidStudioProjects/elaundry/.idea/libraries/appcompat_v7_24_2_1.xml" afterPath="" />
-      <change type="DELETED" beforePath="/media/anonymous/data/AndroidStudioProjects/elaundry/.idea/libraries/asm_5_0_1.xml" afterPath="" />
-      <change type="DELETED" beforePath="/media/anonymous/data/AndroidStudioProjects/elaundry/.idea/libraries/asm_analysis_5_0_1.xml" afterPath="" />
-      <change type="DELETED" beforePath="/media/anonymous/data/AndroidStudioProjects/elaundry/.idea/libraries/asm_commons_5_0_1.xml" afterPath="" />
-      <change type="DELETED" beforePath="/media/anonymous/data/AndroidStudioProjects/elaundry/.idea/libraries/asm_tree_5_0_1.xml" afterPath="" />
-      <change type="DELETED" beforePath="/media/anonymous/data/AndroidStudioProjects/elaundry/.idea/libraries/asm_util_5_0_1.xml" afterPath="" />
-      <change type="DELETED" beforePath="/media/anonymous/data/AndroidStudioProjects/elaundry/.idea/libraries/bcprov_jdk16_1_46.xml" afterPath="" />
-      <change type="DELETED" beforePath="/media/anonymous/data/AndroidStudioProjects/elaundry/.idea/libraries/com_amulyakhare_textdrawable_1_0_1.xml" afterPath="" />
-      <change type="DELETED" beforePath="/media/anonymous/data/AndroidStudioProjects/elaundry/.idea/libraries/design_24_2_1.xml" afterPath="" />
-      <change type="DELETED" beforePath="/media/anonymous/data/AndroidStudioProjects/elaundry/.idea/libraries/firebase_common_9_6_1.xml" afterPath="" />
-      <change type="DELETED" beforePath="/media/anonymous/data/AndroidStudioProjects/elaundry/.idea/libraries/gson_2_4.xml" afterPath="" />
-      <change type="DELETED" beforePath="/media/anonymous/data/AndroidStudioProjects/elaundry/.idea/libraries/hamcrest_core_1_1.xml" afterPath="" />
-      <change type="DELETED" beforePath="/media/anonymous/data/AndroidStudioProjects/elaundry/.idea/libraries/hamcrest_core_1_3.xml" afterPath="" />
-      <change type="DELETED" beforePath="/media/anonymous/data/AndroidStudioProjects/elaundry/.idea/libraries/icu4j_53_1.xml" afterPath="" />
-      <change type="DELETED" beforePath="/media/anonymous/data/AndroidStudioProjects/elaundry/.idea/libraries/junit_4_10.xml" afterPath="" />
-      <change type="DELETED" beforePath="/media/anonymous/data/AndroidStudioProjects/elaundry/.idea/libraries/junit_4_12.xml" afterPath="" />
-      <change type="DELETED" beforePath="/media/anonymous/data/AndroidStudioProjects/elaundry/.idea/libraries/maven_ant_tasks_2_1_3.xml" afterPath="" />
-      <change type="DELETED" beforePath="/media/anonymous/data/AndroidStudioProjects/elaundry/.idea/libraries/mockito_core_1_9_5.xml" afterPath="" />
-      <change type="DELETED" beforePath="/media/anonymous/data/AndroidStudioProjects/elaundry/.idea/libraries/objenesis_1_0.xml" afterPath="" />
-      <change type="DELETED" beforePath="/media/anonymous/data/AndroidStudioProjects/elaundry/.idea/libraries/play_services_appindexing_9_6_1.xml" afterPath="" />
-      <change type="DELETED" beforePath="/media/anonymous/data/AndroidStudioProjects/elaundry/.idea/libraries/play_services_base_9_6_1.xml" afterPath="" />
-      <change type="DELETED" beforePath="/media/anonymous/data/AndroidStudioProjects/elaundry/.idea/libraries/play_services_basement_9_6_1.xml" afterPath="" />
-      <change type="DELETED" beforePath="/media/anonymous/data/AndroidStudioProjects/elaundry/.idea/libraries/play_services_location_9_6_1.xml" afterPath="" />
-      <change type="DELETED" beforePath="/media/anonymous/data/AndroidStudioProjects/elaundry/.idea/libraries/play_services_maps_9_6_1.xml" afterPath="" />
-      <change type="DELETED" beforePath="/media/anonymous/data/AndroidStudioProjects/elaundry/.idea/libraries/play_services_places_9_6_1.xml" afterPath="" />
-      <change type="DELETED" beforePath="/media/anonymous/data/AndroidStudioProjects/elaundry/.idea/libraries/play_services_tasks_9_6_1.xml" afterPath="" />
-      <change type="DELETED" beforePath="/media/anonymous/data/AndroidStudioProjects/elaundry/.idea/libraries/recyclerview_v7_24_2_1.xml" afterPath="" />
-      <change type="DELETED" beforePath="/media/anonymous/data/AndroidStudioProjects/elaundry/.idea/libraries/robolectric_3_0.xml" afterPath="" />
-      <change type="DELETED" beforePath="/media/anonymous/data/AndroidStudioProjects/elaundry/.idea/libraries/robolectric_annotations_3_0.xml" afterPath="" />
-      <change type="DELETED" beforePath="/media/anonymous/data/AndroidStudioProjects/elaundry/.idea/libraries/robolectric_resources_3_0.xml" afterPath="" />
-      <change type="DELETED" beforePath="/media/anonymous/data/AndroidStudioProjects/elaundry/.idea/libraries/robolectric_utils_3_0.xml" afterPath="" />
-      <change type="DELETED" beforePath="/media/anonymous/data/AndroidStudioProjects/elaundry/.idea/libraries/shadows_core_3_0.xml" afterPath="" />
-      <change type="DELETED" beforePath="/media/anonymous/data/AndroidStudioProjects/elaundry/.idea/libraries/sqlite4java_0_282.xml" afterPath="" />
-      <change type="DELETED" beforePath="/media/anonymous/data/AndroidStudioProjects/elaundry/.idea/libraries/support_annotations_24_2_1.xml" afterPath="" />
-      <change type="DELETED" beforePath="/media/anonymous/data/AndroidStudioProjects/elaundry/.idea/libraries/support_compat_24_2_1.xml" afterPath="" />
-      <change type="DELETED" beforePath="/media/anonymous/data/AndroidStudioProjects/elaundry/.idea/libraries/support_core_ui_24_2_1.xml" afterPath="" />
-      <change type="DELETED" beforePath="/media/anonymous/data/AndroidStudioProjects/elaundry/.idea/libraries/support_core_utils_24_2_1.xml" afterPath="" />
-      <change type="DELETED" beforePath="/media/anonymous/data/AndroidStudioProjects/elaundry/.idea/libraries/support_fragment_24_2_1.xml" afterPath="" />
-      <change type="DELETED" beforePath="/media/anonymous/data/AndroidStudioProjects/elaundry/.idea/libraries/support_media_compat_24_2_1.xml" afterPath="" />
-      <change type="DELETED" beforePath="/media/anonymous/data/AndroidStudioProjects/elaundry/.idea/libraries/support_v4_24_2_1.xml" afterPath="" />
-      <change type="DELETED" beforePath="/media/anonymous/data/AndroidStudioProjects/elaundry/.idea/libraries/support_vector_drawable_24_2_1.xml" afterPath="" />
-      <change type="DELETED" beforePath="/media/anonymous/data/AndroidStudioProjects/elaundry/.idea/libraries/vtd_xml_2_11.xml" afterPath="" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/gradle.xml" afterPath="$PROJECT_DIR$/.idea/gradle.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/modules.xml" afterPath="$PROJECT_DIR$/.idea/modules.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/vcs.xml" afterPath="$PROJECT_DIR$/.idea/vcs.xml" />
+      <change type="NEW" beforePath="" afterPath="/media/anonymous/data/AndroidStudioProjects/elaundry/libs_google_volley" />
+      <change type="NEW" beforePath="" afterPath="/media/anonymous/data/AndroidStudioProjects/elaundry/.idea/libraries/animated_vector_drawable_25_0_0.xml" />
+      <change type="NEW" beforePath="" afterPath="/media/anonymous/data/AndroidStudioProjects/elaundry/.idea/libraries/appcompat_v7_25_0_0.xml" />
+      <change type="NEW" beforePath="" afterPath="/media/anonymous/data/AndroidStudioProjects/elaundry/.idea/libraries/design_25_0_0.xml" />
+      <change type="NEW" beforePath="" afterPath="/media/anonymous/data/AndroidStudioProjects/elaundry/.idea/libraries/firebase_common_9_8_0.xml" />
+      <change type="NEW" beforePath="" afterPath="/media/anonymous/data/AndroidStudioProjects/elaundry/.idea/libraries/play_services_appindexing_9_8_0.xml" />
+      <change type="NEW" beforePath="" afterPath="/media/anonymous/data/AndroidStudioProjects/elaundry/.idea/libraries/play_services_base_9_8_0.xml" />
+      <change type="NEW" beforePath="" afterPath="/media/anonymous/data/AndroidStudioProjects/elaundry/.idea/libraries/play_services_basement_9_8_0.xml" />
+      <change type="NEW" beforePath="" afterPath="/media/anonymous/data/AndroidStudioProjects/elaundry/.idea/libraries/play_services_location_9_8_0.xml" />
+      <change type="NEW" beforePath="" afterPath="/media/anonymous/data/AndroidStudioProjects/elaundry/.idea/libraries/play_services_maps_9_8_0.xml" />
+      <change type="NEW" beforePath="" afterPath="/media/anonymous/data/AndroidStudioProjects/elaundry/.idea/libraries/play_services_places_9_8_0.xml" />
+      <change type="NEW" beforePath="" afterPath="/media/anonymous/data/AndroidStudioProjects/elaundry/.idea/libraries/play_services_tasks_9_8_0.xml" />
+      <change type="NEW" beforePath="" afterPath="/media/anonymous/data/AndroidStudioProjects/elaundry/.idea/libraries/recyclerview_v7_25_0_0.xml" />
+      <change type="NEW" beforePath="" afterPath="/media/anonymous/data/AndroidStudioProjects/elaundry/.idea/libraries/support_annotations_25_0_0.xml" />
+      <change type="NEW" beforePath="" afterPath="/media/anonymous/data/AndroidStudioProjects/elaundry/.idea/libraries/support_compat_25_0_0.xml" />
+      <change type="NEW" beforePath="" afterPath="/media/anonymous/data/AndroidStudioProjects/elaundry/.idea/libraries/support_core_ui_25_0_0.xml" />
+      <change type="NEW" beforePath="" afterPath="/media/anonymous/data/AndroidStudioProjects/elaundry/.idea/libraries/support_core_utils_25_0_0.xml" />
+      <change type="NEW" beforePath="" afterPath="/media/anonymous/data/AndroidStudioProjects/elaundry/.idea/libraries/support_fragment_25_0_0.xml" />
+      <change type="NEW" beforePath="" afterPath="/media/anonymous/data/AndroidStudioProjects/elaundry/.idea/libraries/support_media_compat_25_0_0.xml" />
+      <change type="NEW" beforePath="" afterPath="/media/anonymous/data/AndroidStudioProjects/elaundry/.idea/libraries/support_v4_25_0_0.xml" />
+      <change type="NEW" beforePath="" afterPath="/media/anonymous/data/AndroidStudioProjects/elaundry/.idea/libraries/support_vector_drawable_25_0_0.xml" />
+      <change type="NEW" beforePath="" afterPath="/media/anonymous/data/AndroidStudioProjects/elaundry/.idea/libraries/transition_25_0_0.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/settings.gradle" afterPath="$PROJECT_DIR$/settings.gradle" />
-      <change type="MODIFICATION" beforePath="/media/anonymous/data/AndroidStudioProjects/elaundry/.idea/gradle.xml" afterPath="/media/anonymous/data/AndroidStudioProjects/elaundry/.idea/gradle.xml" />
-      <change type="MODIFICATION" beforePath="/media/anonymous/data/AndroidStudioProjects/elaundry/.idea/modules.xml" afterPath="/media/anonymous/data/AndroidStudioProjects/elaundry/.idea/modules.xml" />
-      <change type="MODIFICATION" beforePath="/media/anonymous/data/AndroidStudioProjects/elaundry/.idea/vcs.xml" afterPath="/media/anonymous/data/AndroidStudioProjects/elaundry/.idea/vcs.xml" />
-      <change type="MODIFICATION" beforePath="/media/anonymous/data/AndroidStudioProjects/elaundry/.idea/workspace.xml" afterPath="/media/anonymous/data/AndroidStudioProjects/elaundry/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="/media/anonymous/data/AndroidStudioProjects/elaundry/app/app.iml" afterPath="/media/anonymous/data/AndroidStudioProjects/elaundry/app/app.iml" />
-      <change type="MODIFICATION" beforePath="/media/anonymous/data/AndroidStudioProjects/elaundry/app/build.gradle" afterPath="/media/anonymous/data/AndroidStudioProjects/elaundry/app/build.gradle" />
-      <change type="MODIFICATION" beforePath="/media/anonymous/data/AndroidStudioProjects/elaundry/app/src/main/java/com/yuly/elaundry/activity/PemesananActivity.java" afterPath="/media/anonymous/data/AndroidStudioProjects/elaundry/app/src/main/java/com/yuly/elaundry/activity/PemesananActivity.java" />
-      <change type="MODIFICATION" beforePath="/media/anonymous/data/AndroidStudioProjects/elaundry/app/src/main/java/com/yuly/elaundry/app/AppConfig.java" afterPath="/media/anonymous/data/AndroidStudioProjects/elaundry/app/src/main/java/com/yuly/elaundry/app/AppConfig.java" />
-      <change type="MODIFICATION" beforePath="/media/anonymous/data/AndroidStudioProjects/elaundry/app/src/main/java/com/yuly/elaundry/fragment/AlamatFragment.java" afterPath="/media/anonymous/data/AndroidStudioProjects/elaundry/app/src/main/java/com/yuly/elaundry/fragment/AlamatFragment.java" />
-      <change type="MODIFICATION" beforePath="/media/anonymous/data/AndroidStudioProjects/elaundry/app/src/main/java/com/yuly/elaundry/fragment/MapsFragmentLocation.java" afterPath="/media/anonymous/data/AndroidStudioProjects/elaundry/app/src/main/java/com/yuly/elaundry/fragment/MapsFragmentLocation.java" />
-      <change type="MODIFICATION" beforePath="/media/anonymous/data/AndroidStudioProjects/elaundry/app/src/main/java/com/yuly/elaundry/models/AlamatModels.java" afterPath="/media/anonymous/data/AndroidStudioProjects/elaundry/app/src/main/java/com/yuly/elaundry/models/AlamatModels.java" />
-      <change type="MODIFICATION" beforePath="/media/anonymous/data/AndroidStudioProjects/elaundry/app/src/main/res/layout/fragment_register.xml" afterPath="/media/anonymous/data/AndroidStudioProjects/elaundry/app/src/main/res/layout/fragment_register.xml" />
-      <change type="MODIFICATION" beforePath="/media/anonymous/data/AndroidStudioProjects/elaundry/app/src/main/res/values/strings.xml" afterPath="/media/anonymous/data/AndroidStudioProjects/elaundry/app/src/main/res/values/strings.xml" />
-      <change type="MODIFICATION" beforePath="/media/anonymous/data/AndroidStudioProjects/elaundry/libs_volley/build.gradle" afterPath="/media/anonymous/data/AndroidStudioProjects/elaundry/libs_volley/build.gradle" />
-      <change type="MODIFICATION" beforePath="/media/anonymous/data/AndroidStudioProjects/elaundry/settings.gradle" afterPath="/media/anonymous/data/AndroidStudioProjects/elaundry/settings.gradle" />
     </list>
     <list id="bf8c04de-1dbb-4a5f-a27e-6c2d7c2c198e" name="New changelist" comment="Commit update compiler 23 =&gt; 24&#10;" />
     <ignored path="elaundry_backup.iws" />
@@ -5250,14 +5161,14 @@
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32903227" sideWeight="0.55958956" order="8" side_tool="true" content_ui="tabs" />
       <window_info id="Android Monitor" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.09677419" sideWeight="0.5509077" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.07258064" sideWeight="0.4404104" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Version Control" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.2612903" sideWeight="0.47750592" order="11" side_tool="false" content_ui="tabs" />
+      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.2612903" sideWeight="0.47750592" order="11" side_tool="false" content_ui="tabs" />
       <window_info id="Properties" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.329582" sideWeight="0.5" order="12" side_tool="false" content_ui="tabs" />
       <window_info id="Captures" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Capture Tool" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Gradle Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="9" side_tool="true" content_ui="tabs" />
       <window_info id="Designer" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.31491712" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
+      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.31491712" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Gradle" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Android Model" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.24940805" sideWeight="0.50617284" order="10" side_tool="true" content_ui="tabs" />
@@ -5524,6 +5435,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-9">
           <caret line="184" column="61" selection-start-line="184" selection-start-column="61" selection-end-line="184" selection-end-column="61" />
+          <folding />
         </state>
       </provider>
     </entry>
@@ -5531,6 +5443,13 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="3270">
           <caret line="269" column="49" selection-start-line="269" selection-start-column="49" selection-end-line="269" selection-end-column="49" />
+          <folding>
+            <element signature="imports" expanded="false" />
+            <element signature="e#6376#6377#0" expanded="false" />
+            <element signature="e#6410#6411#0" expanded="false" />
+            <element signature="e#7007#7008#0" expanded="false" />
+            <element signature="e#7052#7053#0" expanded="false" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -5538,6 +5457,11 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="4290">
           <caret line="330" column="24" selection-start-line="330" selection-start-column="24" selection-end-line="330" selection-end-column="24" />
+          <folding>
+            <element signature="imports" expanded="false" />
+            <element signature="e#15035#15036#0" expanded="false" />
+            <element signature="e#15063#15064#0" expanded="false" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -5562,6 +5486,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-149">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
         </state>
       </provider>
     </entry>
@@ -5580,6 +5505,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
         </state>
       </provider>
     </entry>
@@ -5587,6 +5513,11 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="2775">
           <caret line="228" column="0" selection-start-line="228" selection-start-column="0" selection-end-line="228" selection-end-column="0" />
+          <folding>
+            <element signature="imports" expanded="false" />
+            <element signature="e#15187#15188#0" expanded="false" />
+            <element signature="e#15215#15216#0" expanded="false" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -5608,6 +5539,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="442">
           <caret line="257" column="57" selection-start-line="257" selection-start-column="57" selection-end-line="257" selection-end-column="57" />
+          <folding />
         </state>
       </provider>
     </entry>
@@ -5653,6 +5585,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="181">
           <caret line="28" column="0" selection-start-line="24" selection-start-column="34" selection-end-line="28" selection-end-column="0" />
+          <folding />
         </state>
       </provider>
     </entry>
@@ -5660,6 +5593,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="60">
           <caret line="11" column="13" selection-start-line="11" selection-start-column="13" selection-end-line="11" selection-end-column="13" />
+          <folding />
         </state>
       </provider>
     </entry>
@@ -5683,6 +5617,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="90">
           <caret line="6" column="61" selection-start-line="6" selection-start-column="53" selection-end-line="6" selection-end-column="61" />
+          <folding />
         </state>
       </provider>
     </entry>
