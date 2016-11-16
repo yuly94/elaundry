@@ -10,30 +10,214 @@
     <option name="TOOL_WINDOW_CONFIGURED_FILTER" value="Show only selected application" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="79627681-5094-4df5-9f4f-e0da1fc243a5" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="/media/anonymous/data/AndroidStudioProjects/elaundry/libs_google_volley" />
-      <change type="NEW" beforePath="" afterPath="/media/anonymous/data/AndroidStudioProjects/elaundry/.idea/libraries/animated_vector_drawable_25_0_0.xml" />
-      <change type="NEW" beforePath="" afterPath="/media/anonymous/data/AndroidStudioProjects/elaundry/.idea/libraries/appcompat_v7_25_0_0.xml" />
-      <change type="NEW" beforePath="" afterPath="/media/anonymous/data/AndroidStudioProjects/elaundry/.idea/libraries/design_25_0_0.xml" />
-      <change type="NEW" beforePath="" afterPath="/media/anonymous/data/AndroidStudioProjects/elaundry/.idea/libraries/firebase_common_9_8_0.xml" />
-      <change type="NEW" beforePath="" afterPath="/media/anonymous/data/AndroidStudioProjects/elaundry/.idea/libraries/play_services_appindexing_9_8_0.xml" />
-      <change type="NEW" beforePath="" afterPath="/media/anonymous/data/AndroidStudioProjects/elaundry/.idea/libraries/play_services_base_9_8_0.xml" />
-      <change type="NEW" beforePath="" afterPath="/media/anonymous/data/AndroidStudioProjects/elaundry/.idea/libraries/play_services_basement_9_8_0.xml" />
-      <change type="NEW" beforePath="" afterPath="/media/anonymous/data/AndroidStudioProjects/elaundry/.idea/libraries/play_services_location_9_8_0.xml" />
-      <change type="NEW" beforePath="" afterPath="/media/anonymous/data/AndroidStudioProjects/elaundry/.idea/libraries/play_services_maps_9_8_0.xml" />
-      <change type="NEW" beforePath="" afterPath="/media/anonymous/data/AndroidStudioProjects/elaundry/.idea/libraries/play_services_places_9_8_0.xml" />
-      <change type="NEW" beforePath="" afterPath="/media/anonymous/data/AndroidStudioProjects/elaundry/.idea/libraries/play_services_tasks_9_8_0.xml" />
-      <change type="NEW" beforePath="" afterPath="/media/anonymous/data/AndroidStudioProjects/elaundry/.idea/libraries/recyclerview_v7_25_0_0.xml" />
-      <change type="NEW" beforePath="" afterPath="/media/anonymous/data/AndroidStudioProjects/elaundry/.idea/libraries/support_annotations_25_0_0.xml" />
-      <change type="NEW" beforePath="" afterPath="/media/anonymous/data/AndroidStudioProjects/elaundry/.idea/libraries/support_compat_25_0_0.xml" />
-      <change type="NEW" beforePath="" afterPath="/media/anonymous/data/AndroidStudioProjects/elaundry/.idea/libraries/support_core_ui_25_0_0.xml" />
-      <change type="NEW" beforePath="" afterPath="/media/anonymous/data/AndroidStudioProjects/elaundry/.idea/libraries/support_core_utils_25_0_0.xml" />
-      <change type="NEW" beforePath="" afterPath="/media/anonymous/data/AndroidStudioProjects/elaundry/.idea/libraries/support_fragment_25_0_0.xml" />
-      <change type="NEW" beforePath="" afterPath="/media/anonymous/data/AndroidStudioProjects/elaundry/.idea/libraries/support_media_compat_25_0_0.xml" />
-      <change type="NEW" beforePath="" afterPath="/media/anonymous/data/AndroidStudioProjects/elaundry/.idea/libraries/support_v4_25_0_0.xml" />
-      <change type="NEW" beforePath="" afterPath="/media/anonymous/data/AndroidStudioProjects/elaundry/.idea/libraries/support_vector_drawable_25_0_0.xml" />
-      <change type="NEW" beforePath="" afterPath="/media/anonymous/data/AndroidStudioProjects/elaundry/.idea/libraries/transition_25_0_0.xml" />
+    <list default="true" id="79627681-5094-4df5-9f4f-e0da1fc243a5" name="Default" comment="Mengganti libs volley : http://stackoverflow.com/questions/32472263/apache-http-client-removal-from-api23-will-that-have-an-effect-on-volley">
+      <change type="NEW" beforePath="" afterPath="/media/anonymous/data/AndroidStudioProjects/elaundry/libs_SuperRecyclerView/.gitignore" />
+      <change type="NEW" beforePath="" afterPath="/media/anonymous/data/AndroidStudioProjects/elaundry/libs_SuperRecyclerView/SuperRecyclerView-SuperRecyclerView.iml" />
+      <change type="NEW" beforePath="" afterPath="/media/anonymous/data/AndroidStudioProjects/elaundry/libs_SuperRecyclerView/build.gradle" />
+      <change type="NEW" beforePath="" afterPath="/media/anonymous/data/AndroidStudioProjects/elaundry/libs_SuperRecyclerView/gradle.properties" />
+      <change type="NEW" beforePath="" afterPath="/media/anonymous/data/AndroidStudioProjects/elaundry/libs_SuperRecyclerView/src/main/AndroidManifest.xml" />
+      <change type="NEW" beforePath="" afterPath="/media/anonymous/data/AndroidStudioProjects/elaundry/libs_SuperRecyclerView/src/main/java/com/malinskiy/superrecyclerview/OnMoreListener.java" />
+      <change type="NEW" beforePath="" afterPath="/media/anonymous/data/AndroidStudioProjects/elaundry/libs_SuperRecyclerView/src/main/java/com/malinskiy/superrecyclerview/SuperRecyclerView.java" />
+      <change type="NEW" beforePath="" afterPath="/media/anonymous/data/AndroidStudioProjects/elaundry/libs_SuperRecyclerView/src/main/java/com/malinskiy/superrecyclerview/swipe/BaseSwipeAdapter.java" />
+      <change type="NEW" beforePath="" afterPath="/media/anonymous/data/AndroidStudioProjects/elaundry/libs_SuperRecyclerView/src/main/java/com/malinskiy/superrecyclerview/swipe/SimpleSwipeListener.java" />
+      <change type="NEW" beforePath="" afterPath="/media/anonymous/data/AndroidStudioProjects/elaundry/libs_SuperRecyclerView/src/main/java/com/malinskiy/superrecyclerview/swipe/SparseItemRemoveAnimator.java" />
+      <change type="NEW" beforePath="" afterPath="/media/anonymous/data/AndroidStudioProjects/elaundry/libs_SuperRecyclerView/src/main/java/com/malinskiy/superrecyclerview/swipe/SwipeDismissRecyclerViewTouchListener.java" />
+      <change type="NEW" beforePath="" afterPath="/media/anonymous/data/AndroidStudioProjects/elaundry/libs_SuperRecyclerView/src/main/java/com/malinskiy/superrecyclerview/swipe/SwipeItemManagerImpl.java" />
+      <change type="NEW" beforePath="" afterPath="/media/anonymous/data/AndroidStudioProjects/elaundry/libs_SuperRecyclerView/src/main/java/com/malinskiy/superrecyclerview/swipe/SwipeItemManagerInterface.java" />
+      <change type="NEW" beforePath="" afterPath="/media/anonymous/data/AndroidStudioProjects/elaundry/libs_SuperRecyclerView/src/main/java/com/malinskiy/superrecyclerview/swipe/SwipeLayout.java" />
+      <change type="NEW" beforePath="" afterPath="/media/anonymous/data/AndroidStudioProjects/elaundry/libs_SuperRecyclerView/src/main/java/com/malinskiy/superrecyclerview/util/FloatUtil.java" />
+      <change type="NEW" beforePath="" afterPath="/media/anonymous/data/AndroidStudioProjects/elaundry/libs_SuperRecyclerView/src/main/res/layout/layout_more_progress.xml" />
+      <change type="NEW" beforePath="" afterPath="/media/anonymous/data/AndroidStudioProjects/elaundry/libs_SuperRecyclerView/src/main/res/layout/layout_progress.xml" />
+      <change type="NEW" beforePath="" afterPath="/media/anonymous/data/AndroidStudioProjects/elaundry/libs_SuperRecyclerView/src/main/res/layout/layout_progress_recyclerview.xml" />
+      <change type="NEW" beforePath="" afterPath="/media/anonymous/data/AndroidStudioProjects/elaundry/libs_SuperRecyclerView/src/main/res/layout/layout_recyclerview_horizontalscroll.xml" />
+      <change type="NEW" beforePath="" afterPath="/media/anonymous/data/AndroidStudioProjects/elaundry/libs_SuperRecyclerView/src/main/res/layout/layout_recyclerview_verticalscroll.xml" />
+      <change type="NEW" beforePath="" afterPath="/media/anonymous/data/AndroidStudioProjects/elaundry/libs_SuperRecyclerView/src/main/res/values/attrs.xml" />
+      <change type="NEW" beforePath="" afterPath="/media/anonymous/data/AndroidStudioProjects/elaundry/libs_SuperRecyclerView/src/main/res/values/dimens.xml" />
+      <change type="NEW" beforePath="" afterPath="/media/anonymous/data/AndroidStudioProjects/elaundry/libs_SuperRecyclerView/src/main/res/values/ids.xml" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/libs_volley/.gitignore" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/libs_volley/Android.mk" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/libs_volley/bintray.gradle" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/libs_volley/build.gradle" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/libs_volley/build.xml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/libs_volley/custom_rules.xml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/libs_volley/pom.xml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/libs_volley/proguard-project.txt" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/libs_volley/proguard.cfg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/libs_volley/rules.gradle" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/libs_volley/src/main/AndroidManifest.xml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/libs_volley/src/main/java/com/android/volley/AuthFailureError.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/libs_volley/src/main/java/com/android/volley/Cache.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/libs_volley/src/main/java/com/android/volley/CacheDispatcher.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/libs_volley/src/main/java/com/android/volley/ClientError.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/libs_volley/src/main/java/com/android/volley/DefaultRetryPolicy.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/libs_volley/src/main/java/com/android/volley/ExecutorDelivery.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/libs_volley/src/main/java/com/android/volley/Network.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/libs_volley/src/main/java/com/android/volley/NetworkDispatcher.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/libs_volley/src/main/java/com/android/volley/NetworkError.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/libs_volley/src/main/java/com/android/volley/NetworkResponse.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/libs_volley/src/main/java/com/android/volley/NoConnectionError.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/libs_volley/src/main/java/com/android/volley/ParseError.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/libs_volley/src/main/java/com/android/volley/Request.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/libs_volley/src/main/java/com/android/volley/RequestQueue.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/libs_volley/src/main/java/com/android/volley/Response.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/libs_volley/src/main/java/com/android/volley/ResponseDelivery.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/libs_volley/src/main/java/com/android/volley/RetryPolicy.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/libs_volley/src/main/java/com/android/volley/ServerError.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/libs_volley/src/main/java/com/android/volley/TimeoutError.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/libs_volley/src/main/java/com/android/volley/VolleyError.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/libs_volley/src/main/java/com/android/volley/VolleyLog.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/libs_volley/src/main/java/com/android/volley/toolbox/AndroidAuthenticator.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/libs_volley/src/main/java/com/android/volley/toolbox/Authenticator.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/libs_volley/src/main/java/com/android/volley/toolbox/BasicNetwork.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/libs_volley/src/main/java/com/android/volley/toolbox/ByteArrayPool.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/libs_volley/src/main/java/com/android/volley/toolbox/ClearCacheRequest.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/libs_volley/src/main/java/com/android/volley/toolbox/DiskBasedCache.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/libs_volley/src/main/java/com/android/volley/toolbox/HttpClientStack.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/libs_volley/src/main/java/com/android/volley/toolbox/HttpHeaderParser.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/libs_volley/src/main/java/com/android/volley/toolbox/HttpStack.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/libs_volley/src/main/java/com/android/volley/toolbox/HurlStack.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/libs_volley/src/main/java/com/android/volley/toolbox/ImageLoader.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/libs_volley/src/main/java/com/android/volley/toolbox/ImageRequest.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/libs_volley/src/main/java/com/android/volley/toolbox/JsonArrayRequest.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/libs_volley/src/main/java/com/android/volley/toolbox/JsonObjectRequest.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/libs_volley/src/main/java/com/android/volley/toolbox/JsonRequest.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/libs_volley/src/main/java/com/android/volley/toolbox/NetworkImageView.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/libs_volley/src/main/java/com/android/volley/toolbox/NoCache.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/libs_volley/src/main/java/com/android/volley/toolbox/PoolingByteArrayOutputStream.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/libs_volley/src/main/java/com/android/volley/toolbox/RequestFuture.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/libs_volley/src/main/java/com/android/volley/toolbox/StringRequest.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/libs_volley/src/main/java/com/android/volley/toolbox/Volley.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/libs_volley/src/test/java/com/android/volley/CacheDispatcherTest.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/libs_volley/src/test/java/com/android/volley/NetworkDispatcherTest.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/libs_volley/src/test/java/com/android/volley/RequestQueueIntegrationTest.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/libs_volley/src/test/java/com/android/volley/RequestQueueTest.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/libs_volley/src/test/java/com/android/volley/RequestTest.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/libs_volley/src/test/java/com/android/volley/ResponseDeliveryTest.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/libs_volley/src/test/java/com/android/volley/mock/MockCache.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/libs_volley/src/test/java/com/android/volley/mock/MockHttpClient.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/libs_volley/src/test/java/com/android/volley/mock/MockHttpStack.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/libs_volley/src/test/java/com/android/volley/mock/MockHttpURLConnection.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/libs_volley/src/test/java/com/android/volley/mock/MockNetwork.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/libs_volley/src/test/java/com/android/volley/mock/MockRequest.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/libs_volley/src/test/java/com/android/volley/mock/MockResponseDelivery.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/libs_volley/src/test/java/com/android/volley/mock/ShadowSystemClock.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/libs_volley/src/test/java/com/android/volley/mock/TestRequest.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/libs_volley/src/test/java/com/android/volley/mock/WaitableQueue.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/libs_volley/src/test/java/com/android/volley/toolbox/AndroidAuthenticatorTest.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/libs_volley/src/test/java/com/android/volley/toolbox/BasicNetworkTest.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/libs_volley/src/test/java/com/android/volley/toolbox/ByteArrayPoolTest.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/libs_volley/src/test/java/com/android/volley/toolbox/CacheTest.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/libs_volley/src/test/java/com/android/volley/toolbox/DiskBasedCacheTest.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/libs_volley/src/test/java/com/android/volley/toolbox/HttpClientStackTest.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/libs_volley/src/test/java/com/android/volley/toolbox/HttpHeaderParserTest.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/libs_volley/src/test/java/com/android/volley/toolbox/HurlStackTest.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/libs_volley/src/test/java/com/android/volley/toolbox/ImageLoaderTest.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/libs_volley/src/test/java/com/android/volley/toolbox/ImageRequestTest.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/libs_volley/src/test/java/com/android/volley/toolbox/JsonRequestCharsetTest.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/libs_volley/src/test/java/com/android/volley/toolbox/JsonRequestTest.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/libs_volley/src/test/java/com/android/volley/toolbox/NetworkImageViewTest.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/libs_volley/src/test/java/com/android/volley/toolbox/PoolingByteArrayOutputStreamTest.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/libs_volley/src/test/java/com/android/volley/toolbox/RequestFutureTest.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/libs_volley/src/test/java/com/android/volley/toolbox/RequestQueueTest.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/libs_volley/src/test/java/com/android/volley/toolbox/RequestTest.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/libs_volley/src/test/java/com/android/volley/toolbox/ResponseTest.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/libs_volley/src/test/java/com/android/volley/toolbox/StringRequestTest.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/libs_volley/src/test/java/com/android/volley/utils/CacheTestUtils.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/libs_volley/src/test/java/com/android/volley/utils/ImmediateResponseDelivery.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/libs_volley/src/test/resources/org.robolectric.Config.properties" afterPath="" />
+      <change type="DELETED" beforePath="/media/anonymous/data/AndroidStudioProjects/elaundry/libs_volley/.gitignore" afterPath="" />
+      <change type="DELETED" beforePath="/media/anonymous/data/AndroidStudioProjects/elaundry/libs_volley/Android.mk" afterPath="" />
+      <change type="DELETED" beforePath="/media/anonymous/data/AndroidStudioProjects/elaundry/libs_volley/bintray.gradle" afterPath="" />
+      <change type="DELETED" beforePath="/media/anonymous/data/AndroidStudioProjects/elaundry/libs_volley/build.gradle" afterPath="" />
+      <change type="DELETED" beforePath="/media/anonymous/data/AndroidStudioProjects/elaundry/libs_volley/build.xml" afterPath="" />
+      <change type="DELETED" beforePath="/media/anonymous/data/AndroidStudioProjects/elaundry/libs_volley/custom_rules.xml" afterPath="" />
+      <change type="DELETED" beforePath="/media/anonymous/data/AndroidStudioProjects/elaundry/libs_volley/pom.xml" afterPath="" />
+      <change type="DELETED" beforePath="/media/anonymous/data/AndroidStudioProjects/elaundry/libs_volley/proguard-project.txt" afterPath="" />
+      <change type="DELETED" beforePath="/media/anonymous/data/AndroidStudioProjects/elaundry/libs_volley/proguard.cfg" afterPath="" />
+      <change type="DELETED" beforePath="/media/anonymous/data/AndroidStudioProjects/elaundry/libs_volley/rules.gradle" afterPath="" />
+      <change type="DELETED" beforePath="/media/anonymous/data/AndroidStudioProjects/elaundry/libs_volley/src/main/AndroidManifest.xml" afterPath="" />
+      <change type="DELETED" beforePath="/media/anonymous/data/AndroidStudioProjects/elaundry/libs_volley/src/main/java/com/android/volley/AuthFailureError.java" afterPath="" />
+      <change type="DELETED" beforePath="/media/anonymous/data/AndroidStudioProjects/elaundry/libs_volley/src/main/java/com/android/volley/Cache.java" afterPath="" />
+      <change type="DELETED" beforePath="/media/anonymous/data/AndroidStudioProjects/elaundry/libs_volley/src/main/java/com/android/volley/CacheDispatcher.java" afterPath="" />
+      <change type="DELETED" beforePath="/media/anonymous/data/AndroidStudioProjects/elaundry/libs_volley/src/main/java/com/android/volley/ClientError.java" afterPath="" />
+      <change type="DELETED" beforePath="/media/anonymous/data/AndroidStudioProjects/elaundry/libs_volley/src/main/java/com/android/volley/DefaultRetryPolicy.java" afterPath="" />
+      <change type="DELETED" beforePath="/media/anonymous/data/AndroidStudioProjects/elaundry/libs_volley/src/main/java/com/android/volley/ExecutorDelivery.java" afterPath="" />
+      <change type="DELETED" beforePath="/media/anonymous/data/AndroidStudioProjects/elaundry/libs_volley/src/main/java/com/android/volley/Network.java" afterPath="" />
+      <change type="DELETED" beforePath="/media/anonymous/data/AndroidStudioProjects/elaundry/libs_volley/src/main/java/com/android/volley/NetworkDispatcher.java" afterPath="" />
+      <change type="DELETED" beforePath="/media/anonymous/data/AndroidStudioProjects/elaundry/libs_volley/src/main/java/com/android/volley/NetworkError.java" afterPath="" />
+      <change type="DELETED" beforePath="/media/anonymous/data/AndroidStudioProjects/elaundry/libs_volley/src/main/java/com/android/volley/NetworkResponse.java" afterPath="" />
+      <change type="DELETED" beforePath="/media/anonymous/data/AndroidStudioProjects/elaundry/libs_volley/src/main/java/com/android/volley/NoConnectionError.java" afterPath="" />
+      <change type="DELETED" beforePath="/media/anonymous/data/AndroidStudioProjects/elaundry/libs_volley/src/main/java/com/android/volley/ParseError.java" afterPath="" />
+      <change type="DELETED" beforePath="/media/anonymous/data/AndroidStudioProjects/elaundry/libs_volley/src/main/java/com/android/volley/Request.java" afterPath="" />
+      <change type="DELETED" beforePath="/media/anonymous/data/AndroidStudioProjects/elaundry/libs_volley/src/main/java/com/android/volley/RequestQueue.java" afterPath="" />
+      <change type="DELETED" beforePath="/media/anonymous/data/AndroidStudioProjects/elaundry/libs_volley/src/main/java/com/android/volley/Response.java" afterPath="" />
+      <change type="DELETED" beforePath="/media/anonymous/data/AndroidStudioProjects/elaundry/libs_volley/src/main/java/com/android/volley/ResponseDelivery.java" afterPath="" />
+      <change type="DELETED" beforePath="/media/anonymous/data/AndroidStudioProjects/elaundry/libs_volley/src/main/java/com/android/volley/RetryPolicy.java" afterPath="" />
+      <change type="DELETED" beforePath="/media/anonymous/data/AndroidStudioProjects/elaundry/libs_volley/src/main/java/com/android/volley/ServerError.java" afterPath="" />
+      <change type="DELETED" beforePath="/media/anonymous/data/AndroidStudioProjects/elaundry/libs_volley/src/main/java/com/android/volley/TimeoutError.java" afterPath="" />
+      <change type="DELETED" beforePath="/media/anonymous/data/AndroidStudioProjects/elaundry/libs_volley/src/main/java/com/android/volley/VolleyError.java" afterPath="" />
+      <change type="DELETED" beforePath="/media/anonymous/data/AndroidStudioProjects/elaundry/libs_volley/src/main/java/com/android/volley/VolleyLog.java" afterPath="" />
+      <change type="DELETED" beforePath="/media/anonymous/data/AndroidStudioProjects/elaundry/libs_volley/src/main/java/com/android/volley/toolbox/AndroidAuthenticator.java" afterPath="" />
+      <change type="DELETED" beforePath="/media/anonymous/data/AndroidStudioProjects/elaundry/libs_volley/src/main/java/com/android/volley/toolbox/Authenticator.java" afterPath="" />
+      <change type="DELETED" beforePath="/media/anonymous/data/AndroidStudioProjects/elaundry/libs_volley/src/main/java/com/android/volley/toolbox/BasicNetwork.java" afterPath="" />
+      <change type="DELETED" beforePath="/media/anonymous/data/AndroidStudioProjects/elaundry/libs_volley/src/main/java/com/android/volley/toolbox/ByteArrayPool.java" afterPath="" />
+      <change type="DELETED" beforePath="/media/anonymous/data/AndroidStudioProjects/elaundry/libs_volley/src/main/java/com/android/volley/toolbox/ClearCacheRequest.java" afterPath="" />
+      <change type="DELETED" beforePath="/media/anonymous/data/AndroidStudioProjects/elaundry/libs_volley/src/main/java/com/android/volley/toolbox/DiskBasedCache.java" afterPath="" />
+      <change type="DELETED" beforePath="/media/anonymous/data/AndroidStudioProjects/elaundry/libs_volley/src/main/java/com/android/volley/toolbox/HttpClientStack.java" afterPath="" />
+      <change type="DELETED" beforePath="/media/anonymous/data/AndroidStudioProjects/elaundry/libs_volley/src/main/java/com/android/volley/toolbox/HttpHeaderParser.java" afterPath="" />
+      <change type="DELETED" beforePath="/media/anonymous/data/AndroidStudioProjects/elaundry/libs_volley/src/main/java/com/android/volley/toolbox/HttpStack.java" afterPath="" />
+      <change type="DELETED" beforePath="/media/anonymous/data/AndroidStudioProjects/elaundry/libs_volley/src/main/java/com/android/volley/toolbox/HurlStack.java" afterPath="" />
+      <change type="DELETED" beforePath="/media/anonymous/data/AndroidStudioProjects/elaundry/libs_volley/src/main/java/com/android/volley/toolbox/ImageLoader.java" afterPath="" />
+      <change type="DELETED" beforePath="/media/anonymous/data/AndroidStudioProjects/elaundry/libs_volley/src/main/java/com/android/volley/toolbox/ImageRequest.java" afterPath="" />
+      <change type="DELETED" beforePath="/media/anonymous/data/AndroidStudioProjects/elaundry/libs_volley/src/main/java/com/android/volley/toolbox/JsonArrayRequest.java" afterPath="" />
+      <change type="DELETED" beforePath="/media/anonymous/data/AndroidStudioProjects/elaundry/libs_volley/src/main/java/com/android/volley/toolbox/JsonObjectRequest.java" afterPath="" />
+      <change type="DELETED" beforePath="/media/anonymous/data/AndroidStudioProjects/elaundry/libs_volley/src/main/java/com/android/volley/toolbox/JsonRequest.java" afterPath="" />
+      <change type="DELETED" beforePath="/media/anonymous/data/AndroidStudioProjects/elaundry/libs_volley/src/main/java/com/android/volley/toolbox/NetworkImageView.java" afterPath="" />
+      <change type="DELETED" beforePath="/media/anonymous/data/AndroidStudioProjects/elaundry/libs_volley/src/main/java/com/android/volley/toolbox/NoCache.java" afterPath="" />
+      <change type="DELETED" beforePath="/media/anonymous/data/AndroidStudioProjects/elaundry/libs_volley/src/main/java/com/android/volley/toolbox/PoolingByteArrayOutputStream.java" afterPath="" />
+      <change type="DELETED" beforePath="/media/anonymous/data/AndroidStudioProjects/elaundry/libs_volley/src/main/java/com/android/volley/toolbox/RequestFuture.java" afterPath="" />
+      <change type="DELETED" beforePath="/media/anonymous/data/AndroidStudioProjects/elaundry/libs_volley/src/main/java/com/android/volley/toolbox/StringRequest.java" afterPath="" />
+      <change type="DELETED" beforePath="/media/anonymous/data/AndroidStudioProjects/elaundry/libs_volley/src/main/java/com/android/volley/toolbox/Volley.java" afterPath="" />
+      <change type="DELETED" beforePath="/media/anonymous/data/AndroidStudioProjects/elaundry/libs_volley/src/test/java/com/android/volley/CacheDispatcherTest.java" afterPath="" />
+      <change type="DELETED" beforePath="/media/anonymous/data/AndroidStudioProjects/elaundry/libs_volley/src/test/java/com/android/volley/NetworkDispatcherTest.java" afterPath="" />
+      <change type="DELETED" beforePath="/media/anonymous/data/AndroidStudioProjects/elaundry/libs_volley/src/test/java/com/android/volley/RequestQueueIntegrationTest.java" afterPath="" />
+      <change type="DELETED" beforePath="/media/anonymous/data/AndroidStudioProjects/elaundry/libs_volley/src/test/java/com/android/volley/RequestQueueTest.java" afterPath="" />
+      <change type="DELETED" beforePath="/media/anonymous/data/AndroidStudioProjects/elaundry/libs_volley/src/test/java/com/android/volley/RequestTest.java" afterPath="" />
+      <change type="DELETED" beforePath="/media/anonymous/data/AndroidStudioProjects/elaundry/libs_volley/src/test/java/com/android/volley/ResponseDeliveryTest.java" afterPath="" />
+      <change type="DELETED" beforePath="/media/anonymous/data/AndroidStudioProjects/elaundry/libs_volley/src/test/java/com/android/volley/mock/MockCache.java" afterPath="" />
+      <change type="DELETED" beforePath="/media/anonymous/data/AndroidStudioProjects/elaundry/libs_volley/src/test/java/com/android/volley/mock/MockHttpClient.java" afterPath="" />
+      <change type="DELETED" beforePath="/media/anonymous/data/AndroidStudioProjects/elaundry/libs_volley/src/test/java/com/android/volley/mock/MockHttpStack.java" afterPath="" />
+      <change type="DELETED" beforePath="/media/anonymous/data/AndroidStudioProjects/elaundry/libs_volley/src/test/java/com/android/volley/mock/MockHttpURLConnection.java" afterPath="" />
+      <change type="DELETED" beforePath="/media/anonymous/data/AndroidStudioProjects/elaundry/libs_volley/src/test/java/com/android/volley/mock/MockNetwork.java" afterPath="" />
+      <change type="DELETED" beforePath="/media/anonymous/data/AndroidStudioProjects/elaundry/libs_volley/src/test/java/com/android/volley/mock/MockRequest.java" afterPath="" />
+      <change type="DELETED" beforePath="/media/anonymous/data/AndroidStudioProjects/elaundry/libs_volley/src/test/java/com/android/volley/mock/MockResponseDelivery.java" afterPath="" />
+      <change type="DELETED" beforePath="/media/anonymous/data/AndroidStudioProjects/elaundry/libs_volley/src/test/java/com/android/volley/mock/ShadowSystemClock.java" afterPath="" />
+      <change type="DELETED" beforePath="/media/anonymous/data/AndroidStudioProjects/elaundry/libs_volley/src/test/java/com/android/volley/mock/TestRequest.java" afterPath="" />
+      <change type="DELETED" beforePath="/media/anonymous/data/AndroidStudioProjects/elaundry/libs_volley/src/test/java/com/android/volley/mock/WaitableQueue.java" afterPath="" />
+      <change type="DELETED" beforePath="/media/anonymous/data/AndroidStudioProjects/elaundry/libs_volley/src/test/java/com/android/volley/toolbox/AndroidAuthenticatorTest.java" afterPath="" />
+      <change type="DELETED" beforePath="/media/anonymous/data/AndroidStudioProjects/elaundry/libs_volley/src/test/java/com/android/volley/toolbox/BasicNetworkTest.java" afterPath="" />
+      <change type="DELETED" beforePath="/media/anonymous/data/AndroidStudioProjects/elaundry/libs_volley/src/test/java/com/android/volley/toolbox/ByteArrayPoolTest.java" afterPath="" />
+      <change type="DELETED" beforePath="/media/anonymous/data/AndroidStudioProjects/elaundry/libs_volley/src/test/java/com/android/volley/toolbox/CacheTest.java" afterPath="" />
+      <change type="DELETED" beforePath="/media/anonymous/data/AndroidStudioProjects/elaundry/libs_volley/src/test/java/com/android/volley/toolbox/DiskBasedCacheTest.java" afterPath="" />
+      <change type="DELETED" beforePath="/media/anonymous/data/AndroidStudioProjects/elaundry/libs_volley/src/test/java/com/android/volley/toolbox/HttpClientStackTest.java" afterPath="" />
+      <change type="DELETED" beforePath="/media/anonymous/data/AndroidStudioProjects/elaundry/libs_volley/src/test/java/com/android/volley/toolbox/HttpHeaderParserTest.java" afterPath="" />
+      <change type="DELETED" beforePath="/media/anonymous/data/AndroidStudioProjects/elaundry/libs_volley/src/test/java/com/android/volley/toolbox/HurlStackTest.java" afterPath="" />
+      <change type="DELETED" beforePath="/media/anonymous/data/AndroidStudioProjects/elaundry/libs_volley/src/test/java/com/android/volley/toolbox/ImageLoaderTest.java" afterPath="" />
+      <change type="DELETED" beforePath="/media/anonymous/data/AndroidStudioProjects/elaundry/libs_volley/src/test/java/com/android/volley/toolbox/ImageRequestTest.java" afterPath="" />
+      <change type="DELETED" beforePath="/media/anonymous/data/AndroidStudioProjects/elaundry/libs_volley/src/test/java/com/android/volley/toolbox/JsonRequestCharsetTest.java" afterPath="" />
+      <change type="DELETED" beforePath="/media/anonymous/data/AndroidStudioProjects/elaundry/libs_volley/src/test/java/com/android/volley/toolbox/JsonRequestTest.java" afterPath="" />
+      <change type="DELETED" beforePath="/media/anonymous/data/AndroidStudioProjects/elaundry/libs_volley/src/test/java/com/android/volley/toolbox/NetworkImageViewTest.java" afterPath="" />
+      <change type="DELETED" beforePath="/media/anonymous/data/AndroidStudioProjects/elaundry/libs_volley/src/test/java/com/android/volley/toolbox/PoolingByteArrayOutputStreamTest.java" afterPath="" />
+      <change type="DELETED" beforePath="/media/anonymous/data/AndroidStudioProjects/elaundry/libs_volley/src/test/java/com/android/volley/toolbox/RequestFutureTest.java" afterPath="" />
+      <change type="DELETED" beforePath="/media/anonymous/data/AndroidStudioProjects/elaundry/libs_volley/src/test/java/com/android/volley/toolbox/RequestQueueTest.java" afterPath="" />
+      <change type="DELETED" beforePath="/media/anonymous/data/AndroidStudioProjects/elaundry/libs_volley/src/test/java/com/android/volley/toolbox/RequestTest.java" afterPath="" />
+      <change type="DELETED" beforePath="/media/anonymous/data/AndroidStudioProjects/elaundry/libs_volley/src/test/java/com/android/volley/toolbox/ResponseTest.java" afterPath="" />
+      <change type="DELETED" beforePath="/media/anonymous/data/AndroidStudioProjects/elaundry/libs_volley/src/test/java/com/android/volley/toolbox/StringRequestTest.java" afterPath="" />
+      <change type="DELETED" beforePath="/media/anonymous/data/AndroidStudioProjects/elaundry/libs_volley/src/test/java/com/android/volley/utils/CacheTestUtils.java" afterPath="" />
+      <change type="DELETED" beforePath="/media/anonymous/data/AndroidStudioProjects/elaundry/libs_volley/src/test/java/com/android/volley/utils/ImmediateResponseDelivery.java" afterPath="" />
+      <change type="DELETED" beforePath="/media/anonymous/data/AndroidStudioProjects/elaundry/libs_volley/src/test/resources/org.robolectric.Config.properties" afterPath="" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change type="MODIFICATION" beforePath="/media/anonymous/data/AndroidStudioProjects/elaundry/.idea/workspace.xml" afterPath="/media/anonymous/data/AndroidStudioProjects/elaundry/.idea/workspace.xml" />
     </list>
     <list id="bf8c04de-1dbb-4a5f-a27e-6c2d7c2c198e" name="New changelist" comment="Commit update compiler 23 =&gt; 24&#10;" />
     <ignored path="elaundry_backup.iws" />
@@ -145,28 +329,6 @@
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="750">
               <caret line="50" column="4" selection-start-line="50" selection-start-column="4" selection-end-line="50" selection-end-column="4" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="NetworkResponse.java" pinned="false" current-in-tab="false">
-        <entry file="file:///media/anonymous/data/AndroidStudioProjects/elaundry/libs_volley/src/main/java/com/android/volley/NetworkResponse.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="15">
-              <caret line="18" column="0" selection-start-line="18" selection-start-column="0" selection-end-line="18" selection-end-column="34" />
-              <folding>
-                <element signature="imports" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="BasicNetwork.java" pinned="false" current-in-tab="false">
-        <entry file="file:///media/anonymous/data/AndroidStudioProjects/elaundry/libs_volley/src/main/java/com/android/volley/toolbox/BasicNetwork.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="315">
-              <caret line="35" column="22" selection-start-line="35" selection-start-column="22" selection-end-line="35" selection-end-column="22" />
               <folding />
             </state>
           </provider>
@@ -5144,7 +5306,14 @@
       <option name="project" value="LOCAL" />
       <updated>1478665604127</updated>
     </task>
-    <option name="localTasksCounter" value="10" />
+    <task id="LOCAL-00010" summary="Mengganti libs volley : http://stackoverflow.com/questions/32472263/apache-http-client-removal-from-api23-will-that-have-an-effect-on-volley">
+      <created>1479263013458</created>
+      <option name="number" value="00010" />
+      <option name="presentableId" value="LOCAL-00010" />
+      <option name="project" value="LOCAL" />
+      <updated>1479263013458</updated>
+    </task>
+    <option name="localTasksCounter" value="11" />
     <servers />
   </component>
   <component name="ToolWindowManager">
@@ -5161,14 +5330,14 @@
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32903227" sideWeight="0.55958956" order="8" side_tool="true" content_ui="tabs" />
       <window_info id="Android Monitor" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.09677419" sideWeight="0.5509077" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.07258064" sideWeight="0.4404104" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.2612903" sideWeight="0.47750592" order="11" side_tool="false" content_ui="tabs" />
+      <window_info id="Version Control" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.2612903" sideWeight="0.47750592" order="11" side_tool="false" content_ui="tabs" />
       <window_info id="Properties" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.329582" sideWeight="0.5" order="12" side_tool="false" content_ui="tabs" />
       <window_info id="Captures" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Capture Tool" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Gradle Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="9" side_tool="true" content_ui="tabs" />
       <window_info id="Designer" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.31491712" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.31491712" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Gradle" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Android Model" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.24940805" sideWeight="0.50617284" order="10" side_tool="true" content_ui="tabs" />
@@ -5241,7 +5410,8 @@
     <MESSAGE value="Commit 7 November sebelum mencoba menggunakan retrofit" />
     <MESSAGE value="Memperbaiki registrasi, sekarang sudah bisa registrasi dan login serta lupa password dan reset" />
     <MESSAGE value="Memperbaiki ganti password" />
-    <option name="LAST_COMMIT_MESSAGE" value="Memperbaiki ganti password" />
+    <MESSAGE value="Mengganti libs volley : http://stackoverflow.com/questions/32472263/apache-http-client-removal-from-api23-will-that-have-an-effect-on-volley" />
+    <option name="LAST_COMMIT_MESSAGE" value="Mengganti libs volley : http://stackoverflow.com/questions/32472263/apache-http-client-removal-from-api23-will-that-have-an-effect-on-volley" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager />
@@ -5644,9 +5814,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="15">
           <caret line="18" column="0" selection-start-line="18" selection-start-column="0" selection-end-line="18" selection-end-column="34" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
+          <folding />
         </state>
       </provider>
     </entry>
