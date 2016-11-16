@@ -21,6 +21,7 @@ public class AlamatModels {
     private String dibuat_oleh;
     private String firstAppearance;
     private ArrayList<String> powers;
+    private ArrayList<String> alamat;
 
     //Getters and Setters
     public String getImageUrl() {
@@ -79,9 +80,6 @@ public class AlamatModels {
         this.alamat_jalan = alamat_jalan;
     }
 
-    public String getAlamat() {
-        return alamat_jalan;
-    }
 
     public void setRealName(String realName) {
         this.realName = realName;
@@ -109,5 +107,13 @@ public class AlamatModels {
 
     public void setPowers(ArrayList<String> powers) {
         this.powers = powers;
+    }
+
+    public ArrayList<String> getAlamat() {
+        return alamat;
+    }
+
+    public void setAlamat(ArrayList<String> alamat) {
+        this.alamat = alamat;
     }
 }

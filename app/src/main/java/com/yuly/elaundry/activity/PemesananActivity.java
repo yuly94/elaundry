@@ -55,7 +55,7 @@ public class PemesananActivity extends AppCompatActivity implements AppCompatSpi
         private JSONArray resultPaket;
 
         //JSON Array
-        private JSONArray resultTempat;
+        private JSONArray resultPemesanan;
 
         //TextViews to display details
         private TextView textViewHarga;
@@ -109,8 +109,8 @@ public class PemesananActivity extends AppCompatActivity implements AppCompatSpi
 
             //This method will fetch the data from the URL
 
-        makePaketJsonArryReq();
-        makeTempatJsonArryReq();
+      //  makePaketJsonArryReq();
+        makePemesananJsonArryReq();
         }
 
 
@@ -176,7 +176,7 @@ public class PemesananActivity extends AppCompatActivity implements AppCompatSpi
     /**
      * Making json array request
      */
-    private void makeTempatJsonArryReq() {
+    private void makePemesananJsonArryReq() {
         showProgressDialog();
         JsonArrayRequest req = new JsonArrayRequest(AppConfig.URL_PEMESANAN,
                 new Response.Listener<JSONArray>() {
@@ -189,10 +189,10 @@ public class PemesananActivity extends AppCompatActivity implements AppCompatSpi
                         hideProgressDialog();
 
                         //Storing the Array of JSON String to our JSON Array
-                         resultTempat = response;
+                         resultPemesanan = response;
 
                         //Calling method getPaketList to get the paketList from the JSON Array
-                        getTempatList(resultTempat);
+                        getPemesananList(resultPemesanan);
 
                     }
 
@@ -279,7 +279,7 @@ public class PemesananActivity extends AppCompatActivity implements AppCompatSpi
         spinnerPaket.setAdapter(new ArrayAdapter<String>(PemesananActivity.this, android.R.layout.simple_spinner_dropdown_item, paketList));
     }
 
-    private void getTempatList(JSONArray j){
+    private void getPemesananList(JSONArray j){
         //Traversing through all the items in the json array
         for(int i=0;i<j.length();i++){
             try {
@@ -380,7 +380,7 @@ public class PemesananActivity extends AppCompatActivity implements AppCompatSpi
         String tempat = null;
         try {
             //Getting object of given index
-            JSONObject json = resultTempat.getJSONObject(position);
+            JSONObject json = resultPemesanan.getJSONObject(position);
 
             JSONObject place = json.getJSONObject("tempat");
 
@@ -399,7 +399,7 @@ public class PemesananActivity extends AppCompatActivity implements AppCompatSpi
         String alamat=null;
         try {
             //Getting object of given index
-            JSONObject json = resultTempat.getJSONObject(position);
+            JSONObject json = resultPemesanan.getJSONObject(position);
 
             JSONObject place = json.getJSONObject("tempat");
 

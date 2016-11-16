@@ -37,7 +37,7 @@ public class AppConfig {
 	public static String URL_MAPS = LINKAPI+"peta/";
 
 	// Server user register url
-	public static String URL_PAKET= LINKAPI+"paket";
+	public static String URL_PAKET= LINKAPI+"laundry/paket/";
 
 	// Server user register url
 	public static String URL_PEMESANAN= LINKAPI+"pemesanan/";

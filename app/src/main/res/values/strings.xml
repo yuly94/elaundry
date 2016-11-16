@@ -217,6 +217,10 @@
     <string name="mengganti_password">Change Password</string>
     <string name="update_profile_gagal">update profile failed</string>
     <string name="update_profile_berhasil">update profile success</string>
+    <string name="nama_lengkap">Nama Lengkap</string>
+    <string name="alamat">Alamat</string>
+    <string name="no_handphone">no handphone</string>
+    <string name="konfirmasi_password">Konfirmasi Password</string>
 
 
 </resources>

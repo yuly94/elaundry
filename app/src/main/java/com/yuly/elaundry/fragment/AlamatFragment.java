@@ -199,8 +199,8 @@ public class AlamatFragment extends Fragment implements SearchView.OnQueryTextLi
                         //Storing the Array of JSON String to our JSON Array
                         result = response;
 
-                        //Calling method getTempat to get the students from the JSON Array
-                        getTempat(result);
+                        //Calling method getAlamat to get the students from the JSON Array
+                        getAlamat(result);
 
 
 
@@ -252,7 +252,7 @@ public class AlamatFragment extends Fragment implements SearchView.OnQueryTextLi
 
 
 
-    private void getTempat(JSONArray j){
+    private void getAlamat(JSONArray j){
         //Traversing through all the items in the json array
         for(int i=0;i<j.length();i++){
             AlamatModels listAlamat = new AlamatModels();

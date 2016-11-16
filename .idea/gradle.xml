@@ -10,7 +10,7 @@
           <set>
             <option value="/media/anonymous/data/AndroidStudioProjects/elaundry" />
             <option value="/media/anonymous/data/AndroidStudioProjects/elaundry/app" />
-            <option value="/media/anonymous/data/AndroidStudioProjects/elaundry/libs_volley" />
+            <option value="/media/anonymous/data/AndroidStudioProjects/elaundry/libs_google_volley" />
           </set>
         </option>
         <option name="resolveModulePerSourceSet" value="false" />

@@ -165,7 +165,7 @@ public class MapsFragmentLocation extends Fragment  implements AdapterView.OnIte
         // Fetching user details from SQLite
         HashMap<String, String> user = db.getUserDetails();
         // Get apikey from DB
-        apiKey = user.get("api");
+        apiKey = user.get("konsumen_kunci_api");
         // Show Progress dialog
         pDialog = new ProgressDialog(getActivity());
         pDialog.setMessage("Loading...");

@@ -29,7 +29,7 @@
         android:layout_height="wrap_content">
 
         <EditText
-            android:hint="@string/app_name"
+            android:hint="@string/nama_lengkap"
             android:id="@+id/et_name"
             android:drawableRight="@drawable/ic_face"
             android:inputType="textPersonName"
@@ -45,7 +45,7 @@
         android:layout_height="wrap_content">
 
         <EditText
-            android:hint="@string/address"
+            android:hint="@string/alamat"
             android:id="@+id/et_address"
             android:drawableRight="@drawable/ic_address"
             android:inputType="textPostalAddress"
@@ -61,7 +61,7 @@
         android:layout_height="wrap_content">
 
         <EditText
-            android:hint="@string/phone"
+            android:hint="@string/no_handphone"
             android:id="@+id/et_phone"
             android:drawableRight="@drawable/ic_phone"
             android:inputType="phone"
@@ -109,7 +109,7 @@
         android:layout_height="wrap_content">
 
         <EditText
-            android:hint="@string/confirm_password"
+            android:hint="@string/konfirmasi_password"
             android:id="@+id/et_confirm_password"
             android:drawableRight="@drawable/ic_key"
             android:inputType="textPassword"
