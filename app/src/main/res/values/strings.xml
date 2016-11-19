@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">E-Laundry</string>
+    <string name="app_name">E-Laundry Konsumen</string>
     <string name="action_settings">Settings</string>
 
     <string name="hint_email">Email</string>
@@ -29,7 +29,7 @@
 
     <string name="nav_normal">normal</string>
     <string name="nav_terrain">terrain</string>
-    <string name="nav_sattelite">sattelite</string>
+    <string name="nav_satellite">satellite</string>
     <string name="nav_hibryd">hibryd</string>
 
     <string name="nav_share">share</string>
@@ -192,6 +192,40 @@
     <string name="save">save</string>
     <string name="update_profile_success">Update Profile Success</string>
     <string name="update_profile_failed">Update Profile Failed, Please try again</string>
+    <string name="gagal_update_profile">Update profile failed</string>
+    <string name="input_masih_kosong">kolom masih kosong</string>
+    <string name="table_database_berhasil_dibuat">Database tables created</string>
+    <string name="mengambil_data_dari_sqlite">Mengambil data konsumen dari Sqlite : </string>
+    <string name="requet_json_array">json array request</string>
+    <string name="gagal_memperbarui_profile">gagal memperbarui profile, silahkan coba kembali</string>
+    <string name="json_request_error">"Json error : "</string>
+    <string name="mengganti_passord">Changing password, please wait ...</string>
+    <string name="permintaan_mengganti_password">req_change_pass</string>
+    <string name="memuat">Loading...</string>
+    <string name="update_password_berhasil">password change successfully</string>
+    <string name="update_password_gagal">password update failed</string>
+    <string name="registrasi_berhasil">register successfully, please check email to activated</string>
+    <string name="mendaftarkan_mohon_tunggu">Mendaftarkan, mohon tunggu ...</string>
+    <string name="permintaan_registrasi">req_registrasi</string>
+    <string name="password_konfirm_tidak_sama">Password konfirmasi tidak sama</string>
+    <string name="lengkapi_data">Mohon masukkan data secara lengkap</string>
+    <string name="mengupdate_profile">Updating your profile, please wait ...</string>
+    <string name="menggganti_password">Mengganti password</string>
+    <string name="user_disimpan_di_database">New user insert to database sqlite</string>
+    <string name="password_lama">Old Password</string>
+    <string name="password_baru">New Password</string>
+    <string name="mengganti_password">Change Password</string>
+    <string name="update_profile_gagal">update profile failed</string>
+    <string name="update_profile_berhasil">update profile success</string>
+    <string name="nama_lengkap">Nama Lengkap</string>
+    <string name="alamat">Alamat</string>
+    <string name="no_handphone">no handphone</string>
+    <string name="konfirmasi_password">Konfirmasi Password</string>
+    <string name="melakukan_pemesanan">melakukan pemesanan</string>
+    <string name="pemesanan_gagal">pemesanan gagal, silahkan coba kembali</string>
+    <string name="sedang_memuat">Memuat...</string>
+    <string name="permintaan_melakukan_pemesanan">permintaan melakukan pemesanan</string>
+    <string name="pemesanan_berhasil">pemesanan anda telah berhasil dikirim</string>
 
 
 </resources>

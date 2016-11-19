@@ -29,10 +29,8 @@ import com.android.volley.VolleyLog;
 import com.android.volley.toolbox.JsonArrayRequest;
 import com.yuly.elaundry.R;
 import com.yuly.elaundry.adapter.AlamatAdapter;
-import com.yuly.elaundry.adapter.TempatAdapter;
 import com.yuly.elaundry.app.AppConfig;
 import com.yuly.elaundry.app.AppController;
-import com.yuly.elaundry.helper.PesananModels;
 import com.yuly.elaundry.helper.SQLiteHandler;
 import com.yuly.elaundry.helper.SessionManager;
 import com.yuly.elaundry.helper.VolleyErrorHelper;
@@ -76,7 +74,7 @@ public class AlamatFragment extends Fragment implements SearchView.OnQueryTextLi
     private JSONArray result;
 
 
-    private static final String TAG = "RecyclerViewExample";
+    private static final String TAG = AlamatFragment.class.getSimpleName();
     //  private List<Anggota> feedItemList = new ArrayList<Anggota>();
 
     //Creating Views
@@ -237,7 +235,7 @@ public class AlamatFragment extends Fragment implements SearchView.OnQueryTextLi
             public Map<String, String> getHeaders() throws AuthFailureError {
                 HashMap<String, String> headers = new HashMap<String, String>();
                 headers.put("Content-Type", "application/json");
-                headers.put("Authorization", konsumen_kunci_api);
+                headers.put("Authorization", db.getUserApi());
                 return headers;
             }
 

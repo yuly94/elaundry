@@ -18,7 +18,7 @@ android {
     compileSdkVersion 25
     buildToolsVersion '25.0.0'
     defaultConfig {
-        applicationId 'com.yuly.elaundry'
+        applicationId 'hu.pe.elaundry.konsumen'
         minSdkVersion 15
         targetSdkVersion 25
         versionCode 1
@@ -32,6 +32,7 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
             signingConfig signingConfigs.release
             proguardFile '/home/anonymous/AndroidStudioProjects/myelaundry/app/proguard-android-optimize.txt'
+            debuggable true
         }
         debug {
             debuggable true
@@ -50,16 +51,16 @@ android {
 dependencies {
     compile fileTree(include: ['*.jar'], dir: 'libs')
     testCompile 'junit:junit:4.12'
-    compile 'com.android.support:appcompat-v7:25.0.0'
-    compile 'com.android.support:recyclerview-v7:25.0.0'
-    compile 'com.android.support:design:25.0.0'
+    compile 'com.android.support:appcompat-v7:25.0.1'
+    compile 'com.android.support:recyclerview-v7:25.0.1'
+    compile 'com.android.support:design:25.0.1'
     compile 'com.google.android.gms:play-services-maps:9.8.0'
     compile 'com.google.android.gms:play-services-location:9.8.0'
     compile 'com.google.android.gms:play-services-appindexing:9.8.0'
     compile 'com.google.android.gms:play-services-places:9.8.0'
     compile 'com.google.code.gson:gson:2.4'
     compile 'com.amulyakhare:com.amulyakhare.textdrawable:1.0.1'
-    compile 'com.android.support:support-v4:25.0.0'
+    compile 'com.android.support:support-v4:25.0.1'
     //compile 'com.android.support:multidex:1.0.1'
     compile project(':libs_google_volley')
 }

@@ -263,7 +263,7 @@ public class MainActivity extends AppCompatActivity {
 			//	fragment =new Example3Fragment();
 				break;
 			case 3:
-				fragment = new ChangePassFragment();
+				fragment = new TempatFragment();
 				break;
 			case 4:
 			 	fragment = new ProfileFragment();

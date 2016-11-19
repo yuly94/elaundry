@@ -32,7 +32,7 @@ import com.yuly.elaundry.R;
 import com.yuly.elaundry.adapter.TransaksiAdapter;
 import com.yuly.elaundry.app.AppConfig;
 import com.yuly.elaundry.app.AppController;
-import com.yuly.elaundry.helper.PesananModels;
+import com.yuly.elaundry.models.PesananModels;
 import com.yuly.elaundry.helper.SQLiteHandler;
 import com.yuly.elaundry.helper.SessionManager;
 import com.yuly.elaundry.helper.VolleyErrorHelper;
@@ -71,7 +71,8 @@ public class TransaksiFragment extends Fragment implements SearchView.OnQueryTex
     private JSONArray result;
 
 
-    private static final String TAG = "RecyclerViewExample";
+    private static final String TAG = TransaksiFragment.class.getSimpleName();
+
     //  private List<Anggota> feedItemList = new ArrayList<Anggota>();
     private RecyclerView mRecyclerView;
  //   private RecyclerView rv;
@@ -119,7 +120,7 @@ public class TransaksiFragment extends Fragment implements SearchView.OnQueryTex
 
         mRecyclerView.setHasFixedSize(true);
         mRecyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
-     //   mRecyclerView.addItemDecoration(new DividerItemDecoration(getContext(), LinearLayoutManager.VERTICAL));
+        //mRecyclerView.addItemDecoration(new DividerItemDecoration(getContext(), LinearLayoutManager.VERTICAL));
         mFastScroller.setRecyclerView(mRecyclerView);
 
        /*
@@ -274,7 +275,7 @@ public class TransaksiFragment extends Fragment implements SearchView.OnQueryTex
             public Map<String, String> getHeaders() throws AuthFailureError {
                 HashMap<String, String> headers = new HashMap<String, String>();
                 headers.put("Content-Type", "application/json");
-                headers.put("Authorization", apiKey);
+                headers.put("Authorization", db.getUserApi());
                 return headers;
             }
 

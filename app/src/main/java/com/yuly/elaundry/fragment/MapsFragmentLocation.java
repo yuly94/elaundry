@@ -1,35 +1,30 @@
 package com.yuly.elaundry.fragment;
 
+
 import android.Manifest;
 import android.app.Activity;
-
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
-
 import android.location.Location;
 import android.location.LocationManager;
-
 import android.os.Bundle;
-
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
 import android.support.v4.app.ActivityCompat;
-
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.AppCompatSpinner;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.CheckBox;
 import android.widget.EditText;
-import android.widget.TextView;
+import android.widget.RadioButton;
+import android.widget.RadioGroup;
 import android.widget.Toast;
-
 
 import com.android.volley.AuthFailureError;
 import com.android.volley.Request;
@@ -43,8 +38,6 @@ import com.google.android.gms.common.GoogleApiAvailability;
 import com.google.android.gms.common.GooglePlayServicesNotAvailableException;
 import com.google.android.gms.common.GooglePlayServicesRepairableException;
 import com.google.android.gms.common.api.GoogleApiClient;
-
-import com.google.android.gms.location.LocationRequest;
 import com.google.android.gms.location.LocationServices;
 import com.google.android.gms.location.places.Place;
 import com.google.android.gms.location.places.ui.PlacePicker;
@@ -62,12 +55,11 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
-
-public class MapsFragmentLocation extends Fragment  implements AdapterView.OnItemSelectedListener , GoogleApiClient.ConnectionCallbacks, GoogleApiClient.OnConnectionFailedListener{
+public class MapsFragmentLocation extends Fragment implements
+        GoogleApiClient.ConnectionCallbacks, GoogleApiClient.OnConnectionFailedListener{
 
     private Context mContext;
 
@@ -75,14 +67,24 @@ public class MapsFragmentLocation extends Fragment  implements AdapterView.OnIte
     private static final String TAG = MapsFragmentLocation.class.getSimpleName();
 
     private final static int PLAY_SERVICES_RESOLUTION_REQUEST = 1000;
-    private LocationRequest mLocationRequest;
+    //private LocationRequest mLocationRequest;
     private Location mLastLocation;
     private Location location; // location
-    double latitude; // latitude
-    double longitude; // longitude
+    double mlatitude; // latitude
+    double mlongitude; // longitude
     private LatLngBounds MYLOCATION_VIEW;
     protected LocationManager locationManager;
     boolean canGetLocation = false;
+
+    private Button pickerButton;
+    private FloatingActionButton btnPesan;
+    private EditText etLatitude, etLongitude,etCatatan, etAlamat;
+    private RadioGroup rgPaket;
+    private RadioButton rButton, rbEkonomis, rbReguler, rbExpress;
+    private CheckBox cbBaju, cbCelana, cbRok;
+
+    private String data_pemesanan_paket;
+
 
     // Google client to interact with Google API
     private GoogleApiClient mGoogleApiClient;
@@ -91,30 +93,12 @@ public class MapsFragmentLocation extends Fragment  implements AdapterView.OnIte
     private boolean mRequestingLocationUpdates = false;
 
     private static final int PLACE_PICKER_REQUEST = 1;
+
     // Location updates intervals in sec
     private static int UPDATE_INTERVAL = 10000; // 10 sec
     private static int FATEST_INTERVAL = 5000; // 5 sec
     private static int DISPLACEMENT = 10; // 10 meters
 
-    // UI elements
-
-    private EditText mAddress,mName,tvNamaLokasi,tvAlamat;
-
-
-    //Declaring an Spinner
-    private AppCompatSpinner spinnerPaket;
-
-
-    //An ArrayList for Spinner Items
-    private ArrayList<String> paketList;
-
-
-    //JSON Array
-    private JSONArray resultPaket;
-
-    //TextViews to display details
-    private TextView textViewHarga;
-    private TextView textViewKeterangan;
 
     //Database
     private SQLiteHandler db;
@@ -122,59 +106,25 @@ public class MapsFragmentLocation extends Fragment  implements AdapterView.OnIte
 
     private ProgressDialog pDialog;
 
-    private String apiKey;
-    private FloatingActionButton btnPesan;
-
-
-
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
 
-        View v = inflater.inflate(R.layout.fragmen_pemesanan, container,
+        View view = inflater.inflate(R.layout.fragmen_pemesanan, container,
                 false);
 
-        mName = (EditText) v.findViewById(R.id.tv_alamat1);
-        mAddress = (EditText) v.findViewById(R.id.tv_alamat2);
-
-        Button pickerButton = (Button) v.findViewById(R.id.button_pilih_lokasi);
-
-        //Initializing the ArrayList
-        paketList = new ArrayList<String>();
-
-        //Initializing Spinner
-        spinnerPaket = (AppCompatSpinner) v.findViewById(R.id.spinner_harga);
-
-
-        //Adding an Item Selected Listener to our Spinner
-        //As we have implemented the class Spinner.OnItemSelectedListener to this class iteself we are passing this to setOnItemSelectedListener
-        spinnerPaket.setOnItemSelectedListener(this);
-
-        //Initializing TextViews
-        tvNamaLokasi = (EditText) v.findViewById(R.id.tv_alamat1);
-        tvAlamat = (EditText) v.findViewById(R.id.tv_alamat2);
-
-        textViewHarga = (TextView) v.findViewById(R.id.tv_harga);
-        textViewKeterangan = (TextView) v.findViewById(R.id.tv_keterangan);
-        btnPesan = (FloatingActionButton) v.findViewById(R.id.fab_pemesanan);
+        initViews(view);
 
         // SqLite database handler
         db = new SQLiteHandler(getActivity());
+
         // session manager
         session = new SessionManager(getActivity());
-        // Fetching user details from SQLite
-        HashMap<String, String> user = db.getUserDetails();
-        // Get apikey from DB
-        apiKey = user.get("api");
+
         // Show Progress dialog
         pDialog = new ProgressDialog(getActivity());
         pDialog.setMessage("Loading...");
         pDialog.setCancelable(false);
-
-        //This method will fetch the data from the URL
-
-        makePaketJsonArryReq();
-
 
         Log.d(TAG, "Periodic location updates started!");
 
@@ -186,34 +136,107 @@ public class MapsFragmentLocation extends Fragment  implements AdapterView.OnIte
         }
 
         // Show location button click listener
-        pickerButton.setOnClickListener(new View.OnClickListener() {
 
-            @Override
-            public void onClick(View v) {
+        return view;
 
+    }
+
+
+    private void initViews(View view){
+
+        etLatitude = (EditText) view.findViewById(R.id.et_latitude);
+        etLongitude = (EditText) view.findViewById(R.id.et_longitude);
+        etAlamat = (EditText) view.findViewById(R.id.et_alamat);
+        etCatatan = (EditText) view.findViewById(R.id.et_catatan);
+
+        rgPaket = (RadioGroup) view.findViewById(R.id.rg_paket);
+
+
+/*      rbEkonomis = (RadioButton) view.findViewById(R.id.rb_ekonomis);
+        rbReguler = (RadioButton) view.findViewById(R.id.rb_reguler);
+        rbExpress = (RadioButton) view.findViewById(R.id.rb_express);*/
+
+        // get selected radio button from radioGroup
+      //  int selectedId = rgPaket.getCheckedRadioButtonId();
+
+        rgPaket.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener()
+        {
+            public void onCheckedChanged(RadioGroup group, int checkedId) {
+                switch(checkedId){
+                    case R.id.rb_ekonomis:
+                        // do operations specific to this selection
+                        data_pemesanan_paket = "ekonomis";
+                        break ;
+                    case R.id.rb_reguler:
+                        // do operations specific to this selection
+                        data_pemesanan_paket = "reguler";
+                        break;
+                    case R.id.rb_express:
+                        // do operations specific to this selection
+                        data_pemesanan_paket = "express";
+                        break;
+
+                }
+            }
+        });
+
+     //   Log.d(TAG,data_pemesanan_paket);
+        // find the radio button by returned id
+       // rButton = (RadioButton) view.findViewById(selectedId);
+
+        cbBaju = (CheckBox) view.findViewById(R.id.cb_baju);
+        cbCelana = (CheckBox) view.findViewById(R.id.cb_celana);
+        cbRok = (CheckBox) view.findViewById(R.id.cb_rok);
+
+       // pickerButton = (Button) view.findViewById(R.id.button_pilih_lokasi);
+        btnPesan = (FloatingActionButton) view.findViewById(R.id.fab_pemesanan);
+
+
+        etAlamat.setOnClickListener(new View.OnClickListener() {
+
+            public void onClick(View view) {
                 displayLocation();
             }
+
         });
 
 
         btnPesan.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
 
-                // startActivity(new Intent(getActivity(), PemesananActivity.class));
+            public void onClick(View view) {
 
-                if(getView()!=null) {
-                    Snackbar.make(getView(), R.string.update_profile_success, Snackbar.LENGTH_LONG).show();
-                }
+            String pemesanan_latitude = etLatitude.getText().toString().trim();
+
+            String pemesanan_longitude = etLongitude.getText().toString().trim();
+
+            String pemesanan_alamat = etAlamat.getText().toString().trim();
+
+            String pemesanan_catatan = etCatatan.getText().toString().trim();
+
+            String pemesanan_paket = data_pemesanan_paket;
+             //   Toast.makeText( getActivity(),rButton.getText(),Toast.LENGTH_SHORT).show();
+
+            String pemesanan_baju = cbBaju.getText().toString().trim();
+
+            String pemesanan_celana = cbCelana.getText().toString().trim();
+
+            String pemesanan_rok = cbRok.getText().toString().trim();
 
 
+
+            // data_pemesanan_paket = (String) rButton.getText();
+
+            kirimPesanan(pemesanan_latitude, pemesanan_longitude, pemesanan_paket, pemesanan_alamat,
+                         pemesanan_catatan, pemesanan_baju, pemesanan_celana, pemesanan_rok);
             }
+
         });
 
-
-        return v;
-
     }
+
+
+
+
 
 
     // Creating google api client object
@@ -260,8 +283,6 @@ public class MapsFragmentLocation extends Fragment  implements AdapterView.OnIte
 
         checkPlayServices();
     }
-
-
 
 
     @Override
@@ -317,10 +338,10 @@ public class MapsFragmentLocation extends Fragment  implements AdapterView.OnIte
                 .getLastLocation(mGoogleApiClient);
 
         if (mLastLocation != null) {
-            double latitude = mLastLocation.getLatitude();
-            double longitude = mLastLocation.getLongitude();
+            double mlatitude = mLastLocation.getLatitude();
+            double mlongitude = mLastLocation.getLongitude();
 
-            Log.d("Location", latitude + ", " + longitude);
+            Log.d("Location", mlatitude + ", " + mlongitude);
 
 
             try {
@@ -330,7 +351,7 @@ public class MapsFragmentLocation extends Fragment  implements AdapterView.OnIte
 
 
                 MYLOCATION_VIEW = new LatLngBounds(
-                        new LatLng(latitude, longitude), new LatLng(latitude, longitude));
+                        new LatLng(mlatitude, mlongitude), new LatLng(mlatitude, mlongitude));
 
               //  Intent intent = new PlaceAutocomplete.IntentBuilder(PlaceAutocomplete.MODE_OVERLAY).build(getActivity());
                 // startActivityForResult(intent, PLACE_AUTOCOMPLETE_REQUEST_CODE);
@@ -374,20 +395,20 @@ public class MapsFragmentLocation extends Fragment  implements AdapterView.OnIte
      * */
     public double getLatitude() {
         if (location != null) {
-            latitude = location.getLatitude();
+            mlatitude = location.getLatitude();
         }
 
         // return latitude
-        return latitude;
+        return mlatitude;
     }
 
     public double getLongitude() {
         if (location != null) {
-            longitude = location.getLongitude();
+            mlongitude = location.getLongitude();
         }
 
         // return longitude
-        return longitude;
+        return mlongitude;
     }
 
     public boolean canGetLocation() {
@@ -412,8 +433,8 @@ public class MapsFragmentLocation extends Fragment  implements AdapterView.OnIte
                 .getLastLocation(mGoogleApiClient);
 
         if (mLastLocation != null) {
-            latitude = mLastLocation.getLatitude();
-            longitude = mLastLocation.getLongitude();
+            mlatitude = mLastLocation.getLatitude();
+            mlongitude = mLastLocation.getLongitude();
 
         } else {
             System.out
@@ -434,166 +455,23 @@ public class MapsFragmentLocation extends Fragment  implements AdapterView.OnIte
             final Place place = PlacePicker.getPlace(getActivity(), data);
             final CharSequence name = place.getName();
             final CharSequence address = place.getAddress();
+            Double latitudex = place.getLatLng().latitude;
+            Double longitudex = place.getLatLng().longitude;
             String attributions = (String) place.getAttributions();
             if (attributions == null) {
                 attributions = "";
             }
 
-            mName.setText(name);
-            mAddress.setText(address);
+            etLatitude.setText(latitudex.toString());
+            etLongitude.setText( longitudex.toString());
+            etCatatan.setText(name);
+            etAlamat.setText(address);
 
 
         } else {
             super.onActivityResult(requestCode, resultCode, data);
         }
     }
-
-
-    /**
-     * Making json array request
-     */
-    private void makePaketJsonArryReq() {
-        showProgressDialog();
-        JsonArrayRequest req = new JsonArrayRequest(AppConfig.URL_PAKET,
-                new Response.Listener<JSONArray>() {
-                    @Override
-                    public void onResponse(JSONArray response) {
-
-                        Log.d(AppController.TAG, "on Response " + response.toString());
-
-                        //   msgResponse.setText(response.toString());
-                        hideProgressDialog();
-
-                        //Storing the Array of JSON String to our JSON Array
-                        resultPaket = response;
-
-                        //Calling method getPaketList to get the paketList from the JSON Array
-                        getPaketList(resultPaket);
-
-                    }
-
-                }, new Response.ErrorListener() {
-
-            @Override
-            public void onErrorResponse(VolleyError error) {
-
-
-                String e = VolleyErrorHelper.getMessage(error, getActivity());
-                VolleyLog.d(AppController.TAG, "Error: " + e);
-
-                hideProgressDialog();
-            }
-        }) {
-
-            /**
-             * Passing some request headers
-             * */
-
-            @Override
-            public Map<String, String> getHeaders() throws AuthFailureError {
-                HashMap<String, String> headers = new HashMap<String, String>();
-                headers.put("Content-Type", "application/json");
-                headers.put("Authorization", apiKey);
-                return headers;
-            }
-
-        };
-
-        // Adding request to request queue
-        String tag_json_arry = "jarray_req";
-        AppController.getInstance().addToRequestQueue(req, tag_json_arry);
-
-        // Cancelling request
-        // ApplicationController.getInstance().getRequestQueue().cancelAll(tag_json_arry);
-    }
-
-
-
-    private void getPaketList(JSONArray j){
-        //Traversing through all the items in the json array
-        for(int i=0;i<j.length();i++){
-            try {
-
-                JSONObject jObj = j.getJSONObject(i);
-
-                boolean error = jObj.getBoolean("error");
-                if (!error) {
-
-                    JSONObject paket = jObj.getJSONObject("paket");
-
-                    String id = paket.getString("id");
-                    String nama = paket.getString("nama");
-                    String harga = paket.getString("harga");
-                    String keterangan = paket.getString("keterangan");
-                    String status = paket.getString("status");
-
-                    Log.d(AppController.TAG, "id : " + id);
-                    Log.d(AppController.TAG, "nama : " + nama);
-                    Log.d(AppController.TAG, "harga : " + harga);
-                    Log.d(AppController.TAG, "keterangan : " + keterangan);
-                    Log.d(AppController.TAG, "status : " + status);
-
-
-                    paketList.add(nama);
-
-                } else {
-
-                    // Error occurred in registration. Get the error
-                    // message
-                    String errorMsg = jObj.getString("message");
-                    Toast.makeText(getActivity(),
-                            errorMsg, Toast.LENGTH_LONG).show();
-                }
-
-            } catch (JSONException e) {
-                e.printStackTrace();
-            }
-        }
-
-        //Setting adapter to show the items in the spinnerPaket
-        spinnerPaket.setAdapter(new ArrayAdapter<String>(getActivity(), android.R.layout.simple_spinner_dropdown_item, paketList));
-    }
-
-
-
-    //Method to get student name of a particular position
-    private String getHarga(int position){
-        String packet = null;
-        try {
-            //Getting object of given index
-            JSONObject json = resultPaket.getJSONObject(position);
-
-            JSONObject paket = json.getJSONObject("paket");
-
-            //Fetching name from that object
-            packet = paket.getString("harga");
-
-        } catch (JSONException e) {
-            e.printStackTrace();
-        }
-        //Returning the name
-        return packet;
-    }
-
-    //Doing the same with this method as we did with getHarga()
-    private String getKeterangan(int position){
-        String keterangan=null;
-        try {
-            //Getting object of given index
-            JSONObject json = resultPaket.getJSONObject(position);
-
-            JSONObject paket = json.getJSONObject("paket");
-
-            //Fetching name from that object
-            keterangan = paket.getString("keterangan");
-
-
-        } catch (JSONException e) {
-            e.printStackTrace();
-        }
-        return keterangan;
-    }
-
 
 
     private void showProgressDialog() {
@@ -608,44 +486,37 @@ public class MapsFragmentLocation extends Fragment  implements AdapterView.OnIte
 
     }
 
+    /**
+     * Melakukan pemesanan dengan mengirimkan param :
 
+     * @param pemesanan_latitude
+     * @param pemesanan_longitude
+     * @param pemesanan_paket
+     * @param pemesanan_alamat
+     * @param pemesanan_catatan
+     * @param pemesanan_baju
+     * @param pemesanan_celana
+     * @param pemesanan_rok
+     */
 
-
-    //this method will execute when we pic an item from the spinnerPaket
-    @Override
-    public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-        //Setting the values to textviews for a selected item
-        textViewHarga.setText(getHarga(position));
-        textViewKeterangan.setText(getKeterangan(position));
-
-
-    }
-
-    //When no item is selected this method would execute
-    @Override
-    public void onNothingSelected(AdapterView<?> parent) {
-        textViewHarga.setText("");
-        textViewKeterangan.setText("");
-
-
-    }
-
-
-
-    private void lakukanPemesanan(final String nama,final String alamat,final String telepon,final String email){
-
+    private void kirimPesanan(final String pemesanan_latitude, final String pemesanan_longitude,
+                               final String pemesanan_paket, final String pemesanan_alamat,
+                               final String pemesanan_catatan, final String pemesanan_baju,
+                               final String pemesanan_celana, final String pemesanan_rok){
         // Tag used to cancel the request
         String tag_string_req = "req_profile";
 
-        pDialog.setMessage("Updating your profile, please wait ...");
+        pDialog.setMessage(getString(R.string.mengupdate_profile));
         showDialog();
 
+        Log.d("URL : ",AppConfig.URL_PEMESANAN);
         StringRequest strReq = new StringRequest(Request.Method.POST,
-                AppConfig.URL_CHANGEPROFILE, new Response.Listener<String>() {
+                AppConfig.URL_PEMESANAN,
+                new Response.Listener<String>() {
 
             @Override
             public void onResponse(String response) {
-                Log.d(TAG, "Login Response: " + response);
+                Log.d(TAG, "Update profile Response : " + response);
                 hideDialog();
 
                 try {
@@ -657,30 +528,14 @@ public class MapsFragmentLocation extends Fragment  implements AdapterView.OnIte
                     // Check for error node in json
                     if (!error) {
                         // Now store the user in SQLite
-                        String uid = jObj.getString("uid");
 
-                        JSONObject user = jObj.getJSONObject("user");
-                        String nama = user.getString("nama");
-                        String alamat = user.getString("alamat");
-                        String telepon = user.getString("nohp");
-                        String email = user.getString("email");
-                        String api = user.getString("api_key");
-                        String created_at = user
-                                .getString("created_at");
-
-                        // Inserting row in users table
-                        //   db.updatePassword(api, uid, created_at);
-
-                        if (db.updateProfile(nama, alamat, telepon, email, uid, created_at)!=0) {
-
-                            if(getView()!=null) {
-                                Snackbar.make(getView(), R.string.update_profile_success, Snackbar.LENGTH_LONG).show();
-                            }
-
-
-                        } else {
-                            Log.d(TAG,"update password failed, please try again");
+                        try {
+                            parseDataPemesanan(response);
+                        } catch (JSONException e) {
+                            e.printStackTrace();
                         }
+
+                        Log.d(Constants.TAG,jObj.getString("message"));
 
                     } else {
                         // Error in login. Get the error message
@@ -689,7 +544,7 @@ public class MapsFragmentLocation extends Fragment  implements AdapterView.OnIte
                         Log.d(Constants.TAG,errorMsg);
 
                         if(getView()!=null) {
-                            Snackbar.make(getView(), R.string.update_profile_failed, Snackbar.LENGTH_LONG).show();
+                            Snackbar.make(getView(), R.string.update_profile_gagal, Snackbar.LENGTH_LONG).show();
                         }
 
                     }
@@ -697,7 +552,7 @@ public class MapsFragmentLocation extends Fragment  implements AdapterView.OnIte
                     // JSON error
                     e.printStackTrace();
 
-                    Toast.makeText(getActivity(), "Json error: " + e.getMessage(), Toast.LENGTH_LONG).show();
+                    Toast.makeText(getActivity(), getString(R.string.json_request_error) + e.getMessage(), Toast.LENGTH_LONG).show();
 
                 }
 
@@ -716,6 +571,7 @@ public class MapsFragmentLocation extends Fragment  implements AdapterView.OnIte
                         e, Toast.LENGTH_LONG).show();
 
                 Log.d(Constants.TAG,"failed");
+                //   progress.setVisibility(View.GONE);
 
                 hideDialog();
             }
@@ -724,23 +580,27 @@ public class MapsFragmentLocation extends Fragment  implements AdapterView.OnIte
 
             @Override
             public Map<String, String> getHeaders() throws AuthFailureError {
-                HashMap<String, String> params = new HashMap<String, String>();
-                params.put("Content-Type","application/x-www-form-urlencoded");
-                params.put("Authorization", apiKey);
+                HashMap<String, String> headers = new HashMap<>();
+                headers.put("Content-Type","application/x-www-form-urlencoded");
+                headers.put("Authorization", db.getUserApi() );
 
-                Log.d("Params",params.toString());
-                return params;
+                Log.d("Params",headers.toString());
+                return headers;
             }
 
 
             @Override
             protected Map<String, String> getParams() {
                 // Posting parameters to change password
-                Map<String, String> params = new HashMap<String, String>();
-                params.put("nama", nama);
-                params.put("alamat", alamat);
-                params.put("telepon", telepon);
-                params.put("email",email);
+                Map<String, String> params = new HashMap<>();
+                params.put("pemesanan_latitude", pemesanan_latitude);
+                params.put("pemesanan_longitude", pemesanan_longitude);
+                params.put("pemesanan_alamat", pemesanan_alamat);
+                params.put("pemesanan_paket", pemesanan_paket);
+                params.put("pemesanan_catatan", pemesanan_catatan);
+                params.put("pemesanan_baju", pemesanan_baju);
+                params.put("pemesanan_celana", pemesanan_celana);
+                params.put("pemesanan_rok", pemesanan_rok);
 
                 Log.d("Params",params.toString());
 
@@ -755,10 +615,78 @@ public class MapsFragmentLocation extends Fragment  implements AdapterView.OnIte
 
 
 
+private void  parseDataPemesanan(String response) throws JSONException {
+
+        JSONObject jObj = new JSONObject(response);
+        Log.d("pemesanan response: ",jObj.getString("message"));
+
+        boolean error = jObj.getBoolean("error");
+
+        // Check for error node in json
+        if (!error) {
+            // Now store the user in SQLite
+
+            JSONObject pemesanan = jObj.getJSONObject("pemesanan");
+            String data_pemesanan_latitude = pemesanan.getString("pemesanan_latitude");
+            String data_pemesanan_longitude = pemesanan.getString("pemesanan_longitude");
+            String data_pemesanan_alamat = pemesanan.getString("pemesanan_alamat");
+            String data_pemesanan_paket = pemesanan.getString("pemesanan_paket");
+            String data_pemesanan_catatan = pemesanan.getString("pemesanan_catatan");
+            String data_pemesanan_baju = pemesanan.getString("pemesanan_baju");
+            String data_pemesanan_celana = pemesanan.getString("pemesanan_celana");
+            String data_pemesanan_rok = pemesanan.getString("pemesanan_rok");
+
+            // Inserting row in users table
+            //   db.updatePassword(api, uid, created_at);
+
+/*                        if (db.updatePemesanan(data_pemesanan_latitude, data_pemesanan_longitude,
+                                data_pemesanan_alamat, data_pemesanan_paket, data_pemesanan_catatan,
+                                data_pemesanan_baju, data_pemesanan_celana, data_pemesanan_rok)!=0) {
+
+
+                          //  updateDataProfile();
+
+                            if(getView()!=null) {
+                                Snackbar.make(getView(), R.string.update_profile_berhasil, Snackbar.LENGTH_LONG).show();
+                            }
+                        //    disableView();
+
+                        } else {
+                            if(getView()!=null) {
+                                Snackbar.make(getView(), R.string.update_profile_gagal, Snackbar.LENGTH_LONG).show();
+                            }
+
+                            Log.d(TAG,getString(R.string.update_profile_gagal));
+                        }*/
+
+            if(getView()!=null) {
+                Snackbar.make(getView(), R.string.pemesanan_berhasil, Snackbar.LENGTH_LONG).show();
+            }
+
+
+            Log.d("pemesanan response : ",pemesanan.toString());
+
+        } else {
+            // Error in login. Get the error message
+            String errorMsg = jObj.getString("message");
+
+            Log.d(Constants.TAG,errorMsg);
+
+            if(getView()!=null) {
+                Snackbar.make(getView(), R.string.pemesanan_gagal, Snackbar.LENGTH_LONG).show();
+            }
+
+        }
+
+}
+
+
+
+
     private void showDialog() {
         if (!pDialog.isShowing())
             pDialog.show();
-        pDialog.setMessage("Loading...");
+        pDialog.setMessage(getString(R.string.sedang_memuat));
     }
 
     private void hideDialog() {

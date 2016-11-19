@@ -3,8 +3,7 @@ package com.yuly.elaundry.fragment;
 import android.app.AlertDialog;
 import android.app.ProgressDialog;
 import android.content.DialogInterface;
-import android.content.Intent;
-import android.content.SharedPreferences;
+
 import android.os.Bundle;
 import android.support.design.widget.Snackbar;
 import android.support.v4.app.Fragment;
@@ -17,31 +16,24 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.ProgressBar;
+
 import android.widget.TextView;
 import android.widget.Toast;
 
 
 import com.android.volley.AuthFailureError;
-import com.android.volley.NetworkResponse;
 import com.android.volley.Request;
-import com.android.volley.RequestQueue;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.VolleyLog;
-import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.StringRequest;
-import com.android.volley.toolbox.Volley;
 import com.yuly.elaundry.R;
-import com.yuly.elaundry.activity.PemesananActivity;
 import com.yuly.elaundry.app.AppConfig;
 import com.yuly.elaundry.app.AppController;
 import com.yuly.elaundry.app.Constants;
-import com.yuly.elaundry.helper.PostCommentResponseListener;
 import com.yuly.elaundry.helper.SQLiteHandler;
 import com.yuly.elaundry.helper.SessionManager;
 import com.yuly.elaundry.helper.VolleyErrorHelper;
-import com.yuly.elaundry.models.User;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -49,10 +41,11 @@ import org.json.JSONObject;
 import java.util.HashMap;
 import java.util.Map;
 
-
 /**
- * Created by samsung on 21/02/16.
- */
+ * Author: Yuly Nurhidayati
+ * URL: elaundry.pe.hu
+ * */
+
 public class ProfileFragment extends Fragment {
 
     private static final String TAG = ProfileFragment.class.getSimpleName();
@@ -61,12 +54,12 @@ public class ProfileFragment extends Fragment {
     private SessionManager session;
 
     private TextView tv_name,tv_email,tv_message;
-    private SharedPreferences pref;
-    private EditText et_old_password,et_new_password;
+  //  private SharedPreferences pref;
+    private EditText et_password_lama,et_password_baru;
     private AlertDialog dialog;
-    private ProgressBar progress;
+   // private ProgressBar progress;
     private ProgressDialog pDialog;
-    private String apiKey;
+    private String konsumen_kunci_api_auth;
     private SQLiteHandler db;
     private EditText et_Nama,et_Alamat,et_Email,et_Telepon;
     private Button btnEdit,btnSave;
@@ -92,11 +85,7 @@ public class ProfileFragment extends Fragment {
             @Override
             public void onClick(View v) {
 
-               // startActivity(new Intent(getActivity(), PemesananActivity.class));
                 enableView();
-
-
-
             }
         });
 
@@ -105,23 +94,21 @@ public class ProfileFragment extends Fragment {
             @Override
             public void onClick(View v) {
 
-              //  startActivity(new Intent(getActivity(), PemesananActivity.class));
+                String konsumen_nama = et_Nama.getText().toString();
+                String konsumen_alamat = et_Alamat.getText().toString();
 
-                String nama = et_Nama.getText().toString();
-                String alamat = et_Alamat.getText().toString();
+                String konsumen_nohp = et_Telepon.getText().toString();
+                String konsumen_email = et_Email.getText().toString();
+                if(!konsumen_nama.isEmpty() && !konsumen_alamat.isEmpty()&&
+                        !konsumen_nohp.isEmpty()&& !konsumen_email.isEmpty()){
 
-                String telepon = et_Telepon.getText().toString();
-                String email = et_Email.getText().toString();
-                if(!nama.isEmpty() && !alamat.isEmpty()&&
-                        !telepon.isEmpty()&& !email.isEmpty()){
-
-
-                    changeProfile(nama,alamat,telepon,email);
+                    updateProfile(konsumen_nama,konsumen_alamat,konsumen_nohp,konsumen_email);
 
                 }else {
-
-                    Snackbar.make(getView(), R.string.field_empty, Snackbar.LENGTH_LONG).show();
-                    Log.d(TAG,"Update profile failed");
+                    if (getView()!=null){
+                        Snackbar.make(getView(), R.string.input_masih_kosong, Snackbar.LENGTH_LONG).show();
+                    }
+                    Log.d(TAG,getString(R.string.gagal_update_profile));
                 }
 
             }
@@ -153,18 +140,18 @@ public class ProfileFragment extends Fragment {
         session = new SessionManager(getContext());
 
         // Fetching user details from SQLite
-        HashMap<String, String> user = db.getUserDetails();
+        HashMap<String, String> konsumen = db.getUserDetails();
 
-        String nama = user.get("nama");
-        String alamat = user.get("alamat");
-        String telepon = user.get("telepon");
-        String email = user.get("email");
-        apiKey = user.get("api");
+        String konsumen_nama = konsumen.get("konsumen_nama");
+        String konsumen_alamat = konsumen.get("konsumen_alamat");
+        String konsumen_nohp = konsumen.get("konsumen_nohp");
+        String konsumen_email = konsumen.get("konsumen_email");
+        konsumen_kunci_api_auth = konsumen.get("konsumen_kunci_api");
 
-        et_Nama.setText(nama);
-        et_Email.setText(email);
-        et_Alamat.setText(alamat);
-        et_Telepon.setText(telepon);
+        et_Nama.setText(konsumen_nama);
+        et_Email.setText(konsumen_email);
+        et_Alamat.setText(konsumen_alamat);
+        et_Telepon.setText(konsumen_nohp);
     }
 
 
@@ -194,13 +181,14 @@ public class ProfileFragment extends Fragment {
         AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
         LayoutInflater inflater = getActivity().getLayoutInflater();
         View view = inflater.inflate(R.layout.dialog_change_password, null);
-        et_old_password = (EditText)view.findViewById(R.id.et_old_password);
-        et_new_password = (EditText)view.findViewById(R.id.et_new_password);
+        et_password_lama = (EditText)view.findViewById(R.id.et_password_lama);
+        et_password_baru = (EditText)view.findViewById(R.id.et_password_baru);
         tv_message = (TextView)view.findViewById(R.id.tv_message);
-        progress = (ProgressBar)view.findViewById(R.id.progress);
+        //progress = (ProgressBar)view.findViewById(R.id.progress);
         builder.setView(view);
-        builder.setTitle("Change Password");
-        builder.setPositiveButton("Change Password", new DialogInterface.OnClickListener() {
+        builder.setTitle(R.string.mengganti_password);
+        builder.setPositiveButton(R.string.mengganti_password, new DialogInterface.OnClickListener() {
+
             @Override
             public void onClick(DialogInterface dialog, int which) {
 
@@ -217,16 +205,18 @@ public class ProfileFragment extends Fragment {
         dialog.getButton(AlertDialog.BUTTON_POSITIVE).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                String old_password = et_old_password.getText().toString();
-                String new_password = et_new_password.getText().toString();
-                if(!old_password.isEmpty() && !new_password.isEmpty()){
+                String konsumen_password_lama = et_password_lama.getText().toString();
+                String konsumen_password_baru = et_password_baru.getText().toString();
+                if(!konsumen_password_lama.isEmpty() && !konsumen_password_baru.isEmpty()){
 
-                     changePasswordProcess(old_password,new_password);
+                     changePasswordProcess(konsumen_password_lama,konsumen_password_baru);
 
 
                 }else {
 
-                    Snackbar.make(getView(), R.string.field_empty, Snackbar.LENGTH_LONG).show();
+                    if (getView()!=null){
+                        Snackbar.make(getView(), R.string.field_empty, Snackbar.LENGTH_LONG).show();
+                    }
 
                 }
             }
@@ -274,26 +264,29 @@ public class ProfileFragment extends Fragment {
 
     /**
      * Making json array request
-     * @param nama
-     * @param email
-     * @param alamat
-     * @param telepon
+     * @param konsumen_nama   nama konsumen
+     * @param konsumen_email  email konsumen
+     * @param konsumen_alamat alamat konsumen
+     * @param konsumen_nohp   nohp konsumen
      */
 
-    private void changeProfile(final String nama,final String alamat,final String telepon,final String email){
+    private void updateProfile(final String konsumen_nama, final String konsumen_alamat, final String konsumen_nohp, final String konsumen_email){
 
         // Tag used to cancel the request
         String tag_string_req = "req_profile";
 
-        pDialog.setMessage("Updating your profile, please wait ...");
+        pDialog.setMessage(getString(R.string.mengupdate_profile));
         showDialog();
 
         StringRequest strReq = new StringRequest(Request.Method.POST,
                 AppConfig.URL_CHANGEPROFILE, new Response.Listener<String>() {
 
+
+
+
             @Override
             public void onResponse(String response) {
-                Log.d(TAG, "Login Response: " + response);
+                Log.d(TAG, "Update profile Response : " + response);
                 hideDialog();
 
                 try {
@@ -305,32 +298,37 @@ public class ProfileFragment extends Fragment {
                     // Check for error node in json
                     if (!error) {
                         // Now store the user in SQLite
-                        String uid = jObj.getString("uid");
 
-                        JSONObject user = jObj.getJSONObject("user");
-                        String nama = user.getString("nama");
-                        String alamat = user.getString("alamat");
-                        String telepon = user.getString("nohp");
-                        String email = user.getString("email");
-                        String api = user.getString("api_key");
-                        String created_at = user
-                                .getString("created_at");
+
+                        JSONObject user = jObj.getJSONObject("konsumen");
+                        String konsumen_id = user.getString("konsumen_id");
+                        String konsumen_nama = user.getString("konsumen_nama");
+                        String konsumen_alamat = user.getString("konsumen_alamat");
+                        String konsumen_nohp = user.getString("konsumen_nohp");
+                        String konsumen_email = user.getString("konsumen_email");
+                        String konsumen_kunci_api = user.getString("konsumen_kunci_api");
+                        String konsumen_dibuat_pada = user
+                                .getString("konsumen_dibuat_pada");
 
                         // Inserting row in users table
                         //   db.updatePassword(api, uid, created_at);
 
-                        if (db.updateProfile(nama, alamat, telepon, email, uid, created_at)!=0) {
+                        if (db.updateProfile(konsumen_nama, konsumen_alamat, konsumen_nohp, konsumen_email, konsumen_kunci_api, konsumen_id, konsumen_dibuat_pada)!=0) {
 
 
                             updateDataProfile();
 
                             if(getView()!=null) {
-                                Snackbar.make(getView(), R.string.update_profile_success, Snackbar.LENGTH_LONG).show();
+                                Snackbar.make(getView(), R.string.update_profile_berhasil, Snackbar.LENGTH_LONG).show();
                             }
                             disableView();
 
                         } else {
-                            Log.d(TAG,"update password failed, please try again");
+                            if(getView()!=null) {
+                                Snackbar.make(getView(), R.string.update_profile_gagal, Snackbar.LENGTH_LONG).show();
+                            }
+
+                            Log.d(TAG,getString(R.string.update_profile_gagal));
                         }
 
                     } else {
@@ -340,7 +338,7 @@ public class ProfileFragment extends Fragment {
                         Log.d(Constants.TAG,errorMsg);
 
                         if(getView()!=null) {
-                            Snackbar.make(getView(), R.string.update_profile_failed, Snackbar.LENGTH_LONG).show();
+                            Snackbar.make(getView(), R.string.update_profile_gagal, Snackbar.LENGTH_LONG).show();
                         }
 
                     }
@@ -348,7 +346,7 @@ public class ProfileFragment extends Fragment {
                     // JSON error
                     e.printStackTrace();
 
-                    Toast.makeText(getActivity(), "Json error: " + e.getMessage(), Toast.LENGTH_LONG).show();
+                    Toast.makeText(getActivity(), getString(R.string.json_request_error) + e.getMessage(), Toast.LENGTH_LONG).show();
 
                 }
 
@@ -367,7 +365,7 @@ public class ProfileFragment extends Fragment {
                         e, Toast.LENGTH_LONG).show();
 
                 Log.d(Constants.TAG,"failed");
-                progress.setVisibility(View.GONE);
+             //   progress.setVisibility(View.GONE);
                 tv_message.setVisibility(View.VISIBLE);
                 tv_message.setText(e);
 
@@ -378,9 +376,9 @@ public class ProfileFragment extends Fragment {
 
             @Override
             public Map<String, String> getHeaders() throws AuthFailureError {
-                HashMap<String, String> params = new HashMap<String, String>();
+                HashMap<String, String> params = new HashMap<>();
                 params.put("Content-Type","application/x-www-form-urlencoded");
-                params.put("Authorization", apiKey);
+                params.put("Authorization", konsumen_kunci_api_auth );
 
                 Log.d("Params",params.toString());
                 return params;
@@ -390,11 +388,11 @@ public class ProfileFragment extends Fragment {
             @Override
             protected Map<String, String> getParams() {
                 // Posting parameters to change password
-                Map<String, String> params = new HashMap<String, String>();
-                params.put("nama", nama);
-                params.put("alamat", alamat);
-                params.put("telepon", telepon);
-                params.put("email",email);
+                Map<String, String> params = new HashMap<>();
+                params.put("konsumen_nama", konsumen_nama);
+                params.put("konsumen_alamat", konsumen_alamat);
+                params.put("konsumen_nohp", konsumen_nohp);
+                params.put("konsumen_email",konsumen_email);
 
                 Log.d("Params",params.toString());
 
@@ -407,84 +405,86 @@ public class ProfileFragment extends Fragment {
         AppController.getInstance().addToRequestQueue(strReq, tag_string_req);
     }
 
-
-
-
-
     /**
      * Making json array request
-     * @param old_password
-     * @param new_password
+     * @param konsumen_password_lama password lama
+     * @param konsumen_password_baru password baru
      */
 
-    private void changePasswordProcess(final String old_password,final String new_password){
+    private void changePasswordProcess(final String konsumen_password_lama,final String konsumen_password_baru){
 
-       // Tag used to cancel the request
-        String tag_string_req = "req_change_pass";
+        // Tag used to cancel the request
+        String tag_string_req = getString(R.string.permintaan_mengganti_password);
 
-        pDialog.setMessage("Changing password, please wait ...");
+        pDialog.setMessage(getString(R.string.menggganti_password));
         showDialog();
 
         StringRequest strReq = new StringRequest(Request.Method.POST,
-                AppConfig.URL_CHANGEPASS, new Response.Listener<String>() {
+                AppConfig.URL_GANTI_PASSWORD, new Response.Listener<String>() {
 
             @Override
             public void onResponse(String response) {
-                Log.d(TAG, "Login Response: " + response);
+                Log.d(TAG, "Mengganti password response : " + response);
                 hideDialog();
 
                 try {
 
                     JSONObject jObj = new JSONObject(response);
 
+                    Log.d("response", jObj.toString());
+
                     boolean error = jObj.getBoolean("error");
 
                     // Check for error node in json
                     if (!error) {
-                        // password successfully changed
-
                         // Now store the user in SQLite
-                        String uid = jObj.getString("uid");
 
-                        JSONObject user = jObj.getJSONObject("user");
-                        String nama = user.getString("nama");
-                        String alamat = user.getString("alamat");
-                        String nohp = user.getString("nohp");
-                        String email = user.getString("email");
-                        String api = user.getString("api_key");
-                        String created_at = user
-                                .getString("created_at");
+
+                        JSONObject user = jObj.getJSONObject("konsumen");
+                        String konsumen_id = user.getString("konsumen_id");
+                        String konsumen_kunci_api = user.getString("konsumen_kunci_api");
+                        String konsumen_dibuat_pada = user
+                                .getString("konsumen_dibuat_pada");
 
                         // Inserting row in users table
-                     //   db.updatePassword(api, uid, created_at);
 
-                        if (db.updatePassword(api, uid, created_at)!=0) {
+                        if (db.updatePassword(konsumen_kunci_api, konsumen_id, konsumen_dibuat_pada) !=0){
 
-                            progress.setVisibility(View.GONE);
-                            tv_message.setVisibility(View.GONE);
+
                             updateDataProfile();
-                            dialog.dismiss();
-                            Snackbar.make(getView(), "berhasil", Snackbar.LENGTH_LONG).show();
+
+                            if(getView()!=null) {
+                                Snackbar.make(getView(), R.string.update_password_berhasil, Snackbar.LENGTH_LONG).show();
+                            }
+
+                            dialog.hide();
+
                         } else {
-                            Log.d(TAG,"update password failed, please try again");
+                            if(getView()!=null) {
+                                Snackbar.make(getView(), R.string.update_password_gagal, Snackbar.LENGTH_LONG).show();
+                            }
+
+                            Log.d(TAG,getString(R.string.update_password_gagal));
                         }
 
                     } else {
                         // Error in login. Get the error message
                         String errorMsg = jObj.getString("message");
 
-                        Log.d(Constants.TAG,"failed");
-                        progress.setVisibility(View.GONE);
-                        tv_message.setVisibility(View.VISIBLE);
-                        tv_message.setText(errorMsg);
+                        Log.d(Constants.TAG,errorMsg);
 
+                        dialog.hide();
+
+                        if(getView()!=null) {
+                            Snackbar.make(getView(), errorMsg, Snackbar.LENGTH_LONG).show();
+                        }
 
                     }
                 } catch (JSONException e) {
                     // JSON error
                     e.printStackTrace();
 
-                    Toast.makeText(getActivity(), "Json error: " + e.getMessage(), Toast.LENGTH_LONG).show();
+                    Toast.makeText(getActivity(), getString(R.string.json_request_error) + e.getMessage(), Toast.LENGTH_LONG).show();
 
                 }
 
@@ -496,14 +496,14 @@ public class ProfileFragment extends Fragment {
 
                 String e = VolleyErrorHelper.getMessage(error, getActivity());
 
-                VolleyLog.d(AppController.TAG, "Error: " + e);
+                VolleyLog.d(AppController.TAG, "Error : " + e);
 
 
                 Toast.makeText(getActivity(),
                         e, Toast.LENGTH_LONG).show();
 
                 Log.d(Constants.TAG,"failed");
-                progress.setVisibility(View.GONE);
+                //   progress.setVisibility(View.GONE);
                 tv_message.setVisibility(View.VISIBLE);
                 tv_message.setText(e);
 
@@ -514,9 +514,11 @@ public class ProfileFragment extends Fragment {
 
             @Override
             public Map<String, String> getHeaders() throws AuthFailureError {
-                HashMap<String, String> params = new HashMap<String, String>();
+                HashMap<String, String> params = new HashMap<>();
                 params.put("Content-Type","application/x-www-form-urlencoded");
-                params.put("Authorization", apiKey);
+                params.put("Authorization", konsumen_kunci_api_auth );
+
+                Log.d("Params",params.toString());
                 return params;
             }
 
@@ -524,10 +526,11 @@ public class ProfileFragment extends Fragment {
             @Override
             protected Map<String, String> getParams() {
                 // Posting parameters to change password
-                Map<String, String> params = new HashMap<String, String>();
-                params.put("password_lama", old_password);
-                params.put("password_baru", new_password);
+                Map<String, String> params = new HashMap<>();
+                params.put("konsumen_password_lama", konsumen_password_lama);
+                params.put("konsumen_password_baru", konsumen_password_baru);
 
+                Log.d("Params",params.toString());
 
                 return params;
             }
@@ -539,13 +542,10 @@ public class ProfileFragment extends Fragment {
     }
 
 
-
-
-
     private void showDialog() {
         if (!pDialog.isShowing())
             pDialog.show();
-            pDialog.setMessage("Loading...");
+            pDialog.setMessage(getString(R.string.memuat));
     }
 
     private void hideDialog() {

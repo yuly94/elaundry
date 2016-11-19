@@ -23,9 +23,9 @@ public class AppConfig {
 	public static String URL_RESET = LINKAPI+"password/reset/";
 
 	// Server user change password
-	public static String URL_CHANGEPASS = LINKAPI+"password/ganti/";
+	public static String URL_GANTI_PASSWORD = LINKAPI+"password/ganti/";
 
-	public static String URL_ALAMAT = LINKAPI+"profile/update/";
+	//public static String URL_ALAMAT = LINKAPI+"profile/update/";
 
 	// Server user change password
 	public static String URL_CHANGEPROFILE = LINKAPI+"profile/update/";
@@ -37,14 +37,17 @@ public class AppConfig {
 	public static String URL_MAPS = LINKAPI+"peta/";
 
 	// Server user register url
-	public static String URL_PAKET= LINKAPI+"paket";
+	public static String URL_PAKET= LINKAPI+"laundry/paket/";
 
 	// Server user register url
-	public static String URL_PESANAN= LINKAPI+"pesanan";
+	public static String URL_PEMESANAN= LINKAPI+"pemesanan/menambahkan/";
+
+	// Server user register url
+	public static String URL_ALAMAT= LINKAPI+"alamat/";
 
 	// Server user register url
 	public static String URL_TEMPAT= LINKAPI+"alamat/";
 
 	// Server user register url
-	public static String URL_TRANSAKSI= LINKAPI+"transaksi";
+	public static String URL_TRANSAKSI= LINKAPI+"transaksi/";
 }

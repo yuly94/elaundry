@@ -14,7 +14,8 @@ import android.widget.TextView;
 import com.amulyakhare.textdrawable.TextDrawable;
 import com.amulyakhare.textdrawable.util.ColorGenerator;
 import com.yuly.elaundry.R;
-import com.yuly.elaundry.helper.PesananModels;
+import com.yuly.elaundry.models.PesananModels;
+import com.yuly.elaundry.models.TempatModels;
 import com.yuly.elaundry.widgets.BubbleTextGetter;
 
 import java.util.ArrayList;
@@ -44,13 +45,13 @@ public class TempatAdapter extends RecyclerView.Adapter<TempatAdapter.GmailVH>  
 
     private Context mContext;
     private String letter;
-    private List<PesananModels> dataList;
+    private List<TempatModels> dataList;
     private boolean isDarkTheme;
 
-    public TempatAdapter(List<PesananModels> superHeroes, Context context){
-        this.dataList = new ArrayList<PesananModels>();
+    public TempatAdapter(List<TempatModels> tempatModels, Context context){
+        this.dataList = new ArrayList<TempatModels>();
         this.mContext = context;
-        this.dataList = superHeroes;
+        this.dataList = tempatModels;
     }
 
 
@@ -74,13 +75,13 @@ public class TempatAdapter extends RecyclerView.Adapter<TempatAdapter.GmailVH>  
     @Override
     public void onBindViewHolder(GmailVH gmailVH, int i) {
         // final CountryModel model = mCountryModel.get(i);
-        final PesananModels pesananModel = dataList.get(i);
+        final TempatModels tempatModel = dataList.get(i);
 
 
-        gmailVH.title_doa.setText(pesananModel.getNama());
-        gmailVH.title_hr.setText(pesananModel.getAlamat());
+        gmailVH.title_doa.setText(tempatModel.getAlamatNama());
+        gmailVH.title_hr.setText(tempatModel.getAlamatJalan());
 
-        letter = String.valueOf(pesananModel.getNama().charAt(0));
+        letter = String.valueOf(tempatModel.getAlamatNama().charAt(0));
 
         // Create a new TextDrawable for our image's background
         TextDrawable drawable = TextDrawable.builder()
@@ -141,17 +142,17 @@ public class TempatAdapter extends RecyclerView.Adapter<TempatAdapter.GmailVH>  
     }
 
 
-    public void setFilter(List<PesananModels> tempatModels){
-        dataList = new ArrayList<PesananModels>();
+    public void setFilter(List<TempatModels> tempatModels){
+        dataList = new ArrayList<TempatModels>();
         dataList.addAll(tempatModels);
         notifyDataSetChanged();
     }
 
 
     // Add a list of items
-    public void addAll(List<PesananModels> pesananModels){
+    public void addAll(List<TempatModels> tempatModels){
 
-        dataList.addAll(pesananModels);
+        dataList.addAll(tempatModels);
         notifyDataSetChanged();
 
     }
@@ -181,7 +182,7 @@ public class TempatAdapter extends RecyclerView.Adapter<TempatAdapter.GmailVH>  
     public String getTextToShowInBubble(final int pos) {
         if (dataList == null || dataList.size() == 0)
             return "";
-        Character ch = dataList.get(pos).getNama().charAt(0);
+        Character ch = dataList.get(pos).getAlamatNama().charAt(0);
         if (Character.isDigit(ch)) {
             return "#";
         } else

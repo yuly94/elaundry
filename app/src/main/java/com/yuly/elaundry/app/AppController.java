@@ -3,11 +3,13 @@ package com.yuly.elaundry.app;
 import android.app.Application;
 
 import android.text.TextUtils;
+import android.util.Log;
 
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.toolbox.ImageLoader;
 import com.android.volley.toolbox.Volley;
+
 
 public class AppController extends Application {
 
@@ -58,12 +60,17 @@ public class AppController extends Application {
 	public <T> void addToRequestQueue(Request<T> req, String tag) {
 		// set the default tag if tag is empty
 		req.setTag(TextUtils.isEmpty(tag) ? TAG : tag);
+
 		getRequestQueue().add(req);
+
+		Log.d(AppController.TAG, "menambahkan permintaan ke dalam antrian " );
 	}
 
 	public <T> void addToRequestQueue(Request<T> req) {
 		req.setTag(TAG);
 		getRequestQueue().add(req);
+
+		Log.d(AppController.TAG, "menambahkan permintaan ke dalam antrian " );
 	}
 
 	public void cancelPendingRequests(Object tag) {

@@ -32,10 +32,11 @@ import com.yuly.elaundry.R;
 import com.yuly.elaundry.adapter.TempatAdapter;
 import com.yuly.elaundry.app.AppConfig;
 import com.yuly.elaundry.app.AppController;
-import com.yuly.elaundry.helper.PesananModels;
+import com.yuly.elaundry.models.PesananModels;
 import com.yuly.elaundry.helper.SQLiteHandler;
 import com.yuly.elaundry.helper.SessionManager;
 import com.yuly.elaundry.helper.VolleyErrorHelper;
+import com.yuly.elaundry.models.TempatModels;
 import com.yuly.elaundry.peta.PetaActivity;
 import com.yuly.elaundry.widgets.DividerItemDecoration;
 import com.yuly.elaundry.widgets.FastScroller;
@@ -57,7 +58,7 @@ public class TempatFragment extends Fragment implements SearchView.OnQueryTextLi
 
 
     //Creating a List of superheroes
-    private List<PesananModels> daftarTempat;
+    private List<TempatModels> daftarTempat;
 
     //Creating Views
 
@@ -65,8 +66,6 @@ public class TempatFragment extends Fragment implements SearchView.OnQueryTextLi
     private SessionManager session;
 
     private ProgressDialog pDialog;
-
-    private String apiKey;
 
     private FastScroller mFastScroller;
     private FloatingActionButton fab;
@@ -115,7 +114,7 @@ public class TempatFragment extends Fragment implements SearchView.OnQueryTextLi
         });
 
         //Initializing our superheroes list
-        daftarTempat = new ArrayList<PesananModels>();
+        daftarTempat = new ArrayList<TempatModels>();
 
         // SqLite database handler
         db = new SQLiteHandler(getContext());
@@ -124,9 +123,9 @@ public class TempatFragment extends Fragment implements SearchView.OnQueryTextLi
         session = new SessionManager(getContext());
 
         // Fetching user details from SQLite
-        HashMap<String, String> user = db.getUserDetails();
+     //   HashMap<String, String> user = db.getUserDetails();
 
-        apiKey = user.get("api");
+      //  konsumen_kunci_api = user.get("konsumen_kunci_api");
 
 
        pDialog = new ProgressDialog(getContext());
@@ -145,7 +144,7 @@ public class TempatFragment extends Fragment implements SearchView.OnQueryTextLi
                 // Make sure you call mSwipeRefreshLayout.setRefreshing(false)
                 // once the network request has completed successfully.
 
-                makeJsonArryReq();
+                daftarTempatReq();
 
                 adapter.clear();
             }
@@ -160,7 +159,7 @@ public class TempatFragment extends Fragment implements SearchView.OnQueryTextLi
 
 
 
-        makeJsonArryReq();
+        daftarTempatReq();
 
         return v;
 
@@ -179,11 +178,16 @@ public class TempatFragment extends Fragment implements SearchView.OnQueryTextLi
     /**
      * Making json array request
      */
-    private void makeJsonArryReq() {
+    private void  daftarTempatReq() {
+
+        Log.d(AppController.TAG, "meminta daftar tempat dari server " + db.getUserApi());
+
         showProgressDialog();
         mSwipeRefreshLayout.setRefreshing(true);
-        JsonArrayRequest req = new JsonArrayRequest(AppConfig.URL_TEMPAT,
+
+        JsonArrayRequest requestTempatVolley = new JsonArrayRequest(AppConfig.URL_TEMPAT,
                 new Response.Listener<JSONArray>() {
+                    
                     @Override
                     public void onResponse(JSONArray response) {
 
@@ -214,6 +218,8 @@ public class TempatFragment extends Fragment implements SearchView.OnQueryTextLi
             @Override
             public void onErrorResponse(VolleyError error) {
 
+                Log.d(AppController.TAG, "respon error");
+
 
                 String e = VolleyErrorHelper.getMessage(error, getContext());
                 VolleyLog.d(AppController.TAG, "Error: " + e);
@@ -236,7 +242,7 @@ public class TempatFragment extends Fragment implements SearchView.OnQueryTextLi
             public Map<String, String> getHeaders() throws AuthFailureError {
                 HashMap<String, String> headers = new HashMap<String, String>();
                 headers.put("Content-Type", "application/json");
-                headers.put("Authorization", apiKey);
+                headers.put("Authorization", db.getUserApi());
                 return headers;
             }
 
@@ -245,7 +251,7 @@ public class TempatFragment extends Fragment implements SearchView.OnQueryTextLi
 
         // Adding request to request queue
         String tag_json_arry = "jarray_req";
-        AppController.getInstance().addToRequestQueue(req, tag_json_arry);
+        AppController.getInstance().addToRequestQueue(requestTempatVolley, tag_json_arry);
 
         // Cancelling request
         // ApplicationController.getInstance().getRequestQueue().cancelAll(tag_json_arry);
@@ -256,39 +262,40 @@ public class TempatFragment extends Fragment implements SearchView.OnQueryTextLi
     private void getTempat(JSONArray j){
         //Traversing through all the items in the json array
         for(int i=0;i<j.length();i++){
-            PesananModels listTempat = new PesananModels();
+            TempatModels listTempat = new TempatModels();
             try {
+
 
                 JSONObject jObj = j.getJSONObject(i);
 
                 boolean error = jObj.getBoolean("error");
                 if (!error) {
-                    JSONObject tempat = jObj.getJSONObject("tempat");
+                    JSONObject tempat = jObj.getJSONObject("alamat");
 
-                    String id = tempat.getString("id");
-                    String nama = tempat.getString("nama");
-                    String alamat = tempat.getString("alamat");
-                    String kota = tempat.getString("kota");
-                    String provinsi = tempat.getString("provinsi");
-                    String latitude = tempat.getString("latitude");
-                    String longitude = tempat.getString("longitude");
-                    String created = tempat.getString("created");
+                    String id = tempat.getString("alamat_id");
+                    String alamat_nama = tempat.getString("alamat_nama");
+                    String alamat_jalan = tempat.getString("alamat_jalan");
+                    String alamat_kota = tempat.getString("alamat_kota");
+                    String alamat_provinsi = tempat.getString("alamat_provinsi");
+                    String alamat_latitude = tempat.getString("alamat_latitude");
+                    String alamat_longitude = tempat.getString("alamat_longitude");
+                    String alamat_dibuat_pada = tempat.getString("alamat_dibuat_pada");
 
-                    String updated = tempat.getString("updated");
+                    String alamat_diupdate_pada = tempat.getString("diupdate_pada");
 
-                    Log.d(AppController.TAG, "id : " + id);
-                    Log.d(AppController.TAG, "nama : " + nama);
-                    Log.d(AppController.TAG, "alamat : " + alamat);
-                    Log.d(AppController.TAG, "kota : " + kota);
-                    Log.d(AppController.TAG, "provinsi : " + provinsi);
-                    Log.d(AppController.TAG, "latitude : " + latitude);
-                    Log.d(AppController.TAG, "longitude : " + longitude);
-                    Log.d(AppController.TAG, "creates : " + created);
-                    Log.d(AppController.TAG, "updated : " + updated);
+                    Log.d(AppController.TAG, "alamat_id : " + id);
+                    Log.d(AppController.TAG, "alamat_nama : " + alamat_nama);
+                    Log.d(AppController.TAG, "alamat_jalan : " + alamat_jalan);
+                    Log.d(AppController.TAG, "alamat_kota : " + alamat_kota);
+                    Log.d(AppController.TAG, "alamat_provinsi : " + alamat_provinsi);
+                    Log.d(AppController.TAG, "alamat_latitude : " + alamat_latitude);
+                    Log.d(AppController.TAG, "alamat_longitude : " + alamat_longitude);
+                    Log.d(AppController.TAG, "alamat_dibuat_pada : " + alamat_dibuat_pada);
+                    Log.d(AppController.TAG, "alamat_diupdate_pada : " + alamat_diupdate_pada);
 
-                    listTempat.setNama(nama);
-                    listTempat.setAlamat(alamat);
-                    listTempat.setKota(kota);
+                    listTempat.setAlamatNama(alamat_nama);
+                    listTempat.setAlamatJalan(alamat_jalan);
+                    listTempat.setAlamatKota(alamat_kota);
 
 
                 } else {
@@ -307,6 +314,7 @@ public class TempatFragment extends Fragment implements SearchView.OnQueryTextLi
             }
 
             daftarTempat.add(listTempat);
+
         }
 
 
@@ -330,8 +338,6 @@ public class TempatFragment extends Fragment implements SearchView.OnQueryTextLi
         //Finally initializing our adapter
         adapter = new TempatAdapter(daftarTempat, getContext());
 
-
-
         //Adding adapter to recyclerview
         mRecyclerView.setAdapter(adapter);
 
@@ -339,9 +345,6 @@ public class TempatFragment extends Fragment implements SearchView.OnQueryTextLi
             mSwipeRefreshLayout.setRefreshing(false);
         }
     }
-
-
-
 
 
     private void showProgressDialog() {
@@ -355,9 +358,6 @@ public class TempatFragment extends Fragment implements SearchView.OnQueryTextLi
 
 
     }
-
-
-
 
 
     @Override
@@ -391,7 +391,7 @@ public class TempatFragment extends Fragment implements SearchView.OnQueryTextLi
 
     @Override
     public boolean onQueryTextChange(String newText) {
-        final List<PesananModels> filteredModelList = filter(daftarTempat, newText);
+        final List<TempatModels> filteredModelList = filter(daftarTempat, newText);
         adapter.setFilter(filteredModelList);
         return true;
     }
@@ -402,19 +402,17 @@ public class TempatFragment extends Fragment implements SearchView.OnQueryTextLi
     }
 
 
-    private List<PesananModels> filter(List<PesananModels> models, String query) {
+    private List<TempatModels> filter(List<TempatModels> models, String query) {
         query = query.toLowerCase();
 
-        final List<PesananModels> filteredModelList = new ArrayList<PesananModels>();
-        for (PesananModels model : models) {
-            final String text = model.getNama().toLowerCase();
+        final List<TempatModels> filteredModelList = new ArrayList<TempatModels>();
+        for (TempatModels model : models) {
+            final String text = model.getAlamatNama().toLowerCase();
             if (text.contains(query)) {
                 filteredModelList.add(model);
             }
         }
         return filteredModelList;
     }
-
-
 
 }

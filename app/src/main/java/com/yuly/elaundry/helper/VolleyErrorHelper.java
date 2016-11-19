@@ -109,8 +109,8 @@ public class VolleyErrorHelper {
                                 new TypeToken<Map<String, String>>() {
                                 }.getType());
 
-                        if (result != null && result.containsKey("error")) {
-                            return result.get("error");
+                        if (result != null && result.containsKey("message")) {
+                            return result.get("message");
                         }
 
                     } catch (Exception e) {
