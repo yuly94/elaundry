@@ -70,6 +70,18 @@ class GeneratorModel{
     return $result;
 }
 
+    public static function randAngka($len){
+    $result = "";
+    $chars = "0123456789";
+    $charArray = str_split($chars);
+    for($i = 0; $i < $len; $i++){
+	    $randItem = array_rand($charArray);
+	    $result .= "".$charArray[$randItem];
+    }
+    return $result;
+}
+
+
     public static function openSslGen($lenght, $crypto_strong = true){
 
     $bytes = openssl_random_pseudo_bytes($lenght, $crypto_strong);

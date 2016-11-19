@@ -91,4 +91,109 @@ class PemesananModel {
         return $response;
     }
 
+    
+        public static function menambahkanPesanan($konsumen_id, $api_konsumen_email,$api_konsumen_nama, $pemesanan_latitude, 
+                $pemesanan_longitude, $pemesanan_alamat, $pemesanan_paket, $pemesanan_catatan,
+                    $pemesanan_baju, $pemesanan_celana, $pemesanan_rok) {
+        
+        $app = \Slim\Slim::getInstance();
+       
+        $response = array();
+
+        // First check if user already existed in db
+        if ($konsumen_id) {
+            
+            $pemesanan_id = GeneratorModel::randAngka(10);
+            
+            $pemesanan_harga = 5000;
+            
+            // insert query        
+            $sql = "INSERT INTO laundry_pemesanan(pemesanan_id, konsumen_id, pemesanan_latitude, pemesanan_longitude, "
+                    . "pemesanan_alamat, pemesanan_paket, pemesanan_catatan, pemesanan_baju, "
+                    . "pemesanan_celana, pemesanan_rok, pemesanan_tanggal, pemesanan_harga,pemesanan_status) "
+                    . "values(:pemesanan_id,:konsumen_id, :pemesanan_latitude, :pemesanan_longitude, "
+                    . ":pemesanan_alamat, :pemesanan_paket, :pemesanan_catatan, :pemesanan_baju, "
+                    . ":pemesanan_celana, :pemesanan_rok, NOW(),:pemesanan_harga, :pemesanan_status)";
+       
+            $stmt = $app->db->prepare($sql);
+            $result = $stmt->execute(array(
+            'pemesanan_id'=>$pemesanan_id,
+            'konsumen_id'=>$konsumen_id,
+            'pemesanan_latitude'=>$pemesanan_latitude,
+            'pemesanan_longitude'=>$pemesanan_longitude,
+            'pemesanan_alamat'=>$pemesanan_alamat,
+            'pemesanan_paket'=>$pemesanan_paket,
+            'pemesanan_catatan'=> $pemesanan_catatan,
+            'pemesanan_baju'=> $pemesanan_baju,
+            'pemesanan_celana'=> $pemesanan_celana,
+            'pemesanan_rok'=> $pemesanan_rok,
+            'pemesanan_harga'=> $pemesanan_harga,
+            'pemesanan_status'=>"baru memesan"
+        ));
+            
+            // Check for successful insertion
+            if ($result) {
+                // User successfully inserted
+                
+             
+
+                return 0;
+                
+            } else {
+                // Failed to create user
+                return 1;
+            }
+        } else {
+            // User with same email already existed in the db
+            return 2;
+        }
+
+        return $response;
+    }
+
+           /**
+     * Fetching user by email
+     * @param String $konsumen_id User email id
+     */
+    public static function pemesananById($konsumen_id) {
+		
+        $app = \Slim\Slim::getInstance();
+        
+        $sql = "SELECT pemesanan_id, konsumen_id, pemesanan_latitude, pemesanan_longitude, "
+                    . "pemesanan_alamat, pemesanan_paket, pemesanan_catatan, pemesanan_baju, "
+                    . "pemesanan_celana, pemesanan_rok, pemesanan_tanggal, pemesanan_harga,pemesanan_status FROM laundry_pemesanan "
+                . "WHERE konsumen_id =:konsumen_id ORDER BY pemesanan_no DESC LIMIT 1" ;        
+
+        $stmt = $app->db->prepare($sql);
+        $stmt->execute(array('konsumen_id'=>$konsumen_id));
+        
+        $konsumen=$stmt->fetch(PDO::FETCH_ASSOC);
+        
+        if($stmt->rowCount() > 0)
+            {
+    // fetching all user tasks
+     
+
+              // echo json response
+            return $konsumen;
+        } else {
+            return false;
+        }
+    } 
+    
+    
+      public function  kirimNotif( $konsumen_email, $konsumen_nama) {
+      
+            $to = $konsumen_email;
+            $subject = "Pemberitahuan pembaruan password";
+            $body = "'Hai $konsumen_nama',<br><br> 
+            <p>Pesanan anda berhasil diproses</p>
+            <p>Jika anda tidak merasa memperbarui password anda atau memiliki account, maka abaikan saja email ini</p>";
+
+            $kirim_email = new EmailModel();   
+            $kirim_email->sentEmail($to,$subject,$body);
+ }
+    
 }
+
+

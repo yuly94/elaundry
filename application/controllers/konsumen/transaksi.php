@@ -23,7 +23,7 @@ $app->get('/konsumen/transaksi/','authKonsumen' ,function() use ($app){
     else {
         $response["error"] = true;
         $response["message"] = "The requested resource doesn't exists";
-        BantuanModel::echoRespnse(404, $response);
+        BantuanModel::echoRespnse(200, $response);
         }
     });
 

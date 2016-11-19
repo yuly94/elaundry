@@ -6,7 +6,81 @@
  * and open the template in the editor.
  */
 
-$app->get('/konsumen/pemesanan/','authKonsumen' ,function() use ($app){
+
+$app->post('/konsumen/pemesanan/menambahkan/' ,'authKonsumen' ,function() use ($app){
+    
+            global $api_konsumen_id;
+            global $api_konsumen_email;
+            global $api_konsumen_nama;
+
+            // check for required params
+            BantuanModel::verifyRequiredParams(array('pemesanan_latitude', 'pemesanan_longitude',
+                'pemesanan_alamat','pemesanan_paket', 'pemesanan_catatan',
+                'pemesanan_baju','pemesanan_celana', 'pemesanan_rok'));
+            
+            $response = array();
+
+            // reading post params
+            $pemesanan_latitude = $app->request->post('pemesanan_latitude');
+            $pemesanan_longitude = $app->request->post('pemesanan_longitude');
+            $pemesanan_alamat = $app->request->post('pemesanan_alamat');
+            $pemesanan_paket = $app->request->post('pemesanan_paket');
+            $pemesanan_catatan = $app->request->post('pemesanan_catatan');
+            $pemesanan_baju = $app->request->post('pemesanan_baju');
+            $pemesanan_celana = $app->request->post('pemesanan_celana');
+            $pemesanan_rok = $app->request->post('pemesanan_rok');
+            
+            $result = PemesananModel::menambahkanPesanan($api_konsumen_id, $api_konsumen_email,$api_konsumen_nama,
+                    $pemesanan_latitude, $pemesanan_longitude, 
+                    $pemesanan_alamat, $pemesanan_paket, $pemesanan_catatan,
+                    $pemesanan_baju, $pemesanan_celana, $pemesanan_rok);
+
+                // get the user by email
+                
+
+            if ($result ==0) {
+
+                $response["error"] = false;
+                $response["message"] = "berhasil melakukan pemesanan";
+                $response["pemesanan"] = PemesananModel::pemesananById($api_konsumen_id);
+                
+                $kirim_email = new PemesananModel();
+                $kirim_email->kirimNotif($$api_konsumen_email, $api_konsumen_nama);
+                
+               
+            } else if ($result == 1) {
+                $response["error"] = true;
+                $response["message"] = "Oops! An error occurred while registering";
+                
+            } else if ($result == 2) {
+                $response["error"] = true;
+                $response["message"] = "Sorry, this email already existed";
+            } 
+            // echo json response
+            BantuanModel::echoRespnse(201, $response);           
+            
+        });
+
+        
+        
+$app->post('/konsumen/pemesanan/menambahkanx/' ,'authKonsumen' ,function() use ($app){
+    
+            global $api_konsumen_id;
+           
+
+            // check for required params
+            BantuanModel::verifyRequiredParams(array('pemesanan_latitude', 'pemesanan_longitude',
+                'pemesanan_alamat','pemesanan_paket', 'pemesanan_catatan',
+                'pemesanan_baju','pemesanan_celana', 'pemesanan_rok'));
+            
+        $response = array();
+        $response["error"] = false;
+        $response["message"] = $api_konsumen_id;
+        BantuanModel::echoRespnse(200, $response);
+        }
+    );
+
+$app->get('/konsumen/pemesananx/','authKonsumen' ,function() use ($app){
            
             global $api_konsumen_id;
 

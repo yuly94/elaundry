@@ -34,6 +34,7 @@ function authKonsumen(\Slim\Route $route) {
             global $api_konsumen_no;
             global $api_konsumen_id;
 	    global $api_konsumen_email;
+            global $api_konsumen_nama;
 
             // get user primary key id
             $konsumen = KonsumenModel::getKonsumenByApi($api_key);
@@ -41,6 +42,7 @@ function authKonsumen(\Slim\Route $route) {
             $api_konsumen_no = $konsumen["konsumen_no"];
             $api_konsumen_id = $konsumen["konsumen_id"];
             $api_konsumen_email = $konsumen["konsumen_email"];
+            $api_konsumen_nama = $konsumen["konsumen_nama"];
 
                 }
                 

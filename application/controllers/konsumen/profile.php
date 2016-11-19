@@ -40,7 +40,6 @@ $app->post('/konsumen/profile/update/','authKonsumen', function() use ($app) {
             if ($konsumen) {
     
                 // user is found
-
                 $response["error"] = FALSE;
                 $response["message"] = "Successfully update you";
                 $response["konsumen"] = $konsumen;
