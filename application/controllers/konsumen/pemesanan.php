@@ -29,11 +29,12 @@ $app->post('/konsumen/pemesanan/menambahkan/' ,'authKonsumen' ,function() use ($
             $pemesanan_baju = $app->request->post('pemesanan_baju');
             $pemesanan_celana = $app->request->post('pemesanan_celana');
             $pemesanan_rok = $app->request->post('pemesanan_rok');
+            $pemesanan_harga = $app->request->post('pemesanan_harga');
             
-            $result = PemesananModel::menambahkanPesanan($api_konsumen_id, $api_konsumen_email,$api_konsumen_nama,
+            $result = PemesananModel::menambahkanPesanan($api_konsumen_id,
                     $pemesanan_latitude, $pemesanan_longitude, 
                     $pemesanan_alamat, $pemesanan_paket, $pemesanan_catatan,
-                    $pemesanan_baju, $pemesanan_celana, $pemesanan_rok);
+                    $pemesanan_baju, $pemesanan_celana, $pemesanan_rok, $pemesanan_harga);
 
                 // get the user by email
                 
@@ -45,7 +46,7 @@ $app->post('/konsumen/pemesanan/menambahkan/' ,'authKonsumen' ,function() use ($
                 $response["pemesanan"] = PemesananModel::pemesananById($api_konsumen_id);
                 
                 $kirim_email = new PemesananModel();
-                $kirim_email->kirimNotif($$api_konsumen_email, $api_konsumen_nama);
+                $kirim_email->  kirimNotif($$api_konsumen_email, $api_konsumen_nama);
                 
                
             } else if ($result == 1) {

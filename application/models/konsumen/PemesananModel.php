@@ -92,9 +92,9 @@ class PemesananModel {
     }
 
     
-        public static function menambahkanPesanan($konsumen_id, $api_konsumen_email,$api_konsumen_nama, $pemesanan_latitude, 
+        public static function menambahkanPesanan($konsumen_id, $pemesanan_latitude, 
                 $pemesanan_longitude, $pemesanan_alamat, $pemesanan_paket, $pemesanan_catatan,
-                    $pemesanan_baju, $pemesanan_celana, $pemesanan_rok) {
+                    $pemesanan_baju, $pemesanan_celana, $pemesanan_rok, $pemesanan_harga) {
         
         $app = \Slim\Slim::getInstance();
        
@@ -104,9 +104,7 @@ class PemesananModel {
         if ($konsumen_id) {
             
             $pemesanan_id = GeneratorModel::randAngka(10);
-            
-            $pemesanan_harga = 5000;
-            
+                   
             // insert query        
             $sql = "INSERT INTO laundry_pemesanan(pemesanan_id, konsumen_id, pemesanan_latitude, pemesanan_longitude, "
                     . "pemesanan_alamat, pemesanan_paket, pemesanan_catatan, pemesanan_baju, "
@@ -191,7 +189,7 @@ class PemesananModel {
             <p>Jika anda tidak merasa memperbarui password anda atau memiliki account, maka abaikan saja email ini</p>";
 
             $kirim_email = new EmailModel();   
-            $kirim_email->sentEmail($to,$subject,$body);
+            $kirim_email-> sentEmail($to,$subject,$body);
  }
     
 }
