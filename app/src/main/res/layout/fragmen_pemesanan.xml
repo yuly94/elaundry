@@ -4,7 +4,7 @@
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
 
-    tools:context=".activity.MainActivity">
+    tools:context=".konsumen.activity.MainActivity">
 
     <android.support.v4.widget.NestedScrollView
         android:layout_width="match_parent"
@@ -32,7 +32,7 @@
                 <android.support.design.widget.TextInputLayout
                     android:layout_marginTop="5dp"
                     android:layout_marginBottom="5dp"
-                    android:layout_width="165dp"
+                    android:layout_width="169dp"
                     android:layout_height="match_parent"
                     android:baselineAligned="false"
                     android:orientation="vertical">
@@ -44,7 +44,9 @@
                     android:layout_alignParentTop="true"
                     android:layout_marginTop="10dp"
                     android:layout_centerHorizontal="true"
-                    android:editable="false" />
+                    android:editable="false"
+                    android:clickable="false"
+                    android:singleLine="true" />
                 </android.support.design.widget.TextInputLayout>
 
                 <android.support.design.widget.TextInputLayout
@@ -54,13 +56,15 @@
                     android:layout_height="match_parent">
                     <EditText
                         android:hint="Longitude"
-                        android:layout_width="match_parent"
+                        android:layout_width="182dp"
                         android:layout_height="wrap_content"
                         android:id="@+id/et_longitude"
                         android:layout_alignParentTop="true"
                         android:layout_marginTop="10dp"
                         android:layout_centerHorizontal="true"
-                        android:editable="false" />
+                        android:editable="false"
+                        android:clickable="false"
+                        android:singleLine="true" />
                 </android.support.design.widget.TextInputLayout>
 
             </LinearLayout>
@@ -98,42 +102,76 @@
                 android:id="@+id/et_catatan"
                 android:layout_marginTop="10dp"
                 android:layout_marginBottom="10dp" />
+
+                <TextView
+                    android:text="TextView"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/coba"
+                    android:layout_weight="1" />
             </android.support.design.widget.TextInputLayout>
 
-            <TextView
-                android:text="Paket Laundry :"
+            <LinearLayout
+                android:orientation="horizontal"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:id="@+id/textView" />
+                android:layout_height="match_parent">
 
-            <RadioGroup
+                <TextView
+                    android:text="Paket Laundry :"
+                    android:layout_width="150dp"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/tv_title_paket" />
+
+                <TextView
+                    android:text="Total Harga"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/tv_title_hg_total"
+                    android:layout_weight="1" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:orientation="horizontal"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:id="@+id/rg_paket"
-                android:checkedButton="@+id/rb_ekonomis">
+                android:paddingRight="10dp">
 
-                <RadioButton
-                    android:text="Ekonomis"
+                <RadioGroup
+                    android:layout_width="150dp"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/rg_paket"
+                    android:checkedButton="@+id/rb_ekonomis">
+
+                    <RadioButton
+                        android:text="Ekonomis"
+                        android:layout_width="110dp"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/rb_ekonomis" />
+
+                    <RadioButton
+                        android:text="Regular"
+                        android:layout_width="110dp"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/rb_reguler" />
+
+                    <RadioButton
+                        android:text="Express"
+                        android:layout_width="110dp"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/rb_express"
+                        android:layout_weight="1" />
+
+                </RadioGroup>
+
+                <TextView
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:id="@+id/rb_ekonomis"
-                    android:layout_weight="1" />
+                    android:layout_height="match_parent"
+                    android:id="@+id/tv_hg_total"
+                    tools:text=""
+                    android:textSize="24sp"
+                    android:singleLine="true" />
 
-                <RadioButton
-                    android:text="Regular"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:id="@+id/rb_reguler"
-                    android:layout_weight="1" />
-
-                <RadioButton
-                    android:text="Express"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:id="@+id/rb_express"
-                    android:layout_weight="1" />
-
-            </RadioGroup>
+            </LinearLayout>
 
             <Space
                 android:layout_width="match_parent"
@@ -153,16 +191,21 @@
 
                 <CheckBox
                     android:text="Baju"
-                    android:layout_width="180dp"
                     android:layout_height="wrap_content"
-                    android:id="@+id/cb_baju" />
+                    android:id="@+id/cb_baju"
+                    android:layout_width="104dp" />
+
+                <TextView
+                    android:layout_width="76dp"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/tv_hg_baju" />
 
                 <EditText
                     android:layout_width="70dp"
                     android:layout_height="wrap_content"
                     android:inputType="number"
                     android:ems="10"
-                    android:id="@+id/editText"
+                    android:id="@+id/et_baju"
                     android:textAlignment="center" />
             </LinearLayout>
 
@@ -174,16 +217,23 @@
 
                 <CheckBox
                     android:text="Celana"
-                    android:layout_width="180dp"
+                    android:layout_width="104dp"
                     android:layout_height="wrap_content"
                     android:id="@+id/cb_celana" />
+
+                <TextView
+                    android:layout_width="76dp"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/tv_hg_celana"
+                    android:layout_weight="0.00"
+                    tools:text=" " />
 
                 <EditText
                     android:layout_width="70dp"
                     android:layout_height="wrap_content"
                     android:inputType="number"
                     android:ems="10"
-                    android:id="@+id/editText2"
+                    android:id="@+id/et_celana"
                     android:textAlignment="center" />
 
             </LinearLayout>
@@ -195,17 +245,25 @@
 
                 <CheckBox
                     android:text="Rok"
-                    android:layout_width="180dp"
                     android:layout_height="wrap_content"
-                    android:id="@+id/cb_rok" />
+                    android:id="@+id/cb_rok"
+                    android:layout_width="104dp" />
+
+                <TextView
+                    android:layout_width="76dp"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/tv_hg_rok"
+                    android:layout_weight="0.00"
+                    tools:text=" " />
 
                 <EditText
                     android:layout_width="70dp"
                     android:layout_height="wrap_content"
                     android:inputType="number"
                     android:ems="10"
-                    android:id="@+id/editText3"
+                    android:id="@+id/et_rok"
                     android:textAlignment="center" />
+
             </LinearLayout>
 
 

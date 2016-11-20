@@ -2,7 +2,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.yuly.elaundry.activity.BlankFragment">
+    tools:context=".konsumen.activity.BlankFragment">
 
     <!-- TODO: Update blank fragment layout -->
     <TextView
