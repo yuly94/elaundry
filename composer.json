@@ -21,9 +21,7 @@
      "autoload" : {
          "classmap" : 
             [
-                "libs/LibsLoader.php",
-                "application/controllers/index.php",
-                "application/controllers/error.php"
+                "libs/LibsLoader.php"
                 
             ]
              

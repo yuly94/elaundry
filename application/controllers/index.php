@@ -3,12 +3,7 @@
  
 $app->get('/', function () use ($app) {
 
-    $app->render('index.php');
-});
-
-$app->get('/error/', function () use ($app) {
-
-    $app->render('error.php');
+    $app->render('/home/welcome.php');
 });
 
 

@@ -9,12 +9,13 @@ require '../vendor/autoload.php'; #composer autoloader
 //require_once '../package/Package.php'; # replace with composer autoloader
 //\Package\Package::registerAutoloader(); # replace with composer autoloader
 
+ 
 $appconfig = require_once '../config/config.slim.php' ;
 $app = new \Slim\Slim($appconfig);
 
 
-//require_once '../application/controllers/index.php'; # replace with composer autoloader
-//require_once '../application/controllers/error.php'; # replace with composer autoloader
+//require_once '../application/controllers/index.php'; # Move to config folder
+//require_once '../application/controllers/error.php'; # Move to config folder
 
 $app->hook('slim.before', function () use ($app) {
     $app->view()->appendData(array('baseUrl' => BASE_URL));

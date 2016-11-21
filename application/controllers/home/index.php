@@ -1,6 +1,6 @@
 <?php
 
-use \FB;
+ 
 use \My\Helper;
 
 $app->get('/home/', function () use ($app) {
