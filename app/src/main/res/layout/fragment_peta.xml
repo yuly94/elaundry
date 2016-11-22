@@ -5,7 +5,7 @@
     android:layout_width="fill_parent"
     android:layout_height="fill_parent">
 
-    <com.yuly.elaundry.widgets.SlidingUpPanelLayout
+    <com.yuly.elaundry.kurir.widgets.SlidingUpPanelLayout
         android:id="@+id/slidingLayout"
         android:gravity="bottom"
         app:shadowHeight="0dp"
@@ -79,7 +79,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"/>
 
-            <com.yuly.elaundry.peta.LockableRecyclerView
+            <com.yuly.elaundry.kurir.peta.LockableRecyclerView
                 android:id="@android:id/list"
                 android:cacheColorHint="@android:color/white"
                 android:drawSelectorOnTop="true"
@@ -91,7 +91,7 @@
                 android:layout_below="@id/transparentView"
                 android:smoothScrollbar="false"/>
         </RelativeLayout>
-    </com.yuly.elaundry.widgets.SlidingUpPanelLayout>
+    </com.yuly.elaundry.kurir.widgets.SlidingUpPanelLayout>
 
     <android.support.design.widget.FloatingActionButton
         android:layout_width="wrap_content"
