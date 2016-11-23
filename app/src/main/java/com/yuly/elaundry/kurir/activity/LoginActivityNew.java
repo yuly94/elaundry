@@ -1,7 +1,6 @@
 /**
- * Author: Ravi Tamada
- * URL: www.androidhive.info
- * twitter: http://twitter.com/ravitamada
+ * Author: Yuly Nurhidayati
+ * URL: elaundry.pe.hu
  */
 package com.yuly.elaundry.kurir.activity;
 
@@ -11,7 +10,8 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v7.app.AppCompatActivity;
 
-import com.yuly.elaundry.R;
+
+import com.yuly.elaundry.kurir.R;
 
 import com.yuly.elaundry.kurir.fragment.LoginFragmentVolley;
 import com.yuly.elaundry.kurir.helper.SQLiteHandler;
