@@ -18,7 +18,7 @@
         android:layout_height="wrap_content">
 
 
-        <com.yuly.elaundry.kurir.util.CircleButton
+        <com.yuly.elaundry.kurir.view.util.CircleButton
             android:id="@+id/imageButton1"
             app:cb_color="@android:color/holo_blue_light"
             app:cb_pressed_ring_width="8dip"
@@ -28,7 +28,7 @@
             />
 
 
-        <com.yuly.elaundry.kurir.util.CircleButton
+        <com.yuly.elaundry.kurir.view.util.CircleButton
             android:id="@+id/imageButton2"
             app:cb_color="#9c27b0"
             app:cb_pressed_ring_width="8dip"
@@ -37,7 +37,7 @@
             android:text="@string/action_ok"
             />
 
-        <com.yuly.elaundry.kurir.util.CircleButton
+        <com.yuly.elaundry.kurir.view.util.CircleButton
             android:id="@+id/imageButton3"
             app:cb_color="#ff4444"
             app:cb_pressed_ring_width="8dip"
@@ -60,7 +60,7 @@
 
 
 
-        <com.yuly.elaundry.kurir.util.CircleButton
+        <com.yuly.elaundry.kurir.view.util.CircleButton
             android:id="@+id/imageButton4"
             app:cb_color="#ff4081"
             app:cb_pressed_ring_width="8dip"
@@ -70,7 +70,7 @@
             />
 
 
-        <com.yuly.elaundry.kurir.util.CircleButton
+        <com.yuly.elaundry.kurir.view.util.CircleButton
             android:id="@+id/imageButton5"
             app:cb_color="#009688"
             app:cb_pressed_ring_width="8dip"
@@ -79,7 +79,7 @@
             android:text="@string/action_ok"
             />
 
-        <com.yuly.elaundry.kurir.util.CircleButton
+        <com.yuly.elaundry.kurir.view.util.CircleButton
             android:id="@+id/imageButton6"
             app:cb_color="#607d8b"
             app:cb_pressed_ring_width="8dip"

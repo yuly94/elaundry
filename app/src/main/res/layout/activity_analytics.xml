@@ -3,7 +3,7 @@
               android:layout_width="match_parent"
               android:layout_height="match_parent"
               android:orientation="vertical"
-              tools:context="com.yuly.elaundry.kurir.controller.Analytics">
+              tools:context="com.yuly.elaundry.kurir.controller.activity.Analytics">
 
     <View
         android:id="@+id/statusBarBackgroundDownload"

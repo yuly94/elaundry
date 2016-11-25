@@ -4,6 +4,7 @@ import android.content.Context;
 import android.util.Log;
 
 import com.yuly.elaundry.kurir.R;
+import com.yuly.elaundry.kurir.controller.activity.Analytics;
 import com.yuly.elaundry.kurir.model.dataType.MyMap;
 
 import org.json.JSONException;
@@ -151,7 +152,7 @@ public class Variable {
      */
     //    private boolean autoLoad;
     /**
-     * sport category spinner index at {@link com.yuly.elaundry.kurir.controller.Analytics#spinner}
+     * sport category spinner index at {@link Analytics#spinner}
      */
     private int sportCategoryIndex;
 

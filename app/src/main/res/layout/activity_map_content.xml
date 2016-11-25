@@ -10,6 +10,8 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"/>
 
+    <include layout="@layout/map_toolbar"/>
+
     <include layout="@layout/map_side_bar"/>
 
     <include layout="@layout/app_settings"/>
@@ -22,8 +24,12 @@
 
     <include layout="@layout/map_nav_instruction"/>
 
-    <include layout="@layout/map_nav_instruction_list"/>
-
     <include layout="@layout/map_nav_settings_cal"/>
+
+    <include layout="@layout/map_nav_instruction_list"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_marginBottom="11dp" />
 
 </RelativeLayout>

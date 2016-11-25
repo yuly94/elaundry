@@ -6,7 +6,7 @@ import android.util.Log;
 import android.view.View;
 
 import com.jjoe64.graphview.series.DataPoint;
-import com.yuly.elaundry.kurir.controller.AppSettings;
+import com.yuly.elaundry.kurir.controller.activity.AppSettings;
 import com.yuly.elaundry.kurir.model.database.DBtrackingPoints;
 import com.yuly.elaundry.kurir.model.listeners.TrackingListener;
 import com.yuly.elaundry.kurir.model.util.GenerateGPX;
