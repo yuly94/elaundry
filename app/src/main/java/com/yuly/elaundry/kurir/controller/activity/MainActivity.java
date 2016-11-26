@@ -250,8 +250,12 @@ public class MainActivity extends AppCompatActivity {
 				fragment = new TransaksiFragment();
 				break;
 			case 1:
-			//  fragment tempat
-				fragment = new AlamatFragment();
+			//  fragment tempa
+				// fragment = new AlamatFragment();
+
+				Intent intentMap = new Intent(this, MapActivity2.class);
+				startActivity(intentMap);
+
 				break;
 			case 2:
 			  //	fragment = new MapsFragmentLocation();

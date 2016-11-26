@@ -5,17 +5,18 @@ package com.yuly.elaundry.kurir.model.geterseter;
  */
 
 public class Movie {
-    private String title, genre, year;
-    private int date;
+    private String title, genre, year, nomer;
+    private int noid;
 
     public Movie() {
     }
 
-    public Movie(String title, String genre, String year, int date) {
+    public Movie(String title, String genre, String year, int noid, String nomer) {
         this.title = title;
         this.genre = genre;
         this.year = year;
-        this.date = date;
+        this.noid = noid;
+        this.nomer = nomer;
     }
 
     public String getTitle() {
@@ -26,12 +27,21 @@ public class Movie {
         this.title = name;
     }
 
-    public int getDate() {
-        return date;
+    public int getNoId() {
+        return noid;
     }
 
-    public void setDate(int date) {
-        this.date = date;
+    public void setNoId(int noid) {
+        this.noid = noid;
+    }
+
+
+    public String getNomer() {
+        return nomer;
+    }
+
+    public void setNomer(String nomer) {
+        this.nomer = nomer;
     }
 
 

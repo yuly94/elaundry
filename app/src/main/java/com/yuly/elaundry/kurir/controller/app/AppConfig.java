@@ -38,7 +38,7 @@ public class AppConfig {
 	public static String URL_PAKET= LINKAPI+"paket";
 
 	// Server user register url
-	public static String URL_PESANAN= LINKAPI+"pesanan";
+	public static String URL_PEMESANAN= LINKAPI+"pemesanan";
 
 	// Server user register url
 	public static String URL_TEMPAT= LINKAPI+"alamat/";

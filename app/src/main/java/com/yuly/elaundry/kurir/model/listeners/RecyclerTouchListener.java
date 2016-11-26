@@ -7,8 +7,6 @@ import android.view.GestureDetector;
 import android.view.MotionEvent;
 import android.view.View;
 
-import com.yuly.elaundry.kurir.controller.activity.MainActivity;
-import com.yuly.elaundry.kurir.controller.fragment.TransaksiFragment;
 
 public class RecyclerTouchListener implements RecyclerView.OnItemTouchListener {
 
