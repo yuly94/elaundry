@@ -187,8 +187,9 @@ public class MapActivity extends AppCompatActivity implements LocationListener {
         super.onStop();
         if (mCurrentLocation != null) {
             Variable.getVariable().setLastLocation(mapView.getModel().mapViewPosition.getMapPosition().latLong);
-            //                        log("last browsed location : "+mapView.getModel().mapViewPosition
-            // .getMapPosition().latLong);
+            //logging
+              log("lokasi terahir : "+mapView.getModel().mapViewPosition
+             .getMapPosition().latLong);
         }
         if (mapView != null)
             Variable.getVariable().setLastZoomLevel(mapView.getModel().mapViewPosition.getZoomLevel());
@@ -249,11 +250,11 @@ public class MapActivity extends AppCompatActivity implements LocationListener {
     }
 
     public void onProviderEnabled(String provider) {
-        Toast.makeText(getBaseContext(), "Gps is turned on!! ", Toast.LENGTH_SHORT).show();
+        Toast.makeText(getBaseContext(), "Gps hidup!! ", Toast.LENGTH_SHORT).show();
     }
 
     public void onProviderDisabled(String provider) {
-        Toast.makeText(getBaseContext(), "Gps is turned off!!", Toast.LENGTH_SHORT).show();
+        Toast.makeText(getBaseContext(), "Gps mati !!", Toast.LENGTH_SHORT).show();
     }
 
     /**

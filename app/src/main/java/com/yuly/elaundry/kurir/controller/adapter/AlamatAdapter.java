@@ -218,7 +218,7 @@ public class AlamatAdapter extends RecyclerView.Adapter<AlamatAdapter.GmailVH>  
 
             itemView.setOnClickListener(this);
 
-            //  title = (TextView) itemView.findViewById(R.id.listitem_name);
+            //  etHarga = (TextView) itemView.findViewById(R.id.listitem_name);
         }
 
         @Override

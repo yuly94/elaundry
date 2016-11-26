@@ -154,10 +154,12 @@ public class MainActivity extends AppCompatActivity {
 
 			if (user!=null) {
 
-				String nama = user.get("nama");
+				Log.d("TAG","tidak null");
+
+				String nama = user.get("kurir_nama");
 				//String alamat = user.get("alamat");
 				//String telepon = user.get("telepon");
-				String email = user.get("email");
+				String email = user.get("kurir_email");
 				api_key = user.get("api");
 
 

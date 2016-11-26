@@ -56,7 +56,7 @@ public class MapDownloader {
             } else {
                 writer = new FileOutputStream(toFile);
                 // save remote last modified data to local
-                Variable.getVariable().setMapLastModified(connection.getHeaderField("Last-Modified"));
+                Variable.getVariable().setMapLastModified(connection.getHeaderField("Terahir-Diperbarui"));
             }
 
             byte[] buffer = new byte[Constant.BUFFER_SIZE];
@@ -108,7 +108,7 @@ public class MapDownloader {
     private void prepareDownload(String urlStr, String toFile) throws IOException {
         HttpURLConnection conn = createConnection(urlStr);
         downloadedFile = new File(toFile);
-        String remoteLastModified = conn.getHeaderField("Last-Modified");
+        String remoteLastModified = conn.getHeaderField("Terahir-Diperbarui");
         fileLength = conn.getContentLength();
 
         startNewDownload = (!downloadedFile.exists() || downloadedFile.length() >= fileLength ||

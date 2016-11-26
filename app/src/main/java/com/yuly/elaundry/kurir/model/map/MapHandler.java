@@ -318,7 +318,7 @@ public class MapHandler {
                             activity.getResources().getColor(R.color.my_primary_dark_transparent), 20);
                     mapView.getLayerManager().getLayers().add(polylinePath);
                     if (Variable.getVariable().isDirectionsON()) {
-                        Navigator.getNavigator().setGhResponse(resp);
+                        Navigasi.getNavigator().setGhResponse(resp);
                         //                        log("navigator: " + Navigator.getNavigator().toString());
                     }
                 } else {
@@ -466,7 +466,7 @@ public class MapHandler {
      * @param str: message
      */
     private void logToast(String str) {
-        //        log(str);
+        log(str);
         Toast.makeText(activity, str, Toast.LENGTH_LONG).show();
     }
 }

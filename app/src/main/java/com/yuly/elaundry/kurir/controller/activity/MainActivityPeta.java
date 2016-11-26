@@ -64,7 +64,7 @@ public class MainActivityPeta extends AppCompatActivity implements MapDownloadLi
         //         greater Or Equal to Kitkat
         if (Build.VERSION.SDK_INT >= 19) {
             if (!Environment.getExternalStorageState().equals(Environment.MEDIA_MOUNTED)) {
-                Toast.makeText(this, "Pocket Maps is not usable without an external storage!", Toast.LENGTH_SHORT)
+                Toast.makeText(this, "Elaundry tidak bisa digunakan tanpa memori penyimpanan peta!", Toast.LENGTH_SHORT)
                         .show();
                 return;
             }
@@ -186,11 +186,11 @@ public class MainActivityPeta extends AppCompatActivity implements MapDownloadLi
             Variable.getVariable().setPrepareInProgress(true);
 
             int position = mapsRV.getChildAdapterPosition(view);
-            //            log(mapAdapter.getItem(position).getMapName() + " - " + "chosen");
+                        log(mapAdapter.getItem(position).getMapName() + " - " + "dipilih");
             Variable.getVariable().setCountry(mapAdapter.getItem(position).getMapName());
             if (changeMap) {
                 Variable.getVariable().setLastLocation(null);
-                //                log("last location " + Variable.getVariable().getLastLocation());
+                               log("lokasi terahir " + Variable.getVariable().getLastLocation());
                 MapHandler.reset();
                 System.gc();
             }
@@ -239,71 +239,21 @@ public class MainActivityPeta extends AppCompatActivity implements MapDownloadLi
         startActivity(intent);
         finish();
     }
-/*
-    @Override public boolean onCreateOptionsMenu(Menu menu) {
-        // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.menu_main, menu);
-        return true;
-    }
 
-    @Override public boolean onOptionsItemSelected(MenuItem item) {
-        switch (item.getItemId()) {
-            case R.id.menu_settings:
-                //                got to setting;
-                startActivity(new Intent(this, SettingsActivity.class));
-                return true;
-            case R.id.menu_home_page:
-                //                got to home page;
-                startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse("http://junjunguo.com/PocketMaps/")));
-                return true;
-            case R.id.menu_rate_pocket_maps:
-                Uri uri = Uri.parse("market://details?id=" + context.getPackageName());
-                Intent goToMarket = new Intent(Intent.ACTION_VIEW, uri);
-                // To count with Play market backstack, After pressing back button,
-                // to taken back to our application, we need to add following flags to intent.
-                goToMarket.addFlags(Intent.FLAG_ACTIVITY_NO_HISTORY |
-                        Intent.FLAG_ACTIVITY_CLEAR_WHEN_TASK_RESET |
-                        Intent.FLAG_ACTIVITY_MULTIPLE_TASK);
-                try {
-                    startActivity(goToMarket);
-                } catch (ActivityNotFoundException e) {
-                    startActivity(new Intent(Intent.ACTION_VIEW,
-                            Uri.parse("http://play.google.com/store/apps/details?id=" + context.getPackageName())));
-                }
-                return true;
-            case R.id.menu_quit:
-                quitApp();
-                return true;
-
-            default:
-                return super.onOptionsItemSelected(item);
-        }
-    }*/
 
     protected void onResume() {
         super.onResume();
-        //        log("on resume");
+              log("on resume");
         addRecentDownloadedFiles();
         DownloadFiles.getDownloader().addListener(this);
     }
 
     protected void onPause() {
         super.onPause();
-        //        log("on pause");
+               log("on pause");
         DownloadFiles.getDownloader().removeListener(this);
     }
 
-    /**
-     * finish all activities ( quit the app )
-     */
-    private void quitApp() {
-        Intent broadcastIntent = new Intent();
-        broadcastIntent.setAction("ACTION_QUIT");
-        LocalBroadcastManager.getInstance(this).sendBroadcast(broadcastIntent);
-
-        finish();
-        System.exit(0);
-    }
 
     /**
      * @return true is there is a network connection

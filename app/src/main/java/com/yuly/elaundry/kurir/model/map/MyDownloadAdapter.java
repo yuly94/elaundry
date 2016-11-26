@@ -33,6 +33,7 @@ public class MyDownloadAdapter extends RecyclerView.Adapter<MyDownloadAdapter.Vi
         public ViewHolder(View itemView, MapFABonClickListener mapFABonClick) {
             super(itemView);
             this.mapFABonClick = mapFABonClick;
+
             this.flag = (FloatingActionButton) itemView.findViewById(R.id.my_download_item_flag);
             this.name = (TextView) itemView.findViewById(R.id.my_download_item_name);
             this.continent = (TextView) itemView.findViewById(R.id.my_download_item_continent);

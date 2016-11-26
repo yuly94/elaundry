@@ -220,7 +220,7 @@ public class TransaksiAdapter extends RecyclerView.Adapter<TransaksiAdapter.Peme
 
            // itemView.setOnClickListener(this);
 
-            //  title = (TextView) itemView.findViewById(R.id.listitem_name);
+            //  etHarga = (TextView) itemView.findViewById(R.id.listitem_name);
         }
 
         public void onClick(View v) {

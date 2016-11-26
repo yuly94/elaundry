@@ -127,7 +127,7 @@
         <item name="titleTextStyle">@style/MyActionBarTitleText</item>
     </style>
 
-    <!-- ActionBar title text -->
+    <!-- ActionBar etHarga text -->
     <style name="MyActionBarTitleText"
         parent="@style/TextAppearance.AppCompat.Widget.ActionBar.Title">
         <item name="android:textColor">@color/my_icons</item>

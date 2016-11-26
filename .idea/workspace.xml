@@ -8,12 +8,29 @@
     </shared>
   </component>
   <component name="AndroidLogFilters">
+    <option name="TOOL_WINDOW_LOG_LEVEL" value="verbose" />
     <option name="TOOL_WINDOW_CONFIGURED_FILTER" value="Show only selected application" />
   </component>
   <component name="ChangeListManager">
     <list default="true" id="4ab180e6-566d-47d6-8acc-d99cddfd8721" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="/media/anonymous/data/AndroidStudioProjects/elaundry-kurir/app/src/main/java/com/yuly/elaundry/kurir/controller/activity/MapActivity2.java" />
-      <change type="NEW" beforePath="" afterPath="/media/anonymous/data/AndroidStudioProjects/elaundry-kurir/app/src/main/res/layout/list_row_pemesanan.xml" />
+      <change type="NEW" beforePath="" afterPath="/media/anonymous/data/AndroidStudioProjects/elaundry-kurir/app/src/main/java/com/yuly/elaundry/kurir/controller/activity/DetailPemesananActivity.java" />
+      <change type="NEW" beforePath="" afterPath="/media/anonymous/data/AndroidStudioProjects/elaundry-kurir/app/src/main/java/com/yuly/elaundry/kurir/model/geterseter/TransaksiModel.java" />
+      <change type="NEW" beforePath="" afterPath="/media/anonymous/data/AndroidStudioProjects/elaundry-kurir/app/src/main/res/drawable/ic_arrow_back_black_24dp.xml" />
+      <change type="NEW" beforePath="" afterPath="/media/anonymous/data/AndroidStudioProjects/elaundry-kurir/app/src/main/res/drawable/ic_arrow_forward_black_24dp.xml" />
+      <change type="NEW" beforePath="" afterPath="/media/anonymous/data/AndroidStudioProjects/elaundry-kurir/app/src/main/res/drawable/ic_arrow_upward_black_24dp.xml" />
+      <change type="NEW" beforePath="" afterPath="/media/anonymous/data/AndroidStudioProjects/elaundry-kurir/app/src/main/res/drawable/ic_call_made_black_24dp.xml" />
+      <change type="NEW" beforePath="" afterPath="/media/anonymous/data/AndroidStudioProjects/elaundry-kurir/app/src/main/res/drawable/ic_call_received_black_24dp.xml" />
+      <change type="NEW" beforePath="" afterPath="/media/anonymous/data/AndroidStudioProjects/elaundry-kurir/app/src/main/res/drawable/ic_camera_black_24dp.xml" />
+      <change type="NEW" beforePath="" afterPath="/media/anonymous/data/AndroidStudioProjects/elaundry-kurir/app/src/main/res/drawable/ic_navigation_black_24dp.xml" />
+      <change type="NEW" beforePath="" afterPath="/media/anonymous/data/AndroidStudioProjects/elaundry-kurir/app/src/main/res/drawable/ic_shopping_cart_black_24dp.xml" />
+      <change type="NEW" beforePath="" afterPath="/media/anonymous/data/AndroidStudioProjects/elaundry-kurir/app/src/main/res/layout/activity_detail_pemesanan.xml" />
+      <change type="NEW" beforePath="" afterPath="/media/anonymous/data/AndroidStudioProjects/elaundry-kurir/app/src/main/res/layout/activity_detail_pemesanan_new.xml" />
+      <change type="NEW" beforePath="" afterPath="/media/anonymous/data/AndroidStudioProjects/elaundry-kurir/app/src/main/res/layout/activity_peta2.xml" />
+      <change type="NEW" beforePath="" afterPath="/media/anonymous/data/AndroidStudioProjects/elaundry-kurir/app/src/main/res/layout/content_detail_pemesanan.xml" />
+      <change type="NEW" beforePath="" afterPath="/media/anonymous/data/AndroidStudioProjects/elaundry-kurir/app/src/main/res/layout/content_detail_pemesanan_2.xml" />
+      <change type="NEW" beforePath="" afterPath="/media/anonymous/data/AndroidStudioProjects/elaundry-kurir/app/src/main/res/values-v21/dimens.xml" />
+      <change type="DELETED" beforePath="/media/anonymous/data/AndroidStudioProjects/elaundry-kurir/app/src/main/java/com/yuly/elaundry/kurir/model/geterseter/Movie.java" afterPath="" />
+      <change type="MOVED" beforePath="/media/anonymous/data/AndroidStudioProjects/elaundry-kurir/app/src/main/java/com/yuly/elaundry/kurir/model/map/Navigator.java" afterPath="/media/anonymous/data/AndroidStudioProjects/elaundry-kurir/app/src/main/java/com/yuly/elaundry/kurir/model/map/Navigasi.java" />
       <change type="MODIFICATION" beforePath="/media/anonymous/data/AndroidStudioProjects/elaundry-kurir/.idea/libraries/accessibility_test_framework_1_0.xml" afterPath="/media/anonymous/data/AndroidStudioProjects/elaundry-kurir/.idea/libraries/accessibility_test_framework_1_0.xml" />
       <change type="MODIFICATION" beforePath="/media/anonymous/data/AndroidStudioProjects/elaundry-kurir/.idea/libraries/ant_1_8_0.xml" afterPath="/media/anonymous/data/AndroidStudioProjects/elaundry-kurir/.idea/libraries/ant_1_8_0.xml" />
       <change type="MODIFICATION" beforePath="/media/anonymous/data/AndroidStudioProjects/elaundry-kurir/.idea/libraries/ant_launcher_1_8_0.xml" afterPath="/media/anonymous/data/AndroidStudioProjects/elaundry-kurir/.idea/libraries/ant_launcher_1_8_0.xml" />
@@ -45,18 +62,42 @@
       <change type="MODIFICATION" beforePath="/media/anonymous/data/AndroidStudioProjects/elaundry-kurir/.idea/libraries/shadows_core_3_0.xml" afterPath="/media/anonymous/data/AndroidStudioProjects/elaundry-kurir/.idea/libraries/shadows_core_3_0.xml" />
       <change type="MODIFICATION" beforePath="/media/anonymous/data/AndroidStudioProjects/elaundry-kurir/.idea/libraries/sqlite4java_0_282.xml" afterPath="/media/anonymous/data/AndroidStudioProjects/elaundry-kurir/.idea/libraries/sqlite4java_0_282.xml" />
       <change type="MODIFICATION" beforePath="/media/anonymous/data/AndroidStudioProjects/elaundry-kurir/.idea/libraries/vtd_xml_2_11.xml" afterPath="/media/anonymous/data/AndroidStudioProjects/elaundry-kurir/.idea/libraries/vtd_xml_2_11.xml" />
-      <change type="MODIFICATION" beforePath="/media/anonymous/data/AndroidStudioProjects/elaundry-kurir/.idea/misc.xml" afterPath="/media/anonymous/data/AndroidStudioProjects/elaundry-kurir/.idea/misc.xml" />
       <change type="MODIFICATION" beforePath="/media/anonymous/data/AndroidStudioProjects/elaundry-kurir/.idea/workspace.xml" afterPath="/media/anonymous/data/AndroidStudioProjects/elaundry-kurir/.idea/workspace.xml" />
       <change type="MODIFICATION" beforePath="/media/anonymous/data/AndroidStudioProjects/elaundry-kurir/app/app.iml" afterPath="/media/anonymous/data/AndroidStudioProjects/elaundry-kurir/app/app.iml" />
       <change type="MODIFICATION" beforePath="/media/anonymous/data/AndroidStudioProjects/elaundry-kurir/app/src/main/AndroidManifest.xml" afterPath="/media/anonymous/data/AndroidStudioProjects/elaundry-kurir/app/src/main/AndroidManifest.xml" />
+      <change type="MODIFICATION" beforePath="/media/anonymous/data/AndroidStudioProjects/elaundry-kurir/app/src/main/java/com/yuly/elaundry/kurir/controller/activity/DownloadMapActivity.java" afterPath="/media/anonymous/data/AndroidStudioProjects/elaundry-kurir/app/src/main/java/com/yuly/elaundry/kurir/controller/activity/DownloadMapActivity.java" />
       <change type="MODIFICATION" beforePath="/media/anonymous/data/AndroidStudioProjects/elaundry-kurir/app/src/main/java/com/yuly/elaundry/kurir/controller/activity/MainActivity.java" afterPath="/media/anonymous/data/AndroidStudioProjects/elaundry-kurir/app/src/main/java/com/yuly/elaundry/kurir/controller/activity/MainActivity.java" />
+      <change type="MODIFICATION" beforePath="/media/anonymous/data/AndroidStudioProjects/elaundry-kurir/app/src/main/java/com/yuly/elaundry/kurir/controller/activity/MainActivityPeta.java" afterPath="/media/anonymous/data/AndroidStudioProjects/elaundry-kurir/app/src/main/java/com/yuly/elaundry/kurir/controller/activity/MainActivityPeta.java" />
+      <change type="MODIFICATION" beforePath="/media/anonymous/data/AndroidStudioProjects/elaundry-kurir/app/src/main/java/com/yuly/elaundry/kurir/controller/activity/MapActions.java" afterPath="/media/anonymous/data/AndroidStudioProjects/elaundry-kurir/app/src/main/java/com/yuly/elaundry/kurir/controller/activity/MapActions.java" />
+      <change type="MODIFICATION" beforePath="/media/anonymous/data/AndroidStudioProjects/elaundry-kurir/app/src/main/java/com/yuly/elaundry/kurir/controller/activity/MapActivity.java" afterPath="/media/anonymous/data/AndroidStudioProjects/elaundry-kurir/app/src/main/java/com/yuly/elaundry/kurir/controller/activity/MapActivity.java" />
+      <change type="MODIFICATION" beforePath="/media/anonymous/data/AndroidStudioProjects/elaundry-kurir/app/src/main/java/com/yuly/elaundry/kurir/controller/activity/MapActivity2.java" afterPath="/media/anonymous/data/AndroidStudioProjects/elaundry-kurir/app/src/main/java/com/yuly/elaundry/kurir/controller/activity/MapActivity2.java" />
+      <change type="MODIFICATION" beforePath="/media/anonymous/data/AndroidStudioProjects/elaundry-kurir/app/src/main/java/com/yuly/elaundry/kurir/controller/adapter/AlamatAdapter.java" afterPath="/media/anonymous/data/AndroidStudioProjects/elaundry-kurir/app/src/main/java/com/yuly/elaundry/kurir/controller/adapter/AlamatAdapter.java" />
       <change type="MODIFICATION" beforePath="/media/anonymous/data/AndroidStudioProjects/elaundry-kurir/app/src/main/java/com/yuly/elaundry/kurir/controller/adapter/PemesananAdapter.java" afterPath="/media/anonymous/data/AndroidStudioProjects/elaundry-kurir/app/src/main/java/com/yuly/elaundry/kurir/controller/adapter/PemesananAdapter.java" />
+      <change type="MODIFICATION" beforePath="/media/anonymous/data/AndroidStudioProjects/elaundry-kurir/app/src/main/java/com/yuly/elaundry/kurir/controller/adapter/TempatAdapter.java" afterPath="/media/anonymous/data/AndroidStudioProjects/elaundry-kurir/app/src/main/java/com/yuly/elaundry/kurir/controller/adapter/TempatAdapter.java" />
+      <change type="MODIFICATION" beforePath="/media/anonymous/data/AndroidStudioProjects/elaundry-kurir/app/src/main/java/com/yuly/elaundry/kurir/controller/adapter/TransaksiAdapter.java" afterPath="/media/anonymous/data/AndroidStudioProjects/elaundry-kurir/app/src/main/java/com/yuly/elaundry/kurir/controller/adapter/TransaksiAdapter.java" />
       <change type="MODIFICATION" beforePath="/media/anonymous/data/AndroidStudioProjects/elaundry-kurir/app/src/main/java/com/yuly/elaundry/kurir/controller/app/AppConfig.java" afterPath="/media/anonymous/data/AndroidStudioProjects/elaundry-kurir/app/src/main/java/com/yuly/elaundry/kurir/controller/app/AppConfig.java" />
+      <change type="MODIFICATION" beforePath="/media/anonymous/data/AndroidStudioProjects/elaundry-kurir/app/src/main/java/com/yuly/elaundry/kurir/controller/fragment/ProfileFragment.java" afterPath="/media/anonymous/data/AndroidStudioProjects/elaundry-kurir/app/src/main/java/com/yuly/elaundry/kurir/controller/fragment/ProfileFragment.java" />
       <change type="MODIFICATION" beforePath="/media/anonymous/data/AndroidStudioProjects/elaundry-kurir/app/src/main/java/com/yuly/elaundry/kurir/controller/fragment/TransaksiFragment.java" afterPath="/media/anonymous/data/AndroidStudioProjects/elaundry-kurir/app/src/main/java/com/yuly/elaundry/kurir/controller/fragment/TransaksiFragment.java" />
-      <change type="MODIFICATION" beforePath="/media/anonymous/data/AndroidStudioProjects/elaundry-kurir/app/src/main/java/com/yuly/elaundry/kurir/model/geterseter/Movie.java" afterPath="/media/anonymous/data/AndroidStudioProjects/elaundry-kurir/app/src/main/java/com/yuly/elaundry/kurir/model/geterseter/Movie.java" />
-      <change type="MODIFICATION" beforePath="/media/anonymous/data/AndroidStudioProjects/elaundry-kurir/app/src/main/java/com/yuly/elaundry/kurir/model/listeners/RecyclerTouchListener.java" afterPath="/media/anonymous/data/AndroidStudioProjects/elaundry-kurir/app/src/main/java/com/yuly/elaundry/kurir/model/listeners/RecyclerTouchListener.java" />
+      <change type="MODIFICATION" beforePath="/media/anonymous/data/AndroidStudioProjects/elaundry-kurir/app/src/main/java/com/yuly/elaundry/kurir/model/dataType/MyMap.java" afterPath="/media/anonymous/data/AndroidStudioProjects/elaundry-kurir/app/src/main/java/com/yuly/elaundry/kurir/model/dataType/MyMap.java" />
+      <change type="MODIFICATION" beforePath="/media/anonymous/data/AndroidStudioProjects/elaundry-kurir/app/src/main/java/com/yuly/elaundry/kurir/model/map/MapDownloader.java" afterPath="/media/anonymous/data/AndroidStudioProjects/elaundry-kurir/app/src/main/java/com/yuly/elaundry/kurir/model/map/MapDownloader.java" />
+      <change type="MODIFICATION" beforePath="/media/anonymous/data/AndroidStudioProjects/elaundry-kurir/app/src/main/java/com/yuly/elaundry/kurir/model/map/MapHandler.java" afterPath="/media/anonymous/data/AndroidStudioProjects/elaundry-kurir/app/src/main/java/com/yuly/elaundry/kurir/model/map/MapHandler.java" />
+      <change type="MODIFICATION" beforePath="/media/anonymous/data/AndroidStudioProjects/elaundry-kurir/app/src/main/java/com/yuly/elaundry/kurir/model/map/MyDownloadAdapter.java" afterPath="/media/anonymous/data/AndroidStudioProjects/elaundry-kurir/app/src/main/java/com/yuly/elaundry/kurir/model/map/MyDownloadAdapter.java" />
+      <change type="MODIFICATION" beforePath="/media/anonymous/data/AndroidStudioProjects/elaundry-kurir/app/src/main/java/com/yuly/elaundry/kurir/model/map/OnDownloading.java" afterPath="/media/anonymous/data/AndroidStudioProjects/elaundry-kurir/app/src/main/java/com/yuly/elaundry/kurir/model/map/OnDownloading.java" />
+      <change type="MODIFICATION" beforePath="/media/anonymous/data/AndroidStudioProjects/elaundry-kurir/app/src/main/java/com/yuly/elaundry/kurir/model/util/GenerateGPX.java" afterPath="/media/anonymous/data/AndroidStudioProjects/elaundry-kurir/app/src/main/java/com/yuly/elaundry/kurir/model/util/GenerateGPX.java" />
+      <change type="MODIFICATION" beforePath="/media/anonymous/data/AndroidStudioProjects/elaundry-kurir/app/src/main/java/com/yuly/elaundry/kurir/model/util/InstructionAdapter.java" afterPath="/media/anonymous/data/AndroidStudioProjects/elaundry-kurir/app/src/main/java/com/yuly/elaundry/kurir/model/util/InstructionAdapter.java" />
+      <change type="MODIFICATION" beforePath="/media/anonymous/data/AndroidStudioProjects/elaundry-kurir/app/src/main/java/com/yuly/elaundry/kurir/model/util/SetStatusBarColor.java" afterPath="/media/anonymous/data/AndroidStudioProjects/elaundry-kurir/app/src/main/java/com/yuly/elaundry/kurir/model/util/SetStatusBarColor.java" />
+      <change type="MODIFICATION" beforePath="/media/anonymous/data/AndroidStudioProjects/elaundry-kurir/app/src/main/java/com/yuly/elaundry/kurir/model/util/Variable.java" afterPath="/media/anonymous/data/AndroidStudioProjects/elaundry-kurir/app/src/main/java/com/yuly/elaundry/kurir/model/util/Variable.java" />
       <change type="MODIFICATION" beforePath="/media/anonymous/data/AndroidStudioProjects/elaundry-kurir/app/src/main/res/layout/activity_main.xml" afterPath="/media/anonymous/data/AndroidStudioProjects/elaundry-kurir/app/src/main/res/layout/activity_main.xml" />
+      <change type="MODIFICATION" beforePath="/media/anonymous/data/AndroidStudioProjects/elaundry-kurir/app/src/main/res/layout/activity_peta.xml" afterPath="/media/anonymous/data/AndroidStudioProjects/elaundry-kurir/app/src/main/res/layout/activity_peta.xml" />
+      <change type="MODIFICATION" beforePath="/media/anonymous/data/AndroidStudioProjects/elaundry-kurir/app/src/main/res/layout/list_row_pemesanan.xml" afterPath="/media/anonymous/data/AndroidStudioProjects/elaundry-kurir/app/src/main/res/layout/list_row_pemesanan.xml" />
+      <change type="MODIFICATION" beforePath="/media/anonymous/data/AndroidStudioProjects/elaundry-kurir/app/src/main/res/layout/map_nav_settings.xml" afterPath="/media/anonymous/data/AndroidStudioProjects/elaundry-kurir/app/src/main/res/layout/map_nav_settings.xml" />
+      <change type="MODIFICATION" beforePath="/media/anonymous/data/AndroidStudioProjects/elaundry-kurir/app/src/main/res/layout/map_side_bar.xml" afterPath="/media/anonymous/data/AndroidStudioProjects/elaundry-kurir/app/src/main/res/layout/map_side_bar.xml" />
       <change type="MODIFICATION" beforePath="/media/anonymous/data/AndroidStudioProjects/elaundry-kurir/app/src/main/res/menu/menu_main.xml" afterPath="/media/anonymous/data/AndroidStudioProjects/elaundry-kurir/app/src/main/res/menu/menu_main.xml" />
+      <change type="MODIFICATION" beforePath="/media/anonymous/data/AndroidStudioProjects/elaundry-kurir/app/src/main/res/values-in/strings.xml" afterPath="/media/anonymous/data/AndroidStudioProjects/elaundry-kurir/app/src/main/res/values-in/strings.xml" />
+      <change type="MODIFICATION" beforePath="/media/anonymous/data/AndroidStudioProjects/elaundry-kurir/app/src/main/res/values-w820dp/dimens.xml" afterPath="/media/anonymous/data/AndroidStudioProjects/elaundry-kurir/app/src/main/res/values-w820dp/dimens.xml" />
+      <change type="MODIFICATION" beforePath="/media/anonymous/data/AndroidStudioProjects/elaundry-kurir/app/src/main/res/values/dimens.xml" afterPath="/media/anonymous/data/AndroidStudioProjects/elaundry-kurir/app/src/main/res/values/dimens.xml" />
+      <change type="MODIFICATION" beforePath="/media/anonymous/data/AndroidStudioProjects/elaundry-kurir/app/src/main/res/values/strings.xml" afterPath="/media/anonymous/data/AndroidStudioProjects/elaundry-kurir/app/src/main/res/values/strings.xml" />
+      <change type="MODIFICATION" beforePath="/media/anonymous/data/AndroidStudioProjects/elaundry-kurir/app/src/main/res/values/styles.xml" afterPath="/media/anonymous/data/AndroidStudioProjects/elaundry-kurir/app/src/main/res/values/styles.xml" />
     </list>
     <ignored path="elaundry-kurir.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -89,123 +130,120 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="MainActivity.java" pinned="false" current-in-tab="false">
-        <entry file="file:///media/anonymous/data/AndroidStudioProjects/elaundry-kurir/app/src/main/java/com/yuly/elaundry/kurir/controller/activity/MainActivity.java">
+      <file leaf-file-name="MyUtility.java" pinned="false" current-in-tab="false">
+        <entry file="file:///media/anonymous/data/AndroidStudioProjects/elaundry-kurir/app/src/main/java/com/yuly/elaundry/kurir/model/util/MyUtility.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="3150">
-              <caret line="255" column="64" selection-start-line="255" selection-start-column="64" selection-end-line="255" selection-end-column="64" />
-              <folding>
-                <element signature="imports" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="MapActivity2.java" pinned="false" current-in-tab="false">
-        <entry file="file:///media/anonymous/data/AndroidStudioProjects/elaundry-kurir/app/src/main/java/com/yuly/elaundry/kurir/controller/activity/MapActivity2.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-1318">
-              <caret line="78" column="10" selection-start-line="78" selection-start-column="10" selection-end-line="78" selection-end-column="10" />
+            <state relative-caret-position="-1019">
+              <caret line="5" column="13" selection-start-line="5" selection-start-column="13" selection-end-line="5" selection-end-column="13" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="AndroidManifest.xml" pinned="false" current-in-tab="false">
-        <entry file="file:///media/anonymous/data/AndroidStudioProjects/elaundry-kurir/app/src/main/AndroidManifest.xml">
-          <provider editor-type-id="android-manifest">
-            <state />
-          </provider>
+      <file leaf-file-name="SetStatusBarColor.java" pinned="false" current-in-tab="false">
+        <entry file="file:///media/anonymous/data/AndroidStudioProjects/elaundry-kurir/app/src/main/java/com/yuly/elaundry/kurir/model/util/SetStatusBarColor.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1245">
-              <caret line="83" column="0" selection-start-line="83" selection-start-column="0" selection-end-line="83" selection-end-column="0" />
+            <state relative-caret-position="179">
+              <caret line="23" column="9" selection-start-line="23" selection-start-column="9" selection-end-line="23" selection-end-column="9" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="TransaksiAdapter.java" pinned="false" current-in-tab="false">
-        <entry file="file:///media/anonymous/data/AndroidStudioProjects/elaundry-kurir/app/src/main/java/com/yuly/elaundry/kurir/controller/adapter/TransaksiAdapter.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="375">
-              <caret line="46" column="32" selection-start-line="46" selection-start-column="32" selection-end-line="46" selection-end-column="32" />
-              <folding>
-                <element signature="imports" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="PemesananAdapter.java" pinned="false" current-in-tab="false">
-        <entry file="file:///media/anonymous/data/AndroidStudioProjects/elaundry-kurir/app/src/main/java/com/yuly/elaundry/kurir/controller/adapter/PemesananAdapter.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1035">
-              <caret line="88" column="5" selection-start-line="88" selection-start-column="5" selection-end-line="88" selection-end-column="5" />
-              <folding>
-                <element signature="imports" expanded="true" />
-                <element signature="e#2845#2846#0" expanded="true" />
-                <element signature="e#2885#2886#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="MapActions.java" pinned="false" current-in-tab="false">
-        <entry file="file:///media/anonymous/data/AndroidStudioProjects/elaundry-kurir/app/src/main/java/com/yuly/elaundry/kurir/controller/activity/MapActions.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-6779">
-              <caret line="281" column="48" selection-start-line="281" selection-start-column="48" selection-end-line="281" selection-end-column="48" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="MapActivity.java" pinned="false" current-in-tab="true">
-        <entry file="file:///media/anonymous/data/AndroidStudioProjects/elaundry-kurir/app/src/main/java/com/yuly/elaundry/kurir/controller/activity/MapActivity.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1558">
-              <caret line="107" column="9" selection-start-line="107" selection-start-column="9" selection-end-line="107" selection-end-column="9" />
-              <folding>
-                <element signature="imports" expanded="true" />
-                <element signature="docComment;method#getmCurrentLocation#0;class#MapActivity#0" expanded="false" />
-                <element signature="e#8369#8394#0" expanded="false" />
-                <element signature="method#onStatusChanged#0;class#MapActivity#0" expanded="false" />
-                <element signature="method#onProviderEnabled#0;class#MapActivity#0" expanded="false" />
-                <element signature="method#onProviderDisabled#0;class#MapActivity#0" expanded="false" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="RecyclerTouchListener.java" pinned="false" current-in-tab="false">
-        <entry file="file:///media/anonymous/data/AndroidStudioProjects/elaundry-kurir/app/src/main/java/com/yuly/elaundry/kurir/model/listeners/RecyclerTouchListener.java">
+      <file leaf-file-name="SpinnerAdapter.java" pinned="false" current-in-tab="false">
+        <entry file="file:///media/anonymous/data/AndroidStudioProjects/elaundry-kurir/app/src/main/java/com/yuly/elaundry/kurir/model/util/SpinnerAdapter.java">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="60">
-              <caret line="8" column="0" selection-start-line="8" selection-start-column="0" selection-end-line="8" selection-end-column="0" />
+              <caret line="15" column="13" selection-start-line="15" selection-start-column="13" selection-end-line="15" selection-end-column="13" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="map_nav_instruction_list.xml" pinned="false" current-in-tab="false">
+        <entry file="file:///media/anonymous/data/AndroidStudioProjects/elaundry-kurir/app/src/main/res/layout/map_nav_instruction_list.xml">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="-2572">
+              <caret line="15" column="8" selection-start-line="15" selection-start-column="8" selection-end-line="15" selection-end-column="46" />
+              <folding />
+            </state>
+          </provider>
+          <provider editor-type-id="android-designer2">
+            <state />
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="MapActions.java" pinned="false" current-in-tab="true">
+        <entry file="file:///media/anonymous/data/AndroidStudioProjects/elaundry-kurir/app/src/main/java/com/yuly/elaundry/kurir/controller/activity/MapActions.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="-490">
+              <caret line="690" column="67" selection-start-line="690" selection-start-column="67" selection-end-line="690" selection-end-column="67" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="MapActivity.java" pinned="false" current-in-tab="false">
+        <entry file="file:///media/anonymous/data/AndroidStudioProjects/elaundry-kurir/app/src/main/java/com/yuly/elaundry/kurir/controller/activity/MapActivity.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="2250">
+              <caret line="189" column="21" selection-start-line="189" selection-start-column="21" selection-end-line="189" selection-end-column="21" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="map_nav_settings_to.xml" pinned="false" current-in-tab="false">
+        <entry file="file:///media/anonymous/data/AndroidStudioProjects/elaundry-kurir/app/src/main/res/layout/map_nav_settings_to.xml">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="15">
+              <caret line="6" column="43" selection-start-line="6" selection-start-column="43" selection-end-line="6" selection-end-column="43" />
+              <folding />
+            </state>
+          </provider>
+          <provider editor-type-id="android-designer2">
+            <state />
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="map_nav_settings.xml" pinned="false" current-in-tab="false">
+        <entry file="file:///media/anonymous/data/AndroidStudioProjects/elaundry-kurir/app/src/main/res/layout/map_nav_settings.xml">
+          <provider editor-type-id="text-editor">
+            <state relative-caret-position="2655">
+              <caret line="177" column="46" selection-start-line="177" selection-start-column="46" selection-end-line="177" selection-end-column="46" />
+              <folding />
+            </state>
+          </provider>
+          <provider selected="true" editor-type-id="android-designer2">
+            <state />
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="map_nav_settings_cal.xml" pinned="false" current-in-tab="false">
+        <entry file="file:///media/anonymous/data/AndroidStudioProjects/elaundry-kurir/app/src/main/res/layout/map_nav_settings_cal.xml">
+          <provider editor-type-id="text-editor">
+            <state relative-caret-position="405">
+              <caret line="27" column="21" selection-start-line="27" selection-start-column="21" selection-end-line="27" selection-end-column="21" />
               <folding>
-                <element signature="imports" expanded="true" />
+                <element signature="e#909#931#0" expanded="true" />
               </folding>
             </state>
           </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="MainActivityPeta.java" pinned="false" current-in-tab="false">
-        <entry file="file:///media/anonymous/data/AndroidStudioProjects/elaundry-kurir/app/src/main/java/com/yuly/elaundry/kurir/controller/activity/MainActivityPeta.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="4770">
-              <caret line="356" column="0" selection-start-line="356" selection-start-column="0" selection-end-line="364" selection-end-column="5" />
-              <folding />
-            </state>
+          <provider selected="true" editor-type-id="android-designer2">
+            <state />
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="AppConfig.java" pinned="false" current-in-tab="false">
-        <entry file="file:///media/anonymous/data/AndroidStudioProjects/elaundry-kurir/app/src/main/java/com/yuly/elaundry/kurir/controller/app/AppConfig.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="480">
-              <caret line="40" column="58" selection-start-line="40" selection-start-column="58" selection-end-line="40" selection-end-column="58" />
+      <file leaf-file-name="map_side_bar.xml" pinned="false" current-in-tab="false">
+        <entry file="file:///media/anonymous/data/AndroidStudioProjects/elaundry-kurir/app/src/main/res/layout/map_side_bar.xml">
+          <provider editor-type-id="text-editor">
+            <state relative-caret-position="1380">
+              <caret line="92" column="14" selection-start-line="0" selection-start-column="38" selection-end-line="92" selection-end-column="14" />
               <folding />
             </state>
+          </provider>
+          <provider selected="true" editor-type-id="android-designer2">
+            <state />
           </provider>
         </entry>
       </file>
@@ -216,6 +254,7 @@
       <list>
         <option value="layoutResourceFile_vertical" />
         <option value="ASClass" />
+        <option value="valueResourceFile" />
       </list>
     </option>
   </component>
@@ -2861,57 +2900,57 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="/media/anonymous/data/AndroidStudioProjects/elaundry-kurir/app/src/main/java/com/yuly/elaundry/kurir/fragment/AlamatFragment.java" />
-        <option value="/media/anonymous/data/AndroidStudioProjects/elaundry-kurir/app/src/main/java/com/yuly/elaundry/kurir/fragment/ChangePassFragment.java" />
-        <option value="/media/anonymous/data/AndroidStudioProjects/elaundry-kurir/app/src/main/java/com/yuly/elaundry/kurir/fragment/HistoryFragment.java" />
-        <option value="/media/anonymous/data/AndroidStudioProjects/elaundry-kurir/app/src/main/java/com/yuly/elaundry/kurir/fragment/LoginFragmentVolley.java" />
-        <option value="/media/anonymous/data/AndroidStudioProjects/elaundry-kurir/app/src/main/java/com/yuly/elaundry/kurir/fragment/ProfileFragment.java" />
-        <option value="/media/anonymous/data/AndroidStudioProjects/elaundry-kurir/app/src/main/java/com/yuly/elaundry/kurir/fragment/RegisterFragmentVolley.java" />
-        <option value="/media/anonymous/data/AndroidStudioProjects/elaundry-kurir/app/src/main/java/com/yuly/elaundry/kurir/fragment/ResetPasswordFragment.java" />
-        <option value="/media/anonymous/data/AndroidStudioProjects/elaundry-kurir/app/src/main/java/com/yuly/elaundry/kurir/fragment/TempatFragment.java" />
-        <option value="/media/anonymous/data/AndroidStudioProjects/elaundry-kurir/app/src/main/java/com/yuly/elaundry/kurir/fragment/TransaksiFragment.java" />
-        <option value="/media/anonymous/data/AndroidStudioProjects/elaundry-kurir/app/src/main/java/com/yuly/elaundry/kurir/helper/VolleyErrorHelper.java" />
-        <option value="/media/anonymous/data/AndroidStudioProjects/elaundry-kurir/app/src/main/java/com/yuly/elaundry/kurir/widgets/CircleImageView.java" />
-        <option value="/media/anonymous/data/AndroidStudioProjects/elaundry-kurir/app/src/main/java/com/yuly/elaundry/kurir/widgets/FastScroller.java" />
-        <option value="/media/anonymous/data/AndroidStudioProjects/elaundry-kurir/app/src/main/java/com/yuly/elaundry/kurir/widgets/SlidingUpPanelLayout.java" />
-        <option value="/media/anonymous/data/AndroidStudioProjects/elaundry-kurir/app/src/main/java/com/yuly/elaundry/kurir/util/CircleButton.java" />
-        <option value="/media/anonymous/data/AndroidStudioProjects/elaundry-kurir/app/src/main/java/com/yuly/elaundry/kurir/util/HelpUtils.java" />
-        <option value="/media/anonymous/data/AndroidStudioProjects/elaundry-kurir/app/src/main/java/com/yuly/elaundry/kurir/peta/HeaderAdapter.java" />
-        <option value="/media/anonymous/data/AndroidStudioProjects/elaundry-kurir/app/src/main/java/com/yuly/elaundry/kurir/navigation/NavDrawerListAdapter.java" />
-        <option value="/media/anonymous/data/AndroidStudioProjects/elaundry-kurir/app/src/main/java/com/yuly/elaundry/kurir/helper/KonsumenDbHandler.java" />
-        <option value="/media/anonymous/data/AndroidStudioProjects/elaundry-kurir/app/src/main/java/com/yuly/elaundry/kurir/model/database/KonsumenDbHandler.java" />
-        <option value="/media/anonymous/data/AndroidStudioProjects/elaundry-kurir/app/src/main/java/com/yuly/elaundry/kurir/model/map/LockableRecyclerView.java" />
-        <option value="/media/anonymous/data/AndroidStudioProjects/elaundry-kurir/app/src/main/java/com/yuly/elaundry/kurir/controller/MainActivityPeta.java" />
-        <option value="/media/anonymous/data/AndroidStudioProjects/elaundry-kurir/app/src/main/java/com/yuly/elaundry/kurir/controller/fragment/AlamatFragment.java" />
-        <option value="/media/anonymous/data/AndroidStudioProjects/elaundry-kurir/app/src/main/java/com/yuly/elaundry/kurir/controller/fragment/TempatFragment.java" />
-        <option value="/media/anonymous/data/AndroidStudioProjects/elaundry-kurir/app/src/main/java/com/yuly/elaundry/kurir/controller/activity/PemesananActivity.java" />
-        <option value="/media/anonymous/data/AndroidStudioProjects/elaundry-kurir/app/src/main/java/com/yuly/elaundry/kurir/controller/fragment/SettingsFragment.java" />
-        <option value="/media/anonymous/data/AndroidStudioProjects/elaundry-kurir/app/src/main/res/layout/fragment_settings.xml" />
-        <option value="/media/anonymous/data/AndroidStudioProjects/elaundry-kurir/app/src/main/res/layout/my_maps_item.xml" />
         <option value="/media/anonymous/data/AndroidStudioProjects/elaundry-kurir/app/src/main/java/com/yuly/elaundry/kurir/controller/activity/GantiPetaActivity.java" />
-        <option value="/media/anonymous/data/AndroidStudioProjects/elaundry-kurir/app/src/main/res/layout/my_download_item.xml" />
         <option value="/media/anonymous/data/AndroidStudioProjects/elaundry-kurir/app/src/main/res/layout/activity_map.xml" />
         <option value="/media/anonymous/data/AndroidStudioProjects/elaundry-kurir/app/src/main/res/layout/map_toolbar.xml" />
         <option value="/media/anonymous/data/AndroidStudioProjects/elaundry-kurir/app/src/main/res/layout/activity_map_content.xml" />
-        <option value="/media/anonymous/data/AndroidStudioProjects/elaundry-kurir/app/src/main/java/com/yuly/elaundry/kurir/controller/activity/MapActivity.java" />
-        <option value="/media/anonymous/data/AndroidStudioProjects/elaundry-kurir/app/src/main/java/com/yuly/elaundry/kurir/controller/activity/MainActivityPeta.java" />
         <option value="/media/anonymous/data/AndroidStudioProjects/elaundry-kurir/app/src/main/res/layout/activity_main_peta.xml" />
-        <option value="/media/anonymous/data/AndroidStudioProjects/elaundry-kurir/app/src/main/java/com/yuly/elaundry/kurir/controller/activity/DownloadMapActivity.java" />
         <option value="/media/anonymous/data/AndroidStudioProjects/elaundry-kurir/app/src/main/res/values/nav_drawer.xml" />
         <option value="/media/anonymous/data/AndroidStudioProjects/elaundry-kurir/app/src/main/java/com/yuly/elaundry/kurir/controller/activity/SettingsActivity.java" />
         <option value="/media/anonymous/data/AndroidStudioProjects/elaundry-kurir/app/src/main/res/menu/menu_pemesanan.xml" />
         <option value="/media/anonymous/data/AndroidStudioProjects/elaundry-kurir/app/src/main/java/com/yuly/elaundry/kurir/controller/adapter/TransaksiAdapter.java" />
         <option value="/media/anonymous/data/AndroidStudioProjects/elaundry-kurir/app/src/main/res/layout/movie_list_row.xml" />
         <option value="/media/anonymous/data/AndroidStudioProjects/elaundry-kurir/app/src/main/java/com/yuly/elaundry/kurir/model/geterseter/PesananModels.java" />
-        <option value="/media/anonymous/data/AndroidStudioProjects/elaundry-kurir/app/src/main/res/layout/list_row_pemesanan.xml" />
-        <option value="/media/anonymous/data/AndroidStudioProjects/elaundry-kurir/app/src/main/java/com/yuly/elaundry/kurir/model/geterseter/Movie.java" />
-        <option value="/media/anonymous/data/AndroidStudioProjects/elaundry-kurir/app/src/main/java/com/yuly/elaundry/kurir/controller/app/AppConfig.java" />
-        <option value="/media/anonymous/data/AndroidStudioProjects/elaundry-kurir/app/src/main/java/com/yuly/elaundry/kurir/controller/fragment/TransaksiFragment.java" />
-        <option value="/media/anonymous/data/AndroidStudioProjects/elaundry-kurir/app/src/main/java/com/yuly/elaundry/kurir/controller/adapter/PemesananAdapter.java" />
         <option value="/media/anonymous/data/AndroidStudioProjects/elaundry-kurir/app/src/main/java/com/yuly/elaundry/kurir/model/listeners/RecyclerTouchListener.java" />
+        <option value="/media/anonymous/data/AndroidStudioProjects/elaundry-kurir/app/src/main/java/com/yuly/elaundry/kurir/controller/app/AppConfig.java" />
+        <option value="/media/anonymous/data/AndroidStudioProjects/elaundry-kurir/app/src/main/java/com/yuly/elaundry/kurir/model/geterseter/Movie.java" />
         <option value="/media/anonymous/data/AndroidStudioProjects/elaundry-kurir/app/src/main/AndroidManifest.xml" />
+        <option value="/media/anonymous/data/AndroidStudioProjects/elaundry-kurir/app/src/main/res/layout/content_detail_pemesanan_2.xml" />
+        <option value="/media/anonymous/data/AndroidStudioProjects/elaundry-kurir/app/src/main/res/layout/activity_detail_pemesanan.xml" />
+        <option value="/media/anonymous/data/AndroidStudioProjects/elaundry-kurir/app/src/main/res/layout/content_detail_pemesanan.xml" />
+        <option value="/media/anonymous/data/AndroidStudioProjects/elaundry-kurir/app/src/main/res/layout/activity_peta.xml" />
+        <option value="/media/anonymous/data/AndroidStudioProjects/elaundry-kurir/app/src/main/res/layout/activity_peta2.xml" />
+        <option value="/media/anonymous/data/AndroidStudioProjects/elaundry-kurir/app/src/main/res/layout/map_nav_settings_from.xml" />
+        <option value="/media/anonymous/data/AndroidStudioProjects/elaundry-kurir/app/src/main/res/layout/map_nav_settings.xml" />
+        <option value="/media/anonymous/data/AndroidStudioProjects/elaundry-kurir/app/src/main/res/layout/map_nav_settings_to.xml" />
+        <option value="/media/anonymous/data/AndroidStudioProjects/elaundry-kurir/app/src/main/res/layout/my_download_item.xml" />
+        <option value="/media/anonymous/data/AndroidStudioProjects/elaundry-kurir/app/src/main/java/com/yuly/elaundry/kurir/model/map/MyDownloadAdapter.java" />
+        <option value="/media/anonymous/data/AndroidStudioProjects/elaundry-kurir/app/src/main/java/com/yuly/elaundry/kurir/model/util/GenerateGPX.java" />
+        <option value="/media/anonymous/data/AndroidStudioProjects/elaundry-kurir/app/src/main/res/values/dimens.xml" />
+        <option value="/media/anonymous/data/AndroidStudioProjects/elaundry-kurir/app/src/main/res/values-w820dp/dimens.xml" />
+        <option value="/media/anonymous/data/AndroidStudioProjects/elaundry-kurir/app/src/main/res/values-v21/dimens.xml" />
+        <option value="/media/anonymous/data/AndroidStudioProjects/elaundry-kurir/app/src/main/java/com/yuly/elaundry/kurir/model/util/Variable.java" />
+        <option value="/media/anonymous/data/AndroidStudioProjects/elaundry-kurir/app/src/main/java/com/yuly/elaundry/kurir/controller/activity/DownloadMapActivity.java" />
         <option value="/media/anonymous/data/AndroidStudioProjects/elaundry-kurir/app/src/main/java/com/yuly/elaundry/kurir/controller/activity/MainActivity.java" />
+        <option value="/media/anonymous/data/AndroidStudioProjects/elaundry-kurir/app/src/main/res/layout/map_side_bar.xml" />
+        <option value="/media/anonymous/data/AndroidStudioProjects/elaundry-kurir/app/src/main/java/com/yuly/elaundry/kurir/model/geterseter/TransaksiModel.java" />
+        <option value="/media/anonymous/data/AndroidStudioProjects/elaundry-kurir/app/src/main/java/com/yuly/elaundry/kurir/controller/adapter/PemesananAdapter.java" />
+        <option value="/media/anonymous/data/AndroidStudioProjects/elaundry-kurir/app/src/main/java/com/yuly/elaundry/kurir/controller/fragment/TransaksiFragment.java" />
+        <option value="/media/anonymous/data/AndroidStudioProjects/elaundry-kurir/app/src/main/res/layout/list_row_pemesanan.xml" />
+        <option value="/media/anonymous/data/AndroidStudioProjects/elaundry-kurir/app/src/main/java/com/yuly/elaundry/kurir/controller/activity/DetailPemesananActivity.java" />
+        <option value="/media/anonymous/data/AndroidStudioProjects/elaundry-kurir/app/src/main/res/layout/activity_detail_pemesanan_new.xml" />
+        <option value="/media/anonymous/data/AndroidStudioProjects/elaundry-kurir/app/src/main/java/com/yuly/elaundry/kurir/model/map/Navigator.java" />
+        <option value="/media/anonymous/data/AndroidStudioProjects/elaundry-kurir/app/src/main/java/com/yuly/elaundry/kurir/controller/activity/MapActivity.java" />
         <option value="/media/anonymous/data/AndroidStudioProjects/elaundry-kurir/app/src/main/java/com/yuly/elaundry/kurir/controller/activity/MapActivity2.java" />
+        <option value="/media/anonymous/data/AndroidStudioProjects/elaundry-kurir/app/src/main/java/com/yuly/elaundry/kurir/controller/activity/MapActions.java" />
+        <option value="/media/anonymous/data/AndroidStudioProjects/elaundry-kurir/app/src/main/java/com/yuly/elaundry/kurir/controller/fragment/ProfileFragment.java" />
+        <option value="/media/anonymous/data/AndroidStudioProjects/elaundry-kurir/app/src/main/java/com/yuly/elaundry/kurir/controller/activity/MainActivityPeta.java" />
+        <option value="/media/anonymous/data/AndroidStudioProjects/elaundry-kurir/app/src/main/java/com/yuly/elaundry/kurir/model/dataType/MyMap.java" />
+        <option value="/media/anonymous/data/AndroidStudioProjects/elaundry-kurir/app/src/main/java/com/yuly/elaundry/kurir/model/map/MapDownloader.java" />
+        <option value="/media/anonymous/data/AndroidStudioProjects/elaundry-kurir/app/src/main/java/com/yuly/elaundry/kurir/model/map/MapHandler.java" />
+        <option value="/media/anonymous/data/AndroidStudioProjects/elaundry-kurir/app/src/main/java/com/yuly/elaundry/kurir/model/map/Navigasi.java" />
+        <option value="/media/anonymous/data/AndroidStudioProjects/elaundry-kurir/app/src/main/java/com/yuly/elaundry/kurir/model/map/OnDownloading.java" />
+        <option value="/media/anonymous/data/AndroidStudioProjects/elaundry-kurir/app/src/main/java/com/yuly/elaundry/kurir/model/util/SetStatusBarColor.java" />
       </list>
     </option>
   </component>
@@ -2946,7 +2985,9 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="PackagesPane" />
+      <pane id="Scope" />
+      <pane id="ProjectPane" />
+      <pane id="Scratches" />
       <pane id="AndroidView">
         <subPane>
           <PATH>
@@ -2964,12 +3005,562 @@
               <option name="myItemId" value="elaundry-kurir" />
               <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidViewProjectNode" />
             </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="libs_google_volley" />
+              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidModuleNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="resources" />
+              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidSourceTypeNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="elaundry-kurir" />
+              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="libs_google_volley" />
+              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidModuleNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="elaundry-kurir" />
+              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="app" />
+              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidModuleNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="res" />
+              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidResFolderNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="values" />
+              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidResFolderTypeNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="elaundry-kurir" />
+              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="app" />
+              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidModuleNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="res" />
+              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidResFolderNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="values" />
+              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidResFolderTypeNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="styles.xml" />
+              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidResGroupNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="elaundry-kurir" />
+              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="app" />
+              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidModuleNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="res" />
+              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidResFolderNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="values" />
+              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidResFolderTypeNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="strings.xml" />
+              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidResGroupNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="elaundry-kurir" />
+              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="app" />
+              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidModuleNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="res" />
+              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidResFolderNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="values" />
+              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidResFolderTypeNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="dimens.xml" />
+              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidResGroupNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="elaundry-kurir" />
+              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="app" />
+              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidModuleNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="res" />
+              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidResFolderNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="elaundry-kurir" />
+              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="app" />
+              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidModuleNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="res" />
+              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidResFolderNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="layout" />
+              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidResFolderTypeNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="elaundry-kurir" />
+              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="app" />
+              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidModuleNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="java" />
+              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidSourceTypeNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="elaundry-kurir" />
+              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="app" />
+              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidModuleNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="java" />
+              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidSourceTypeNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="kurir" />
+              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidPsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="view" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="widgets" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="elaundry-kurir" />
+              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="app" />
+              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidModuleNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="java" />
+              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidSourceTypeNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="kurir" />
+              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidPsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="view" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="util" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="elaundry-kurir" />
+              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="app" />
+              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidModuleNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="java" />
+              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidSourceTypeNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="kurir" />
+              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidPsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="view" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="navigation" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="elaundry-kurir" />
+              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="app" />
+              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidModuleNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="java" />
+              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidSourceTypeNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="kurir" />
+              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidPsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="model" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="util" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="elaundry-kurir" />
+              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="app" />
+              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidModuleNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="java" />
+              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidSourceTypeNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="kurir" />
+              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidPsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="model" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="map" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="elaundry-kurir" />
+              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="app" />
+              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidModuleNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="java" />
+              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidSourceTypeNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="kurir" />
+              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidPsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="model" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="listeners" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="elaundry-kurir" />
+              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="app" />
+              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidModuleNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="java" />
+              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidSourceTypeNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="kurir" />
+              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidPsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="model" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="helper" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="elaundry-kurir" />
+              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="app" />
+              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidModuleNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="java" />
+              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidSourceTypeNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="kurir" />
+              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidPsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="model" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="geterseter" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="elaundry-kurir" />
+              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="app" />
+              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidModuleNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="java" />
+              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidSourceTypeNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="kurir" />
+              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidPsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="model" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="function" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="elaundry-kurir" />
+              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="app" />
+              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidModuleNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="java" />
+              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidSourceTypeNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="kurir" />
+              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidPsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="model" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="dataType" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="elaundry-kurir" />
+              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="app" />
+              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidModuleNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="java" />
+              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidSourceTypeNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="kurir" />
+              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidPsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="model" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="database" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="elaundry-kurir" />
+              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="app" />
+              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidModuleNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="java" />
+              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidSourceTypeNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="kurir" />
+              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidPsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="controller" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="fragment" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="elaundry-kurir" />
+              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="app" />
+              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidModuleNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="java" />
+              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidSourceTypeNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="kurir" />
+              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidPsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="controller" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="app" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="elaundry-kurir" />
+              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="app" />
+              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidModuleNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="java" />
+              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidSourceTypeNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="kurir" />
+              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidPsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="controller" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="adapter" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="elaundry-kurir" />
+              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="app" />
+              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidModuleNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="java" />
+              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidSourceTypeNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="kurir" />
+              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidPsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="controller" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="activity" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="elaundry-kurir" />
+              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="app" />
+              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidModuleNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="manifests" />
+              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidManifestsGroupNode" />
+            </PATH_ELEMENT>
           </PATH>
         </subPane>
       </pane>
-      <pane id="Scope" />
-      <pane id="ProjectPane" />
-      <pane id="Scratches" />
+      <pane id="PackagesPane" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -2982,7 +3573,8 @@
     <property name="device.picker.selection" value="192.168.72.101:5555" />
     <property name="UI_DESIGNER_EDITOR_MODE.NlPaletteManager-NlPreviewForm.SHOW" value="false" />
     <property name="UI_DESIGNER_EDITOR_MODE.NlPropertiesWindowManager-NlEditorPanel.WIDTH" value="332" />
-    <property name="UI_DESIGNER_EDITOR_MODE.NlPaletteManager-NlEditorPanel.WIDTH" value="145" />
+    <property name="UI_DESIGNER_EDITOR_MODE.NlPaletteManager-NlEditorPanel.WIDTH" value="214" />
+    <property name="VectorAssetImportPath" value="$PROJECT_DIR$/../../.." />
   </component>
   <component name="RecentsManager">
     <key name="MoveClassesOrPackagesDialog.RECENTS_KEY">
@@ -3346,36 +3938,45 @@
       <option name="project" value="LOCAL" />
       <updated>1480073700421</updated>
     </task>
-    <option name="localTasksCounter" value="7" />
+    <task id="LOCAL-00007" summary="Menambahkan mengambil transaksi">
+      <created>1480138133010</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1480138133010</updated>
+    </task>
+    <option name="localTasksCounter" value="8" />
     <servers />
   </component>
   <component name="ToolWindowManager">
     <frame x="53" y="24" width="1313" height="744" extended-state="6" />
     <editor active="false" />
     <layout>
-      <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Nl-Palette" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.46935484" sideWeight="0.49092343" order="13" side_tool="false" content_ui="tabs" />
       <window_info id="Build Variants" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="true" content_ui="tabs" />
+      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32419354" sideWeight="0.50907654" order="8" side_tool="true" content_ui="tabs" />
+      <window_info id="Android Monitor" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.075806454" sideWeight="0.49092343" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Properties" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
+      <window_info id="Capture Tool" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
+      <window_info id="Designer" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Android Model" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.24546172" sideWeight="0.5" order="10" side_tool="true" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
+      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.2467742" sideWeight="0.49092343" order="13" side_tool="false" content_ui="tabs" />
       <window_info id="Palette&#9;" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Image Layers" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Capture Analysis" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
-      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.57258064" sideWeight="0.50276244" order="8" side_tool="true" content_ui="tabs" />
-      <window_info id="Android Monitor" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.12903225" sideWeight="0.49723756" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Preview" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
+      <window_info id="Version Control" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.5516129" sideWeight="0.49802685" order="9" side_tool="false" content_ui="tabs" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.22258064" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Version Control" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.4516129" sideWeight="0.5122336" order="9" side_tool="false" content_ui="tabs" />
-      <window_info id="Properties" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.329582" sideWeight="0.5" order="12" side_tool="false" content_ui="tabs" />
       <window_info id="Captures" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Capture Tool" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Gradle Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="10" side_tool="true" content_ui="tabs" />
-      <window_info id="Designer" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.29281768" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.2691397" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32903227" sideWeight="0.49723756" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Gradle" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Android Model" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.24546172" sideWeight="0.5" order="10" side_tool="true" content_ui="tabs" />
       <window_info id="Theme Preview" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
-      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="5" side_tool="true" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
@@ -3385,8 +3986,6 @@
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.24940805" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
-      <window_info id="Preview" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
-      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32903227" sideWeight="0.49723756" order="1" side_tool="false" content_ui="tabs" />
     </layout>
   </component>
   <component name="Vcs.Log.UiProperties">
@@ -3405,7 +4004,8 @@
     <MESSAGE value="Add Maps masih error" />
     <MESSAGE value="Fix Error" />
     <MESSAGE value="edit recyclerview" />
-    <option name="LAST_COMMIT_MESSAGE" value="edit recyclerview" />
+    <MESSAGE value="Menambahkan mengambil transaksi" />
+    <option name="LAST_COMMIT_MESSAGE" value="Menambahkan mengambil transaksi" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -3415,473 +4015,565 @@
           <line>57</line>
           <properties />
         </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file:///media/anonymous/data/AndroidStudioProjects/elaundry-kurir/app/src/main/java/com/yuly/elaundry/kurir/model/dataType/MyMap.java</url>
+          <line>107</line>
+          <properties />
+          <option name="timeStamp" value="6" />
+        </line-breakpoint>
       </breakpoints>
-      <option name="time" value="3" />
+      <option name="time" value="8" />
     </breakpoint-manager>
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file:///media/anonymous/data/AndroidStudioProjects/elaundry-kurir/app/src/main/res/layout/my_download_item.xml">
+    <entry file="file:///media/anonymous/data/AndroidStudioProjects/elaundry-kurir/app/src/main/res/layout/my_maps_item.xml">
+      <provider editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
       <provider selected="true" editor-type-id="android-designer2">
         <state />
       </provider>
+    </entry>
+    <entry file="file:///media/anonymous/data/AndroidStudioProjects/elaundry-kurir/app/src/main/res/layout/movie_list_row.xml">
       <provider editor-type-id="text-editor">
-        <state relative-caret-position="-946">
-          <caret line="8" column="4" selection-start-line="8" selection-start-column="4" selection-end-line="8" selection-end-column="4" />
+        <state relative-caret-position="450">
+          <caret line="30" column="39" selection-start-line="30" selection-start-column="39" selection-end-line="30" selection-end-column="39" />
+          <folding />
         </state>
       </provider>
+      <provider selected="true" editor-type-id="android-designer2">
+        <state />
+      </provider>
     </entry>
-    <entry file="file:///media/anonymous/data/AndroidStudioProjects/elaundry-kurir/app/src/main/java/com/yuly/elaundry/kurir/model/map/MyDownloadAdapter.java">
+    <entry file="file:///media/anonymous/data/AndroidStudioProjects/elaundry-kurir/app/src/main/res/layout/map_nav_instruction_item.xml">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="285">
-          <caret line="19" column="13" selection-start-line="19" selection-start-column="13" selection-end-line="19" selection-end-column="13" />
+        <state relative-caret-position="-549">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+      <provider editor-type-id="android-designer2">
+        <state />
+      </provider>
+    </entry>
+    <entry file="file:///media/anonymous/data/AndroidStudioProjects/elaundry-kurir/app/src/main/res/layout/map_toolbar.xml">
+      <provider editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+      <provider selected="true" editor-type-id="android-designer2">
+        <state />
+      </provider>
+    </entry>
+    <entry file="file:///media/anonymous/data/AndroidStudioProjects/elaundry-kurir/app/src/main/res/values-w820dp/dimens.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="180">
+          <caret line="12" column="0" selection-start-line="12" selection-start-column="0" selection-end-line="12" selection-end-column="0" />
+          <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file:///media/anonymous/data/AndroidStudioProjects/elaundry-kurir/app/src/main/java/com/yuly/elaundry/kurir/model/util/Variable.java">
+    <entry file="file:///media/anonymous/data/AndroidStudioProjects/elaundry-kurir/app/src/main/res/values-v21/dimens.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="345">
+          <caret line="23" column="0" selection-start-line="23" selection-start-column="0" selection-end-line="23" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file:///media/anonymous/data/AndroidStudioProjects/elaundry-kurir/app/src/main/res/values/dimens.xml">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="283">
-          <caret line="174" column="28" selection-start-line="174" selection-start-column="28" selection-end-line="174" selection-end-column="28" />
+          <caret line="20" column="0" selection-start-line="20" selection-start-column="0" selection-end-line="20" selection-end-column="0" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file:///media/anonymous/data/AndroidStudioProjects/elaundry-kurir/app/src/main/res/layout/app_settings.xml">
-      <provider editor-type-id="android-designer2">
-        <state />
-      </provider>
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file:///media/anonymous/data/AndroidStudioProjects/elaundry-kurir/app/src/main/res/layout/my_maps_item.xml">
-      <provider selected="true" editor-type-id="android-designer2">
-        <state />
-      </provider>
+    <entry file="file:///media/anonymous/data/AndroidStudioProjects/elaundry-kurir/app/src/main/res/layout/my_download_item.xml">
       <provider editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file:///media/anonymous/data/AndroidStudioProjects/elaundry-kurir/app/src/main/java/com/yuly/elaundry/kurir/controller/activity/PemesananActivity.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-2928">
-          <caret line="72" column="60" selection-start-line="72" selection-start-column="60" selection-end-line="72" selection-end-column="60" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file:///media/anonymous/data/AndroidStudioProjects/elaundry-kurir/app/src/main/res/layout/activity_map_content.xml">
-      <provider editor-type-id="android-designer2">
-        <state />
-      </provider>
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="450">
-          <caret line="30" column="30" selection-start-line="30" selection-start-column="30" selection-end-line="30" selection-end-column="30" />
+        <state relative-caret-position="438">
+          <caret line="93" column="21" selection-start-line="93" selection-start-column="21" selection-end-line="93" selection-end-column="21" />
           <folding />
         </state>
       </provider>
-    </entry>
-    <entry file="file:///media/anonymous/data/AndroidStudioProjects/elaundry-kurir/app/src/main/res/layout/activity_main.xml">
       <provider selected="true" editor-type-id="android-designer2">
         <state />
-      </provider>
-      <provider editor-type-id="text-editor">
-        <state relative-caret-position="90">
-          <caret line="6" column="0" selection-start-line="6" selection-start-column="0" selection-end-line="6" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file:///media/anonymous/data/AndroidStudioProjects/elaundry-kurir/app/src/main/res/layout/activity_map.xml">
-      <provider editor-type-id="android-designer2">
-        <state />
-      </provider>
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="15">
-          <caret line="1" column="0" selection-start-line="1" selection-start-column="0" selection-end-line="1" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file:///media/anonymous/data/AndroidStudioProjects/elaundry-kurir/app/src/main/res/layout/activity_main_peta.xml">
-      <provider selected="true" editor-type-id="android-designer2">
-        <state />
-      </provider>
-      <provider editor-type-id="text-editor">
-        <state relative-caret-position="420">
-          <caret line="28" column="0" selection-start-line="28" selection-start-column="0" selection-end-line="28" selection-end-column="0" />
-        </state>
       </provider>
     </entry>
     <entry file="file:///media/anonymous/data/AndroidStudioProjects/elaundry-kurir/app/src/main/java/com/yuly/elaundry/kurir/controller/activity/DownloadMapActivity.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="201">
-          <caret line="59" column="6" selection-start-line="59" selection-start-column="4" selection-end-line="62" selection-end-column="10" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file:///media/anonymous/data/AndroidStudioProjects/elaundry-kurir/app/src/main/res/layout/activity_download.xml">
-      <provider selected="true" editor-type-id="android-designer2">
-        <state />
-      </provider>
-      <provider editor-type-id="text-editor">
-        <state relative-caret-position="285">
-          <caret line="19" column="17" selection-start-line="19" selection-start-column="17" selection-end-line="19" selection-end-column="17" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file:///media/anonymous/data/AndroidStudioProjects/elaundry-kurir/app/src/main/res/layout/map_toolbar.xml">
-      <provider selected="true" editor-type-id="android-designer2">
-        <state />
-      </provider>
-      <provider editor-type-id="text-editor">
-        <state relative-caret-position="90">
-          <caret line="6" column="51" selection-start-line="6" selection-start-column="51" selection-end-line="6" selection-end-column="51" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file:///media/anonymous/data/AndroidStudioProjects/elaundry-kurir/app/src/main/res/layout/map_side_bar.xml">
-      <provider selected="true" editor-type-id="android-designer2">
-        <state />
-      </provider>
-      <provider editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file:///media/anonymous/data/AndroidStudioProjects/elaundry-kurir/app/src/main/res/values/strings.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="60">
-          <caret line="4" column="25" selection-start-line="4" selection-start-column="24" selection-end-line="4" selection-end-column="25" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file:///media/anonymous/data/AndroidStudioProjects/elaundry-kurir/app/src/main/res/values/nav_drawer.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="240">
-          <caret line="16" column="0" selection-start-line="16" selection-start-column="0" selection-end-line="16" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file:///media/anonymous/data/AndroidStudioProjects/elaundry-kurir/app/src/main/res/values/styles.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="555">
-          <caret line="37" column="32" selection-start-line="37" selection-start-column="17" selection-end-line="37" selection-end-column="32" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file:///media/anonymous/data/AndroidStudioProjects/elaundry-kurir/app/src/main/res/layout/activity_settings.xml">
-      <provider selected="true" editor-type-id="android-designer2">
-        <state />
-      </provider>
-      <provider editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file:///media/anonymous/data/AndroidStudioProjects/elaundry-kurir/app/src/main/res/layout/activity_scrolling.xml">
-      <provider selected="true" editor-type-id="android-designer2">
-        <state />
-      </provider>
-      <provider editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file:///media/anonymous/data/AndroidStudioProjects/elaundry-kurir/app/src/main/res/layout/activity_peta.xml">
-      <provider selected="true" editor-type-id="android-designer2">
-        <state />
-      </provider>
-      <provider editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file:///media/anonymous/data/AndroidStudioProjects/elaundry-kurir/app/src/main/res/layout/activity_pesanan.xml">
-      <provider selected="true" editor-type-id="android-designer2">
-        <state />
-      </provider>
-      <provider editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file:///media/anonymous/data/AndroidStudioProjects/elaundry-kurir/app/src/main/res/layout/activity_login.xml">
-      <provider selected="true" editor-type-id="android-designer2">
-        <state />
-      </provider>
-      <provider editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file:///media/anonymous/data/AndroidStudioProjects/elaundry-kurir/app/src/main/res/layout/content_scrolling.xml">
-      <provider selected="true" editor-type-id="android-designer2">
-        <state />
-      </provider>
-      <provider editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file:///media/anonymous/data/AndroidStudioProjects/elaundry-kurir/app/src/main/res/layout/dialog_about.xml">
-      <provider selected="true" editor-type-id="android-designer2">
-        <state />
-      </provider>
-      <provider editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file:///media/anonymous/data/AndroidStudioProjects/elaundry-kurir/app/src/main/res/layout/dialog_change_password.xml">
-      <provider selected="true" editor-type-id="android-designer2">
-        <state />
-      </provider>
-      <provider editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file:///media/anonymous/data/AndroidStudioProjects/elaundry-kurir/app/src/main/java/com/yuly/elaundry/kurir/controller/activity/SettingsActivity.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="330">
-          <caret line="37" column="7" selection-start-line="37" selection-start-column="7" selection-end-line="37" selection-end-column="7" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file:///media/anonymous/data/AndroidStudioProjects/elaundry-kurir/app/src/main/res/menu/menu_pemesanan.xml">
-      <provider editor-type-id="android-designer2">
-        <state />
-      </provider>
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="195">
-          <caret line="13" column="29" selection-start-line="13" selection-start-column="29" selection-end-line="13" selection-end-column="29" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file:///media/anonymous/data/AndroidStudioProjects/elaundry-kurir/app/src/main/res/menu/popup_song.xml">
-      <provider selected="true" editor-type-id="android-designer2">
-        <state />
-      </provider>
-      <provider editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file:///media/anonymous/data/AndroidStudioProjects/elaundry-kurir/app/src/main/java/com/yuly/elaundry/kurir/model/listeners/TrackingListener.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="75">
-          <caret line="6" column="17" selection-start-line="6" selection-start-column="17" selection-end-line="6" selection-end-column="17" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file:///media/anonymous/data/AndroidStudioProjects/elaundry-kurir/app/src/main/java/com/yuly/elaundry/kurir/controller/fragment/SettingsFragment.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="467">
-          <caret line="81" column="7" selection-start-line="81" selection-start-column="7" selection-end-line="81" selection-end-column="7" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file:///media/anonymous/data/AndroidStudioProjects/elaundry-kurir/app/src/main/java/com/yuly/elaundry/kurir/model/geterseter/PesananModels.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="675">
-          <caret line="57" column="21" selection-start-line="57" selection-start-column="19" selection-end-line="57" selection-end-column="21" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file:///media/anonymous/data/AndroidStudioProjects/elaundry-kurir/app/src/main/res/layout/movie_list_row.xml">
-      <provider selected="true" editor-type-id="android-designer2">
-        <state />
-      </provider>
-      <provider editor-type-id="text-editor">
-        <state relative-caret-position="450">
-          <caret line="30" column="39" selection-start-line="30" selection-start-column="39" selection-end-line="30" selection-end-column="39" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file:///media/anonymous/data/AndroidStudioProjects/elaundry-kurir/app/src/main/res/layout/list_row_pesanan.xml">
-      <provider selected="true" editor-type-id="android-designer2">
-        <state />
-      </provider>
-      <provider editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file:///media/anonymous/data/AndroidStudioProjects/elaundry-kurir/app/src/main/res/layout/list_row_pemesanan.xml">
-      <provider selected="true" editor-type-id="android-designer2">
-        <state />
-      </provider>
-      <provider editor-type-id="text-editor">
-        <state relative-caret-position="630">
-          <caret line="42" column="52" selection-start-line="42" selection-start-column="52" selection-end-line="42" selection-end-column="52" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file:///media/anonymous/data/AndroidStudioProjects/elaundry-kurir/app/src/main/java/com/yuly/elaundry/kurir/controller/activity/LoginActivityNew.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-131">
-          <caret line="19" column="13" selection-start-line="19" selection-start-column="13" selection-end-line="19" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file:///media/anonymous/data/AndroidStudioProjects/elaundry-kurir/app/src/main/java/com/yuly/elaundry/kurir/controller/fragment/LoginFragmentVolley.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="329">
-          <caret line="163" column="61" selection-start-line="163" selection-start-column="16" selection-end-line="163" selection-end-column="61" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file:///media/anonymous/data/AndroidStudioProjects/elaundry-kurir/app/src/main/java/com/yuly/elaundry/kurir/model/geterseter/Movie.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="15">
-          <caret line="8" column="21" selection-start-line="8" selection-start-column="21" selection-end-line="8" selection-end-column="21" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar:///media/anonymous/data/Android/android-sdk-linux/extras/android/m2repository/com/android/support/appcompat-v7/25.0.1/appcompat-v7-25.0.1-sources.jar!/android/support/v7/app/AppCompatViewInflater.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="16">
-          <caret line="283" column="0" selection-start-line="283" selection-start-column="0" selection-end-line="283" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file:///media/anonymous/data/AndroidStudioProjects/elaundry-kurir/app/src/main/java/com/yuly/elaundry/kurir/controller/fragment/TempatFragment.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-686">
-          <caret line="53" column="44" selection-start-line="53" selection-start-column="28" selection-end-line="53" selection-end-column="44" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file:///media/anonymous/data/AndroidStudioProjects/elaundry-kurir/app/src/main/java/com/yuly/elaundry/kurir/controller/fragment/ProfileFragment.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-6748">
-          <caret line="49" column="13" selection-start-line="49" selection-start-column="13" selection-end-line="49" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file:///media/anonymous/data/AndroidStudioProjects/elaundry-kurir/app/src/main/java/com/yuly/elaundry/kurir/controller/fragment/TransaksiFragment.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1020">
-          <caret line="120" column="74" selection-start-line="120" selection-start-column="74" selection-end-line="120" selection-end-column="74" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#20447#20448#0" expanded="true" />
-            <element signature="e#20475#20476#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file:///media/anonymous/data/AndroidStudioProjects/elaundry-kurir/app/src/main/java/com/yuly/elaundry/kurir/controller/adapter/TransaksiAdapter.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="375">
-          <caret line="46" column="32" selection-start-line="46" selection-start-column="32" selection-end-line="46" selection-end-column="32" />
+        <state relative-caret-position="315">
+          <caret line="103" column="0" selection-start-line="103" selection-start-column="0" selection-end-line="103" selection-end-column="0" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file:///media/anonymous/data/AndroidStudioProjects/elaundry-kurir/app/src/main/java/com/yuly/elaundry/kurir/controller/adapter/PemesananAdapter.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1035">
-          <caret line="88" column="5" selection-start-line="88" selection-start-column="5" selection-end-line="88" selection-end-column="5" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#2845#2846#0" expanded="true" />
-            <element signature="e#2885#2886#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file:///media/anonymous/data/AndroidStudioProjects/elaundry-kurir/app/src/main/java/com/yuly/elaundry/kurir/model/listeners/RecyclerTouchListener.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="60">
-          <caret line="8" column="0" selection-start-line="8" selection-start-column="0" selection-end-line="8" selection-end-column="0" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file:///media/anonymous/data/AndroidStudioProjects/elaundry-kurir/app/src/main/java/com/yuly/elaundry/kurir/controller/activity/MainActivityPeta.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="4770">
-          <caret line="356" column="0" selection-start-line="356" selection-start-column="0" selection-end-line="364" selection-end-column="5" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file:///media/anonymous/data/AndroidStudioProjects/elaundry-kurir/app/src/main/AndroidManifest.xml">
-      <provider editor-type-id="android-manifest">
-        <state />
-      </provider>
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1245">
-          <caret line="83" column="0" selection-start-line="83" selection-start-column="0" selection-end-line="83" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
     <entry file="file:///media/anonymous/data/AndroidStudioProjects/elaundry-kurir/app/src/main/java/com/yuly/elaundry/kurir/controller/activity/MainActivity.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="3150">
-          <caret line="255" column="64" selection-start-line="255" selection-start-column="64" selection-end-line="255" selection-end-column="64" />
+        <state relative-caret-position="169">
+          <caret line="170" column="41" selection-start-line="170" selection-start-column="41" selection-end-line="170" selection-end-column="41" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file:///media/anonymous/data/AndroidStudioProjects/elaundry-kurir/app/src/main/java/com/yuly/elaundry/kurir/controller/adapter/TransaksiAdapter.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="75">
+          <caret line="26" column="13" selection-start-line="26" selection-start-column="13" selection-end-line="26" selection-end-column="13" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file:///media/anonymous/data/AndroidStudioProjects/elaundry-kurir/app/src/main/java/com/yuly/elaundry/kurir/model/geterseter/TransaksiModel.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="305">
+          <caret line="52" column="0" selection-start-line="52" selection-start-column="0" selection-end-line="52" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file:///media/anonymous/data/AndroidStudioProjects/elaundry-kurir/app/src/main/java/com/yuly/elaundry/kurir/controller/adapter/PemesananAdapter.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="324">
+          <caret line="161" column="55" selection-start-line="161" selection-start-column="55" selection-end-line="161" selection-end-column="55" />
           <folding>
-            <element signature="imports" expanded="true" />
+            <element signature="e#2969#2970#0" expanded="true" />
+            <element signature="e#3012#3013#0" expanded="true" />
+            <element signature="e#3146#4585#0" expanded="true" />
+            <element signature="e#3355#4477#0" expanded="true" />
+            <element signature="e#4476#4477#0" expanded="true" />
+            <element signature="e#4584#4585#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file:///media/anonymous/data/AndroidStudioProjects/elaundry-kurir/app/src/main/java/com/yuly/elaundry/kurir/controller/app/AppConfig.java">
+    <entry file="file:///media/anonymous/data/AndroidStudioProjects/elaundry-kurir/app/src/main/java/com/yuly/elaundry/kurir/controller/fragment/TransaksiFragment.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="480">
-          <caret line="40" column="58" selection-start-line="40" selection-start-column="58" selection-end-line="40" selection-end-column="58" />
+        <state relative-caret-position="292">
+          <caret line="482" column="47" selection-start-line="482" selection-start-column="47" selection-end-line="482" selection-end-column="47" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file:///media/anonymous/data/AndroidStudioProjects/elaundry-kurir/app/src/main/res/layout/list_row_pemesanan.xml">
+      <provider editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+      <provider selected="true" editor-type-id="android-designer2">
+        <state />
+      </provider>
+    </entry>
+    <entry file="file:///media/anonymous/data/AndroidStudioProjects/elaundry-kurir/app/src/main/res/layout/activity_main.xml">
+      <provider editor-type-id="text-editor">
+        <state relative-caret-position="180">
+          <caret line="12" column="55" selection-start-line="12" selection-start-column="55" selection-end-line="12" selection-end-column="55" />
+          <folding />
+        </state>
+      </provider>
+      <provider selected="true" editor-type-id="android-designer2">
+        <state />
+      </provider>
+    </entry>
+    <entry file="file:///media/anonymous/data/AndroidStudioProjects/elaundry-kurir/app/src/main/java/com/yuly/elaundry/kurir/controller/activity/DetailPemesananActivity.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="168">
+          <caret line="63" column="42" selection-start-line="63" selection-start-column="42" selection-end-line="63" selection-end-column="42" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file:///media/anonymous/data/AndroidStudioProjects/elaundry-kurir/app/src/main/java/com/yuly/elaundry/kurir/model/util/Variable.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="327">
+          <caret line="154" column="7" selection-start-line="154" selection-start-column="7" selection-end-line="154" selection-end-column="7" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file:///media/anonymous/data/AndroidStudioProjects/elaundry-kurir/app/src/main/java/com/yuly/elaundry/kurir/controller/activity/MapActivity2.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-1318">
-          <caret line="78" column="10" selection-start-line="78" selection-start-column="10" selection-end-line="78" selection-end-column="10" />
+        <state relative-caret-position="3285">
+          <caret line="260" column="50" selection-start-line="260" selection-start-column="50" selection-end-line="260" selection-end-column="50" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file:///media/anonymous/data/AndroidStudioProjects/elaundry-kurir/app/src/main/java/com/yuly/elaundry/kurir/controller/fragment/ProfileFragment.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="453">
+          <caret line="562" column="0" selection-start-line="562" selection-start-column="0" selection-end-line="562" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file:///media/anonymous/data/AndroidStudioProjects/elaundry-kurir/app/src/main/java/com/yuly/elaundry/kurir/controller/activity/MainActivityPeta.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="2220">
+          <caret line="188" column="88" selection-start-line="188" selection-start-column="88" selection-end-line="188" selection-end-column="88" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file:///media/anonymous/data/AndroidStudioProjects/elaundry-kurir/app/src/main/res/layout/activity_detail_pemesanan_new.xml">
+      <provider editor-type-id="text-editor">
+        <state relative-caret-position="263">
+          <caret line="259" column="69" selection-start-line="259" selection-start-column="69" selection-end-line="259" selection-end-column="69" />
+          <folding>
+            <element signature="e#1510#1529#0" expanded="true" />
+            <element signature="e#1576#1595#0" expanded="true" />
+            <element signature="e#1643#1662#0" expanded="true" />
+            <element signature="e#1711#1729#0" expanded="true" />
+            <element signature="e#2059#2077#0" expanded="true" />
+            <element signature="e#2124#2143#0" expanded="true" />
+            <element signature="e#2192#2210#0" expanded="true" />
+            <element signature="e#2258#2277#0" expanded="true" />
+            <element signature="e#2561#2579#0" expanded="true" />
+            <element signature="e#2626#2645#0" expanded="true" />
+            <element signature="e#2694#2712#0" expanded="true" />
+            <element signature="e#2760#2779#0" expanded="true" />
+            <element signature="e#3113#3131#0" expanded="true" />
+            <element signature="e#3178#3197#0" expanded="true" />
+            <element signature="e#3246#3264#0" expanded="true" />
+            <element signature="e#3312#3331#0" expanded="true" />
+            <element signature="e#3618#3636#0" expanded="true" />
+            <element signature="e#3683#3702#0" expanded="true" />
+            <element signature="e#3751#3769#0" expanded="true" />
+            <element signature="e#3817#3836#0" expanded="true" />
+            <element signature="e#4166#4184#0" expanded="true" />
+            <element signature="e#4231#4250#0" expanded="true" />
+            <element signature="e#4299#4317#0" expanded="true" />
+            <element signature="e#4365#4384#0" expanded="true" />
+            <element signature="e#5118#5136#0" expanded="true" />
+            <element signature="e#5191#5210#0" expanded="true" />
+            <element signature="e#5267#5285#0" expanded="true" />
+            <element signature="e#5341#5360#0" expanded="true" />
+            <element signature="e#5748#5766#0" expanded="true" />
+            <element signature="e#5821#5840#0" expanded="true" />
+            <element signature="e#5897#5915#0" expanded="true" />
+            <element signature="e#5971#5990#0" expanded="true" />
+            <element signature="e#6570#6588#0" expanded="true" />
+            <element signature="e#6643#6662#0" expanded="true" />
+            <element signature="e#6719#6737#0" expanded="true" />
+            <element signature="e#6793#6812#0" expanded="true" />
+            <element signature="e#7200#7218#0" expanded="true" />
+            <element signature="e#7273#7292#0" expanded="true" />
+            <element signature="e#7349#7367#0" expanded="true" />
+            <element signature="e#7423#7442#0" expanded="true" />
+            <element signature="e#7799#7817#0" expanded="true" />
+            <element signature="e#7864#7883#0" expanded="true" />
+            <element signature="e#7932#7950#0" expanded="true" />
+            <element signature="e#7998#8017#0" expanded="true" />
+            <element signature="e#8354#8372#0" expanded="true" />
+            <element signature="e#8419#8438#0" expanded="true" />
+            <element signature="e#8487#8505#0" expanded="true" />
+            <element signature="e#8553#8572#0" expanded="true" />
+            <element signature="e#8864#8882#0" expanded="true" />
+            <element signature="e#8929#8948#0" expanded="true" />
+            <element signature="e#8997#9015#0" expanded="true" />
+            <element signature="e#9063#9082#0" expanded="true" />
+            <element signature="e#9416#9434#0" expanded="true" />
+            <element signature="e#9481#9500#0" expanded="true" />
+            <element signature="e#9549#9567#0" expanded="true" />
+            <element signature="e#9615#9634#0" expanded="true" />
+            <element signature="e#9920#9938#0" expanded="true" />
+            <element signature="e#9985#10004#0" expanded="true" />
+            <element signature="e#10053#10071#0" expanded="true" />
+            <element signature="e#10119#10138#0" expanded="true" />
+            <element signature="e#10466#10484#0" expanded="true" />
+            <element signature="e#10531#10550#0" expanded="true" />
+            <element signature="e#10599#10617#0" expanded="true" />
+            <element signature="e#10665#10684#0" expanded="true" />
+            <element signature="e#10980#10998#0" expanded="true" />
+            <element signature="e#11045#11064#0" expanded="true" />
+            <element signature="e#11113#11131#0" expanded="true" />
+            <element signature="e#11179#11198#0" expanded="true" />
+            <element signature="e#11534#11552#0" expanded="true" />
+            <element signature="e#11599#11618#0" expanded="true" />
+            <element signature="e#11667#11685#0" expanded="true" />
+            <element signature="e#11733#11752#0" expanded="true" />
+            <element signature="e#12045#12063#0" expanded="true" />
+            <element signature="e#12110#12129#0" expanded="true" />
+            <element signature="e#12178#12196#0" expanded="true" />
+            <element signature="e#12244#12263#0" expanded="true" />
+            <element signature="e#12597#12615#0" expanded="true" />
+            <element signature="e#12662#12681#0" expanded="true" />
+            <element signature="e#12730#12748#0" expanded="true" />
+            <element signature="e#12796#12815#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+      <provider selected="true" editor-type-id="android-designer2">
+        <state />
+      </provider>
+    </entry>
+    <entry file="file:///media/anonymous/data/AndroidStudioProjects/elaundry-kurir/app/src/main/java/com/yuly/elaundry/kurir/controller/activity/FavoriteList.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="119">
+          <caret line="16" column="13" selection-start-line="16" selection-start-column="13" selection-end-line="16" selection-end-column="13" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file:///media/anonymous/data/AndroidStudioProjects/elaundry-kurir/app/src/main/java/com/yuly/elaundry/kurir/controller/activity/AppSettings.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-3702">
+          <caret line="93" column="38" selection-start-line="93" selection-start-column="38" selection-end-line="93" selection-end-column="38" />
+          <folding>
+            <element signature="e#3158#3548#0" expanded="true" />
+            <element signature="e#3547#3548#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file:///media/anonymous/data/AndroidStudioProjects/elaundry-kurir/app/src/main/java/com/yuly/elaundry/kurir/model/dataType/Destination.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="75">
+          <caret line="5" column="13" selection-start-line="5" selection-start-column="13" selection-end-line="5" selection-end-column="13" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file:///media/anonymous/data/AndroidStudioProjects/elaundry-kurir/app/src/main/java/com/yuly/elaundry/kurir/model/dataType/MyMap.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1635">
+          <caret line="114" column="27" selection-start-line="114" selection-start-column="27" selection-end-line="114" selection-end-column="27" />
+          <folding>
+            <element signature="e#3243#3244#0" expanded="true" />
+            <element signature="e#3281#3282#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file:///media/anonymous/data/AndroidStudioProjects/elaundry-kurir/app/src/main/java/com/yuly/elaundry/kurir/model/dataType/SportCategory.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="45">
+          <caret line="3" column="13" selection-start-line="3" selection-start-column="13" selection-end-line="3" selection-end-column="13" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file:///media/anonymous/data/AndroidStudioProjects/elaundry-kurir/app/src/main/java/com/yuly/elaundry/kurir/model/function/Post.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="105">
+          <caret line="18" column="13" selection-start-line="18" selection-start-column="13" selection-end-line="18" selection-end-column="13" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file:///media/anonymous/data/AndroidStudioProjects/elaundry-kurir/app/src/main/java/com/yuly/elaundry/kurir/model/map/DownloadFiles.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-1677">
+          <caret line="16" column="13" selection-start-line="16" selection-start-column="13" selection-end-line="16" selection-end-column="13" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file:///media/anonymous/data/AndroidStudioProjects/elaundry-kurir/app/src/main/java/com/yuly/elaundry/kurir/model/map/HeaderAdapter.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="30">
+          <caret line="2" column="0" selection-start-line="2" selection-start-column="0" selection-end-line="2" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file:///media/anonymous/data/AndroidStudioProjects/elaundry-kurir/app/src/main/java/com/yuly/elaundry/kurir/model/map/LockableListView.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="90">
+          <caret line="23" column="13" selection-start-line="23" selection-start-column="13" selection-end-line="23" selection-end-column="13" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file:///media/anonymous/data/AndroidStudioProjects/elaundry-kurir/app/src/main/java/com/yuly/elaundry/kurir/model/map/LockableRecyclerView.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="90">
+          <caret line="23" column="13" selection-start-line="23" selection-start-column="13" selection-end-line="23" selection-end-column="13" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file:///media/anonymous/data/AndroidStudioProjects/elaundry-kurir/app/src/main/java/com/yuly/elaundry/kurir/model/map/MapDownloader.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="273">
+          <caret line="123" column="82" selection-start-line="123" selection-start-column="82" selection-end-line="123" selection-end-column="82" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file:///media/anonymous/data/AndroidStudioProjects/elaundry-kurir/app/src/main/java/com/yuly/elaundry/kurir/model/map/MapHandler.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="393">
+          <caret line="468" column="8" selection-start-line="468" selection-start-column="8" selection-end-line="468" selection-end-column="8" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file:///media/anonymous/data/AndroidStudioProjects/elaundry-kurir/app/src/main/java/com/yuly/elaundry/kurir/model/map/MapUnzip.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-492">
+          <caret line="13" column="13" selection-start-line="13" selection-start-column="13" selection-end-line="13" selection-end-column="13" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file:///media/anonymous/data/AndroidStudioProjects/elaundry-kurir/app/src/main/java/com/yuly/elaundry/kurir/model/map/Navigasi.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="185">
+          <caret line="178" column="20" selection-start-line="178" selection-start-column="20" selection-end-line="178" selection-end-column="20" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file:///media/anonymous/data/AndroidStudioProjects/elaundry-kurir/app/src/main/java/com/yuly/elaundry/kurir/model/map/MyMapAdapter.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-1122">
+          <caret line="38" column="25" selection-start-line="38" selection-start-column="25" selection-end-line="38" selection-end-column="32" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file:///media/anonymous/data/AndroidStudioProjects/elaundry-kurir/app/src/main/java/com/yuly/elaundry/kurir/model/map/OnDownloading.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="348">
+          <caret line="37" column="54" selection-start-line="37" selection-start-column="54" selection-end-line="37" selection-end-column="54" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file:///media/anonymous/data/AndroidStudioProjects/elaundry-kurir/app/src/main/java/com/yuly/elaundry/kurir/model/map/TheApp.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="90">
+          <caret line="21" column="13" selection-start-line="21" selection-start-column="13" selection-end-line="21" selection-end-column="13" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file:///media/anonymous/data/AndroidStudioProjects/elaundry-kurir/app/src/main/java/com/yuly/elaundry/kurir/model/map/Tracking.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-3433">
+          <caret line="21" column="13" selection-start-line="21" selection-start-column="13" selection-end-line="21" selection-end-column="13" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file:///media/anonymous/data/AndroidStudioProjects/elaundry-kurir/app/src/main/java/com/yuly/elaundry/kurir/model/util/MyUtility.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-1019">
+          <caret line="5" column="13" selection-start-line="5" selection-start-column="13" selection-end-line="5" selection-end-column="13" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file:///media/anonymous/data/AndroidStudioProjects/elaundry-kurir/app/src/main/java/com/yuly/elaundry/kurir/model/util/SetStatusBarColor.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="179">
+          <caret line="23" column="9" selection-start-line="23" selection-start-column="9" selection-end-line="23" selection-end-column="9" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file:///media/anonymous/data/AndroidStudioProjects/elaundry-kurir/app/src/main/java/com/yuly/elaundry/kurir/model/util/SpinnerAdapter.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="60">
+          <caret line="15" column="13" selection-start-line="15" selection-start-column="13" selection-end-line="15" selection-end-column="13" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file:///media/anonymous/data/AndroidStudioProjects/elaundry-kurir/app/src/main/res/layout/map_nav_instruction_list.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-2572">
+          <caret line="15" column="8" selection-start-line="15" selection-start-column="8" selection-end-line="15" selection-end-column="46" />
+          <folding />
+        </state>
+      </provider>
+      <provider editor-type-id="android-designer2">
+        <state />
+      </provider>
+    </entry>
+    <entry file="file:///media/anonymous/data/AndroidStudioProjects/elaundry-kurir/app/src/main/res/layout/map_side_bar.xml">
+      <provider editor-type-id="text-editor">
+        <state relative-caret-position="1380">
+          <caret line="92" column="14" selection-start-line="0" selection-start-column="38" selection-end-line="92" selection-end-column="14" />
+          <folding />
+        </state>
+      </provider>
+      <provider selected="true" editor-type-id="android-designer2">
+        <state />
+      </provider>
+    </entry>
+    <entry file="file:///media/anonymous/data/AndroidStudioProjects/elaundry-kurir/app/src/main/res/layout/map_nav_settings_from.xml">
+      <provider editor-type-id="text-editor">
+        <state relative-caret-position="-1372">
+          <caret line="28" column="41" selection-start-line="28" selection-start-column="41" selection-end-line="28" selection-end-column="41" />
+          <folding />
+        </state>
+      </provider>
+      <provider selected="true" editor-type-id="android-designer2">
+        <state />
+      </provider>
+    </entry>
+    <entry file="file:///media/anonymous/data/AndroidStudioProjects/elaundry-kurir/app/src/main/res/layout/map_nav_settings_cal.xml">
+      <provider editor-type-id="text-editor">
+        <state relative-caret-position="405">
+          <caret line="27" column="21" selection-start-line="27" selection-start-column="21" selection-end-line="27" selection-end-column="21" />
+          <folding>
+            <element signature="e#909#931#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+      <provider selected="true" editor-type-id="android-designer2">
+        <state />
+      </provider>
+    </entry>
+    <entry file="file:///media/anonymous/data/AndroidStudioProjects/elaundry-kurir/app/src/main/res/layout/map_nav_settings_to.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="15">
+          <caret line="6" column="43" selection-start-line="6" selection-start-column="43" selection-end-line="6" selection-end-column="43" />
+          <folding />
+        </state>
+      </provider>
+      <provider editor-type-id="android-designer2">
+        <state />
+      </provider>
+    </entry>
+    <entry file="file:///media/anonymous/data/AndroidStudioProjects/elaundry-kurir/app/src/main/res/layout/map_nav_settings.xml">
+      <provider editor-type-id="text-editor">
+        <state relative-caret-position="2655">
+          <caret line="177" column="46" selection-start-line="177" selection-start-column="46" selection-end-line="177" selection-end-column="46" />
+          <folding />
+        </state>
+      </provider>
+      <provider selected="true" editor-type-id="android-designer2">
+        <state />
+      </provider>
+    </entry>
+    <entry file="file:///media/anonymous/data/AndroidStudioProjects/elaundry-kurir/app/src/main/java/com/yuly/elaundry/kurir/controller/activity/MapActivity.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="2250">
+          <caret line="189" column="21" selection-start-line="189" selection-start-column="21" selection-end-line="189" selection-end-column="21" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file:///media/anonymous/data/AndroidStudioProjects/elaundry-kurir/app/src/main/java/com/yuly/elaundry/kurir/controller/activity/MapActions.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-6779">
-          <caret line="281" column="48" selection-start-line="281" selection-start-column="48" selection-end-line="281" selection-end-column="48" />
+        <state relative-caret-position="-490">
+          <caret line="690" column="67" selection-start-line="690" selection-start-column="67" selection-end-line="690" selection-end-column="67" />
           <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file:///media/anonymous/data/AndroidStudioProjects/elaundry-kurir/app/src/main/java/com/yuly/elaundry/kurir/controller/activity/MapActivity.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1558">
-          <caret line="107" column="9" selection-start-line="107" selection-start-column="9" selection-end-line="107" selection-end-column="9" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="docComment;method#getmCurrentLocation#0;class#MapActivity#0" expanded="false" />
-            <element signature="e#8369#8394#0" expanded="false" />
-            <element signature="method#onStatusChanged#0;class#MapActivity#0" expanded="false" />
-            <element signature="method#onProviderEnabled#0;class#MapActivity#0" expanded="false" />
-            <element signature="method#onProviderDisabled#0;class#MapActivity#0" expanded="false" />
-          </folding>
         </state>
       </provider>
     </entry>

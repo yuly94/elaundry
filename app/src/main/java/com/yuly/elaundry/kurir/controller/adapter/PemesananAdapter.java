@@ -14,8 +14,7 @@ import android.widget.TextView;
 import com.amulyakhare.textdrawable.TextDrawable;
 import com.amulyakhare.textdrawable.util.ColorGenerator;
 import com.yuly.elaundry.kurir.R;
-import com.yuly.elaundry.kurir.model.geterseter.Movie;
-import com.yuly.elaundry.kurir.model.geterseter.PesananModels;
+import com.yuly.elaundry.kurir.model.geterseter.TransaksiModel;
 import com.yuly.elaundry.kurir.view.widgets.BubbleTextGetter;
 
 import java.util.ArrayList;
@@ -27,7 +26,7 @@ import java.util.List;
 
 public class PemesananAdapter extends RecyclerView.Adapter<PemesananAdapter.MyViewHolder> implements BubbleTextGetter {
 
-    private List<Movie> moviesList;
+    private List<TransaksiModel> pemesananList;
     ColorGenerator generator = ColorGenerator.MATERIAL;
     private String hurufDepan;
     private Context mContext;
@@ -36,7 +35,7 @@ public class PemesananAdapter extends RecyclerView.Adapter<PemesananAdapter.MyVi
 
 
     public class MyViewHolder extends RecyclerView.ViewHolder {
-        public TextView title, year, genre;
+        public TextView etNama, etHarga, etTanggal, etAlamat;
         private ImageView hurufDepan, menu;
 
 
@@ -45,19 +44,21 @@ public class PemesananAdapter extends RecyclerView.Adapter<PemesananAdapter.MyVi
 
             hurufDepan = (ImageView) view.findViewById(R.id.gmail_letter);
 
-            title = (TextView) view.findViewById(R.id.pemesanan_title);
-            genre = (TextView) view.findViewById(R.id.pemesanan_deskripsi);
-            year = (TextView) view.findViewById(R.id.pemesanan_tanggal);
+            etNama = (TextView) view.findViewById(R.id.pemesanan_nama);
+            etHarga = (TextView) view.findViewById(R.id.pemesanan_harga);
+            etAlamat = (TextView) view.findViewById(R.id.pemesanan_alamat);
+            etTanggal = (TextView) view.findViewById(R.id.pemesanan_tanggal);
+
             menu = (ImageView) view.findViewById(R.id.popup_menu);
 
         }
     }
 
 
-    public PemesananAdapter(List<Movie> moviesList, Context context) {
+    public PemesananAdapter(List<TransaksiModel> pemesananList, Context context) {
 
         this.mContext = context;
-        this.moviesList = moviesList;
+        this.pemesananList = pemesananList;
 
     }
 
@@ -71,13 +72,14 @@ public class PemesananAdapter extends RecyclerView.Adapter<PemesananAdapter.MyVi
 
     @Override
     public void onBindViewHolder(MyViewHolder holder, int position) {
-        Movie movie = moviesList.get(position);
-        String pemesanan_no = movie.getNomer();
-        holder.title.setText(movie.getTitle());
-        holder.genre.setText(movie.getGenre());
-        holder.year.setText(movie.getYear());
+        TransaksiModel pemesanan = pemesananList.get(position);
 
-        hurufDepan = String.valueOf((movie.getTitle().charAt(0)));
+        holder.etNama.setText(pemesanan.getNama());
+        holder.etHarga.setText(pemesanan.getHarga());
+        holder.etAlamat.setText(pemesanan.getAlamat());
+        holder.etTanggal.setText(pemesanan.getTanggal());
+
+        hurufDepan = String.valueOf((pemesanan.getNama().charAt(0)));
 
         // Create a new TextDrawable for our image's background
         TextDrawable drawable = TextDrawable.builder()
@@ -90,7 +92,7 @@ public class PemesananAdapter extends RecyclerView.Adapter<PemesananAdapter.MyVi
 
     @Override
     public int getItemCount() {
-        return moviesList.size();
+        return pemesananList.size();
     }
 
     private void setOnPopupMenuListener(MyViewHolder itemHolder, final int position) {
@@ -129,17 +131,17 @@ public class PemesananAdapter extends RecyclerView.Adapter<PemesananAdapter.MyVi
 
 
 
-    public void setFilter(List<Movie> movie){
-        moviesList = new ArrayList<Movie>();
-        moviesList.addAll(movie);
+    public void setFilter(List<TransaksiModel> pemesanan){
+        pemesananList = new ArrayList<TransaksiModel>();
+        pemesananList.addAll(pemesanan);
         notifyDataSetChanged();
     }
 
 
     // Add a list of items
-    public void addAll(List<Movie> movie){
+    public void addAll(List<TransaksiModel> pemesanan){
 
-        moviesList.addAll(movie);
+        pemesananList.addAll(pemesanan);
         notifyDataSetChanged();
 
     }
@@ -148,16 +150,16 @@ public class PemesananAdapter extends RecyclerView.Adapter<PemesananAdapter.MyVi
 
     // Clean all elements of the recycler
     public void clear() {
-        moviesList.clear();
+        pemesananList.clear();
         notifyDataSetChanged();
     }
 
 
     @Override
     public String getTextToShowInBubble(final int pos) {
-        if (moviesList == null || moviesList.size() == 0)
+        if (pemesananList == null || pemesananList.size() == 0)
             return "";
-        Character ch = moviesList.get(pos).getTitle().charAt(0);
+        Character ch = pemesananList.get(pos).getNama().charAt(0);
         if (Character.isDigit(ch)) {
             return "#";
         } else

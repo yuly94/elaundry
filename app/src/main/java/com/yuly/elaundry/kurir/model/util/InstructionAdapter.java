@@ -10,7 +10,7 @@ import android.widget.TextView;
 import com.graphhopper.util.Instruction;
 import com.graphhopper.util.InstructionList;
 import com.yuly.elaundry.kurir.R;
-import com.yuly.elaundry.kurir.model.map.Navigator;
+import com.yuly.elaundry.kurir.model.map.Navigasi;
 
 
 public class InstructionAdapter extends RecyclerView.Adapter<InstructionAdapter.ViewHolder> {
@@ -33,9 +33,9 @@ public class InstructionAdapter extends RecyclerView.Adapter<InstructionAdapter.
         }
 
         public void setItemData(Instruction itemData) {
-                        icon.setImageResource(Navigator.getNavigator().getDirectionSign(itemData));
-            description.setText(Navigator.getNavigator().getDirectionDescription(itemData));
-            distance.setText(Navigator.getNavigator().getDistance(itemData));
+                        icon.setImageResource(Navigasi.getNavigator().getDirectionSign(itemData));
+            description.setText(Navigasi.getNavigator().getDirectionDescription(itemData));
+            distance.setText(Navigasi.getNavigator().getDistance(itemData));
 //            time.setText(String.valueOf(Navigator.getNavigator().getTime(itemData)));
         }
     }

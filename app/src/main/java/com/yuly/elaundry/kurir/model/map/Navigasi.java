@@ -11,7 +11,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 
-public class Navigator {
+public class Navigasi {
     /**
      * get from MapHandler calculate path
      */
@@ -21,10 +21,10 @@ public class Navigator {
      */
     private boolean on;
     private List<NavigatorListener> listeners;
-    private static Navigator navigator = null;
+    private static Navigasi navigator = null;
 
 
-    private Navigator() {
+    private Navigasi() {
         this.ghResponse = null;
         this.on = false;
         this.listeners = new ArrayList<>();
@@ -33,9 +33,9 @@ public class Navigator {
     /**
      * @return Navigator object
      */
-    public static Navigator getNavigator() {
+    public static Navigasi getNavigator() {
         if (navigator == null) {
-            navigator = new Navigator();
+            navigator = new Navigasi();
         }
         return navigator;
     }
@@ -167,7 +167,7 @@ public class Navigator {
                     return R.drawable.ic_directions_car_white_24dp;
             }
         }
-        throw new NullPointerException("this method can only used when Variable class is ready!");
+        throw new NullPointerException("hanya tersedian ketika class ada");
     }
 
     /**
@@ -177,27 +177,27 @@ public class Navigator {
     public int getDirectionSign(Instruction itemData) {
         switch (itemData.getSign()) {
             case -6:
-                return R.drawable.ic_roundabout;
+                return R.drawable.ic_camera_black_24dp;
             case -3:
-                return R.drawable.ic_turn_sharp_left;
+                return R.drawable.ic_call_received_black_24dp;
             case -2:
-                return R.drawable.ic_turn_left;
+                return R.drawable.ic_arrow_back_black_24dp;
             case -1:
                 return R.drawable.ic_turn_slight_left;
             case 0:
-                return R.drawable.ic_continue_on_street;
+                return R.drawable.ic_arrow_upward_black_24dp;
             case 1:
-                return R.drawable.ic_turn_slight_right;
+                return R.drawable.ic_call_made_black_24dp;
             case 2:
-                return R.drawable.ic_turn_right;
+                return R.drawable.ic_arrow_forward_black_24dp;
             case 3:
                 return R.drawable.ic_turn_sharp_right;
             case 4:
-                return R.drawable.ic_finish_flag;
+                return R.drawable.ic_shopping_cart_black_24dp;
             case 5:
-                return R.drawable.ic_reached_via;
+                return R.drawable.ic_navigation_black_24dp;
             case 6:
-                return R.drawable.ic_roundabout;
+                return R.drawable.ic_camera_black_24dp;
         }
         return 0;
     }
@@ -234,39 +234,39 @@ public class Navigator {
         String streetName = instruction.getName();
         int sign = instruction.getSign();
         if (sign == Instruction.CONTINUE_ON_STREET) {//0
-            str = Helper.isEmpty(streetName) ? "Continue" : ("Continue onto " + streetName);
+            str = Helper.isEmpty(streetName) ? "Lurus" : ("lurus melalui " + streetName);
         } else {
             String dir = "";
             switch (sign) {
                 case Instruction.LEAVE_ROUNDABOUT://-6
-                    dir = ("Leave roundabout");
+                    dir = ("Tinggalkan undaran");
                     break;
                 case Instruction.TURN_SHARP_LEFT://-3
-                    dir = ("Turn sharp left");
+                    dir = ("Belok kiri tajam");
                     break;
                 case Instruction.TURN_LEFT://-2
-                    dir = ("Turn left");
+                    dir = ("Belok kiri");
                     break;
                 case Instruction.TURN_SLIGHT_LEFT://-1
-                    dir = ("Turn slight left");
+                    dir = ("Belok kiri sedang");
                     break;
                 case Instruction.TURN_SLIGHT_RIGHT://1
-                    dir = ("Turn slight right");
+                    dir = ("Belok kanan sedang");
                     break;
                 case Instruction.TURN_RIGHT://2
-                    dir = ("Turn right");
+                    dir = ("Belok kanan");
                     break;
                 case Instruction.TURN_SHARP_RIGHT://3
-                    dir = ("Turn sharp right");
+                    dir = ("Belok kanan tajam");
                     break;
                 case Instruction.REACHED_VIA://5
-                    dir = ("Reached via");
+                    dir = ("Ditempuh melalui");
                     break;
                 case Instruction.USE_ROUNDABOUT://6
-                    dir = ("Use roundabout");
+                    dir = ("Gunakan bundaran");
                     break;
             }
-            str = Helper.isEmpty(streetName) ? dir : (dir + " onto " + streetName);
+            str = Helper.isEmpty(streetName) ? dir : (dir + " ke " + streetName);
         }
         return str;
     }

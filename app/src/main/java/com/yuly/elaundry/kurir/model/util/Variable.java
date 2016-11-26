@@ -4,7 +4,6 @@ import android.content.Context;
 import android.util.Log;
 
 import com.yuly.elaundry.kurir.R;
-import com.yuly.elaundry.kurir.controller.activity.Analytics;
 import com.yuly.elaundry.kurir.model.dataType.MyMap;
 
 import org.json.JSONException;
@@ -152,7 +151,7 @@ public class Variable {
      */
     //    private boolean autoLoad;
     /**
-     * sport category spinner index at {@link Analytics#spinner}
+     * sport category spinner index at {@link com.yuly.elaundry.kurir.controller}
      */
     private int sportCategoryIndex;
 
@@ -543,9 +542,9 @@ public class Variable {
 
         for (String file : filesGHZ) {
             for (String f : files_gh) {
-               if( f.contains(file.replace(".ghz", ""))){
-                   (new File(getMapsFolder(), file)).delete();
-               }
+                if( f.contains(file.replace(".ghz", ""))){
+                    (new File(getMapsFolder(), file)).delete();
+                }
             }
             Variable.getVariable().addLocalMap(new MyMap(file));
             if (file.contains(getPausedMapName())) {
@@ -553,7 +552,7 @@ public class Variable {
             }
             //            boolean del =
             (new File(getMapsFolder(), file)).delete();
-             log("delete file " + file + " ? -" );
+            log("delete file " + file + " ? -" );
         }
         return false;
     }

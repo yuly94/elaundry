@@ -4,9 +4,11 @@ import android.app.AlertDialog;
 import android.app.ProgressDialog;
 import android.content.DialogInterface;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.Snackbar;
 import android.support.v4.app.Fragment;
+import android.support.v4.content.LocalBroadcastManager;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
@@ -550,4 +552,17 @@ public class ProfileFragment extends Fragment {
         if (pDialog.isShowing())
             pDialog.dismiss();
     }
+
+    /**
+     * finish all activities ( quit the app )
+     */
+    private void quitApp() {
+        Intent broadcastIntent = new Intent();
+        broadcastIntent.setAction("ACTION_QUIT");
+        LocalBroadcastManager.getInstance(getActivity()).sendBroadcast(broadcastIntent);
+
+        getActivity().finish();
+        System.exit(0);
+    }
+
 }

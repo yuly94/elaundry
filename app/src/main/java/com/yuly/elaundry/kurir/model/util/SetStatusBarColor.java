@@ -21,7 +21,7 @@ public class SetStatusBarColor {
      * @param activity  FragmentActivity
      */
     public void setStatusBarColor(View statusBar, int color, Activity activity) {
-        //        System.out.println("------------------" + statusBar + "--" + color + "--" + activity);
+               System.out.println("------------------" + statusBar + "--" + color + "--" + activity);
 
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
             Window w = activity.getWindow();

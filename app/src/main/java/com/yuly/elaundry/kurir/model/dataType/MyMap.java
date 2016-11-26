@@ -110,9 +110,9 @@ public class MyMap implements Comparable<MyMap> {
 
     public String getSize() {
         if (size == "") {
-            return "Map size: < 1M";
+            return "Ukuran peta : < 1M";
         }
-        return "Map size: " + size;
+        return "Ukuran peta: " + size;
     }
 
     public void setSize(String size) {

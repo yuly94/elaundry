@@ -23,7 +23,7 @@ import com.yuly.elaundry.kurir.model.dataType.Destination;
 import com.yuly.elaundry.kurir.model.listeners.MapHandlerListener;
 import com.yuly.elaundry.kurir.model.listeners.NavigatorListener;
 import com.yuly.elaundry.kurir.model.map.MapHandler;
-import com.yuly.elaundry.kurir.model.map.Navigator;
+import com.yuly.elaundry.kurir.model.map.Navigasi;
 import com.yuly.elaundry.kurir.model.util.InstructionAdapter;
 import com.yuly.elaundry.kurir.model.util.MyUtility;
 import com.yuly.elaundry.kurir.model.util.Variable;
@@ -68,7 +68,7 @@ public class MapActions implements NavigatorListener, MapHandlerListener {
         this.menuVisible = false;
         this.onStartPoint = true;
         MapHandler.getMapHandler().setMapHandlerListener(this);
-        Navigator.getNavigator().addListener(this);
+        Navigasi.getNavigator().addListener(this);
         controlBtnHandler();
         zoomControlHandler(mapView);
         showMyLocation(mapView);
@@ -438,7 +438,7 @@ public class MapActions implements NavigatorListener, MapHandlerListener {
      * @param shortestPathRunning
      */
     @Override public void pathCalculating(boolean shortestPathRunning) {
-        if (!shortestPathRunning && Navigator.getNavigator().getGhResponse() != null) {
+        if (!shortestPathRunning && Navigasi.getNavigator().getGhResponse() != null) {
             activeDirections();
         }
     }
@@ -484,7 +484,7 @@ public class MapActions implements NavigatorListener, MapHandlerListener {
         instructionsRV.setLayoutManager(instructionsLayoutManager);
 
         // specify an adapter (see also next example)
-        instructionsAdapter = new InstructionAdapter(Navigator.getNavigator().getGhResponse().getInstructions());
+        instructionsAdapter = new InstructionAdapter(Navigasi.getNavigator().getGhResponse().getInstructions());
         instructionsRV.setAdapter(instructionsAdapter);
         initNavListView();
     }
@@ -512,7 +512,7 @@ public class MapActions implements NavigatorListener, MapHandlerListener {
                         .setPositiveButton(R.string.ok, new DialogInterface.OnClickListener() {
                             public void onClick(DialogInterface dialog, int id) {
                                 // stop!
-                                Navigator.getNavigator().setOn(false);
+                                Navigasi.getNavigator().setOn(false);
                                 //delete polyline and markers
                                 removeNavigation();
                                 navInstructionListVP.setVisibility(View.INVISIBLE);
@@ -547,7 +547,7 @@ public class MapActions implements NavigatorListener, MapHandlerListener {
     private void fillNavListSummaryValues() {
         ImageView travelMode;
         travelMode = (ImageView) activity.findViewById(R.id.nav_instruction_list_travel_mode_iv);
-        travelMode.setImageResource(Navigator.getNavigator().getTravelModeResId(true));
+        travelMode.setImageResource(Navigasi.getNavigator().getTravelModeResId(true));
         TextView from, to, distance, time;
         from = (TextView) activity.findViewById(R.id.nav_instruction_list_summary_from_tv);
         to = (TextView) activity.findViewById(R.id.nav_instruction_list_summary_to_tv);
@@ -556,8 +556,8 @@ public class MapActions implements NavigatorListener, MapHandlerListener {
 
         from.setText(Destination.getDestination().getStartPointToString());
         to.setText(Destination.getDestination().getEndPointToString());
-        distance.setText(Navigator.getNavigator().getDistance());
-        time.setText(Navigator.getNavigator().getTime());
+        distance.setText(Navigasi.getNavigator().getDistance());
+        time.setText(Navigasi.getNavigator().getTime());
     }
 
     /**
@@ -569,7 +569,7 @@ public class MapActions implements NavigatorListener, MapHandlerListener {
         MapHandler.getMapHandler().removeMarkers();
         fromLocalET.setText("");
         toLocalET.setText("");
-        Navigator.getNavigator().setOn(false);
+        Navigasi.getNavigator().setOn(false);
         Destination.getDestination().setStartPoint(null);
         Destination.getDestination().setEndPoint(null);
     }
@@ -578,55 +578,22 @@ public class MapActions implements NavigatorListener, MapHandlerListener {
      * set up travel mode
      */
     private void travelModeSetting() {
-        final ImageButton footBtn, bikeBtn, carBtn;
-        footBtn = (ImageButton) activity.findViewById(R.id.nav_settings_foot_btn);
-        bikeBtn = (ImageButton) activity.findViewById(R.id.nav_settings_bike_btn);
-        carBtn = (ImageButton) activity.findViewById(R.id.nav_settings_car_btn);
+        final ImageButton footBtn, bikeBtn, jemputBtn;
+        jemputBtn = (ImageButton) activity.findViewById(R.id.nav_settings_car_btn);
         // init travel mode
         switch (Variable.getVariable().getTravelMode()) {
-            case "foot":
-                footBtn.setImageResource(R.drawable.ic_directions_walk_orange_24dp);
-                break;
-            case "bike":
-                bikeBtn.setImageResource(R.drawable.ic_directions_bike_orange_24dp);
-                break;
-            case "car":
-                carBtn.setImageResource(R.drawable.ic_directions_car_orange_24dp);
+            case "jemput":
+                jemputBtn.setImageResource(R.drawable.ic_shopping_cart_24dp);
                 break;
         }
 
-        //foot
-        footBtn.setOnClickListener(new View.OnClickListener() {
+
+        // jemput
+        jemputBtn.setOnClickListener(new View.OnClickListener() {
             @Override public void onClick(View v) {
-                if (!Variable.getVariable().getTravelMode().equalsIgnoreCase("foot")) {
-                    Variable.getVariable().setTravelMode("foot");
-                    footBtn.setImageResource(R.drawable.ic_directions_walk_orange_24dp);
-                    bikeBtn.setImageResource(R.drawable.ic_directions_bike_white_24dp);
-                    carBtn.setImageResource(R.drawable.ic_directions_car_white_24dp);
-                    activeNavigator();
-                }
-            }
-        });
-        //bike
-        bikeBtn.setOnClickListener(new View.OnClickListener() {
-            @Override public void onClick(View v) {
-                if (!Variable.getVariable().getTravelMode().equalsIgnoreCase("bike")) {
-                    Variable.getVariable().setTravelMode("bike");
-                    footBtn.setImageResource(R.drawable.ic_directions_walk_white_24dp);
-                    bikeBtn.setImageResource(R.drawable.ic_directions_bike_orange_24dp);
-                    carBtn.setImageResource(R.drawable.ic_directions_car_white_24dp);
-                    activeNavigator();
-                }
-            }
-        });
-        // car
-        carBtn.setOnClickListener(new View.OnClickListener() {
-            @Override public void onClick(View v) {
-                if (!Variable.getVariable().getTravelMode().equalsIgnoreCase("car")) {
-                    Variable.getVariable().setTravelMode("car");
-                    footBtn.setImageResource(R.drawable.ic_directions_walk_white_24dp);
-                    bikeBtn.setImageResource(R.drawable.ic_directions_bike_white_24dp);
-                    carBtn.setImageResource(R.drawable.ic_directions_car_orange_24dp);
+                if (!Variable.getVariable().getTravelMode().equalsIgnoreCase("jemput")) {
+                    Variable.getVariable().setTravelMode("jemput");
+                    jemputBtn.setImageResource(R.drawable.ic_shopping_cart_24dp);
                     activeNavigator();
                 }
             }
@@ -640,7 +607,7 @@ public class MapActions implements NavigatorListener, MapHandlerListener {
         navigationBtn.setOnClickListener(new View.OnClickListener() {
             @Override public void onClick(View v) {
                 sideBarVP.setVisibility(View.INVISIBLE);
-                if (Navigator.getNavigator().isOn()) {
+                if (Navigasi.getNavigator().isOn()) {
                     navInstructionListVP.setVisibility(View.VISIBLE);
                 } else {
                     navSettingsVP.setVisibility(View.VISIBLE);
@@ -721,7 +688,7 @@ public class MapActions implements NavigatorListener, MapHandlerListener {
 
                 } else {
                     showPositionBtn.setImageResource(R.drawable.ic_location_searching_white_24dp);
-                    Toast.makeText(activity, "No Location Available", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(activity, "Lokasi tidak tersedia", Toast.LENGTH_SHORT).show();
                 }
             }
         });

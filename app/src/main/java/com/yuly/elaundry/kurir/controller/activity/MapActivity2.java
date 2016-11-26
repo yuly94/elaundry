@@ -27,6 +27,7 @@ import com.yuly.elaundry.kurir.model.util.Variable;
 import org.mapsforge.core.model.LatLong;
 import org.mapsforge.map.android.graphics.AndroidGraphicFactory;
 import org.mapsforge.map.android.view.MapView;
+import org.mapsforge.map.layer.LayerManager;
 import org.mapsforge.map.layer.Layers;
 import org.mapsforge.map.layer.overlay.Marker;
 
@@ -39,6 +40,8 @@ public class MapActivity2 extends AppCompatActivity implements LocationListener 
     private Location mLastLocation;
     private MapActions mapActions;
     private LocationManager locationManager;
+
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -87,6 +90,10 @@ public class MapActivity2 extends AppCompatActivity implements LocationListener 
         getMyLastLocation();
         updateCurrentLocation(null);
     }
+
+
+
+
 
     /**
      * inject and inflate activity map content to map activity context and bring it to front
@@ -247,11 +254,11 @@ public class MapActivity2 extends AppCompatActivity implements LocationListener 
     }
 
     public void onProviderEnabled(String provider) {
-        Toast.makeText(getBaseContext(), "Gps is turned on!! ", Toast.LENGTH_SHORT).show();
+        Toast.makeText(getBaseContext(), "Gps hidup!! ", Toast.LENGTH_SHORT).show();
     }
 
     public void onProviderDisabled(String provider) {
-        Toast.makeText(getBaseContext(), "Gps is turned off!!", Toast.LENGTH_SHORT).show();
+        Toast.makeText(getBaseContext(), "Gps mati!!", Toast.LENGTH_SHORT).show();
     }
 
     /**

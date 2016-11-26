@@ -193,26 +193,20 @@
     <string name="update_profile_success">Update Profile Success</string>
     <string name="update_profile_failed">Update Profile Failed, Please try again</string>
     <string name="nama_lengkap">Nama Lengkap</string>
-    <string name="alamat">Alamat</string>
-    <string name="no_telephone">No Telephone</string>
+    <string name="alamat">Address</string>
+    <string name="no_telephone">phone number</string>
     <string name="konfirmasi_password">Konfirmasi Password</string>
     <string name="sudah_terdaftar_login_sekarang">Sudah terdaftar ? Login sekarang !</string>
     <string name="mendaftar">Mendaftar</string>
     <string name="memuat">memuat</string>
-    <string name="update_password_gagal">gagal mengupdate password</string>
-    <string name="json_request_error">permintaan json error</string>
     <string name="menggganti_password">mengganti password</string>
     <string name="permintaan_mengganti_password">permintaan mengganti password</string>
     <string name="update_profile_gagal">tidak berhasil mengupdate profile</string>
-    <string name="update_profile_berhasil">berhasil memperbarui profile</string>
     <string name="mengupdate_profile">memperbarui profile</string>
     <string name="mengganti_password">mengganti password</string>
-    <string name="gagal_update_profile">gagal memperbarui password</string>
-    <string name="input_masih_kosong">kolom input masih kosong</string>
+    <string name="gagal_update_profile">failed to update profile</string>
     <string name="mengambil_data_dari_sqlite">menggambil data dari sqlite</string>
-    <string name="user_disimpan_di_database">user disimpan di dalam database</string>
     <string name="table_database_berhasil_dibuat">table database berhasil dibuat</string>
-    <string name="update_password_berhasil">password berhasil diperbarui</string>
 
 
     <string name="on_google_map">On Google Map</string>
@@ -279,5 +273,11 @@
     <string name="error_titikdua">"error: "</string>
     <string name="instruksi">instructions</string>
     <string name="elaundryconfigdottxt">elaundryconfig.txt</string>
+    <string name="update_password_gagal">failed to update password</string>
+    <string name="update_password_berhasil">update password success</string>
+    <string name="update_profile_berhasil">failed to update profile</string>
+    <string name="user_disimpan_di_database">User store to database</string>
+    <string name="input_masih_kosong">Input is empty</string>
+    <string name="json_request_error">json request error</string>
 
 </resources>

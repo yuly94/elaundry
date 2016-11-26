@@ -35,7 +35,7 @@ public class OnDownloading {
     }
 
     public void setDownloadingProgressBar(TextView downloadStatus, ProgressBar downloadingProgressBar) {
-//        System.out.println("***** set downloding progress bar Vaiable *****" + downloadingProgressBar);
+        System.out.println("***** variable proress bar *****" + downloadingProgressBar);
         this.downloadingProgressBar = downloadingProgressBar;
         listener.progressbarReady(downloadStatus,downloadingProgressBar);
     }

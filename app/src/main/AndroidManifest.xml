@@ -103,6 +103,14 @@
             android:screenOrientation="portrait"
             android:theme="@style/MyMaterialTheme">
         </activity>
+
+        <activity
+            android:name=".controller.activity.DetailPemesananActivity"
+            android:label="@string/title_activity_download"
+            android:screenOrientation="portrait"
+            android:theme="@style/MyMaterialTheme.NoActionBar">
+        </activity>
+
         <activity
             android:name=".controller.activity.SettingsActivity"
             android:label="@string/action_settings"

@@ -26,34 +26,48 @@
             android:id="@+id/linearLayout"
             android:layout_toRightOf="@+id/gmail_letter"
             android:layout_marginLeft="5dp"
-            android:layout_marginRight="20dp">
+            android:layout_marginRight="25dp">
 
             <TextView
-                android:id="@+id/pemesanan_title"
+                android:id="@+id/pemesanan_nama"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="pemesanan_title"
+                android:text="pemesanan nama"
                 android:fontFamily="sans-serif"
                 android:tag="text_accent_color"
 
                 android:gravity="left"
-                android:singleLine="false" />
+                android:singleLine="false"
+                android:textStyle="normal|bold" />
 
             <TextView
-                android:id="@+id/pemesanan_deskripsi"
+                android:id="@+id/pemesanan_alamat"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="pemesanan_deskripsi"
                 android:fontFamily="sans-serif"
                 android:tag="text_secondary"
 
-                android:singleLine="false" />
+                android:singleLine="true" />
 
-            <TextView
-                android:text="pemesanan_tanggal"
+            <LinearLayout
+                android:orientation="horizontal"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:id="@+id/pemesanan_tanggal" />
+                android:layout_height="match_parent">
+
+                <TextView
+                    android:text="harga"
+                    android:layout_width="67dp"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/pemesanan_harga" />
+
+                <TextView
+                    android:text="pemesanan_tanggal"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/pemesanan_tanggal" />
+            </LinearLayout>
+
         </LinearLayout>
 
         <ImageView
