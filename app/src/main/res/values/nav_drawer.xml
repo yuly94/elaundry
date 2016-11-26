@@ -19,13 +19,13 @@
     <string-array name="nav_drawer_items">
 
     <item>Pesanan</item>
-    <item>Lokasi Saya</item>
-    <item>Maps</item>
-    <item>My Profile</item>
+    <item>Daftar Pesanan</item>
+    <item>Peta</item>
+    <item>Profile Saya</item>
     <item>Change Pass</item>
-    <item>Themes</item>
-    <item>About</item>
-    <item>Log Out</item>
+    <item>Tema Tampilan</item>
+    <item>Tentang Aplikasi</item>
+    <item>Keluar</item>
 
 </string-array>
 </resources>

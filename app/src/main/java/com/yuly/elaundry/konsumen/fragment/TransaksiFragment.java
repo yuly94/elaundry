@@ -1,6 +1,7 @@
 package com.yuly.elaundry.konsumen.fragment;
 
 import android.app.ProgressDialog;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.Fragment;
@@ -8,9 +9,11 @@ import android.support.v4.view.MenuItemCompat;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.DefaultItemAnimator;
+import android.support.v7.widget.DividerItemDecoration;
 import android.support.v7.widget.LinearLayoutManager;
-import android.support.v7.widget.RecyclerView.LayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.support.v7.widget.RecyclerView.LayoutManager;
 import android.support.v7.widget.SearchView;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -22,20 +25,23 @@ import android.view.ViewGroup;
 import android.widget.Toast;
 
 import com.android.volley.AuthFailureError;
+import com.android.volley.Request.Method;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.VolleyLog;
-import com.android.volley.toolbox.JsonArrayRequest;
-
+import com.android.volley.toolbox.JsonObjectRequest;
 import com.yuly.elaundry.konsumen.R;
-import com.yuly.elaundry.konsumen.adapter.TransaksiAdapter;
+import com.yuly.elaundry.konsumen.activity.DetailPemesananActivity;
+import com.yuly.elaundry.konsumen.adapter.PemesananAdapter;
 import com.yuly.elaundry.konsumen.app.AppConfig;
 import com.yuly.elaundry.konsumen.app.AppController;
-import com.yuly.elaundry.konsumen.models.PesananModels;
 import com.yuly.elaundry.konsumen.helper.SQLiteHandler;
 import com.yuly.elaundry.konsumen.helper.SessionManager;
 import com.yuly.elaundry.konsumen.helper.VolleyErrorHelper;
+import com.yuly.elaundry.konsumen.listener.RecyclerTouchListener;
+import com.yuly.elaundry.konsumen.models.TransaksiModel;
 import com.yuly.elaundry.konsumen.widgets.FastScroller;
+
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -52,11 +58,12 @@ import java.util.Map;
 public class TransaksiFragment extends Fragment implements SearchView.OnQueryTextListener{
 
     //Creating a List of superheroes
-    private List<PesananModels> listPemesanan;
+    private List<TransaksiModel> listPemesanan;
 
     //Creating Views
-
+    // SqLite database handler
     private SQLiteHandler db;
+
     private SessionManager session;
 
     private ProgressDialog pDialog;
@@ -67,11 +74,10 @@ public class TransaksiFragment extends Fragment implements SearchView.OnQueryTex
     private FloatingActionButton mFab;
 
     //JSON Array
-    private JSONArray result;
+    private JSONObject result;
 
 
     private static final String TAG = TransaksiFragment.class.getSimpleName();
-
     //  private List<Anggota> feedItemList = new ArrayList<Anggota>();
     private RecyclerView mRecyclerView;
  //   private RecyclerView rv;
@@ -83,10 +89,10 @@ public class TransaksiFragment extends Fragment implements SearchView.OnQueryTex
 
     //Creating Views
     private LayoutManager layoutManager;
-    private TransaksiAdapter adapter;
+    private PemesananAdapter adapter;
    // private SimpleStringAdapter adapter;
 
-    private  SwipeRefreshLayout mSwipeRefreshLayout;
+    private SwipeRefreshLayout mSwipeRefreshLayout;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -111,16 +117,16 @@ public class TransaksiFragment extends Fragment implements SearchView.OnQueryTex
      //   adapter = new SimpleStringAdapter(Cheeses.sCheeseStrings);
 
 
-
-
         mRecyclerView = (RecyclerView) v.findViewById(R.id.recycler_view);
-
         mFastScroller = (FastScroller) v.findViewById(R.id.fastscroller);
 
         mRecyclerView.setHasFixedSize(true);
         mRecyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
-        //mRecyclerView.addItemDecoration(new DividerItemDecoration(getContext(), LinearLayoutManager.VERTICAL));
+        mRecyclerView.addItemDecoration(new DividerItemDecoration(getContext(), LinearLayoutManager.VERTICAL));
+        mRecyclerView.setItemAnimator(new DefaultItemAnimator());
         mFastScroller.setRecyclerView(mRecyclerView);
+
+
 
        /*
       //  rv.setLayoutManager(new LinearLayoutManager(this));
@@ -134,6 +140,8 @@ public class TransaksiFragment extends Fragment implements SearchView.OnQueryTex
         mRecyclerView.addItemDecoration(new DividerItemDecoration(getContext(), DividerItemDecoration.VERTICAL_LIST));
 */
 
+
+
         mFab = (FloatingActionButton)v.findViewById(R.id.floating_button);
         mFab.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -143,19 +151,14 @@ public class TransaksiFragment extends Fragment implements SearchView.OnQueryTex
             }
         });
 
-        //Initializing our superheroes list
-        listPemesanan = new ArrayList<PesananModels>();
-
         // SqLite database handler
         db = new SQLiteHandler(getContext());
 
+        //Initializing our superheroes list
+        listPemesanan = new ArrayList<TransaksiModel>();
+
         // session manager
         session = new SessionManager(getContext());
-
-        // Fetching user details from SQLite
-        HashMap<String, String> user = db.getUserDetails();
-
-        apiKey = user.get("api");
 
         pDialog = new ProgressDialog(getContext());
         pDialog.setMessage("Loading...");
@@ -186,7 +189,27 @@ public class TransaksiFragment extends Fragment implements SearchView.OnQueryTex
 
 
 
+        mRecyclerView.addOnItemTouchListener(new RecyclerTouchListener(getActivity(), mRecyclerView, new RecyclerTouchListener.ClickListener() {
+            @Override
+            public void onClick(View view, int position) {
+                TransaksiModel movie = listPemesanan.get(position);
+                Toast.makeText(getActivity(), movie.getNoId() + " is selected!", Toast.LENGTH_SHORT).show();
+
+                Intent intent = new Intent(getActivity(), DetailPemesananActivity.class);
+                intent.putExtra("EXTRA_SESSION_ID", movie.getNoId());
+                startActivity(intent);
+
+            }
+
+            @Override
+            public void onLongClick(View view, int position) {
+
+            }
+        }));
+
         makeJsonArryReq();
+
+
 
         return v;
 
@@ -225,29 +248,96 @@ public class TransaksiFragment extends Fragment implements SearchView.OnQueryTex
      */
     private void makeJsonArryReq() {
         showProgressDialog();
-        mSwipeRefreshLayout.setRefreshing(true);
-        JsonArrayRequest req = new JsonArrayRequest(AppConfig.URL_TRANSAKSI,
-                new Response.Listener<JSONArray>() {
-                    @Override
-                    public void onResponse(JSONArray response) {
+       // mSwipeRefreshLayout.setRefreshing(true);
+
+        JsonObjectRequest jsonObjReq = new JsonObjectRequest(Method.GET,
+               AppConfig.URL_PEMESANAN, null, new Response.Listener<JSONObject>() {
+
+            @Override
+            public void onResponse(JSONObject response) {
+                Log.d(TAG, response.toString());
+
 
                         Log.d(AppController.TAG, "on Response " + response.toString());
-
                         //   msgResponse.setText(response.toString());
                         hideProgressDialog();
 
                         mSwipeRefreshLayout.setRefreshing(false);
 
 
-                        //Storing the Array of JSON String to our JSON Array
-                        result = response;
+                try {
+                    String error = response.getString("error");
+                    if (error == "false") {
+                        JSONArray obj = response.getJSONArray("pemesanan");
 
-                        //Calling method getStudents to get the students from the JSON Array
-                        getStudents(result);
+                        for (int i = 0; i < obj.length(); i++) {
+                            TransaksiModel listPesanan = new TransaksiModel();
+
+                            JSONObject jObj = obj.getJSONObject(i);
+
+                            Log.d("TAG", jObj.toString());
+
+                            String pemesanan_no = jObj.getString("pemesanan_no");
+                            String pemesanan_id = jObj.getString("pemesanan_id");
+                            String konsumen_id = jObj.getString("konsumen_id");
+                            String pemesanan_latitude = jObj.getString("pemesanan_latitude");
+                            String pemesanan_longitude = jObj.getString("pemesanan_longitude");
+                            String pemesanan_alamat = jObj.getString("pemesanan_alamat");
+                            String pemesanan_catatan = jObj.getString("pemesanan_catatan");
+                            String pemesanan_paket = jObj.getString("pemesanan_paket");
+                            String pemesanan_baju = jObj.getString("pemesanan_baju");
+                            String pemesanan_celana = jObj.getString("pemesanan_celana");
+                            String pemesanan_rok = jObj.getString("pemesanan_rok");
+                            String pemesanan_harga = jObj.getString("pemesanan_harga");
+                            String pemesanan_tanggal = jObj.getString("pemesanan_tanggal");
+                            String pemesanan_status = jObj.getString("pemesanan_status");
 
 
+                            Log.d(AppController.TAG, "id : " + pemesanan_id);
+                            Log.d(AppController.TAG, "nama : " + konsumen_id);
+
+                            Log.d(AppController.TAG, "kota : " + pemesanan_latitude);
+                            Log.d(AppController.TAG, "provinsi : " + pemesanan_longitude);
+                            Log.d(AppController.TAG, "latitude : " + pemesanan_alamat);
+                            Log.d(AppController.TAG, "latitude : " + pemesanan_catatan);
+                            Log.d(AppController.TAG, "longitude : " + pemesanan_paket);
+                            Log.d(AppController.TAG, "creates : " + pemesanan_baju);
+                            Log.d(AppController.TAG, "creates : " + pemesanan_celana);
+                            Log.d(AppController.TAG, "creates : " + pemesanan_rok);
+                            Log.d(AppController.TAG, "creates : " + pemesanan_harga);
+                            Log.d(AppController.TAG, "creates : " + pemesanan_tanggal);
+                            Log.d(AppController.TAG, "creates : " + pemesanan_status);
+
+
+                            listPesanan.setNoId(pemesanan_id);
+                            listPesanan.setHarga(pemesanan_harga);
+                            listPesanan.setKonsumenId(konsumen_id);
+                            listPesanan.setAlamat(pemesanan_alamat);
+                            listPesanan.setTanggal(pemesanan_tanggal);
+
+
+                            listPemesanan.add(listPesanan);
+                        }
+
+                        updateList();
+                    }
+                    else {
+
+                        JSONArray message = response.getJSONArray("message");
+
+                        Toast.makeText(getActivity(), message.toString(), Toast.LENGTH_SHORT).show();
 
                     }
+
+
+                }
+                catch (JSONException e) {
+
+                    e.printStackTrace();
+                }
+
+            }
+
 
                 }, new Response.ErrorListener() {
 
@@ -274,7 +364,7 @@ public class TransaksiFragment extends Fragment implements SearchView.OnQueryTex
             public Map<String, String> getHeaders() throws AuthFailureError {
                 HashMap<String, String> headers = new HashMap<String, String>();
                 headers.put("Content-Type", "application/json");
-                headers.put("Authorization", db.getUserApi());
+                headers.put("Authorization", db.getUserApi()); //"a72d24f68128083f2904c6ce38fa232f97f2cab1");//"ef9bd71d1a704132aa366d1aa870f8be1faa44db");
                 return headers;
             }
 
@@ -283,7 +373,7 @@ public class TransaksiFragment extends Fragment implements SearchView.OnQueryTex
 
         // Adding request to request queue
         String tag_json_arry = "jarray_req";
-        AppController.getInstance().addToRequestQueue(req, tag_json_arry);
+        AppController.getInstance().addToRequestQueue(jsonObjReq , tag_json_arry);
 
         // Cancelling request
         // ApplicationController.getInstance().getRequestQueue().cancelAll(tag_json_arry);
@@ -291,53 +381,55 @@ public class TransaksiFragment extends Fragment implements SearchView.OnQueryTex
 
 
 
-    private void getStudents(JSONArray j){
+    private void getData(JSONArray j){
         //Traversing through all the items in the json array
+
+
         for(int i=0;i<j.length();i++){
-            PesananModels listPesanan = new PesananModels();
+            TransaksiModel listPesanan = new TransaksiModel();
             try {
 
                 JSONObject jObj = j.getJSONObject(i);
+               // JSONObject jObj = new JSONObject(response);
 
-                boolean error = jObj.getBoolean("error");
-                if (!error) {
+                    Log.d("TAG",jObj.toString());
 
+                    String pemesanan_no = jObj.getString("pemesanan_no");
+                    String pemesanan_id = jObj.getString("pemesanan_id");
+                    String konsumen_id = jObj.getString("konsumen_id");
+                    String pemesanan_latitude = jObj.getString("pemesanan_latitude");
+                    String pemesanan_longitude = jObj.getString("pemesanan_longitude");
+                    String pemesanan_alamat = jObj.getString("pemesanan_alamat");
+                    String pemesanan_catatan = jObj.getString("pemesanan_catatan");
+                    String pemesanan_paket = jObj.getString("pemesanan_paket");
+                    String pemesanan_baju = jObj.getString("pemesanan_baju");
+                    String pemesanan_celana = jObj.getString("pemesanan_celana");
+                    String pemesanan_rok = jObj.getString("pemesanan_rok");
+                    String pemesanan_harga = jObj.getString("pemesanan_harga");
+                    String pemesanan_tanggal = jObj.getString("pemesanan_tanggal");
+                    String pemesanan_status = jObj.getString("pemesanan_status");
 
-                    JSONObject tempat = jObj.getJSONObject("transaksi");
-
-                    String transaksi_id = tempat.getString("transaksi_id");
-                    String konsumen_id = tempat.getString("konsumen_id");
-                    String pemesanan_id = tempat.getString("pemesanan_id");
-                    String kurir_pengambil_id = tempat.getString("kurir_pengambil_id");
-                    String kurir_pengantar_id = tempat.getString("kurir_pengantar_id");
-                    String tempat_id = tempat.getString("tempat_id");
-                    String pembayaran_id = tempat.getString("pembayaran_id");
-                    String tanggal_transaksi = tempat.getString("tanggal_transaksi");
-
-
-                    Log.d(AppController.TAG, "id : " + transaksi_id);
+                    Log.d(AppController.TAG, "id : " + pemesanan_no);
+                    Log.d(AppController.TAG, "id : " + pemesanan_id);
                     Log.d(AppController.TAG, "nama : " + konsumen_id);
                     Log.d(AppController.TAG, "alamat : " + pemesanan_id);
-                    Log.d(AppController.TAG, "kota : " + kurir_pengambil_id);
-                    Log.d(AppController.TAG, "provinsi : " + kurir_pengantar_id);
-                    Log.d(AppController.TAG, "latitude : " + tempat_id);
-                    Log.d(AppController.TAG, "longitude : " + pembayaran_id);
-                    Log.d(AppController.TAG, "creates : " + tanggal_transaksi);
+                    Log.d(AppController.TAG, "kota : " + pemesanan_latitude);
+                    Log.d(AppController.TAG, "provinsi : " + pemesanan_longitude);
+                    Log.d(AppController.TAG, "latitude : " + pemesanan_alamat);
+                    Log.d(AppController.TAG, "latitude : " + pemesanan_catatan);
+                    Log.d(AppController.TAG, "longitude : " + pemesanan_paket);
+                    Log.d(AppController.TAG, "creates : " + pemesanan_baju);
+                    Log.d(AppController.TAG, "creates : " + pemesanan_celana);
+                    Log.d(AppController.TAG, "creates : " + pemesanan_rok);
+                    Log.d(AppController.TAG, "creates : " + pemesanan_harga);
+                    Log.d(AppController.TAG, "creates : " + pemesanan_tanggal);
+                    Log.d(AppController.TAG, "creates : " + pemesanan_status);
 
 
-                    listPesanan.setName(transaksi_id);
-                    listPesanan.setRank(Integer.parseInt(pemesanan_id));
-                    listPesanan.setRealName(tanggal_transaksi);
-
-                } else {
-
-                    // Error occurred in registration. Get the error
-                    // message
-                    String errorMsg = jObj.getString("message");
-                    Toast.makeText(getContext(),
-                            errorMsg, Toast.LENGTH_LONG).show();
-                }
-
+                    listPesanan.setNomer(pemesanan_no);
+                    listPesanan.setKonsumenId(konsumen_id);
+                    listPesanan.setAlamat(pemesanan_alamat);
+                    listPesanan.setTanggal(pemesanan_tanggal);
 
 
             } catch (JSONException e) {
@@ -349,8 +441,8 @@ public class TransaksiFragment extends Fragment implements SearchView.OnQueryTex
 
 
 
-         updateList();
 
+        updateList();
     }
 
 
@@ -358,7 +450,7 @@ public class TransaksiFragment extends Fragment implements SearchView.OnQueryTex
     private void updateList() {
 
         //Finally initializing our adapter
-       adapter = new TransaksiAdapter(listPemesanan, getContext());
+       adapter = new PemesananAdapter(listPemesanan, getContext());
 
         //Adding adapter to recyclerview
       mRecyclerView.setAdapter(adapter);
@@ -444,7 +536,7 @@ public class TransaksiFragment extends Fragment implements SearchView.OnQueryTex
 
     @Override
     public boolean onQueryTextChange(String newText) {
-        final List<PesananModels> filteredModelList = filter(listPemesanan, newText);
+        final List<TransaksiModel> filteredModelList = filter(listPemesanan, newText);
         adapter.setFilter(filteredModelList);
         return true;
     }
@@ -455,12 +547,12 @@ public class TransaksiFragment extends Fragment implements SearchView.OnQueryTex
     }
 
 
-    private List<PesananModels> filter(List<PesananModels> models, String query) {
+    private List<TransaksiModel> filter(List<TransaksiModel> models, String query) {
         query = query.toLowerCase();
 
-        final List<PesananModels> filteredModelList = new ArrayList<PesananModels>();
-        for (PesananModels model : models) {
-            final String text = model.getRealName().toLowerCase();
+        final List<TransaksiModel> filteredModelList = new ArrayList<TransaksiModel>();
+        for (TransaksiModel model : models) {
+            final String text = model.getAlamat().toLowerCase();
             if (text.contains(query)) {
                 filteredModelList.add(model);
             }

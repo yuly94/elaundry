@@ -253,17 +253,17 @@ public class MainActivity extends AppCompatActivity {
 				break;
 			case 1:
 			//  fragment tempat
-				fragment = new AlamatFragment();
+				fragment = new TransaksiFragment();
 				break;
 			case 2:
 			  	fragment = new MapsFragmentLocation();
 			//	fragment =new Example3Fragment();
 				break;
 			case 3:
-				fragment = new TempatFragment();
+				fragment = new ProfileFragment();
 				break;
 			case 4:
-			 	fragment = new ProfileFragment();
+			 	fragment = new TempatFragment();
 				break;
 			case 5:
 				//	themes

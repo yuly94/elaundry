@@ -46,7 +46,6 @@
     <string name="parsing_failed">parsing failed</string>
 
 
-
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="hint_no_handphone">no handphone</string>
@@ -226,6 +225,7 @@
     <string name="sedang_memuat">Memuat...</string>
     <string name="permintaan_melakukan_pemesanan">permintaan melakukan pemesanan</string>
     <string name="pemesanan_berhasil">pemesanan anda telah berhasil dikirim</string>
+    <string name="title_activity_detail_pemesanan">Detail Pemesanan Activity</string>
 
 
 </resources>

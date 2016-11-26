@@ -60,8 +60,7 @@
     <style name="MyMaterialTheme.NoActionBar.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
 
 
-
-<!--
+    <!--
 
     <style name="AboutLibrariesSampleTheme" parent="MyMaterialTheme.NoActionBar">
         &lt;!&ndash; AboutLibraries specific values &ndash;&gt;
@@ -75,7 +74,6 @@
     </style>
 
 -->
-
 
 
 </resources>
