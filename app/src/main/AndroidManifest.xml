@@ -97,11 +97,6 @@
             android:label="detail pesanan"
             android:screenOrientation="portrait"
             android:theme="@style/MYAppTheme.NoActionBar"></activity>
-        <activity
-            android:name=".controller.activity.DetailPengambilanPemesananActivity"
-            android:label="detail pesanan"
-            android:screenOrientation="portrait"
-            android:theme="@style/MYAppTheme.NoActionBar"></activity>
 
         <activity
             android:name=".controller.activity.SettingsActivity"

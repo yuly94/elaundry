@@ -274,7 +274,7 @@
     <string name="elaundryconfigdottxt">elaundryconfig.txt</string>
     <string name="update_password_gagal">failed to update password</string>
     <string name="update_password_berhasil">update password success</string>
-    <string name="update_profile_berhasil">failed to update profile</string>
+    <string name="update_profile_berhasil">update profile success</string>
     <string name="user_disimpan_di_database">User store to database</string>
     <string name="input_masih_kosong">Input is empty</string>
     <string name="json_request_error">json request error</string>

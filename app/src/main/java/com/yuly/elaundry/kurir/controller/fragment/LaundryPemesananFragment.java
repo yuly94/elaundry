@@ -257,117 +257,6 @@ public class LaundryPemesananFragment extends Fragment implements SearchView.OnQ
     }
 
 
-    private void getPemesanan(){
-
-        // Tag used to cancel the request
-        String tag_string_req = "req_profile";
-
-        HashMap<String, String> params = new HashMap<String, String>();
-        params.put("pemesanan_status", pemesanan_status);
-
-        pDialog.setMessage(getString(R.string.mengupdate_profile));
-        showProgressDialog();
-
-        StringRequest strReq = new StringRequest(Request.Method.POST,
-                AppConfig.URL_PEMESANAN, new Response.Listener<String>() {
-
-            @Override
-            public void onResponse(String response) {
-                Log.d(TAG, "Update pemesanan Response : " + response);
-                hideProgressDialog();
-
-                try {
-
-                    JSONObject jObj = new JSONObject(response);
-
-                    boolean error = jObj.getBoolean("error");
-
-                    // Check for error node in json
-                    if (!error) {
-                        // Now store the user in SQLite
-
-
-                        // Error in login. Get the error message
-                        String errorMsg = jObj.getString("message");
-
-                        Log.d(Constants.TAG,errorMsg);
-
-                        if (getView()!=null) {
-                            Snackbar.make(getView(), errorMsg, Snackbar.LENGTH_LONG).show();
-                        }
-                       // Handler myHandler = new Handler();
-                      //  myHandler.postDelayed(mMyRunnable, 5000);//Message will be delivered in 5 second.
-
-
-                    } else {
-                        // Error in login. Get the error message
-                        String errorMsg = jObj.getString("message");
-
-                        Log.d(Constants.TAG,errorMsg);
-
-                        if (getView()!=null) {
-                            Snackbar.make(getView(), errorMsg, Snackbar.LENGTH_LONG).show();
-                        }
-
-                    }
-                } catch (JSONException e) {
-                    // JSON error
-                    e.printStackTrace();
-
-                    Toast.makeText(getActivity(), getString(R.string.json_request_error) + e.getMessage(), Toast.LENGTH_LONG).show();
-
-                }
-
-            }
-        }, new Response.ErrorListener() {
-
-            @Override
-            public void onErrorResponse(VolleyError error) {
-
-                String e = VolleyErrorHelper.getMessage(error, getActivity());
-
-                VolleyLog.d(AppController.TAG, "Error: " + e);
-
-
-                Toast.makeText(getActivity(),
-                        e, Toast.LENGTH_LONG).show();
-
-                Log.d(Constants.TAG,"failed");
-                //   progress.setVisibility(View.GONE);
-
-                hideProgressDialog();
-            }
-        }) {
-
-
-            @Override
-            public Map<String, String> getHeaders() throws AuthFailureError {
-                HashMap<String, String> headers = new HashMap<>();
-                headers.put("Content-Type","application/x-www-form-urlencoded");
-                headers.put("Authorization", db.getUserApi() );
-
-                Log.d("Params",headers.toString());
-                return headers;
-            }
-
-
-            @Override
-            protected Map<String, String> getParams() {
-                // Posting parameters to change password
-                Map<String, String> params = new HashMap<>();
-                params.put("pemesanan_status", pemesanan_status);
-
-                Log.d("Params",params.toString());
-
-                return params;
-            }
-
-        };
-
-        // Adding request to request queue
-        AppController.getInstance().addToRequestQueue(strReq, tag_string_req);
-    }
-
 
     /**
      * Making json array request
@@ -378,7 +267,7 @@ public class LaundryPemesananFragment extends Fragment implements SearchView.OnQ
         showProgressDialog();
        // mSwipeRefreshLayout.setRefreshing(true);
 
-            // Posting parameters to change password
+        // Posting parameters untuk mengambil data pemesanan
         HashMap<String, String> params = new HashMap<String, String>();
         params.put("pemesanan_status", pemesanan_status);
 

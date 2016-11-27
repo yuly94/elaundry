@@ -100,7 +100,7 @@ public class DetailPemesananActivity extends AppCompatActivity {
         // SqLite database handler
         db = new KonsumenDbHandler(getApplicationContext());
 
-        id_pemesanan = getIntent().getStringExtra("EXTRA_SESSION_ID");
+        id_pemesanan = getIntent().getStringExtra("PEMESANAN_ID");
         text_tombol = getIntent().getStringExtra("TEXT_TOMBOL");
         text_status_sebelumnya = getIntent().getStringExtra("STATUS_SEBELUMNYA");
         text_update_status = getIntent().getStringExtra("UPDATE_STATUS");

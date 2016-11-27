@@ -25,14 +25,13 @@ import android.view.ViewGroup;
 import android.widget.Toast;
 
 import com.android.volley.AuthFailureError;
-import com.android.volley.Request.Method;
+import com.android.volley.Request;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.VolleyLog;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.yuly.elaundry.kurir.R;
 import com.yuly.elaundry.kurir.controller.activity.DetailPemesananActivity;
-import com.yuly.elaundry.kurir.controller.activity.DetailPengambilanPemesananActivity;
 import com.yuly.elaundry.kurir.controller.adapter.PemesananAdapter;
 import com.yuly.elaundry.kurir.controller.app.AppConfig;
 import com.yuly.elaundry.kurir.controller.app.AppController;
@@ -90,6 +89,8 @@ public class LaundryPengambilanAgentFragment extends Fragment implements SearchV
     private LayoutManager layoutManager;
     private PemesananAdapter adapter;
    // private SimpleStringAdapter adapter;
+
+    private String pemesanan_status = "diserahkan ke agent";
 
     private  SwipeRefreshLayout mSwipeRefreshLayout;
 
@@ -178,7 +179,7 @@ public class LaundryPengambilanAgentFragment extends Fragment implements SearchV
                 // Make sure you call mSwipeRefreshLayout.setRefreshing(false)
                 // once the network request has completed successfully.
 
-                makeJsonArryReq();
+                mengambilDataLaundry();
 
                  adapter.clear();
             }
@@ -214,7 +215,7 @@ public class LaundryPengambilanAgentFragment extends Fragment implements SearchV
             }
         }));
 
-        makeJsonArryReq();
+        mengambilDataLaundry();
 
 
 
@@ -253,13 +254,17 @@ public class LaundryPengambilanAgentFragment extends Fragment implements SearchV
     /**
      * Making json array request
      */
-    private void makeJsonArryReq() {
+    private void mengambilDataLaundry() {
         showProgressDialog();
        // mSwipeRefreshLayout.setRefreshing(true);
 
-        JsonObjectRequest jsonObjReq = new JsonObjectRequest(Method.GET,
-               AppConfig.URL_PENGAMBILAN_PEMESANAN, null, new Response.Listener<JSONObject>() {
+        // Posting parameters untuk mengambil data pemesanan
+        HashMap<String, String> params = new HashMap<String, String>();
+        params.put("pemesanan_status", pemesanan_status);
 
+        JsonObjectRequest jsonObjReq = new JsonObjectRequest(Request.Method.POST,
+                AppConfig.URL_PEMESANAN,new JSONObject(params),
+                new Response.Listener<JSONObject>() {
             @Override
             public void onResponse(JSONObject response) {
                 Log.d(TAG, response.toString());
