@@ -29,3 +29,9 @@ $app->get('/konsumen/peta/', function () use ($app) {
         }
     });
 
+    
+     
+$app->get('/konsumen/peta/map_url_list', function () use ($app) {
+
+    $app->render('/konsumen/linkpeta.php');
+});

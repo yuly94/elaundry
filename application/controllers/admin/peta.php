@@ -1,9 +1,5 @@
 <?php
 
-use \FB;
-use \My\Helper;
-
-
 $app->get('/dashboard/maps/', function () use ($app) {
 
           

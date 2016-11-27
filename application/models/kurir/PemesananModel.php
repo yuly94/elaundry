@@ -11,84 +11,298 @@ class PemesananModel {
      * Fetching all alamat
      * @param String $kurir_id
      */
-    public static function getPesanan($kurir_id) {
+    public static function getPesanan() {
         $app = \Slim\Slim::getInstance();
         
-        $sql = "SELECT * FROM pemesanan WHERE kurir_id = :kurir_id ";
+        //$sql = "SELECT * FROM laundry_pemesanan";
+        
+        $sql = "SELECT
+            pemesanan_no,
+      pemesanan_id, 
+      l.konsumen_id,
+      pemesanan_latitude,
+      pemesanan_longitude,
+      pemesanan_alamat,
+      pemesanan_catatan,
+      pemesanan_paket,
+      pemesanan_baju,
+      pemesanan_celana,
+      pemesanan_rok,
+      pemesanan_harga,
+      pemesanan_tanggal,
+      pemesanan_status,
+      konsumen_nama,
+      konsumen_nohp
+FROM laundry_pemesanan l
+JOIN konsumen k
+ON l.konsumen_id = k.konsumen_id WHERE l.pemesanan_status=:pemesanan_status";
 
         $stmt = $app->db->prepare($sql);
-        $stmt->execute(array('kurir_id'=>$kurir_id));
         
-        $alamat=$stmt->fetchAll(PDO::FETCH_OBJ);
+        $pemesanan_status = "baru memesan";
+        $stmt->execute(array('pemesanan_status'=>$pemesanan_status));
         
+        $pemesanan=$stmt->fetchAll(PDO::FETCH_OBJ);
+
         if($stmt->rowCount() > 0)
-        {  
-            return $alamat;
+        {          
+             
+            return $pemesanan;
         } else {
             return NULL;
                }
         }
-    
-    
-        /* ------------- `melakukan pemesanan` ------------------ */
-
-    /**
-     * Melakukan pemesanan
-     * @param String $name User full name
-     * @param String $email User login email id
-     * @param String $password User login password
-     */
-    public static function tambahPesanan($api_kurir_id, $paket_id,$pesanan_satuan,$koordinat_id,$catatan) {
         
+        
+        /**
+     * Fetching detail pesanan
+     * @param String $pemesanan_id
+     */
+    public static function getDetailPesanan($pemesanan_id) {
         $app = \Slim\Slim::getInstance();
-       
-        $response = array();
+        
+        $sql = "SELECT
+            pemesanan_no,
+      pemesanan_id, 
+      l.konsumen_id,
+      pemesanan_latitude,
+      pemesanan_longitude,
+      pemesanan_alamat,
+      pemesanan_catatan,
+      pemesanan_paket,
+      pemesanan_baju,
+      pemesanan_celana,
+      pemesanan_rok,
+      pemesanan_harga,
+      pemesanan_tanggal,
+      pemesanan_status,
+      konsumen_nama,
+      konsumen_nohp
+FROM laundry_pemesanan l
+JOIN konsumen k
+ON l.konsumen_id = k.konsumen_id WHERE l.pemesanan_id = :pemesanan_id AND  l.pemesanan_status=:pemesanan_status";
 
-        // First check if user already existed in db
-        if (!ValidasiModel::cekKurir($kurir_email)) {
-            
-            $token_aktifasi = GeneratorModel::randStrGen(50);
-            // insert query        
-            $sql = "INSERT INTO kurir(kurir_id, kurir_nama, kurir_alamat, "
-                    . "kurir_nohp, kurir_email, kurir_password, kurir_kunci_api, "
-                    . "kurir_kode_aktifasi, kurir_kode_reset, kurir_dibuat_pada, kurir_status_aktifasi,kurir_status,kurir_status_reset) "
-                    . "values(:kurir_id, :kurir_nama, :kurir_alamat, :kurir_nohp,"
-                    . ":kurir_email, :kurir_password, :kurir_kunci_api, :kurir_kode_aktifasi,"
-                    . ":kurir_kode_reset,   NOW(), :kurir_status_aktifasi,:kurir_status,:kurir_status_reset)";
-       
-            $stmt = $app->db->prepare($sql);
-            $result = $stmt->execute(array(
-            'kurir_id'=>GeneratorModel::generateUID(),
-            'kurir_nama'=>$kurir_nama,
-            'kurir_alamat'=>$kurir_alamat,
-            'kurir_nohp'=>$kurir_nohp,
-            'kurir_email'=>$kurir_email,
-            'kurir_password'=> GeneratorModel::hash($kurir_password),
-            'kurir_kunci_api'=> GeneratorModel::generateApiKey(),
-            'kurir_kode_aktifasi'=> $token_aktifasi,
-            'kurir_kode_reset'=> NULL,
-            'kurir_status_aktifasi'=>"belum aktifasi",
-            'kurir_status'=>"menunggu aktifasi",
-            'kurir_status_reset'=>"none"
-        ));
-            
-            // Check for successful insertion
-            if ($result) {
-                // User successfully inserted
-                
-                KirimEmailModel::emailAktifasi($kurir_email, $token_aktifasi, $kurir_nama);
-
-                return USER_CREATED_SUCCESSFULLY;
-            } else {
-                // Failed to create user
-                return USER_CREATE_FAILED;
-            }
+        $stmt = $app->db->prepare($sql);
+        $pemesanan_status = "baru memesan";
+        $stmt->execute(array(
+            'pemesanan_id'=>$pemesanan_id,
+            'pemesanan_status'=>$pemesanan_status));
+        
+        $pemesanan=$stmt->fetchAll(PDO::FETCH_ASSOC);
+        
+        if($stmt->rowCount() > 0)
+        {  
+            return $pemesanan;
         } else {
-            // User with same email already existed in the db
-            return USER_ALREADY_EXISTED;
+            return NULL;
+               }
+        }
+        
+        
+    public static function updatePemesanan($pemesanan_id, $kurir_id, $pemesanan_status) {
+    
+        $app = \Slim\Slim::getInstance();
+        // fetching user by email
+
+	//$update = time();
+	$sql = "UPDATE laundry_pemesanan SET kurir_id =:kurir_id,pemesanan_status =:pemesanan_status, pemesanan_diupdate_pada = NOW() WHERE pemesanan_id = :pemesanan_id";
+        
+        $stmt = $app->db->prepare($sql);
+        $mengupdate = $stmt->execute(array(
+            'kurir_id'=>$kurir_id,
+            'pemesanan_status'=>$pemesanan_status,
+            'pemesanan_id'=>$pemesanan_id
+        ));
+		
+	
+      //  $stmt->fetch(PDO::FETCH_ASSOC);
+        
+        if($mengupdate)
+            {
+                //Update user password success
+                return TRUE;
+            
+        } else {
+            return NULL;
+               }
         }
 
-        return $response;
-    }
+         
+
+    public static function pengambilanPesanan() {
+        $app = \Slim\Slim::getInstance();
+        
+        //$sql = "SELECT * FROM laundry_pemesanan";
+        
+        $sql = "SELECT
+            pemesanan_no,
+      pemesanan_id, 
+      l.konsumen_id,
+      pemesanan_latitude,
+      pemesanan_longitude,
+      pemesanan_alamat,
+      pemesanan_catatan,
+      pemesanan_paket,
+      pemesanan_baju,
+      pemesanan_celana,
+      pemesanan_rok,
+      pemesanan_harga,
+      pemesanan_tanggal,
+      pemesanan_status,
+      konsumen_nama,
+      konsumen_nohp
+FROM laundry_pemesanan l
+JOIN konsumen k
+ON l.konsumen_id = k.konsumen_id WHERE l.pemesanan_status=:pemesanan_status";
+
+        $stmt = $app->db->prepare($sql);
+        
+        $pemesanan_status = "pengambilan laundry";
+        $stmt->execute(array('pemesanan_status'=>$pemesanan_status));
+        
+        $pemesanan=$stmt->fetchAll(PDO::FETCH_OBJ);
+
+        if($stmt->rowCount() > 0)
+        {         
+            return $pemesanan;
+        } else {
+            return NULL;
+               }
+        }
+        
+        
+        /**
+     * Fetching detail pesanan
+     * @param String $pemesanan_id
+     */
+    public static function pengambilanDetailPesanan($pemesanan_id) {
+        $app = \Slim\Slim::getInstance();
+        
+        $sql = "SELECT
+            pemesanan_no,
+      pemesanan_id, 
+      l.konsumen_id,
+      pemesanan_latitude,
+      pemesanan_longitude,
+      pemesanan_alamat,
+      pemesanan_catatan,
+      pemesanan_paket,
+      pemesanan_baju,
+      pemesanan_celana,
+      pemesanan_rok,
+      pemesanan_harga,
+      pemesanan_tanggal,
+      pemesanan_status,
+      konsumen_nama,
+      konsumen_nohp
+FROM laundry_pemesanan l
+JOIN konsumen k
+ON l.konsumen_id = k.konsumen_id WHERE l.pemesanan_id = :pemesanan_id AND  l.pemesanan_status=:pemesanan_status";
+
+        $stmt = $app->db->prepare($sql);
+        $pemesanan_status = "pengambilan laundry";
+        $stmt->execute(array(
+            'pemesanan_id'=>$pemesanan_id,
+            'pemesanan_status'=>$pemesanan_status));
+        
+        $pemesanan=$stmt->fetchAll(PDO::FETCH_ASSOC);
+        
+        if($stmt->rowCount() > 0)
+        {  
+            return $pemesanan;
+        } else {
+            return NULL;
+               }
+        }
+        
+        
+                   /**
+     * Fetching all alamat
+     * @param String $kurir_id
+     */
+    public static function mendapatkanPesanan($pemesanan_status) {
+        $app = \Slim\Slim::getInstance();
+        
+        //$sql = "SELECT * FROM laundry_pemesanan";
+        
+        $sql = "SELECT
+            pemesanan_no,
+      pemesanan_id, 
+      l.konsumen_id,
+      pemesanan_latitude,
+      pemesanan_longitude,
+      pemesanan_alamat,
+      pemesanan_catatan,
+      pemesanan_paket,
+      pemesanan_baju,
+      pemesanan_celana,
+      pemesanan_rok,
+      pemesanan_harga,
+      pemesanan_tanggal,
+      pemesanan_status,
+      konsumen_nama,
+      konsumen_nohp
+FROM laundry_pemesanan l
+JOIN konsumen k
+ON l.konsumen_id = k.konsumen_id WHERE l.pemesanan_status=:pemesanan_status";
+
+        $stmt = $app->db->prepare($sql);
+        $stmt->execute(array('pemesanan_status'=>$pemesanan_status));
+        
+        $pemesanan=$stmt->fetchAll(PDO::FETCH_OBJ);
+
+        if($stmt->rowCount() > 0)
+        {          
+             
+            return $pemesanan;
+        } else {
+            return NULL;
+               }
+        }
+        
+        
+        /**
+     * Fetching detail pesanan
+     * @param String $pemesanan_id
+     */
+    public static function mendapatkanDetailPesanan($pemesanan_id, $pemesanan_status) {
+        $app = \Slim\Slim::getInstance();
+        
+        $sql = "SELECT
+            pemesanan_no,
+      pemesanan_id, 
+      l.konsumen_id,
+      pemesanan_latitude,
+      pemesanan_longitude,
+      pemesanan_alamat,
+      pemesanan_catatan,
+      pemesanan_paket,
+      pemesanan_baju,
+      pemesanan_celana,
+      pemesanan_rok,
+      pemesanan_harga,
+      pemesanan_tanggal,
+      pemesanan_status,
+      konsumen_nama,
+      konsumen_nohp
+FROM laundry_pemesanan l
+JOIN konsumen k
+ON l.konsumen_id = k.konsumen_id WHERE l.pemesanan_id = :pemesanan_id AND  l.pemesanan_status=:pemesanan_status";
+
+        $stmt = $app->db->prepare($sql);
+        $stmt->execute(array(
+            'pemesanan_id'=>$pemesanan_id,
+            'pemesanan_status'=>$pemesanan_status));
+        
+        $pemesanan=$stmt->fetchAll(PDO::FETCH_ASSOC);
+        
+        if($stmt->rowCount() > 0)
+        {  
+            return $pemesanan;
+        } else {
+            return NULL;
+               }
+        }
+            
 
 }

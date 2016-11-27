@@ -19,11 +19,35 @@ class PemesananModel {
         $stmt = $app->db->prepare($sql);
         $stmt->execute(array('konsumen_id'=>$konsumen_id));
         
-        $alamat=$stmt->fetchAll(PDO::FETCH_OBJ);
+        $pemesanan=$stmt->fetchAll(PDO::FETCH_OBJ);
         
         if($stmt->rowCount() > 0)
         {  
-            return $alamat;
+            return $pemesanan;
+        } else {
+            return NULL;
+               }
+        }
+        
+        
+        /**
+             * Fetching all alamat
+     * @param String $konsumen_id
+     */
+    public static function getDetailPesanan($konsumen_id, $pemesanan_id) {
+        $app = \Slim\Slim::getInstance();
+        
+        $sql = "SELECT * FROM laundry_pemesanan WHERE konsumen_id = :konsumen_id "
+                . " AND pemesanan_id = :pemesanan_id";
+
+        $stmt = $app->db->prepare($sql);
+        $stmt->execute(array('konsumen_id'=>$konsumen_id,'pemesanan_id'=>$pemesanan_id));
+        
+        $pemesanan=$stmt->fetchAll(PDO::FETCH_OBJ);
+        
+        if($stmt->rowCount() > 0)
+        {  
+            return $pemesanan;
         } else {
             return NULL;
                }
@@ -179,6 +203,73 @@ class PemesananModel {
         }
     } 
     
+    
+          
+                   /**
+     * Fetching all alamat
+     * @param String $pemesanan_status
+     */
+    public static function mendapatkanPesanan($konsumen_id, $pemesanan_status) {
+        $app = \Slim\Slim::getInstance();
+        
+   
+        $sql = "SELECT
+            pemesanan_no,
+      pemesanan_id,   l.konsumen_id,
+      pemesanan_latitude,  pemesanan_longitude,  pemesanan_alamat,  pemesanan_catatan,
+      pemesanan_paket,  pemesanan_baju,  pemesanan_celana,  pemesanan_rok,
+      pemesanan_harga,  pemesanan_tanggal,  pemesanan_status,  konsumen_nama,  konsumen_nohp
+FROM laundry_pemesanan l JOIN konsumen k
+ON l.konsumen_id = k.konsumen_id WHERE k.konsumen_id=:konsumen_id, l.pemesanan_status=:pemesanan_status";
+
+        $stmt = $app->db->prepare($sql);
+        $stmt->execute(array(
+            'pemesanan_status'=>$pemesanan_status,
+            'konsumen_id'=>$konsumen_id));
+        
+        $pemesanan=$stmt->fetchAll(PDO::FETCH_OBJ);
+
+        if($stmt->rowCount() > 0)
+        {          
+             
+            return $pemesanan;
+        } else {
+            return NULL;
+               }
+        }
+        
+        
+        /**
+     * Fetching detail pesanan
+     * @param String $pemesanan_id
+     */
+    public static function mendapatkanDetailPesanan($konsumen_id, $pemesanan_id, $pemesanan_status) {
+        $app = \Slim\Slim::getInstance();
+        
+        $sql = "SELECT
+            pemesanan_no,  pemesanan_id, 
+      l.konsumen_id,  pemesanan_latitude,  pemesanan_longitude,
+      pemesanan_alamat,  pemesanan_catatan,  pemesanan_paket, pemesanan_baju, pemesanan_celana,
+      pemesanan_rok, pemesanan_harga,  pemesanan_tanggal, pemesanan_status,  konsumen_nama, konsumen_nohp
+        FROM laundry_pemesanan l JOIN konsumen k ON l.konsumen_id = k.konsumen_id WHERE k.konsumen_id=:konsumen_id AND l.pemesanan_id = :pemesanan_id AND  l.pemesanan_status=:pemesanan_status";
+
+        $stmt = $app->db->prepare($sql);
+        $stmt->execute(array(
+            'konsumen_id'=>$konsumen_id,
+            'pemesanan_id'=>$pemesanan_id,
+            'pemesanan_status'=>$pemesanan_status));
+        
+        $pemesanan=$stmt->fetchAll(PDO::FETCH_ASSOC);
+        
+        if($stmt->rowCount() > 0)
+        {  
+            return $pemesanan;
+        } else {
+            return NULL;
+               }
+        }
+            
+
     
       public function  kirimNotif( $konsumen_email, $konsumen_nama) {
       

@@ -102,4 +102,38 @@ public static function verifyRequiredParams($required_fields) {
     }
 }
 
+
+function isJSON($string){
+   return is_string($string) && is_array(json_decode($string, true)) && (json_last_error() == JSON_ERROR_NONE) ? true : false;
+}
+
+function newVerifyRequiredParams($required_fields, $request_params) {
+    $error = false;
+    $error_fields = array();
+
+    foreach ($required_fields as $field) {
+        if (!isset($request_params[$field]) || strlen(trim($request_params[$field])) <= 0) {
+            $error = true;
+            $error_fields[] = $field;
+        }
+    }
+    if ($error) {
+        // Required field(s) are missing or empty
+        // echo error json and stop the app
+        $response = array();
+        $app = \Slim\Slim::getInstance();
+        $response["error"] = true;
+        $response['message'] = 'Required field(s) ' . implode(', ', $error_fields) . ' is missing or empty';
+        BantuanModel::echoRespnse(400, $response);
+        $app->stop();
+        
+    }
+
+    // return appropriate response when successful?
+    return array(
+        'success' => true
+    );
+}
+
+
 }

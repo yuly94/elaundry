@@ -7,7 +7,158 @@
  */
 
 
-$app->post('/konsumen/pemesanan/menambahkan/' ,'authKonsumen' ,function() use ($app){
+$app->get('/konsumen/pemesanan/'  ,'authKonsumen' , function() use ($app){
+           
+            global $api_konsumen_id;
+
+            // fetching all user tasks
+            $result= PemesananModel::getPesanan($api_konsumen_id);
+            
+            if ($result != NULL) { 
+            //$response = array();
+            $response["error"] = false;
+            $response["message"] = "data pesanan berhasil di dapatkan"; 
+            $response["pemesanan"] = $result;
+            BantuanModel::echoRespnse(200, $response);
+}      
+    else {
+        $response["error"] = true;
+        $response["message"] = "The requested resource doesn't exists";
+        BantuanModel::echoRespnse(404, $response);
+        }
+    });
+    
+    
+
+$app->get('/konsumen/pemesanan/detail/:id/' ,'authKonsumen' , function($id) use ($app){
+           
+            global $api_konsumen_id;
+
+            // fetching all user tasks
+            $result= PemesananModel::getDetailPesanan($api_konsumen_id, $id);
+            
+            if ($result != NULL) { 
+            //$response = array();
+            $response["error"] = false;
+            $response["message"] = "data pesanan berhasil di dapatkan"; 
+            $response["pemesanan"] = $result;
+            BantuanModel::echoRespnse(200, $response);
+}      
+    else {
+        $response["error"] = true;
+        $response["message"] = "The requested resource doesn't exists";
+        BantuanModel::echoRespnse(404, $response);
+        }
+    });    
+
+
+    
+$app->post('/kurir/pemesanan/'  ,'authKonsumen' , function() use ($app){
+                       
+    
+            global $api_konsumen_id;
+            // decoding the json array //bisa tp jadul
+            //$post = json_decode(file_get_contents("php://input"), true);
+            //$my_value = $post['pemesanan_status'];
+    
+            //http://stackoverflow.com/questions/39445006/read-json-input-in-slim-framework
+            
+            $bantuan = new BantuanModel();
+            if($bantuan->isJSON($app->request->getBody())){
+    
+            //http://help.slimframework.com/discussions/problems/5918-cant-get-any-posted-json-data
+            //http://stackoverflow.com/questions/28073480/how-to-access-a-json-request-body-of-a-post-request-in-slim 
+            
+            $json = $app->request->getBody();
+            $data = json_decode($json); 
+            
+            // reading post params
+            $pemesanan_status = $data->pemesanan_status;//['pemesanan_status'];//"baru memesan";
+            
+           
+              } else {
+                  
+            // check for required params
+            BantuanModel::verifyRequiredParams(array('pemesanan_status'));
+            // reading post params
+            $pemesanan_status = $app->request->post('pemesanan_status');
+                  
+             }
+           
+            // fetching all user tasks
+            $result= PemesananModel::mendapatkanPesanan($api_konsumen_id, $pemesanan_status);
+            
+            if ($result != NULL) { 
+            //$response = array();
+            $response["error"] = false;
+            $response["kosong"] = FALSE;
+            $response["message"] = "daftar laundry berhasil didapatkan"; 
+            $response["pemesanan"] = $result;
+            // $response["body"] = $body['pemesanan_status'];
+            BantuanModel::echoRespnse(200, $response);
+}      
+    else {
+        $response["error"] = true;
+        $response["kosong"] = true;
+        $response["message"] = "daftar laundry masih kosong";
+       
+        BantuanModel::echoRespnse(200, $response);
+        }
+    });
+
+
+
+
+$app->post('/kurir/pemesanan/detail/:id/' ,'authKonsumen' , function($id) use ($app){
+           
+            global $api_konsumen_id;
+            //http://stackoverflow.com/questions/39445006/read-json-input-in-slim-framework
+            
+            $bantuan = new BantuanModel();
+            if($bantuan->isJSON($app->request->getBody())){
+    
+            //http://help.slimframework.com/discussions/problems/5918-cant-get-any-posted-json-data
+            //http://stackoverflow.com/questions/28073480/how-to-access-a-json-request-body-of-a-post-request-in-slim 
+            
+            $json = $app->request->getBody();
+            $data = json_decode($json); 
+            
+            // reading post params
+            $pemesanan_status = $data->pemesanan_status;//['pemesanan_status'];//"baru memesan";
+            
+           
+              } else {
+                  
+            // check for required params
+            BantuanModel::verifyRequiredParams(array('pemesanan_status'));
+            // reading post params
+            $pemesanan_status = $app->request->post('pemesanan_status');
+                  
+             }
+            
+            // fetching all user tasks
+            $result= PemesananModel::mendapatkanDetailPesanan( $api_konsumen_id, $id, $pemesanan_status);
+            
+            if ($result != NULL) { 
+            //$response = array();
+            $response["error"] = false;
+            $response["kosong"] = false;
+            $response["message"] = "data pesanan berhasil di dapatkan"; 
+            $response["pemesanan"] = $result;
+            BantuanModel::echoRespnse(200, $response);
+}      
+    else {
+        $response["error"] = true;
+        $response["kosong"] = true;
+        $response["message"] = "tidak ada pesanan yang di ambil";
+       
+        BantuanModel::echoRespnse(200, $response);
+        }
+    });    
+        
+    
+
+$app->post('/konsumen/pemesanan/' ,'authKonsumen' ,function() use ($app){
     
             global $api_konsumen_id;
             global $api_konsumen_email;
