@@ -31,6 +31,7 @@ import com.android.volley.VolleyError;
 import com.android.volley.VolleyLog;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.yuly.elaundry.kurir.R;
+import com.yuly.elaundry.kurir.controller.activity.DetailPemesananActivity;
 import com.yuly.elaundry.kurir.controller.activity.DetailPengambilanPemesananActivity;
 import com.yuly.elaundry.kurir.controller.adapter.PemesananAdapter;
 import com.yuly.elaundry.kurir.controller.app.AppConfig;
@@ -198,8 +199,11 @@ public class LaundryPengantaranFragment extends Fragment implements SearchView.O
                 TransaksiModel transaksi = listPemesanan.get(position);
               //  Toast.makeText(getActivity(), transaksi.getNoId() + " is selected!", Toast.LENGTH_SHORT).show();
 
-                Intent intent = new Intent(getActivity(), DetailPengambilanPemesananActivity.class);
-                intent.putExtra("EXTRA_SESSION_ID", transaksi.getNoId());
+                Intent intent = new Intent(getActivity(), DetailPemesananActivity.class);
+                intent.putExtra("PEMESANAN_ID", transaksi.getNoId());
+                intent.putExtra("TEXT_TOMBOL", "mengantarkan laundry");
+                intent.putExtra("STATUS_SEBELUMNYA", "mengambil dari agent");
+                intent.putExtra("UPDATE_STATUS", "mengantarkan laundry");
                 startActivity(intent);
 
             }

@@ -3,7 +3,9 @@ package com.yuly.elaundry.kurir.controller.fragment;
 import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Handler;
 import android.support.design.widget.FloatingActionButton;
+import android.support.design.widget.Snackbar;
 import android.support.v4.app.Fragment;
 import android.support.v4.view.MenuItemCompat;
 import android.support.v4.widget.SwipeRefreshLayout;
@@ -30,10 +32,13 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.VolleyLog;
 import com.android.volley.toolbox.JsonObjectRequest;
+import com.android.volley.toolbox.StringRequest;
 import com.yuly.elaundry.kurir.R;
 import com.yuly.elaundry.kurir.controller.activity.DetailPemesananActivity;
 import com.yuly.elaundry.kurir.controller.adapter.PemesananAdapter;
+import com.yuly.elaundry.kurir.controller.app.AppConfig;
 import com.yuly.elaundry.kurir.controller.app.AppController;
+import com.yuly.elaundry.kurir.controller.app.Constants;
 import com.yuly.elaundry.kurir.controller.app.CustomJsonObjectRequest;
 import com.yuly.elaundry.kurir.controller.app.JsonResponseRequest;
 import com.yuly.elaundry.kurir.model.geterseter.TransaksiModel;
@@ -201,7 +206,11 @@ public class LaundryPemesananFragment extends Fragment implements SearchView.OnQ
               //  Toast.makeText(getActivity(), transaksi.getNoId() + " is selected!", Toast.LENGTH_SHORT).show();
 
                 Intent intent = new Intent(getActivity(), DetailPemesananActivity.class);
-                intent.putExtra("EXTRA_SESSION_ID", transaksi.getNoId());
+                intent.putExtra("PEMESANAN_ID", transaksi.getNoId());
+                intent.putExtra("TEXT_TOMBOL", "mengambil laundry");
+                intent.putExtra("STATUS_SEBELUMNYA", "baru memesan");
+                intent.putExtra("UPDATE_STATUS", "pengambilan laundry");
+
                 startActivity(intent);
 
             }
@@ -214,7 +223,7 @@ public class LaundryPemesananFragment extends Fragment implements SearchView.OnQ
 
         mengambilDataPemesanan();
 
-
+      //  getPemesanan();
 
         return v;
 
@@ -248,6 +257,118 @@ public class LaundryPemesananFragment extends Fragment implements SearchView.OnQ
     }
 
 
+    private void getPemesanan(){
+
+        // Tag used to cancel the request
+        String tag_string_req = "req_profile";
+
+        HashMap<String, String> params = new HashMap<String, String>();
+        params.put("pemesanan_status", pemesanan_status);
+
+        pDialog.setMessage(getString(R.string.mengupdate_profile));
+        showProgressDialog();
+
+        StringRequest strReq = new StringRequest(Request.Method.POST,
+                AppConfig.URL_PEMESANAN, new Response.Listener<String>() {
+
+            @Override
+            public void onResponse(String response) {
+                Log.d(TAG, "Update pemesanan Response : " + response);
+                hideProgressDialog();
+
+                try {
+
+                    JSONObject jObj = new JSONObject(response);
+
+                    boolean error = jObj.getBoolean("error");
+
+                    // Check for error node in json
+                    if (!error) {
+                        // Now store the user in SQLite
+
+
+                        // Error in login. Get the error message
+                        String errorMsg = jObj.getString("message");
+
+                        Log.d(Constants.TAG,errorMsg);
+
+                        if (getView()!=null) {
+                            Snackbar.make(getView(), errorMsg, Snackbar.LENGTH_LONG).show();
+                        }
+                       // Handler myHandler = new Handler();
+                      //  myHandler.postDelayed(mMyRunnable, 5000);//Message will be delivered in 5 second.
+
+
+                    } else {
+                        // Error in login. Get the error message
+                        String errorMsg = jObj.getString("message");
+
+                        Log.d(Constants.TAG,errorMsg);
+
+                        if (getView()!=null) {
+                            Snackbar.make(getView(), errorMsg, Snackbar.LENGTH_LONG).show();
+                        }
+
+                    }
+                } catch (JSONException e) {
+                    // JSON error
+                    e.printStackTrace();
+
+                    Toast.makeText(getActivity(), getString(R.string.json_request_error) + e.getMessage(), Toast.LENGTH_LONG).show();
+
+                }
+
+            }
+        }, new Response.ErrorListener() {
+
+            @Override
+            public void onErrorResponse(VolleyError error) {
+
+                String e = VolleyErrorHelper.getMessage(error, getActivity());
+
+                VolleyLog.d(AppController.TAG, "Error: " + e);
+
+
+                Toast.makeText(getActivity(),
+                        e, Toast.LENGTH_LONG).show();
+
+                Log.d(Constants.TAG,"failed");
+                //   progress.setVisibility(View.GONE);
+
+                hideProgressDialog();
+            }
+        }) {
+
+
+            @Override
+            public Map<String, String> getHeaders() throws AuthFailureError {
+                HashMap<String, String> headers = new HashMap<>();
+                headers.put("Content-Type","application/x-www-form-urlencoded");
+                headers.put("Authorization", db.getUserApi() );
+
+                Log.d("Params",headers.toString());
+                return headers;
+            }
+
+
+            @Override
+            protected Map<String, String> getParams() {
+                // Posting parameters to change password
+                Map<String, String> params = new HashMap<>();
+                params.put("pemesanan_status", pemesanan_status);
+
+                Log.d("Params",params.toString());
+
+                return params;
+            }
+
+        };
+
+        // Adding request to request queue
+        AppController.getInstance().addToRequestQueue(strReq, tag_string_req);
+    }
+
+
     /**
      * Making json array request
      */
@@ -258,16 +379,12 @@ public class LaundryPemesananFragment extends Fragment implements SearchView.OnQ
        // mSwipeRefreshLayout.setRefreshing(true);
 
             // Posting parameters to change password
-
-        // Post params to be sent to the server
         HashMap<String, String> params = new HashMap<String, String>();
-        params.put("pemesanan_status","baru memesan");
+        params.put("pemesanan_status", pemesanan_status);
 
-
-
-            JsonObjectRequest jsonObjReq = new JsonObjectRequest(
-                    "http://elaundry.pe.hu/kurir/pemesanan/", new JSONObject(params),
-                    new Response.Listener<JSONObject>() {
+        JsonObjectRequest jsonObjReq = new JsonObjectRequest(Request.Method.POST,
+                AppConfig.URL_PEMESANAN,new JSONObject(params),
+                new Response.Listener<JSONObject>() {
 
             @Override
             public void onResponse(JSONObject response) {
@@ -281,10 +398,15 @@ public class LaundryPemesananFragment extends Fragment implements SearchView.OnQ
                         mSwipeRefreshLayout.setRefreshing(false);
 
 
+
                 try {
                     String error = response.getString("error");
+
+
                     if (error == "false") {
                         JSONArray obj = response.getJSONArray("pemesanan");
+
+
 
                         for (int i = 0; i < obj.length(); i++) {
                             TransaksiModel listPesanan = new TransaksiModel();
@@ -364,11 +486,6 @@ public class LaundryPemesananFragment extends Fragment implements SearchView.OnQ
              * Passing some request headers
              * */
 
-
-
-
-
-
                 @Override
                 public Map<String, String> getHeaders() throws AuthFailureError {
                     HashMap<String, String> headers = new HashMap<>();
@@ -377,7 +494,6 @@ public class LaundryPemesananFragment extends Fragment implements SearchView.OnQ
                     headers.put("User-agent", System.getProperty("http.agent"));
                     return headers;
                 }
-
 
             };
 

@@ -45,6 +45,8 @@ android {
         sourceCompatibility JavaVersion.VERSION_1_7
         targetCompatibility JavaVersion.VERSION_1_7
     }
+
+    useLibrary 'org.apache.http.legacy'
 }
 
 dependencies {
@@ -81,4 +83,6 @@ dependencies {
     //The Simple Logging Facade for Java
     compile 'org.slf4j:slf4j-api:1.7.21'
     //The Simple Logging Facade for Java
+
+
 }

@@ -49,7 +49,7 @@ public class DetailPemesananActivity extends AppCompatActivity {
     private Button btnEdit, btnSave;
 
     private ProgressDialog pDialog;
-    private String id_pemesanan;
+    private String id_pemesanan, text_tombol,text_update_status, text_status_sebelumnya;
     private View parentLayout;
 
     private Button btnAmbil;
@@ -101,6 +101,11 @@ public class DetailPemesananActivity extends AppCompatActivity {
         db = new KonsumenDbHandler(getApplicationContext());
 
         id_pemesanan = getIntent().getStringExtra("EXTRA_SESSION_ID");
+        text_tombol = getIntent().getStringExtra("TEXT_TOMBOL");
+        text_status_sebelumnya = getIntent().getStringExtra("STATUS_SEBELUMNYA");
+        text_update_status = getIntent().getStringExtra("UPDATE_STATUS");
+
+        btnAmbil.setText(text_tombol);
 
         //Toast.makeText(this, id_pemesanan + " id dari list pemesanan", Toast.LENGTH_SHORT).show();
 
@@ -110,7 +115,7 @@ public class DetailPemesananActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
-                updatePemesanan("pengambilan laundry");
+                updatePemesanan(text_update_status);
             }
         });
     }
@@ -124,8 +129,13 @@ public class DetailPemesananActivity extends AppCompatActivity {
         showProgressDialog();
 
 
-        JsonObjectRequest jsonObjReq = new JsonObjectRequest(Request.Method.GET,
-                AppConfig.URL_PEMESANAN_DETAIL+id_pemesanan, null, new Response.Listener<JSONObject>() {
+        // Posting parameters to change password
+        HashMap<String, String> params = new HashMap<String, String>();
+        params.put("pemesanan_status", text_status_sebelumnya);
+
+        JsonObjectRequest jsonObjReq = new JsonObjectRequest(Request.Method.POST,
+                AppConfig.URL_PEMESANAN,new JSONObject(params),
+                new Response.Listener<JSONObject>() {
 
             @Override
             public void onResponse(JSONObject response) {

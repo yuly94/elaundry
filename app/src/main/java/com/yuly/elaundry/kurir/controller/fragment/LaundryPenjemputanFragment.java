@@ -199,8 +199,11 @@ public class LaundryPenjemputanFragment extends Fragment implements SearchView.O
                 TransaksiModel transaksi = listPemesanan.get(position);
               //  Toast.makeText(getActivity(), transaksi.getNoId() + " is selected!", Toast.LENGTH_SHORT).show();
 
-                Intent intent = new Intent(getActivity(), DetailPengambilanPemesananActivity.class);
-                intent.putExtra("EXTRA_SESSION_ID", transaksi.getNoId());
+                Intent intent = new Intent(getActivity(), DetailPemesananActivity.class);
+                intent.putExtra("PEMESANAN_ID", transaksi.getNoId());
+                intent.putExtra("TEXT_TOMBOL", "menyerahkan ke agent");
+                intent.putExtra("STATUS_SEBELUMNYA", "pengambilan laundry");
+                intent.putExtra("UPDATE_STATUS", "diserahkan ke agent");
                 startActivity(intent);
 
             }

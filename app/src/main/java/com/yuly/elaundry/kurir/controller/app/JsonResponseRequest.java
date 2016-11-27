@@ -31,6 +31,7 @@ import com.android.volley.Response.ErrorListener;
 import com.android.volley.Response.Listener;
 import com.android.volley.toolbox.HttpHeaderParser;
 
+
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -59,11 +60,13 @@ public class JsonResponseRequest extends Request<JSONObject> {
     /**
      * Creates a new GET request.
      *
+     * @param post
+     * @param jsonObject
      * @param url           URL to fetch the string at
      * @param listener      Listener to receive the String response
      * @param errorListener Error listener, or null to ignore errors
      */
-    public JsonResponseRequest(String url, Listener<JSONObject> listener, ErrorListener errorListener) {
+    public JsonResponseRequest(int post, JSONObject jsonObject, String url, Listener<JSONObject> listener, ErrorListener errorListener) {
         this(Request.Method.GET, url, listener, errorListener);
     }
 
