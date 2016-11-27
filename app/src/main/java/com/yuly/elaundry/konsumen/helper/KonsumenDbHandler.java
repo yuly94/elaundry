@@ -16,9 +16,9 @@ import com.yuly.elaundry.konsumen.R;
 
 import java.util.HashMap;
 
-public class SQLiteHandler extends SQLiteOpenHelper {
+public class KonsumenDbHandler extends SQLiteOpenHelper {
 
-	private static final String TAG = SQLiteHandler.class.getSimpleName();
+	private static final String TAG = KonsumenDbHandler.class.getSimpleName();
 
 	// All Static variables
 	// Database Version
@@ -40,7 +40,7 @@ public class SQLiteHandler extends SQLiteOpenHelper {
 	private static final String KEY_KONSUMEN_ID = "konsumen_id";
 	private static final String KEY_DIBUAT_PADA = "konsumen_dibuat_pada";
 
-	public SQLiteHandler(Context context) {
+	public KonsumenDbHandler(Context context) {
 		super(context, DATABASE_NAME, null, DATABASE_VERSION);
 	}
 

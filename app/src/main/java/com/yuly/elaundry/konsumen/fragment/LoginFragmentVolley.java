@@ -32,7 +32,7 @@ import com.yuly.elaundry.konsumen.R;
 import com.yuly.elaundry.konsumen.activity.MainActivity;
 import com.yuly.elaundry.konsumen.app.AppConfig;
 import com.yuly.elaundry.konsumen.app.AppController;
-import com.yuly.elaundry.konsumen.helper.SQLiteHandler;
+import com.yuly.elaundry.konsumen.helper.KonsumenDbHandler;
 import com.yuly.elaundry.konsumen.helper.SessionManager;
 import com.yuly.elaundry.konsumen.helper.VolleyErrorHelper;
 
@@ -48,7 +48,7 @@ public class LoginFragmentVolley extends Fragment implements View.OnClickListene
     private EditText inputPassword;
     private ProgressDialog pDialog;
     private SessionManager session;
-    private SQLiteHandler db;
+    private KonsumenDbHandler db;
     private TextView tv_register,tv_reset_password;
     private Button btnLogin;
 
@@ -91,7 +91,7 @@ public class LoginFragmentVolley extends Fragment implements View.OnClickListene
     private void checkSesi(){
 
         // SQLite database handler
-        db = new SQLiteHandler(getActivity());
+        db = new KonsumenDbHandler(getActivity());
 
         // Session manager
         session = new SessionManager(getActivity());

@@ -47,7 +47,7 @@
                 android:fontFamily="sans-serif"
                 android:tag="text_secondary"
 
-                android:singleLine="false" />
+                android:singleLine="true" />
 
             <TextView
                 android:text="pemesanan_tanggal"

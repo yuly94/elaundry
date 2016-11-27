@@ -31,7 +31,7 @@ import com.yuly.elaundry.konsumen.R;
 import com.yuly.elaundry.konsumen.app.AppConfig;
 import com.yuly.elaundry.konsumen.app.AppController;
 import com.yuly.elaundry.konsumen.app.Constants;
-import com.yuly.elaundry.konsumen.helper.SQLiteHandler;
+import com.yuly.elaundry.konsumen.helper.KonsumenDbHandler;
 import com.yuly.elaundry.konsumen.helper.SessionManager;
 import com.yuly.elaundry.konsumen.helper.VolleyErrorHelper;
 
@@ -60,7 +60,7 @@ public class ProfileFragment extends Fragment {
    // private ProgressBar progress;
     private ProgressDialog pDialog;
     private String konsumen_kunci_api_auth;
-    private SQLiteHandler db;
+    private KonsumenDbHandler db;
     private EditText et_Nama,et_Alamat,et_Email,et_Telepon;
     private Button btnEdit,btnSave;
 
@@ -115,7 +115,7 @@ public class ProfileFragment extends Fragment {
         });
 
         // SqLite database handler
-        db = new SQLiteHandler(getContext());
+        db = new KonsumenDbHandler(getContext());
 
         updateDataProfile();
         disableView();

@@ -30,13 +30,12 @@ import com.amulyakhare.textdrawable.util.ColorGenerator;
 import com.yuly.elaundry.konsumen.R;
 //import com.yuly.elaundry.konsumen.fragment.AboutFragment;
 
-import com.yuly.elaundry.konsumen.fragment.AlamatFragment;
 import com.yuly.elaundry.konsumen.fragment.MapsFragmentLocation;
 import com.yuly.elaundry.konsumen.fragment.PemesananFragment;
 import com.yuly.elaundry.konsumen.fragment.TransaksiFragment;
 import com.yuly.elaundry.konsumen.fragment.TempatFragment;
 import com.yuly.elaundry.konsumen.fragment.ProfileFragment;
-import com.yuly.elaundry.konsumen.helper.SQLiteHandler;
+import com.yuly.elaundry.konsumen.helper.KonsumenDbHandler;
 import com.yuly.elaundry.konsumen.helper.SessionManager;
 import com.yuly.elaundry.konsumen.navigation.NavDrawerItem;
 import com.yuly.elaundry.konsumen.navigation.NavDrawerListAdapter;
@@ -52,7 +51,7 @@ public class MainActivity extends AppCompatActivity {
 
 	String api_key;
 
-	private SQLiteHandler db;
+	private KonsumenDbHandler db;
 	private SessionManager session;
 
 	private DrawerLayout mDrawerLayout;
@@ -77,7 +76,7 @@ public class MainActivity extends AppCompatActivity {
 		mDrawerList = (ListView) findViewById(R.id.list_slidermenu);
 
 		// SqLite database handler
-		db = new SQLiteHandler(getApplicationContext());
+		db = new KonsumenDbHandler(getApplicationContext());
 
 		// session manager
 		session = new SessionManager(getApplicationContext());
@@ -99,6 +98,9 @@ public class MainActivity extends AppCompatActivity {
 		navDrawerItems.add(new NavDrawerItem(navMenuTitles[5], navMenuIcons.getResourceId(5, -1)));
 		navDrawerItems.add(new NavDrawerItem(navMenuTitles[6], navMenuIcons.getResourceId(6, -1)));
 		navDrawerItems.add(new NavDrawerItem(navMenuTitles[7], navMenuIcons.getResourceId(7, -1)));
+			navDrawerItems.add(new NavDrawerItem(navMenuTitles[5], navMenuIcons.getResourceId(8, -1)));
+			navDrawerItems.add(new NavDrawerItem(navMenuTitles[6], navMenuIcons.getResourceId(9, -1)));
+			navDrawerItems.add(new NavDrawerItem(navMenuTitles[7], navMenuIcons.getResourceId(10, -1)));
 
 		navMenuIcons.recycle();
 
@@ -156,10 +158,10 @@ public class MainActivity extends AppCompatActivity {
 
 			if (user!=null) {
 
-				String nama = user.get("nama");
+				String nama = user.get("konsumen_nama");
 				//String alamat = user.get("alamat");
 				//String telepon = user.get("telepon");
-				String email = user.get("email");
+				String email = user.get("konsumen_email");
 				api_key = user.get("api");
 
 
@@ -249,27 +251,63 @@ public class MainActivity extends AppCompatActivity {
 		switch (position) {
 			case 0:
 			//  fragment pesanan
-				fragment = new PemesananFragment();
+
+//http://www.androhub.com/android-pass-data-from-activity-to-fragment/
+
+				fragment = new PemesananFragment();//Get Fragment Instance
+
 				break;
 			case 1:
+				fragment = new TransaksiFragment();//Get Fragment Instance
+				Bundle data1 = new Bundle();//Use bundle to pass data
+				data1.putString("TEXT_TOMBOL", "mengambil laundry");//put string, int, etc in bundle with a key value
+				data1.putString("STATUS_SEBELUMNYA", "baru memesan");
+				data1.putString("UPDATE_STATUS", "pengambilan laundry");
+
+				fragment.setArguments(data1);//Finally set argument bundle to fragment
+				break;
+			case 2:
+				fragment = new TransaksiFragment();//Get Fragment Instance
+				Bundle data2 = new Bundle();//Use bundle to pass data
+				data2.putString("TEXT_TOMBOL", "menyerahkan ke agent");//put string, int, etc in bundle with a key value
+				data2.putString("STATUS_SEBELUMNYA", "pengambilan laundry");
+				data2.putString("UPDATE_STATUS", "diserahkan ke agent");
+
+				fragment.setArguments(data2);//Finally set argument bundle to fragment
+				break;
+			case 3:
+				fragment = new TransaksiFragment();//Get Fragment Instance
+				Bundle data3 = new Bundle();//Use bundle to pass data
+				data3.putString("TEXT_TOMBOL", "mengambil dari agent");//put string, int, etc in bundle with a key value
+				data3.putString("STATUS_SEBELUMNYA", "diserahkan ke agent");
+				data3.putString("UPDATE_STATUS", "mengambil dari agent");
+
+
+				//intent.putExtra("TEXT_TOMBOL", "mengantarkan laundry");
+				//intent.putExtra("STATUS_SEBELUMNYA", "mengambil dari agent");
+				//intent.putExtra("UPDATE_STATUS", "mengantarkan laundry");
+
+				fragment.setArguments(data3);//Finally set argument bundle to fragment
+				break;
+			case 4:
 			//  fragment tempat
 				fragment = new TransaksiFragment();
 				break;
-			case 2:
+			case 5:
 			  	fragment = new MapsFragmentLocation();
 			//	fragment =new Example3Fragment();
 				break;
-			case 3:
+			case 6:
 				fragment = new ProfileFragment();
 				break;
-			case 4:
+			case 7:
 			 	fragment = new TempatFragment();
 				break;
-			case 5:
+			case 8:
 				//	themes
 				HelpUtils.showThemes(this);
 				break;
-			case 6:
+			case 9:
 
 		/*		//	About
 				//HelpUtils.showAbout(this);
@@ -296,7 +334,7 @@ public class MainActivity extends AppCompatActivity {
             //    fragment = new AboutFragment();
 
 				break;
-			case 7:
+			case 10:
 				// Logout
 				logoutUser();
 				break;

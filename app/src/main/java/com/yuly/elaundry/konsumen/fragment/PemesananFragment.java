@@ -48,7 +48,7 @@ import com.yuly.elaundry.konsumen.R;
 import com.yuly.elaundry.konsumen.app.AppConfig;
 import com.yuly.elaundry.konsumen.app.AppController;
 import com.yuly.elaundry.konsumen.app.Constants;
-import com.yuly.elaundry.konsumen.helper.SQLiteHandler;
+import com.yuly.elaundry.konsumen.helper.KonsumenDbHandler;
 import com.yuly.elaundry.konsumen.helper.VolleyErrorHelper;
 
 import org.json.JSONException;
@@ -103,7 +103,7 @@ public class PemesananFragment extends Fragment implements
 
 
     //Database
-    private SQLiteHandler db;
+    private KonsumenDbHandler db;
 
     private ProgressDialog pDialog;
 
@@ -127,7 +127,7 @@ public class PemesananFragment extends Fragment implements
         varHargaRok = 0;
 
         // SqLite database handler
-        db = new SQLiteHandler(getActivity());
+        db = new KonsumenDbHandler(getActivity());
 
         // Show Progress dialog
         pDialog = new ProgressDialog(getActivity());

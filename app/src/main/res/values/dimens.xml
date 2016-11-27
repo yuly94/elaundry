@@ -19,6 +19,8 @@
     <dimen name="divider_height">1dp</dimen>
 
     <dimen name="baseline">16dp</dimen>
+    <dimen name="dimen_5dp">5dp</dimen>
+    <dimen name="dimen_25dp">25dp</dimen>
 
 </resources>
 
