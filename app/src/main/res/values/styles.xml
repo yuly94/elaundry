@@ -60,8 +60,7 @@
     <style name="MyMaterialTheme.NoActionBar.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
 
 
-
-<!--
+    <!--
 
     <style name="AboutLibrariesSampleTheme" parent="MyMaterialTheme.NoActionBar">
         &lt;!&ndash; AboutLibraries specific values &ndash;&gt;
@@ -77,17 +76,21 @@
 -->
 
     <!-- no action bar application theme. -->
-    <style name="MYAppTheme" parent="Theme.AppCompat.Light.NoActionBar">
-        <item name="android:listChoiceIndicatorMultiple">@drawable/apptheme_btn_check_holo_light</item>
-        <item name="android:listChoiceIndicatorSingle">@drawable/apptheme_btn_radio_holo_light</item>
+    <style name="MYAppTheme.NoActionBar" parent="Theme.AppCompat.Light.NoActionBar">
+        <item name="android:listChoiceIndicatorMultiple">@drawable/apptheme_btn_check_holo_light
+        </item>
+        <item name="android:listChoiceIndicatorSingle">@drawable/apptheme_btn_radio_holo_light
+        </item>
     </style>
 
     <!---->
 
     <!-- action bar  theme. -->
     <style name="MyAppThemeActionBar" parent="Theme.AppCompat.Light">
-        <item name="android:listChoiceIndicatorMultiple">@drawable/apptheme_btn_check_holo_light</item>
-        <item name="android:listChoiceIndicatorSingle">@drawable/apptheme_btn_radio_holo_light</item>
+        <item name="android:listChoiceIndicatorMultiple">@drawable/apptheme_btn_check_holo_light
+        </item>
+        <item name="android:listChoiceIndicatorSingle">@drawable/apptheme_btn_radio_holo_light
+        </item>
 
         <item name="android:homeAsUpIndicator">@drawable/ic_keyboard_arrow_left_white_24dp</item>
         <!-- OverFlow Menu Text Color -->
@@ -114,8 +117,7 @@
     </style>
 
     <!-- ActionBar styles -->
-    <style name="MyActionBar"
-        parent="@style/Widget.AppCompat.ActionBar">
+    <style name="MyActionBar" parent="@style/Widget.AppCompat.ActionBar">
         <item name="background">@color/my_primary</item>
         <item name="logo">@drawable/my_action_bar_logo</item>
         <item name="android:logo">@drawable/my_action_bar_logo</item>
@@ -128,15 +130,13 @@
     </style>
 
     <!-- ActionBar etHarga text -->
-    <style name="MyActionBarTitleText"
-        parent="@style/TextAppearance.AppCompat.Widget.ActionBar.Title">
+    <style name="MyActionBarTitleText" parent="@style/TextAppearance.AppCompat.Widget.ActionBar.Title">
         <item name="android:textColor">@color/my_icons</item>
         <!-- The textColor property is backward compatible with the Support Library -->
     </style>
 
     <!-- ActionBar tabs text -->
-    <style name="MyActionBarTabText"
-        parent="@style/Widget.AppCompat.ActionBar.TabText">
+    <style name="MyActionBarTabText" parent="@style/Widget.AppCompat.ActionBar.TabText">
         <item name="android:textColor">@color/my_icons</item>
         <!-- The textColor property is backward compatible with the Support Library -->
     </style>
@@ -145,6 +145,9 @@
         <item name="android:background">@color/my_primary</item>
     </style>
 
+    <style name="MYAppTheme.NoActionBar.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
+
+    <style name="MYAppTheme.NoActionBar.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
 
 
 </resources>

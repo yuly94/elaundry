@@ -5,6 +5,9 @@
     <!-- Keep them in order as the titles are in -->
     <array name="nav_drawer_icons">
         <item>@drawable/ic_shopping_cart_24dp</item>
+        <item>@drawable/ic_shopping_cart_24dp</item>
+        <item>@drawable/ic_shopping_cart_24dp</item>
+        <item>@drawable/ic_shopping_cart_24dp</item>
         <item>@drawable/ic_map_24dp</item>
         <item>@drawable/ic_dashboard_24dp</item>
         <item>@drawable/ic_dashboard_24dp</item>
@@ -19,13 +22,16 @@
     <string-array name="nav_drawer_items">
 
     <item>Pesanan</item>
+    <item>Pesanan dijemput</item>
+    <item>Pesanan di Agent</item>
+    <item>Pesanan diantar</item>
     <item>Lokasi Saya</item>
-    <item>Maps</item>
-    <item>My Profile</item>
-    <item>Setting</item>
-    <item>Themes</item>
-    <item>About</item>
-    <item>Log Out</item>
+    <item>Peta</item>
+    <item>Profile saya</item>
+    <item>Pengaturan</item>
+    <item>Tampilan</item>
+    <item>Tentang elaundry</item>
+    <item>Keluar</item>
 
 </string-array>
 </resources>

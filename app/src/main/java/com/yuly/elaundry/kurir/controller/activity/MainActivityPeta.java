@@ -55,6 +55,8 @@ public class MainActivityPeta extends AppCompatActivity implements MapDownloadLi
             getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         }
 
+        // Thema
+        themeUtils.onActivityCreateSetTheme(this,getSupportActionBar(),this);
 /*
         // set status bar
         new SetStatusBarColor().setStatusBarColor(findViewById(R.id.statusBarBackgroundMain),

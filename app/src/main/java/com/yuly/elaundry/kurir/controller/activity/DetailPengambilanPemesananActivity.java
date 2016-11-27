@@ -39,7 +39,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 
-public class DetailPemesananActivity extends AppCompatActivity {
+public class DetailPengambilanPemesananActivity extends AppCompatActivity {
 
     // SqLite database handler
     private KonsumenDbHandler db;
@@ -78,6 +78,7 @@ public class DetailPemesananActivity extends AppCompatActivity {
         tvStatus = (TextView) findViewById(R.id.tv_status);
 
         btnAmbil = (Button) findViewById(R.id.btn_ambil);
+        btnAmbil.setText("Menyerahkan ke Agent");
 
 
 
@@ -110,7 +111,7 @@ public class DetailPemesananActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
-                updatePemesanan("pengambilan laundry");
+                updatePemesanan("menyerahkan ke agent");
             }
         });
     }
@@ -125,7 +126,7 @@ public class DetailPemesananActivity extends AppCompatActivity {
 
 
         JsonObjectRequest jsonObjReq = new JsonObjectRequest(Request.Method.GET,
-                AppConfig.URL_PEMESANAN_DETAIL+id_pemesanan, null, new Response.Listener<JSONObject>() {
+                AppConfig.URL_PENGAMBILAN_PEMESANAN_DETAIL+id_pemesanan, null, new Response.Listener<JSONObject>() {
 
             @Override
             public void onResponse(JSONObject response) {
@@ -266,6 +267,7 @@ public class DetailPemesananActivity extends AppCompatActivity {
 
                     // Check for error node in json
                     if (!error) {
+                        // Now store the user in SQLite
 
 
                         // Error in login. Get the error message
@@ -274,7 +276,6 @@ public class DetailPemesananActivity extends AppCompatActivity {
                         Log.d(Constants.TAG,errorMsg);
 
                         Snackbar.make(parentLayout, errorMsg, Snackbar.LENGTH_LONG).show();
-
 
                         Handler myHandler = new Handler();
                         myHandler.postDelayed(mMyRunnable, 5000);//Message will be delivered in 5 second.
@@ -286,7 +287,7 @@ public class DetailPemesananActivity extends AppCompatActivity {
 
                         Log.d(Constants.TAG,errorMsg);
 
-                            Snackbar.make(parentLayout, errorMsg, Snackbar.LENGTH_LONG).show();
+                        Snackbar.make(parentLayout, errorMsg, Snackbar.LENGTH_LONG).show();
 
                     }
                 } catch (JSONException e) {

@@ -44,6 +44,16 @@ public class AppConfig {
 	public static String URL_PEMESANAN_DETAIL= LINKAPI+"pemesanan/detail/";
 
 	// Server user register url
+	public static String URL_PENGAMBILAN_PEMESANAN= LINKAPI+"pemesanan/pengambilan/";
+
+	// Server user register url
+	public static String URL_PENGAMBILAN_PEMESANAN_DETAIL= LINKAPI+"pemesanan/pengambilan/detail/";
+
+
+	// Server user register url
+	public static String URL_UPDATE_PEMESANAN= LINKAPI+"pemesanan/updatestatus/";
+
+	// Server user register url
 	public static String URL_TEMPAT= LINKAPI+"alamat/";
 
 	// Server user register url

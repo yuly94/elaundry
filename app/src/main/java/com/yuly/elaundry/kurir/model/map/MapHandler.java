@@ -393,7 +393,7 @@ public class MapHandler {
         paintStroke.setStrokeJoin(Join.ROUND);
         paintStroke.setStrokeCap(Cap.ROUND);
         paintStroke.setColor(color);
-        //        paintStroke.setDashPathEffect(new float[]{25, 25});
+                paintStroke.setDashPathEffect(new float[]{25, 25});
         paintStroke.setStrokeWidth(strokeWidth);
 
         // TODO: new mapsforge version wants an mapsforge-paint, not an android paint.

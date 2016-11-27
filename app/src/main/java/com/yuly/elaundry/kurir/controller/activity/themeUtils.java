@@ -71,7 +71,7 @@ default:
 
 case THEME1:
 
-activity.setTheme(R.style.AppTheme);
+activity.setTheme(R.style.MYAppTheme_NoActionBar);
 actionBar.setBackgroundDrawable(context.getResources().getDrawable(R.color.theme1));
 
 

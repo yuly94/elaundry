@@ -30,10 +30,12 @@ import com.amulyakhare.textdrawable.util.ColorGenerator;
 import com.yuly.elaundry.kurir.R;
 //import com.yuly.elaundry.kurir.controller.fragment.AboutFragment;
 
-import com.yuly.elaundry.kurir.controller.fragment.AlamatFragment;
+import com.yuly.elaundry.kurir.controller.fragment.LaundryPengambilanAgentFragment;
+import com.yuly.elaundry.kurir.controller.fragment.LaundryPengantaranFragment;
 import com.yuly.elaundry.kurir.controller.fragment.SettingsFragment;
-import com.yuly.elaundry.kurir.controller.fragment.TransaksiFragment;
+import com.yuly.elaundry.kurir.controller.fragment.LaundryPemesananFragment;
 import com.yuly.elaundry.kurir.controller.fragment.ProfileFragment;
+import com.yuly.elaundry.kurir.controller.fragment.LaundryPenjemputanFragment;
 import com.yuly.elaundry.kurir.model.database.KonsumenDbHandler;
 import com.yuly.elaundry.kurir.model.helper.SessionManager;
 import com.yuly.elaundry.kurir.view.navigation.NavDrawerItem;
@@ -97,6 +99,9 @@ public class MainActivity extends AppCompatActivity {
 		navDrawerItems.add(new NavDrawerItem(navMenuTitles[5], navMenuIcons.getResourceId(5, -1)));
 		navDrawerItems.add(new NavDrawerItem(navMenuTitles[6], navMenuIcons.getResourceId(6, -1)));
 		navDrawerItems.add(new NavDrawerItem(navMenuTitles[7], navMenuIcons.getResourceId(7, -1)));
+		navDrawerItems.add(new NavDrawerItem(navMenuTitles[8], navMenuIcons.getResourceId(8, -1)));
+			navDrawerItems.add(new NavDrawerItem(navMenuTitles[9], navMenuIcons.getResourceId(9, -1)));
+			navDrawerItems.add(new NavDrawerItem(navMenuTitles[10], navMenuIcons.getResourceId(10, -1)));
 
 		navMenuIcons.recycle();
 
@@ -249,9 +254,27 @@ public class MainActivity extends AppCompatActivity {
 		switch (position) {
 			case 0:
 			//  fragment pesanan
-				fragment = new TransaksiFragment();
+				fragment = new LaundryPemesananFragment();
 				break;
 			case 1:
+
+				//  fragment pesanan
+				fragment = new LaundryPenjemputanFragment();
+
+				break;
+
+			case 2:
+				//  fragment pesanan
+				fragment = new LaundryPengambilanAgentFragment();
+				break;
+			case 3:
+
+				//  fragment pesanan
+				fragment = new LaundryPengantaranFragment();
+
+				break;
+
+			case 4:
 			//  fragment tempa
 				// fragment = new AlamatFragment();
 
@@ -259,7 +282,7 @@ public class MainActivity extends AppCompatActivity {
 				startActivity(intentMap);
 
 				break;
-			case 2:
+			case 5:
 			  //	fragment = new MapsFragmentLocation();
 			//	fragment =new Example3Fragment();
 
@@ -267,17 +290,17 @@ public class MainActivity extends AppCompatActivity {
 				startActivity(intent);
 
 				break;
-			case 3:
+			case 6:
 				fragment = new ProfileFragment();
 				break;
-			case 4:
+			case 7:
 			 	fragment = new SettingsFragment();
 				break;
-			case 5:
+			case 8:
 				//	themes
 				HelpUtils.showThemes(this);
 				break;
-			case 6:
+			case 9:
 
 		/*		//	About
 				//HelpUtils.showAbout(this);
@@ -304,7 +327,7 @@ public class MainActivity extends AppCompatActivity {
             //    fragment = new AboutFragment();
 
 				break;
-			case 7:
+			case 10:
 				// Logout
 				logoutUser();
 				break;

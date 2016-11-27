@@ -29,6 +29,7 @@ import com.yuly.elaundry.kurir.model.util.MyUtility;
 import com.yuly.elaundry.kurir.model.util.Variable;
 
 import org.mapsforge.core.model.LatLong;
+import org.mapsforge.core.model.MapPosition;
 import org.mapsforge.map.android.view.MapView;
 import org.mapsforge.map.model.MapViewPosition;
 
@@ -75,6 +76,8 @@ public class MapActions implements NavigatorListener, MapHandlerListener {
         navBtnHandler();
         navSettingsHandler();
         settingsBtnHandler();
+
+
     }
 
     /**
@@ -186,7 +189,7 @@ public class MapActions implements NavigatorListener, MapHandlerListener {
         });
         //  to layout: items
         toUseCurrentLocationHandler();
-        //        toChooseFromFavoriteHandler();TODO
+        toChooseFromFavoriteHandler();
         toPointOnMapHandler();
     }
 
@@ -578,22 +581,55 @@ public class MapActions implements NavigatorListener, MapHandlerListener {
      * set up travel mode
      */
     private void travelModeSetting() {
-        final ImageButton footBtn, bikeBtn, jemputBtn;
-        jemputBtn = (ImageButton) activity.findViewById(R.id.nav_settings_car_btn);
+        final ImageButton footBtn, bikeBtn, carBtn;
+        footBtn = (ImageButton) activity.findViewById(R.id.nav_settings_foot_btn);
+        bikeBtn = (ImageButton) activity.findViewById(R.id.nav_settings_bike_btn);
+        carBtn = (ImageButton) activity.findViewById(R.id.nav_settings_car_btn);
         // init travel mode
         switch (Variable.getVariable().getTravelMode()) {
-            case "jemput":
-                jemputBtn.setImageResource(R.drawable.ic_shopping_cart_24dp);
+            case "foot":
+                footBtn.setImageResource(R.drawable.ic_directions_walk_orange_24dp);
+                break;
+            case "bike":
+                bikeBtn.setImageResource(R.drawable.ic_directions_bike_orange_24dp);
+                break;
+            case "car":
+                carBtn.setImageResource(R.drawable.ic_directions_car_orange_24dp);
                 break;
         }
 
-
-        // jemput
-        jemputBtn.setOnClickListener(new View.OnClickListener() {
+        //foot
+        footBtn.setOnClickListener(new View.OnClickListener() {
             @Override public void onClick(View v) {
-                if (!Variable.getVariable().getTravelMode().equalsIgnoreCase("jemput")) {
-                    Variable.getVariable().setTravelMode("jemput");
-                    jemputBtn.setImageResource(R.drawable.ic_shopping_cart_24dp);
+                if (!Variable.getVariable().getTravelMode().equalsIgnoreCase("foot")) {
+                    Variable.getVariable().setTravelMode("foot");
+                    footBtn.setImageResource(R.drawable.ic_directions_walk_orange_24dp);
+                    bikeBtn.setImageResource(R.drawable.ic_directions_bike_white_24dp);
+                    carBtn.setImageResource(R.drawable.ic_directions_car_white_24dp);
+                    activeNavigator();
+                }
+            }
+        });
+        //bike
+        bikeBtn.setOnClickListener(new View.OnClickListener() {
+            @Override public void onClick(View v) {
+                if (!Variable.getVariable().getTravelMode().equalsIgnoreCase("bike")) {
+                    Variable.getVariable().setTravelMode("bike");
+                    footBtn.setImageResource(R.drawable.ic_directions_walk_white_24dp);
+                    bikeBtn.setImageResource(R.drawable.ic_directions_bike_orange_24dp);
+                    carBtn.setImageResource(R.drawable.ic_directions_car_white_24dp);
+                    activeNavigator();
+                }
+            }
+        });
+        // car
+        carBtn.setOnClickListener(new View.OnClickListener() {
+            @Override public void onClick(View v) {
+                if (!Variable.getVariable().getTravelMode().equalsIgnoreCase("car")) {
+                    Variable.getVariable().setTravelMode("car");
+                    footBtn.setImageResource(R.drawable.ic_directions_walk_white_24dp);
+                    bikeBtn.setImageResource(R.drawable.ic_directions_bike_white_24dp);
+                    carBtn.setImageResource(R.drawable.ic_directions_car_orange_24dp);
                     activeNavigator();
                 }
             }
@@ -681,14 +717,14 @@ public class MapActions implements NavigatorListener, MapHandlerListener {
                             new LatLong(MapActivity.getmCurrentLocation().getLatitude(),
                                     MapActivity.getmCurrentLocation().getLongitude()), 0);
 
-                    //                    mapView.getModel().mapViewPosition.setMapPosition(new MapPosition(
-                    //                            new LatLong(MapActivity.getmCurrentLocation().getLatitude(),
-                    //                                    MapActivity.getmCurrentLocation().getLongitude()),
-                    //                            mapView.getModel().mapViewPosition.getZoomLevel()));
+ /*                                       mapView.getModel().mapViewPosition.setMapPosition(new MapPosition(
+                                               new LatLong(MapActivity.getmCurrentLocation().getLatitude(),
+                                                       MapActivity.getmCurrentLocation().getLongitude()),
+                                                mapView.getModel().mapViewPosition.getZoomLevel()));*/
 
                 } else {
                     showPositionBtn.setImageResource(R.drawable.ic_location_searching_white_24dp);
-                    Toast.makeText(activity, "Lokasi tidak tersedia", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(activity, "No Location Available", Toast.LENGTH_SHORT).show();
                 }
             }
         });

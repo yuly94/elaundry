@@ -27,7 +27,7 @@
             android:layout_height="wrap_content"
             android:layout_marginRight="16dp"
             android:padding="8dp"
-            android:src="@drawable/ic_location_start_white_24dp"
+            android:src="@drawable/ic_place_white_24dp"
             />
 
         <TextView
@@ -71,7 +71,7 @@
         android:paddingLeft="16dp"
         android:paddingRight="16dp"
         android:paddingTop="8dp"
-        android:visibility="gone"
+
         >
 
         <ImageView
@@ -79,7 +79,7 @@
             android:layout_height="wrap_content"
             android:layout_marginRight="16dp"
             android:padding="8dp"
-            android:src="@drawable/ic_star_outline_white_24dp"/>
+            android:src="@drawable/ic_brightness_low_white_24dp"/>
 
         <TextView
             android:layout_width="wrap_content"
@@ -107,7 +107,7 @@
             android:layout_height="wrap_content"
             android:layout_marginRight="16dp"
             android:padding="8dp"
-            android:src="@drawable/ic_filter_center_focus_white_24dp"/>
+            android:src="@drawable/ic_center_focus_strong_white_24dp"/>
 
         <TextView
             android:layout_width="wrap_content"

@@ -28,6 +28,7 @@ import com.yuly.elaundry.kurir.model.util.SetStatusBarColor;
 import com.yuly.elaundry.kurir.model.util.Variable;
 
 import org.mapsforge.core.model.LatLong;
+import org.mapsforge.core.model.MapPosition;
 import org.mapsforge.map.android.graphics.AndroidGraphicFactory;
 import org.mapsforge.map.android.view.MapView;
 import org.mapsforge.map.layer.Layers;
@@ -79,10 +80,16 @@ public class MapActivity extends AppCompatActivity implements LocationListener {
         mapView = new MapView(this);
         mapView.setClickable(true);
         mapView.setBuiltInZoomControls(false);
+
         MapHandler.getMapHandler()
                 .init(this, mapView, Variable.getVariable().getCountry(), Variable.getVariable().getMapsFolder());
+
         MapHandler.getMapHandler().loadMap(new File(Variable.getVariable().getMapsFolder().getAbsolutePath(),
                 Variable.getVariable().getCountry() + "-gh"));
+
+
+
+
         customMapView();
         checkGpsAvailability();
 
@@ -105,7 +112,12 @@ public class MapActivity extends AppCompatActivity implements LocationListener {
         if (getSupportActionBar()!=null) {
             getSupportActionBar().setTitle("Peta");
             getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+
+            // Thema
+            themeUtils.onActivityCreateSetTheme(this,getSupportActionBar(),this);
         }
+
+
 
         inclusionViewGroup.getParent().bringChildToFront(inclusionViewGroup);
 

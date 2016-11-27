@@ -12,8 +12,8 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.DividerItemDecoration;
 import android.support.v7.widget.LinearLayoutManager;
-import android.support.v7.widget.RecyclerView.LayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.support.v7.widget.RecyclerView.LayoutManager;
 import android.support.v7.widget.SearchView;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -25,18 +25,18 @@ import android.view.ViewGroup;
 import android.widget.Toast;
 
 import com.android.volley.AuthFailureError;
+import com.android.volley.Request.Method;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.VolleyLog;
-import com.android.volley.Request.Method;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.yuly.elaundry.kurir.R;
-import com.yuly.elaundry.kurir.controller.activity.DetailPemesananActivity;
+import com.yuly.elaundry.kurir.controller.activity.DetailPengambilanPemesananActivity;
 import com.yuly.elaundry.kurir.controller.adapter.PemesananAdapter;
 import com.yuly.elaundry.kurir.controller.app.AppConfig;
 import com.yuly.elaundry.kurir.controller.app.AppController;
-import com.yuly.elaundry.kurir.model.geterseter.TransaksiModel;
 import com.yuly.elaundry.kurir.model.database.KonsumenDbHandler;
+import com.yuly.elaundry.kurir.model.geterseter.TransaksiModel;
 import com.yuly.elaundry.kurir.model.helper.SessionManager;
 import com.yuly.elaundry.kurir.model.helper.VolleyErrorHelper;
 import com.yuly.elaundry.kurir.model.listeners.RecyclerTouchListener;
@@ -54,7 +54,7 @@ import java.util.Map;
 /**
  * Created by anonymous on 21/02/16.
  */
-public class TransaksiFragment extends Fragment implements SearchView.OnQueryTextListener{
+public class LaundryPengambilanAgentFragment extends Fragment implements SearchView.OnQueryTextListener{
 
     //Creating a List of superheroes
     private List<TransaksiModel> listPemesanan;
@@ -198,7 +198,7 @@ public class TransaksiFragment extends Fragment implements SearchView.OnQueryTex
                 TransaksiModel transaksi = listPemesanan.get(position);
               //  Toast.makeText(getActivity(), transaksi.getNoId() + " is selected!", Toast.LENGTH_SHORT).show();
 
-                Intent intent = new Intent(getActivity(), DetailPemesananActivity.class);
+                Intent intent = new Intent(getActivity(), DetailPengambilanPemesananActivity.class);
                 intent.putExtra("EXTRA_SESSION_ID", transaksi.getNoId());
                 startActivity(intent);
 
@@ -254,12 +254,11 @@ public class TransaksiFragment extends Fragment implements SearchView.OnQueryTex
        // mSwipeRefreshLayout.setRefreshing(true);
 
         JsonObjectRequest jsonObjReq = new JsonObjectRequest(Method.GET,
-               AppConfig.URL_PEMESANAN, null, new Response.Listener<JSONObject>() {
+               AppConfig.URL_PENGAMBILAN_PEMESANAN, null, new Response.Listener<JSONObject>() {
 
             @Override
             public void onResponse(JSONObject response) {
                 Log.d(TAG, response.toString());
-
 
                         Log.d(AppController.TAG, "on Response " + response.toString());
                         //   msgResponse.setText(response.toString());
@@ -267,50 +266,63 @@ public class TransaksiFragment extends Fragment implements SearchView.OnQueryTex
 
                         mSwipeRefreshLayout.setRefreshing(false);
 
-
                 try {
-                    String error = response.getString("error");
-                    if (error == "false") {
-                        JSONArray obj = response.getJSONArray("pemesanan");
+                    boolean error = response.getBoolean("error");
+                    Log.d("TAG", String.valueOf(error));
+                    if (!error) {
 
-                        for (int i = 0; i < obj.length(); i++) {
-                            TransaksiModel listPesanan = new TransaksiModel();
+                        boolean kosong = response.getBoolean("kosong");
+                        Log.d("TAG", String.valueOf(kosong));
+                        if (!kosong) {
+                            JSONArray obj = response.getJSONArray("pemesanan");
 
-                            JSONObject jObj = obj.getJSONObject(i);
+                            for (int i = 0; i < obj.length(); i++) {
+                                TransaksiModel listPesanan = new TransaksiModel();
 
-                            Log.d("TAG", jObj.toString());
+                                JSONObject jObj = obj.getJSONObject(i);
 
-                            String pemesanan_no = jObj.getString("pemesanan_no");
-                            String pemesanan_id = jObj.getString("pemesanan_id");
-                            String konsumen_id = jObj.getString("konsumen_id");
-                            String konsumen_nama = jObj.getString("konsumen_nama");
-                            String konsumen_nohp = jObj.getString("konsumen_nohp");
-                            String pemesanan_latitude = jObj.getString("pemesanan_latitude");
-                            String pemesanan_longitude = jObj.getString("pemesanan_longitude");
-                            String pemesanan_alamat = jObj.getString("pemesanan_alamat");
-                            String pemesanan_catatan = jObj.getString("pemesanan_catatan");
-                            String pemesanan_paket = jObj.getString("pemesanan_paket");
-                            String pemesanan_baju = jObj.getString("pemesanan_baju");
-                            String pemesanan_celana = jObj.getString("pemesanan_celana");
-                            String pemesanan_rok = jObj.getString("pemesanan_rok");
-                            String pemesanan_harga = jObj.getString("pemesanan_harga");
-                            String pemesanan_tanggal = jObj.getString("pemesanan_tanggal");
-                            String pemesanan_status = jObj.getString("pemesanan_status");
+                                Log.d("TAG", jObj.toString());
 
-                            Log.d(AppController.TAG, "id : " + pemesanan_id);
+                                String pemesanan_no = jObj.getString("pemesanan_no");
+                                String pemesanan_id = jObj.getString("pemesanan_id");
+                                String konsumen_id = jObj.getString("konsumen_id");
+                                String konsumen_nama = jObj.getString("konsumen_nama");
+                                String konsumen_nohp = jObj.getString("konsumen_nohp");
+                                String pemesanan_latitude = jObj.getString("pemesanan_latitude");
+                                String pemesanan_longitude = jObj.getString("pemesanan_longitude");
+                                String pemesanan_alamat = jObj.getString("pemesanan_alamat");
+                                String pemesanan_catatan = jObj.getString("pemesanan_catatan");
+                                String pemesanan_paket = jObj.getString("pemesanan_paket");
+                                String pemesanan_baju = jObj.getString("pemesanan_baju");
+                                String pemesanan_celana = jObj.getString("pemesanan_celana");
+                                String pemesanan_rok = jObj.getString("pemesanan_rok");
+                                String pemesanan_harga = jObj.getString("pemesanan_harga");
+                                String pemesanan_tanggal = jObj.getString("pemesanan_tanggal");
+                                String pemesanan_status = jObj.getString("pemesanan_status");
 
-                            listPesanan.setNoId(pemesanan_id);
-                            listPesanan.setNama(konsumen_nama);
-                            listPesanan.setNoHp(konsumen_nohp);
-                            listPesanan.setHarga(pemesanan_harga);
-                            listPesanan.setKonsumenId(konsumen_id);
-                            listPesanan.setAlamat(pemesanan_alamat);
-                            listPesanan.setTanggal(pemesanan_tanggal);
+                                Log.i(AppController.TAG, "parsing berhasil");
+
+                                listPesanan.setNoId(pemesanan_id);
+                                listPesanan.setNama(konsumen_nama);
+                                listPesanan.setNoHp(konsumen_nohp);
+                                listPesanan.setHarga(pemesanan_harga);
+                                listPesanan.setKonsumenId(konsumen_id);
+                                listPesanan.setAlamat(pemesanan_alamat);
+                                listPesanan.setTanggal(pemesanan_tanggal);
 
 
-                            listPemesanan.add(listPesanan);
+                                listPemesanan.add(listPesanan);
+                            }
+
                         }
 
+                        else {
+
+                            JSONArray message = response.getJSONArray("message");
+
+                            Toast.makeText(getActivity(), message.toString(), Toast.LENGTH_SHORT).show();
+
+                        }
                         updateList();
                     }
                     else {

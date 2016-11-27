@@ -176,8 +176,8 @@ public class Variable {
         this.context = null;
         this.advancedSetting = false;
         this.directionsON = true;
-        this.mapDirectory = "/pocketmaps/maps/";
-        this.trackingDirectory = "/pocketmaps/tracking/";
+        this.mapDirectory = "/elaundrymaps/maps/";
+        this.trackingDirectory = "/elaundrymaps/tracking/";
         //http://folk.ntnu.no/junjung/pocketmaps/map_url_list
         this.mapUrlList = "http://elaundry.pe.hu/konsumen/peta/map_url_list";
         this.localMaps = new ArrayList<>();
@@ -518,7 +518,8 @@ public class Variable {
                 loadMap = false;
             }
             if (!hasUnfinishedDownload()) {
-                //                log("reset download map variables");
+
+                log("reset download map variables");
                 resetDownloadMapVariables();
             }
             return loadMap;
