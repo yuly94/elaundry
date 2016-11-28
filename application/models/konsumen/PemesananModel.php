@@ -220,7 +220,7 @@ class PemesananModel {
       pemesanan_paket,  pemesanan_baju,  pemesanan_celana,  pemesanan_rok,
       pemesanan_harga,  pemesanan_tanggal,  pemesanan_status,  konsumen_nama,  konsumen_nohp
 FROM laundry_pemesanan l JOIN konsumen k
-ON l.konsumen_id = k.konsumen_id WHERE k.konsumen_id=:konsumen_id, l.pemesanan_status=:pemesanan_status";
+ON l.konsumen_id = k.konsumen_id WHERE k.konsumen_id=:konsumen_id AND l.pemesanan_status=:pemesanan_status";
 
         $stmt = $app->db->prepare($sql);
         $stmt->execute(array(

@@ -53,7 +53,7 @@ $app->get('/konsumen/pemesanan/detail/:id/' ,'authKonsumen' , function($id) use 
 
 
     
-$app->post('/kurir/pemesanan/'  ,'authKonsumen' , function() use ($app){
+$app->post('/konsumen/pemesanan/'  ,'authKonsumen' , function() use ($app){
                        
     
             global $api_konsumen_id;
@@ -109,7 +109,7 @@ $app->post('/kurir/pemesanan/'  ,'authKonsumen' , function() use ($app){
 
 
 
-$app->post('/kurir/pemesanan/detail/:id/' ,'authKonsumen' , function($id) use ($app){
+$app->post('/konsumen/pemesanan/detail/:id/' ,'authKonsumen' , function($id) use ($app){
            
             global $api_konsumen_id;
             //http://stackoverflow.com/questions/39445006/read-json-input-in-slim-framework
@@ -158,7 +158,7 @@ $app->post('/kurir/pemesanan/detail/:id/' ,'authKonsumen' , function($id) use ($
         
     
 
-$app->post('/konsumen/pemesanan/' ,'authKonsumen' ,function() use ($app){
+$app->post('/konsumen/pemesanan/baru/' ,'authKonsumen' ,function() use ($app){
     
             global $api_konsumen_id;
             global $api_konsumen_email;
