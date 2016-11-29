@@ -5,18 +5,19 @@ package com.yuly.elaundry.konsumen.models;
  */
 
 public class TransaksiModel {
-    private String noid, konsumen_id, deskripsi, tanggal, nomer, harga, alamat;
+    private String noid, paket,konsumen_id, deskripsi, tanggal, nomer, harga, alamat;
 
     public TransaksiModel() {
     }
 
-    public TransaksiModel(String konsumen_id, String deskripsi, String tanggal, String noid, String nomer, String harga, String alamat) {
+    public TransaksiModel(String konsumen_id, String deskripsi, String tanggal, String noid, String nomer,String paket, String harga, String alamat) {
         this.konsumen_id = konsumen_id;
         this.deskripsi = deskripsi;
         this.tanggal = tanggal;
         this.noid = noid;
         this.nomer = nomer;
         this.harga = harga;
+        this.paket = paket;
         this.alamat = alamat;
     }
 
@@ -54,6 +55,13 @@ public class TransaksiModel {
         this.harga = harga;
     }
 
+    public String getPaket() {
+        return paket;
+    }
+
+    public void setPaket(String paket) {
+        this.paket = paket;
+    }
 
     public String getAlamat() {
         return alamat;

@@ -28,22 +28,35 @@
             android:layout_marginLeft="5dp"
             android:layout_marginRight="20dp">
 
-            <TextView
-                android:id="@+id/pemesanan_harga"
+            <LinearLayout
+                android:orientation="horizontal"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="pemesanan_title"
-                android:fontFamily="sans-serif"
-                android:tag="text_accent_color"
+                android:layout_height="match_parent">
 
-                android:gravity="left"
-                android:singleLine="false" />
+                <TextView
+                    android:text="paket"
+                    android:layout_width="144dp"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/tv_paket" />
+
+                <TextView
+                    android:id="@+id/pemesanan_harga"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="pemesanan harga"
+                    android:fontFamily="sans-serif"
+                    android:tag="text_accent_color"
+
+                    android:gravity="left"
+                    android:singleLine="false"
+                    android:layout_weight="1" />
+            </LinearLayout>
 
             <TextView
                 android:id="@+id/pemesanan_alamat"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="pemesanan_deskripsi"
+                android:text="pemesanan alamat"
                 android:fontFamily="sans-serif"
                 android:tag="text_secondary"
 

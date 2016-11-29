@@ -5,9 +5,9 @@
     <!-- Keep them in order as the titles are in -->
     <array name="nav_drawer_icons">
         <item>@drawable/ic_shopping_cart_24dp</item>
-        <item>@drawable/ic_map_24dp</item>
-        <item>@drawable/ic_dashboard_24dp</item>
-        <item>@drawable/ic_dashboard_24dp</item>
+        <item>@drawable/ic_shopping_cart_24dp</item>
+        <item>@drawable/ic_shopping_cart_24dp</item>
+        <item>@drawable/ic_shopping_cart_24dp</item>
         <item>@drawable/ic_face_24dp</item>
         <item>@drawable/ic_color_lens_24dp</item>
         <item>@drawable/ic_info_outline_24dp</item>
@@ -17,15 +17,13 @@
 
     <!-- Nav Drawer Menu Items -->
     <string-array name="nav_drawer_items">
-
-    <item>Pesanan</item>
-    <item>Daftar Pesanan</item>
-    <item>Peta</item>
+    <item>Daftar Pemesanan</item>
+    <item>Pesanan sedang dilaundry</item>
+    <item>Pesanan akan diantar</item>
+    <item>Pesanan Selesai</item>
     <item>Profile Saya</item>
-    <item>Change Pass</item>
     <item>Tema Tampilan</item>
     <item>Tentang Aplikasi</item>
     <item>Keluar</item>
-
 </string-array>
 </resources>

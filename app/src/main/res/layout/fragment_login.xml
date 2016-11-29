@@ -59,7 +59,7 @@
     <android.support.v7.widget.AppCompatButton
         android:id="@+id/btn_ChangePass"
         android:text="Login"
-        android:background="@color/colorPrimary"
+        android:background="@color/my_primary"
         android:textColor="@android:color/white"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"/>

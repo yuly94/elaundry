@@ -248,7 +248,7 @@ public class MapsFragmentLocation extends Fragment implements
 
 
         // pickerButton = (Button) view.findViewById(R.id.button_pilih_lokasi);
-        btnPesan = (FloatingActionButton) view.findViewById(R.id.fab_pemesanan);
+        btnPesan = (FloatingActionButton) view.findViewById(R.id.floating_button);
 
         etAlamat.setOnClickListener(new View.OnClickListener() {
 

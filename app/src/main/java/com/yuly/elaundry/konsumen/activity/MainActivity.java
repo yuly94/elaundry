@@ -98,9 +98,7 @@ public class MainActivity extends AppCompatActivity {
 		navDrawerItems.add(new NavDrawerItem(navMenuTitles[5], navMenuIcons.getResourceId(5, -1)));
 		navDrawerItems.add(new NavDrawerItem(navMenuTitles[6], navMenuIcons.getResourceId(6, -1)));
 		navDrawerItems.add(new NavDrawerItem(navMenuTitles[7], navMenuIcons.getResourceId(7, -1)));
-			navDrawerItems.add(new NavDrawerItem(navMenuTitles[5], navMenuIcons.getResourceId(8, -1)));
-			navDrawerItems.add(new NavDrawerItem(navMenuTitles[6], navMenuIcons.getResourceId(9, -1)));
-			navDrawerItems.add(new NavDrawerItem(navMenuTitles[7], navMenuIcons.getResourceId(10, -1)));
+
 
 		navMenuIcons.recycle();
 
@@ -249,65 +247,57 @@ public class MainActivity extends AppCompatActivity {
 
 		Fragment fragment = null;
 		switch (position) {
+
 			case 0:
-			//  fragment pesanan
+				fragment = new TransaksiFragment();//Get Fragment Instance
+				Bundle data = new Bundle();//Use bundle to pass data
+				data.putString("TEXT_TOMBOL", "mengambil laundry");//put string, int, etc in bundle with a key value
+				data.putString("STATUS_SEBELUMNYA", "baru memesan");
+				data.putString("UPDATE_STATUS", "pengambilan laundry");
 
-//http://www.androhub.com/android-pass-data-from-activity-to-fragment/
-
-				fragment = new PemesananFragment();//Get Fragment Instance
-
+				fragment.setArguments(data);//Finally set argument bundle to fragment
 				break;
 			case 1:
 				fragment = new TransaksiFragment();//Get Fragment Instance
 				Bundle data1 = new Bundle();//Use bundle to pass data
-				data1.putString("TEXT_TOMBOL", "mengambil laundry");//put string, int, etc in bundle with a key value
-				data1.putString("STATUS_SEBELUMNYA", "baru memesan");
-				data1.putString("UPDATE_STATUS", "pengambilan laundry");
+				data1.putString("TEXT_TOMBOL", "menyerahkan ke agent");//put string, int, etc in bundle with a key value
+				data1.putString("STATUS_SEBELUMNYA", "pengambilan laundry");
+				data1.putString("UPDATE_STATUS", "diserahkan ke agent");
 
 				fragment.setArguments(data1);//Finally set argument bundle to fragment
 				break;
 			case 2:
 				fragment = new TransaksiFragment();//Get Fragment Instance
 				Bundle data2 = new Bundle();//Use bundle to pass data
-				data2.putString("TEXT_TOMBOL", "menyerahkan ke agent");//put string, int, etc in bundle with a key value
-				data2.putString("STATUS_SEBELUMNYA", "pengambilan laundry");
-				data2.putString("UPDATE_STATUS", "diserahkan ke agent");
-
-				fragment.setArguments(data2);//Finally set argument bundle to fragment
-				break;
-			case 3:
-				fragment = new TransaksiFragment();//Get Fragment Instance
-				Bundle data3 = new Bundle();//Use bundle to pass data
-				data3.putString("TEXT_TOMBOL", "mengambil dari agent");//put string, int, etc in bundle with a key value
-				data3.putString("STATUS_SEBELUMNYA", "diserahkan ke agent");
-				data3.putString("UPDATE_STATUS", "mengambil dari agent");
+				data2.putString("TEXT_TOMBOL", "mengambil dari agent");//put string, int, etc in bundle with a key value
+				data2.putString("STATUS_SEBELUMNYA", "diserahkan ke agent");
+				data2.putString("UPDATE_STATUS", "mengambil dari agent");
 
 
 				//intent.putExtra("TEXT_TOMBOL", "mengantarkan laundry");
 				//intent.putExtra("STATUS_SEBELUMNYA", "mengambil dari agent");
 				//intent.putExtra("UPDATE_STATUS", "mengantarkan laundry");
 
+				fragment.setArguments(data2);//Finally set argument bundle to fragment
+				break;
+			case 3:
+				fragment = new TransaksiFragment();//Get Fragment Instance
+				Bundle data3 = new Bundle();//Use bundle to pass data
+				data3.putString("TEXT_TOMBOL", "mengantarkan laundry");//put string, int, etc in bundle with a key value
+				data3.putString("STATUS_SEBELUMNYA", "mengambil dari agent");
+				data3.putString("UPDATE_STATUS", "mengantarkan laundry");
+
 				fragment.setArguments(data3);//Finally set argument bundle to fragment
 				break;
 			case 4:
-			//  fragment tempat
-				fragment = new TransaksiFragment();
-				break;
-			case 5:
-			  	fragment = new MapsFragmentLocation();
-			//	fragment =new Example3Fragment();
-				break;
-			case 6:
 				fragment = new ProfileFragment();
 				break;
-			case 7:
-			 	fragment = new TempatFragment();
-				break;
-			case 8:
+
+			case 5:
 				//	themes
 				HelpUtils.showThemes(this);
 				break;
-			case 9:
+			case 6:
 
 		/*		//	About
 				//HelpUtils.showAbout(this);
@@ -334,7 +324,7 @@ public class MainActivity extends AppCompatActivity {
             //    fragment = new AboutFragment();
 
 				break;
-			case 10:
+			case 7:
 				// Logout
 				logoutUser();
 				break;

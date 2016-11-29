@@ -26,7 +26,7 @@ import java.util.List;
 
 public class PemesananAdapter extends RecyclerView.Adapter<PemesananAdapter.MyViewHolder> implements BubbleTextGetter {
 
-    private List<TransaksiModel> moviesList;
+    private List<TransaksiModel> transaksiList;
     ColorGenerator generator = ColorGenerator.MATERIAL;
     private String hurufDepan;
     private Context mContext;
@@ -35,7 +35,7 @@ public class PemesananAdapter extends RecyclerView.Adapter<PemesananAdapter.MyVi
 
 
     public class MyViewHolder extends RecyclerView.ViewHolder {
-        public TextView harga, alamat, tanggal;
+        public TextView tvPaket, tvHarga, alamat, tanggal;
         private ImageView hurufDepan, menu;
 
 
@@ -44,7 +44,8 @@ public class PemesananAdapter extends RecyclerView.Adapter<PemesananAdapter.MyVi
 
             hurufDepan = (ImageView) view.findViewById(R.id.gmail_letter);
 
-            harga = (TextView) view.findViewById(R.id.pemesanan_harga);
+            tvPaket = (TextView) view.findViewById(R.id.tv_paket);
+            tvHarga = (TextView) view.findViewById(R.id.pemesanan_harga);
             alamat = (TextView) view.findViewById(R.id.pemesanan_alamat);
             tanggal = (TextView) view.findViewById(R.id.pemesanan_tanggal);
             menu = (ImageView) view.findViewById(R.id.popup_menu);
@@ -53,10 +54,10 @@ public class PemesananAdapter extends RecyclerView.Adapter<PemesananAdapter.MyVi
     }
 
 
-    public PemesananAdapter(List<TransaksiModel> moviesList, Context context) {
+    public PemesananAdapter(List<TransaksiModel> transaksiList, Context context) {
 
         this.mContext = context;
-        this.moviesList = moviesList;
+        this.transaksiList = transaksiList;
 
     }
 
@@ -70,13 +71,14 @@ public class PemesananAdapter extends RecyclerView.Adapter<PemesananAdapter.MyVi
 
     @Override
     public void onBindViewHolder(MyViewHolder holder, int position) {
-        TransaksiModel movie = moviesList.get(position);
+        TransaksiModel transaksi = transaksiList.get(position);
 
-        holder.harga.setText(movie.getHarga());
-        holder.alamat.setText(movie.getAlamat());
-        holder.tanggal.setText(movie.getTanggal());
+        holder.tvPaket.setText(transaksi.getPaket());
+        holder.tvHarga.setText(transaksi.getHarga());
+        holder.alamat.setText(transaksi.getAlamat());
+        holder.tanggal.setText(transaksi.getTanggal());
 
-        hurufDepan = String.valueOf((movie.getAlamat().charAt(0)));
+        hurufDepan = String.valueOf((transaksi.getAlamat().charAt(0)));
 
         // Create a new TextDrawable for our image's background
         TextDrawable drawable = TextDrawable.builder()
@@ -89,7 +91,7 @@ public class PemesananAdapter extends RecyclerView.Adapter<PemesananAdapter.MyVi
 
     @Override
     public int getItemCount() {
-        return moviesList.size();
+        return transaksiList.size();
     }
 
     private void setOnPopupMenuListener(MyViewHolder itemHolder, final int position) {
@@ -128,17 +130,17 @@ public class PemesananAdapter extends RecyclerView.Adapter<PemesananAdapter.MyVi
 
 
 
-    public void setFilter(List<TransaksiModel> movie){
-        moviesList = new ArrayList<TransaksiModel>();
-        moviesList.addAll(movie);
+    public void setFilter(List<TransaksiModel> transaksi){
+        transaksiList = new ArrayList<TransaksiModel>();
+        transaksiList.addAll(transaksi);
         notifyDataSetChanged();
     }
 
 
     // Add a list of items
-    public void addAll(List<TransaksiModel> movie){
+    public void addAll(List<TransaksiModel> transaksi){
 
-        moviesList.addAll(movie);
+        transaksiList.addAll(transaksi);
         notifyDataSetChanged();
 
     }
@@ -147,16 +149,16 @@ public class PemesananAdapter extends RecyclerView.Adapter<PemesananAdapter.MyVi
 
     // Clean all elements of the recycler
     public void clear() {
-        moviesList.clear();
+        transaksiList.clear();
         notifyDataSetChanged();
     }
 
 
     @Override
     public String getTextToShowInBubble(final int pos) {
-        if (moviesList == null || moviesList.size() == 0)
+        if (transaksiList == null || transaksiList.size() == 0)
             return "";
-        Character ch = moviesList.get(pos).getAlamat().charAt(0);
+        Character ch = transaksiList.get(pos).getAlamat().charAt(0);
         if (Character.isDigit(ch)) {
             return "#";
         } else

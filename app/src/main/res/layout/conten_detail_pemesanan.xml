@@ -255,7 +255,8 @@
                 android:layout_marginRight="@dimen/dimen_15dp"
                 android:layout_marginBottom="@dimen/dimen_25dp"
                 android:theme="@style/MYAppTheme.NoActionBar"
-                android:background="@color/teal" />
+                android:background="@color/teal"
+                android:visibility="gone" />
 
 
         </LinearLayout>

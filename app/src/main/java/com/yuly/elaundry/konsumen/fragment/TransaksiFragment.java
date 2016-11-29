@@ -4,6 +4,7 @@ import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
+import android.support.design.widget.Snackbar;
 import android.support.v4.app.Fragment;
 import android.support.v4.view.MenuItemCompat;
 import android.support.v4.widget.SwipeRefreshLayout;
@@ -34,6 +35,7 @@ import com.android.volley.toolbox.JsonObjectRequest;
 import com.yuly.elaundry.konsumen.R;
 import com.yuly.elaundry.konsumen.activity.DetailPemesananActivity;
 import com.yuly.elaundry.konsumen.activity.DetailPemesananActivityOld;
+import com.yuly.elaundry.konsumen.activity.PemesananActivityNew;
 import com.yuly.elaundry.konsumen.adapter.PemesananAdapter;
 import com.yuly.elaundry.konsumen.app.AppConfig;
 import com.yuly.elaundry.konsumen.app.AppController;
@@ -162,9 +164,11 @@ public class TransaksiFragment extends Fragment implements SearchView.OnQueryTex
             @Override
             public void onClick(View v) {
 
-//                startActivity(new Intent(getActivity(), ActivityPemesanan.class));
+                startActivity(new Intent(getActivity(), PemesananActivityNew.class));
             }
         });
+
+
 
         // SqLite database handler
         db = new KonsumenDbHandler(getContext());
@@ -228,6 +232,7 @@ public class TransaksiFragment extends Fragment implements SearchView.OnQueryTex
         }));
 
         mengambilDataPemesanan();
+
 
 
 
@@ -337,6 +342,7 @@ public class TransaksiFragment extends Fragment implements SearchView.OnQueryTex
 
 
                             listPesanan.setNoId(pemesanan_id);
+                            listPesanan.setPaket(pemesanan_paket);
                             listPesanan.setHarga(pemesanan_harga);
                             listPesanan.setKonsumenId(konsumen_id);
                             listPesanan.setAlamat(pemesanan_alamat);

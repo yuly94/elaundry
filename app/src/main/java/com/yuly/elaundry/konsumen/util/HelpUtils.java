@@ -16,17 +16,20 @@
 
 package com.yuly.elaundry.konsumen.util;
 
+
 import android.app.Activity;
-import android.app.AlertDialog;
 import android.app.Dialog;
 import android.app.DialogFragment;
 import android.app.Fragment;
 import android.app.FragmentManager;
+
 import android.app.FragmentTransaction;
 import android.content.Context;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
+
+import android.support.v7.app.AlertDialog;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.ImageView;
@@ -35,7 +38,6 @@ import android.widget.TextView;
 
 import com.yuly.elaundry.konsumen.R;
 import com.yuly.elaundry.konsumen.activity.themeUtils;
-
 
 public class HelpUtils {
 
