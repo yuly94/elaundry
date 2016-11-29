@@ -20,6 +20,10 @@
 
     <dimen name="baseline">16dp</dimen>
 
+    <dimen name="dimen_5dp">5dp</dimen>
+    <dimen name="dimen_25dp">25dp</dimen>
+    <dimen name="dimen_10dp">10dp</dimen>
+
 </resources>
 
 

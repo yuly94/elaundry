@@ -100,7 +100,7 @@
     <android.support.v7.widget.AppCompatButton
         android:id="@+id/btn_edit"
         android:text="@string/edit"
-        android:background="@color/colorPrimary"
+        android:background="?attr/colorPrimary"
         android:textColor="@android:color/white"
         android:paddingRight="10dp"
         android:layout_width="100dp"
@@ -110,7 +110,7 @@
     <android.support.v7.widget.AppCompatButton
         android:id="@+id/btn_save"
         android:text="@string/save"
-        android:background="@color/colorPrimary"
+        android:background="?android:attr/colorPrimary"
         android:textColor="@android:color/white"
         android:paddingLeft="10dp"
         android:layout_width="100dp"

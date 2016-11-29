@@ -30,13 +30,9 @@ import com.amulyakhare.textdrawable.util.ColorGenerator;
 import com.yuly.elaundry.konsumen.R;
 //import com.yuly.elaundry.konsumen.fragment.AboutFragment;
 
-import com.yuly.elaundry.konsumen.fragment.AlamatFragment;
-import com.yuly.elaundry.konsumen.fragment.MapsFragmentLocation;
-import com.yuly.elaundry.konsumen.fragment.PemesananFragment;
 import com.yuly.elaundry.konsumen.fragment.TransaksiFragment;
-import com.yuly.elaundry.konsumen.fragment.TempatFragment;
 import com.yuly.elaundry.konsumen.fragment.ProfileFragment;
-import com.yuly.elaundry.konsumen.helper.SQLiteHandler;
+import com.yuly.elaundry.konsumen.helper.KonsumenDbHandler;
 import com.yuly.elaundry.konsumen.helper.SessionManager;
 import com.yuly.elaundry.konsumen.navigation.NavDrawerItem;
 import com.yuly.elaundry.konsumen.navigation.NavDrawerListAdapter;
@@ -52,7 +48,7 @@ public class MainActivity extends AppCompatActivity {
 
 	String api_key;
 
-	private SQLiteHandler db;
+	private KonsumenDbHandler db;
 	private SessionManager session;
 
 	private DrawerLayout mDrawerLayout;
@@ -77,13 +73,13 @@ public class MainActivity extends AppCompatActivity {
 		mDrawerList = (ListView) findViewById(R.id.list_slidermenu);
 
 		// SqLite database handler
-		db = new SQLiteHandler(getApplicationContext());
+		db = new KonsumenDbHandler(getApplicationContext());
 
 		// session manager
 		session = new SessionManager(getApplicationContext());
 
 		if (!session.isLoggedIn()) {
-			logoutUser();
+			closeUser();
 		} else {
 
 		myNamaHuruf = (ImageView) findViewById(R.id.draw_nama);
@@ -156,10 +152,10 @@ public class MainActivity extends AppCompatActivity {
 
 			if (user!=null) {
 
-				String nama = user.get("nama");
+				String nama = user.get("konsumen_nama");
 				//String alamat = user.get("alamat");
 				//String telepon = user.get("telepon");
-				String email = user.get("email");
+				String email = user.get("konsumen_email");
 				api_key = user.get("api");
 
 
@@ -248,22 +244,48 @@ public class MainActivity extends AppCompatActivity {
 		Fragment fragment = null;
 		switch (position) {
 			case 0:
-			//  fragment pesanan
-				fragment = new PemesananFragment();
+				fragment = new TransaksiFragment();//Get Fragment Instance
+				Bundle data = new Bundle();//Use bundle to pass data
+				data.putString("TEXT_TOMBOL", "mengambil laundry");//put string, int, etc in bundle with a key value
+				data.putString("STATUS_SEBELUMNYA", "baru memesan");
+				data.putString("UPDATE_STATUS", "pengambilan laundry");
+
+				fragment.setArguments(data);//Finally set argument bundle to fragment
 				break;
 			case 1:
-			//  fragment tempat
-				fragment = new TransaksiFragment();
+				fragment = new TransaksiFragment();//Get Fragment Instance
+				Bundle data1 = new Bundle();//Use bundle to pass data
+				data1.putString("TEXT_TOMBOL", "menyerahkan ke agent");//put string, int, etc in bundle with a key value
+				data1.putString("STATUS_SEBELUMNYA", "pengambilan laundry");
+				data1.putString("UPDATE_STATUS", "diserahkan ke agent");
+
+				fragment.setArguments(data1);//Finally set argument bundle to fragment
 				break;
 			case 2:
-			  	fragment = new MapsFragmentLocation();
-			//	fragment =new Example3Fragment();
+				fragment = new TransaksiFragment();//Get Fragment Instance
+				Bundle data2 = new Bundle();//Use bundle to pass data
+				data2.putString("TEXT_TOMBOL", "mengambil dari agent");//put string, int, etc in bundle with a key value
+				data2.putString("STATUS_SEBELUMNYA", "diserahkan ke agent");
+				data2.putString("UPDATE_STATUS", "mengambil dari agent");
+
+
+				//intent.putExtra("TEXT_TOMBOL", "mengantarkan laundry");
+				//intent.putExtra("STATUS_SEBELUMNYA", "mengambil dari agent");
+				//intent.putExtra("UPDATE_STATUS", "mengantarkan laundry");
+
+				fragment.setArguments(data2);//Finally set argument bundle to fragment
 				break;
 			case 3:
-				fragment = new ProfileFragment();
+				fragment = new TransaksiFragment();//Get Fragment Instance
+				Bundle data3 = new Bundle();//Use bundle to pass data
+				data3.putString("TEXT_TOMBOL", "mengantarkan laundry");//put string, int, etc in bundle with a key value
+				data3.putString("STATUS_SEBELUMNYA", "mengambil dari agent");
+				data3.putString("UPDATE_STATUS", "mengantarkan laundry");
+
+				fragment.setArguments(data3);//Finally set argument bundle to fragment
 				break;
 			case 4:
-			 	fragment = new TempatFragment();
+			 	fragment = new ProfileFragment();
 				break;
 			case 5:
 				//	themes
@@ -271,10 +293,10 @@ public class MainActivity extends AppCompatActivity {
 				break;
 			case 6:
 
-		/*		//	About
-				//HelpUtils.showAbout(this);
+		 	//	About
+				 HelpUtils.showAbout(this);
 
-*//*				Intent intent = new Intent(getApplicationContext(), AboutActivity.class);
+ /*				Intent intent = new Intent(getApplicationContext(), AboutActivity.class);
 				startActivity(intent);*//*
 
 
@@ -298,7 +320,7 @@ public class MainActivity extends AppCompatActivity {
 				break;
 			case 7:
 				// Logout
-				logoutUser();
+				closeUser();
 				break;
 
 
@@ -325,13 +347,8 @@ public class MainActivity extends AppCompatActivity {
 	 * Logging out the user. Will set isLoggedIn flag to false in shared
 	 * preferences Clears the user data from sqlite users table
 	 * */
-	private void logoutUser() {
-		session.setLogin(false);
-		db.deleteUsers();
+	private void closeUser() {
 
-		// Launching the login activity
- 	Intent intent = new Intent(MainActivity.this, LoginActivityNew.class);
-		startActivity(intent);
 		finish();
 
 		//

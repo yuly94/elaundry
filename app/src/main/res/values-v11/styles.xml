@@ -4,8 +4,8 @@
 
 
         <item name="drawerArrowStyle">@style/DrawerArrowStyle</item>
-        <item name="colorPrimary">@color/light_blue</item>
-        <item name="colorPrimaryDark">@color/blue</item>
+        <item name="colorPrimary">@color/teal</item>
+        <item name="colorPrimaryDark">@color/my_primary_dark</item>
         <item name="windowActionBar">false</item>
         <item name="colorAccent">#009688</item>
 

@@ -32,7 +32,7 @@ import com.yuly.elaundry.konsumen.R;
 import com.yuly.elaundry.konsumen.adapter.TempatAdapter;
 import com.yuly.elaundry.konsumen.app.AppConfig;
 import com.yuly.elaundry.konsumen.app.AppController;
-import com.yuly.elaundry.konsumen.helper.SQLiteHandler;
+import com.yuly.elaundry.konsumen.helper.KonsumenDbHandler;
 import com.yuly.elaundry.konsumen.helper.SessionManager;
 import com.yuly.elaundry.konsumen.helper.VolleyErrorHelper;
 import com.yuly.elaundry.konsumen.models.TempatModels;
@@ -61,7 +61,7 @@ public class TempatFragment extends Fragment implements SearchView.OnQueryTextLi
 
     //Creating Views
 
-    private SQLiteHandler db;
+    private KonsumenDbHandler db;
     private SessionManager session;
 
     private ProgressDialog pDialog;
@@ -116,7 +116,7 @@ public class TempatFragment extends Fragment implements SearchView.OnQueryTextLi
         daftarTempat = new ArrayList<TempatModels>();
 
         // SqLite database handler
-        db = new SQLiteHandler(getContext());
+        db = new KonsumenDbHandler(getContext());
 
         // session manager
         session = new SessionManager(getContext());

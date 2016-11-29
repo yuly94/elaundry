@@ -33,7 +33,7 @@ import com.yuly.elaundry.konsumen.R;
 import com.yuly.elaundry.konsumen.activity.MainActivity;
 import com.yuly.elaundry.konsumen.app.AppConfig;
 import com.yuly.elaundry.konsumen.app.AppController;
-import com.yuly.elaundry.konsumen.helper.SQLiteHandler;
+import com.yuly.elaundry.konsumen.helper.KonsumenDbHandler;
 import com.yuly.elaundry.konsumen.helper.SessionManager;
 import com.yuly.elaundry.konsumen.helper.VolleyErrorHelper;
 
@@ -51,7 +51,7 @@ public class RegisterFragmentVolley extends Fragment implements View.OnClickList
     private EditText inputEmail;
     private EditText inputPassword;
     private EditText inputConfirm;
-    private SQLiteHandler db;
+    private KonsumenDbHandler db;
     private ProgressDialog pDialog;
     private SessionManager session;
 
@@ -74,7 +74,7 @@ public class RegisterFragmentVolley extends Fragment implements View.OnClickList
     private void checkSesi(){
 
         // SQLite database handler
-        db = new SQLiteHandler(getActivity());
+        db = new KonsumenDbHandler(getActivity());
 
         // Session manager
         session = new SessionManager(getActivity());

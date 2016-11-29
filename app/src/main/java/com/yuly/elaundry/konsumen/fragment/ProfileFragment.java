@@ -4,6 +4,7 @@ import android.app.AlertDialog;
 import android.app.ProgressDialog;
 import android.content.DialogInterface;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.Snackbar;
 import android.support.v4.app.Fragment;
@@ -28,10 +29,12 @@ import com.android.volley.VolleyError;
 import com.android.volley.VolleyLog;
 import com.android.volley.toolbox.StringRequest;
 import com.yuly.elaundry.konsumen.R;
+import com.yuly.elaundry.konsumen.activity.LoginActivityNew;
+import com.yuly.elaundry.konsumen.activity.MainActivity;
 import com.yuly.elaundry.konsumen.app.AppConfig;
 import com.yuly.elaundry.konsumen.app.AppController;
 import com.yuly.elaundry.konsumen.app.Constants;
-import com.yuly.elaundry.konsumen.helper.SQLiteHandler;
+import com.yuly.elaundry.konsumen.helper.KonsumenDbHandler;
 import com.yuly.elaundry.konsumen.helper.SessionManager;
 import com.yuly.elaundry.konsumen.helper.VolleyErrorHelper;
 
@@ -60,7 +63,7 @@ public class ProfileFragment extends Fragment {
    // private ProgressBar progress;
     private ProgressDialog pDialog;
     private String konsumen_kunci_api_auth;
-    private SQLiteHandler db;
+    private KonsumenDbHandler db;
     private EditText et_Nama,et_Alamat,et_Email,et_Telepon;
     private Button btnEdit,btnSave;
 
@@ -115,7 +118,7 @@ public class ProfileFragment extends Fragment {
         });
 
         // SqLite database handler
-        db = new SQLiteHandler(getContext());
+        db = new KonsumenDbHandler(getContext());
 
         updateDataProfile();
         disableView();
@@ -251,6 +254,13 @@ public class ProfileFragment extends Fragment {
 
 
         } else if (id == R.id.action_exit) {
+
+            session.setLogin(false);
+            db.deleteUsers();
+
+            // Launching the login activity
+            Intent intent = new Intent(getActivity(), LoginActivityNew.class);
+            startActivity(intent);
 
             getActivity().finish();
             System.exit(0);

@@ -25,17 +25,18 @@ import android.view.ViewGroup;
 import android.widget.Toast;
 
 import com.android.volley.AuthFailureError;
-import com.android.volley.Request.Method;
+import com.android.volley.Request;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.VolleyLog;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.yuly.elaundry.konsumen.R;
 import com.yuly.elaundry.konsumen.activity.DetailPemesananActivity;
+import com.yuly.elaundry.konsumen.activity.PemesananActivityNew;
 import com.yuly.elaundry.konsumen.adapter.PemesananAdapter;
 import com.yuly.elaundry.konsumen.app.AppConfig;
 import com.yuly.elaundry.konsumen.app.AppController;
-import com.yuly.elaundry.konsumen.helper.SQLiteHandler;
+import com.yuly.elaundry.konsumen.helper.KonsumenDbHandler;
 import com.yuly.elaundry.konsumen.helper.SessionManager;
 import com.yuly.elaundry.konsumen.helper.VolleyErrorHelper;
 import com.yuly.elaundry.konsumen.listener.RecyclerTouchListener;
@@ -54,15 +55,14 @@ import java.util.Map;
 
 /**
  * Created by anonymous on 21/02/16.
- */
-public class TransaksiFragment extends Fragment implements SearchView.OnQueryTextListener{
+ */public class TransaksiFragment extends Fragment implements SearchView.OnQueryTextListener{
 
     //Creating a List of superheroes
     private List<TransaksiModel> listPemesanan;
 
     //Creating Views
     // SqLite database handler
-    private SQLiteHandler db;
+    private KonsumenDbHandler db;
 
     private SessionManager session;
 
@@ -80,9 +80,9 @@ public class TransaksiFragment extends Fragment implements SearchView.OnQueryTex
     private static final String TAG = TransaksiFragment.class.getSimpleName();
     //  private List<Anggota> feedItemList = new ArrayList<Anggota>();
     private RecyclerView mRecyclerView;
- //   private RecyclerView rv;
+    //   private RecyclerView rv;
 
- //   private StatesRecyclerViewAdapter statesRecyclerViewAdapter;
+    //   private StatesRecyclerViewAdapter statesRecyclerViewAdapter;
     private View loadingView;
     private View emptyView;
     private View errorView;
@@ -90,9 +90,11 @@ public class TransaksiFragment extends Fragment implements SearchView.OnQueryTex
     //Creating Views
     private LayoutManager layoutManager;
     private PemesananAdapter adapter;
-   // private SimpleStringAdapter adapter;
+    // private SimpleStringAdapter adapter;
 
     private SwipeRefreshLayout mSwipeRefreshLayout;
+
+    private String text_tombol, status_sebelumnya,update_status;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -104,17 +106,28 @@ public class TransaksiFragment extends Fragment implements SearchView.OnQueryTex
         final ActionBar ab = ((AppCompatActivity) getActivity()).getSupportActionBar();
         //ab.setHomeAsUpIndicator(R.drawable.ic_menu);
         // ab.setDisplayHomeAsUpEnabled(true);
-      //  rv = (RecyclerView) v.findViewById(R.id.recycler_view);
+        //  rv = (RecyclerView) v.findViewById(R.id.recycler_view);
+
+
+        //Get Argument that passed from activity in "data" key value
+        text_tombol = getArguments().getString("TEXT_TOMBOL");
+        status_sebelumnya = getArguments().getString("STATUS_SEBELUMNYA");
+        update_status = getArguments().getString("UPDATE_STATUS");
+
+        // data.putString("TEXT_TOMBOL", "mengambil laundry");
+        // data.putString("STATUS_SEBELUMNYA", "baru memesan");
+        // data.putString("UPDATE_STATUS", "pengambilan laundry");
+
         mFastScroller = (FastScroller) v.findViewById(R.id.fastscroller);
 
-      //  setContentView(R.layout.activity_main);
-     //   final RecyclerView rv = (RecyclerView) findViewById(R.id.recycler_view);
-      //  rv.setLayoutManager(new LinearLayoutManager(getContext()));
-      //  rv.setHasFixedSize(true);
-     //   loadingView = inflater.inflate(R.layout.view_loading, rv, false);
-     //   emptyView = inflater.inflate(R.layout.view_empty, rv, false);
-     //   errorView = inflater.inflate(R.layout.view_error, rv, false);
-     //   adapter = new SimpleStringAdapter(Cheeses.sCheeseStrings);
+        //  setContentView(R.layout.activity_main);
+        //   final RecyclerView rv = (RecyclerView) findViewById(R.id.recycler_view);
+        //  rv.setLayoutManager(new LinearLayoutManager(getContext()));
+        //  rv.setHasFixedSize(true);
+        //   loadingView = inflater.inflate(R.layout.view_loading, rv, false);
+        //   emptyView = inflater.inflate(R.layout.view_empty, rv, false);
+        //   errorView = inflater.inflate(R.layout.view_error, rv, false);
+        //   adapter = new SimpleStringAdapter(Cheeses.sCheeseStrings);
 
 
         mRecyclerView = (RecyclerView) v.findViewById(R.id.recycler_view);
@@ -147,12 +160,14 @@ public class TransaksiFragment extends Fragment implements SearchView.OnQueryTex
             @Override
             public void onClick(View v) {
 
-//                startActivity(new Intent(getActivity(), ActivityPemesanan.class));
+                startActivity(new Intent(getActivity(), PemesananActivityNew.class));
             }
         });
 
+
+
         // SqLite database handler
-        db = new SQLiteHandler(getContext());
+        db = new KonsumenDbHandler(getContext());
 
         //Initializing our superheroes list
         listPemesanan = new ArrayList<TransaksiModel>();
@@ -174,9 +189,9 @@ public class TransaksiFragment extends Fragment implements SearchView.OnQueryTex
                 // Make sure you call mSwipeRefreshLayout.setRefreshing(false)
                 // once the network request has completed successfully.
 
-                makeJsonArryReq();
+                mengambilDataPemesanan();
 
-                 adapter.clear();
+                adapter.clear();
             }
         });
 
@@ -192,11 +207,16 @@ public class TransaksiFragment extends Fragment implements SearchView.OnQueryTex
         mRecyclerView.addOnItemTouchListener(new RecyclerTouchListener(getActivity(), mRecyclerView, new RecyclerTouchListener.ClickListener() {
             @Override
             public void onClick(View view, int position) {
-                TransaksiModel movie = listPemesanan.get(position);
-                Toast.makeText(getActivity(), movie.getNoId() + " is selected!", Toast.LENGTH_SHORT).show();
+                TransaksiModel transaksi = listPemesanan.get(position);
+                Toast.makeText(getActivity(), transaksi.getNoId() + " is selected!", Toast.LENGTH_SHORT).show();
 
                 Intent intent = new Intent(getActivity(), DetailPemesananActivity.class);
-                intent.putExtra("EXTRA_SESSION_ID", movie.getNoId());
+
+                intent.putExtra("PEMESANAN_ID", transaksi.getNoId());
+                intent.putExtra("TEXT_TOMBOL", text_tombol);
+                intent.putExtra("STATUS_SEBELUMNYA", status_sebelumnya);
+                intent.putExtra("UPDATE_STATUS", update_status);
+
                 startActivity(intent);
 
             }
@@ -207,7 +227,8 @@ public class TransaksiFragment extends Fragment implements SearchView.OnQueryTex
             }
         }));
 
-        makeJsonArryReq();
+        mengambilDataPemesanan();
+
 
 
 
@@ -217,18 +238,14 @@ public class TransaksiFragment extends Fragment implements SearchView.OnQueryTex
 
 /*
     public void getLoading() {
-
         statesRecyclerViewAdapter.setState(StatesRecyclerViewAdapter.STATE_LOADING);
     }
-
     public void onEmptyClicked(View view) {
         statesRecyclerViewAdapter.setState(StatesRecyclerViewAdapter.STATE_EMPTY);
     }
-
     public void onErrorClicked(View view) {
         statesRecyclerViewAdapter.setState(StatesRecyclerViewAdapter.STATE_ERROR);
     }
-
     public void getList() {
         statesRecyclerViewAdapter.setState(StatesRecyclerViewAdapter.STATE_NORMAL);
     }
@@ -246,16 +263,23 @@ public class TransaksiFragment extends Fragment implements SearchView.OnQueryTex
     /**
      * Making json array request
      */
-    private void makeJsonArryReq() {
+
+    //http://stackoverflow.com/questions/28344448/how-to-send-json-object-to-server-using-volley-in-andorid
+    private void mengambilDataPemesanan() {
         showProgressDialog();
-       // mSwipeRefreshLayout.setRefreshing(true);
+        // mSwipeRefreshLayout.setRefreshing(true);
 
-        JsonObjectRequest jsonObjReq = new JsonObjectRequest(Method.GET,
-               AppConfig.URL_PEMESANAN, null, new Response.Listener<JSONObject>() {
+        // Posting parameters untuk mengambil data pemesanan
+        HashMap<String, String> params = new HashMap<String, String>();
+        params.put("pemesanan_status", status_sebelumnya);
 
-            @Override
-            public void onResponse(JSONObject response) {
-                Log.d(TAG, response.toString());
+        JsonObjectRequest jsonObjReq = new JsonObjectRequest(Request.Method.POST,
+                AppConfig.URL_PEMESANAN,new JSONObject(params),
+                new Response.Listener<JSONObject>() {
+
+                    @Override
+                    public void onResponse(JSONObject response) {
+                        Log.d(TAG, response.toString());
 
 
                         Log.d(AppController.TAG, "on Response " + response.toString());
@@ -265,78 +289,79 @@ public class TransaksiFragment extends Fragment implements SearchView.OnQueryTex
                         mSwipeRefreshLayout.setRefreshing(false);
 
 
-                try {
-                    String error = response.getString("error");
-                    if (error == "false") {
-                        JSONArray obj = response.getJSONArray("pemesanan");
+                        try {
+                            String error = response.getString("error");
+                            if (error == "false") {
+                                JSONArray obj = response.getJSONArray("pemesanan");
 
-                        for (int i = 0; i < obj.length(); i++) {
-                            TransaksiModel listPesanan = new TransaksiModel();
+                                for (int i = 0; i < obj.length(); i++) {
+                                    TransaksiModel listPesanan = new TransaksiModel();
 
-                            JSONObject jObj = obj.getJSONObject(i);
+                                    JSONObject jObj = obj.getJSONObject(i);
 
-                            Log.d("TAG", jObj.toString());
+                                    Log.d("TAG", jObj.toString());
 
-                            String pemesanan_no = jObj.getString("pemesanan_no");
-                            String pemesanan_id = jObj.getString("pemesanan_id");
-                            String konsumen_id = jObj.getString("konsumen_id");
-                            String pemesanan_latitude = jObj.getString("pemesanan_latitude");
-                            String pemesanan_longitude = jObj.getString("pemesanan_longitude");
-                            String pemesanan_alamat = jObj.getString("pemesanan_alamat");
-                            String pemesanan_catatan = jObj.getString("pemesanan_catatan");
-                            String pemesanan_paket = jObj.getString("pemesanan_paket");
-                            String pemesanan_baju = jObj.getString("pemesanan_baju");
-                            String pemesanan_celana = jObj.getString("pemesanan_celana");
-                            String pemesanan_rok = jObj.getString("pemesanan_rok");
-                            String pemesanan_harga = jObj.getString("pemesanan_harga");
-                            String pemesanan_tanggal = jObj.getString("pemesanan_tanggal");
-                            String pemesanan_status = jObj.getString("pemesanan_status");
-
-
-                            Log.d(AppController.TAG, "id : " + pemesanan_id);
-                            Log.d(AppController.TAG, "nama : " + konsumen_id);
-
-                            Log.d(AppController.TAG, "kota : " + pemesanan_latitude);
-                            Log.d(AppController.TAG, "provinsi : " + pemesanan_longitude);
-                            Log.d(AppController.TAG, "latitude : " + pemesanan_alamat);
-                            Log.d(AppController.TAG, "latitude : " + pemesanan_catatan);
-                            Log.d(AppController.TAG, "longitude : " + pemesanan_paket);
-                            Log.d(AppController.TAG, "creates : " + pemesanan_baju);
-                            Log.d(AppController.TAG, "creates : " + pemesanan_celana);
-                            Log.d(AppController.TAG, "creates : " + pemesanan_rok);
-                            Log.d(AppController.TAG, "creates : " + pemesanan_harga);
-                            Log.d(AppController.TAG, "creates : " + pemesanan_tanggal);
-                            Log.d(AppController.TAG, "creates : " + pemesanan_status);
+                                    String pemesanan_no = jObj.getString("pemesanan_no");
+                                    String pemesanan_id = jObj.getString("pemesanan_id");
+                                    String konsumen_id = jObj.getString("konsumen_id");
+                                    String pemesanan_latitude = jObj.getString("pemesanan_latitude");
+                                    String pemesanan_longitude = jObj.getString("pemesanan_longitude");
+                                    String pemesanan_alamat = jObj.getString("pemesanan_alamat");
+                                    String pemesanan_catatan = jObj.getString("pemesanan_catatan");
+                                    String pemesanan_paket = jObj.getString("pemesanan_paket");
+                                    String pemesanan_baju = jObj.getString("pemesanan_baju");
+                                    String pemesanan_celana = jObj.getString("pemesanan_celana");
+                                    String pemesanan_rok = jObj.getString("pemesanan_rok");
+                                    String pemesanan_harga = jObj.getString("pemesanan_harga");
+                                    String pemesanan_tanggal = jObj.getString("pemesanan_tanggal");
+                                    String pemesanan_status = jObj.getString("pemesanan_status");
 
 
-                            listPesanan.setNoId(pemesanan_id);
-                            listPesanan.setHarga(pemesanan_harga);
-                            listPesanan.setKonsumenId(konsumen_id);
-                            listPesanan.setAlamat(pemesanan_alamat);
-                            listPesanan.setTanggal(pemesanan_tanggal);
+                                    Log.d(AppController.TAG, "id : " + pemesanan_id);
+                                    Log.d(AppController.TAG, "nama : " + konsumen_id);
+
+                                    Log.d(AppController.TAG, "kota : " + pemesanan_latitude);
+                                    Log.d(AppController.TAG, "provinsi : " + pemesanan_longitude);
+                                    Log.d(AppController.TAG, "latitude : " + pemesanan_alamat);
+                                    Log.d(AppController.TAG, "latitude : " + pemesanan_catatan);
+                                    Log.d(AppController.TAG, "longitude : " + pemesanan_paket);
+                                    Log.d(AppController.TAG, "creates : " + pemesanan_baju);
+                                    Log.d(AppController.TAG, "creates : " + pemesanan_celana);
+                                    Log.d(AppController.TAG, "creates : " + pemesanan_rok);
+                                    Log.d(AppController.TAG, "creates : " + pemesanan_harga);
+                                    Log.d(AppController.TAG, "creates : " + pemesanan_tanggal);
+                                    Log.d(AppController.TAG, "creates : " + pemesanan_status);
 
 
-                            listPemesanan.add(listPesanan);
+                                    listPesanan.setNoId(pemesanan_id);
+                                    listPesanan.setPaket(pemesanan_paket);
+                                    listPesanan.setHarga(pemesanan_harga);
+                                    listPesanan.setKonsumenId(konsumen_id);
+                                    listPesanan.setAlamat(pemesanan_alamat);
+                                    listPesanan.setTanggal(pemesanan_tanggal);
+
+
+                                    listPemesanan.add(listPesanan);
+                                }
+
+                                updateList();
+                            }
+                            else {
+
+                                JSONArray message = response.getJSONArray("message");
+
+                                Toast.makeText(getActivity(), message.toString(), Toast.LENGTH_SHORT).show();
+
+                            }
+
+
+                        }
+                        catch (JSONException e) {
+
+                            e.printStackTrace();
                         }
 
-                        updateList();
                     }
-                    else {
-
-                        JSONArray message = response.getJSONArray("message");
-
-                        Toast.makeText(getActivity(), message.toString(), Toast.LENGTH_SHORT).show();
-
-                    }
-
-
-                }
-                catch (JSONException e) {
-
-                    e.printStackTrace();
-                }
-
-            }
 
 
                 }, new Response.ErrorListener() {
@@ -381,85 +406,19 @@ public class TransaksiFragment extends Fragment implements SearchView.OnQueryTex
 
 
 
-    private void getData(JSONArray j){
-        //Traversing through all the items in the json array
-
-
-        for(int i=0;i<j.length();i++){
-            TransaksiModel listPesanan = new TransaksiModel();
-            try {
-
-                JSONObject jObj = j.getJSONObject(i);
-               // JSONObject jObj = new JSONObject(response);
-
-                    Log.d("TAG",jObj.toString());
-
-                    String pemesanan_no = jObj.getString("pemesanan_no");
-                    String pemesanan_id = jObj.getString("pemesanan_id");
-                    String konsumen_id = jObj.getString("konsumen_id");
-                    String pemesanan_latitude = jObj.getString("pemesanan_latitude");
-                    String pemesanan_longitude = jObj.getString("pemesanan_longitude");
-                    String pemesanan_alamat = jObj.getString("pemesanan_alamat");
-                    String pemesanan_catatan = jObj.getString("pemesanan_catatan");
-                    String pemesanan_paket = jObj.getString("pemesanan_paket");
-                    String pemesanan_baju = jObj.getString("pemesanan_baju");
-                    String pemesanan_celana = jObj.getString("pemesanan_celana");
-                    String pemesanan_rok = jObj.getString("pemesanan_rok");
-                    String pemesanan_harga = jObj.getString("pemesanan_harga");
-                    String pemesanan_tanggal = jObj.getString("pemesanan_tanggal");
-                    String pemesanan_status = jObj.getString("pemesanan_status");
-
-                    Log.d(AppController.TAG, "id : " + pemesanan_no);
-                    Log.d(AppController.TAG, "id : " + pemesanan_id);
-                    Log.d(AppController.TAG, "nama : " + konsumen_id);
-                    Log.d(AppController.TAG, "alamat : " + pemesanan_id);
-                    Log.d(AppController.TAG, "kota : " + pemesanan_latitude);
-                    Log.d(AppController.TAG, "provinsi : " + pemesanan_longitude);
-                    Log.d(AppController.TAG, "latitude : " + pemesanan_alamat);
-                    Log.d(AppController.TAG, "latitude : " + pemesanan_catatan);
-                    Log.d(AppController.TAG, "longitude : " + pemesanan_paket);
-                    Log.d(AppController.TAG, "creates : " + pemesanan_baju);
-                    Log.d(AppController.TAG, "creates : " + pemesanan_celana);
-                    Log.d(AppController.TAG, "creates : " + pemesanan_rok);
-                    Log.d(AppController.TAG, "creates : " + pemesanan_harga);
-                    Log.d(AppController.TAG, "creates : " + pemesanan_tanggal);
-                    Log.d(AppController.TAG, "creates : " + pemesanan_status);
-
-
-                    listPesanan.setNomer(pemesanan_no);
-                    listPesanan.setKonsumenId(konsumen_id);
-                    listPesanan.setAlamat(pemesanan_alamat);
-                    listPesanan.setTanggal(pemesanan_tanggal);
-
-
-            } catch (JSONException e) {
-                e.printStackTrace();
-            }
-
-            listPemesanan.add(listPesanan);
-        }
-
-
-
-
-        updateList();
-    }
-
-
-
     private void updateList() {
 
         //Finally initializing our adapter
-       adapter = new PemesananAdapter(listPemesanan, getContext());
+        adapter = new PemesananAdapter(listPemesanan, getContext());
 
         //Adding adapter to recyclerview
-      mRecyclerView.setAdapter(adapter);
+        mRecyclerView.setAdapter(adapter);
 
-    //    statesRecyclerViewAdapter = new StatesRecyclerViewAdapter(adapter, loadingView, emptyView, errorView);
-    //    rv.setAdapter(adapter);
-    //    rv.setAdapter(statesRecyclerViewAdapter);
-    //    mFastScroller.setRecyclerView(rv);
-    //    rv.addItemDecoration(new DividerItemDecoration(getContext(), DividerItemDecoration.VERTICAL_LIST));
+        //    statesRecyclerViewAdapter = new StatesRecyclerViewAdapter(adapter, loadingView, emptyView, errorView);
+        //    rv.setAdapter(adapter);
+        //    rv.setAdapter(statesRecyclerViewAdapter);
+        //    mFastScroller.setRecyclerView(rv);
+        //    rv.addItemDecoration(new DividerItemDecoration(getContext(), DividerItemDecoration.VERTICAL_LIST));
 
 
 
@@ -475,7 +434,7 @@ public class TransaksiFragment extends Fragment implements SearchView.OnQueryTex
             pDialog.show();
         }
 
-       //  getLoading();
+        //  getLoading();
 
     /*     try {
             statesRecyclerViewAdapter.setState(StatesRecyclerViewAdapter.STATE_LOADING);
@@ -492,7 +451,7 @@ public class TransaksiFragment extends Fragment implements SearchView.OnQueryTex
             pDialog.hide();
         }
 
-    //  getList();
+        //  getList();
        /* statesRecyclerViewAdapter.setState(StatesRecyclerViewAdapter.STATE_NORMAL);*/
 
 /*
@@ -521,7 +480,7 @@ public class TransaksiFragment extends Fragment implements SearchView.OnQueryTex
                     public boolean onMenuItemActionCollapse(MenuItem item) {
                         // Do something when collapsed
                         //adapter.setFilter(mCountryModel);
-                       adapter.setFilter(listPemesanan);
+                        adapter.setFilter(listPemesanan);
                         return true; // Return true to collapse action view
                     }
 

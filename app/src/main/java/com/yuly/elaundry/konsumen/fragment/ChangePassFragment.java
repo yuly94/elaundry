@@ -29,7 +29,7 @@ import com.yuly.elaundry.konsumen.R;
 import com.yuly.elaundry.konsumen.activity.MainActivity;
 import com.yuly.elaundry.konsumen.app.AppConfig;
 import com.yuly.elaundry.konsumen.app.AppController;
-import com.yuly.elaundry.konsumen.helper.SQLiteHandler;
+import com.yuly.elaundry.konsumen.helper.KonsumenDbHandler;
 import com.yuly.elaundry.konsumen.helper.SessionManager;
 import com.yuly.elaundry.konsumen.helper.VolleyErrorHelper;
 
@@ -45,7 +45,7 @@ public class ChangePassFragment extends Fragment implements View.OnClickListener
     private EditText inputNewPass;
     private ProgressDialog pDialog;
     private SessionManager session;
-    private SQLiteHandler db;
+    private KonsumenDbHandler db;
     private TextView tv_register,tv_reset_password;
     private Button btn_ChangePass;
 

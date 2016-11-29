@@ -1,4 +1,4 @@
-package com.yuly.elaundry.konsumen.fragment;
+package com.yuly.elaundry.konsumen.activity;
 
 
 import android.Manifest;
@@ -10,17 +10,19 @@ import android.content.pm.PackageManager;
 import android.location.Location;
 import android.location.LocationManager;
 import android.os.Bundle;
+import android.os.Handler;
 import android.support.annotation.NonNull;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
 import android.support.v4.app.ActivityCompat;
-import android.support.v4.app.Fragment;
+import android.support.v7.app.ActionBar;
+import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.Toolbar;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.util.Log;
-import android.view.LayoutInflater;
+import android.view.MenuItem;
 import android.view.View;
-import android.view.ViewGroup;
 import android.widget.CheckBox;
 import android.widget.CompoundButton;
 import android.widget.EditText;
@@ -57,13 +59,13 @@ import org.json.JSONObject;
 import java.util.HashMap;
 import java.util.Map;
 
-public class PemesananFragment extends Fragment implements
+public class PemesananActivityNew extends AppCompatActivity implements
         GoogleApiClient.ConnectionCallbacks, GoogleApiClient.OnConnectionFailedListener{
 
     private Context mContext;
 
     // LogCat tag
-    private static final String TAG = PemesananFragment.class.getSimpleName();
+    private static final String TAG = PemesananActivityNew.class.getSimpleName();
 
     private final static int PLAY_SERVICES_RESOLUTION_REQUEST = 1000;
     //private LocationRequest mLocationRequest;
@@ -100,7 +102,7 @@ public class PemesananFragment extends Fragment implements
     private static int DISPLACEMENT = 10; // 10 meters
 
 
-
+    private View parentLayout;
 
     //Database
     private KonsumenDbHandler db;
@@ -108,15 +110,29 @@ public class PemesananFragment extends Fragment implements
     private ProgressDialog pDialog;
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState) {
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.fragment_pemesanan);
+        parentLayout = findViewById(android.R.id.content);
 
-        View view = inflater.inflate(R.layout.fragment_pemesanan, container,
-                false);
 
-        tvHgTotal = (TextView) view.findViewById(R.id.tv_hg_total);
+        tvHgTotal = (TextView) findViewById(R.id.tv_hg_total);
+        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
 
-        initViews(view);
+        setSupportActionBar(toolbar);
+
+        ActionBar actionBar = getSupportActionBar();
+
+        if (actionBar != null) {
+            // return up one level
+            getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        }
+
+        // Thema
+        themeUtils.onActivityCreateSetTheme(this,getSupportActionBar(),this);
+
+
+        initViews();
 
         HargaBaju = 500;
         HargaCelana = 1000;
@@ -127,10 +143,10 @@ public class PemesananFragment extends Fragment implements
         varHargaRok = 0;
 
         // SqLite database handler
-        db = new KonsumenDbHandler(getActivity());
+        db = new KonsumenDbHandler(this);
 
         // Show Progress dialog
-        pDialog = new ProgressDialog(getActivity());
+        pDialog = new ProgressDialog(this);
         pDialog.setMessage("Loading...");
         pDialog.setCancelable(false);
 
@@ -145,27 +161,27 @@ public class PemesananFragment extends Fragment implements
 
         // Show location button click listener
 
-        return view;
+
 
     }
 
 
-    private void initViews(View view){
+    private void initViews(){
 
 
 
-        etLatitude = (EditText) view.findViewById(R.id.et_latitude);
-        etLongitude = (EditText) view.findViewById(R.id.et_longitude);
-        etAlamat = (EditText) view.findViewById(R.id.et_alamat);
-        etCatatan = (EditText) view.findViewById(R.id.et_catatan);
+        etLatitude = (EditText) findViewById(R.id.et_latitude);
+        etLongitude = (EditText) findViewById(R.id.et_longitude);
+        etAlamat = (EditText) findViewById(R.id.et_alamat);
+        etCatatan = (EditText) findViewById(R.id.et_catatan);
 
-        rgPaket = (RadioGroup) view.findViewById(R.id.rg_paket);
+        rgPaket = (RadioGroup) findViewById(R.id.rg_paket);
 
 /*      rbEkonomis = (RadioButton) view.findViewById(R.id.rb_ekonomis);
         rbReguler = (RadioButton) view.findViewById(R.id.rb_reguler);
         rbExpress = (RadioButton) view.findViewById(R.id.rb_express);*/
 
-        tvTitleHg = (TextView) view.findViewById(R.id.tv_title_hg_total);
+        tvTitleHg = (TextView) findViewById(R.id.tv_title_hg_total);
 
         //default sebelum user mengklik paket yg lain
         data_pemesanan_paket = "ekonomis";
@@ -223,21 +239,21 @@ public class PemesananFragment extends Fragment implements
             }
         });
 
-     //   Log.d(TAG,data_pemesanan_paket);
+        //   Log.d(TAG,data_pemesanan_paket);
         // find the radio button by returned id
-       // rButton = (RadioButton) view.findViewById(selectedId);
+        // rButton = (RadioButton) view.findViewById(selectedId);
 
-        cbBaju = (CheckBox) view.findViewById(R.id.cb_baju);
-        cbCelana = (CheckBox) view.findViewById(R.id.cb_celana);
-        cbRok = (CheckBox) view.findViewById(R.id.cb_rok);
+        cbBaju = (CheckBox) findViewById(R.id.cb_baju);
+        cbCelana = (CheckBox) findViewById(R.id.cb_celana);
+        cbRok = (CheckBox) findViewById(R.id.cb_rok);
 
-        etBaju = (EditText) view.findViewById(R.id.et_baju);
-        etCelana = (EditText) view.findViewById(R.id.et_celana);
-        etRok = (EditText) view.findViewById(R.id.et_rok);
+        etBaju = (EditText) findViewById(R.id.et_baju);
+        etCelana = (EditText) findViewById(R.id.et_celana);
+        etRok = (EditText) findViewById(R.id.et_rok);
 
-        tvHgBaju = (TextView) view.findViewById(R.id.tv_hg_baju);
-        tvHgCelana = (TextView) view.findViewById(R.id.tv_hg_celana);
-        tvHgRok = (TextView) view.findViewById(R.id.tv_hg_rok);
+        tvHgBaju = (TextView) findViewById(R.id.tv_hg_baju);
+        tvHgCelana = (TextView) findViewById(R.id.tv_hg_celana);
+        tvHgRok = (TextView) findViewById(R.id.tv_hg_rok);
 
 
 
@@ -255,7 +271,7 @@ public class PemesananFragment extends Fragment implements
                     etBaju.setFocusableInTouchMode(true); // user touches widget on phone with touch screen
                     etBaju.setClickable(true); // user navigates with wheel and selects widget
 
-                   // hitHgBaju();
+                    // hitHgBaju();
 
                     hitHgTotal();
 
@@ -278,7 +294,7 @@ public class PemesananFragment extends Fragment implements
                     etCelana.setFocusableInTouchMode(true); // user touches widget on phone with touch screen
                     etCelana.setClickable(true); // user navigates with wheel and selects widget
 
-                  //  hitHgCelana();
+                    //  hitHgCelana();
 
                     hitHgTotal();
 
@@ -303,7 +319,7 @@ public class PemesananFragment extends Fragment implements
                     etRok.setFocusableInTouchMode(true); // user touches widget on phone with touch screen
                     etRok.setClickable(true); // user navigates with wheel and selects widget
 
-                  //  hitHgBRok();
+                    //  hitHgBRok();
 
                     hitHgTotal();
 
@@ -319,7 +335,7 @@ public class PemesananFragment extends Fragment implements
 
 
         // pickerButton = (Button) view.findViewById(R.id.button_pilih_lokasi);
-        btnPesan = (FloatingActionButton) view.findViewById(R.id.fab_pemesanan);
+        btnPesan = (FloatingActionButton) findViewById(R.id.fab_pemesanan);
 
         etAlamat.setOnClickListener(new View.OnClickListener() {
 
@@ -333,23 +349,23 @@ public class PemesananFragment extends Fragment implements
 
             public void onClick(View view) {
 
-            String pemesanan_latitude = etLatitude.getText().toString().trim();
+                String pemesanan_latitude = etLatitude.getText().toString().trim();
 
-            String pemesanan_longitude = etLongitude.getText().toString().trim();
+                String pemesanan_longitude = etLongitude.getText().toString().trim();
 
-            String pemesanan_alamat = etAlamat.getText().toString().trim();
+                String pemesanan_alamat = etAlamat.getText().toString().trim();
 
-            String pemesanan_catatan = etCatatan.getText().toString().trim();
+                String pemesanan_catatan = etCatatan.getText().toString().trim();
 
-            String pemesanan_paket = data_pemesanan_paket;
+                String pemesanan_paket = data_pemesanan_paket;
 
-            int pemesanan_baju = Integer.parseInt(etBaju.getText().toString().trim());
+                int pemesanan_baju = Integer.parseInt(etBaju.getText().toString().trim());
 
-            int pemesanan_celana = Integer.parseInt(etCelana.getText().toString().trim());
+                int pemesanan_celana = Integer.parseInt(etCelana.getText().toString().trim());
 
-            int pemesanan_rok = Integer.parseInt(etRok.getText().toString().trim());
+                int pemesanan_rok = Integer.parseInt(etRok.getText().toString().trim());
 
-            int pemesanan_harga = Integer.parseInt(tvHgTotal.getText().toString().trim());
+                int pemesanan_harga = Integer.parseInt(tvHgTotal.getText().toString().trim());
 
                 int pemesanan_jumlah = (pemesanan_baju + pemesanan_celana + pemesanan_rok);
 
@@ -360,7 +376,7 @@ public class PemesananFragment extends Fragment implements
                             pemesanan_catatan, String.valueOf(pemesanan_baju), String.valueOf(pemesanan_celana), String.valueOf(pemesanan_rok), String.valueOf(pemesanan_harga));
                 } else {
                     // Memberitahu konsumen untuk memasukkan password
-                    Toast.makeText(getActivity(),
+                    Toast.makeText(getApplicationContext(),
                             "Mohon masukkan alamat atau jumlah pemesanan ada", Toast.LENGTH_LONG)
                             .show();
                 }
@@ -385,7 +401,7 @@ public class PemesananFragment extends Fragment implements
             public void onTextChanged(CharSequence s, int start,
                                       int before, int count) {
                 if(s.length() != 0)
-                   hitHgTotal();
+                    hitHgTotal();
             }
         });
 
@@ -481,7 +497,7 @@ public class PemesananFragment extends Fragment implements
 
     // Creating google api client object
     public synchronized void buildGoogleApiClient() {
-        mGoogleApiClient = new GoogleApiClient.Builder(getActivity())
+        mGoogleApiClient = new GoogleApiClient.Builder(this)
                 .addConnectionCallbacks(this)
                 .addOnConnectionFailedListener(this)
                 .addApi(LocationServices.API).build();
@@ -492,14 +508,14 @@ public class PemesananFragment extends Fragment implements
      * */
     private boolean checkPlayServices() {
         GoogleApiAvailability apiAvailability = GoogleApiAvailability.getInstance();
-        int resultCode = apiAvailability.isGooglePlayServicesAvailable(getActivity());
+        int resultCode = apiAvailability.isGooglePlayServicesAvailable(this);
         if (resultCode != ConnectionResult.SUCCESS) {
             if (apiAvailability.isUserResolvableError(resultCode)) {
-                apiAvailability.getErrorDialog(getActivity(), resultCode, PLAY_SERVICES_RESOLUTION_REQUEST)
+                apiAvailability.getErrorDialog(this, resultCode, PLAY_SERVICES_RESOLUTION_REQUEST)
                         .show();
             } else {
                 Log.i(TAG, "This device is not supported. Google Play Services not installed!");
-                Toast.makeText(getActivity(), "This device is not supported. Google Play Services not installed!", Toast.LENGTH_LONG).show();
+                Toast.makeText(this, "This device is not supported. Google Play Services not installed!", Toast.LENGTH_LONG).show();
 
             }
             return false;
@@ -551,7 +567,7 @@ public class PemesananFragment extends Fragment implements
 
 
         // Once connected with google api, get the location
-     //   displayLocation();
+        //   displayLocation();
 
 
     }
@@ -562,9 +578,9 @@ public class PemesananFragment extends Fragment implements
      * */
     private void displayLocation() {
 
-        if (ActivityCompat.checkSelfPermission(getActivity(),
+        if (ActivityCompat.checkSelfPermission(this,
                 Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED &&
-                ActivityCompat.checkSelfPermission(getActivity(), Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
+                ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
             // TODO: Consider calling
             //    ActivityCompat#requestPermissions
             // here to request the missing permissions, and then overriding
@@ -586,19 +602,19 @@ public class PemesananFragment extends Fragment implements
 
             try {
                 //   PlacePicker.IntentBuilder builder = new PlacePicker.IntentBuilder();
-                //  startActivityForResult(builder.build(getActivity()), PLACE_PICKER_REQUEST);
+                //  startActivityForResult(builder.build(this), PLACE_PICKER_REQUEST);
 
 
                 LatLngBounds MYLOCATION_VIEW = new LatLngBounds(
                         new LatLng(mlatitude, mlongitude), new LatLng(mlatitude, mlongitude));
 
-                //Intent intent = new PlaceAutocomplete.IntentBuilder(PlaceAutocomplete.MODE_OVERLAY).build(getActivity());
+                //Intent intent = new PlaceAutocomplete.IntentBuilder(PlaceAutocomplete.MODE_OVERLAY).build(this);
                 //startActivityForResult(intent, PLACE_AUTOCOMPLETE_REQUEST_CODE);
 
                 PlacePicker.IntentBuilder intentBuilder = new PlacePicker.IntentBuilder();
                 intentBuilder.setLatLngBounds(MYLOCATION_VIEW);
 
-                Intent intent = intentBuilder.build(getActivity());
+                Intent intent = intentBuilder.build(this);
                 startActivityForResult(intent, PLACE_PICKER_REQUEST);
 
                 mRequestingLocationUpdates = false;
@@ -616,8 +632,8 @@ public class PemesananFragment extends Fragment implements
 
         } else {
 
-            Toast.makeText(getActivity(), "Couldn't get the location. Make sure location is enabled on the device",Toast.LENGTH_SHORT).show();
-                }
+            Toast.makeText(this, "Couldn't get the location. Make sure location is enabled on the device",Toast.LENGTH_SHORT).show();
+        }
     }
 
 
@@ -656,8 +672,8 @@ public class PemesananFragment extends Fragment implements
 
     public void getLocation() {
         // TODO Auto-generated method stub
-        if (ActivityCompat.checkSelfPermission(getActivity(),
-                Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(getActivity(),
+        if (ActivityCompat.checkSelfPermission(this,
+                Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(this,
                 Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
             // TODO: Consider calling
             //    ActivityCompat#requestPermissions
@@ -691,7 +707,7 @@ public class PemesananFragment extends Fragment implements
         if (requestCode == PLACE_PICKER_REQUEST
                 && resultCode == Activity.RESULT_OK) {
 
-            final Place place = PlacePicker.getPlace(getActivity(), data);
+            final Place place = PlacePicker.getPlace(this, data);
             final CharSequence name = place.getName();
             final CharSequence address = place.getAddress();
             String data_latitude = String.valueOf(place.getLatLng().latitude);
@@ -728,7 +744,6 @@ public class PemesananFragment extends Fragment implements
 
     /**
      * Melakukan pemesanan dengan mengirimkan param :
-
      * @param pemesanan_latitude latitude
      * @param pemesanan_longitude longitude
      * @param pemesanan_paket paket laundry
@@ -740,74 +755,74 @@ public class PemesananFragment extends Fragment implements
      */
 
     private void kirimPesanan(final String pemesanan_latitude, final String pemesanan_longitude,
-                               final String pemesanan_paket, final String pemesanan_alamat,
-                               final String pemesanan_catatan, final String pemesanan_baju,
-                               final String pemesanan_celana, final String pemesanan_rok, final String pemesanan_harga){
+                              final String pemesanan_paket, final String pemesanan_alamat,
+                              final String pemesanan_catatan, final String pemesanan_baju,
+                              final String pemesanan_celana, final String pemesanan_rok, final String pemesanan_harga){
         // Tag used to cancel the request
         String tag_string_req = getString(R.string.permintaan_melakukan_pemesanan);
 
         pDialog.setMessage(getString(R.string.melakukan_pemesanan));
         showProgressDialog();
 
-        Log.d("URL : ",AppConfig.URL_PEMESANAN);
+        Log.d("URL : ",AppConfig.URL_TAMBAH_PEMESANAN);
         StringRequest strReq = new StringRequest(Request.Method.POST,
-                AppConfig.URL_PEMESANAN,
+                AppConfig.URL_TAMBAH_PEMESANAN,
                 new Response.Listener<String>() {
 
-            @Override
-            public void onResponse(String response) {
-                Log.d(TAG, "Response pemesanan: " + response);
-                hideProgressDialog();
-
-                try {
-
-                    JSONObject jObj = new JSONObject(response);
-
-                    boolean error = jObj.getBoolean("error");
-
-                    // Check for error node in json
-                    if (!error) {
-                        // Now store the user in SQLite
+                    @Override
+                    public void onResponse(String response) {
+                        Log.d(TAG, "Response pemesanan: " + response);
+                        hideProgressDialog();
 
                         try {
-                            parseDataPemesanan(response);
+
+                            JSONObject jObj = new JSONObject(response);
+
+                            boolean error = jObj.getBoolean("error");
+
+                            // Check for error node in json
+                            if (!error) {
+                                // Now store the user in SQLite
+
+                                try {
+                                    parseDataPemesanan(response);
+                                } catch (JSONException e) {
+                                    e.printStackTrace();
+                                }
+
+                                Log.d(Constants.TAG,jObj.getString("message"));
+
+                            } else {
+                                // Error in login. Get the error message
+                                String errorMsg = jObj.getString("message");
+
+                                Log.d(Constants.TAG,errorMsg);
+
+
+                                Snackbar.make(parentLayout, R.string.pemesanan_gagal, Snackbar.LENGTH_LONG).show();
+
+
+                            }
                         } catch (JSONException e) {
+                            // JSON error
                             e.printStackTrace();
-                        }
 
-                        Log.d(Constants.TAG,jObj.getString("message"));
+                            Toast.makeText(getApplication(), getString(R.string.json_request_error) + e.getMessage(), Toast.LENGTH_LONG).show();
 
-                    } else {
-                        // Error in login. Get the error message
-                        String errorMsg = jObj.getString("message");
-
-                        Log.d(Constants.TAG,errorMsg);
-
-                        if(getView()!=null) {
-                            Snackbar.make(getView(), R.string.pemesanan_gagal, Snackbar.LENGTH_LONG).show();
                         }
 
                     }
-                } catch (JSONException e) {
-                    // JSON error
-                    e.printStackTrace();
-
-                    Toast.makeText(getActivity(), getString(R.string.json_request_error) + e.getMessage(), Toast.LENGTH_LONG).show();
-
-                }
-
-            }
-        }, new Response.ErrorListener() {
+                }, new Response.ErrorListener() {
 
             @Override
             public void onErrorResponse(VolleyError error) {
 
-                String e = VolleyErrorHelper.getMessage(error, getActivity());
+                String e = VolleyErrorHelper.getMessage(error, getApplicationContext());
 
                 VolleyLog.d(AppController.TAG, "Error: " + e);
 
 
-                Toast.makeText(getActivity(),
+                Toast.makeText(getApplicationContext(),
                         e, Toast.LENGTH_LONG).show();
 
                 Log.d(Constants.TAG,"failed");
@@ -857,7 +872,7 @@ public class PemesananFragment extends Fragment implements
 
 
 
-private void  parseDataPemesanan(String response) throws JSONException {
+    private void  parseDataPemesanan(String response) throws JSONException {
 
         JSONObject jObj = new JSONObject(response);
         Log.d("pemesanan response: ",jObj.getString("message"));
@@ -885,27 +900,24 @@ private void  parseDataPemesanan(String response) throws JSONException {
 /*                        if (db.updatePemesanan(data_pemesanan_latitude, data_pemesanan_longitude,
                                 data_pemesanan_alamat, data_pemesanan_paket, data_pemesanan_catatan,
                                 data_pemesanan_baju, data_pemesanan_celana, data_pemesanan_rok)!=0) {
-
-
                           //  updateDataProfile();
-
                             if(getView()!=null) {
                                 Snackbar.make(getView(), R.string.update_profile_berhasil, Snackbar.LENGTH_LONG).show();
                             }
                         //    disableView();
-
                         } else {
                             if(getView()!=null) {
                                 Snackbar.make(getView(), R.string.update_profile_gagal, Snackbar.LENGTH_LONG).show();
                             }
-
                             Log.d(TAG,getString(R.string.update_profile_gagal));
                         }*/
 
-            if(getView()!=null) {
-                Snackbar.make(getView(), R.string.pemesanan_berhasil, Snackbar.LENGTH_LONG).show();
-            }
 
+            Snackbar.make(parentLayout, R.string.pemesanan_berhasil, Snackbar.LENGTH_LONG).show();
+
+
+            Handler myHandler = new Handler();
+            myHandler.postDelayed(mMyRunnable, 5000);//Message will be delivered in 5 second.
 
             Log.d("pemesanan response : ",pemesanan.toString());
 
@@ -915,16 +927,36 @@ private void  parseDataPemesanan(String response) throws JSONException {
 
             Log.d(Constants.TAG,errorMsg);
 
-            if(getView()!=null) {
-                Snackbar.make(getView(), R.string.pemesanan_gagal, Snackbar.LENGTH_LONG).show();
-            }
+
+            Snackbar.make(parentLayout, R.string.pemesanan_gagal, Snackbar.LENGTH_LONG).show();
 
         }
 
-}
+    }
 
 
+    @Override public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            // Respond to the action bar's Up/Home button
+            case android.R.id.home:
+                finish();
+                return true;
+        }
+        return super.onOptionsItemSelected(item);
+    }
 
 
+    //http://stackoverflow.com/questions/4199191/how-to-set-delay-in-android-onclick-function
+    //Here's a runnable/handler combo
+    private Runnable mMyRunnable = new Runnable()
+    {
+        @Override
+        public void run()
+        {
+            //Change state here
+
+            finish();
+        }
+    };
 
 }

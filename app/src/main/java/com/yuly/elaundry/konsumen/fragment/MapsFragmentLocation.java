@@ -48,8 +48,7 @@ import com.yuly.elaundry.konsumen.R;
 import com.yuly.elaundry.konsumen.app.AppConfig;
 import com.yuly.elaundry.konsumen.app.AppController;
 import com.yuly.elaundry.konsumen.app.Constants;
-import com.yuly.elaundry.konsumen.helper.SQLiteHandler;
-import com.yuly.elaundry.konsumen.helper.SessionManager;
+import com.yuly.elaundry.konsumen.helper.KonsumenDbHandler;
 import com.yuly.elaundry.konsumen.helper.VolleyErrorHelper;
 
 import org.json.JSONException;
@@ -99,7 +98,7 @@ public class MapsFragmentLocation extends Fragment implements
 
 
     //Database
-    private SQLiteHandler db;
+    private KonsumenDbHandler db;
 
     private ProgressDialog pDialog;
 
@@ -107,13 +106,13 @@ public class MapsFragmentLocation extends Fragment implements
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
 
-        View view = inflater.inflate(R.layout.fragmen_pemesanan, container,
+        View view = inflater.inflate(R.layout.fragment_pemesanan, container,
                 false);
 
         initViews(view);
 
         // SqLite database handler
-        db = new SQLiteHandler(getActivity());
+        db = new KonsumenDbHandler(getActivity());
 
         // Show Progress dialog
         pDialog = new ProgressDialog(getActivity());

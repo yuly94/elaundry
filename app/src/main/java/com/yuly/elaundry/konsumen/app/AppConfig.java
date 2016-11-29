@@ -41,7 +41,14 @@ public class AppConfig {
 	public static String URL_PEMESANAN= LINKAPI+"pemesanan/";
 
 	// Server user register url
+	public static String URL_TAMBAH_PEMESANAN= LINKAPI+"pemesanan/baru/";
+
+	// Server user register url
 	public static String URL_PEMESANAN_DETAIL= LINKAPI+"pemesanan/detail/";
+
+
+	// Server user register url
+	public static String URL_UPDATE_PEMESANAN= LINKAPI+"pemesanan/detail/";
 
 	// Server user register url
 	public static String URL_ALAMAT= LINKAPI+"alamat/";
