@@ -178,7 +178,7 @@ public class Variable {
         this.directionsON = true;
         this.mapDirectory = "/elaundrymaps/maps/";
         this.trackingDirectory = "/elaundrymaps/tracking/";
-        //http://folk.ntnu.no/junjung/pocketmaps/map_url_list
+        
         this.mapUrlList = "http://elaundry.pe.hu/konsumen/peta/map_url_list";
         this.localMaps = new ArrayList<>();
         this.recentDownloadedMaps = new ArrayList<>();
@@ -501,9 +501,9 @@ public class Variable {
             if (la != 0 && lo != 0) {
                 setLastLocation(new LatLong(la, lo));
             }
-            String coun = jo.getString("negara");
+            String coun = jo.getString("country");
             if (coun != "") {
-                setCountry(jo.getString("negara"));
+                setCountry(jo.getString("country"));
                 loadMap = true;
             }
             setMapDirectory(jo.getString("mapDirectory"));
@@ -582,10 +582,10 @@ public class Variable {
                 jo.put("longitude", 0);
             }
             if (getCountry() == null) {
-                jo.put("negara", "");
+                jo.put("country", "");
 
             } else {
-                jo.put("negara", getCountry());
+                jo.put("country", getCountry());
             }
             jo.put("mapDirectory", getMapDirectory());
             jo.put("mapsFolderAbsPath", getMapsFolder().getAbsolutePath());
@@ -608,7 +608,7 @@ public class Variable {
     public String readFile() {
         FileInputStream fis = null;
         try {
-            fis = context.openFileInput(context.getString(R.string.elaundryconfigdottxt));
+            fis = context.openFileInput("elaundryconfig.txt");
             InputStreamReader isr = new InputStreamReader(fis);
             BufferedReader bufferedReader = new BufferedReader(isr);
             StringBuilder sb = new StringBuilder();

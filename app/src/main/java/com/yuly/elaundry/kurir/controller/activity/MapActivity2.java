@@ -82,8 +82,14 @@ public class MapActivity2 extends AppCompatActivity implements LocationListener 
         //mapView.getModel().mapViewPosition.setZoomLevel((byte) 12);
         MapHandler.getMapHandler()
                 .init(this, mapView, Variable.getVariable().getCountry(), Variable.getVariable().getMapsFolder());
-        MapHandler.getMapHandler().loadMap(new File(Variable.getVariable().getMapsFolder().getAbsolutePath(),
-                Variable.getVariable().getCountry() + "-gh"));
+        //
+       // MapHandler.getMapHandler().loadMap(new File(Variable.getVariable().getMapsFolder().getAbsolutePath(),
+         //       Variable.getVariable().getCountry() + "-gh"));
+
+        MapHandler.getMapHandler().loadMap(new File("/storage/emulated/0/Download/elaundrymaps/maps/",
+               "indonesia_jawatimur_kediringanjuk-gh"));
+
+
         customMapView();
         checkGpsAvailability();
 
@@ -110,6 +116,9 @@ public class MapActivity2 extends AppCompatActivity implements LocationListener 
         if (getSupportActionBar()!=null) {
             getSupportActionBar().setTitle("Peta");
             getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+
+            // Thema
+            themeUtils.onActivityCreateSetTheme(this,getSupportActionBar(),this);
         }
 
         inclusionViewGroup.getParent().bringChildToFront(inclusionViewGroup);

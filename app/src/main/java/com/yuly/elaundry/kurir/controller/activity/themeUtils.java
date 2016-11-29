@@ -19,7 +19,7 @@ public class themeUtils extends Activity
 
 private static int cTheme;
 
- public static final String MyPREFERENCES = "MyPrefs";
+ public static final String MyPREFERENCES = "elaundry-kurir";
 
 
 public final static int THEME1 = 0;

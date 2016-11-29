@@ -278,7 +278,7 @@ public class MainActivity extends AppCompatActivity {
 			//  fragment tempa
 				// fragment = new AlamatFragment();
 
-				Intent intentMap = new Intent(this, MapActivity2.class);
+				Intent intentMap = new Intent(this, MainActivityPeta.class);
 				startActivity(intentMap);
 
 				break;
@@ -286,7 +286,7 @@ public class MainActivity extends AppCompatActivity {
 			  //	fragment = new MapsFragmentLocation();
 			//	fragment =new Example3Fragment();
 
-				Intent intent = new Intent(this, MainActivityPeta.class);
+				Intent intent = new Intent(this, PetaActivity.class);
 				startActivity(intent);
 
 				break;
@@ -302,10 +302,13 @@ public class MainActivity extends AppCompatActivity {
 				break;
 			case 9:
 
-		/*		//	About
-				//HelpUtils.showAbout(this);
+			//	Intent intentx = new Intent(this, PetaActivity.class);
+			///	startActivity(intentx);
 
-*//*				Intent intent = new Intent(getApplicationContext(), AboutActivity.class);
+		 		//	About
+				HelpUtils.showAbout(this);
+
+/*				Intent intent = new Intent(getApplicationContext(), AboutActivity.class);
 				startActivity(intent);*//*
 
 

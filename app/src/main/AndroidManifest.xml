@@ -76,42 +76,55 @@
             android:name=".controller.activity.MapActivity"
             android:label="@string/title_activity_map"
             android:screenOrientation="portrait"
-            android:theme="@style/MYAppTheme.NoActionBar"></activity>
+            android:theme="@style/MYAppTheme.NoActionBar" />
         <activity
             android:name=".controller.activity.MapActivity2"
             android:label="@string/title_activity_map"
             android:screenOrientation="portrait"
-            android:theme="@style/MYAppTheme.NoActionBar"></activity>
+            android:theme="@style/MYAppTheme.NoActionBar" />
         <activity
             android:name=".controller.activity.MainActivityPeta"
             android:label="@string/app_name"
             android:screenOrientation="portrait"
-            android:theme="@style/MyAppThemeActionBar"></activity>
+            android:theme="@style/MyAppThemeActionBar" />
         <activity
             android:name=".controller.activity.DownloadMapActivity"
             android:label="@string/title_activity_download"
             android:screenOrientation="portrait"
-            android:theme="@style/MyAppThemeActionBar"></activity>
+            android:theme="@style/MyAppThemeActionBar" />
+        <activity
+            android:name=".controller.activity.PetaActivity"
+            android:label="@string/title_activity_download"
+            android:screenOrientation="portrait"
+            android:theme="@style/MYAppTheme.NoActionBar" />
         <activity
             android:name=".controller.activity.DetailPemesananActivity"
             android:label="detail pesanan"
             android:screenOrientation="portrait"
-            android:theme="@style/MYAppTheme.NoActionBar"></activity>
-
+            android:theme="@style/MYAppTheme.NoActionBar" />
         <activity
             android:name=".controller.activity.SettingsActivity"
             android:label="@string/action_settings"
             android:screenOrientation="portrait"
-            android:theme="@style/MyAppThemeActionBar"></activity>
+            android:theme="@style/MyAppThemeActionBar" />
         <activity
             android:name=".controller.activity.Analytics"
             android:label="@string/title_activity_analytics"
             android:screenOrientation="portrait"
-            android:theme="@style/MyAppThemeActionBar"></activity>
+            android:theme="@style/MyAppThemeActionBar" />
         <activity
             android:name=".controller.activity.ScrollingActivity"
             android:label="@string/title_activity_scrolling"
-            android:theme="@style/MyAppThemeActionBar"></activity>
+            android:theme="@style/MyAppThemeActionBar" />
+        <activity
+            android:name=".model.database.ProsesRouteActivity"
+            android:label="@string/title_activity_proses_route"
+            android:parentActivityName=".controller.activity.MainActivity"
+            android:theme="@style/MYAppTheme.NoActionBar">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.yuly.elaundry.kurir.controller.activity.MainActivity" />
+        </activity>
     </application>
 
 </manifest>

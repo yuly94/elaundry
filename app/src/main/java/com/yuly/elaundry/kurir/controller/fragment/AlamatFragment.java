@@ -108,7 +108,7 @@ public class AlamatFragment extends Fragment implements SearchView.OnQueryTextLi
             @Override
             public void onClick(View v) {
 
-             //   startActivity(new Intent(getActivity(), PetaActivity.class));
+             //   startActivity(new Intent(getActivity(), PetaActivity.java.class));
             }
         });
 

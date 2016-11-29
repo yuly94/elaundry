@@ -41,6 +41,7 @@ import com.yuly.elaundry.kurir.controller.app.AppController;
 import com.yuly.elaundry.kurir.controller.app.Constants;
 import com.yuly.elaundry.kurir.controller.app.CustomJsonObjectRequest;
 import com.yuly.elaundry.kurir.controller.app.JsonResponseRequest;
+import com.yuly.elaundry.kurir.model.database.ProsesRouteActivity;
 import com.yuly.elaundry.kurir.model.geterseter.TransaksiModel;
 import com.yuly.elaundry.kurir.model.database.KonsumenDbHandler;
 import com.yuly.elaundry.kurir.model.helper.SessionManager;
@@ -103,7 +104,7 @@ public class LaundryPemesananFragment extends Fragment implements SearchView.OnQ
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
 
-        View v = inflater.inflate(R.layout.fragment_transaksi, container,
+        View v = inflater.inflate(R.layout.fragment_transaksi_new, container,
                 false);
 
         final ActionBar ab = ((AppCompatActivity) getActivity()).getSupportActionBar();
@@ -152,7 +153,7 @@ public class LaundryPemesananFragment extends Fragment implements SearchView.OnQ
             @Override
             public void onClick(View v) {
 
-//                startActivity(new Intent(getActivity(), ActivityPemesanan.class));
+                 startActivity(new Intent(getActivity(), ProsesRouteActivity.class));
             }
         });
 

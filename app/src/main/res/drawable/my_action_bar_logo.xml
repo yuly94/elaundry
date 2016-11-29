@@ -3,6 +3,6 @@
     xmlns:android="http://schemas.android.com/apk/res/android">
 
     <item
-        android:drawable="@drawable/ic_icon_pocketmaps"
+        android:drawable="@drawable/ic_icon_elaundry"
         android:right="16dp"/>
 </layer-list>

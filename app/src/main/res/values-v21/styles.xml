@@ -6,4 +6,15 @@
         <item name="android:windowDrawsSystemBarBackgrounds">true</item>
         <item name="android:statusBarColor">@android:color/transparent</item>
     </style>
+
+    <style name="MYAppTheme.NoActionBar" parent="Theme.AppCompat.Light.NoActionBar">
+        <item name="android:listChoiceIndicatorMultiple">@drawable/apptheme_btn_check_holo_light
+        </item>
+        <item name="android:listChoiceIndicatorSingle">@drawable/apptheme_btn_radio_holo_light
+        </item>
+        <item name="android:statusBarColor">@color/theme1dark</item>
+        <item name="android:textColorPrimaryInverse">@color/bg_login</item>
+        <item name="colorPrimary">@color/my_primary_dark</item>
+        <item name="colorPrimaryDark">@color/btn_login</item>
+    </style>
 </resources>

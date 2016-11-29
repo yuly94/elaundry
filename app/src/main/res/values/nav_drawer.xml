@@ -10,7 +10,7 @@
         <item>@drawable/ic_shopping_cart_24dp</item>
         <item>@drawable/ic_map_24dp</item>
         <item>@drawable/ic_dashboard_24dp</item>
-        <item>@drawable/ic_dashboard_24dp</item>
+        <item>@drawable/ic_face_24dp</item>
         <item>@drawable/ic_settings_24dp</item>
         <item>@drawable/ic_color_lens_24dp</item>
         <item>@drawable/ic_info_outline_24dp</item>
@@ -25,8 +25,8 @@
     <item>Pesanan dijemput</item>
     <item>Pesanan di Agent</item>
     <item>Pesanan diantar</item>
-    <item>Lokasi Saya</item>
-    <item>Peta</item>
+    <item>Peta saya</item>
+    <item>Peta rute</item>
     <item>Profile saya</item>
     <item>Pengaturan</item>
     <item>Tampilan</item>

@@ -81,6 +81,9 @@
         </item>
         <item name="android:listChoiceIndicatorSingle">@drawable/apptheme_btn_radio_holo_light
         </item>
+        <item name="android:textColorPrimaryInverse">@color/bg_login</item>
+        <item name="colorPrimary">@color/my_primary_dark</item>
+        <item name="colorPrimaryDark">@color/btn_login</item>
     </style>
 
     <!---->

@@ -5,7 +5,7 @@ import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 
 public class DBhelper extends SQLiteOpenHelper {
-    public static final String DB_NAME = "pocketmaps.db";
+    public static final String DB_NAME = "elaundrymaps.db";
     public static final int DB_VERSION = 1;
 
     public final String REAL_TYPE = " REAL";

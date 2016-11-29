@@ -121,9 +121,11 @@ public class MapActivity extends AppCompatActivity implements LocationListener {
 
         inclusionViewGroup.getParent().bringChildToFront(inclusionViewGroup);
 
-/*        new SetStatusBarColor().setSystemBarColor(findViewById(R.id.statusBarBackgroundMap),
-                getResources().getColor(R.color.my_primary_dark_transparent), this);*/
+/*
+        new SetStatusBarColor().setSystemBarColor(findViewById(R.id.statusBarBackgroundMap),
+                getResources().getColor(R.color.my_primary_dark_transparent), this);
 
+*/
 
         mapActions = new MapActions(this, mapView);
     }

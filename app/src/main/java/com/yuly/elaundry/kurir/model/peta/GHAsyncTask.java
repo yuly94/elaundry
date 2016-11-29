@@ -36,6 +36,6 @@ public abstract class GHAsyncTask<A, B, C> extends AsyncTask<A, B, C>
         {
             return error.getMessage();
         }
-        return "No Error";
+        return "tidak ada error";
     }
 }

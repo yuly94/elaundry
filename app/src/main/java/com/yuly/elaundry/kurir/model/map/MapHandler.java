@@ -36,6 +36,8 @@ import org.mapsforge.map.layer.cache.TileCache;
 import org.mapsforge.map.layer.overlay.Marker;
 import org.mapsforge.map.layer.overlay.Polyline;
 import org.mapsforge.map.layer.renderer.TileRendererLayer;
+import org.mapsforge.map.reader.MapDataStore;
+import org.mapsforge.map.reader.MapFile;
 import org.mapsforge.map.rendertheme.InternalRenderTheme;
 
 import java.io.File;
@@ -48,6 +50,7 @@ public class MapHandler {
     private String currentArea;
     private TileCache tileCache;
     private GraphHopper hopper;
+    private TileRendererLayer tileRendererLayer;
     private File mapsFolder;
     private volatile boolean shortestPathRunning;
     private Marker startMarker, endMarker;
@@ -104,21 +107,31 @@ public class MapHandler {
      */
     public void loadMap(File areaFolder) {
         logToast(activity.getString(R.string.memuat_peta) + currentArea);
-        File mapFile = new File(areaFolder, currentArea + activity.getString(R.string.dotmap));
+       // File mapFile = new File(areaFolder, currentArea + activity.getString(R.string.dotmap));
+        MapDataStore mapDataStore = new MapFile(new File(areaFolder,"indonesia_jawatimur_kediringanjuk.map"));
+
         mapView.getLayerManager().getLayers().clear();
-        TileRendererLayer tileRendererLayer =
-                new TileRendererLayer(tileCache, mapView.getModel().mapViewPosition, false, true,
-                        AndroidGraphicFactory.INSTANCE) {
+        tileRendererLayer =
+              //  new TileRendererLayer(tileCache, mapView.getModel().mapViewPosition, false, true,
+                //        AndroidGraphicFactory.INSTANCE)
+
+         new TileRendererLayer(tileCache, mapDataStore,
+                mapView.getModel().mapViewPosition, false, true, AndroidGraphicFactory.INSTANCE)
+
+                {
                     @Override public boolean onTap(LatLong tapLatLong, Point layerXY, Point tapXY) {
                         return myOnTap(tapLatLong, layerXY, tapXY);
                     }
                 };
-        tileRendererLayer.setMapFile(mapFile);
+       // tileRendererLayer.setMapFile(mapDataStore);
         tileRendererLayer.setTextScale(0.8f);
         tileRendererLayer.setXmlRenderTheme(InternalRenderTheme.OSMARENDER);
-        //        log("last location " + Variable.getVariable().getLastLocation());
+                 log("last location " + Variable.getVariable().getLastLocation());
         if (Variable.getVariable().getLastLocation() == null) {
-            centerPointOnMap(tileRendererLayer.getMapDatabase().getMapFileInfo().boundingBox.getCenterPoint(), 6);
+         //   centerPointOnMap(tileRendererLayer.getMapDatabase().getMapFileInfo().boundingBox.getCenterPoint(), 6);
+
+            mapView.getModel().mapViewPosition.setMapPosition(new MapPosition(mapDataStore.boundingBox().getCenterPoint(), (byte) 15));
+
         } else {
             centerPointOnMap(Variable.getVariable().getLastLocation(), Variable.getVariable().getLastZoomLevel());
         }
@@ -129,6 +142,34 @@ public class MapHandler {
         activity.addContentView(mapView, params);
         loadGraphStorage();
     }
+
+
+    void loadMapx( File areaFolder )
+    {
+        logUser("loading map");
+        MapDataStore mapDataStore = new MapFile(new File(areaFolder, currentArea + ".map"));
+
+        mapView.getLayerManager().getLayers().clear();
+
+        tileRendererLayer = new TileRendererLayer(tileCache, mapDataStore,
+                mapView.getModel().mapViewPosition, false, true, AndroidGraphicFactory.INSTANCE)
+        {
+            @Override
+            public boolean onLongPress( LatLong tapLatLong, Point layerXY, Point tapXY )
+            {
+                return myOnTap(tapLatLong, layerXY, tapXY);
+            }
+        };
+        tileRendererLayer.setTextScale(1.5f);
+        tileRendererLayer.setXmlRenderTheme(InternalRenderTheme.OSMARENDER);
+        mapView.getModel().mapViewPosition.setMapPosition(new MapPosition(mapDataStore.boundingBox().getCenterPoint(), (byte) 15));
+        mapView.getLayerManager().getLayers().add(tileRendererLayer);
+
+       // setContentView(mapView);
+
+        loadGraphStorage();
+    }
+
 
     /**
      * center the LatLong point in the map and zoom map to zoomLevel
@@ -468,5 +509,12 @@ public class MapHandler {
     private void logToast(String str) {
         log(str);
         Toast.makeText(activity, str, Toast.LENGTH_LONG).show();
+    }
+
+
+    private void logUser( String str )
+    {
+        log(str);
+        Toast.makeText(getActivity(), str, Toast.LENGTH_LONG).show();
     }
 }
