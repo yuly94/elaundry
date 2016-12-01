@@ -369,5 +369,6 @@
         "when a user tries to pick up one of cards.\n\n"
     </string>
     <string name="title_activity_proses_route">ProsesRouteActivity</string>
+    <string name="title_activity_rute">RuteActivity</string>
 
 </resources>

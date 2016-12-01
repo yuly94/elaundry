@@ -14,14 +14,14 @@ import android.support.v7.app.AppCompatActivity;
 import com.yuly.elaundry.kurir.R;
 
 import com.yuly.elaundry.kurir.controller.fragment.LoginFragmentVolley;
-import com.yuly.elaundry.kurir.model.database.KonsumenDbHandler;
+import com.yuly.elaundry.kurir.model.database.KurirDbHandler;
 import com.yuly.elaundry.kurir.model.helper.SessionManager;
 
 public class LoginActivityNew extends AppCompatActivity {
     private static final String TAG = LoginActivityNew.class.getSimpleName();
 
     private SessionManager session;
-    private KonsumenDbHandler db;
+    private KurirDbHandler db;
 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -46,7 +46,7 @@ public class LoginActivityNew extends AppCompatActivity {
     private void checkSesi(){
 
         // SQLite database handler
-        db = new KonsumenDbHandler(this);
+        db = new KurirDbHandler(this);
 
         // Session manager
         session = new SessionManager(this);

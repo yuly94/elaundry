@@ -34,7 +34,7 @@ import com.yuly.elaundry.kurir.R;
 import com.yuly.elaundry.kurir.controller.app.AppConfig;
 import com.yuly.elaundry.kurir.controller.app.AppController;
 import com.yuly.elaundry.kurir.controller.app.Constants;
-import com.yuly.elaundry.kurir.model.database.KonsumenDbHandler;
+import com.yuly.elaundry.kurir.model.database.KurirDbHandler;
 import com.yuly.elaundry.kurir.model.helper.SessionManager;
 import com.yuly.elaundry.kurir.model.helper.VolleyErrorHelper;
 
@@ -63,7 +63,7 @@ public class ProfileFragment extends Fragment {
     // private ProgressBar progress;
     private ProgressDialog pDialog;
     private String kurir_kunci_api_auth;
-    private KonsumenDbHandler db;
+    private KurirDbHandler db;
     private EditText et_Nama,et_Alamat,et_Email,et_Telepon;
     private Button btnEdit,btnSave;
 
@@ -118,7 +118,7 @@ public class ProfileFragment extends Fragment {
         });
 
         // SqLite database handler
-        db = new KonsumenDbHandler(getContext());
+        db = new KurirDbHandler(getContext());
 
         updateDataProfile();
         disableView();

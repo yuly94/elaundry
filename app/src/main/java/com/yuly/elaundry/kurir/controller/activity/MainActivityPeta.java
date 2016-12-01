@@ -14,6 +14,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.support.v7.widget.Toolbar;
 import android.support.v7.widget.helper.ItemTouchHelper;
 import android.util.Log;
 import android.view.MenuItem;
@@ -49,7 +50,14 @@ public class MainActivityPeta extends AppCompatActivity implements MapDownloadLi
         setContentView(R.layout.activity_main_peta);
         Variable.getVariable().setContext(getApplicationContext());
 
-        final ActionBar actionBar = getSupportActionBar();
+        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
+
+
+        setSupportActionBar(toolbar);
+
+        ActionBar actionBar = getSupportActionBar();
+
         if (actionBar != null) {
             // return up one level
             getSupportActionBar().setDisplayHomeAsUpEnabled(true);
@@ -57,6 +65,7 @@ public class MainActivityPeta extends AppCompatActivity implements MapDownloadLi
 
         // Thema
         themeUtils.onActivityCreateSetTheme(this,getSupportActionBar(),this);
+
 /*
         // set status bar
         new SetStatusBarColor().setStatusBarColor(findViewById(R.id.statusBarBackgroundMain),

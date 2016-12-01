@@ -25,7 +25,6 @@ import org.mapsforge.map.reader.MapDataStore;
 import org.mapsforge.map.reader.MapFile;
 import org.mapsforge.map.rendertheme.InternalRenderTheme;
 
-import android.app.Activity;
 import android.app.ProgressDialog;
 import android.content.Intent;
 import android.graphics.Color;
@@ -62,7 +61,7 @@ import com.graphhopper.util.ProgressListener;
 import com.graphhopper.util.StopWatch;
 
 import com.yuly.elaundry.kurir.R;
-import com.yuly.elaundry.kurir.model.database.DatabaseHelper;
+import com.yuly.elaundry.kurir.model.database.RouteDbHelper;
 import com.yuly.elaundry.kurir.model.database.Lokasi;
 import com.yuly.elaundry.kurir.model.peta.AndroidDownloader;
 import com.yuly.elaundry.kurir.model.peta.AndroidHelper;
@@ -523,7 +522,7 @@ public class PetaActivity extends AppCompatActivity
         List<LatLong> geoPoints = line.getLatLongs();
         PointList tmp = response.getPoints();
 
-        DatabaseHelper db = new DatabaseHelper(getApplicationContext());
+        RouteDbHelper db = new RouteDbHelper(getApplicationContext());
 
         Log.d("Size", String.valueOf(response.getPoints().getSize()));
 

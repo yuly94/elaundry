@@ -5,12 +5,14 @@ package com.yuly.elaundry.kurir.model.geterseter;
  */
 
 public class TransaksiModel {
-    private String noid, konsumen_id,konsumen_nama, konsumen_nohp, deskripsi, tanggal, nomer, harga, alamat;
+    private String noid, pemesanan_id, konsumen_id,konsumen_nama, konsumen_nohp,konsumen_latitude,konsumen_longitude, deskripsi, tanggal, nomer, harga, alamat;
 
     public TransaksiModel() {
     }
 
-    public TransaksiModel(String konsumen_id,String konsumen_nama,String konsumen_nohp, String deskripsi, String tanggal, String noid, String nomer, String harga, String alamat) {
+    public TransaksiModel(String pemesanan_id,String konsumen_id,String konsumen_nama,String konsumen_nohp, String deskripsi, String tanggal, String noid, String nomer, String harga, String alamat) {
+
+        this.pemesanan_id = pemesanan_id;
         this.konsumen_id = konsumen_id;
         this.konsumen_nama = konsumen_nama;
         this.konsumen_nohp = konsumen_nohp;
@@ -19,7 +21,17 @@ public class TransaksiModel {
         this.noid = noid;
         this.nomer = nomer;
         this.harga = harga;
+        this.konsumen_latitude = konsumen_latitude;
+        this.konsumen_longitude = konsumen_longitude;
         this.alamat = alamat;
+    }
+
+    public String getPemesananId() {
+        return pemesanan_id;
+    }
+
+    public void setPemesananId(String pemesanan_id) {
+        this.pemesanan_id = pemesanan_id;
     }
 
     public String getKonsumenId() {
@@ -46,6 +58,24 @@ public class TransaksiModel {
     public void setNama(String konsumen_nama) {
         this.konsumen_nama = konsumen_nama;
     }
+
+    public String getLatitude() {
+        return konsumen_latitude;
+    }
+
+    public void setLatitude(String konsumen_latitude) {
+        this.konsumen_latitude = konsumen_latitude;
+    }
+
+    public String getLongitude() {
+        return konsumen_longitude;
+    }
+
+    public void setLongitude(String konsumen_longitude) {
+        this.konsumen_longitude = konsumen_longitude;
+    }
+
+
 
     public String getNoHp() {
         return konsumen_nohp;

@@ -33,7 +33,7 @@ import com.yuly.elaundry.kurir.R;
 import com.yuly.elaundry.kurir.controller.activity.MainActivity;
 import com.yuly.elaundry.kurir.controller.app.AppConfig;
 import com.yuly.elaundry.kurir.controller.app.AppController;
-import com.yuly.elaundry.kurir.model.database.KonsumenDbHandler;
+import com.yuly.elaundry.kurir.model.database.KurirDbHandler;
 import com.yuly.elaundry.kurir.model.helper.SessionManager;
 import com.yuly.elaundry.kurir.model.helper.VolleyErrorHelper;
 
@@ -51,7 +51,7 @@ public class RegisterFragmentVolley extends Fragment implements View.OnClickList
     private EditText inputEmail;
     private EditText inputPassword;
     private EditText inputConfirm;
-    private KonsumenDbHandler db;
+    private KurirDbHandler db;
     private ProgressDialog pDialog;
     private SessionManager session;
 
@@ -74,7 +74,7 @@ public class RegisterFragmentVolley extends Fragment implements View.OnClickList
     private void checkSesi(){
 
         // SQLite database handler
-        db = new KonsumenDbHandler(getActivity());
+        db = new KurirDbHandler(getActivity());
 
         // Session manager
         session = new SessionManager(getActivity());

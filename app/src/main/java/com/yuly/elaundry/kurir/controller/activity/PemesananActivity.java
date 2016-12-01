@@ -21,7 +21,7 @@ import com.android.volley.toolbox.JsonArrayRequest;
 import com.yuly.elaundry.kurir.R;
 import com.yuly.elaundry.kurir.controller.app.AppConfig;
 import com.yuly.elaundry.kurir.controller.app.AppController;
-import com.yuly.elaundry.kurir.model.database.KonsumenDbHandler;
+import com.yuly.elaundry.kurir.model.database.KurirDbHandler;
 import com.yuly.elaundry.kurir.model.helper.SessionManager;
 import com.yuly.elaundry.kurir.model.helper.VolleyErrorHelper;
 
@@ -61,7 +61,7 @@ public class PemesananActivity extends AppCompatActivity implements AppCompatSpi
         private TextView textViewTempat;
         private TextView textViewAlamat;
 
-        private KonsumenDbHandler db;
+        private KurirDbHandler db;
         private SessionManager session;
 
         private ProgressDialog pDialog;
@@ -91,7 +91,7 @@ public class PemesananActivity extends AppCompatActivity implements AppCompatSpi
             textViewTempat = (TextView) findViewById(R.id.view_tempat);
             textViewAlamat = (TextView) findViewById(R.id.view_alamat);
             // SqLite database handler
-            db = new KonsumenDbHandler(getApplicationContext());
+            db = new KurirDbHandler(getApplicationContext());
             // session manager
             session = new SessionManager(getApplicationContext());
             // Fetching user details from SQLite

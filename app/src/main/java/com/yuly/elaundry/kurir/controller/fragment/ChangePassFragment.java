@@ -29,7 +29,7 @@ import com.yuly.elaundry.kurir.R;
 import com.yuly.elaundry.kurir.controller.activity.MainActivity;
 import com.yuly.elaundry.kurir.controller.app.AppConfig;
 import com.yuly.elaundry.kurir.controller.app.AppController;
-import com.yuly.elaundry.kurir.model.database.KonsumenDbHandler;
+import com.yuly.elaundry.kurir.model.database.KurirDbHandler;
 import com.yuly.elaundry.kurir.model.helper.SessionManager;
 import com.yuly.elaundry.kurir.model.helper.VolleyErrorHelper;
 
@@ -45,7 +45,7 @@ public class ChangePassFragment extends Fragment implements View.OnClickListener
     private EditText inputNewPass;
     private ProgressDialog pDialog;
     private SessionManager session;
-    private KonsumenDbHandler db;
+    private KurirDbHandler db;
     private TextView tv_register,tv_reset_password;
     private Button btn_ChangePass;
 

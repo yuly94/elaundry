@@ -1,7 +1,6 @@
 package com.yuly.elaundry.kurir.controller.fragment;
 
 import android.app.ProgressDialog;
-import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.Fragment;
@@ -33,7 +32,7 @@ import com.yuly.elaundry.kurir.controller.adapter.TempatAdapter;
 import com.yuly.elaundry.kurir.controller.app.AppConfig;
 import com.yuly.elaundry.kurir.controller.app.AppController;
 import com.yuly.elaundry.kurir.model.geterseter.PesananModels;
-import com.yuly.elaundry.kurir.model.database.KonsumenDbHandler;
+import com.yuly.elaundry.kurir.model.database.KurirDbHandler;
 import com.yuly.elaundry.kurir.model.helper.SessionManager;
 import com.yuly.elaundry.kurir.model.helper.VolleyErrorHelper;
 import com.yuly.elaundry.kurir.view.widgets.DividerItemDecoration;
@@ -60,7 +59,7 @@ public class TempatFragment extends Fragment implements SearchView.OnQueryTextLi
 
     //Creating Views
 
-    private KonsumenDbHandler db;
+    private KurirDbHandler db;
     private SessionManager session;
 
     private ProgressDialog pDialog;
@@ -117,7 +116,7 @@ public class TempatFragment extends Fragment implements SearchView.OnQueryTextLi
         daftarTempat = new ArrayList<PesananModels>();
 
         // SqLite database handler
-        db = new KonsumenDbHandler(getContext());
+        db = new KurirDbHandler(getContext());
 
         // session manager
         session = new SessionManager(getContext());

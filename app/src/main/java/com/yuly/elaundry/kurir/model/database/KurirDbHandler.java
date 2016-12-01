@@ -17,9 +17,9 @@ import com.yuly.elaundry.kurir.R;
 
 import java.util.HashMap;
 
-public class KonsumenDbHandler extends SQLiteOpenHelper {
+public class KurirDbHandler extends SQLiteOpenHelper {
 
-	private static final String TAG = KonsumenDbHandler.class.getSimpleName();
+	private static final String TAG = KurirDbHandler.class.getSimpleName();
 
 	// All Static variables
 	// Database Version
@@ -41,7 +41,7 @@ public class KonsumenDbHandler extends SQLiteOpenHelper {
 	private static final String KEY_KURIR_ID = "kurir_id";
 	private static final String KEY_DIBUAT_PADA = "kurir_dibuat_pada";
 
-	public KonsumenDbHandler(Context context) {
+	public KurirDbHandler(Context context) {
 		super(context, DATABASE_NAME, null, DATABASE_VERSION);
 	}
 

@@ -58,8 +58,11 @@ public class DownloadMapActivity extends AppCompatActivity
             getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         }
         //         set status bar
+
         new SetStatusBarColor().setStatusBarColor(findViewById(R.id.statusBarBackgroundDownload),
                 getResources().getColor(R.color.my_primary_dark), this);
+
+
         OnDownloading.getOnDownloading().setListener(this);
         List cloudMaps = Variable.getVariable().getCloudMaps();
         if (Variable.getVariable().getDownloadStatus() == Constant.DOWNLOADING && cloudMaps != null &&

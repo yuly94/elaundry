@@ -35,7 +35,7 @@ import com.yuly.elaundry.kurir.controller.activity.DetailPemesananActivity;
 import com.yuly.elaundry.kurir.controller.adapter.PemesananAdapter;
 import com.yuly.elaundry.kurir.controller.app.AppConfig;
 import com.yuly.elaundry.kurir.controller.app.AppController;
-import com.yuly.elaundry.kurir.model.database.KonsumenDbHandler;
+import com.yuly.elaundry.kurir.model.database.KurirDbHandler;
 import com.yuly.elaundry.kurir.model.geterseter.TransaksiModel;
 import com.yuly.elaundry.kurir.model.helper.SessionManager;
 import com.yuly.elaundry.kurir.model.helper.VolleyErrorHelper;
@@ -61,7 +61,7 @@ public class LaundryPenjemputanFragment extends Fragment implements SearchView.O
 
     //Creating Views
 
-    private KonsumenDbHandler db;
+    private KurirDbHandler db;
     private SessionManager session;
 
     private ProgressDialog pDialog;
@@ -155,7 +155,7 @@ public class LaundryPenjemputanFragment extends Fragment implements SearchView.O
         listPemesanan = new ArrayList<TransaksiModel>();
 
         // SqLite database handler
-        db = new KonsumenDbHandler(getContext());
+        db = new KurirDbHandler(getContext());
 
         // session manager
         session = new SessionManager(getContext());

@@ -10,6 +10,7 @@ import android.util.Log;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Locale;
 
@@ -17,7 +18,7 @@ import java.util.Locale;
  * Created by yuly nurhidayati on 28/11/16.
  */
 
-public class DatabaseHelper extends SQLiteOpenHelper {
+public class RouteDbHelper extends SQLiteOpenHelper {
 
     // Logcat tag
     private static final String LOG = "DatabaseHelper";
@@ -30,6 +31,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
     // Table Names
     private static final String TABLE_LOKASI_KONSUMEN = "lokasi_konsumen";
+    private static final String TABLE_PATH_KONSUMEN = "path_konsumen";
     private static final String TABLE_TODO = "todos";
     private static final String TABLE_TAG = "tags";
     private static final String TABLE_TODO_TAG = "todo_tags";
@@ -70,6 +72,15 @@ public class DatabaseHelper extends SQLiteOpenHelper {
             + KEY_CREATED_AT
             + " DATETIME" + ")";
 
+    private static final String CREATE_TABLE_PATH_KONSUMEN = "CREATE TABLE "
+            + TABLE_PATH_KONSUMEN + "(" + KEY_ID + " INTEGER PRIMARY KEY,"
+            + KEY_KONSUMEN_ID + " TEXT,"
+            + KEY_KONSUMEN_LATITUDE + " TEXT,"
+            + KEY_KONSUMEN_LONGITUDE + " TEXT,"
+            + KEY_KONSUMEN_JARAK + " TEXT,"
+            + KEY_STATUS + " INTEGER,"
+            + KEY_CREATED_AT
+            + " DATETIME" + ")";
 
     private static final String CREATE_TABLE_TODO = "CREATE TABLE "
             + TABLE_TODO + "(" + KEY_ID + " INTEGER PRIMARY KEY," + KEY_TODO
@@ -87,7 +98,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
             + KEY_TODO_ID + " INTEGER," + KEY_TAG_ID + " INTEGER,"
             + KEY_CREATED_AT + " DATETIME" + ")";
 
-    public DatabaseHelper(Context context) {
+    public RouteDbHelper(Context context) {
         super(context, DATABASE_NAME, null, DATABASE_VERSION);
     }
 
@@ -199,52 +210,65 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     /**
      * getting all todos
      * */
-    public List<Lokasi> getAllLokasixx() {
-        List<Lokasi> listLokasi= new ArrayList<Lokasi>();
+
+
+    // Lokasi Pesanan
+    public List<Lokasi> getAllLokasi() {
+        List<Lokasi> contactList = new ArrayList<Lokasi>();
+        // Select All Query
+        String selectQuery = "SELECT  * FROM " + TABLE_LOKASI_KONSUMEN;
+
+        SQLiteDatabase db = this.getWritableDatabase();
+        Cursor cursor = db.rawQuery(selectQuery, null);
+
+        // looping through all rows and adding to list
+        if (cursor.moveToFirst()) {
+            do {
+                Lokasi lokasi = new Lokasi();
+                lokasi.setId(Integer.parseInt(cursor.getString(0)));
+                lokasi.setLatitude(cursor.getString(1));
+                lokasi.setLongitude(cursor.getString(2));
+                // Adding contact to list
+                contactList.add(lokasi);
+            } while (cursor.moveToNext());
+        }
+
+        // return contact list
+        return contactList;
+    }
+
+
+    public ArrayList<HashMap<String, String>> getAllLokasixx() {
+       // List<Lokasi> listLokasi= new ArrayList<Lokasi>();
         String selectQuery = "SELECT * FROM " + TABLE_LOKASI_KONSUMEN;
 
         Log.i(LOG, selectQuery);
 
         SQLiteDatabase db = this.getReadableDatabase();
-        Cursor c = db.rawQuery(selectQuery, null);
+        Cursor cursor = db.rawQuery(selectQuery, null);
 
+
+        ArrayList<HashMap<String, String>> maplist = new ArrayList<HashMap<String, String>>();
         // looping through all rows and adding to list
-        if (c.moveToFirst()) {
+
+        if (cursor.moveToFirst()) {
             do {
-                Lokasi lok = new Lokasi();
-                //lok.setId(c.getInt((c.getColumnIndex(KEY_ID))));
-                lok.setLatitude((c.getString(3)));
-                //lok.setLongitude(c.getString(c.getColumnIndex(KEY_KONSUMEN_LONGITUDE)));
+                HashMap<String, String> map = new HashMap<String, String>();
+                for(int i=0; i<cursor.getColumnCount();i++)
+                {
+                    map.put(cursor.getColumnName(i), cursor.getString(i));
+                }
 
-                // adding to todo list
-                listLokasi.add(lok);
-            } while (c.moveToNext());
+                maplist.add(map);
+            } while (cursor.moveToNext());
         }
+        db.close();
+        // return contact list
+        return maplist;
 
-        Log.d("LOKASI DB", listLokasi.toString());
-        c.close();
-        return listLokasi;
     }
 
 
-    public List<Lokasi> getAllLokasi() {
-        List<Lokasi> listLokasi = new ArrayList<Lokasi>();
-        SQLiteDatabase db = this.getReadableDatabase();
-
-        String selectQuery = "SELECT * FROM " + TABLE_LOKASI_KONSUMEN;
-
-        Cursor cursor = db.rawQuery(selectQuery,null);  //query(TABLE_LOKASI_KONSUMEN, new String[]{KEY_KONSUMEN_LATITUDE, KEY_KONSUMEN_LONGITUDE}, null, null, null, null);
-
-        cursor.moveToFirst();
-        while (!cursor.isAfterLast()) {
-            Lokasi lokasi = cursorToComment(cursor);
-            listLokasi.add(lokasi);
-            cursor.moveToNext();
-        }
-        // make sure to close the cursor
-        cursor.close();
-        return listLokasi;
-    }
 
     private Lokasi cursorToComment(Cursor cursor) {
         Lokasi lokasi = new Lokasi();

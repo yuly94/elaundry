@@ -3,7 +3,6 @@ package com.yuly.elaundry.kurir.controller.activity;
 import android.app.ProgressDialog;
 import android.os.Bundle;
 import android.os.Handler;
-import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
@@ -27,9 +26,8 @@ import com.yuly.elaundry.kurir.R;
 import com.yuly.elaundry.kurir.controller.app.AppConfig;
 import com.yuly.elaundry.kurir.controller.app.AppController;
 import com.yuly.elaundry.kurir.controller.app.Constants;
-import com.yuly.elaundry.kurir.model.database.KonsumenDbHandler;
+import com.yuly.elaundry.kurir.model.database.KurirDbHandler;
 import com.yuly.elaundry.kurir.model.helper.VolleyErrorHelper;
-import com.yuly.elaundry.kurir.model.util.SetStatusBarColor;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -42,7 +40,7 @@ import java.util.Map;
 public class DetailPemesananActivity extends AppCompatActivity {
 
     // SqLite database handler
-    private KonsumenDbHandler db;
+    private KurirDbHandler db;
 
     private TextView tvNama, tvAlamat,tvNoHp, tvPaket,tvHarga,tvBaju,tvCelana,tvRok,tvTanggal,tvStatus;
 
@@ -98,7 +96,7 @@ public class DetailPemesananActivity extends AppCompatActivity {
         pDialog.setCancelable(false);
 
         // SqLite database handler
-        db = new KonsumenDbHandler(getApplicationContext());
+        db = new KurirDbHandler(getApplicationContext());
 
         id_pemesanan = getIntent().getStringExtra("PEMESANAN_ID");
         text_tombol = getIntent().getStringExtra("TEXT_TOMBOL");

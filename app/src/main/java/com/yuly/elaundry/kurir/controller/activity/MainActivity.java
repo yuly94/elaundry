@@ -36,7 +36,7 @@ import com.yuly.elaundry.kurir.controller.fragment.SettingsFragment;
 import com.yuly.elaundry.kurir.controller.fragment.LaundryPemesananFragment;
 import com.yuly.elaundry.kurir.controller.fragment.ProfileFragment;
 import com.yuly.elaundry.kurir.controller.fragment.LaundryPenjemputanFragment;
-import com.yuly.elaundry.kurir.model.database.KonsumenDbHandler;
+import com.yuly.elaundry.kurir.model.database.KurirDbHandler;
 import com.yuly.elaundry.kurir.model.helper.SessionManager;
 import com.yuly.elaundry.kurir.view.navigation.NavDrawerItem;
 import com.yuly.elaundry.kurir.view.navigation.NavDrawerListAdapter;
@@ -52,7 +52,7 @@ public class MainActivity extends AppCompatActivity {
 
 	String api_key;
 
-	private KonsumenDbHandler db;
+	private KurirDbHandler db;
 	private SessionManager session;
 
 	private DrawerLayout mDrawerLayout;
@@ -77,7 +77,7 @@ public class MainActivity extends AppCompatActivity {
 		mDrawerList = (ListView) findViewById(R.id.list_slidermenu);
 
 		// SqLite database handler
-		db = new KonsumenDbHandler(getApplicationContext());
+		db = new KurirDbHandler(getApplicationContext());
 
 		// session manager
 		session = new SessionManager(getApplicationContext());

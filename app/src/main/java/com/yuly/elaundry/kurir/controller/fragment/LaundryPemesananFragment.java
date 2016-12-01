@@ -3,9 +3,7 @@ package com.yuly.elaundry.kurir.controller.fragment;
 import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
-import android.os.Handler;
 import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
 import android.support.v4.app.Fragment;
 import android.support.v4.view.MenuItemCompat;
 import android.support.v4.widget.SwipeRefreshLayout;
@@ -32,18 +30,14 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.VolleyLog;
 import com.android.volley.toolbox.JsonObjectRequest;
-import com.android.volley.toolbox.StringRequest;
 import com.yuly.elaundry.kurir.R;
 import com.yuly.elaundry.kurir.controller.activity.DetailPemesananActivity;
+import com.yuly.elaundry.kurir.controller.activity.RuteActivity;
 import com.yuly.elaundry.kurir.controller.adapter.PemesananAdapter;
 import com.yuly.elaundry.kurir.controller.app.AppConfig;
 import com.yuly.elaundry.kurir.controller.app.AppController;
-import com.yuly.elaundry.kurir.controller.app.Constants;
-import com.yuly.elaundry.kurir.controller.app.CustomJsonObjectRequest;
-import com.yuly.elaundry.kurir.controller.app.JsonResponseRequest;
-import com.yuly.elaundry.kurir.model.database.ProsesRouteActivity;
 import com.yuly.elaundry.kurir.model.geterseter.TransaksiModel;
-import com.yuly.elaundry.kurir.model.database.KonsumenDbHandler;
+import com.yuly.elaundry.kurir.model.database.KurirDbHandler;
 import com.yuly.elaundry.kurir.model.helper.SessionManager;
 import com.yuly.elaundry.kurir.model.helper.VolleyErrorHelper;
 import com.yuly.elaundry.kurir.model.listeners.RecyclerTouchListener;
@@ -68,7 +62,7 @@ public class LaundryPemesananFragment extends Fragment implements SearchView.OnQ
 
     //Creating Views
 
-    private KonsumenDbHandler db;
+    private KurirDbHandler db;
     private SessionManager session;
 
     private ProgressDialog pDialog;
@@ -153,7 +147,7 @@ public class LaundryPemesananFragment extends Fragment implements SearchView.OnQ
             @Override
             public void onClick(View v) {
 
-                 startActivity(new Intent(getActivity(), ProsesRouteActivity.class));
+                 startActivity(new Intent(getActivity(), RuteActivity.class));
             }
         });
 
@@ -161,7 +155,7 @@ public class LaundryPemesananFragment extends Fragment implements SearchView.OnQ
         listPemesanan = new ArrayList<TransaksiModel>();
 
         // SqLite database handler
-        db = new KonsumenDbHandler(getContext());
+        db = new KurirDbHandler(getContext());
 
         // session manager
         session = new SessionManager(getContext());
