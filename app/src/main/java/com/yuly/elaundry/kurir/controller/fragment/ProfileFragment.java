@@ -32,10 +32,8 @@ import com.android.volley.toolbox.StringRequest;
 
 import com.yuly.elaundry.kurir.R;
 import com.yuly.elaundry.kurir.controller.activity.LoginActivityNew;
-import com.yuly.elaundry.kurir.controller.activity.MainActivity;
 import com.yuly.elaundry.kurir.controller.app.AppConfig;
 import com.yuly.elaundry.kurir.controller.app.AppController;
-import com.yuly.elaundry.kurir.controller.app.Constants;
 import com.yuly.elaundry.kurir.model.database.KurirDbHandler;
 import com.yuly.elaundry.kurir.model.helper.SessionManager;
 import com.yuly.elaundry.kurir.model.helper.VolleyErrorHelper;
@@ -343,7 +341,7 @@ public class ProfileFragment extends Fragment {
                         // Error in login. Get the error message
                         String errorMsg = jObj.getString("message");
 
-                        Log.d(Constants.TAG,errorMsg);
+                        Log.d(TAG,errorMsg);
 
                         if(getView()!=null) {
                             Snackbar.make(getView(), R.string.update_profile_gagal, Snackbar.LENGTH_LONG).show();
@@ -372,7 +370,7 @@ public class ProfileFragment extends Fragment {
                 Toast.makeText(getActivity(),
                         e, Toast.LENGTH_LONG).show();
 
-                Log.d(Constants.TAG,"failed");
+                Log.d(TAG,"failed");
                 //   progress.setVisibility(View.GONE);
                 tv_message.setVisibility(View.VISIBLE);
                 tv_message.setText(e);
@@ -479,7 +477,7 @@ public class ProfileFragment extends Fragment {
                         // Error in login. Get the error message
                         String errorMsg = jObj.getString("message");
 
-                        Log.d(Constants.TAG,errorMsg);
+                        Log.d(TAG,errorMsg);
 
                         dialog.hide();
 
@@ -510,7 +508,7 @@ public class ProfileFragment extends Fragment {
                 Toast.makeText(getActivity(),
                         e, Toast.LENGTH_LONG).show();
 
-                Log.d(Constants.TAG,"failed");
+                Log.d(TAG,"failed");
                 //   progress.setVisibility(View.GONE);
                 tv_message.setVisibility(View.VISIBLE);
                 tv_message.setText(e);

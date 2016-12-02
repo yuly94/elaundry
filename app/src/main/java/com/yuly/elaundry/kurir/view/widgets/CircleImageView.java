@@ -13,6 +13,7 @@ import android.graphics.RectF;
 import android.graphics.Shader;
 import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.ColorDrawable;
+
 import android.graphics.drawable.Drawable;
 import android.net.Uri;
 import android.support.annotation.ColorRes;
@@ -213,7 +214,7 @@ public class CircleImageView extends ImageView {
         invalidate();
     }
 
-    private Bitmap getBitmapFromDrawable(Drawable drawable) {
+    protected Bitmap getBitmapFromDrawable(Drawable drawable) {
         if (drawable == null) {
             return null;
         }

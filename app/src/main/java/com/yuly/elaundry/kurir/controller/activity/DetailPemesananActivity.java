@@ -25,7 +25,6 @@ import com.android.volley.toolbox.StringRequest;
 import com.yuly.elaundry.kurir.R;
 import com.yuly.elaundry.kurir.controller.app.AppConfig;
 import com.yuly.elaundry.kurir.controller.app.AppController;
-import com.yuly.elaundry.kurir.controller.app.Constants;
 import com.yuly.elaundry.kurir.model.database.KurirDbHandler;
 import com.yuly.elaundry.kurir.model.helper.VolleyErrorHelper;
 
@@ -279,7 +278,7 @@ public class DetailPemesananActivity extends AppCompatActivity {
                         // Error in login. Get the error message
                         String errorMsg = jObj.getString("message");
 
-                        Log.d(Constants.TAG,errorMsg);
+                        Log.d(TAG,errorMsg);
 
                         Snackbar.make(parentLayout, errorMsg, Snackbar.LENGTH_LONG).show();
 
@@ -292,7 +291,7 @@ public class DetailPemesananActivity extends AppCompatActivity {
                         // Error in login. Get the error message
                         String errorMsg = jObj.getString("message");
 
-                        Log.d(Constants.TAG,errorMsg);
+                        Log.d(TAG,errorMsg);
 
                             Snackbar.make(parentLayout, errorMsg, Snackbar.LENGTH_LONG).show();
 
@@ -319,7 +318,7 @@ public class DetailPemesananActivity extends AppCompatActivity {
                 Toast.makeText(getApplicationContext(),
                         e, Toast.LENGTH_LONG).show();
 
-                Log.d(Constants.TAG,"failed");
+                Log.d(TAG,"failed");
                 //   progress.setVisibility(View.GONE);
 
                 hideProgressDialog();

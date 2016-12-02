@@ -20,7 +20,7 @@ public class AndroidDownloader extends Downloader
 {
     public AndroidDownloader()
     {
-        super("GraphHopper Android");
+        super("elaundry apps");
     }
 
     @Override

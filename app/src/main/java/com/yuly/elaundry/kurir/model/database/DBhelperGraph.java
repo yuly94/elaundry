@@ -4,7 +4,7 @@ import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 
-public class DBhelper extends SQLiteOpenHelper {
+public class DBhelperGraph extends SQLiteOpenHelper {
     public static final String DB_NAME = "elaundrymaps.db";
     public static final int DB_VERSION = 1;
 
@@ -29,7 +29,7 @@ public class DBhelper extends SQLiteOpenHelper {
 
     public final String DELETE_TRACK_TABLE = "DROP TABLE IF EXISTS " + TABLE_NAME;
 
-    public DBhelper(Context context) {
+    public DBhelperGraph(Context context) {
         super(context, DB_NAME, null, DB_VERSION);
     }
 

@@ -32,7 +32,6 @@ import com.android.volley.VolleyLog;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.yuly.elaundry.kurir.R;
 import com.yuly.elaundry.kurir.controller.activity.DetailPemesananActivity;
-import com.yuly.elaundry.kurir.controller.activity.RuteActivity;
 import com.yuly.elaundry.kurir.controller.adapter.PemesananAdapter;
 import com.yuly.elaundry.kurir.controller.app.AppConfig;
 import com.yuly.elaundry.kurir.controller.app.AppController;
@@ -147,7 +146,7 @@ public class LaundryPemesananFragment extends Fragment implements SearchView.OnQ
             @Override
             public void onClick(View v) {
 
-                 startActivity(new Intent(getActivity(), RuteActivity.class));
+              //   startActivity(new Intent(getActivity(), RuteActivity.class));
             }
         });
 

@@ -1,7 +1,6 @@
 package com.yuly.elaundry.kurir.controller.activity;
 
 import android.app.ProgressDialog;
-import android.content.Intent;
 import android.content.res.Configuration;
 import android.content.res.TypedArray;
 import android.os.Bundle;
@@ -30,7 +29,6 @@ import com.yuly.elaundry.kurir.R;
 
 import com.yuly.elaundry.kurir.controller.fragment.LaundryPengambilanAgentFragment;
 import com.yuly.elaundry.kurir.controller.fragment.LaundryPengantaranFragment;
-import com.yuly.elaundry.kurir.controller.fragment.SettingsFragment;
 import com.yuly.elaundry.kurir.controller.fragment.LaundryPemesananFragment;
 import com.yuly.elaundry.kurir.controller.fragment.ProfileFragment;
 import com.yuly.elaundry.kurir.controller.fragment.LaundryPenjemputanFragment;
@@ -277,23 +275,23 @@ public class MainActivity extends AppCompatActivity {
 			//  fragment tempa
 				// fragment = new AlamatFragment();
 
-				Intent intentMap = new Intent(this, MainActivityPeta.class);
-				startActivity(intentMap);
+			//	Intent intentMap = new Intent(this, MainActivityPeta.class);
+			//	startActivity(intentMap);
 
 				break;
 			case 5:
 			  //	fragment = new MapsFragmentLocation();
 			//	fragment =new Example3Fragment();
 
-				Intent intent = new Intent(this, PetaActivity2.class);
-				startActivity(intent);
+			//	Intent intent = new Intent(this, PetaActivity2.class);
+			//	startActivity(intent);
 
 				break;
 			case 6:
 				fragment = new ProfileFragment();
 				break;
 			case 7:
-			 	fragment = new SettingsFragment();
+			 //	fragment = new SettingsFragment();
 				break;
 			case 8:
 				//	themes

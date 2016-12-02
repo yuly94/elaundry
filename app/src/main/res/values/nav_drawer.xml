@@ -5,12 +5,12 @@
     <!-- Keep them in order as the titles are in -->
     <array name="nav_drawer_icons">
         <item>@drawable/ic_shopping_cart_24dp</item>
-        <item>@drawable/ic_shopping_cart_24dp</item>
-        <item>@drawable/ic_shopping_cart_24dp</item>
-        <item>@drawable/ic_shopping_cart_24dp</item>
+        <item>@drawable/ic_add_24dp</item>
+        <item>@drawable/ic_share_24dp</item>
+        <item>@drawable/ic_code_black_24dp</item>
         <item>@drawable/ic_map_24dp</item>
         <item>@drawable/ic_dashboard_24dp</item>
-        <item>@drawable/ic_face_24dp</item>
+        <item>@drawable/ic_address</item>
         <item>@drawable/ic_settings_24dp</item>
         <item>@drawable/ic_color_lens_24dp</item>
         <item>@drawable/ic_info_outline_24dp</item>
