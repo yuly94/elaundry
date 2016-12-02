@@ -64,7 +64,7 @@ public class MainActivityPeta extends AppCompatActivity implements MapDownloadLi
         }
 
         // Thema
-        themeUtils.onActivityCreateSetTheme(this,getSupportActionBar(),this);
+       // themeUtils.onActivityCreateSetTheme(this,getSupportActionBar(),this);
 
 /*
         // set status bar

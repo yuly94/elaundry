@@ -67,11 +67,6 @@
             android:configChanges="keyboardHidden|orientation|screenSize"
             android:launchMode="singleTop" />
 
-        <!--
-             ATTENTION: This was auto-generated to add Google Play services to your project for
-             App Indexing.  See https://g.co/AppIndexing/AndroidStudio for more information.
-        -->
-
         <activity
             android:name=".controller.activity.MapActivity"
             android:label="@string/title_activity_map"
@@ -98,6 +93,11 @@
             android:screenOrientation="portrait"
             android:theme="@style/MYAppTheme.NoActionBar" />
         <activity
+            android:name=".controller.activity.PetaActivity2"
+            android:label="@string/title_activity_download"
+            android:screenOrientation="portrait"
+            android:theme="@style/MYAppTheme.NoActionBar" />
+        <activity
             android:name=".controller.activity.DetailPemesananActivity"
             android:label="detail pesanan"
             android:screenOrientation="portrait"
@@ -106,16 +106,12 @@
             android:name=".controller.activity.SettingsActivity"
             android:label="@string/action_settings"
             android:screenOrientation="portrait"
-            android:theme="@style/MyAppThemeActionBar" />
+            android:theme="@style/MYAppTheme.NoActionBar" />
         <activity
             android:name=".controller.activity.Analytics"
             android:label="@string/title_activity_analytics"
             android:screenOrientation="portrait"
-            android:theme="@style/MyAppThemeActionBar" />
-        <activity
-            android:name=".controller.activity.ScrollingActivity"
-            android:label="@string/title_activity_scrolling"
-            android:theme="@style/MyAppThemeActionBar" />
+            android:theme="@style/MYAppTheme.NoActionBar" />
         <activity
             android:name=".model.database.ProsesRouteActivity"
             android:label="@string/title_activity_proses_route"

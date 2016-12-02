@@ -29,12 +29,11 @@ import com.yuly.elaundry.kurir.model.util.MyUtility;
 import com.yuly.elaundry.kurir.model.util.Variable;
 
 import org.mapsforge.core.model.LatLong;
-import org.mapsforge.core.model.MapPosition;
 import org.mapsforge.map.android.view.MapView;
 import org.mapsforge.map.model.MapViewPosition;
 
 
-public class MapActions implements NavigatorListener, MapHandlerListener {
+public class AksiPeta implements NavigatorListener, MapHandlerListener {
     private Activity activity;
     protected FloatingActionButton showPositionBtn, navigationBtn, settingsBtn, controlBtn;
     protected FloatingActionButton zoomInBtn, zoomOutBtn;
@@ -47,7 +46,7 @@ public class MapActions implements NavigatorListener, MapHandlerListener {
     private boolean onStartPoint;
     private EditText fromLocalET, toLocalET;
 
-    public MapActions(Activity activity, MapView mapView) {
+    public AksiPeta(Activity activity, MapView mapView) {
         this.activity = activity;
         this.showPositionBtn = (FloatingActionButton) activity.findViewById(R.id.map_show_my_position_fab);
         this.navigationBtn = (FloatingActionButton) activity.findViewById(R.id.map_nav_fab);
@@ -73,9 +72,7 @@ public class MapActions implements NavigatorListener, MapHandlerListener {
         controlBtnHandler();
         zoomControlHandler(mapView);
         showMyLocation(mapView);
-        navBtnHandler();
-        navSettingsHandler();
-        settingsBtnHandler();
+
 
 
     }
@@ -92,32 +89,6 @@ public class MapActions implements NavigatorListener, MapHandlerListener {
         });
     }
 
-    /**
-     * navigation settings implementation
-     * <p>
-     * settings clear button
-     * <p>
-     * settings search button
-     */
-    private void navSettingsHandler() {
-        final ImageButton navSettingsClearBtn = (ImageButton) activity.findViewById(R.id.nav_settings_clear_btn);
-        navSettingsClearBtn.setOnClickListener(new View.OnClickListener() {
-            @Override public void onClick(View v) {
-                navSettingsVP.setVisibility(View.INVISIBLE);
-                sideBarVP.setVisibility(View.VISIBLE);
-            }
-        });
-        ImageButton navSettingsSearchBtn = (ImageButton) activity.findViewById(R.id.nav_settings_search_btn);
-        navSettingsSearchBtn.setOnClickListener(new View.OnClickListener() {
-            public void onClick(View v) {
-                //TODO implement search for input locations
-                searchBtnActions();
-            }
-        });
-        travelModeSetting();
-        settingsFromItemHandler();
-        settingsToItemHandler();
-    }
 
     /**
      * perform actions when search btn is clicked
@@ -296,43 +267,6 @@ public class MapActions implements NavigatorListener, MapHandlerListener {
     }
 
     /**
-     * settings layout:
-     * <p>
-     * from item handler: when from item is clicked
-     */
-    private void settingsFromItemHandler() {
-        final ViewGroup fromFieldVG = (ViewGroup) activity.findViewById(R.id.map_nav_settings_from_item);
-        fromFieldVG.setOnTouchListener(new View.OnTouchListener() {
-            @Override public boolean onTouch(View v, MotionEvent event) {
-                switch (event.getAction()) {
-                    case MotionEvent.ACTION_DOWN:
-                        fromFieldVG.setBackgroundColor(activity.getResources().getColor(R.color.my_primary_light));
-                        return true;
-                    case MotionEvent.ACTION_UP:
-                        fromFieldVG.setBackgroundColor(activity.getResources().getColor(R.color.my_primary));
-                        navSettingsVP.setVisibility(View.INVISIBLE);
-                        navSettingsFromVP.setVisibility(View.VISIBLE);
-                        return true;
-                }
-                return false;
-            }
-        });
-        //        from layout
-        //clear button
-        ImageButton fromLayoutClearBtn = (ImageButton) activity.findViewById(R.id.nav_settings_from_clear_btn);
-        fromLayoutClearBtn.setOnClickListener(new View.OnClickListener() {
-            @Override public void onClick(View v) {
-                navSettingsVP.setVisibility(View.VISIBLE);
-                navSettingsFromVP.setVisibility(View.INVISIBLE);
-            }
-        });
-        //  from layout: items
-        useCurrentLocationHandler();
-        chooseFromFavoriteHandler();//TODO
-        pointOnMapHandler();
-    }
-
-    /**
      * from layout : point item view group
      * <p>
      * preform actions when point on map item is clicked
@@ -383,38 +317,6 @@ public class MapActions implements NavigatorListener, MapHandlerListener {
         });
     }
 
-    /**
-     * current location handler: preform actions when current location item is clicked
-     */
-    private void useCurrentLocationHandler() {
-        final ViewGroup useCurrentLocal = (ViewGroup) activity.findViewById(R.id.map_nav_settings_from_current);
-        useCurrentLocal.setOnTouchListener(new View.OnTouchListener() {
-            @Override public boolean onTouch(View v, MotionEvent event) {
-                switch (event.getAction()) {
-                    case MotionEvent.ACTION_DOWN:
-                        useCurrentLocal.setBackgroundColor(activity.getResources().getColor(R.color.my_primary_light));
-                        return true;
-                    case MotionEvent.ACTION_UP:
-                        useCurrentLocal.setBackgroundColor(activity.getResources().getColor(R.color.my_primary));
-                        if (MapActivity.getmCurrentLocation() != null) {
-                            Destination.getDestination().setStartPoint(
-                                    new LatLong(MapActivity.getmCurrentLocation().getLatitude(),
-                                            MapActivity.getmCurrentLocation().getLongitude()));
-                            addFromMarker(Destination.getDestination().getStartPoint());
-                            fromLocalET.setText(Destination.getDestination().getStartPointToString());
-                            navSettingsFromVP.setVisibility(View.INVISIBLE);
-                            navSettingsVP.setVisibility(View.VISIBLE);
-                            activeNavigator();
-                        } else {
-                            Toast.makeText(activity, "Current Location not available, Check your GPS signal!",
-                                    Toast.LENGTH_SHORT).show();
-                        }
-                        return true;
-                }
-                return false;
-            }
-        });
-    }
 
     /**
      * when use press on the screen to get a location form map
@@ -435,16 +337,11 @@ public class MapActions implements NavigatorListener, MapHandlerListener {
         activeNavigator();
     }
 
-    /**
-     * calculate path calculating (running) true NOT running or finished false
-     *
-     * @param shortestPathRunning
-     */
-    @Override public void pathCalculating(boolean shortestPathRunning) {
-        if (!shortestPathRunning && Navigasi.getNavigator().getGhResponse() != null) {
-            activeDirections();
-        }
+    @Override
+    public void pathCalculating(boolean shortestPathRunning) {
+
     }
+
 
     /**
      * drawer polyline on map , active navigator instructions(directions) if on
@@ -468,173 +365,6 @@ public class MapActions implements NavigatorListener, MapHandlerListener {
         }
     }
 
-    /**
-     * active directions, and directions view
-     */
-    private void activeDirections() {
-        RecyclerView instructionsRV;
-        RecyclerView.Adapter instructionsAdapter;
-        RecyclerView.LayoutManager instructionsLayoutManager;
-
-        instructionsRV = (RecyclerView) activity.findViewById(R.id.nav_instruction_recycler_view);
-
-        // use this setting to improve performance if you know that changes
-        // in content do not change the layout size of the RecyclerView
-        instructionsRV.setHasFixedSize(true);
-
-        // use a linear layout manager
-        instructionsLayoutManager = new LinearLayoutManager(activity);
-        instructionsRV.setLayoutManager(instructionsLayoutManager);
-
-        // specify an adapter (see also next example)
-        instructionsAdapter = new InstructionAdapter(Navigasi.getNavigator().getGhResponse().getInstructions());
-        instructionsRV.setAdapter(instructionsAdapter);
-        initNavListView();
-    }
-
-    /**
-     * navigation list view
-     * <p>
-     * make nav list view control button ready to use
-     */
-    private void initNavListView() {
-        fillNavListSummaryValues();
-        navSettingsVP.setVisibility(View.INVISIBLE);
-        navInstructionListVP.setVisibility(View.VISIBLE);
-        ImageButton clearBtn, stopBtn;
-        stopBtn = (ImageButton) activity.findViewById(R.id.nav_instruction_list_stop_btn);
-        clearBtn = (ImageButton) activity.findViewById(R.id.nav_instruction_list_clear_btn);
-        stopBtn.setOnClickListener(new View.OnClickListener() {
-            @Override public void onClick(View v) {
-
-                // 1. Instantiate an AlertDialog.Builder with its constructor
-                AlertDialog.Builder builder = new AlertDialog.Builder(activity);
-
-                // 2. Chain together various setter methods to set the dialog characteristics
-                builder.setMessage(R.string.stop_navigation_msg).setTitle(R.string.stop_navigation)
-                        .setPositiveButton(R.string.ok, new DialogInterface.OnClickListener() {
-                            public void onClick(DialogInterface dialog, int id) {
-                                // stop!
-                                Navigasi.getNavigator().setOn(false);
-                                //delete polyline and markers
-                                removeNavigation();
-                                navInstructionListVP.setVisibility(View.INVISIBLE);
-                                navSettingsVP.setVisibility(View.VISIBLE);
-                                dialog.dismiss();
-                            }
-                        }).setNegativeButton(R.string.cancel, new DialogInterface.OnClickListener() {
-                    public void onClick(DialogInterface dialog, int id) {
-                        // User cancelled the dialog
-                        dialog.dismiss();
-                    }
-                });
-                // Create the AlertDialog object and return it
-
-                // 3. Get the AlertDialog from create()
-                AlertDialog dialog = builder.create();
-                dialog.show();
-            }
-        });
-
-        clearBtn.setOnClickListener(new View.OnClickListener() {
-            @Override public void onClick(View v) {
-                navInstructionListVP.setVisibility(View.INVISIBLE);
-                sideBarVP.setVisibility(View.VISIBLE);
-            }
-        });
-    }
-
-    /**
-     * fill up values for nav list summary
-     */
-    private void fillNavListSummaryValues() {
-        ImageView travelMode;
-        travelMode = (ImageView) activity.findViewById(R.id.nav_instruction_list_travel_mode_iv);
-        travelMode.setImageResource(Navigasi.getNavigator().getTravelModeResId(true));
-        TextView from, to, distance, time;
-        from = (TextView) activity.findViewById(R.id.nav_instruction_list_summary_from_tv);
-        to = (TextView) activity.findViewById(R.id.nav_instruction_list_summary_to_tv);
-        distance = (TextView) activity.findViewById(R.id.nav_instruction_list_summary_distance_tv);
-        time = (TextView) activity.findViewById(R.id.nav_instruction_list_summary_time_tv);
-
-        from.setText(Destination.getDestination().getStartPointToString());
-        to.setText(Destination.getDestination().getEndPointToString());
-        distance.setText(Navigasi.getNavigator().getDistance());
-        time.setText(Navigasi.getNavigator().getTime());
-    }
-
-    /**
-     * remove polyline, markers from map layers
-     * <p>
-     * set from & to = null
-     */
-    private void removeNavigation() {
-        MapHandler.getMapHandler().removeMarkers();
-        fromLocalET.setText("");
-        toLocalET.setText("");
-        Navigasi.getNavigator().setOn(false);
-        Destination.getDestination().setStartPoint(null);
-        Destination.getDestination().setEndPoint(null);
-    }
-
-    /**
-     * set up travel mode
-     */
-    private void travelModeSetting() {
-        final ImageButton footBtn, bikeBtn, carBtn;
-        footBtn = (ImageButton) activity.findViewById(R.id.nav_settings_foot_btn);
-        bikeBtn = (ImageButton) activity.findViewById(R.id.nav_settings_bike_btn);
-        carBtn = (ImageButton) activity.findViewById(R.id.nav_settings_car_btn);
-        // init travel mode
-        switch (Variable.getVariable().getTravelMode()) {
-            case "foot":
-                footBtn.setImageResource(R.drawable.ic_directions_walk_orange_24dp);
-                break;
-            case "bike":
-                bikeBtn.setImageResource(R.drawable.ic_directions_bike_orange_24dp);
-                break;
-            case "car":
-                carBtn.setImageResource(R.drawable.ic_directions_car_orange_24dp);
-                break;
-        }
-
-        //foot
-        footBtn.setOnClickListener(new View.OnClickListener() {
-            @Override public void onClick(View v) {
-                if (!Variable.getVariable().getTravelMode().equalsIgnoreCase("foot")) {
-                    Variable.getVariable().setTravelMode("foot");
-                    footBtn.setImageResource(R.drawable.ic_directions_walk_orange_24dp);
-                    bikeBtn.setImageResource(R.drawable.ic_directions_bike_white_24dp);
-                    carBtn.setImageResource(R.drawable.ic_directions_car_white_24dp);
-                    activeNavigator();
-                }
-            }
-        });
-        //bike
-        bikeBtn.setOnClickListener(new View.OnClickListener() {
-            @Override public void onClick(View v) {
-                if (!Variable.getVariable().getTravelMode().equalsIgnoreCase("bike")) {
-                    Variable.getVariable().setTravelMode("bike");
-                    footBtn.setImageResource(R.drawable.ic_directions_walk_white_24dp);
-                    bikeBtn.setImageResource(R.drawable.ic_directions_bike_orange_24dp);
-                    carBtn.setImageResource(R.drawable.ic_directions_car_white_24dp);
-                    activeNavigator();
-                }
-            }
-        });
-        // car
-        carBtn.setOnClickListener(new View.OnClickListener() {
-            @Override public void onClick(View v) {
-                if (!Variable.getVariable().getTravelMode().equalsIgnoreCase("car")) {
-                    Variable.getVariable().setTravelMode("car");
-                    footBtn.setImageResource(R.drawable.ic_directions_walk_white_24dp);
-                    bikeBtn.setImageResource(R.drawable.ic_directions_bike_white_24dp);
-                    carBtn.setImageResource(R.drawable.ic_directions_car_orange_24dp);
-                    activeNavigator();
-                }
-            }
-        });
-    }
 
     /**
      * handler clicks on nav button
@@ -690,14 +420,11 @@ public class MapActions implements NavigatorListener, MapHandlerListener {
         zoomOutBtn.setImageResource(R.drawable.ic_remove_white_24dp);
 
         zoomInBtn.setOnClickListener(new View.OnClickListener() {
-
             MapViewPosition mvp = mapView.getModel().mapViewPosition;
 
             @Override public void onClick(View v) {
                 if (mvp.getZoomLevel() < Variable.getVariable().getZoomLevelMax()) mvp.zoomIn();
             }
-
-
         });
         zoomOutBtn.setOnClickListener(new View.OnClickListener() {
             MapViewPosition mvp = mapView.getModel().mapViewPosition;
@@ -762,37 +489,7 @@ public class MapActions implements NavigatorListener, MapHandlerListener {
         }
     }
 
-    /**
-     * called from Map activity when onBackpressed
-     *
-     * @return false no actions will perform; return true MapActivity will be placed back in the activity stack
-     */
-    public boolean homeBackKeyPressed() {
-        if (navSettingsVP.getVisibility() == View.VISIBLE) {
-            navSettingsVP.setVisibility(View.INVISIBLE);
-            sideBarVP.setVisibility(View.VISIBLE);
-            return false;
-        } else if (navSettingsFromVP.getVisibility() == View.VISIBLE) {
-            navSettingsFromVP.setVisibility(View.INVISIBLE);
-            navSettingsVP.setVisibility(View.VISIBLE);
-            return false;
-        } else if (navSettingsToVP.getVisibility() == View.VISIBLE) {
-            navSettingsToVP.setVisibility(View.INVISIBLE);
-            navSettingsVP.setVisibility(View.VISIBLE);
-            return false;
-        } else if (navInstructionListVP.getVisibility() == View.VISIBLE) {
-            navInstructionListVP.setVisibility(View.INVISIBLE);
-            sideBarVP.setVisibility(View.VISIBLE);
-            return false;
-        } else if (AppSettings.getAppSettings().getAppSettingsVP() != null &&
-                AppSettings.getAppSettings().getAppSettingsVP().getVisibility() == View.VISIBLE) {
-            AppSettings.getAppSettings().getAppSettingsVP().setVisibility(View.INVISIBLE);
-            sideBarVP.setVisibility(View.VISIBLE);
-            return false;
-        } else {
-            return true;
-        }
-    }
+
 
 
     private void log(String str) {

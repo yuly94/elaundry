@@ -60,7 +60,7 @@ public class RuteActivity extends AppCompatActivity {
 
         //http://stackoverflow.com/questions/1561803/android-progressdialog-show-crashes-with-getapplicationcontext
         pDialog = new ProgressDialog(RuteActivity.this);
-        pDialog.setMessage("Loading...");
+        pDialog.setMessage(String.valueOf(R.string.memuat));
         pDialog.setCancelable(false);
 
         fab.setOnClickListener(new View.OnClickListener() {
@@ -179,7 +179,7 @@ public class RuteActivity extends AppCompatActivity {
     }
 
     /**
-     * Making json array request
+     * Mengambil data pemesanan baru
      */
 
     //http://stackoverflow.com/questions/28344448/how-to-send-json-object-to-server-using-volley-in-andorid
@@ -254,7 +254,7 @@ public class RuteActivity extends AppCompatActivity {
 
                                     Lokasi lokasi_konsumen = new Lokasi(listPesanan.getPemesananId(),String.valueOf(listPesanan.getLatitude()), String.valueOf(listPesanan.getLongitude()),"sada",1);
 
-                                    long id = db_rute.createLokasiKonsumen(lokasi_konsumen,null);
+                                    long id = db_rute.createLokasiKonsumen(lokasi_konsumen);
 
                                     Log.d("ID", String.valueOf(id));
 

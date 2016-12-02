@@ -2,7 +2,7 @@ package com.yuly.elaundry.kurir.model.map;
 
 import android.app.Activity;
 import android.graphics.Path;
-import android.graphics.drawable.Drawable;
+
 import android.os.AsyncTask;
 import android.util.Log;
 import android.view.View;
@@ -254,9 +254,10 @@ public class MapHandler {
      * @return
      */
     public Marker createMarker(LatLong p, int resource) {
-        Drawable drawable = activity.getResources().getDrawable(resource);
+     /*   Drawable drawable = activity.getResources().getDrawable(resource);
         Bitmap bitmap = AndroidGraphicFactory.convertToBitmap(drawable);
-        return new Marker(p, bitmap, 0, -bitmap.getHeight() / 2);
+        return new Marker(p, bitmap, 0, -bitmap.getHeight() / 2);*/
+        return null;
     }
 
     /**

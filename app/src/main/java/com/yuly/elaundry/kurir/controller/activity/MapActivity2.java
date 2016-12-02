@@ -118,7 +118,7 @@ public class MapActivity2 extends AppCompatActivity implements LocationListener 
             getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
             // Thema
-            themeUtils.onActivityCreateSetTheme(this,getSupportActionBar(),this);
+           // themeUtils.onActivityCreateSetTheme(this,getSupportActionBar(),this);
         }
 
         inclusionViewGroup.getParent().bringChildToFront(inclusionViewGroup);

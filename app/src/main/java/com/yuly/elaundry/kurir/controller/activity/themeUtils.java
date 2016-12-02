@@ -83,6 +83,7 @@ case THEME2:
 
 actionBar.setBackgroundDrawable(context.getResources().getDrawable(R.color.theme2));
 
+
     if (Build.VERSION.SDK_INT>=21) {
         Window window = activity.getWindow();
         window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);

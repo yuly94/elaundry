@@ -62,6 +62,8 @@ public class MapActivity extends AppCompatActivity implements LocationListener {
 
 */
 
+
+
         locationManager = (LocationManager) getSystemService(Context.LOCATION_SERVICE);
         if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
             // TODO: Consider calling
@@ -114,7 +116,7 @@ public class MapActivity extends AppCompatActivity implements LocationListener {
             getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
             // Thema
-            themeUtils.onActivityCreateSetTheme(this,getSupportActionBar(),this);
+           // themeUtils.onActivityCreateSetTheme(this,getSupportActionBar(),this);
         }
 
 
@@ -163,9 +165,10 @@ public class MapActivity extends AppCompatActivity implements LocationListener {
             MapHandler.getMapHandler().removeLayer(layers, mPositionMarker);
             mPositionMarker = MapHandler.getMapHandler().createMarker(mcLatLong, R.drawable.ic_my_location_dark_24dp);
             layers.add(mPositionMarker);
-            mapActions.showPositionBtn.setImageResource(R.drawable.ic_my_location_white_24dp);
+
+        //    mapActions.showPositionBtn.setImageResource(R.drawable.ic_my_location_white_24dp);
         } else {
-            mapActions.showPositionBtn.setImageResource(R.drawable.ic_location_searching_white_24dp);
+          //  mapActions.showPositionBtn.setImageResource(R.drawable.ic_location_searching_white_24dp);
         }
     }
 

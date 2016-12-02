@@ -119,6 +119,7 @@
             android:layout_centerVertical="true"
             android:layout_toRightOf="@id/nav_settings_start"
             android:text="@string/from_loc"
+            android:maxLines="1"
             android:textColor="@color/my_divider"
             android:textSize="12sp"/>
 
@@ -129,7 +130,7 @@
             android:layout_marginLeft="94dp"
             android:layout_marginRight="44dp"
             android:hint="latitude, longitude"
-            android:singleLine="true"
+            android:maxLines="1"
             android:textColorHint="@color/my_secondary_text"
             android:textSize="14sp"/>
 
@@ -172,6 +173,7 @@
             android:layout_centerVertical="true"
             android:layout_toRightOf="@id/nav_settings_end"
             android:text="@string/to_loc"
+            android:maxLines="1"
             android:textColor="@color/my_divider"
             android:textSize="12sp"/>
 
@@ -182,7 +184,7 @@
             android:layout_marginLeft="94dp"
             android:layout_marginRight="44dp"
             android:hint="latitude, longitude"
-            android:singleLine="true"
+            android:maxLines="1"
             android:textColorHint="@color/my_secondary_text"
             android:textSize="14sp"/>
 

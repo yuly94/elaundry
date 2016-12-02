@@ -107,6 +107,7 @@ public class RouteDbHelper extends SQLiteOpenHelper {
 
         // creating required tables
         db.execSQL(CREATE_TABLE_LOKASI_KONSUMEN);
+        db.execSQL(CREATE_TABLE_PATH_KONSUMEN);
         db.execSQL(CREATE_TABLE_TODO);
         db.execSQL(CREATE_TABLE_TAG);
         db.execSQL(CREATE_TABLE_TODO_TAG);
@@ -116,6 +117,7 @@ public class RouteDbHelper extends SQLiteOpenHelper {
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
         // on upgrade drop older tables
         db.execSQL("DROP TABLE IF EXISTS " + TABLE_LOKASI_KONSUMEN);
+        db.execSQL("DROP TABLE IF EXISTS " + TABLE_PATH_KONSUMEN);
         db.execSQL("DROP TABLE IF EXISTS " + TABLE_TODO);
         db.execSQL("DROP TABLE IF EXISTS " + TABLE_TAG);
         db.execSQL("DROP TABLE IF EXISTS " + TABLE_TODO_TAG);
@@ -152,7 +154,7 @@ public class RouteDbHelper extends SQLiteOpenHelper {
     /**
      * Creating a todo
      */
-    public long createLokasiKonsumen(Lokasi lokasi, long[] tag_ids) {
+    public long createLokasiKonsumen(Lokasi lokasi) {
         SQLiteDatabase db = this.getWritableDatabase();
 
         ContentValues values = new ContentValues();
@@ -160,7 +162,7 @@ public class RouteDbHelper extends SQLiteOpenHelper {
         values.put(KEY_KONSUMEN_LATITUDE, lokasi.getLatitude());
         values.put(KEY_KONSUMEN_LONGITUDE, lokasi.getLongitude());
         values.put(KEY_KONSUMEN_JARAK, lokasi.getJarak());
-        values.put(KEY_CREATED_AT, lokasi.getStatus());
+        values.put(KEY_STATUS, lokasi.getStatus());
         values.put(KEY_CREATED_AT, getDateTime());
 
         // insert row
@@ -178,43 +180,13 @@ public class RouteDbHelper extends SQLiteOpenHelper {
 
 
     /**
-     * getting all tags
-     * */
-    public List<Lokasi> getAllLokasix() {
-        List<Lokasi> list = new ArrayList<Lokasi>();
-        String selectQuery = "SELECT "+KEY_ID +","+ KEY_KONSUMEN_LATITUDE +","+ KEY_KONSUMEN_LONGITUDE+" FROM " + TABLE_LOKASI_KONSUMEN;
-
-
-       // Log.e(LOG, selectQuery);
-
-        SQLiteDatabase db = this.getReadableDatabase();
-        Cursor cursor = db.rawQuery(selectQuery, null);
-
-        // looping through all rows and adding to list
-        if (cursor .moveToFirst()) {
-            while (!cursor.isAfterLast()) {
-                Lokasi lok = new Lokasi();
-
-                lok.setLatitude((cursor.getString(cursor.getColumnIndex(KEY_KONSUMEN_LATITUDE))));
-                lok.setLatitude((cursor.getString(cursor.getColumnIndex(KEY_KONSUMEN_LATITUDE))));
-                lok.setLongitude(cursor.getString(cursor.getColumnIndex(KEY_KONSUMEN_LONGITUDE)));
-
-                cursor.moveToNext();
-            }
-        }
-
-        cursor.close();
-        return list;
-    }
-
-    /**
-     * getting all todos
+     * getting all lokasi
      * */
 
 
     // Lokasi Pesanan
     public List<Lokasi> getAllLokasi() {
-        List<Lokasi> contactList = new ArrayList<Lokasi>();
+        List<Lokasi> listlokasi = new ArrayList<Lokasi>();
         // Select All Query
         String selectQuery = "SELECT  * FROM " + TABLE_LOKASI_KONSUMEN;
 
@@ -226,48 +198,30 @@ public class RouteDbHelper extends SQLiteOpenHelper {
             do {
                 Lokasi lokasi = new Lokasi();
                 lokasi.setId(Integer.parseInt(cursor.getString(0)));
-                lokasi.setLatitude(cursor.getString(1));
-                lokasi.setLongitude(cursor.getString(2));
+                lokasi.setKonsumenId(cursor.getString(1));
+                lokasi.setLatitude(cursor.getString(2));
+                lokasi.setLongitude(cursor.getString(3));
                 // Adding contact to list
-                contactList.add(lokasi);
+                listlokasi.add(lokasi);
             } while (cursor.moveToNext());
         }
 
         // return contact list
-        return contactList;
+        cursor.close();
+        return listlokasi;
     }
 
 
-    public ArrayList<HashMap<String, String>> getAllLokasixx() {
-       // List<Lokasi> listLokasi= new ArrayList<Lokasi>();
-        String selectQuery = "SELECT * FROM " + TABLE_LOKASI_KONSUMEN;
 
-        Log.i(LOG, selectQuery);
-
-        SQLiteDatabase db = this.getReadableDatabase();
-        Cursor cursor = db.rawQuery(selectQuery, null);
-
-
-        ArrayList<HashMap<String, String>> maplist = new ArrayList<HashMap<String, String>>();
-        // looping through all rows and adding to list
-
-        if (cursor.moveToFirst()) {
-            do {
-                HashMap<String, String> map = new HashMap<String, String>();
-                for(int i=0; i<cursor.getColumnCount();i++)
-                {
-                    map.put(cursor.getColumnName(i), cursor.getString(i));
-                }
-
-                maplist.add(map);
-            } while (cursor.moveToNext());
-        }
-        db.close();
-        // return contact list
-        return maplist;
-
+    /**
+     * Deleting a todo
+     */
+    public long deleteLokasi(long tado_id) {
+        SQLiteDatabase db = this.getWritableDatabase();
+        db.delete(TABLE_LOKASI_KONSUMEN, KEY_ID + " = ?",
+                new String[] { String.valueOf(tado_id) });
+        return tado_id;
     }
-
 
 
     private Lokasi cursorToComment(Cursor cursor) {

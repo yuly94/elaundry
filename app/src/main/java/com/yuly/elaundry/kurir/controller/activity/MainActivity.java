@@ -24,8 +24,6 @@ import java.util.ArrayList;
 import java.util.HashMap;
 
 
-import com.amulyakhare.textdrawable.TextDrawable;
-import com.amulyakhare.textdrawable.util.ColorGenerator;
 
 import com.yuly.elaundry.kurir.R;
 //import com.yuly.elaundry.kurir.controller.fragment.AboutFragment;
@@ -41,6 +39,8 @@ import com.yuly.elaundry.kurir.model.helper.SessionManager;
 import com.yuly.elaundry.kurir.view.navigation.NavDrawerItem;
 import com.yuly.elaundry.kurir.view.navigation.NavDrawerListAdapter;
 import com.yuly.elaundry.kurir.view.util.HelpUtils;
+import com.yuly.elaundry.kurir.view.widgets.ColorGenerator;
+import com.yuly.elaundry.kurir.view.widgets.TextDrawable;
 
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
@@ -104,7 +104,6 @@ public class MainActivity extends AppCompatActivity {
 			navDrawerItems.add(new NavDrawerItem(navMenuTitles[10], navMenuIcons.getResourceId(10, -1)));
 
 		navMenuIcons.recycle();
-
 		mDrawerList.setOnItemClickListener(new SlideMenuClickListener());
 
 		NavDrawerListAdapter adapter = new NavDrawerListAdapter(getApplicationContext(), navDrawerItems);
@@ -115,7 +114,7 @@ public class MainActivity extends AppCompatActivity {
 		setSupportActionBar(mToolbar);
 
 		// Thema
-	 	themeUtils.onActivityCreateSetTheme(this,getSupportActionBar(),this);
+	 	//themeUtils.onActivityCreateSetTheme(this,getSupportActionBar(),this);
 
 		mDrawerToggle = new ActionBarDrawerToggle(this, mDrawerLayout,
 				mToolbar,
@@ -286,7 +285,7 @@ public class MainActivity extends AppCompatActivity {
 			  //	fragment = new MapsFragmentLocation();
 			//	fragment =new Example3Fragment();
 
-				Intent intent = new Intent(this, PetaActivity.class);
+				Intent intent = new Intent(this, PetaActivity2.class);
 				startActivity(intent);
 
 				break;
@@ -360,12 +359,7 @@ public class MainActivity extends AppCompatActivity {
 	 * preferences Clears the user data from sqlite users table
 	 * */
 	private void logoutUser() {
-		session.setLogin(false);
-		db.deleteUsers();
 
-		// Launching the login activity
- 	Intent intent = new Intent(MainActivity.this, LoginActivityNew.class);
-		startActivity(intent);
 		finish();
 
 		//

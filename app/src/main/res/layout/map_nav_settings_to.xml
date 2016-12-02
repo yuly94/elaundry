@@ -38,7 +38,8 @@
             android:layout_toRightOf="@id/header_image_view"
             android:text="@string/to_location"
             android:textColor="@color/my_divider"
-            android:textSize="16sp"/>
+            android:textSize="16sp"
+            android:maxLines="1" />
 
         <ImageButton
             android:id="@+id/nav_settings_to_clear_btn"
@@ -79,7 +80,7 @@
             android:layout_height="wrap_content"
             android:layout_marginRight="16dp"
             android:padding="8dp"
-            android:src="@drawable/ic_brightness_low_white_24dp"/>
+            android:src="@drawable/ic_favorite_white_24dp"/>
 
         <TextView
             android:layout_width="wrap_content"
@@ -107,7 +108,7 @@
             android:layout_height="wrap_content"
             android:layout_marginRight="16dp"
             android:padding="8dp"
-            android:src="@drawable/ic_center_focus_strong_white_24dp"/>
+            android:src="@drawable/ic_mylocation_white_24dp"/>
 
         <TextView
             android:layout_width="wrap_content"

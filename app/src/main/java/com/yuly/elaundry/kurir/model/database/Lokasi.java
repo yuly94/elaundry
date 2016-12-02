@@ -82,7 +82,7 @@ public class Lokasi {
     }
 
     public String getLatitude() {
-        return this.longitude;
+        return this.latitude;
     }
 
     public void setLatitude(String latitude) {

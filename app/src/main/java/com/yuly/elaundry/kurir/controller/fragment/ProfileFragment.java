@@ -31,6 +31,8 @@ import com.android.volley.VolleyLog;
 import com.android.volley.toolbox.StringRequest;
 
 import com.yuly.elaundry.kurir.R;
+import com.yuly.elaundry.kurir.controller.activity.LoginActivityNew;
+import com.yuly.elaundry.kurir.controller.activity.MainActivity;
 import com.yuly.elaundry.kurir.controller.app.AppConfig;
 import com.yuly.elaundry.kurir.controller.app.AppController;
 import com.yuly.elaundry.kurir.controller.app.Constants;
@@ -255,6 +257,12 @@ public class ProfileFragment extends Fragment {
 
         } else if (id == R.id.action_exit) {
 
+            session.setLogin(false);
+            db.deleteUsers();
+
+            // Launching the login activity
+            Intent intent = new Intent(getActivity(), LoginActivityNew.class);
+            startActivity(intent);
             getActivity().finish();
             System.exit(0);
         }

@@ -59,5 +59,8 @@ public class AppConfig {
 	// Server user register url
 	public static String URL_TRANSAKSI= LINKAPI+"transaksi";
 
+	public static String NAMA_PETA = "indonesia_jawatimur_kediringanjuk";
+	public static String URL_PETA = "http://wachid.pe.hu/elaundrymaps/maps/";
+
 
 }

@@ -19,12 +19,12 @@ android {
     buildToolsVersion '25.0.0'
     defaultConfig {
         applicationId 'com.yuly.elaundry.kurir'
-        minSdkVersion 15
-        //VectorDrawables.useSupportLibrary = true
+        minSdkVersion 21
+        vectorDrawables.useSupportLibrary = true
         targetSdkVersion 25
         versionCode 1
         versionName '1.0.2'
-        //multiDexEnabled true
+        multiDexEnabled true
         signingConfig signingConfigs.release
     }
     buildTypes {
@@ -56,11 +56,7 @@ dependencies {
     compile 'com.android.support:appcompat-v7:25.0.1'
     compile 'com.android.support:recyclerview-v7:25.0.1'
     compile 'com.android.support:design:25.0.1'
-
-    compile 'com.google.android.gms:play-services-appindexing:9.8.0'
-
     compile 'com.google.code.gson:gson:2.4'
-    compile 'com.amulyakhare:com.amulyakhare.textdrawable:1.0.1'
     compile 'com.android.support:support-v4:25.0.1'
     //compile 'com.android.support:multidex:1.0.1'
     compile project(':libs_google_volley')
@@ -84,6 +80,4 @@ dependencies {
     //The Simple Logging Facade for Java
     compile 'org.slf4j:slf4j-api:1.7.21'
     //The Simple Logging Facade for Java
-
-
 }

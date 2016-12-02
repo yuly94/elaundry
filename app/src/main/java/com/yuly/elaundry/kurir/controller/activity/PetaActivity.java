@@ -27,9 +27,8 @@ import org.mapsforge.map.rendertheme.InternalRenderTheme;
 
 import android.app.ProgressDialog;
 import android.content.Intent;
+
 import android.graphics.Color;
-import android.graphics.Path;
-import android.graphics.drawable.Drawable;
 import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Build;
@@ -38,10 +37,12 @@ import android.os.Environment;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
+import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.View.OnClickListener;
+import android.view.ViewGroup;
 import android.view.Window;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
@@ -54,6 +55,7 @@ import com.graphhopper.GHRequest;
 import com.graphhopper.GHResponse;
 import com.graphhopper.GraphHopper;
 import com.graphhopper.routing.AlgorithmOptions;
+import com.graphhopper.routing.Path;
 import com.graphhopper.util.Constants;
 import com.graphhopper.util.Helper;
 import com.graphhopper.util.PointList;
@@ -147,7 +149,7 @@ public class PetaActivity extends AppCompatActivity
             getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
             // Thema
-            themeUtils.onActivityCreateSetTheme(this,getSupportActionBar(),this);
+           // themeUtils.onActivityCreateSetTheme(this,getSupportActionBar(),this);
         }
 
 
@@ -160,6 +162,7 @@ public class PetaActivity extends AppCompatActivity
 
         final EditText input = new EditText(this);
         input.setText(currentArea);
+
         boolean greaterOrEqKitkat = Build.VERSION.SDK_INT >= 19;
         if (greaterOrEqKitkat)
         {
@@ -199,6 +202,34 @@ public class PetaActivity extends AppCompatActivity
 
 
 
+    }
+
+
+
+    private void customMapView() {
+        ViewGroup inclusionViewGroup = (ViewGroup) findViewById(R.id.custom_map_view_layout);
+        View inflate = LayoutInflater.from(this).inflate(R.layout.activity_map_content, null);
+        inclusionViewGroup.addView(inflate);
+
+        Toolbar mToolbar = (Toolbar) findViewById(R.id.map_toolbar);
+
+        setSupportActionBar(mToolbar);
+
+        if (getSupportActionBar()!=null) {
+            getSupportActionBar().setTitle("Peta");
+            getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+
+            // Thema
+            themeUtils.onActivityCreateSetTheme(this,getSupportActionBar(),this);
+        }
+
+        inclusionViewGroup.getParent().bringChildToFront(inclusionViewGroup);
+
+/*        new SetStatusBarColor().setSystemBarColor(findViewById(R.id.statusBarBackgroundMap),
+                getResources().getColor(R.color.my_primary_dark_transparent), this);*/
+
+
+       // mapActions = new MapActions(this, mapView);
     }
 
     @Override
@@ -474,7 +505,7 @@ public class PetaActivity extends AppCompatActivity
         logUser("memuat graph (" + Constants.VERSION + ") ... ");
         new GHAsyncTask<Void, Void, Path>()
         {
-            protected Path saveDoInBackground( Void... v ) throws Exception
+            protected Path saveDoInBackground(Void... v ) throws Exception
             {
                 GraphHopper tmpHopp = new GraphHopper().forMobile();
                 tmpHopp.load(new File(mapsFolder, currentArea).getAbsolutePath());
@@ -537,7 +568,7 @@ public class PetaActivity extends AppCompatActivity
 
             Lokasi lokasi_konsumen = new Lokasi("123",String.valueOf(tmp.getLatitude(i)), String.valueOf(tmp.getLongitude(i)),String.valueOf(response.getDistance()),1);
 
-           long id = db.createLokasiKonsumen(lokasi_konsumen,null);
+           long id = db.createLokasiKonsumen(lokasi_konsumen);
 
             Log.d("ID", String.valueOf(id));
         }
@@ -550,9 +581,10 @@ public class PetaActivity extends AppCompatActivity
 
     private Marker createMarker( LatLong p, int resource )
     {
-        Drawable drawable = getResources().getDrawable(resource);
+     /*   Drawable drawable = getResources().getDrawable(resource);
         Bitmap bitmap = AndroidGraphicFactory.convertToBitmap(drawable);
-        return new Marker(p, bitmap, 0, -bitmap.getHeight() / 2);
+        return new Marker(p, bitmap, 0, -bitmap.getHeight() / 2);*/
+        return null;
     }
 
     public void calcPath( final double fromLat, final double fromLon,
