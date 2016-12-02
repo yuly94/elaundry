@@ -1,20 +1,9 @@
-<resources>>
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
 
-    <style name="MyMaterialTheme.NoActionBar">
-        <item name="windowActionBar">false</item>
-        <item name="windowNoTitle">true</item>
-        <item name="android:windowDrawsSystemBarBackgrounds">true</item>
-        <item name="android:statusBarColor">@android:color/transparent</item>
-    </style>
-
-    <style name="MYAppTheme.NoActionBar" parent="Theme.AppCompat.Light.NoActionBar">
-        <item name="android:listChoiceIndicatorMultiple">@drawable/apptheme_btn_check_holo_light
-        </item>
-        <item name="android:listChoiceIndicatorSingle">@drawable/apptheme_btn_radio_holo_light
-        </item>
-        <item name="android:statusBarColor">@color/theme1dark</item>
-        <item name="android:textColorPrimaryInverse">@color/bg_login</item>
-        <item name="colorPrimary">@color/my_primary_dark</item>
-        <item name="colorPrimaryDark">@color/btn_login</item>
+    <style name="MyAppThemeCompat.Light.NoActionBar" parent="Theme.AppCompat.Light.NoActionBar">
+        <item name="android:navigationBarColor">?attr/colorAccent</item>
+        <item name="android:statusBarColor">?attr/colorAccent</item>
+        <item name="colorPrimary">?attr/colorAccent</item>
     </style>
 </resources>

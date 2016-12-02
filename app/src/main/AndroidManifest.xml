@@ -1,6 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.yuly.elaundry.kurir">
+    package="com.elaundry.kurir"
+    android:versionCode="1"
+    android:versionName="0.1">
 
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
@@ -10,49 +12,34 @@
         android:glEsVersion="0x00020000"
         android:required="true" />
 
+    <!-- mapsforge cache and saving maps -->
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+
     <!--
-     The ACCESS_COARSE/FINE_LOCATION permissions are not required to use
-     Google Maps Android API v2, but you must specify either coarse or fine
-     location permissions for the 'MyLocation' functionality.
-    -->
+ The ACCESS_COARSE/FINE_LOCATION permissions are not required to use
+ Google Maps Android API v2, but you must specify either coarse or fine
+ location permissions for the 'MyLocation' functionality.
+-->
 
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
     <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
 
-    <!-- EXTERNAL_STORAGE permissions are optional for Android 6.0 onwards. -->
-    <uses-permission
-        android:name="android.permission.WRITE_EXTERNAL_STORAGE"
-        android:maxSdkVersion="22" />
-    <uses-permission
-        android:name="android.permission.READ_EXTERNAL_STORAGE"
-        android:maxSdkVersion="22" />
+    <!-- necessary to easily download maps via wifi -->
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.READ_PHONE_STATE" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
 
-    <!-- To auto-complete the email text field in the login form with the user's emails -->
-    <uses-permission android:name="android.permission.GET_ACCOUNTS" />
-    <uses-permission android:name="android.permission.READ_PROFILE" />
-    <uses-permission android:name="android.permission.READ_CONTACTS" />
-
-    <!-- android:value="AIzaSyB3xNHB_EVKUBBDUPB2LWuaaURbWIR3xBs" -->
     <application
-        android:name=".controller.app.AppController"
         android:allowBackup="true"
+        android:hardwareAccelerated="false"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
-        android:theme="@style/MYAppTheme.NoActionBar">
-
-        <!--
-     The API key for Google Maps-based APIs is defined as a string resource.
-     (See the file "res/values/google_maps_api.xml").
-     Note that the API key is linked to the encryption key used to sign the APK.
-     You need a different API key for each encryption key, including the release key that is used to
-     sign the APK for publishing.
-     You can define the keys for the debug and release targets in src/debug/ and src/release/.
-        -->
-
+        android:theme="@style/MyAppThemeCompat.Light.NoActionBar">
         <activity
-            android:name=".controller.activity.MainActivity"
-            android:launchMode="singleTop"
-            android:windowSoftInputMode="adjustPan">
+            android:name="com.elaundry.kurir.activity.MainActivity"
+            android:label="@string/title_activity_main"
+            android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -60,28 +47,19 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".controller.activity.LoginActivityNew"
-            android:launchMode="singleTop" />
+            android:name="com.elaundry.kurir.activity.ActivityRute"
+            android:label="@string/title_activity_main"
+            android:theme="@style/MyAppThemeCompat.Light.NoActionBar">
+        </activity>
         <activity
-            android:name=".controller.activity.PemesananActivity"
-            android:configChanges="keyboardHidden|orientation|screenSize"
-            android:launchMode="singleTop" />
+            android:name="com.elaundry.kurir.activity.SettingsActivity"
+            android:label="@string/title_activity_settings">
 
-        <activity
-            android:name=".controller.activity.DownloadMapActivity"
-            android:label="@string/title_activity_download"
-            android:screenOrientation="portrait"
-            android:theme="@style/MyAppThemeActionBar" />
-        <activity
-            android:name=".controller.activity.DetailPemesananActivity"
-            android:label="detail pesanan"
-            android:screenOrientation="portrait"
-            android:theme="@style/MYAppTheme.NoActionBar" />
-        <activity
-            android:name=".controller.activity.SettingsActivity"
-            android:label="@string/action_settings"
-            android:screenOrientation="portrait"
-            android:theme="@style/MYAppTheme.NoActionBar" />
+            <!--android:parentActivityName="com.elaundry.kurir.activity.MainActivity">-->
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.elaundry.kurir.activity.MainActivity" />
+        </activity>
     </application>
 
 </manifest>

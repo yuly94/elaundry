@@ -1,81 +1,21 @@
 <resources>
-    <string name="app_name">E-Laundry</string>
-    <string name="action_settings">Settings</string>
 
-    <string name="hint_email">Email</string>
-    <string name="hint_password">Password</string>
-    <string name="hint_name">Fullname</string>
-    <string name="btn_login">LOGIN</string>
-    <string name="btn_register">REGISTER</string>
-    <string name="btn_link_to_register">Not a member? Sign up now.</string>
-    <string name="btn_link_to_login">Already registred! Login Me.</string>
-    <string name="btn_logout">LOGOUT</string>
+    <string name="app_name">elaundry kurir</string>
+    <string name="title_activity_main">GraphHopper</string>
 
-
-    <string name="action_logout">logout</string>
-    <string name="action_exit">exit</string>
-    <string name="action_zoom">zoom</string>
-    <string name="action_setting">setting</string>
-
-    <!--    Permissions    -->
-    <string name="permission_rationale_location">Access to the location service is required to demonstrate the \'my location\' feature, which shows your current location on the map.</string>
-    <string name="location_permission_denied">This sample requires location permission to enable the \'my location\' layer. Please try again and grant access to use the location.\nIf the permission has been permanently denied, it can be enabled from the System Settings &gt; Apps &gt; \'Google Maps API Demos\'.</string>
-    <string name="permission_required_toast">Location permission is required for this demo.</string>
+    <string name="title_section1">Section 1</string>
+    <string name="title_section2">Section 2</string>
+    <string name="title_section3">Section 3</string>
 
     <string name="navigation_drawer_open">Open navigation drawer</string>
     <string name="navigation_drawer_close">Close navigation drawer</string>
 
-    <string name="nav_others">others</string>
+    <string name="action_example">Example action</string>
 
-    <string name="nav_normal">normal</string>
-    <string name="nav_terrain">terrain</string>
-    <string name="nav_sattelite">sattelite</string>
-    <string name="nav_hibryd">hibryd</string>
-
-    <string name="nav_share">share</string>
-    <string name="nav_logout">logout</string>
-    <string name="nav_exit">exit</string>
-
-
-    <string name="generic_server_down">generic server down</string>
-    <string name="no_internet">no internet connection</string>
-    <string name="generic_error">generic error</string>
-    <string name="generic_server_timeout">server time out</string>
-    <string name="auth_failed">auth failure</string>
-    <string name="no_network_connection">no network connection</string>
-    <string name="parsing_failed">parsing failed</string>
-
-
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
-    <string name="hint_no_handphone">no handphone</string>
-    <string name="hint_alamat">alamat</string>
-    <string name="about_developer">about developer</string>
-    <string name="about_follow">follow</string>
-    <string name="about_thanks">thanks</string>
-    <string name="action_ok">ok</string>
-    <string name="my_name">Yuly Nurhidayati</string>
-
-
-    <string name="title_activity_login_activity_">Sign in</string>
-
-    <!-- Strings related to login -->
-    <string name="prompt_email">Email</string>
-    <string name="prompt_password">Password (optional)</string>
-    <string name="action_sign_in">Sign in or register</string>
-    <string name="action_sign_in_short">Sign in</string>
-    <string name="error_invalid_email">This email address is invalid</string>
-    <string name="error_invalid_password">This password is too short</string>
-    <string name="error_incorrect_password">This password is incorrect</string>
-    <string name="error_field_required">This field is required</string>
-    <string name="permission_rationale">"Contacts permissions are needed for providing email
-        completions."
-    </string>
-    <string name="prompt_name">Name</string>
-    <string name="prompt_address">Address</string>
-    <string name="prompt_nohp">No Handphone</string>
-    <string name="action_signup">sign up</string>
-    <string name="hint_confirm_password">Confirm password</string>
+    <string name="action_settings">Settings</string>
+    <string name="table_database_berhasil_dibuat">table database berhasil dibuat</string>
+    <string name="user_disimpan_di_database">data user berhasil disimpan</string>
+    <string name="mengambil_data_dari_sqlite">mengambil data dari sqlite</string>
     <string name="title_activity_settings">Settings</string>
 
     <!-- Strings related to Settings -->
@@ -124,6 +64,20 @@
         <item>-1</item>
     </string-array>
 
+    <string-array name="list_preference_entries">
+        <item>Entry 1</item>
+        <item>Entry 2</item>
+        <item>Entry 3</item>
+    </string-array>
+
+    <string-array name="list_preference_entry_values">
+        <item>1</item>
+        <item>2</item>
+        <item>3</item>
+    </string-array>
+
+    <string-array name="multi_select_list_preference_default_value" />
+
     <string name="pref_title_system_sync_settings">System sync settings</string>
 
     <!-- Example settings for Notifications -->
@@ -135,240 +89,13 @@
     <string name="pref_ringtone_silent">Silent</string>
 
     <string name="pref_title_vibrate">Vibrate</string>
-    <string name="title_activity_main2">Main2Activity</string>
-    <string name="action_search">search</string>
-    <string name="title_activity_scrolling">ScrollingActivity</string>
-
-
-    <string name="nav_stateless">Stateless Section</string>
-    <string name="nav_example1">Section with Header</string>
-    <string name="nav_example2">Section with Header and Footer</string>
-    <string name="nav_example4">Expandable Section</string>
-    <string name="nav_example5">Grid Section with Header</string>
-    <string name="nav_example6">Expandable Grid Section</string>
-    <string name="nav_stateful">Stateful Section</string>
-    <string name="nav_example3">Section with Header and Footer</string>
-
-    <string name="world_topic">World</string>
-    <string name="biz_topic">Business</string>
-    <string name="tech_topic">Technology</string>
-    <string name="sports_topic">Sports</string>
-
-    <string name="top_rated_movies_topic">Top Rated Movies</string>
-    <string name="most_popular_movies_topic">Most Popular Movies</string>
-
-    <string name="more">MORE</string>
-    <string name="see_more">See more..</string>
-    <string name="failed_load">Failed to load, tap to try again.</string>
-    <string name="list_empty">list is empty</string>
-
-    <string name="search">search</string>
-    <string name="promp_old_password">old password</string>
-
-    <!-- login register form -->
-    <string name="change_password">Change Password</string>
-    <string name="time_remaining">Time remaining </string>
-    <string name="time_out">"Time Out ! Request again to reset password. : </string>
-    <string name="failed">Failed</string>
-    <string name="field_empty">Fields are empty !</string>
-    <string name="welcome">Welcome</string>
-    <string name="cancel">Cancel</string>
-    <string name="email">Email</string>
-    <string name="password">Password</string>
-    <string name="register">Register</string>
-    <string name="already_registered_login_now">Already Registered ? Login Now !</string>
-    <string name="name">Name</string>
-    <string name="e_laundry">E-Laundry</string>
-    <string name="address">Address</string>
-    <string name="phone">Phone</string>
-    <string name="confirm_password">Confirm Password</string>
-    <string name="not_registered_register_now">Not Registered ? Register Now !</string>
-    <string name="forgot_password">Forgot Password</string>
-    <string name="login">Login</string>
-
-    <string name="error_in_creating_fragment">Error in creating fragment</string>
-    <string name="edit">edit</string>
-    <string name="save">save</string>
-    <string name="update_profile_success">Update Profile Success</string>
-    <string name="update_profile_failed">Update Profile Failed, Please try again</string>
-    <string name="nama_lengkap">Nama Lengkap</string>
-    <string name="alamat">Address</string>
-    <string name="no_telephone">phone number</string>
-    <string name="konfirmasi_password">Konfirmasi Password</string>
-    <string name="sudah_terdaftar_login_sekarang">Sudah terdaftar ? Login sekarang !</string>
-    <string name="mendaftar">Mendaftar</string>
-    <string name="memuat">memuat</string>
-    <string name="menggganti_password">mengganti password</string>
-    <string name="permintaan_mengganti_password">permintaan mengganti password</string>
-    <string name="update_profile_gagal">tidak berhasil mengupdate profile</string>
-    <string name="mengupdate_profile">memperbarui profile</string>
-    <string name="mengganti_password">mengganti password</string>
-    <string name="gagal_update_profile">failed to update profile</string>
-    <string name="mengambil_data_dari_sqlite">menggambil data dari sqlite</string>
-    <string name="table_database_berhasil_dibuat">table database berhasil dibuat</string>
-
-
-    <string name="on_google_map">On Google Map</string>
-
-    <string name="title_activity_main">Map Setting</string>
-    <string name="title_activity_map">Map</string>
-    <string name="action_quit">Quit</string>
-    <string name="show_my_position">Show My Position</string>
-    <string name="title_activity_main_activity2">MainActivity2Activity</string>
-    <string name="weighting_shortest">Shortest</string>
-    <string name="weighting_fastest">Fastest</string>
-    <string name="use_current_location">Use Current Location</string>
-    <string name="from_location">From Location</string>
-    <string name="to_location">To Location</string>
-    <string name="from_loc">From</string>
-    <string name="to_loc">To</string>
-    <string name="choose_from_favorite">Choose from favorite</string>
-    <string name="point_on_map">Point on map</string>
-    <string name="travel_mode">Travel mode</string>
-    <string name="travel_mode_foot">Foot</string>
-    <string name="travel_mode_bike">Bike</string>
-    <string name="travel_mode_car">Car</string>
-    <string name="time">Time</string>
-    <string name="distance">Distance</string>
-    <string name="stop_navigation">Stop navigation</string>
-    <string name="stop_navigation_msg">dismiss current navigation?</string>
-    <string name="delete_map_msg">Confirm to delete map form your mobile!</string>
-
-    <string name="ok">OK</string>
-
-    <string name="stop">Stop</string>
-    <string name="km">km</string>
-    <string name="meter">m</string>
-    <string name="h_m">h:m</string>
-    <string name="settings">Settings</string>
-    <string name="change_map">Change map</string>
-    <string name="download_map">Download map</string>
-    <string name="navigation">Navigation</string>
-    <string name="alternate_route">Alternate route</string>
-    <string name="fastest">Fastest</string>
-    <string name="shortest">Shortest</string>
-    <string name="directions">Directions</string>
-    <string name="advanced_setting">Advanced setting</string>
-    <string name="a_star">A*</string>
-    <string name="routing_algorithm">Routing algorithm</string>
-    <string name="unidirectional_a_star">Unidirectional A*</string>
-    <string name="bidirectional_a_star">Bidirectional A*</string>
-    <string name="bidirectional_dijkstra">Bidirectional Dijkstra</string>
-    <string name="one_to_many_dijkstra">One to many Dijkstra</string>
-    <string name="title_activity_select">Select a map</string>
-    <string name="title_activity_download">Download maps</string>
-    <string name="remove">Remove</string>
-    <string name="loading_dotdotdot">Loading ...</string>
-    <string name="path_finding">Pathfinding</string>
-
-    <string name="tracking_stop">stop ?</string>
-    <string name="tracking_start">start ?</string>
-    <string name="dialog_stop_save_tracking">Stop and save tracking ?</string>
-    <string name="title_activity_analytics">Analytics</string>
-    <string name="visit_home_page">Visit home page</string>
-    <string name="memuat_peta">"Memuat peta : "</string>
-    <string name="dotmap">.map</string>
-    <string name="error_grafik">Kesalahan terjadi ketika membuat grafik :</string>
-    <string name="error_titikdua">"error: "</string>
-    <string name="instruksi">instructions</string>
-    <string name="elaundryconfigdottxt">elaundryconfig.txt</string>
-    <string name="update_password_gagal">failed to update password</string>
-    <string name="update_password_berhasil">update password success</string>
-    <string name="update_profile_berhasil">update profile success</string>
-    <string name="user_disimpan_di_database">User store to database</string>
-    <string name="input_masih_kosong">Input is empty</string>
-    <string name="json_request_error">json request error</string>
-    <string name="title_activity_scrolling_activityz">ScrollingActivityz</string>
-    <string name="large_text">
-        "Material is the metaphor.\n\n"
-
-        "A material metaphor is the unifying theory of a rationalized space and a system of motion."
-        "The material is grounded in tactile reality, inspired by the study of paper and ink, yet "
-        "technologically advanced and open to imagination and magic.\n"
-        "Surfaces and edges of the material provide visual cues that are grounded in reality. The "
-        "use of familiar tactile attributes helps users quickly understand affordances. Yet the "
-        "flexibility of the material creates new affordances that supercede those in the physical "
-        "world, without breaking the rules of physics.\n"
-        "The fundamentals of light, surface, and movement are key to conveying how objects move, "
-        "interact, and exist in space and in relation to each other. Realistic lighting shows "
-        "seams, divides space, and indicates moving parts.\n\n"
-
-        "Bold, graphic, intentional.\n\n"
-
-        "The foundational elements of print based design typography, grids, space, scale, color, "
-        "and use of imagery guide visual treatments. These elements do far more than please the "
-        "eye. They create hierarchy, meaning, and focus. Deliberate color choices, edge to edge "
-        "imagery, large scale typography, and intentional white space create a bold and graphic "
-        "interface that immerse the user in the experience.\n"
-        "An emphasis on user actions makes core functionality immediately apparent and provides "
-        "waypoints for the user.\n\n"
-
-        "Motion provides meaning.\n\n"
-
-        "Motion respects and reinforces the user as the prime mover. Primary user actions are "
-        "inflection points that initiate motion, transforming the whole design.\n"
-        "All action takes place in a single environment. Objects are presented to the user without "
-        "breaking the continuity of experience even as they transform and reorganize.\n"
-        "Motion is meaningful and appropriate, serving to focus attention and maintain continuity. "
-        "Feedback is subtle yet clear. Transitions are efﬁcient yet coherent.\n\n"
-
-        "3D world.\n\n"
-
-        "The material environment is a 3D space, which means all objects have x, y, and z "
-        "dimensions. The z-axis is perpendicularly aligned to the plane of the display, with the "
-        "positive z-axis extending towards the viewer. Every sheet of material occupies a single "
-        "position along the z-axis and has a standard 1dp thickness.\n"
-        "On the web, the z-axis is used for layering and not for perspective. The 3D world is "
-        "emulated by manipulating the y-axis.\n\n"
-
-        "Light and shadow.\n\n"
-
-        "Within the material environment, virtual lights illuminate the scene. Key lights create "
-        "directional shadows, while ambient light creates soft shadows from all angles.\n"
-        "Shadows in the material environment are cast by these two light sources. In Android "
-        "development, shadows occur when light sources are blocked by sheets of material at "
-        "various positions along the z-axis. On the web, shadows are depicted by manipulating the "
-        "y-axis only. The following example shows the card with a height of 6dp.\n\n"
-
-        "Resting elevation.\n\n"
-
-        "All material objects, regardless of size, have a resting elevation, or default elevation "
-        "that does not change. If an object changes elevation, it should return to its resting "
-        "elevation as soon as possible.\n\n"
-
-        "Component elevations.\n\n"
-
-        "The resting elevation for a component type is consistent across apps (e.g., FAB elevation "
-        "does not vary from 6dp in one app to 16dp in another app).\n"
-        "Components may have different resting elevations across platforms, depending on the depth "
-        "of the environment (e.g., TV has a greater depth than mobile or desktop).\n\n"
-
-        "Responsive elevation and dynamic elevation offsets.\n\n"
-
-        "Some component types have responsive elevation, meaning they change elevation in response "
-        "to user input (e.g., normal, focused, and pressed) or system events. These elevation "
-        "changes are consistently implemented using dynamic elevation offsets.\n"
-        "Dynamic elevation offsets are the goal elevation that a component moves towards, relative "
-        "to the component’s resting state. They ensure that elevation changes are consistent "
-        "across actions and component types. For example, all components that lift on press have "
-        "the same elevation change relative to their resting elevation.\n"
-        "Once the input event is completed or cancelled, the component will return to its resting "
-        "elevation.\n\n"
-
-        "Avoiding elevation interference.\n\n"
-
-        "Components with responsive elevations may encounter other components as they move between "
-        "their resting elevations and dynamic elevation offsets. Because material cannot pass "
-        "through other material, components avoid interfering with one another any number of ways, "
-        "whether on a per component basis or using the entire app layout.\n"
-        "On a component level, components can move or be removed before they cause interference. "
-        "For example, a floating action button (FAB) can disappear or move off screen before a "
-        "user picks up a card, or it can move if a snackbar appears.\n"
-        "On the layout level, design your app layout to minimize opportunities for interference. "
-        "For example, position the FAB to one side of stream of a cards so the FAB won’t interfere "
-        "when a user tries to pick up one of cards.\n\n"
-    </string>
-    <string name="title_activity_proses_route">ProsesRouteActivity</string>
-    <string name="title_activity_rute">RuteActivity</string>
+    <string name="memuat">memuat ....</string>
+    <string name="no_internet">tidak ada internet</string>
+    <string name="generic_error">server error</string>
+    <string name="generic_server_down">server sedang bermasalah</string>
+    <string name="generic_server_timeout">respon server terlalu lama</string>
+    <string name="auth_failed">autentifikasi gagal</string>
+    <string name="no_network_connection">tidak ada koneksi jaringan</string>
+    <string name="parsing_failed">parsing gagal</string>
 
 </resources>
