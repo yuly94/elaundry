@@ -79,7 +79,7 @@ public class MainActivity extends AppCompatActivity {
 		session = new SessionManager(getApplicationContext());
 
 		if (!session.isLoggedIn()) {
-			closeUser();
+			logOutUser();
 		} else {
 
 		myNamaHuruf = (ImageView) findViewById(R.id.draw_nama);
@@ -349,23 +349,18 @@ public class MainActivity extends AppCompatActivity {
 	 * */
 	private void closeUser() {
 
+
 		finish();
 
-		//
+	}
 
 
+	private void logOutUser() {
 
-	/*		android.app.Fragment fragment;
+		Intent intent = new Intent(MainActivity.this, LoginActivityNew.class);
+		startActivity(intent);
 
-			fragment = new LoginFragment();
-
-			FragmentTransaction ft = getFragmentManager().beginTransaction();
-			ft.replace(R.id.frame_container,fragment);
-			ft.commit();
-
-*/
-
-		//
+		finish();
 
 	}
 
