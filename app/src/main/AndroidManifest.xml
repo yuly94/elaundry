@@ -31,6 +31,7 @@
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
 
     <application
+        android:name=".app.AppController"
         android:allowBackup="true"
         android:hardwareAccelerated="false"
         android:icon="@mipmap/ic_launcher"
@@ -59,6 +60,11 @@
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.elaundry.kurir.activity.MainActivity" />
+        </activity>
+        <activity
+            android:name=".activity.LoginActivity"
+            android:theme="@style/MyAppThemeCompat.Light.NoActionBar"
+            android:launchMode="singleTop">
         </activity>
     </application>
 

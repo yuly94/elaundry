@@ -10,4 +10,9 @@
 
     <style name="MyAppThemeCompat.Light.NoActionBar.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
 
+
+    <style name="MyAppThemeCompat" parent="Theme.AppCompat.Light" />
+
+    <style name="MyAppThemeCompat.Light" parent="Theme.AppCompat.Light" />
+
 </resources>

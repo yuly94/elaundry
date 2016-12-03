@@ -6,4 +6,16 @@
         <item name="android:statusBarColor">?attr/colorAccent</item>
         <item name="colorPrimary">?attr/colorAccent</item>
     </style>
+
+    <style name="MyAppThemeCompat.Light" parent="Theme.AppCompat.Light">
+        <item name="android:navigationBarColor">?attr/colorAccent</item>
+        <item name="android:statusBarColor">?attr/colorAccent</item>
+        <item name="colorPrimary">?attr/colorAccent</item>
+    </style>
+
+    <style name="MyAppTheme.light" parent="Theme.AppCompat.Light.NoActionBar">
+        <item name="android:statusBarColor">?android:attr/colorAccent</item>
+        <item name="colorPrimary">?android:attr/colorAccent</item>
+        <item name="android:navigationBarColor">?android:attr/colorAccent</item>
+    </style>
 </resources>

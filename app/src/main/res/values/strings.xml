@@ -1,7 +1,7 @@
 <resources>
 
     <string name="app_name">elaundry kurir</string>
-    <string name="title_activity_main">GraphHopper</string>
+    <string name="title_activity_main">Elaundry</string>
 
     <string name="title_section1">Section 1</string>
     <string name="title_section2">Section 2</string>
@@ -97,5 +97,34 @@
     <string name="auth_failed">autentifikasi gagal</string>
     <string name="no_network_connection">tidak ada koneksi jaringan</string>
     <string name="parsing_failed">parsing gagal</string>
+    <string name="buat_fragment_error">error dalam membuat fragment</string>
+    <string name="mengupdate_profile">mengupdate profile</string>
+    <string name="json_request_error">meminta json</string>
+    <string name="search">cari</string>
+    <string name="name">nama</string>
+    <string name="alamat">alamat</string>
+    <string name="nophone">no handphone</string>
+    <string name="email">email</string>
+    <string name="edit">edit</string>
+    <string name="simpan">simpan</string>
+    <string name="e_laundry">e-laundry</string>
+    <string name="nama_lengkap">nama lengkap</string>
+    <string name="no_telephone">no telephone</string>
+    <string name="password">password</string>
+    <string name="konfirmasi_password">konfirmasi password</string>
+    <string name="mendaftar">mendaftar</string>
+    <string name="sudah_terdaftar_login_sekarang">sudah terdafar login sekarang</string>
+    <string name="title_login">login</string>
+    <string name="permintaan_mengganti_password">permintaan mengganti password</string>
+    <string name="menggganti_password">mengganti password</string>
+    <string name="update_profile_gagal">gagal memperbarui profile</string>
+    <string name="update_profile_berhasil">berhasil memperbarui profile</string>
+    <string name="mengganti_password">mengganti password</string>
+    <string name="input_masih_kosong">input masih kosong</string>
+    <string name="cancel">batal</string>
+    <string name="kolom_kosong">kolom masih kosong</string>
+    <string name="update_password_gagal">gagal memperbarui password</string>
+    <string name="update_password_berhasil">berhasil memperbarui password</string>
+    <string name="sudah_terdaftar">sudah terdaftar ? login sekarang ?</string>
 
 </resources>
