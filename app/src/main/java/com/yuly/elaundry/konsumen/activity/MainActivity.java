@@ -30,7 +30,7 @@ import com.amulyakhare.textdrawable.util.ColorGenerator;
 import com.yuly.elaundry.konsumen.R;
 //import com.yuly.elaundry.konsumen.fragment.AboutFragment;
 
-import com.yuly.elaundry.konsumen.fragment.TransaksiFragment;
+import com.yuly.elaundry.konsumen.fragment.TransaksiPemesananFragment;
 import com.yuly.elaundry.konsumen.fragment.ProfileFragment;
 import com.yuly.elaundry.konsumen.helper.KonsumenDbHandler;
 import com.yuly.elaundry.konsumen.helper.SessionManager;
@@ -244,7 +244,7 @@ public class MainActivity extends AppCompatActivity {
 		Fragment fragment = null;
 		switch (position) {
 			case 0:
-				fragment = new TransaksiFragment();//Get Fragment Instance
+				fragment = new TransaksiPemesananFragment();//Get Fragment Instance
 				Bundle data = new Bundle();//Use bundle to pass data
 				data.putString("TEXT_TOMBOL", "mengambil laundry");//put string, int, etc in bundle with a key value
 				data.putString("STATUS_SEBELUMNYA", "baru memesan");
@@ -253,7 +253,7 @@ public class MainActivity extends AppCompatActivity {
 				fragment.setArguments(data);//Finally set argument bundle to fragment
 				break;
 			case 1:
-				fragment = new TransaksiFragment();//Get Fragment Instance
+				fragment = new TransaksiPemesananFragment();//Get Fragment Instance
 				Bundle data1 = new Bundle();//Use bundle to pass data
 				data1.putString("TEXT_TOMBOL", "menyerahkan ke agent");//put string, int, etc in bundle with a key value
 				data1.putString("STATUS_SEBELUMNYA", "pengambilan laundry");
@@ -262,7 +262,7 @@ public class MainActivity extends AppCompatActivity {
 				fragment.setArguments(data1);//Finally set argument bundle to fragment
 				break;
 			case 2:
-				fragment = new TransaksiFragment();//Get Fragment Instance
+				fragment = new TransaksiPemesananFragment();//Get Fragment Instance
 				Bundle data2 = new Bundle();//Use bundle to pass data
 				data2.putString("TEXT_TOMBOL", "mengambil dari agent");//put string, int, etc in bundle with a key value
 				data2.putString("STATUS_SEBELUMNYA", "diserahkan ke agent");
@@ -276,7 +276,7 @@ public class MainActivity extends AppCompatActivity {
 				fragment.setArguments(data2);//Finally set argument bundle to fragment
 				break;
 			case 3:
-				fragment = new TransaksiFragment();//Get Fragment Instance
+				fragment = new TransaksiPemesananFragment();//Get Fragment Instance
 				Bundle data3 = new Bundle();//Use bundle to pass data
 				data3.putString("TEXT_TOMBOL", "mengantarkan laundry");//put string, int, etc in bundle with a key value
 				data3.putString("STATUS_SEBELUMNYA", "mengambil dari agent");

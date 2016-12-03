@@ -55,7 +55,7 @@ import java.util.Map;
 
 /**
  * Created by anonymous on 21/02/16.
- */public class TransaksiFragment extends Fragment implements SearchView.OnQueryTextListener{
+ */public class TransaksiPemesananFragment extends Fragment implements SearchView.OnQueryTextListener{
 
     //Creating a List of superheroes
     private List<TransaksiModel> listPemesanan;
@@ -77,7 +77,7 @@ import java.util.Map;
     private JSONObject result;
 
 
-    private static final String TAG = TransaksiFragment.class.getSimpleName();
+    private static final String TAG = TransaksiPemesananFragment.class.getSimpleName();
     //  private List<Anggota> feedItemList = new ArrayList<Anggota>();
     private RecyclerView mRecyclerView;
     //   private RecyclerView rv;

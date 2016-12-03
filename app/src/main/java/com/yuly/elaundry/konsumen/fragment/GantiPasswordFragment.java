@@ -39,8 +39,8 @@ import org.json.JSONObject;
 import java.util.HashMap;
 import java.util.Map;
 
-public class ChangePassFragment extends Fragment implements View.OnClickListener{
-    private static final String TAG = ChangePassFragment.class.getSimpleName();
+public class GantiPasswordFragment extends Fragment implements View.OnClickListener{
+    private static final String TAG = GantiPasswordFragment.class.getSimpleName();
     private EditText inputOldPass;
     private EditText inputNewPass;
     private ProgressDialog pDialog;
