@@ -287,7 +287,7 @@ public class MainActivity extends AppCompatActivity {
 			  //	fragment = new MapsFragmentLocation();
 			//	fragment =new Example3Fragment();
 
-				Intent intent = new Intent(this, PetaActivity.class);
+				Intent intent = new Intent(this, PetaActivity2.class);
 				startActivity(intent);
 
 				break;

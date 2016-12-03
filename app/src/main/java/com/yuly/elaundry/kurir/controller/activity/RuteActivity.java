@@ -241,7 +241,7 @@ public class RuteActivity extends AppCompatActivity {
 
                                    // Log.i(AppController.TAG, "parsing berhasil");
 
-                                    listPesanan.setNoId(pemesanan_id);
+                                    listPesanan.setNoId(pemesanan_no);
                                     listPesanan.setPemesananId(pemesanan_id);
                                     listPesanan.setNama(konsumen_nama);
                                     listPesanan.setNoHp(konsumen_nohp);
@@ -254,7 +254,7 @@ public class RuteActivity extends AppCompatActivity {
 
                                     Lokasi lokasi_konsumen = new Lokasi(listPesanan.getPemesananId(),String.valueOf(listPesanan.getLatitude()), String.valueOf(listPesanan.getLongitude()),"sada",1);
 
-                                    long id = db_rute.createLokasiKonsumen(lokasi_konsumen,null);
+                                    long id = db_rute.createLokasiKonsumen(lokasi_konsumen);
 
                                     Log.d("ID", String.valueOf(id));
 
