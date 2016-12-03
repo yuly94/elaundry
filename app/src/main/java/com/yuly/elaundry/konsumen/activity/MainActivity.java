@@ -79,7 +79,7 @@ public class MainActivity extends AppCompatActivity {
 		session = new SessionManager(getApplicationContext());
 
 		if (!session.isLoggedIn()) {
-			closeUser();
+			LogOutUser();
 		} else {
 
 		myNamaHuruf = (ImageView) findViewById(R.id.draw_nama);
@@ -321,6 +321,9 @@ public class MainActivity extends AppCompatActivity {
 			case 7:
 				// Logout
 				closeUser();
+
+				Log.i("Exit", "keluar aplikasi");
+
 				break;
 
 
@@ -349,23 +352,23 @@ public class MainActivity extends AppCompatActivity {
 	 * */
 	private void closeUser() {
 
-		finish();
+		//this.finish();
+		System.exit(0);
 
-		//
+	}
 
+	private void LogOutUser() {
 
+		session.setLogin(false);
+		db.deleteUsers();
 
-	/*		android.app.Fragment fragment;
+		// Launching the login activity
+		//	Intent intent = new Intent(MainActivity.this, LoginActivityNew.class);
+		Intent intent = new Intent(MainActivity.this, LoginActivityNew.class);
+		startActivity(intent);
 
-			fragment = new LoginFragment();
-
-			FragmentTransaction ft = getFragmentManager().beginTransaction();
-			ft.replace(R.id.frame_container,fragment);
-			ft.commit();
-
-*/
-
-		//
+		//this.finish();
+		System.exit(0);
 
 	}
 

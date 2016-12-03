@@ -88,10 +88,6 @@
             android:value="@integer/google_play_services_version" />
 
         <activity
-            android:name=".activity.ScrollingActivity"
-            android:label="@string/title_activity_scrolling"
-            android:theme="@style/MyMaterialTheme.NoActionBar"></activity>
-        <activity
             android:name=".activity.DetailPemesananActivity"
             android:label="@string/title_activity_detail_pemesanan"
             android:theme="@style/MyMaterialTheme.NoActionBar"></activity>
