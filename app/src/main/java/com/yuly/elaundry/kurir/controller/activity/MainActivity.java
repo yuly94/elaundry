@@ -24,8 +24,6 @@ import java.util.ArrayList;
 import java.util.HashMap;
 
 
-import com.amulyakhare.textdrawable.TextDrawable;
-import com.amulyakhare.textdrawable.util.ColorGenerator;
 
 import com.yuly.elaundry.kurir.R;
 //import com.yuly.elaundry.kurir.controller.fragment.AboutFragment;
@@ -41,6 +39,9 @@ import com.yuly.elaundry.kurir.model.helper.SessionManager;
 import com.yuly.elaundry.kurir.view.navigation.NavDrawerItem;
 import com.yuly.elaundry.kurir.view.navigation.NavDrawerListAdapter;
 import com.yuly.elaundry.kurir.view.util.HelpUtils;
+
+import com.yuly.elaundry.kurir.view.widgets.ColorGenerator;
+import com.yuly.elaundry.kurir.view.widgets.TextDrawable;
 
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
@@ -100,8 +101,8 @@ public class MainActivity extends AppCompatActivity {
 		navDrawerItems.add(new NavDrawerItem(navMenuTitles[6], navMenuIcons.getResourceId(6, -1)));
 		navDrawerItems.add(new NavDrawerItem(navMenuTitles[7], navMenuIcons.getResourceId(7, -1)));
 		navDrawerItems.add(new NavDrawerItem(navMenuTitles[8], navMenuIcons.getResourceId(8, -1)));
-			navDrawerItems.add(new NavDrawerItem(navMenuTitles[9], navMenuIcons.getResourceId(9, -1)));
-			navDrawerItems.add(new NavDrawerItem(navMenuTitles[10], navMenuIcons.getResourceId(10, -1)));
+		navDrawerItems.add(new NavDrawerItem(navMenuTitles[9], navMenuIcons.getResourceId(9, -1)));
+		navDrawerItems.add(new NavDrawerItem(navMenuTitles[10], navMenuIcons.getResourceId(10,-1)));
 
 		navMenuIcons.recycle();
 
@@ -331,8 +332,9 @@ public class MainActivity extends AppCompatActivity {
 
 				break;
 			case 10:
-				// Logout
-				logoutUser();
+				// Close
+				closeUser();
+
 				break;
 
 
@@ -364,7 +366,7 @@ public class MainActivity extends AppCompatActivity {
 		db.deleteUsers();
 
 		// Launching the login activity
- 	Intent intent = new Intent(MainActivity.this, LoginActivityNew.class);
+ 		Intent intent = new Intent(MainActivity.this, LoginActivityNew.class);
 		startActivity(intent);
 		finish();
 
@@ -385,6 +387,11 @@ public class MainActivity extends AppCompatActivity {
 		//
 
 	}
+
+	private void closeUser() {
+		finish();
+	}
+
 
 	@Override
 	public void setTitle(CharSequence title) {
