@@ -18,11 +18,9 @@ android {
     compileSdkVersion 25
     buildToolsVersion '25.0.0'
     defaultConfig {
-        applicationId 'com.yuly.elaundry'
+        applicationId 'com.yuly.elaundry.konsumen'
         minSdkVersion 15
         targetSdkVersion 25
-        versionCode 1
-        versionName "1.0"
         //multiDexEnabled true
         signingConfig signingConfigs.release
     }
@@ -32,7 +30,7 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
             signingConfig signingConfigs.release
             proguardFile '/home/anonymous/AndroidStudioProjects/myelaundry/app/proguard-android-optimize.txt'
-            debuggable true
+            debuggable false
         }
         debug {
             debuggable true
