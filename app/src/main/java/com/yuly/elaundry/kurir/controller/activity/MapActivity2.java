@@ -98,10 +98,41 @@ public class MapActivity2 extends AppCompatActivity implements LocationListener 
 
         getMyLastLocation();
         updateCurrentLocation(null);
+
+
+       //tambakanMarker();
+
     }
 
 
 
+    public void tambakan(){
+
+        // buatMarker((-7.817117399999998), (112.0287791));
+        LatLong mcLatLong = new LatLong(-7.817117399999998,112.0287791);
+        //   Layers layers = mapView.getLayerManager().getLayers();
+
+        PetaHandler.getPetaHandler().tambahMarkers(mcLatLong);
+
+        //  mPositionMarker = PetaHandler.getPetaHandler().createMarker(mcLatLong, R.drawable.ic_place_green_24dp);
+        // layers.add(mPositionMarker);
+
+
+    }
+
+    public void tambakanMarker(Double lat,Double lon){
+
+        // buatMarker((-7.817117399999998), (112.0287791));
+         LatLong mcLatLong = new LatLong(lat,lon);
+     //   Layers layers = mapView.getLayerManager().getLayers();
+
+        PetaHandler.getPetaHandler().tambahMarkers(mcLatLong);
+
+      //  mPositionMarker = PetaHandler.getPetaHandler().createMarker(mcLatLong, R.drawable.ic_place_green_24dp);
+       // layers.add(mPositionMarker);
+
+
+    }
 
 
     /**
@@ -131,6 +162,8 @@ public class MapActivity2 extends AppCompatActivity implements LocationListener 
 
 
         PetaActions = new PetaActions(this, mapView);
+
+
     }
 
     /**
@@ -144,6 +177,8 @@ public class MapActivity2 extends AppCompatActivity implements LocationListener 
             startActivity(intent);
         }
     }
+
+
 
     /**
      * Updates the users location based on the location
@@ -182,6 +217,12 @@ public class MapActivity2 extends AppCompatActivity implements LocationListener 
 
         //}
         // if false do nothing
+    }
+
+    public void markerPemesanan(LatLong mcLatLong){
+        Layers layers = mapView.getLayerManager().getLayers();
+        mPositionMarker = PetaHandler.getPetaHandler().createMarker(mcLatLong, R.drawable.ic_place_blue_24dp);
+        layers.add(mPositionMarker);
     }
 
     @Override

@@ -1,6 +1,7 @@
 package com.yuly.elaundry.kurir.controller.activity;
 
 import android.app.Activity;
+import android.app.ProgressDialog;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
@@ -15,8 +16,21 @@ import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.Toast;
 
+import com.android.volley.AuthFailureError;
+import com.android.volley.Request;
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.android.volley.VolleyLog;
+import com.android.volley.toolbox.JsonObjectRequest;
 import com.yuly.elaundry.kurir.R;
+import com.yuly.elaundry.kurir.controller.app.AppConfig;
+import com.yuly.elaundry.kurir.controller.app.AppController;
 import com.yuly.elaundry.kurir.model.dataType.Destination;
+import com.yuly.elaundry.kurir.model.database.KurirDbHandler;
+import com.yuly.elaundry.kurir.model.database.Lokasi;
+import com.yuly.elaundry.kurir.model.database.RouteDbHelper;
+import com.yuly.elaundry.kurir.model.geterseter.TransaksiModel;
+import com.yuly.elaundry.kurir.model.helper.VolleyErrorHelper;
 import com.yuly.elaundry.kurir.model.listeners.NavigatorListener;
 import com.yuly.elaundry.kurir.model.listeners.PetaHandlerListener;
 import com.yuly.elaundry.kurir.model.map.Navigasi;
@@ -24,18 +38,35 @@ import com.yuly.elaundry.kurir.model.map.PetaHandler;
 import com.yuly.elaundry.kurir.model.util.InstructionAdapter;
 import com.yuly.elaundry.kurir.model.util.Variable;
 
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
 import org.mapsforge.core.model.LatLong;
 import org.mapsforge.map.android.view.MapView;
+import org.mapsforge.map.layer.Layers;
+import org.mapsforge.map.layer.overlay.Marker;
 import org.mapsforge.map.model.MapViewPosition;
+
+import java.util.HashMap;
+import java.util.Map;
+
+import static android.content.ContentValues.TAG;
 
 
 public class PetaActions implements NavigatorListener, PetaHandlerListener {
     private Activity activity;
     protected FloatingActionButton showPositionBtn, navigationBtn, settingsBtn, controlBtn;
-    protected FloatingActionButton zoomInBtn, zoomOutBtn;
+    protected FloatingActionButton zoomInBtn, zoomOutBtn, fabNavigasi;
     private ViewGroup sideBarVP, sideBarMenuVP, navSettingsVP, navSettingsFromVP, navSettingsToVP, navInstructionVP,
             navInstructionListVP;
     private boolean menuVisible;
+
+    private ProgressDialog pDialog;
+
+    private KurirDbHandler db_user;
+    private RouteDbHelper db_rute;
+    private PetaHandler petaHandler;
+
     /**
      * true handle on start point ; false handle on end point
      */
@@ -52,15 +83,18 @@ public class PetaActions implements NavigatorListener, PetaHandlerListener {
         this.zoomInBtn = (FloatingActionButton) activity.findViewById(R.id.fab_besarkan);
         this.zoomOutBtn = (FloatingActionButton) activity.findViewById(R.id.fab_kecilkan);
 
+        this.fabNavigasi = (FloatingActionButton) activity.findViewById(R.id.fab_nafigasi);
+
 
        // view groups managed by separate layout xml file : //map_sidebar_layout/map_sidebar_menu_layout
         this.sideBarVP = (ViewGroup) activity.findViewById(R.id.menu_nafigasi_peta);
         this.sideBarMenuVP = (ViewGroup) activity.findViewById(R.id.group_tombol_navigasi);
- /*           this.navSettingsVP = (ViewGroup) activity.findViewById(R.id.nav_settings_layout);
+
+ /*     this.navSettingsVP = (ViewGroup) activity.findViewById(R.id.nav_settings_layout);
         this.navSettingsFromVP = (ViewGroup) activity.findViewById(R.id.nav_settings_from_layout);
         this.navSettingsToVP = (ViewGroup) activity.findViewById(R.id.nav_settings_to_layout);*/
 
-        //        this.navInstructionVP = (ViewGroup) activity.findViewById(R.id.nav_instruction_layout); // TODO
+        //this.navInstructionVP = (ViewGroup) activity.findViewById(R.id.nav_instruction_layout); // TODO
 /*
         this.navInstructionListVP = (ViewGroup) activity.findViewById(R.id.nav_instruction_list_layout);
         //form location and to location textView
@@ -75,13 +109,23 @@ public class PetaActions implements NavigatorListener, PetaHandlerListener {
       //  MapHandler.getPetaHandler().setMapHandlerListener(this);
         //Navigasi.getNavigator().addListener(this);
 
+
+        //http://stackoverflow.com/questions/1561803/android-progressdialog-show-crashes-with-getapplicationcontext
+
+        // SqLite database handler
+        db_user = new KurirDbHandler(this.activity);
+        // SqLite database handler
+        db_rute = new RouteDbHelper(this.activity);
+
+
+
         controlBtnHandler();
         zoomControlHandler(mapView);
         showMyLocation(mapView);
         //navBtnHandler();
 
 
-
+        mengambilData();
     }
 
 
@@ -103,6 +147,212 @@ public class PetaActions implements NavigatorListener, PetaHandlerListener {
     private void addFromMarker(LatLong startPoint) {
         PetaHandler.getPetaHandler().addStartMarker(startPoint);
     }
+
+
+    /**
+     * add start point marker to map
+     *
+     * @param Point
+     */
+    private void addMarker(LatLong Point) {
+        PetaHandler.getPetaHandler().tambahMarkers(Point);
+    }
+
+
+
+
+    private void mengambilData(){
+
+        fabNavigasi.setOnClickListener(new View.OnClickListener() {
+            @Override public void onClick(View v) {
+                mengambilDataPemesanan();
+
+            }
+
+        });
+    }
+
+    /**
+     * Mengambil data pemesanan baru
+     */
+
+    //http://stackoverflow.com/questions/28344448/how-to-send-json-object-to-server-using-volley-in-andorid
+    private void mengambilDataPemesanan() {
+
+        pDialog = new ProgressDialog(this.activity);
+        pDialog.setMessage("memuat ....");
+        pDialog.setCancelable(false);
+
+        showProgressDialog();
+
+        // Posting parameters untuk mengambil data pemesanan
+        HashMap<String, String> params = new HashMap<String, String>();
+        params.put("pemesanan_status", "baru memesan");
+
+        JsonObjectRequest jsonObjReq = new JsonObjectRequest(Request.Method.POST,
+                AppConfig.URL_PEMESANAN, new JSONObject(params),
+                new Response.Listener<JSONObject>() {
+
+                    @Override
+                    public void onResponse(JSONObject response) {
+                        Log.d(TAG, response.toString());
+
+
+                        Log.d(AppController.TAG, "on Response " + response.toString());
+                        //   msgResponse.setText(response.toString());
+                        hideProgressDialog();
+
+
+                        try {
+                            boolean error = response.getBoolean("error");
+
+                            if (!error) {
+                                JSONArray obj = response.getJSONArray("pemesanan");
+
+
+                                for (int i = 0; i < obj.length(); i++) {
+                                    TransaksiModel listPesanan = new TransaksiModel();
+
+                                    JSONObject jObj = obj.getJSONObject(i);
+
+                                    Log.d("TAG", jObj.toString());
+
+                                    String pemesanan_no = jObj.getString("pemesanan_no");
+                                    String pemesanan_id = jObj.getString("pemesanan_id");
+                                    String konsumen_id = jObj.getString("konsumen_id");
+                                    String konsumen_nama = jObj.getString("konsumen_nama");
+                                    String konsumen_nohp = jObj.getString("konsumen_nohp");
+                                    String pemesanan_latitude = jObj.getString("pemesanan_latitude");
+                                    String pemesanan_longitude = jObj.getString("pemesanan_longitude");
+                                    String pemesanan_alamat = jObj.getString("pemesanan_alamat");
+                                    String pemesanan_catatan = jObj.getString("pemesanan_catatan");
+                                    String pemesanan_paket = jObj.getString("pemesanan_paket");
+                                    String pemesanan_baju = jObj.getString("pemesanan_baju");
+                                    String pemesanan_celana = jObj.getString("pemesanan_celana");
+                                    String pemesanan_rok = jObj.getString("pemesanan_rok");
+                                    String pemesanan_harga = jObj.getString("pemesanan_harga");
+                                    String pemesanan_tanggal = jObj.getString("pemesanan_tanggal");
+                                    String pemesanan_status = jObj.getString("pemesanan_status");
+
+                                    // Log.i(AppController.TAG, "parsing berhasil");
+
+/*                                    listPesanan.setNoId(pemesanan_id);
+                                    listPesanan.setPemesananId(pemesanan_id);
+                                    listPesanan.setNama(konsumen_nama);
+                                    listPesanan.setNoHp(konsumen_nohp);
+                                    listPesanan.setHarga(pemesanan_harga);
+                                    listPesanan.setLatitude(pemesanan_latitude);
+                                    listPesanan.setLongitude(pemesanan_longitude);
+                                    listPesanan.setKonsumenId(konsumen_id);
+                                    listPesanan.setAlamat(pemesanan_alamat);
+                                    listPesanan.setTanggal(pemesanan_tanggal);*/
+
+                                    Lokasi lokasi_konsumen = new Lokasi(listPesanan.getPemesananId(), String.valueOf(listPesanan.getLatitude()), String.valueOf(listPesanan.getLongitude()), "sada", 1);
+
+                                    long id = db_rute.createLokasiKonsumen(lokasi_konsumen);
+
+                                    // buatMarker((-7.817117399999998), (112.0287791));
+
+
+
+                                    Log.d("ID", String.valueOf(id));
+                                    Log.i("TAG La : ",pemesanan_latitude);
+                                    Log.i("TAG Lo : ",pemesanan_longitude);
+                                 //   LatLong mcLatLong = new LatLong(Double.valueOf(pemesanan_latitude),Double.valueOf(pemesanan_longitude));
+
+                                   // petaHandler.tambahMarkers(mcLatLong);
+
+                                   // buatMarkerHijau(mcLatLong,mapView);
+
+
+                                   // addMarker(mcLatLong);
+                                    MapActivity2 maps2 = new MapActivity2();
+                                    maps2.tambakanMarker(Double.valueOf(pemesanan_latitude),Double.valueOf(pemesanan_longitude));
+
+                                }
+
+                                //updateList();
+                            } else {
+
+                                JSONArray message = response.getJSONArray("message");
+
+                                Toast.makeText(activity, message.toString(), Toast.LENGTH_SHORT).show();
+
+                            }
+
+
+                        } catch (JSONException e) {
+
+                            e.printStackTrace();
+                        }
+
+                    }
+
+
+                }, new Response.ErrorListener() {
+
+            @Override
+            public void onErrorResponse(VolleyError error) {
+
+
+                String e = VolleyErrorHelper.getMessage(error, activity);
+                VolleyLog.d(AppController.TAG, "Error: " + e);
+
+                hideProgressDialog();
+
+                Toast.makeText(activity,
+                        e, Toast.LENGTH_LONG).show();
+            }
+        }) {
+
+            /**
+             * Passing some request headers
+             * */
+
+            @Override
+            public Map<String, String> getHeaders() throws AuthFailureError {
+                HashMap<String, String> headers = new HashMap<>();
+                headers.put("Content-Type", "application/json");
+                headers.put("Authorization", db_user.getUserApi()); //"a72d24f68128083f2904c6ce38fa232f97f2cab1");//"ef9bd71d1a704132aa366d1aa870f8be1faa44db");
+                headers.put("User-agent", System.getProperty("http.agent"));
+                return headers;
+            }
+
+        };
+
+        // Adding request to request queue
+        String tag_json_arry = "jobj_req";
+        AppController.getInstance().addToRequestQueue(jsonObjReq, tag_json_arry);
+
+        // Cancelling request
+        // ApplicationController.getInstance().getRequestQueue().cancelAll(tag_json_arry);
+    }
+
+
+
+    private void buatMarkerHijau(LatLong latLong,  MapView mapView) {
+        Layers layers = mapView.getLayerManager().getLayers();
+        Marker marker = petaHandler.createMarker(latLong, R.drawable.ic_place_green_24dp);
+        if (marker != null) {
+            layers.add(marker);
+        }
+    }
+
+    private void showProgressDialog() {
+        if (!pDialog.isShowing()) {
+            pDialog.show();
+        }
+
+        Log.d("Show Progress", "here");
+
+    }
+
+    private void hideProgressDialog() {
+        if (pDialog.isShowing()) {
+            pDialog.hide();
+        }
+    }
+
 
     /**
      * settings layout:
@@ -361,6 +611,7 @@ public class PetaActions implements NavigatorListener, PetaHandlerListener {
         zoomInBtn.setImageResource(R.drawable.ic_add_white_24dp);
         zoomOutBtn.setImageResource(R.drawable.ic_remove_white_24dp);
 
+
         zoomInBtn.setOnClickListener(new View.OnClickListener() {
             MapViewPosition mvp = mapView.getModel().mapViewPosition;
 
@@ -368,6 +619,8 @@ public class PetaActions implements NavigatorListener, PetaHandlerListener {
                 if (mvp.getZoomLevel() < Variable.getVariable().getZoomLevelMax()) mvp.zoomIn();
             }
         });
+
+
         zoomOutBtn.setOnClickListener(new View.OnClickListener() {
             MapViewPosition mvp = mapView.getModel().mapViewPosition;
 
@@ -395,7 +648,7 @@ public class PetaActions implements NavigatorListener, PetaHandlerListener {
                                                 mapView.getModel().mapViewPosition.getZoomLevel()));*/
 
                 } else {
-                    showPositionBtn.setImageResource(R.drawable.ic_place_blue_24dp);
+                    showPositionBtn.setImageResource(R.drawable.ic_location_searching_white_24dp);
                     Toast.makeText(activity, "No Location Available", Toast.LENGTH_SHORT).show();
                 }
             }

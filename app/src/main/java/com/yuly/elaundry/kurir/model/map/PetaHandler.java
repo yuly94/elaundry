@@ -142,33 +142,8 @@ public class PetaHandler {
                 new ViewGroup.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT);
         activity.addContentView(mapView, params);
         loadGraphStorage();
-    }
 
 
-    void loadMapx( File areaFolder )
-    {
-        logUser("loading map");
-        MapDataStore mapDataStore = new MapFile(new File(areaFolder, currentArea + ".map"));
-
-        mapView.getLayerManager().getLayers().clear();
-
-        tileRendererLayer = new TileRendererLayer(tileCache, mapDataStore,
-                mapView.getModel().mapViewPosition, false, true, AndroidGraphicFactory.INSTANCE)
-        {
-            @Override
-            public boolean onLongPress( LatLong tapLatLong, Point layerXY, Point tapXY )
-            {
-                return myOnTap(tapLatLong, layerXY, tapXY);
-            }
-        };
-        tileRendererLayer.setTextScale(1.5f);
-        tileRendererLayer.setXmlRenderTheme(InternalRenderTheme.OSMARENDER);
-        mapView.getModel().mapViewPosition.setMapPosition(new MapPosition(mapDataStore.boundingBox().getCenterPoint(), (byte) 15));
-        mapView.getLayerManager().getLayers().add(tileRendererLayer);
-
-       // setContentView(mapView);
-
-        loadGraphStorage();
     }
 
 
@@ -234,6 +209,20 @@ public class PetaHandler {
             layers.add(endMarker);
         }
     }
+
+
+    public void tambahMarkers(LatLong point) {
+        Layers layers = mapView.getLayerManager().getLayers();
+        //        if (startPoint != null && endPoint != null) {
+        //            setShortestPathRunning(true);
+        //        }
+        if (point != null) {
+          //  removeLayer(layers, startMarker);
+            startMarker = createMarker(point, R.drawable.ic_place_red_24dp);
+            layers.add(startMarker);
+        }
+    }
+
 
     /**
      * remove a layer from map layers
