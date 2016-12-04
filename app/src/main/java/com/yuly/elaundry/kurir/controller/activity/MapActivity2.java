@@ -19,15 +19,14 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Toast;
 
+import com.graphhopper.GraphHopper;
 import com.yuly.elaundry.kurir.R;
-import com.yuly.elaundry.kurir.model.map.MapHandler;
-import com.yuly.elaundry.kurir.model.map.Tracking;
+import com.yuly.elaundry.kurir.model.map.PetaHandler;
 import com.yuly.elaundry.kurir.model.util.Variable;
 
 import org.mapsforge.core.model.LatLong;
 import org.mapsforge.map.android.graphics.AndroidGraphicFactory;
 import org.mapsforge.map.android.view.MapView;
-import org.mapsforge.map.layer.LayerManager;
 import org.mapsforge.map.layer.Layers;
 import org.mapsforge.map.layer.overlay.Marker;
 
@@ -38,8 +37,10 @@ public class MapActivity2 extends AppCompatActivity implements LocationListener 
     private static Location mCurrentLocation;
     private Marker mPositionMarker;
     private Location mLastLocation;
-    private MapActions mapActions;
+    private PetaActions PetaActions;
     private LocationManager locationManager;
+
+    private GraphHopper hopper;
 
 
 
@@ -47,6 +48,8 @@ public class MapActivity2 extends AppCompatActivity implements LocationListener 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_map);
+
+
 
 
 
@@ -80,13 +83,13 @@ public class MapActivity2 extends AppCompatActivity implements LocationListener 
         mapView.setClickable(true);
         mapView.setBuiltInZoomControls(false);
         //mapView.getModel().mapViewPosition.setZoomLevel((byte) 12);
-        MapHandler.getMapHandler()
+        PetaHandler.getPetaHandler()
                 .init(this, mapView, Variable.getVariable().getCountry(), Variable.getVariable().getMapsFolder());
         //
-       // MapHandler.getMapHandler().loadMap(new File(Variable.getVariable().getMapsFolder().getAbsolutePath(),
+       // MapHandler.getPetaHandler().loadMap(new File(Variable.getVariable().getMapsFolder().getAbsolutePath(),
          //       Variable.getVariable().getCountry() + "-gh"));
 
-        MapHandler.getMapHandler().loadMap(new File("/storage/emulated/0/Download/elaundrymaps/maps/",
+        PetaHandler.getPetaHandler().loadMap(new File("/storage/emulated/0/Download/elaundrymaps/maps/",
                "indonesia_jawatimur_kediringanjuk-gh"));
 
 
@@ -106,10 +109,10 @@ public class MapActivity2 extends AppCompatActivity implements LocationListener 
      */
     private void customMapView() {
         ViewGroup inclusionViewGroup = (ViewGroup) findViewById(R.id.custom_map_view_layout);
-        View inflate = LayoutInflater.from(this).inflate(R.layout.activity_map_content, null);
+        View inflate = LayoutInflater.from(this).inflate(R.layout.activity_map_baru, null);
         inclusionViewGroup.addView(inflate);
 
-        Toolbar mToolbar = (Toolbar) findViewById(R.id.map_toolbar);
+        Toolbar mToolbar = (Toolbar) findViewById(R.id.my_toolbar);
 
         setSupportActionBar(mToolbar);
 
@@ -127,7 +130,7 @@ public class MapActivity2 extends AppCompatActivity implements LocationListener 
                 getResources().getColor(R.color.my_primary_dark_transparent), this);*/
 
 
-        mapActions = new MapActions(this, mapView);
+        PetaActions = new PetaActions(this, mapView);
     }
 
     /**
@@ -155,29 +158,29 @@ public class MapActivity2 extends AppCompatActivity implements LocationListener 
         }
         if (mCurrentLocation != null) {
             LatLong mcLatLong = new LatLong(mCurrentLocation.getLatitude(), mCurrentLocation.getLongitude());
-            if (Tracking.getTracking().isTracking()) {
-                MapHandler.getMapHandler().addTrackPoint(mcLatLong);
+/*            if (Tracking.getTracking().isTracking()) {
+                MapHandler.getPetaHandler().addTrackPoint(mcLatLong);
                 Tracking.getTracking().addPoint(mCurrentLocation);
-            }
+            }*/
             Layers layers = mapView.getLayerManager().getLayers();
-            MapHandler.getMapHandler().removeLayer(layers, mPositionMarker);
-            mPositionMarker = MapHandler.getMapHandler().createMarker(mcLatLong, R.drawable.ic_my_location_dark_24dp);
+            PetaHandler.getPetaHandler().removeLayer(layers, mPositionMarker);
+            mPositionMarker = PetaHandler.getPetaHandler().createMarker(mcLatLong, R.drawable.ic_place_blue_24dp);
             layers.add(mPositionMarker);
-            mapActions.showPositionBtn.setImageResource(R.drawable.ic_my_location_white_24dp);
+            PetaActions.showPositionBtn.setImageResource(R.drawable.ic_my_location_white_24dp);
         } else {
-            mapActions.showPositionBtn.setImageResource(R.drawable.ic_location_searching_white_24dp);
+            PetaActions.showPositionBtn.setImageResource(R.drawable.ic_location_searching_white_24dp);
         }
     }
 
     @Override
     public void onBackPressed() {
-        boolean back = mapActions.homeBackKeyPressed();
+      /*  boolean back = PetaActions.homeBackKeyPressed();
         if (back) {
              moveTaskToBack(true);
+*/
+             finish();
 
-           // finish();
-
-        }
+        //}
         // if false do nothing
     }
 
@@ -204,19 +207,24 @@ public class MapActivity2 extends AppCompatActivity implements LocationListener 
             //                        log("last browsed location : "+mapView.getModel().mapViewPosition
             // .getMapPosition().latLong);
         }
+/*
         if (mapView != null)
             Variable.getVariable().setLastZoomLevel(mapView.getModel().mapViewPosition.getZoomLevel());
-        Variable.getVariable().saveVariables();
+        Variable.getVariable().saveVariables();*/
     }
 
     @Override
     protected void onDestroy() {
+
         super.onDestroy();
-        if (MapHandler.getMapHandler().getHopper() != null)
-            MapHandler.getMapHandler().getHopper().close();
-        MapHandler.getMapHandler().setHopper(null);
+        if (hopper != null)
+            hopper.close();
+
+        hopper = null;
+        // necessary?
         System.gc();
     }
+
 
     /**
      * @return my currentLocation

@@ -13,8 +13,8 @@ import android.widget.PopupMenu;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.amulyakhare.textdrawable.TextDrawable;
-import com.amulyakhare.textdrawable.util.ColorGenerator;
+import com.yuly.elaundry.kurir.view.widgets.ColorGenerator;
+import com.yuly.elaundry.kurir.view.widgets.TextDrawable;
 import com.yuly.elaundry.kurir.R;
 import com.yuly.elaundry.kurir.model.geterseter.PesananModels;
 import com.yuly.elaundry.kurir.view.widgets.BubbleTextGetter;

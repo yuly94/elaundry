@@ -1,72 +1,13 @@
 package com.yuly.elaundry.kurir.controller.activity;
 
-import android.Manifest;
-import android.app.ProgressDialog;
-import android.content.Context;
-import android.content.Intent;
-import android.content.pm.PackageManager;
 
-import android.graphics.Color;
-import android.location.Location;
-import android.location.LocationListener;
-import android.location.LocationManager;
-import android.net.Uri;
-import android.os.AsyncTask;
-import android.os.Build;
-import android.os.Bundle;
-import android.os.Environment;
-import android.provider.Settings;
-import android.support.design.widget.FloatingActionButton;
-import android.support.v4.app.ActivityCompat;
-import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.Toolbar;
-import android.util.Log;
-import android.view.LayoutInflater;
-import android.view.Menu;
-import android.view.MenuItem;
-import android.view.View;
-import android.view.View.OnClickListener;
-import android.view.ViewGroup;
-import android.view.Window;
-import android.view.animation.OvershootInterpolator;
-import android.view.animation.ScaleAnimation;
-import android.widget.ArrayAdapter;
-import android.widget.Button;
-import android.widget.EditText;
-import android.widget.Spinner;
-import android.widget.TextView;
-import android.widget.Toast;
-
-import com.android.volley.AuthFailureError;
-import com.android.volley.Request;
-import com.android.volley.Response;
-import com.android.volley.VolleyError;
-import com.android.volley.VolleyLog;
-import com.android.volley.toolbox.JsonObjectRequest;
-import com.graphhopper.GHRequest;
-import com.graphhopper.GHResponse;
-import com.graphhopper.GraphHopper;
-import com.graphhopper.routing.AlgorithmOptions;
-import com.graphhopper.routing.Path;
-import com.graphhopper.util.Constants;
-import com.graphhopper.util.Helper;
-import com.graphhopper.util.PointList;
-import com.graphhopper.util.ProgressListener;
-import com.graphhopper.util.StopWatch;
-import com.yuly.elaundry.kurir.R;
-import com.yuly.elaundry.kurir.controller.app.AppConfig;
-import com.yuly.elaundry.kurir.controller.app.AppController;
-import com.yuly.elaundry.kurir.model.database.KurirDbHandler;
-import com.yuly.elaundry.kurir.model.database.Lokasi;
-import com.yuly.elaundry.kurir.model.database.RouteDbHelper;
-import com.yuly.elaundry.kurir.model.geterseter.TransaksiModel;
-import com.yuly.elaundry.kurir.model.helper.VolleyErrorHelper;
-import com.yuly.elaundry.kurir.model.map.MapHandler;
-import com.yuly.elaundry.kurir.model.map.Tracking;
-import com.yuly.elaundry.kurir.model.peta.AndroidDownloader;
-import com.yuly.elaundry.kurir.model.peta.AndroidHelper;
-import com.yuly.elaundry.kurir.model.peta.GHAsyncTask;
-import com.yuly.elaundry.kurir.model.util.Variable;
+import java.io.File;
+import java.io.FilenameFilter;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+import java.util.TreeMap;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -91,15 +32,72 @@ import org.mapsforge.map.reader.MapDataStore;
 import org.mapsforge.map.reader.MapFile;
 import org.mapsforge.map.rendertheme.InternalRenderTheme;
 
-import java.io.File;
-import java.io.FilenameFilter;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-import java.util.TreeMap;
+import android.Manifest;
+import android.app.Dialog;
+import android.app.ProgressDialog;
+import android.content.Context;
+import android.content.Intent;
+import android.content.pm.PackageManager;
+import android.graphics.Color;
+import android.graphics.Path;
+import android.graphics.drawable.Drawable;
+import android.location.Location;
+import android.location.LocationListener;
+import android.location.LocationManager;
+import android.net.Uri;
+import android.os.AsyncTask;
+import android.os.Build;
+import android.os.Bundle;
+import android.os.Environment;
+import android.provider.Settings;
+import android.support.design.widget.FloatingActionButton;
+import android.support.v4.app.ActivityCompat;
+import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.Toolbar;
+import android.util.Log;
+import android.view.Menu;
+import android.view.MenuItem;
+import android.view.View;
+import android.view.View.OnClickListener;
+import android.view.Window;
+import android.widget.ArrayAdapter;
+import android.widget.Button;
+import android.widget.EditText;
+import android.widget.Spinner;
+import android.widget.TextView;
+import android.widget.Toast;
 
-public class PetaActivity2 extends AppCompatActivity implements LocationListener{
+import com.android.volley.AuthFailureError;
+import com.android.volley.Request;
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.android.volley.VolleyLog;
+import com.android.volley.toolbox.JsonObjectRequest;
+import com.graphhopper.GHRequest;
+import com.graphhopper.GHResponse;
+import com.graphhopper.GraphHopper;
+import com.graphhopper.routing.AlgorithmOptions;
+import com.graphhopper.util.Constants;
+import com.graphhopper.util.Helper;
+import com.graphhopper.util.PointList;
+import com.graphhopper.util.ProgressListener;
+import com.graphhopper.util.StopWatch;
+
+import com.yuly.elaundry.kurir.R;
+import com.yuly.elaundry.kurir.controller.app.AppConfig;
+import com.yuly.elaundry.kurir.controller.app.AppController;
+import com.yuly.elaundry.kurir.model.database.KurirDbHandler;
+import com.yuly.elaundry.kurir.model.database.RouteDbHelper;
+import com.yuly.elaundry.kurir.model.database.Lokasi;
+import com.yuly.elaundry.kurir.model.geterseter.TransaksiModel;
+import com.yuly.elaundry.kurir.model.helper.VolleyErrorHelper;
+import com.yuly.elaundry.kurir.model.peta.AndroidDownloader;
+import com.yuly.elaundry.kurir.model.peta.AndroidHelper;
+import com.yuly.elaundry.kurir.model.peta.GHAsyncTask;
+import com.yuly.elaundry.kurir.model.util.Variable;
+
+public class PetaActivity2 extends AppCompatActivity implements LocationListener
+{
     private MapView mapView;
     private GraphHopper hopper;
     private LatLong start;
@@ -110,13 +108,18 @@ public class PetaActivity2 extends AppCompatActivity implements LocationListener
     private Button remoteButton;
     private volatile boolean prepareInProgress = false;
     private volatile boolean shortestPathRunning = false;
-    private String currentArea = AppConfig.NAMA_PETA;
-    private String fileListURL = AppConfig.URL_PETA;
+    private String currentArea = "indonesia_jawatimur_kediringanjuk";
+    private String fileListURL = "http://wachid.pe.hu/elaundrymaps/maps/";
     private String prefixURL = fileListURL;
     private String downloadURL;
     private File mapsFolder;
     private TileCache tileCache;
     private TileRendererLayer tileRendererLayer;
+
+    private String TAG = PetaActivity2.class.getSimpleName();
+
+    private FloatingActionButton fab_location;
+
 
     private LocationManager locationManager;
 
@@ -129,55 +132,51 @@ public class PetaActivity2 extends AppCompatActivity implements LocationListener
     private KurirDbHandler db_user;
     private RouteDbHelper db_rute;
 
-    private FloatingActionButton fab_location;
-    private FloatingActionButton fab_menu;
-    private FloatingActionButton fab_besarkan;
-    private FloatingActionButton fab_kecilkan;
 
 
-
-    private boolean menuVisible;
-
-    private String TAG = PetaActivity2.class.getSimpleName();
-
-
-
-
-    protected boolean onMapTap(LatLong tapLatLong, Point layerXY, Point tapXY) {
+    protected boolean onMapTap( LatLong tapLatLong, Point layerXY, Point tapXY )
+    {
         if (!isReady())
             return false;
 
-        if (shortestPathRunning) {
+        if (shortestPathRunning)
+        {
             logUser("Calculation still in progress");
             return false;
         }
         Layers layers = mapView.getLayerManager().getLayers();
 
-        if (start != null && end == null) {
+        if (start != null && end == null)
+        {
             end = tapLatLong;
             shortestPathRunning = true;
             Marker marker = createMarker(tapLatLong, R.drawable.ic_place_red_24dp);
-            if (marker != null) {
+            if (marker != null)
+            {
                 layers.add(marker);
             }
 
             calcPath(start.latitude, start.longitude, end.latitude,
                     end.longitude);
-        } else {
+        } else
+        {
             start = tapLatLong;
             end = null;
             // remove all layers but the first one, which is the map
-            while (layers.size() > 1) {
+            while (layers.size() > 1)
+            {
                 layers.remove(1);
             }
 
             Marker marker = createMarker(start, R.drawable.ic_place_green_24dp);
-            if (marker != null) {
+            if (marker != null)
+            {
                 layers.add(marker);
             }
         }
         return true;
     }
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -197,14 +196,11 @@ public class PetaActivity2 extends AppCompatActivity implements LocationListener
             getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
             // Thema
-           // themeUtils.onActivityCreateSetTheme(this, getSupportActionBar(), this);
+            // themeUtils.onActivityCreateSetTheme(this, getSupportActionBar(), this);
         }
 
 
-
-
-        this.menuVisible = false;
-
+       // layers = mapView.getLayerManager().getLayers();
 
         locationManager = (LocationManager) getSystemService(Context.LOCATION_SERVICE);
         if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
@@ -260,7 +256,7 @@ public class PetaActivity2 extends AppCompatActivity implements LocationListener
 
 
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab_dapatkan);
-        fab.setOnClickListener(new OnClickListener() {
+        fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
 
@@ -271,19 +267,17 @@ public class PetaActivity2 extends AppCompatActivity implements LocationListener
         });
 
         FloatingActionButton fab2 = (FloatingActionButton) findViewById(R.id.fab_dapatkan_dapat);
-        fab2.setOnClickListener(new OnClickListener() {
+        fab2.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
 
-                //bacaLokasi();
-
-                mengambilDataPemesanan();
+                bacaLokasi();
             }
         });
 
 
         FloatingActionButton fab3 = (FloatingActionButton) findViewById(R.id.fab_refresh);
-        fab3.setOnClickListener(new OnClickListener() {
+        fab3.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
 
@@ -291,53 +285,40 @@ public class PetaActivity2 extends AppCompatActivity implements LocationListener
             }
         });
 
-        fab_menu = (FloatingActionButton) findViewById(R.id.fab_menu);
-
-
-
+        FloatingActionButton fab4 = (FloatingActionButton) findViewById(R.id.fab_menu);
+        fab4.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
                 // Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG).setAction("Action", null).show();
 
-              //  mengambilDataPemesanan();
+                mengambilDataPemesanan();
 
-               // buatMarker((-7.817117399999998), (112.0287791));
-              //  LatLong mcLatLong = new LatLong(-7.768428684206199,112.00151054708566);
-              //  buatMarker(mcLatLong);
-
+                // buatMarker((-7.817117399999998), (112.0287791));
+                //  LatLong mcLatLong = new LatLong(-7.768428684206199,112.00151054708566);
+                //  buatMarker(mcLatLong);
+            }
+        });
 
 
         fab_location = (FloatingActionButton) findViewById(R.id.fab_location);
-        fab_location.setOnClickListener(new OnClickListener() {
+        fab_location.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 // Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG).setAction("Action", null).show();
 
                 //mengambilDataPemesanan();
 
-                if (PetaActivity2.getmCurrentLocation() != null) {
-                 //   fab_location.setImageResource(R.drawable.ic_my_location_white_24dp);
-                  //  MapHandler.getMapHandler().centerPointOnMap(
-                    //        new LatLong(MapActivity.getmCurrentLocation().getLatitude(),
-                      //              MapActivity.getmCurrentLocation().getLongitude()), 0);
-
-                                    mapView.getModel().mapViewPosition.setMapPosition(new MapPosition(
-                                               new LatLong(PetaActivity2.getmCurrentLocation().getLatitude(),
-                                                       PetaActivity2.getmCurrentLocation().getLongitude()),
-                                                mapView.getModel().mapViewPosition.getZoomLevel()));
-
-                } else {
-                   // fab_location.setImageResource(R.drawable.ic_location_searching_white_24dp);
-                    Toast.makeText(getApplication(), "No Location Available", Toast.LENGTH_SHORT).show();
-                }
-
-
-
+                mapView.getModel().mapViewPosition.setMapPosition(new MapPosition(
+                        new LatLong(PetaActivity2.getmCurrentLocation().getLatitude(),
+                                PetaActivity2.getmCurrentLocation().getLongitude()),
+                        mapView.getModel().mapViewPosition.getZoomLevel()));
             }
         });
 
 
 
-        fab_besarkan = (FloatingActionButton) findViewById(R.id.fab_besarkan);
-        fab_besarkan.setOnClickListener(new OnClickListener() {
+        FloatingActionButton fab_besarkan = (FloatingActionButton) findViewById(R.id.fab_besarkan);
+        fab_besarkan.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
 
@@ -348,8 +329,8 @@ public class PetaActivity2 extends AppCompatActivity implements LocationListener
         });
 
 
-        fab_kecilkan = (FloatingActionButton) findViewById(R.id.fab_kecilkan);
-        fab_kecilkan.setOnClickListener(new OnClickListener() {
+        FloatingActionButton fab_kecilkan = (FloatingActionButton) findViewById(R.id.fab_kecilkan);
+        fab_kecilkan.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
 
@@ -358,6 +339,7 @@ public class PetaActivity2 extends AppCompatActivity implements LocationListener
 
             }
         });
+
 
 
         //http://stackoverflow.com/questions/1561803/android-progressdialog-show-crashes-with-getapplicationcontext
@@ -372,8 +354,6 @@ public class PetaActivity2 extends AppCompatActivity implements LocationListener
         db_rute = new RouteDbHelper(getApplicationContext());
 
 
-        controlBtnHandler();
-        menuHidden();
     }
 
 
@@ -382,63 +362,6 @@ public class PetaActivity2 extends AppCompatActivity implements LocationListener
                 -7.767706382776794,112.01162539826053);
     }
 
-
-    private void controlBtnHandler() {
-        final ScaleAnimation anim = new ScaleAnimation(0, 1, 0, 1);
-        anim.setFillBefore(true);
-        anim.setFillAfter(true);
-        anim.setFillEnabled(true);
-        anim.setDuration(300);
-        anim.setInterpolator(new OvershootInterpolator());
-
-        fab_menu.setOnClickListener(new View.OnClickListener() {
-            @Override public void onClick(View v) {
-                if (isMenuVisible()) {
-                    setMenuVisible(false);
-                    menuHidden();
-                   // sideBarMenuVP.setVisibility(View.INVISIBLE);
-                    fab_menu.setImageResource(R.drawable.ic_keyboard_arrow_up_white_24dp);
-                    fab_menu.startAnimation(anim);
-                } else {
-                    setMenuVisible(true);
-                    menuShow();
-                   // sideBarMenuVP.setVisibility(View.VISIBLE);
-                    fab_menu.setImageResource(R.drawable.ic_keyboard_arrow_down_white_24dp);
-                    fab_menu.startAnimation(anim);
-                }
-            }
-        });
-    }
-
-
-    private void menuShow(){
-        fab_besarkan.setVisibility(View.VISIBLE);
-        fab_kecilkan.setVisibility(View.VISIBLE);
-        fab_location.setVisibility(View.VISIBLE);
-    }
-
-    private void menuHidden(){
-        fab_besarkan.setVisibility(View.INVISIBLE);
-        fab_kecilkan.setVisibility(View.INVISIBLE);
-        fab_location.setVisibility(View.INVISIBLE);
-    }
-
-
-    /**
-     * @return side bar menu visibility status
-     */
-    public boolean isMenuVisible() {
-        return menuVisible;
-    }
-
-    /**
-     * side bar menu visibility
-     *
-     * @param menuVisible
-     */
-    public void setMenuVisible(boolean menuVisible) {
-        this.menuVisible = menuVisible;
-    }
 
     private void buatMarker(LatLong latLong) {
         Layers layers = mapView.getLayerManager().getLayers();
@@ -642,7 +565,6 @@ public class PetaActivity2 extends AppCompatActivity implements LocationListener
         this.mapView.getModel().mapViewPosition.destroy();
         this.mapView.destroy();
         AndroidGraphicFactory.clearResourceMemoryCache();
-
     }
 
     boolean isReady() {
@@ -761,7 +683,7 @@ public class PetaActivity2 extends AppCompatActivity implements LocationListener
         ArrayAdapter<String> spinnerArrayAdapter = new ArrayAdapter<String>(
                 this, android.R.layout.simple_spinner_dropdown_item, nameList);
         spinner.setAdapter(spinnerArrayAdapter);
-        button.setOnClickListener(new OnClickListener() {
+        button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Object o = spinner.getSelectedItem();
@@ -785,18 +707,11 @@ public class PetaActivity2 extends AppCompatActivity implements LocationListener
     }
 
     @Override
-    protected void onStop() {
+    public void onStop() {
         super.onStop();
-        if (mCurrentLocation != null) {
-            Variable.getVariable().setLastLocation(mapView.getModel().mapViewPosition.getMapPosition().latLong);
-            //                        log("last browsed location : "+mapView.getModel().mapViewPosition
-            // .getMapPosition().latLong);
-        }
-        if (mapView != null)
-            Variable.getVariable().setLastZoomLevel(mapView.getModel().mapViewPosition.getZoomLevel());
-        Variable.getVariable().saveVariables();
-    }
 
+
+    }
 
 
 
@@ -811,7 +726,6 @@ public class PetaActivity2 extends AppCompatActivity implements LocationListener
             startActivity(intent);
         }
     }
-
 
 
     /**
@@ -829,21 +743,20 @@ public class PetaActivity2 extends AppCompatActivity implements LocationListener
             LatLong mcLatLong = new LatLong(mCurrentLocation.getLatitude(), mCurrentLocation.getLongitude());
 
             Layers layers = mapView.getLayerManager().getLayers();
-            MapHandler.getMapHandler().removeLayer(layers, mPositionMarker);
-            removeLayer(layers, mPositionMarker);
-         //   mPositionMarker = MapHandler.getMapHandler().createMarker(mcLatLong, R.drawable.ic_my_location_dark_24dp);
+            //MapHandler.getPetaHandler().removeLayer(layers, mPositionMarker);
+            //removeLayer(layers, mPositionMarker);
+            // mPositionMarker = MapHandler.getPetaHandler().createMarker(mcLatLong, R.drawable.ic_my_location_dark_24dp);
 
-         //   Marker marker = createMarker(mcLatLong, R.drawable.ic_my_location_blue_24dp);
+        //    Marker marker = createMarker(mcLatLong, R.drawable.ic_place_blue_24dp);
 
-
-//            layers.add(marker);
+          //  layers.add(marker);
 
             // mapActions.showPositionBtn.setImageResource(R.drawable.ic_my_location_white_24dp);
-//            fab_location.setImageResource(R.drawable.ic_gps_fixed_24dp);
+//            fab_location.setImageResource(R.drawable.ic_gps_fixed_black_24dp);
 
         } else {
             //mapActions.showPositionBtn.setImageResource(R.drawable.ic_location_searching_white_24dp);
-     //       fab_location.setImageResource(R.drawable.ic_gps_fixed_24dp);
+            //          fab_location.setImageResource(R.drawable.ic_gps_not_fixed_black_24dp);
         }
     }
 
@@ -860,8 +773,6 @@ public class PetaActivity2 extends AppCompatActivity implements LocationListener
     public static Location getmCurrentLocation() {
         return mCurrentLocation;
     }
-
-
 
     private void getMyLastLocation() {
 
@@ -887,21 +798,24 @@ public class PetaActivity2 extends AppCompatActivity implements LocationListener
     }
 
 
+
     /**
      * Called when the location has changed.
      * There are no restrictions on the use of the supplied Location object.
      *
-     * @param location The new location, as a Location object.
+     * @param /location The new location, as a Location object.
      */
-    @Override public void onLocationChanged(Location location) {
-        updateCurrentLocation(location);
-    }
 
     @Override
     public void onStatusChanged(String s, int i, Bundle bundle) {
 
     }
 
+
+    @Override
+    public void onLocationChanged(Location location) {
+
+    }
 
     public void onProviderEnabled(String provider) {
         Toast.makeText(getBaseContext(), "Gps hidup!! ", Toast.LENGTH_SHORT).show();
@@ -1037,6 +951,7 @@ public class PetaActivity2 extends AppCompatActivity implements LocationListener
         Paint paintStroke = AndroidGraphicFactory.INSTANCE.createPaint();
         paintStroke.setStyle(Style.STROKE);
         paintStroke.setColor(Color.argb(200, 0, 0xCC, 0x33));
+
         paintStroke.setDashPathEffect(new float[]
                 {
                         25, 15
@@ -1071,19 +986,19 @@ public class PetaActivity2 extends AppCompatActivity implements LocationListener
         }
 
 
-       // Log.d("LOKASI From DB", String.valueOf(db.getAllLokasi()));
+        // Log.d("LOKASI From DB", String.valueOf(db.getAllLokasi()));
 
         return line;
     }
 
     private Marker createMarker(LatLong p, int resource) {
-      //  Drawable drawable = getResources().getDrawable(resource);
+        //  Drawable drawable = getResources().getDrawable(resource);
 
 
-      //  Marker marker = createMarker(latLong, R.drawable.ic_place_red_24dp);
+        //  Marker marker = createMarker(latLong, R.drawable.ic_place_red_24dp);
 
-      //  Bitmap bitmap = AndroidGraphicFactory.convertToBitmap(drawable);
-     //   return new Marker(p, bitmap, 0, -bitmap.getHeight() / 2);
+        //  Bitmap bitmap = AndroidGraphicFactory.convertToBitmap(drawable);
+        //   return new Marker(p, bitmap, 0, -bitmap.getHeight() / 2);
 
         return null;
     }
