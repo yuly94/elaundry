@@ -295,7 +295,10 @@ public class MainActivity extends AppCompatActivity {
 				fragment = new ProfileFragment();
 				break;
 			case 7:
-			 	fragment = new SettingsFragment();
+			 	//fragment = new SettingsFragment();
+
+				Intent intentSet = new Intent(this, AppSettingsActivity.class);
+				startActivity(intentSet);
 				break;
 			case 8:
 				//	themes

@@ -26,6 +26,7 @@ android {
         versionName '1.0.2'
         //multiDexEnabled true
         signingConfig signingConfigs.release
+        vectorDrawables.useSupportLibrary = true
     }
     buildTypes {
         release {
@@ -52,16 +53,9 @@ android {
 
 dependencies {
     compile fileTree(include: ['*.jar'], dir: 'libs')
-    testCompile 'junit:junit:4.12'
-    compile 'com.android.support:appcompat-v7:25.0.1'
-    compile 'com.android.support:recyclerview-v7:25.0.1'
-    compile 'com.android.support:design:25.0.1'
 
-    compile 'com.google.code.gson:gson:2.4'
-    compile 'com.android.support:support-v4:25.0.1'
     //compile 'com.android.support:multidex:1.0.1'
     compile project(':libs_google_volley')
-    compile 'com.jjoe64:graphview:4.0.1'
     //Android Graph Library for creating zoomable and scrollable line and bar graphs
     compile('com.graphhopper:graphhopper:0.5.0') {
         //An open source routing library and server using OpenStreetMap
@@ -69,18 +63,26 @@ dependencies {
         exclude group: 'org.openstreetmap.osmosis', module: 'osmosis-osm-binary'
         exclude group: 'org.apache.xmlgraphics', module: 'xmlgraphics-commons'
     }
+    //Vector map library written in Java - running on Android and Desktop.
+    //Vector map library written in Java - running on Android and Desktop.
+    //Vector map library written in Java - running on Android and Desktop.
+    //Vector map library written in Java - running on Android and Desktop.
+    //The Simple Logging Facade for Java
+    //The Simple Logging Facade for Java
+
+
+    compile 'com.android.support:appcompat-v7:25.0.1'
+    compile 'com.android.support:recyclerview-v7:25.0.1'
+    compile 'com.android.support:design:25.0.1'
+    compile 'com.google.code.gson:gson:2.4'
+    compile 'com.android.support:support-v4:25.0.1'
+    compile 'com.jjoe64:graphview:4.0.1'
     compile 'org.mapsforge:mapsforge-core:0.5.1'
-    //Vector map library written in Java - running on Android and Desktop.
     compile 'org.mapsforge:mapsforge-map:0.5.1'
-    //Vector map library written in Java - running on Android and Desktop.
     compile 'org.mapsforge:mapsforge-map-android:0.5.1'
-    //Vector map library written in Java - running on Android and Desktop.
     compile 'org.mapsforge:mapsforge-map-reader:0.5.1'
-    //Vector map library written in Java - running on Android and Desktop.
     compile 'org.slf4j:slf4j-android:1.7.21'
-    //The Simple Logging Facade for Java
     compile 'org.slf4j:slf4j-api:1.7.21'
-    //The Simple Logging Facade for Java
-
-
+    compile 'com.android.support:support-vector-drawable:25.0.1'
+    testCompile 'junit:junit:4.12'
 }
