@@ -338,7 +338,8 @@ public class MapHandler {
 
             protected GHResponse doInBackground(Void... v) {
                 StopWatch sw = new StopWatch().start();
-                GHRequest req = new GHRequest(fromLat, fromLon, toLat, toLon);
+                GHRequest req = new GHRequest(-7.768428684206199,112.00151054708566,
+                        -7.767706382776794,112.01162539826053);
                 req.setAlgorithm(AlgorithmOptions.DIJKSTRA_BI);
                 req.getHints().put(activity.getString(R.string.instruksi), Variable.getVariable().getDirectionsON());
                 req.setVehicle(Variable.getVariable().getTravelMode());

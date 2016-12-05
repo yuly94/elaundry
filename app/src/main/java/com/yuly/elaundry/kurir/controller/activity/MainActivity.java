@@ -30,7 +30,6 @@ import com.yuly.elaundry.kurir.R;
 
 import com.yuly.elaundry.kurir.controller.fragment.LaundryPengambilanAgentFragment;
 import com.yuly.elaundry.kurir.controller.fragment.LaundryPengantaranFragment;
-import com.yuly.elaundry.kurir.controller.fragment.SettingsFragment;
 import com.yuly.elaundry.kurir.controller.fragment.LaundryPemesananFragment;
 import com.yuly.elaundry.kurir.controller.fragment.ProfileFragment;
 import com.yuly.elaundry.kurir.controller.fragment.LaundryPenjemputanFragment;
@@ -287,7 +286,7 @@ public class MainActivity extends AppCompatActivity {
 			  //	fragment = new MapsFragmentLocation();
 			//	fragment =new Example3Fragment();
 
-				Intent intent = new Intent(this, MapActivity2.class);
+				Intent intent = new Intent(this, CariRuteActivity.class);
 				startActivity(intent);
 
 				break;

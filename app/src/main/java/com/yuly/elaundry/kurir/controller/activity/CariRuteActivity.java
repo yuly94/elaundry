@@ -32,7 +32,7 @@ import org.mapsforge.map.layer.overlay.Marker;
 
 import java.io.File;
 
-public class MapActivity2 extends AppCompatActivity implements LocationListener {
+public class CariRuteActivity extends AppCompatActivity implements LocationListener {
     private MapView mapView;
     private static Location mCurrentLocation;
     private Marker mPositionMarker;
@@ -84,13 +84,14 @@ public class MapActivity2 extends AppCompatActivity implements LocationListener 
         mapView.setBuiltInZoomControls(false);
         //mapView.getModel().mapViewPosition.setZoomLevel((byte) 12);
         PetaHandler.getPetaHandler()
-                .init(this, mapView, Variable.getVariable().getCountry(), Variable.getVariable().getMapsFolder());
-        //
+          .init(this, mapView, Variable.getVariable().getCountry(), Variable.getVariable().getMapsFolder());
+              //  .init(this, mapView, Variable.getVariable().getCountry(), Variable.getVariable().getMapsFolder());
+        //indonesia_jawatimur_kediringanjuk
        // MapHandler.getPetaHandler().loadMap(new File(Variable.getVariable().getMapsFolder().getAbsolutePath(),
          //       Variable.getVariable().getCountry() + "-gh"));
 
-        PetaHandler.getPetaHandler().loadMap(new File("/storage/emulated/0/Download/elaundrymaps/maps/",
-               "indonesia_jawatimur_kediringanjuk-gh"));
+        PetaHandler.getPetaHandler().loadMap(new File(Variable.getVariable().getMapsFolder().getAbsolutePath(),
+                Variable.getVariable().getCountry() + "-gh"));
 
 
         customMapView();
@@ -112,7 +113,7 @@ public class MapActivity2 extends AppCompatActivity implements LocationListener 
         LatLong mcLatLong = new LatLong(-7.817117399999998,112.0287791);
         //   Layers layers = mapView.getLayerManager().getLayers();
 
-        PetaHandler.getPetaHandler().tambahMarkers(mcLatLong);
+        PetaHandler.getPetaHandler().tambahMarkerMerah(mcLatLong);
 
         //  mPositionMarker = PetaHandler.getPetaHandler().createMarker(mcLatLong, R.drawable.ic_place_green_24dp);
         // layers.add(mPositionMarker);
@@ -126,7 +127,7 @@ public class MapActivity2 extends AppCompatActivity implements LocationListener 
          LatLong mcLatLong = new LatLong(lat,lon);
      //   Layers layers = mapView.getLayerManager().getLayers();
 
-        PetaHandler.getPetaHandler().tambahMarkers(mcLatLong);
+        PetaHandler.getPetaHandler().tambahMarkerMerah(mcLatLong);
 
       //  mPositionMarker = PetaHandler.getPetaHandler().createMarker(mcLatLong, R.drawable.ic_place_green_24dp);
        // layers.add(mPositionMarker);
