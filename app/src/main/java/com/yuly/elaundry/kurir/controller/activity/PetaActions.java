@@ -2,6 +2,7 @@ package com.yuly.elaundry.kurir.controller.activity;
 
 import android.app.Activity;
 import android.app.ProgressDialog;
+import android.renderscript.Sampler;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
@@ -58,7 +59,7 @@ import static android.content.ContentValues.TAG;
 public class PetaActions implements NavigatorListener, PetaHandlerListener {
     private Activity activity;
     protected FloatingActionButton showPositionBtn, navigationBtn, settingsBtn, controlBtn;
-    protected FloatingActionButton zoomInBtn, zoomOutBtn, fabNavigasi,fab_refresh, fab_dapatkan;
+    protected FloatingActionButton zoomInBtn, zoomOutBtn, fabNavigasi,fab_refresh, fab_dapatkan, fab_getpoint;
     private ViewGroup sideBarVP,  sideBarMenuVP, navSettingsVP, navSettingsFromVP, navSettingsToVP, navInstructionVP,
             navInstructionListVP;
     private boolean menuVisible;
@@ -86,6 +87,8 @@ public class PetaActions implements NavigatorListener, PetaHandlerListener {
         this.zoomOutBtn = (FloatingActionButton) activity.findViewById(R.id.fab_kecilkan);
 
         this.fabNavigasi = (FloatingActionButton) activity.findViewById(R.id.fab_nafigasi);
+
+        this.fab_getpoint = (FloatingActionButton) activity.findViewById(R.id.fab_getpoint);
 
         this.fab_refresh = (FloatingActionButton) activity.findViewById(R.id.fab_refresh);
 
@@ -134,6 +137,8 @@ public class PetaActions implements NavigatorListener, PetaHandlerListener {
         menghitungJarak();
 
         buatPoly();
+
+        getPoint();
     }
 
 
@@ -169,7 +174,7 @@ public class PetaActions implements NavigatorListener, PetaHandlerListener {
 
     private void hitungJarak() {
 
-        PetaHandler.getPetaHandler().calcPath(-7.768428684206199,112.00151054708566,
+        PetaHandler.getPetaHandler().hitungPath(-7.768428684206199,112.00151054708566,
                 -7.767706382776794,112.01162539826053);
     }
 
@@ -210,6 +215,22 @@ public class PetaActions implements NavigatorListener, PetaHandlerListener {
     }
 
 
+    private void bacaSemuaPoint() {
+        // Reading all lokasi konsumen
+        Log.d("Reading: ", "Reading point...");
+        List<Lokasi> lokasiList = db_rute.getAllLokasi();
+
+        for (Lokasi lokasi : lokasiList) {
+
+            Lokasi lok = db_rute.getLokasi(lokasi.getId());
+            // Writing Contacts to log
+            Log.d("daftar lokasi : ",+lok.getId() + " : "+lok.getLatitude()+ " : "+ lok.getLongitude());
+
+
+        }
+    }
+
+
 
     private void hapusSemuaLokasi() {
         // Reading all lokasi konsumen
@@ -245,6 +266,18 @@ public class PetaActions implements NavigatorListener, PetaHandlerListener {
         fab_refresh.setOnClickListener(new View.OnClickListener() {
             @Override public void onClick(View v) {
                 hitungJarak();
+
+            }
+
+        });
+    }
+
+    private void getPoint(){
+
+        fab_getpoint.setOnClickListener(new View.OnClickListener() {
+            @Override public void onClick(View v) {
+
+                bacaSemuaPoint();
 
             }
 

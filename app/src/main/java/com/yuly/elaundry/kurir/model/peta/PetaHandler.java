@@ -326,6 +326,68 @@ public class PetaHandler {
      * @param toLat
      * @param toLon
      */
+    public void hitungPath(final double fromLat, final double fromLon, final double toLat, final double toLon) {
+        Layers layers = mapView.getLayerManager().getLayers();
+        removeLayer(layers, polylinePath);
+        polylinePath = null;
+        new AsyncTask<Void, Void, GHResponse>() {
+            float time;
+
+            protected GHResponse doInBackground(Void... v) {
+                StopWatch sw = new StopWatch().start();
+                GHRequest req = new GHRequest(fromLat, fromLon, toLat, toLon);
+                req.setAlgorithm(AlgorithmOptions.DIJKSTRA_BI);
+                req.getHints().put(activity.getString(R.string.instruksi),
+                        //  Variable.getVariable().getDirectionsON()
+                        false
+
+                );
+                req.setVehicle(Variable.getVariable().getTravelMode());
+                //req.setVehicle("car");
+                req.setWeighting(Variable.getVariable().getWeighting());
+                //req.setWeighting("fastest");
+                GHResponse resp = hopper.route(req);
+                time = sw.stop().getSeconds();
+                return resp;
+            }
+
+            protected void onPreExecute() {
+                super.onPreExecute();
+                setShortestPathRunning(true);
+            }
+
+            protected void onPostExecute(GHResponse resp) {
+                if (!resp.hasErrors()) {
+
+
+                    log("from:" + fromLat + "," + fromLon + " to:" + toLat + ","
+                            + toLon + " found path with distance:" + resp.getDistance()
+                            / 1000f + ", nodes:" + resp.getPoints().getSize() + ", time:"
+                            + time + " " + resp.getDebugInfo());
+
+                    // Log.d("respone get point ", String.valueOf(resp.getPoints()));
+
+                    logUser("the route is " + (int) (resp.getDistance() / 100) / 10f
+                            + "km long, time:" + resp.getTime() / 60000f + "min, debug:" + time);
+
+                } else {
+                    logToast(activity.getString(R.string.error_titikdua) + resp.getErrors());
+                }
+
+            }
+        }.execute();
+    }
+
+
+
+    /**
+     * calculate a path: start to end
+     *
+     * @param fromLat
+     * @param fromLon
+     * @param toLat
+     * @param toLon
+     */
     public void calcPath(final double fromLat, final double fromLon, final double toLat, final double toLon) {
         Layers layers = mapView.getLayerManager().getLayers();
         removeLayer(layers, polylinePath);
@@ -408,9 +470,9 @@ public class PetaHandler {
     /**
      * draws a connected series of line segments specified by a list of LatLongs.
      *
-     * @param color:       the color of the polyline
+     * @param color:       the color of the olyline
      * @param strokeWidth: the stroke width of the polyline
-     * @return Polyline
+     * @return Polylinep
      */
     public Polyline buatPolyline( int color, int strokeWidth) {
         Paint paintStroke = AndroidGraphicFactory.INSTANCE.createPaint();

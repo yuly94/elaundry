@@ -223,6 +223,47 @@ public class RouteDbHelper extends SQLiteOpenHelper {
     }
 
 
+    // Getting single lokasi
+    public Lokasi getLokasi(long id) {
+        SQLiteDatabase db = this.getReadableDatabase();
+
+        Cursor cursor = db.query(TABLE_LOKASI_KONSUMEN, new String[] { KEY_ID, KEY_KONSUMEN_ID,
+                        KEY_KONSUMEN_LATITUDE, KEY_KONSUMEN_LONGITUDE }, KEY_ID + "=?",
+                new String[] { String.valueOf(id) }, null, null, null, null);
+
+        // looping through all rows and adding to list
+        if (cursor != null)
+            cursor.moveToFirst();
+
+        Lokasi lokasi = new Lokasi();
+                lokasi.setId(Integer.parseInt(cursor.getString(0)));
+                lokasi.setKonsumenId(cursor.getString(1));
+                lokasi.setLatitude(cursor.getString(2));
+                lokasi.setLongitude(cursor.getString(3));
+
+                // Adding contact to list
+        // return contact list
+        cursor.close();
+        return lokasi;
+
+        }
+
+
+
+
+
+
+
+    /**
+     * Deleting a todo
+     */
+    public long deleteLokasxi(long tado_id) {
+        SQLiteDatabase db = this.getWritableDatabase();
+        db.delete(TABLE_LOKASI_KONSUMEN, KEY_ID + " = ?",
+                new String[] { String.valueOf(tado_id) });
+        return tado_id;
+    }
+
     /**
      * getting all lokasi
      * */
