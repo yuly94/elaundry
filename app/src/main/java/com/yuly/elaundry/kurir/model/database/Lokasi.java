@@ -9,7 +9,7 @@ public class Lokasi {
     int id;
     String note;
     int status;
-    String created_at, konsumen_id,latitude, longitude, jarak;
+    String created_at, konsumen_id,pemesanan_id, latitude, longitude, jarak;
 
     // constructors
     public Lokasi() {
@@ -34,9 +34,10 @@ public class Lokasi {
         this.longitude = longitude;
     }
 
-    public Lokasi(int id, String konsumen_id,String latitude, String longitude,String jarak,int status) {
-        this.id = id;
+    public Lokasi(String konsumen_id,String pemesanan_id,String latitude, String longitude,String jarak,int status) {
+
         this.konsumen_id = konsumen_id;
+        this.pemesanan_id = pemesanan_id;
         this.latitude = latitude;
         this.longitude = longitude;
         this.jarak = jarak;
@@ -81,8 +82,16 @@ public class Lokasi {
         this.konsumen_id = konsumen_id;
     }
 
+    public String getPemesananId() {
+        return this.pemesanan_id;
+    }
+
+    public void setPemesananId(String pemesanan_id) {
+        this.pemesanan_id = pemesanan_id;
+    }
+
     public String getLatitude() {
-        return this.longitude;
+        return this.latitude;
     }
 
     public void setLatitude(String latitude) {

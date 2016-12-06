@@ -21,7 +21,7 @@ import android.widget.Toast;
 
 import com.graphhopper.GraphHopper;
 import com.yuly.elaundry.kurir.R;
-import com.yuly.elaundry.kurir.model.map.PetaHandler;
+import com.yuly.elaundry.kurir.model.peta.PetaHandler;
 import com.yuly.elaundry.kurir.model.util.Variable;
 
 import org.mapsforge.core.model.LatLong;
