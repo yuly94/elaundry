@@ -1,8 +1,10 @@
 package com.yuly.elaundry.kurir.controller.activity;
 
 import android.app.ProgressDialog;
+import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
+import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
@@ -27,6 +29,8 @@ import com.yuly.elaundry.kurir.controller.app.AppConfig;
 import com.yuly.elaundry.kurir.controller.app.AppController;
 import com.yuly.elaundry.kurir.controller.app.Constants;
 import com.yuly.elaundry.kurir.model.database.KurirDbHandler;
+import com.yuly.elaundry.kurir.model.geterseter.PesananModels;
+import com.yuly.elaundry.kurir.model.geterseter.TransaksiModel;
 import com.yuly.elaundry.kurir.model.helper.VolleyErrorHelper;
 
 import org.json.JSONArray;
@@ -53,6 +57,8 @@ public class DetailPemesananActivity extends AppCompatActivity {
     private Button btnAmbil;
 
     private static final String TAG = DetailPemesananActivity.class.getSimpleName();
+
+    TransaksiModel transaksiModel = new TransaksiModel();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -114,6 +120,22 @@ public class DetailPemesananActivity extends AppCompatActivity {
             public void onClick(View v) {
 
                 updatePemesanan(text_update_status);
+            }
+        });
+
+        FloatingActionButton mFab = (FloatingActionButton)findViewById(R.id.fab_lokasi);
+        mFab.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                Intent intent = new Intent(getApplicationContext(), PetaRuteActivity.class);
+
+                intent.putExtra("PESANAN_LATITUDE", transaksiModel.getLatitude());
+                intent.putExtra("PESANAN_LONGITUDE", transaksiModel.getLongitude());
+
+                startActivity(intent);
+
+
             }
         });
     }
@@ -186,6 +208,10 @@ public class DetailPemesananActivity extends AppCompatActivity {
                             tvRok.setText(pemesanan_rok);
                             tvTanggal.setText(pemesanan_tanggal);
                             tvStatus.setText(pemesanan_status);
+
+
+                            transaksiModel.setLatitude(pemesanan_latitude);
+                            transaksiModel.setLongitude(pemesanan_longitude);
 
                         }
 

@@ -108,6 +108,11 @@
             android:screenOrientation="portrait"
             android:theme="@style/MYAppTheme.NoActionBar" />
         <activity
+            android:name=".controller.activity.PetaRuteActivity"
+            android:label="detail pesanan"
+            android:screenOrientation="portrait"
+            android:theme="@style/MYAppTheme.NoActionBar" />
+        <activity
             android:name=".controller.activity.SettingsActivity"
             android:label="@string/action_settings"
             android:screenOrientation="portrait"
