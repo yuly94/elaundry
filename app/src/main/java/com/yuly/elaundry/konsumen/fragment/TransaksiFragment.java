@@ -208,7 +208,7 @@ import java.util.Map;
             @Override
             public void onClick(View view, int position) {
                 TransaksiModel transaksi = listPemesanan.get(position);
-                Toast.makeText(getActivity(), transaksi.getNoId() + " is selected!", Toast.LENGTH_SHORT).show();
+               // Toast.makeText(getActivity(), transaksi.getNoId() + " is selected!", Toast.LENGTH_SHORT).show();
 
                 Intent intent = new Intent(getActivity(), DetailPemesananActivity.class);
 
