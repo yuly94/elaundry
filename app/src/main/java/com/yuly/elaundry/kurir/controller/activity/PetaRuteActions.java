@@ -44,6 +44,7 @@ public class PetaRuteActions implements NavigatorListener, PetaRuteHandlerListen
     private boolean menuVisible;
 
     private PetaRuteHandler petaRuteHandler;
+    private TextView tv_dari, tv_tujuan;
     /**
      * true handle on start point ; false handle on end point
      */
@@ -57,6 +58,8 @@ public class PetaRuteActions implements NavigatorListener, PetaRuteHandlerListen
         this.settingsBtn = (FloatingActionButton) activity.findViewById(R.id.fab_setting);
         this.controlBtn = (FloatingActionButton) activity.findViewById(R.id.fab_menu);
         this.navigationBtn= (FloatingActionButton) activity.findViewById(R.id.fab_dapatkan);
+
+
         this.zoomInBtn = (FloatingActionButton) activity.findViewById(R.id.fab_besarkan);
         this.zoomOutBtn = (FloatingActionButton) activity.findViewById(R.id.fab_kecilkan);
         // view groups managed by separate layout xml file : //map_sidebar_layout/map_sidebar_menu_layout
@@ -70,6 +73,10 @@ public class PetaRuteActions implements NavigatorListener, PetaRuteHandlerListen
         //form location and to location textView
         this.fromLocalET = (EditText) activity.findViewById(R.id.nav_settings_from_local_et);
         this.toLocalET = (EditText) activity.findViewById(R.id.nav_settings_to_local_et);
+
+        this.tv_dari = (TextView) activity.findViewById(R.id.nav_instruction_list_summary_to_tv);
+        this.tv_tujuan = (TextView) activity.findViewById(R.id.nav_instruction_list_summary_from_tv);
+
         this.menuVisible = false;
         this.onStartPoint = true;
         PetaRuteHandler.getPetaRuteHandler().setRutePetaHandlerListener(this);
@@ -484,6 +491,9 @@ public class PetaRuteActions implements NavigatorListener, PetaRuteHandlerListen
 
 
             PetaRuteHandler.getPetaRuteHandler().tambahMarkerMerah(lokasiAkhir);
+
+            tv_dari.setText(lokasiAwal.latitude+","+lokasiAwal.longitude);
+            tv_tujuan.setText(lokasiAkhir.latitude+","+lokasiAkhir.longitude);
            // petaRuteHandler.addMarkers(lokasiAwal, lokasiAkhir);
 
             Log.d("Active", "navigator");

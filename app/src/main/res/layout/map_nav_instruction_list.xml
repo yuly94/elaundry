@@ -90,7 +90,8 @@
                 android:layout_height="wrap_content"
                 android:textColor="@color/my_divider"
                 android:textSize="14sp"
-                android:textStyle="bold"/>
+                android:textStyle="bold"
+                android:text="dari" />
         </LinearLayout>
 
         <!--to-->
@@ -117,7 +118,7 @@
                 android:text="@string/to_loc"
                 android:textColor="@color/my_divider"
                 android:textSize="14sp"
-                />
+                android:id="@+id/dari" />
 
             <TextView
                 android:id="@+id/nav_instruction_list_summary_to_tv"
@@ -125,7 +126,8 @@
                 android:layout_height="wrap_content"
                 android:textColor="@color/my_divider"
                 android:textSize="14sp"
-                android:textStyle="bold"/>
+                android:textStyle="bold"
+                android:text="ke" />
         </LinearLayout>
 
         <!--distance and time-->

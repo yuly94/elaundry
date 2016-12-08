@@ -58,13 +58,13 @@ public class MainActivityPeta extends AppCompatActivity implements MapDownloadLi
 
         ActionBar actionBar = getSupportActionBar();
 
-        if (actionBar != null) {
-            // return up one level
+        if (getSupportActionBar()!=null) {
+            getSupportActionBar().setTitle("Peta");
             getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-        }
 
-        // Thema
-        themeUtils.onActivityCreateSetTheme(this,getSupportActionBar(),this);
+            // Thema
+            themeUtils.onActivityCreateSetTheme(this,getSupportActionBar(),this);
+        }
 
 /*
         // set status bar

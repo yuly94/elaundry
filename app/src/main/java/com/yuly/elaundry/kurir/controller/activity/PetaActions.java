@@ -88,7 +88,7 @@ public class PetaActions implements NavigatorListener, PetaHandlerListener {
         this.zoomInBtn = (FloatingActionButton) activity.findViewById(R.id.fab_besarkan);
         this.zoomOutBtn = (FloatingActionButton) activity.findViewById(R.id.fab_kecilkan);
 
-        this.fabNavigasi = (FloatingActionButton) activity.findViewById(R.id.fab_nafigasi);
+        this.fabNavigasi = (FloatingActionButton) activity.findViewById(R.id.fab_navigasi);
 
         this.fab_getpoint = (FloatingActionButton) activity.findViewById(R.id.fab_getpoint);
 

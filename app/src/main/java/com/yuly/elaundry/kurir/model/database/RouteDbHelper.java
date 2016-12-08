@@ -51,7 +51,7 @@ public class RouteDbHelper extends SQLiteOpenHelper {
     private static final String KEY_KONSUMEN_JARAK = "konsumen_jarak";
     private static final String KEY_DARI = "konsumen_dari";
     private static final String KEY_TUJUAN = "konsumen_tujuan";
-    private static final String KEY_JARAK = "konsumen_tujuan";
+    private static final String KEY_JARAK = "konsumen_jarak";
 
 
 

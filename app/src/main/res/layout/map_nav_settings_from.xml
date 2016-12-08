@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout android:id="@+id/nav_settings_from_layout"
+<RelativeLayout xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_settings_from_layout"
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
@@ -38,7 +39,8 @@
             android:layout_toRightOf="@id/header_image_view"
             android:text="@string/from_location"
             android:textColor="@color/my_divider"
-            android:textSize="16sp"/>
+            android:textSize="16sp"
+            tools:text="dari" />
 
         <ImageButton
             android:id="@+id/nav_settings_from_clear_btn"

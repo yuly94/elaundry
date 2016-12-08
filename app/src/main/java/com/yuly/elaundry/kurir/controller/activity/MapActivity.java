@@ -102,7 +102,7 @@ public class MapActivity extends AppCompatActivity implements LocationListener {
      */
     private void customMapView() {
         ViewGroup inclusionViewGroup = (ViewGroup) findViewById(R.id.custom_map_view_layout);
-        View inflate = LayoutInflater.from(this).inflate(R.layout.activity_map_content, null);
+        View inflate = LayoutInflater.from(this).inflate(R.layout.activity_map_content_saya, null);
         inclusionViewGroup.addView(inflate);
 
         Toolbar mToolbar = (Toolbar) findViewById(R.id.map_toolbar);
@@ -161,7 +161,7 @@ public class MapActivity extends AppCompatActivity implements LocationListener {
             }
             Layers layers = mapView.getLayerManager().getLayers();
             MapHandler.getMapHandler().removeLayer(layers, mPositionMarker);
-            mPositionMarker = MapHandler.getMapHandler().createMarker(mcLatLong, R.drawable.ic_my_location_dark_24dp);
+            mPositionMarker = MapHandler.getMapHandler().createMarker(mcLatLong, R.drawable.ic_place_blue_24dp);
             layers.add(mPositionMarker);
             mapActions.showPositionBtn.setImageResource(R.drawable.ic_my_location_white_24dp);
         } else {

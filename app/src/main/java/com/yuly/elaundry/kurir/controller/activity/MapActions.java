@@ -49,15 +49,15 @@ public class MapActions implements NavigatorListener, MapHandlerListener {
 
     public MapActions(Activity activity, MapView mapView) {
         this.activity = activity;
-        this.showPositionBtn = (FloatingActionButton) activity.findViewById(R.id.map_show_my_position_fab);
-        this.navigationBtn = (FloatingActionButton) activity.findViewById(R.id.map_nav_fab);
-        this.settingsBtn = (FloatingActionButton) activity.findViewById(R.id.map_settings_fab);
-        this.controlBtn = (FloatingActionButton) activity.findViewById(R.id.map_sidebar_control_fab);
-        this.zoomInBtn = (FloatingActionButton) activity.findViewById(R.id.map_zoom_in_fab);
-        this.zoomOutBtn = (FloatingActionButton) activity.findViewById(R.id.map_zoom_out_fab);
+        this.showPositionBtn = (FloatingActionButton) activity.findViewById(R.id.fab_lokasi);
+        this.navigationBtn = (FloatingActionButton) activity.findViewById(R.id.fab_navigasi);
+        this.settingsBtn = (FloatingActionButton) activity.findViewById(R.id.fab_setting);
+        this.controlBtn = (FloatingActionButton) activity.findViewById(R.id.fab_menu);
+        this.zoomInBtn = (FloatingActionButton) activity.findViewById(R.id.fab_besarkan);
+        this.zoomOutBtn = (FloatingActionButton) activity.findViewById(R.id.fab_kecilkan);
         // view groups managed by separate layout xml file : //map_sidebar_layout/map_sidebar_menu_layout
-        this.sideBarVP = (ViewGroup) activity.findViewById(R.id.map_sidebar_layout);
-        this.sideBarMenuVP = (ViewGroup) activity.findViewById(R.id.map_sidebar_menu_layout);
+        this.sideBarVP = (ViewGroup) activity.findViewById(R.id.menu_nafigasi_peta);
+        this.sideBarMenuVP = (ViewGroup) activity.findViewById(R.id.group_tombol_navigasi);
         this.navSettingsVP = (ViewGroup) activity.findViewById(R.id.nav_settings_layout);
         this.navSettingsFromVP = (ViewGroup) activity.findViewById(R.id.nav_settings_from_layout);
         this.navSettingsToVP = (ViewGroup) activity.findViewById(R.id.nav_settings_to_layout);

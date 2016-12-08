@@ -391,7 +391,7 @@ public class PetaRuteHandler {
             protected void onPostExecute(GHResponse resp) {
                 if (!resp.hasErrors()) {
                     polylinePath = createPolyline(resp.getPoints(),
-                            activity.getResources().getColor(R.color.my_primary_dark_transparent), 20);
+                            activity.getResources().getColor(R.color.pink), 20);
                     mapView.getLayerManager().getLayers().add(polylinePath);
                     if (Variable.getVariable().isDirectionsON()) {
                         Navigasi.getNavigator().setGhResponse(resp);
