@@ -11,11 +11,311 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="79627681-5094-4df5-9f4f-e0da1fc243a5" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/misc.xml" afterPath="$PROJECT_DIR$/.idea/misc.xml" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/index.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/libs/PhpMailer/exception.php" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/libs/PhpMailer/mail.php" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/libs/PhpMailer/phpmailer.php" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/libs/PhpMailer/pop3.php" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/libs/PhpMailer/smtp.php" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/libs/Slim/Environment.php" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/libs/Slim/Exception/Pass.php" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/libs/Slim/Exception/Stop.php" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/libs/Slim/Helper/Set.php" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/libs/Slim/Http/Cookies.php" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/libs/Slim/Http/Headers.php" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/libs/Slim/Http/Request.php" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/libs/Slim/Http/Response.php" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/libs/Slim/Http/Util.php" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/libs/Slim/Log.php" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/libs/Slim/LogWriter.php" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/libs/Slim/Middleware.php" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/libs/Slim/Middleware/ContentTypes.php" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/libs/Slim/Middleware/Flash.php" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/libs/Slim/Middleware/MethodOverride.php" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/libs/Slim/Middleware/PrettyExceptions.php" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/libs/Slim/Middleware/SessionCookie.php" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/libs/Slim/Route.php" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/libs/Slim/Router.php" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/libs/Slim/Slim.php" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/libs/Slim/View.php" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/libs/phpmailer/exception.php" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/libs/phpmailer/mail.php" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/libs/phpmailer/phpmailer.php" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/libs/phpmailer/pop3.php" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/libs/phpmailer/smtp.php" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/libs_volley/.gitignore" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/libs_volley/Android.mk" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/libs_volley/bintray.gradle" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/libs_volley/build.gradle" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/libs_volley/build.xml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/libs_volley/custom_rules.xml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/libs_volley/pom.xml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/libs_volley/proguard-project.txt" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/libs_volley/proguard.cfg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/libs_volley/rules.gradle" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/libs_volley/src/main/AndroidManifest.xml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/libs_volley/src/main/java/com/android/volley/AuthFailureError.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/libs_volley/src/main/java/com/android/volley/Cache.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/libs_volley/src/main/java/com/android/volley/CacheDispatcher.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/libs_volley/src/main/java/com/android/volley/ClientError.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/libs_volley/src/main/java/com/android/volley/DefaultRetryPolicy.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/libs_volley/src/main/java/com/android/volley/ExecutorDelivery.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/libs_volley/src/main/java/com/android/volley/Network.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/libs_volley/src/main/java/com/android/volley/NetworkDispatcher.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/libs_volley/src/main/java/com/android/volley/NetworkError.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/libs_volley/src/main/java/com/android/volley/NetworkResponse.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/libs_volley/src/main/java/com/android/volley/NoConnectionError.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/libs_volley/src/main/java/com/android/volley/ParseError.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/libs_volley/src/main/java/com/android/volley/Request.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/libs_volley/src/main/java/com/android/volley/RequestQueue.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/libs_volley/src/main/java/com/android/volley/Response.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/libs_volley/src/main/java/com/android/volley/ResponseDelivery.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/libs_volley/src/main/java/com/android/volley/RetryPolicy.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/libs_volley/src/main/java/com/android/volley/ServerError.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/libs_volley/src/main/java/com/android/volley/TimeoutError.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/libs_volley/src/main/java/com/android/volley/VolleyError.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/libs_volley/src/main/java/com/android/volley/VolleyLog.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/libs_volley/src/main/java/com/android/volley/toolbox/AndroidAuthenticator.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/libs_volley/src/main/java/com/android/volley/toolbox/Authenticator.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/libs_volley/src/main/java/com/android/volley/toolbox/BasicNetwork.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/libs_volley/src/main/java/com/android/volley/toolbox/ByteArrayPool.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/libs_volley/src/main/java/com/android/volley/toolbox/ClearCacheRequest.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/libs_volley/src/main/java/com/android/volley/toolbox/DiskBasedCache.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/libs_volley/src/main/java/com/android/volley/toolbox/HttpClientStack.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/libs_volley/src/main/java/com/android/volley/toolbox/HttpHeaderParser.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/libs_volley/src/main/java/com/android/volley/toolbox/HttpStack.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/libs_volley/src/main/java/com/android/volley/toolbox/HurlStack.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/libs_volley/src/main/java/com/android/volley/toolbox/ImageLoader.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/libs_volley/src/main/java/com/android/volley/toolbox/ImageRequest.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/libs_volley/src/main/java/com/android/volley/toolbox/JsonArrayRequest.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/libs_volley/src/main/java/com/android/volley/toolbox/JsonObjectRequest.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/libs_volley/src/main/java/com/android/volley/toolbox/JsonRequest.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/libs_volley/src/main/java/com/android/volley/toolbox/NetworkImageView.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/libs_volley/src/main/java/com/android/volley/toolbox/NoCache.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/libs_volley/src/main/java/com/android/volley/toolbox/PoolingByteArrayOutputStream.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/libs_volley/src/main/java/com/android/volley/toolbox/RequestFuture.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/libs_volley/src/main/java/com/android/volley/toolbox/StringRequest.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/libs_volley/src/main/java/com/android/volley/toolbox/Volley.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/libs_volley/src/test/java/com/android/volley/CacheDispatcherTest.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/libs_volley/src/test/java/com/android/volley/NetworkDispatcherTest.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/libs_volley/src/test/java/com/android/volley/RequestQueueIntegrationTest.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/libs_volley/src/test/java/com/android/volley/RequestQueueTest.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/libs_volley/src/test/java/com/android/volley/RequestTest.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/libs_volley/src/test/java/com/android/volley/ResponseDeliveryTest.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/libs_volley/src/test/java/com/android/volley/mock/MockCache.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/libs_volley/src/test/java/com/android/volley/mock/MockHttpClient.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/libs_volley/src/test/java/com/android/volley/mock/MockHttpStack.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/libs_volley/src/test/java/com/android/volley/mock/MockHttpURLConnection.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/libs_volley/src/test/java/com/android/volley/mock/MockNetwork.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/libs_volley/src/test/java/com/android/volley/mock/MockRequest.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/libs_volley/src/test/java/com/android/volley/mock/MockResponseDelivery.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/libs_volley/src/test/java/com/android/volley/mock/ShadowSystemClock.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/libs_volley/src/test/java/com/android/volley/mock/TestRequest.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/libs_volley/src/test/java/com/android/volley/mock/WaitableQueue.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/libs_volley/src/test/java/com/android/volley/toolbox/AndroidAuthenticatorTest.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/libs_volley/src/test/java/com/android/volley/toolbox/BasicNetworkTest.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/libs_volley/src/test/java/com/android/volley/toolbox/ByteArrayPoolTest.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/libs_volley/src/test/java/com/android/volley/toolbox/CacheTest.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/libs_volley/src/test/java/com/android/volley/toolbox/DiskBasedCacheTest.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/libs_volley/src/test/java/com/android/volley/toolbox/HttpClientStackTest.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/libs_volley/src/test/java/com/android/volley/toolbox/HttpHeaderParserTest.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/libs_volley/src/test/java/com/android/volley/toolbox/HurlStackTest.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/libs_volley/src/test/java/com/android/volley/toolbox/ImageLoaderTest.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/libs_volley/src/test/java/com/android/volley/toolbox/ImageRequestTest.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/libs_volley/src/test/java/com/android/volley/toolbox/JsonRequestCharsetTest.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/libs_volley/src/test/java/com/android/volley/toolbox/JsonRequestTest.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/libs_volley/src/test/java/com/android/volley/toolbox/NetworkImageViewTest.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/libs_volley/src/test/java/com/android/volley/toolbox/PoolingByteArrayOutputStreamTest.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/libs_volley/src/test/java/com/android/volley/toolbox/RequestFutureTest.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/libs_volley/src/test/java/com/android/volley/toolbox/RequestQueueTest.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/libs_volley/src/test/java/com/android/volley/toolbox/RequestTest.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/libs_volley/src/test/java/com/android/volley/toolbox/ResponseTest.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/libs_volley/src/test/java/com/android/volley/toolbox/StringRequestTest.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/libs_volley/src/test/java/com/android/volley/utils/CacheTestUtils.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/libs_volley/src/test/java/com/android/volley/utils/ImmediateResponseDelivery.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/libs_volley/src/test/resources/org.robolectric.Config.properties" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/nbproject/project.properties" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/nbproject/project.xml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/src/v1/Config.php" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/src/v1/DbConnect.php" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/src/v1/DbHandlerAuth.php" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/src/v1/DbHandlerTasks.php" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/src/v1/PassHash.php" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/src/v1/Route.php" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/src/v1/activate.php" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/src/v1/attemp.txt" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/src/v1/mail.php" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/src/v2/Config.php" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/src/v2/DbConnect.php" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/src/v2/DbHandlerAuth.php" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/src/v2/DbHandlerTasks.php" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/src/v2/PassHash.php" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/src/v2/Route.php" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/src/v2/activate.php" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/src/v2/attemp.txt" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/stylesheets/github-light.css" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/stylesheets/normalize.css" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/stylesheets/stylesheet.css" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/v1/.htaccess" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/v1/email.php" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/v1/index.php" afterPath="" />
+      <change type="DELETED" beforePath="/media/anonymous/data/AndroidStudioProjects/elaundry-konsumen/index.html" afterPath="" />
+      <change type="DELETED" beforePath="/media/anonymous/data/AndroidStudioProjects/elaundry-konsumen/libs/PhpMailer/exception.php" afterPath="" />
+      <change type="DELETED" beforePath="/media/anonymous/data/AndroidStudioProjects/elaundry-konsumen/libs/PhpMailer/mail.php" afterPath="" />
+      <change type="DELETED" beforePath="/media/anonymous/data/AndroidStudioProjects/elaundry-konsumen/libs/PhpMailer/phpmailer.php" afterPath="" />
+      <change type="DELETED" beforePath="/media/anonymous/data/AndroidStudioProjects/elaundry-konsumen/libs/PhpMailer/pop3.php" afterPath="" />
+      <change type="DELETED" beforePath="/media/anonymous/data/AndroidStudioProjects/elaundry-konsumen/libs/PhpMailer/smtp.php" afterPath="" />
+      <change type="DELETED" beforePath="/media/anonymous/data/AndroidStudioProjects/elaundry-konsumen/libs/Slim/Environment.php" afterPath="" />
+      <change type="DELETED" beforePath="/media/anonymous/data/AndroidStudioProjects/elaundry-konsumen/libs/Slim/Exception/Pass.php" afterPath="" />
+      <change type="DELETED" beforePath="/media/anonymous/data/AndroidStudioProjects/elaundry-konsumen/libs/Slim/Exception/Stop.php" afterPath="" />
+      <change type="DELETED" beforePath="/media/anonymous/data/AndroidStudioProjects/elaundry-konsumen/libs/Slim/Helper/Set.php" afterPath="" />
+      <change type="DELETED" beforePath="/media/anonymous/data/AndroidStudioProjects/elaundry-konsumen/libs/Slim/Http/Cookies.php" afterPath="" />
+      <change type="DELETED" beforePath="/media/anonymous/data/AndroidStudioProjects/elaundry-konsumen/libs/Slim/Http/Headers.php" afterPath="" />
+      <change type="DELETED" beforePath="/media/anonymous/data/AndroidStudioProjects/elaundry-konsumen/libs/Slim/Http/Request.php" afterPath="" />
+      <change type="DELETED" beforePath="/media/anonymous/data/AndroidStudioProjects/elaundry-konsumen/libs/Slim/Http/Response.php" afterPath="" />
+      <change type="DELETED" beforePath="/media/anonymous/data/AndroidStudioProjects/elaundry-konsumen/libs/Slim/Http/Util.php" afterPath="" />
+      <change type="DELETED" beforePath="/media/anonymous/data/AndroidStudioProjects/elaundry-konsumen/libs/Slim/Log.php" afterPath="" />
+      <change type="DELETED" beforePath="/media/anonymous/data/AndroidStudioProjects/elaundry-konsumen/libs/Slim/LogWriter.php" afterPath="" />
+      <change type="DELETED" beforePath="/media/anonymous/data/AndroidStudioProjects/elaundry-konsumen/libs/Slim/Middleware.php" afterPath="" />
+      <change type="DELETED" beforePath="/media/anonymous/data/AndroidStudioProjects/elaundry-konsumen/libs/Slim/Middleware/ContentTypes.php" afterPath="" />
+      <change type="DELETED" beforePath="/media/anonymous/data/AndroidStudioProjects/elaundry-konsumen/libs/Slim/Middleware/Flash.php" afterPath="" />
+      <change type="DELETED" beforePath="/media/anonymous/data/AndroidStudioProjects/elaundry-konsumen/libs/Slim/Middleware/MethodOverride.php" afterPath="" />
+      <change type="DELETED" beforePath="/media/anonymous/data/AndroidStudioProjects/elaundry-konsumen/libs/Slim/Middleware/PrettyExceptions.php" afterPath="" />
+      <change type="DELETED" beforePath="/media/anonymous/data/AndroidStudioProjects/elaundry-konsumen/libs/Slim/Middleware/SessionCookie.php" afterPath="" />
+      <change type="DELETED" beforePath="/media/anonymous/data/AndroidStudioProjects/elaundry-konsumen/libs/Slim/Route.php" afterPath="" />
+      <change type="DELETED" beforePath="/media/anonymous/data/AndroidStudioProjects/elaundry-konsumen/libs/Slim/Router.php" afterPath="" />
+      <change type="DELETED" beforePath="/media/anonymous/data/AndroidStudioProjects/elaundry-konsumen/libs/Slim/Slim.php" afterPath="" />
+      <change type="DELETED" beforePath="/media/anonymous/data/AndroidStudioProjects/elaundry-konsumen/libs/Slim/View.php" afterPath="" />
+      <change type="DELETED" beforePath="/media/anonymous/data/AndroidStudioProjects/elaundry-konsumen/libs/phpmailer/exception.php" afterPath="" />
+      <change type="DELETED" beforePath="/media/anonymous/data/AndroidStudioProjects/elaundry-konsumen/libs/phpmailer/mail.php" afterPath="" />
+      <change type="DELETED" beforePath="/media/anonymous/data/AndroidStudioProjects/elaundry-konsumen/libs/phpmailer/phpmailer.php" afterPath="" />
+      <change type="DELETED" beforePath="/media/anonymous/data/AndroidStudioProjects/elaundry-konsumen/libs/phpmailer/pop3.php" afterPath="" />
+      <change type="DELETED" beforePath="/media/anonymous/data/AndroidStudioProjects/elaundry-konsumen/libs/phpmailer/smtp.php" afterPath="" />
+      <change type="DELETED" beforePath="/media/anonymous/data/AndroidStudioProjects/elaundry-konsumen/libs_volley/.gitignore" afterPath="" />
+      <change type="DELETED" beforePath="/media/anonymous/data/AndroidStudioProjects/elaundry-konsumen/libs_volley/Android.mk" afterPath="" />
+      <change type="DELETED" beforePath="/media/anonymous/data/AndroidStudioProjects/elaundry-konsumen/libs_volley/bintray.gradle" afterPath="" />
+      <change type="DELETED" beforePath="/media/anonymous/data/AndroidStudioProjects/elaundry-konsumen/libs_volley/build.gradle" afterPath="" />
+      <change type="DELETED" beforePath="/media/anonymous/data/AndroidStudioProjects/elaundry-konsumen/libs_volley/build.xml" afterPath="" />
+      <change type="DELETED" beforePath="/media/anonymous/data/AndroidStudioProjects/elaundry-konsumen/libs_volley/custom_rules.xml" afterPath="" />
+      <change type="DELETED" beforePath="/media/anonymous/data/AndroidStudioProjects/elaundry-konsumen/libs_volley/pom.xml" afterPath="" />
+      <change type="DELETED" beforePath="/media/anonymous/data/AndroidStudioProjects/elaundry-konsumen/libs_volley/proguard-project.txt" afterPath="" />
+      <change type="DELETED" beforePath="/media/anonymous/data/AndroidStudioProjects/elaundry-konsumen/libs_volley/proguard.cfg" afterPath="" />
+      <change type="DELETED" beforePath="/media/anonymous/data/AndroidStudioProjects/elaundry-konsumen/libs_volley/rules.gradle" afterPath="" />
+      <change type="DELETED" beforePath="/media/anonymous/data/AndroidStudioProjects/elaundry-konsumen/libs_volley/src/main/AndroidManifest.xml" afterPath="" />
+      <change type="DELETED" beforePath="/media/anonymous/data/AndroidStudioProjects/elaundry-konsumen/libs_volley/src/main/java/com/android/volley/AuthFailureError.java" afterPath="" />
+      <change type="DELETED" beforePath="/media/anonymous/data/AndroidStudioProjects/elaundry-konsumen/libs_volley/src/main/java/com/android/volley/Cache.java" afterPath="" />
+      <change type="DELETED" beforePath="/media/anonymous/data/AndroidStudioProjects/elaundry-konsumen/libs_volley/src/main/java/com/android/volley/CacheDispatcher.java" afterPath="" />
+      <change type="DELETED" beforePath="/media/anonymous/data/AndroidStudioProjects/elaundry-konsumen/libs_volley/src/main/java/com/android/volley/ClientError.java" afterPath="" />
+      <change type="DELETED" beforePath="/media/anonymous/data/AndroidStudioProjects/elaundry-konsumen/libs_volley/src/main/java/com/android/volley/DefaultRetryPolicy.java" afterPath="" />
+      <change type="DELETED" beforePath="/media/anonymous/data/AndroidStudioProjects/elaundry-konsumen/libs_volley/src/main/java/com/android/volley/ExecutorDelivery.java" afterPath="" />
+      <change type="DELETED" beforePath="/media/anonymous/data/AndroidStudioProjects/elaundry-konsumen/libs_volley/src/main/java/com/android/volley/Network.java" afterPath="" />
+      <change type="DELETED" beforePath="/media/anonymous/data/AndroidStudioProjects/elaundry-konsumen/libs_volley/src/main/java/com/android/volley/NetworkDispatcher.java" afterPath="" />
+      <change type="DELETED" beforePath="/media/anonymous/data/AndroidStudioProjects/elaundry-konsumen/libs_volley/src/main/java/com/android/volley/NetworkError.java" afterPath="" />
+      <change type="DELETED" beforePath="/media/anonymous/data/AndroidStudioProjects/elaundry-konsumen/libs_volley/src/main/java/com/android/volley/NetworkResponse.java" afterPath="" />
+      <change type="DELETED" beforePath="/media/anonymous/data/AndroidStudioProjects/elaundry-konsumen/libs_volley/src/main/java/com/android/volley/NoConnectionError.java" afterPath="" />
+      <change type="DELETED" beforePath="/media/anonymous/data/AndroidStudioProjects/elaundry-konsumen/libs_volley/src/main/java/com/android/volley/ParseError.java" afterPath="" />
+      <change type="DELETED" beforePath="/media/anonymous/data/AndroidStudioProjects/elaundry-konsumen/libs_volley/src/main/java/com/android/volley/Request.java" afterPath="" />
+      <change type="DELETED" beforePath="/media/anonymous/data/AndroidStudioProjects/elaundry-konsumen/libs_volley/src/main/java/com/android/volley/RequestQueue.java" afterPath="" />
+      <change type="DELETED" beforePath="/media/anonymous/data/AndroidStudioProjects/elaundry-konsumen/libs_volley/src/main/java/com/android/volley/Response.java" afterPath="" />
+      <change type="DELETED" beforePath="/media/anonymous/data/AndroidStudioProjects/elaundry-konsumen/libs_volley/src/main/java/com/android/volley/ResponseDelivery.java" afterPath="" />
+      <change type="DELETED" beforePath="/media/anonymous/data/AndroidStudioProjects/elaundry-konsumen/libs_volley/src/main/java/com/android/volley/RetryPolicy.java" afterPath="" />
+      <change type="DELETED" beforePath="/media/anonymous/data/AndroidStudioProjects/elaundry-konsumen/libs_volley/src/main/java/com/android/volley/ServerError.java" afterPath="" />
+      <change type="DELETED" beforePath="/media/anonymous/data/AndroidStudioProjects/elaundry-konsumen/libs_volley/src/main/java/com/android/volley/TimeoutError.java" afterPath="" />
+      <change type="DELETED" beforePath="/media/anonymous/data/AndroidStudioProjects/elaundry-konsumen/libs_volley/src/main/java/com/android/volley/VolleyError.java" afterPath="" />
+      <change type="DELETED" beforePath="/media/anonymous/data/AndroidStudioProjects/elaundry-konsumen/libs_volley/src/main/java/com/android/volley/VolleyLog.java" afterPath="" />
+      <change type="DELETED" beforePath="/media/anonymous/data/AndroidStudioProjects/elaundry-konsumen/libs_volley/src/main/java/com/android/volley/toolbox/AndroidAuthenticator.java" afterPath="" />
+      <change type="DELETED" beforePath="/media/anonymous/data/AndroidStudioProjects/elaundry-konsumen/libs_volley/src/main/java/com/android/volley/toolbox/Authenticator.java" afterPath="" />
+      <change type="DELETED" beforePath="/media/anonymous/data/AndroidStudioProjects/elaundry-konsumen/libs_volley/src/main/java/com/android/volley/toolbox/BasicNetwork.java" afterPath="" />
+      <change type="DELETED" beforePath="/media/anonymous/data/AndroidStudioProjects/elaundry-konsumen/libs_volley/src/main/java/com/android/volley/toolbox/ByteArrayPool.java" afterPath="" />
+      <change type="DELETED" beforePath="/media/anonymous/data/AndroidStudioProjects/elaundry-konsumen/libs_volley/src/main/java/com/android/volley/toolbox/ClearCacheRequest.java" afterPath="" />
+      <change type="DELETED" beforePath="/media/anonymous/data/AndroidStudioProjects/elaundry-konsumen/libs_volley/src/main/java/com/android/volley/toolbox/DiskBasedCache.java" afterPath="" />
+      <change type="DELETED" beforePath="/media/anonymous/data/AndroidStudioProjects/elaundry-konsumen/libs_volley/src/main/java/com/android/volley/toolbox/HttpClientStack.java" afterPath="" />
+      <change type="DELETED" beforePath="/media/anonymous/data/AndroidStudioProjects/elaundry-konsumen/libs_volley/src/main/java/com/android/volley/toolbox/HttpHeaderParser.java" afterPath="" />
+      <change type="DELETED" beforePath="/media/anonymous/data/AndroidStudioProjects/elaundry-konsumen/libs_volley/src/main/java/com/android/volley/toolbox/HttpStack.java" afterPath="" />
+      <change type="DELETED" beforePath="/media/anonymous/data/AndroidStudioProjects/elaundry-konsumen/libs_volley/src/main/java/com/android/volley/toolbox/HurlStack.java" afterPath="" />
+      <change type="DELETED" beforePath="/media/anonymous/data/AndroidStudioProjects/elaundry-konsumen/libs_volley/src/main/java/com/android/volley/toolbox/ImageLoader.java" afterPath="" />
+      <change type="DELETED" beforePath="/media/anonymous/data/AndroidStudioProjects/elaundry-konsumen/libs_volley/src/main/java/com/android/volley/toolbox/ImageRequest.java" afterPath="" />
+      <change type="DELETED" beforePath="/media/anonymous/data/AndroidStudioProjects/elaundry-konsumen/libs_volley/src/main/java/com/android/volley/toolbox/JsonArrayRequest.java" afterPath="" />
+      <change type="DELETED" beforePath="/media/anonymous/data/AndroidStudioProjects/elaundry-konsumen/libs_volley/src/main/java/com/android/volley/toolbox/JsonObjectRequest.java" afterPath="" />
+      <change type="DELETED" beforePath="/media/anonymous/data/AndroidStudioProjects/elaundry-konsumen/libs_volley/src/main/java/com/android/volley/toolbox/JsonRequest.java" afterPath="" />
+      <change type="DELETED" beforePath="/media/anonymous/data/AndroidStudioProjects/elaundry-konsumen/libs_volley/src/main/java/com/android/volley/toolbox/NetworkImageView.java" afterPath="" />
+      <change type="DELETED" beforePath="/media/anonymous/data/AndroidStudioProjects/elaundry-konsumen/libs_volley/src/main/java/com/android/volley/toolbox/NoCache.java" afterPath="" />
+      <change type="DELETED" beforePath="/media/anonymous/data/AndroidStudioProjects/elaundry-konsumen/libs_volley/src/main/java/com/android/volley/toolbox/PoolingByteArrayOutputStream.java" afterPath="" />
+      <change type="DELETED" beforePath="/media/anonymous/data/AndroidStudioProjects/elaundry-konsumen/libs_volley/src/main/java/com/android/volley/toolbox/RequestFuture.java" afterPath="" />
+      <change type="DELETED" beforePath="/media/anonymous/data/AndroidStudioProjects/elaundry-konsumen/libs_volley/src/main/java/com/android/volley/toolbox/StringRequest.java" afterPath="" />
+      <change type="DELETED" beforePath="/media/anonymous/data/AndroidStudioProjects/elaundry-konsumen/libs_volley/src/main/java/com/android/volley/toolbox/Volley.java" afterPath="" />
+      <change type="DELETED" beforePath="/media/anonymous/data/AndroidStudioProjects/elaundry-konsumen/libs_volley/src/test/java/com/android/volley/CacheDispatcherTest.java" afterPath="" />
+      <change type="DELETED" beforePath="/media/anonymous/data/AndroidStudioProjects/elaundry-konsumen/libs_volley/src/test/java/com/android/volley/NetworkDispatcherTest.java" afterPath="" />
+      <change type="DELETED" beforePath="/media/anonymous/data/AndroidStudioProjects/elaundry-konsumen/libs_volley/src/test/java/com/android/volley/RequestQueueIntegrationTest.java" afterPath="" />
+      <change type="DELETED" beforePath="/media/anonymous/data/AndroidStudioProjects/elaundry-konsumen/libs_volley/src/test/java/com/android/volley/RequestQueueTest.java" afterPath="" />
+      <change type="DELETED" beforePath="/media/anonymous/data/AndroidStudioProjects/elaundry-konsumen/libs_volley/src/test/java/com/android/volley/RequestTest.java" afterPath="" />
+      <change type="DELETED" beforePath="/media/anonymous/data/AndroidStudioProjects/elaundry-konsumen/libs_volley/src/test/java/com/android/volley/ResponseDeliveryTest.java" afterPath="" />
+      <change type="DELETED" beforePath="/media/anonymous/data/AndroidStudioProjects/elaundry-konsumen/libs_volley/src/test/java/com/android/volley/mock/MockCache.java" afterPath="" />
+      <change type="DELETED" beforePath="/media/anonymous/data/AndroidStudioProjects/elaundry-konsumen/libs_volley/src/test/java/com/android/volley/mock/MockHttpClient.java" afterPath="" />
+      <change type="DELETED" beforePath="/media/anonymous/data/AndroidStudioProjects/elaundry-konsumen/libs_volley/src/test/java/com/android/volley/mock/MockHttpStack.java" afterPath="" />
+      <change type="DELETED" beforePath="/media/anonymous/data/AndroidStudioProjects/elaundry-konsumen/libs_volley/src/test/java/com/android/volley/mock/MockHttpURLConnection.java" afterPath="" />
+      <change type="DELETED" beforePath="/media/anonymous/data/AndroidStudioProjects/elaundry-konsumen/libs_volley/src/test/java/com/android/volley/mock/MockNetwork.java" afterPath="" />
+      <change type="DELETED" beforePath="/media/anonymous/data/AndroidStudioProjects/elaundry-konsumen/libs_volley/src/test/java/com/android/volley/mock/MockRequest.java" afterPath="" />
+      <change type="DELETED" beforePath="/media/anonymous/data/AndroidStudioProjects/elaundry-konsumen/libs_volley/src/test/java/com/android/volley/mock/MockResponseDelivery.java" afterPath="" />
+      <change type="DELETED" beforePath="/media/anonymous/data/AndroidStudioProjects/elaundry-konsumen/libs_volley/src/test/java/com/android/volley/mock/ShadowSystemClock.java" afterPath="" />
+      <change type="DELETED" beforePath="/media/anonymous/data/AndroidStudioProjects/elaundry-konsumen/libs_volley/src/test/java/com/android/volley/mock/TestRequest.java" afterPath="" />
+      <change type="DELETED" beforePath="/media/anonymous/data/AndroidStudioProjects/elaundry-konsumen/libs_volley/src/test/java/com/android/volley/mock/WaitableQueue.java" afterPath="" />
+      <change type="DELETED" beforePath="/media/anonymous/data/AndroidStudioProjects/elaundry-konsumen/libs_volley/src/test/java/com/android/volley/toolbox/AndroidAuthenticatorTest.java" afterPath="" />
+      <change type="DELETED" beforePath="/media/anonymous/data/AndroidStudioProjects/elaundry-konsumen/libs_volley/src/test/java/com/android/volley/toolbox/BasicNetworkTest.java" afterPath="" />
+      <change type="DELETED" beforePath="/media/anonymous/data/AndroidStudioProjects/elaundry-konsumen/libs_volley/src/test/java/com/android/volley/toolbox/ByteArrayPoolTest.java" afterPath="" />
+      <change type="DELETED" beforePath="/media/anonymous/data/AndroidStudioProjects/elaundry-konsumen/libs_volley/src/test/java/com/android/volley/toolbox/CacheTest.java" afterPath="" />
+      <change type="DELETED" beforePath="/media/anonymous/data/AndroidStudioProjects/elaundry-konsumen/libs_volley/src/test/java/com/android/volley/toolbox/DiskBasedCacheTest.java" afterPath="" />
+      <change type="DELETED" beforePath="/media/anonymous/data/AndroidStudioProjects/elaundry-konsumen/libs_volley/src/test/java/com/android/volley/toolbox/HttpClientStackTest.java" afterPath="" />
+      <change type="DELETED" beforePath="/media/anonymous/data/AndroidStudioProjects/elaundry-konsumen/libs_volley/src/test/java/com/android/volley/toolbox/HttpHeaderParserTest.java" afterPath="" />
+      <change type="DELETED" beforePath="/media/anonymous/data/AndroidStudioProjects/elaundry-konsumen/libs_volley/src/test/java/com/android/volley/toolbox/HurlStackTest.java" afterPath="" />
+      <change type="DELETED" beforePath="/media/anonymous/data/AndroidStudioProjects/elaundry-konsumen/libs_volley/src/test/java/com/android/volley/toolbox/ImageLoaderTest.java" afterPath="" />
+      <change type="DELETED" beforePath="/media/anonymous/data/AndroidStudioProjects/elaundry-konsumen/libs_volley/src/test/java/com/android/volley/toolbox/ImageRequestTest.java" afterPath="" />
+      <change type="DELETED" beforePath="/media/anonymous/data/AndroidStudioProjects/elaundry-konsumen/libs_volley/src/test/java/com/android/volley/toolbox/JsonRequestCharsetTest.java" afterPath="" />
+      <change type="DELETED" beforePath="/media/anonymous/data/AndroidStudioProjects/elaundry-konsumen/libs_volley/src/test/java/com/android/volley/toolbox/JsonRequestTest.java" afterPath="" />
+      <change type="DELETED" beforePath="/media/anonymous/data/AndroidStudioProjects/elaundry-konsumen/libs_volley/src/test/java/com/android/volley/toolbox/NetworkImageViewTest.java" afterPath="" />
+      <change type="DELETED" beforePath="/media/anonymous/data/AndroidStudioProjects/elaundry-konsumen/libs_volley/src/test/java/com/android/volley/toolbox/PoolingByteArrayOutputStreamTest.java" afterPath="" />
+      <change type="DELETED" beforePath="/media/anonymous/data/AndroidStudioProjects/elaundry-konsumen/libs_volley/src/test/java/com/android/volley/toolbox/RequestFutureTest.java" afterPath="" />
+      <change type="DELETED" beforePath="/media/anonymous/data/AndroidStudioProjects/elaundry-konsumen/libs_volley/src/test/java/com/android/volley/toolbox/RequestQueueTest.java" afterPath="" />
+      <change type="DELETED" beforePath="/media/anonymous/data/AndroidStudioProjects/elaundry-konsumen/libs_volley/src/test/java/com/android/volley/toolbox/RequestTest.java" afterPath="" />
+      <change type="DELETED" beforePath="/media/anonymous/data/AndroidStudioProjects/elaundry-konsumen/libs_volley/src/test/java/com/android/volley/toolbox/ResponseTest.java" afterPath="" />
+      <change type="DELETED" beforePath="/media/anonymous/data/AndroidStudioProjects/elaundry-konsumen/libs_volley/src/test/java/com/android/volley/toolbox/StringRequestTest.java" afterPath="" />
+      <change type="DELETED" beforePath="/media/anonymous/data/AndroidStudioProjects/elaundry-konsumen/libs_volley/src/test/java/com/android/volley/utils/CacheTestUtils.java" afterPath="" />
+      <change type="DELETED" beforePath="/media/anonymous/data/AndroidStudioProjects/elaundry-konsumen/libs_volley/src/test/java/com/android/volley/utils/ImmediateResponseDelivery.java" afterPath="" />
+      <change type="DELETED" beforePath="/media/anonymous/data/AndroidStudioProjects/elaundry-konsumen/libs_volley/src/test/resources/org.robolectric.Config.properties" afterPath="" />
+      <change type="DELETED" beforePath="/media/anonymous/data/AndroidStudioProjects/elaundry-konsumen/nbproject/project.properties" afterPath="" />
+      <change type="DELETED" beforePath="/media/anonymous/data/AndroidStudioProjects/elaundry-konsumen/nbproject/project.xml" afterPath="" />
+      <change type="DELETED" beforePath="/media/anonymous/data/AndroidStudioProjects/elaundry-konsumen/src/v1/Config.php" afterPath="" />
+      <change type="DELETED" beforePath="/media/anonymous/data/AndroidStudioProjects/elaundry-konsumen/src/v1/DbConnect.php" afterPath="" />
+      <change type="DELETED" beforePath="/media/anonymous/data/AndroidStudioProjects/elaundry-konsumen/src/v1/DbHandlerAuth.php" afterPath="" />
+      <change type="DELETED" beforePath="/media/anonymous/data/AndroidStudioProjects/elaundry-konsumen/src/v1/DbHandlerTasks.php" afterPath="" />
+      <change type="DELETED" beforePath="/media/anonymous/data/AndroidStudioProjects/elaundry-konsumen/src/v1/PassHash.php" afterPath="" />
+      <change type="DELETED" beforePath="/media/anonymous/data/AndroidStudioProjects/elaundry-konsumen/src/v1/Route.php" afterPath="" />
+      <change type="DELETED" beforePath="/media/anonymous/data/AndroidStudioProjects/elaundry-konsumen/src/v1/activate.php" afterPath="" />
+      <change type="DELETED" beforePath="/media/anonymous/data/AndroidStudioProjects/elaundry-konsumen/src/v1/attemp.txt" afterPath="" />
+      <change type="DELETED" beforePath="/media/anonymous/data/AndroidStudioProjects/elaundry-konsumen/src/v1/mail.php" afterPath="" />
+      <change type="DELETED" beforePath="/media/anonymous/data/AndroidStudioProjects/elaundry-konsumen/src/v2/Config.php" afterPath="" />
+      <change type="DELETED" beforePath="/media/anonymous/data/AndroidStudioProjects/elaundry-konsumen/src/v2/DbConnect.php" afterPath="" />
+      <change type="DELETED" beforePath="/media/anonymous/data/AndroidStudioProjects/elaundry-konsumen/src/v2/DbHandlerAuth.php" afterPath="" />
+      <change type="DELETED" beforePath="/media/anonymous/data/AndroidStudioProjects/elaundry-konsumen/src/v2/DbHandlerTasks.php" afterPath="" />
+      <change type="DELETED" beforePath="/media/anonymous/data/AndroidStudioProjects/elaundry-konsumen/src/v2/PassHash.php" afterPath="" />
+      <change type="DELETED" beforePath="/media/anonymous/data/AndroidStudioProjects/elaundry-konsumen/src/v2/Route.php" afterPath="" />
+      <change type="DELETED" beforePath="/media/anonymous/data/AndroidStudioProjects/elaundry-konsumen/src/v2/activate.php" afterPath="" />
+      <change type="DELETED" beforePath="/media/anonymous/data/AndroidStudioProjects/elaundry-konsumen/src/v2/attemp.txt" afterPath="" />
+      <change type="DELETED" beforePath="/media/anonymous/data/AndroidStudioProjects/elaundry-konsumen/stylesheets/github-light.css" afterPath="" />
+      <change type="DELETED" beforePath="/media/anonymous/data/AndroidStudioProjects/elaundry-konsumen/stylesheets/normalize.css" afterPath="" />
+      <change type="DELETED" beforePath="/media/anonymous/data/AndroidStudioProjects/elaundry-konsumen/stylesheets/stylesheet.css" afterPath="" />
+      <change type="DELETED" beforePath="/media/anonymous/data/AndroidStudioProjects/elaundry-konsumen/v1/.htaccess" afterPath="" />
+      <change type="DELETED" beforePath="/media/anonymous/data/AndroidStudioProjects/elaundry-konsumen/v1/email.php" afterPath="" />
+      <change type="DELETED" beforePath="/media/anonymous/data/AndroidStudioProjects/elaundry-konsumen/v1/index.php" afterPath="" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="/media/anonymous/data/AndroidStudioProjects/elaundry-konsumen/.idea/misc.xml" afterPath="/media/anonymous/data/AndroidStudioProjects/elaundry-konsumen/.idea/misc.xml" />
       <change type="MODIFICATION" beforePath="/media/anonymous/data/AndroidStudioProjects/elaundry-konsumen/.idea/workspace.xml" afterPath="/media/anonymous/data/AndroidStudioProjects/elaundry-konsumen/.idea/workspace.xml" />
       <change type="MODIFICATION" beforePath="/media/anonymous/data/AndroidStudioProjects/elaundry-konsumen/app/app.iml" afterPath="/media/anonymous/data/AndroidStudioProjects/elaundry-konsumen/app/app.iml" />
+      <change type="MODIFICATION" beforePath="/media/anonymous/data/AndroidStudioProjects/elaundry-konsumen/app/build.gradle" afterPath="/media/anonymous/data/AndroidStudioProjects/elaundry-konsumen/app/build.gradle" />
+      <change type="MODIFICATION" beforePath="/media/anonymous/data/AndroidStudioProjects/elaundry-konsumen/app/src/main/AndroidManifest.xml" afterPath="/media/anonymous/data/AndroidStudioProjects/elaundry-konsumen/app/src/main/AndroidManifest.xml" />
+      <change type="MODIFICATION" beforePath="/media/anonymous/data/AndroidStudioProjects/elaundry-konsumen/app/src/main/res/drawable/ic_keyboard_arrow_left_white_24dp.xml" afterPath="/media/anonymous/data/AndroidStudioProjects/elaundry-konsumen/app/src/main/res/drawable/ic_keyboard_arrow_left_white_24dp.xml" />
+      <change type="MODIFICATION" beforePath="/media/anonymous/data/AndroidStudioProjects/elaundry-konsumen/app/src/main/res/layout/activity_login.xml" afterPath="/media/anonymous/data/AndroidStudioProjects/elaundry-konsumen/app/src/main/res/layout/activity_login.xml" />
+      <change type="MODIFICATION" beforePath="/media/anonymous/data/AndroidStudioProjects/elaundry-konsumen/app/src/main/res/layout/fragment_login.xml" afterPath="/media/anonymous/data/AndroidStudioProjects/elaundry-konsumen/app/src/main/res/layout/fragment_login.xml" />
+      <change type="MODIFICATION" beforePath="/media/anonymous/data/AndroidStudioProjects/elaundry-konsumen/app/src/main/res/values/strings.xml" afterPath="/media/anonymous/data/AndroidStudioProjects/elaundry-konsumen/app/src/main/res/values/strings.xml" />
     </list>
     <list id="bf8c04de-1dbb-4a5f-a27e-6c2d7c2c198e" name="New changelist" comment="Commit update compiler 23 =&gt; 24&#10;" />
     <ignored path="elaundry_backup.iws" />
@@ -54,85 +354,88 @@
       <file leaf-file-name="LoginActivityNew.java" pinned="false" current-in-tab="false">
         <entry file="file:///media/anonymous/data/AndroidStudioProjects/elaundry-konsumen/app/src/main/java/com/yuly/elaundry/konsumen/activity/LoginActivityNew.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="75">
+            <state relative-caret-position="225">
               <caret line="19" column="13" selection-start-line="19" selection-start-column="13" selection-end-line="19" selection-end-column="13" />
+              <folding>
+                <element signature="imports" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="MainActivity.java" pinned="false" current-in-tab="true">
+        <entry file="file:///media/anonymous/data/AndroidStudioProjects/elaundry-konsumen/app/src/main/java/com/yuly/elaundry/konsumen/activity/MainActivity.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="-3592">
+              <caret line="67" column="43" selection-start-line="67" selection-start-column="43" selection-end-line="67" selection-end-column="43" />
+              <folding>
+                <element signature="e#4104#4121#0" expanded="true" />
+                <element signature="e#4127#4144#0" expanded="true" />
+                <element signature="e#10309#10344#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="LoginFragmentVolley.java" pinned="false" current-in-tab="false">
+        <entry file="file:///media/anonymous/data/AndroidStudioProjects/elaundry-konsumen/app/src/main/java/com/yuly/elaundry/konsumen/fragment/LoginFragmentVolley.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="550">
+              <caret line="44" column="13" selection-start-line="44" selection-start-column="13" selection-end-line="44" selection-end-column="13" />
+              <folding>
+                <element signature="imports" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="build.gradle" pinned="false" current-in-tab="false">
+        <entry file="file:///media/anonymous/data/AndroidStudioProjects/elaundry-konsumen/app/build.gradle">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="15">
+              <caret line="1" column="0" selection-start-line="1" selection-start-column="0" selection-end-line="45" selection-end-column="5" />
+              <folding>
+                <marker date="1481189195356" expanded="true" signature="1426:2193" ph="{...}" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="bintray.gradle" pinned="false" current-in-tab="false">
+        <entry file="file:///media/anonymous/data/AndroidStudioProjects/elaundry-konsumen/libs_google_volley/bintray.gradle">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="-1050">
+              <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="MainActivity.java" pinned="false" current-in-tab="false">
-        <entry file="file:///media/anonymous/data/AndroidStudioProjects/elaundry-konsumen/app/src/main/java/com/yuly/elaundry/konsumen/activity/MainActivity.java">
+      <file leaf-file-name="build.gradle" pinned="false" current-in-tab="false">
+        <entry file="file:///media/anonymous/data/AndroidStudioProjects/elaundry-konsumen/libs_google_volley/build.gradle">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1350">
-              <caret line="90" column="0" selection-start-line="90" selection-start-column="0" selection-end-line="90" selection-end-column="0" />
-              <folding>
-                <element signature="imports" expanded="true" />
-              </folding>
+            <state relative-caret-position="164">
+              <caret line="31" column="0" selection-start-line="31" selection-start-column="0" selection-end-line="34" selection-end-column="1" />
+              <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="PemesananAdapter.java" pinned="false" current-in-tab="false">
-        <entry file="file:///media/anonymous/data/AndroidStudioProjects/elaundry-konsumen/app/src/main/java/com/yuly/elaundry/konsumen/adapter/PemesananAdapter.java">
+      <file leaf-file-name="rules.gradle" pinned="false" current-in-tab="false">
+        <entry file="file:///media/anonymous/data/AndroidStudioProjects/elaundry-konsumen/libs_google_volley/rules.gradle">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1845">
-              <caret line="143" column="9" selection-start-line="143" selection-start-column="9" selection-end-line="143" selection-end-column="9" />
-              <folding>
-                <element signature="imports" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="list_row_pemesanan.xml" pinned="false" current-in-tab="false">
-        <entry file="file:///media/anonymous/data/AndroidStudioProjects/elaundry-konsumen/app/src/main/res/layout/list_row_pemesanan.xml">
-          <provider editor-type-id="text-editor">
             <state relative-caret-position="0">
               <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
               <folding />
             </state>
           </provider>
-          <provider selected="true" editor-type-id="android-designer2">
-            <state />
-          </provider>
         </entry>
       </file>
-      <file leaf-file-name="PemesananFragment.java" pinned="false" current-in-tab="false">
-        <entry file="file:///media/anonymous/data/AndroidStudioProjects/elaundry-konsumen/app/src/main/java/com/yuly/elaundry/konsumen/fragment/PemesananFragment.java">
+      <file leaf-file-name="activity_login.xml" pinned="false" current-in-tab="false">
+        <entry file="file:///media/anonymous/data/AndroidStudioProjects/elaundry-konsumen/app/src/main/res/layout/activity_login.xml">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="75">
-              <caret line="59" column="13" selection-start-line="59" selection-start-column="13" selection-end-line="59" selection-end-column="13" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="TransaksiFragment.java" pinned="false" current-in-tab="true">
-        <entry file="file:///media/anonymous/data/AndroidStudioProjects/elaundry-konsumen/app/src/main/java/com/yuly/elaundry/konsumen/fragment/TransaksiFragment.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="156">
-              <caret line="203" column="0" selection-start-line="203" selection-start-column="0" selection-end-line="203" selection-end-column="0" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="DetailPemesananActivity.java" pinned="false" current-in-tab="false">
-        <entry file="file:///media/anonymous/data/AndroidStudioProjects/elaundry-konsumen/app/src/main/java/com/yuly/elaundry/konsumen/activity/DetailPemesananActivity.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="75">
-              <caret line="39" column="13" selection-start-line="39" selection-start-column="13" selection-end-line="39" selection-end-column="13" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="activity_detail_pemesanan_new.xml" pinned="false" current-in-tab="false">
-        <entry file="file:///media/anonymous/data/AndroidStudioProjects/elaundry-konsumen/app/src/main/res/layout/activity_detail_pemesanan_new.xml">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="285">
-              <caret line="19" column="54" selection-start-line="19" selection-start-column="54" selection-end-line="19" selection-end-column="54" />
+            <state relative-caret-position="255">
+              <caret line="17" column="0" selection-start-line="17" selection-start-column="0" selection-end-line="17" selection-end-column="0" />
               <folding />
             </state>
           </provider>
@@ -141,11 +444,31 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="PemesananActivityNew.java" pinned="false" current-in-tab="false">
-        <entry file="file:///media/anonymous/data/AndroidStudioProjects/elaundry-konsumen/app/src/main/java/com/yuly/elaundry/konsumen/activity/PemesananActivityNew.java">
+      <file leaf-file-name="fragment_login.xml" pinned="false" current-in-tab="false">
+        <entry file="file:///media/anonymous/data/AndroidStudioProjects/elaundry-konsumen/app/src/main/res/layout/fragment_login.xml">
+          <provider editor-type-id="text-editor">
+            <state relative-caret-position="135">
+              <caret line="9" column="21" selection-start-line="9" selection-start-column="21" selection-end-line="9" selection-end-column="21" />
+              <folding>
+                <element signature="e#736#754#0" expanded="true" />
+                <element signature="e#1324#1339#0" expanded="true" />
+                <element signature="e#2008#2026#0" expanded="true" />
+                <element signature="e#2503#2518#0" expanded="true" />
+                <element signature="e#2945#2968#0" expanded="true" />
+                <element signature="e#3278#3319#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+          <provider selected="true" editor-type-id="android-designer2">
+            <state />
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="styles.xml" pinned="false" current-in-tab="false">
+        <entry file="file:///media/anonymous/data/AndroidStudioProjects/elaundry-konsumen/app/src/main/res/values/styles.xml">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="180">
-              <caret line="71" column="0" selection-start-line="71" selection-start-column="0" selection-end-line="71" selection-end-column="0" />
+            <state relative-caret-position="240">
+              <caret line="77" column="0" selection-start-line="77" selection-start-column="0" selection-end-line="152" selection-end-column="94" />
               <folding />
             </state>
           </provider>
@@ -2441,7 +2764,7 @@
     </option>
     <option name="modificationStamps">
       <map>
-        <entry key="$PROJECT_DIR$" value="8878297873434" />
+        <entry key="$PROJECT_DIR$" value="8878737219421" />
       </map>
     </option>
     <option name="projectBuildClasspath">
@@ -2923,9 +3246,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="/media/anonymous/data/AndroidStudioProjects/elaundry-konsumen/app/src/main/res/layout/content_detail_pemesanan.xml" />
-        <option value="/media/anonymous/data/AndroidStudioProjects/elaundry-konsumen/app/src/main/res/layout/map_nav_instruction.xml" />
-        <option value="/media/anonymous/data/AndroidStudioProjects/elaundry-konsumen/app/src/main/java/com/yuly/elaundry/konsumen/activity/DetailPemesananActivityOld.java" />
         <option value="/media/anonymous/data/AndroidStudioProjects/elaundry-konsumen/app/src/main/java/com/yuly/elaundry/konsumen/models/TransaksiModel.java" />
         <option value="/media/anonymous/data/AndroidStudioProjects/elaundry-konsumen/app/src/main/java/com/yuly/elaundry/konsumen/app/AppConfig.java" />
         <option value="/media/anonymous/data/AndroidStudioProjects/elaundry-konsumen/app/src/main/java/com/yuly/elaundry/konsumen/activity/DetailPemesananActivityNew.java" />
@@ -2944,7 +3264,6 @@
         <option value="/media/anonymous/data/AndroidStudioProjects/elaundry-konsumen/app/src/main/res/values/nav_drawer.xml" />
         <option value="/media/anonymous/data/AndroidStudioProjects/elaundry-konsumen/app/src/main/res/layout/activity_main.xml" />
         <option value="/media/anonymous/data/AndroidStudioProjects/elaundry-konsumen/app/src/main/res/layout/activity_scrolling.xml" />
-        <option value="/media/anonymous/data/AndroidStudioProjects/elaundry-konsumen/app/src/main/AndroidManifest.xml" />
         <option value="/media/anonymous/data/AndroidStudioProjects/elaundry-konsumen/app/src/main/res/layout/content_scrolling.xml" />
         <option value="/media/anonymous/data/AndroidStudioProjects/elaundry-konsumen/app/src/main/res/layout/fragmen_pemesanan.xml" />
         <option value="/media/anonymous/data/AndroidStudioProjects/elaundry-konsumen/app/src/main/res/layout/fragment_pemesanan.xml" />
@@ -2960,7 +3279,6 @@
         <option value="/media/anonymous/data/AndroidStudioProjects/elaundry-konsumen/app/src/main/res/drawable/ic_phone.xml" />
         <option value="/media/anonymous/data/AndroidStudioProjects/elaundry-konsumen/app/src/main/res/drawable/ic_email.xml" />
         <option value="/media/anonymous/data/AndroidStudioProjects/elaundry-konsumen/app/src/main/res/drawable/ic_face.xml" />
-        <option value="/media/anonymous/data/AndroidStudioProjects/elaundry-konsumen/app/src/main/res/layout/fragment_login.xml" />
         <option value="/media/anonymous/data/AndroidStudioProjects/elaundry-konsumen/app/src/main/res/layout/fragment_password_reset.xml" />
         <option value="/media/anonymous/data/AndroidStudioProjects/elaundry-konsumen/app/src/main/res/layout/fragment_register.xml" />
         <option value="/media/anonymous/data/AndroidStudioProjects/elaundry-konsumen/app/src/main/res/layout/fragment_changepass.xml" />
@@ -2974,6 +3292,11 @@
         <option value="/media/anonymous/data/AndroidStudioProjects/elaundry-konsumen/app/src/main/java/com/yuly/elaundry/konsumen/widgets/ScrollAwareFABBehavior.java" />
         <option value="/media/anonymous/data/AndroidStudioProjects/elaundry-konsumen/app/src/main/res/layout/fragment_transaksi.xml" />
         <option value="/media/anonymous/data/AndroidStudioProjects/elaundry-konsumen/app/src/main/java/com/yuly/elaundry/konsumen/fragment/TransaksiFragment.java" />
+        <option value="/media/anonymous/data/AndroidStudioProjects/elaundry-konsumen/app/src/main/AndroidManifest.xml" />
+        <option value="/media/anonymous/data/AndroidStudioProjects/elaundry-konsumen/app/build.gradle" />
+        <option value="/media/anonymous/data/AndroidStudioProjects/elaundry-konsumen/app/src/main/res/layout/activity_login.xml" />
+        <option value="/media/anonymous/data/AndroidStudioProjects/elaundry-konsumen/app/src/main/res/drawable/ic_keyboard_arrow_left_white_24dp.xml" />
+        <option value="/media/anonymous/data/AndroidStudioProjects/elaundry-konsumen/app/src/main/res/layout/fragment_login.xml" />
       </list>
     </option>
   </component>
@@ -3011,8 +3334,11 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
+      <pane id="Scope" />
       <pane id="PackagesPane" />
-      <pane id="Scratches" />
+      <pane id="ProjectPane">
+        <subPane />
+      </pane>
       <pane id="AndroidView">
         <subPane>
           <PATH>
@@ -3031,17 +3357,106 @@
               <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidViewProjectNode" />
             </PATH_ELEMENT>
           </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="elaundry-konsumen" />
+              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="app" />
+              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidModuleNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="elaundry-konsumen" />
+              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="app" />
+              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidModuleNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="java" />
+              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidSourceTypeNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="konsumen" />
+              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidPsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="elaundry-konsumen" />
+              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="app" />
+              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidModuleNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="java" />
+              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidSourceTypeNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="konsumen" />
+              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidPsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="fragment" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="elaundry-konsumen" />
+              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="app" />
+              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidModuleNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="java" />
+              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidSourceTypeNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="konsumen" />
+              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidPsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="activity" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="elaundry-konsumen" />
+              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="app" />
+              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidModuleNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="java" />
+              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidSourceTypeNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="elaundry" />
+              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidPsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
         </subPane>
       </pane>
-      <pane id="ProjectPane" />
-      <pane id="Scope" />
+      <pane id="Scratches" />
     </panes>
   </component>
   <component name="PropertiesComponent">
     <property name="settings.editor.selected.configurable" value="configurable.group.appearance" />
     <property name="settings.editor.splitter.proportion" value="0.2" />
     <property name="android.sdk.path" value="/media/anonymous/data/Android/android-sdk-linux" />
-    <property name="last_opened_file_path" value="/media/anonymous/data/Android/Key/my-release-yuly.keystore" />
+    <property name="last_opened_file_path" value="/media/anonymous/data/AndroidStudioProjects/elaundry-kurir" />
     <property name="UI_DESIGNER_EDITOR_MODE.NlPropertiesWindowManager-NlEditorPanel.WIDTH" value="277" />
     <property name="project.structure.last.edited" value="Problems" />
     <property name="project.structure.proportion" value="0.15" />
@@ -3522,36 +3937,44 @@
       <option name="project" value="LOCAL" />
       <updated>1481152515993</updated>
     </task>
-    <option name="localTasksCounter" value="19" />
+    <task id="LOCAL-00019" summary="Mengupdate tombol pemesanan agar bisa hidden ketika melakukan scrolling">
+      <created>1481163045824</created>
+      <option name="number" value="00019" />
+      <option name="presentableId" value="LOCAL-00019" />
+      <option name="project" value="LOCAL" />
+      <updated>1481163045824</updated>
+    </task>
+    <option name="localTasksCounter" value="20" />
     <servers />
   </component>
   <component name="ToolWindowManager">
     <frame x="53" y="24" width="1313" height="744" extended-state="6" />
     <editor active="false" />
     <layout>
-      <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Nl-Palette" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.38387096" sideWeight="0.44830307" order="13" side_tool="false" content_ui="tabs" />
       <window_info id="Build Variants" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="true" content_ui="tabs" />
+      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.44516128" sideWeight="0.5516969" order="8" side_tool="true" content_ui="tabs" />
+      <window_info id="Android Monitor" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.37258065" sideWeight="0.52328336" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Properties" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
+      <window_info id="Capture Tool" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
+      <window_info id="Designer" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Android Model" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.17758484" sideWeight="0.5" order="10" side_tool="true" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.5096774" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
+      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.38387096" sideWeight="0.44830307" order="13" side_tool="false" content_ui="tabs" />
       <window_info id="Palette&#9;" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Image Layers" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Capture Analysis" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
-      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.44516128" sideWeight="0.5516969" order="8" side_tool="true" content_ui="tabs" />
-      <window_info id="Android Monitor" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.61774194" sideWeight="0.52328336" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Preview" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.12741935" sideWeight="0.43725336" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Version Control" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.4935484" sideWeight="0.47434884" order="9" side_tool="false" content_ui="tabs" />
-      <window_info id="Properties" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
+      <window_info id="Version Control" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.6016129" sideWeight="0.47434884" order="9" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.329582" sideWeight="0.5" order="12" side_tool="false" content_ui="tabs" />
       <window_info id="Captures" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Capture Tool" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Gradle Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="10" side_tool="true" content_ui="tabs" />
-      <window_info id="Designer" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.40410417" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Gradle" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32991317" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Android Model" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.17758484" sideWeight="0.5" order="10" side_tool="true" content_ui="tabs" />
       <window_info id="Theme Preview" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
-      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.5096774" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="5" side_tool="true" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
@@ -3561,7 +3984,6 @@
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.24940805" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
-      <window_info id="Preview" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32903227" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
     </layout>
     <layout-to-restore>
@@ -3645,126 +4067,6 @@
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file:///media/anonymous/data/AndroidStudioProjects/elaundry-konsumen/app/src/main/res/layout/nav_header_main.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-      <provider editor-type-id="android-designer2">
-        <state />
-      </provider>
-    </entry>
-    <entry file="file:///media/anonymous/data/AndroidStudioProjects/elaundry-konsumen/app/src/main/res/layout/view_loading.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-      <provider editor-type-id="android-designer2">
-        <state />
-      </provider>
-    </entry>
-    <entry file="file:///media/anonymous/data/AndroidStudioProjects/elaundry-konsumen/app/src/main/res/layout/login_fragment.xml">
-      <provider editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-      <provider selected="true" editor-type-id="android-designer2">
-        <state />
-      </provider>
-    </entry>
-    <entry file="file:///media/anonymous/data/AndroidStudioProjects/elaundry-konsumen/app/src/main/res/layout/map_location.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-      <provider editor-type-id="android-designer2">
-        <state />
-      </provider>
-    </entry>
-    <entry file="file:///media/anonymous/data/AndroidStudioProjects/elaundry-konsumen/app/src/main/res/layout/list_row_place.xml">
-      <provider editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-      <provider selected="true" editor-type-id="android-designer2">
-        <state />
-      </provider>
-    </entry>
-    <entry file="file:///media/anonymous/data/AndroidStudioProjects/elaundry-konsumen/app/src/main/res/layout/fragment_peta.xml">
-      <provider editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-      <provider selected="true" editor-type-id="android-designer2">
-        <state />
-      </provider>
-    </entry>
-    <entry file="file:///media/anonymous/data/AndroidStudioProjects/elaundry-konsumen/app/src/main/res/layout/fragment_profile_new.xml">
-      <provider editor-type-id="text-editor">
-        <state relative-caret-position="360">
-          <caret line="24" column="9" selection-start-line="24" selection-start-column="9" selection-end-line="24" selection-end-column="9" />
-        </state>
-      </provider>
-      <provider selected="true" editor-type-id="android-designer2">
-        <state />
-      </provider>
-    </entry>
-    <entry file="file:///media/anonymous/data/AndroidStudioProjects/elaundry-konsumen/app/src/main/res/layout/fragment_profile.xml">
-      <provider editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-      <provider selected="true" editor-type-id="android-designer2">
-        <state />
-      </provider>
-    </entry>
-    <entry file="file:///media/anonymous/data/AndroidStudioProjects/elaundry-konsumen/app/src/main/res/layout/fragment_main.xml">
-      <provider editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-      <provider selected="true" editor-type-id="android-designer2">
-        <state />
-      </provider>
-    </entry>
-    <entry file="file:///media/anonymous/data/AndroidStudioProjects/elaundry-konsumen/app/src/main/res/layout/fragment_login.xml">
-      <provider editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-      <provider selected="true" editor-type-id="android-designer2">
-        <state />
-      </provider>
-    </entry>
-    <entry file="file:///media/anonymous/data/AndroidStudioProjects/elaundry-konsumen/app/src/main/res/layout/fragment_blank.xml">
-      <provider editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-      <provider selected="true" editor-type-id="android-designer2">
-        <state />
-      </provider>
-    </entry>
-    <entry file="file:///media/anonymous/data/AndroidStudioProjects/elaundry-konsumen/app/src/main/res/layout/fragment_changepass.xml">
-      <provider editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-      <provider selected="true" editor-type-id="android-designer2">
-        <state />
-      </provider>
-    </entry>
     <entry file="file:///media/anonymous/data/AndroidStudioProjects/elaundry-konsumen/app/src/main/res/layout/fragment_about.xml">
       <provider editor-type-id="text-editor">
         <state relative-caret-position="0">
@@ -3818,16 +4120,6 @@
       </provider>
     </entry>
     <entry file="file:///media/anonymous/data/AndroidStudioProjects/elaundry-konsumen/app/src/main/res/layout/content_detail_pemesanan_new.xml">
-      <provider editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-      <provider selected="true" editor-type-id="android-designer2">
-        <state />
-      </provider>
-    </entry>
-    <entry file="file:///media/anonymous/data/AndroidStudioProjects/elaundry-konsumen/app/src/main/res/layout/activity_login.xml">
       <provider editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
@@ -3897,6 +4189,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="60">
           <caret line="7" column="13" selection-start-line="7" selection-start-column="13" selection-end-line="7" selection-end-column="13" />
+          <folding />
         </state>
       </provider>
     </entry>
@@ -3904,6 +4197,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="90">
           <caret line="10" column="13" selection-start-line="10" selection-start-column="13" selection-end-line="10" selection-end-column="13" />
+          <folding />
         </state>
       </provider>
     </entry>
@@ -3930,28 +4224,11 @@
     </entry>
     <entry file="file:///media/anonymous/data/AndroidStudioProjects/elaundry-konsumen/app/src/main/java/com/yuly/elaundry/konsumen/fragment/TransaksiPemesananFragment.java" />
     <entry file="file:///media/anonymous/data/AndroidStudioProjects/elaundry-konsumen/app/build/generated/source/buildConfig/androidTest/debug/com/yuly/elaundry/konsumen/1/2/test/BuildConfig.java" />
-    <entry file="file:///media/anonymous/data/AndroidStudioProjects/elaundry-konsumen/app/src/main/java/com/yuly/elaundry/konsumen/activity/LoginActivityNew.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="75">
-          <caret line="19" column="13" selection-start-line="19" selection-start-column="13" selection-end-line="19" selection-end-column="13" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file:///media/anonymous/data/AndroidStudioProjects/elaundry-konsumen/app/src/main/java/com/yuly/elaundry/konsumen/activity/MainActivity.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1350">
-          <caret line="90" column="0" selection-start-line="90" selection-start-column="0" selection-end-line="90" selection-end-column="0" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file:///media/anonymous/data/AndroidStudioProjects/elaundry-konsumen/app/src/main/java/com/yuly/elaundry/konsumen/helper/KonsumenDbHandler.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="15">
           <caret line="18" column="13" selection-start-line="18" selection-start-column="13" selection-end-line="18" selection-end-column="13" />
+          <folding />
         </state>
       </provider>
     </entry>
@@ -3970,9 +4247,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="1845">
           <caret line="143" column="9" selection-start-line="143" selection-start-column="9" selection-end-line="143" selection-end-column="9" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
+          <folding />
         </state>
       </provider>
     </entry>
@@ -4001,7 +4276,9 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="75">
           <caret line="39" column="13" selection-start-line="39" selection-start-column="13" selection-end-line="39" selection-end-column="13" />
-          <folding />
+          <folding>
+            <element signature="imports" expanded="false" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -4027,7 +4304,15 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="180">
           <caret line="71" column="0" selection-start-line="71" selection-start-column="0" selection-end-line="71" selection-end-column="0" />
-          <folding />
+          <folding>
+            <element signature="imports" expanded="false" />
+            <element signature="e#11363#11364#0" expanded="false" />
+            <element signature="e#11412#11413#0" expanded="false" />
+            <element signature="e#18205#18206#0" expanded="false" />
+            <element signature="e#18247#18248#0" expanded="false" />
+            <element signature="e#22287#22288#0" expanded="false" />
+            <element signature="e#22329#22330#0" expanded="false" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -4035,7 +4320,15 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="75">
           <caret line="59" column="13" selection-start-line="59" selection-start-column="13" selection-end-line="59" selection-end-column="13" />
-          <folding />
+          <folding>
+            <element signature="imports" expanded="false" />
+            <element signature="e#10882#10883#0" expanded="false" />
+            <element signature="e#10931#10932#0" expanded="false" />
+            <element signature="e#17713#17714#0" expanded="false" />
+            <element signature="e#17755#17756#0" expanded="false" />
+            <element signature="e#21854#21855#0" expanded="false" />
+            <element signature="e#21896#21897#0" expanded="false" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -4052,9 +4345,161 @@
     </entry>
     <entry file="file:///media/anonymous/data/AndroidStudioProjects/elaundry-konsumen/app/src/main/java/com/yuly/elaundry/konsumen/fragment/TransaksiFragment.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="156">
+        <state relative-caret-position="2280">
           <caret line="203" column="0" selection-start-line="203" selection-start-column="0" selection-end-line="203" selection-end-column="0" />
+          <folding>
+            <element signature="imports" expanded="false" />
+            <element signature="e#19116#19117#0" expanded="false" />
+            <element signature="e#19144#19145#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file:///media/anonymous/data/AndroidStudioProjects/elaundry-konsumen/settings.gradle">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file:///media/anonymous/data/AndroidStudioProjects/elaundry-konsumen/build.gradle">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="105">
+          <caret line="7" column="0" selection-start-line="7" selection-start-column="0" selection-end-line="7" selection-end-column="56" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file:///media/anonymous/data/AndroidStudioProjects/elaundry-konsumen/app/src/main/AndroidManifest.xml">
+      <provider editor-type-id="android-manifest">
+        <state />
+      </provider>
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="272">
+          <caret line="88" column="41" selection-start-line="88" selection-start-column="41" selection-end-line="88" selection-end-column="41" />
+          <folding>
+            <element signature="e#2381#2399#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file:///media/anonymous/data/AndroidStudioProjects/elaundry-konsumen/app/src/main/res/values/strings.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-3056">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file:///media/anonymous/data/AndroidStudioProjects/elaundry-konsumen/app/src/main/res/drawable/ic_keyboard_arrow_left_white_24dp.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file:///media/anonymous/data/AndroidStudioProjects/elaundry-konsumen/app/src/main/res/values/styles.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="240">
+          <caret line="77" column="0" selection-start-line="77" selection-start-column="0" selection-end-line="152" selection-end-column="94" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file:///media/anonymous/data/AndroidStudioProjects/elaundry-konsumen/app/src/main/res/layout/activity_login.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="255">
+          <caret line="17" column="0" selection-start-line="17" selection-start-column="0" selection-end-line="17" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+      <provider editor-type-id="android-designer2">
+        <state />
+      </provider>
+    </entry>
+    <entry file="file:///media/anonymous/data/AndroidStudioProjects/elaundry-konsumen/app/src/main/res/layout/fragment_login.xml">
+      <provider editor-type-id="text-editor">
+        <state relative-caret-position="135">
+          <caret line="9" column="21" selection-start-line="9" selection-start-column="21" selection-end-line="9" selection-end-column="21" />
+          <folding>
+            <element signature="e#736#754#0" expanded="true" />
+            <element signature="e#1324#1339#0" expanded="true" />
+            <element signature="e#2008#2026#0" expanded="true" />
+            <element signature="e#2503#2518#0" expanded="true" />
+            <element signature="e#2945#2968#0" expanded="true" />
+            <element signature="e#3278#3319#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+      <provider selected="true" editor-type-id="android-designer2">
+        <state />
+      </provider>
+    </entry>
+    <entry file="file:///media/anonymous/data/AndroidStudioProjects/elaundry-konsumen/app/src/main/java/com/yuly/elaundry/konsumen/activity/LoginActivityNew.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="225">
+          <caret line="19" column="13" selection-start-line="19" selection-start-column="13" selection-end-line="19" selection-end-column="13" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file:///media/anonymous/data/AndroidStudioProjects/elaundry-konsumen/app/src/main/java/com/yuly/elaundry/konsumen/fragment/LoginFragmentVolley.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="550">
+          <caret line="44" column="13" selection-start-line="44" selection-start-column="13" selection-end-line="44" selection-end-column="13" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file:///media/anonymous/data/AndroidStudioProjects/elaundry-konsumen/libs_google_volley/rules.gradle">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file:///media/anonymous/data/AndroidStudioProjects/elaundry-konsumen/libs_google_volley/bintray.gradle">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-1050">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file:///media/anonymous/data/AndroidStudioProjects/elaundry-konsumen/libs_google_volley/build.gradle">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="164">
+          <caret line="31" column="0" selection-start-line="31" selection-start-column="0" selection-end-line="34" selection-end-column="1" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file:///media/anonymous/data/AndroidStudioProjects/elaundry-konsumen/app/build.gradle">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="15">
+          <caret line="1" column="0" selection-start-line="1" selection-start-column="0" selection-end-line="45" selection-end-column="5" />
+          <folding>
+            <marker date="1481189195356" expanded="true" signature="1426:2193" ph="{...}" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file:///media/anonymous/data/AndroidStudioProjects/elaundry-konsumen/app/src/main/java/com/yuly/elaundry/konsumen/activity/MainActivity.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-3592">
+          <caret line="67" column="43" selection-start-line="67" selection-start-column="43" selection-end-line="67" selection-end-column="43" />
+          <folding>
+            <element signature="e#4104#4121#0" expanded="true" />
+            <element signature="e#4127#4144#0" expanded="true" />
+            <element signature="e#10309#10344#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
