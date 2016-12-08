@@ -1,5 +1,6 @@
 apply plugin: 'com.android.application'
 
+
 android {
     signingConfigs {
         release {
@@ -18,15 +19,11 @@ android {
     compileSdkVersion 25
     buildToolsVersion '25.0.0'
     defaultConfig {
-        applicationId 'com.yuly.elaundry.kurir'
+        applicationId 'com.yuly.elaundry.konsumen'
         minSdkVersion 15
-        //vectorDrawables.useSupportLibrary = true
         targetSdkVersion 25
-        versionCode 1
-        versionName '1.0.2'
         //multiDexEnabled true
         signingConfig signingConfigs.release
-        vectorDrawables.useSupportLibrary = true
     }
     buildTypes {
         release {
@@ -34,6 +31,7 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
             signingConfig signingConfigs.release
             proguardFile '/home/anonymous/AndroidStudioProjects/myelaundry/app/proguard-android-optimize.txt'
+            debuggable false
         }
         debug {
             debuggable true
@@ -53,7 +51,6 @@ android {
 
 dependencies {
     compile fileTree(include: ['*.jar'], dir: 'libs')
-
     //compile 'com.android.support:multidex:1.0.1'
     compile project(':libs_google_volley')
     //Android Graph Library for creating zoomable and scrollable line and bar graphs
@@ -69,12 +66,10 @@ dependencies {
     //Vector map library written in Java - running on Android and Desktop.
     //The Simple Logging Facade for Java
     //The Simple Logging Facade for Java
-
     compile 'com.android.support:appcompat-v7:25.0.1'
     compile 'com.android.support:recyclerview-v7:25.0.1'
     compile 'com.android.support:design:25.0.1'
     compile 'com.android.support:support-v4:25.0.1'
-
     compile 'com.google.code.gson:gson:2.4'
     compile 'com.jjoe64:graphview:4.0.1'
     compile 'org.mapsforge:mapsforge-core:0.5.1'
