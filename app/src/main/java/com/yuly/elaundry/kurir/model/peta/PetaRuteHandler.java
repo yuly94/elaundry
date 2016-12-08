@@ -238,6 +238,19 @@ public class PetaRuteHandler {
         }
     }
 
+    // TODO: 04/12/16 menambahkan marker merah
+    public void tambahMarkerMerah(LatLong point) {
+        Layers layers = mapView.getLayerManager().getLayers();
+        //        if (startPoint != null && endPoint != null) {
+        //            setShortestPathRunning(true);
+        //        }
+        if (point != null) {
+            //  removeLayer(layers, startMarker);
+            startMarker = createMarker(point, R.drawable.ic_place_red_24dp);
+            layers.add(startMarker);
+        }
+    }
+
 
     /**
      * remove a layer from map layers
@@ -320,9 +333,9 @@ public class PetaRuteHandler {
                    // PetaRuteActivity peta = new PetaRuteActivity();
                    // peta.getRute();
 
-                    PetaRuteActions petaRut = new PetaRuteActions(getActivity(), mapView);
+                  //  PetaRuteActions petaRut = new PetaRuteActions(getActivity(), mapView);
 
-                 //   petaRut.activeNavigator(-7.767706382776794,112.01162539826053);
+                   //  petaRut.activeNavigator(-7.767706382776794,112.01162539826053);
 
 
                 } catch (Exception e) {

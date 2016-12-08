@@ -51,7 +51,7 @@ public class DetailPemesananActivity extends AppCompatActivity {
     private Button btnEdit, btnSave;
 
     private ProgressDialog pDialog;
-    private String id_pemesanan, text_tombol,text_update_status, text_status_sebelumnya;
+    private String id_pemesanan, text_tombol,text_update_status, text_status_sebelumnya, pem_latitude, pem_longitude;
     private View parentLayout;
 
     private Button btnAmbil;
@@ -106,6 +106,8 @@ public class DetailPemesananActivity extends AppCompatActivity {
 
         id_pemesanan = getIntent().getStringExtra("PEMESANAN_ID");
         text_tombol = getIntent().getStringExtra("TEXT_TOMBOL");
+        pem_latitude = getIntent().getStringExtra("PEMESANAN_LATITUDE");
+        pem_longitude = getIntent().getStringExtra("PEMESANAN_LONGITUDE");
         text_status_sebelumnya = getIntent().getStringExtra("STATUS_SEBELUMNYA");
         text_update_status = getIntent().getStringExtra("UPDATE_STATUS");
 
@@ -128,12 +130,12 @@ public class DetailPemesananActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
-                Intent intent = new Intent(getApplicationContext(), PetaRuteActivity.class);
+                Intent intentPeta = new Intent(getApplication(), PetaRuteActivity.class);
 
-                intent.putExtra("PESANAN_LATITUDE", transaksiModel.getLatitude());
-                intent.putExtra("PESANAN_LONGITUDE", transaksiModel.getLongitude());
+                intentPeta.putExtra("PESANAN_LATITUDE", pem_latitude);
+                intentPeta.putExtra("PESANAN_LONGITUDE", pem_longitude);
 
-                startActivity(intent);
+                startActivity(intentPeta);
 
 
             }

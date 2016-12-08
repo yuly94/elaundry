@@ -229,7 +229,7 @@ public class Navigasi {
      * @return direction
      */
     public String getDirectionDescription(Instruction instruction) {
-        if (instruction.getSign() == 4) return "Navigation End";//4
+        if (instruction.getSign() == 4) return "Sampai tujuan";//4
         String str;
         String streetName = instruction.getName();
         int sign = instruction.getSign();

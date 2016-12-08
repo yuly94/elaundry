@@ -33,6 +33,7 @@ public class RouteDbHelper extends SQLiteOpenHelper {
     private static final String TABLE_LOKASI_KONSUMEN = "lokasi_konsumen";
     private static final String TABLE_POINT_KONSUMEN = "point_konsumen";
     private static final String TABLE_PATH_KONSUMEN = "path_konsumen";
+    private static final String TABLE_JARAK_KONSUMEN = "jarak_konsumen";
     private static final String TABLE_TODO = "todos";
     private static final String TABLE_TAG = "tags";
     private static final String TABLE_TODO_TAG = "todo_tags";
@@ -48,6 +49,9 @@ public class RouteDbHelper extends SQLiteOpenHelper {
     private static final String KEY_KONSUMEN_LONGITUDE = "konsumen_longitude";
     private static final String KEY_KONSUMEN_LATITUDE = "konsumen_latitude";
     private static final String KEY_KONSUMEN_JARAK = "konsumen_jarak";
+    private static final String KEY_DARI = "konsumen_dari";
+    private static final String KEY_TUJUAN = "konsumen_tujuan";
+    private static final String KEY_JARAK = "konsumen_tujuan";
 
 
 
@@ -83,6 +87,15 @@ public class RouteDbHelper extends SQLiteOpenHelper {
             + KEY_KONSUMEN_LONGITUDE + " TEXT,"
             + KEY_KONSUMEN_JARAK + " TEXT,"
             + KEY_STATUS + " INTEGER,"
+            + KEY_CREATED_AT
+            + " DATETIME" + ")";
+
+
+    private static final String CREATE_TABLE_JARAK_KONSUMEN = "CREATE TABLE "
+            + TABLE_JARAK_KONSUMEN + "(" + KEY_ID + " INTEGER PRIMARY KEY,"
+            + KEY_DARI + " TEXT,"
+            + KEY_TUJUAN + " TEXT,"
+            + KEY_JARAK + " TEXT,"
             + KEY_CREATED_AT
             + " DATETIME" + ")";
 
@@ -123,6 +136,7 @@ public class RouteDbHelper extends SQLiteOpenHelper {
         db.execSQL(CREATE_TABLE_LOKASI_KONSUMEN);
         db.execSQL(CREATE_TABLE_POINT_KONSUMEN);
         db.execSQL(CREATE_TABLE_PATH_KONSUMEN);
+        db.execSQL(CREATE_TABLE_JARAK_KONSUMEN);
         db.execSQL(CREATE_TABLE_TODO);
         db.execSQL(CREATE_TABLE_TAG);
         db.execSQL(CREATE_TABLE_TODO_TAG);
@@ -132,8 +146,9 @@ public class RouteDbHelper extends SQLiteOpenHelper {
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
         // on upgrade drop older tables
         db.execSQL("DROP TABLE IF EXISTS " + TABLE_LOKASI_KONSUMEN);
+        db.execSQL("DROP TABLE IF EXISTS " + TABLE_POINT_KONSUMEN);
         db.execSQL("DROP TABLE IF EXISTS " + TABLE_PATH_KONSUMEN);
-        db.execSQL("DROP TABLE IF EXISTS " + TABLE_PATH_KONSUMEN);
+        db.execSQL("DROP TABLE IF EXISTS " + TABLE_JARAK_KONSUMEN);
         db.execSQL("DROP TABLE IF EXISTS " + TABLE_TODO);
         db.execSQL("DROP TABLE IF EXISTS " + TABLE_TAG);
         db.execSQL("DROP TABLE IF EXISTS " + TABLE_TODO_TAG);
@@ -213,6 +228,31 @@ public class RouteDbHelper extends SQLiteOpenHelper {
         // insert row
 
         long todo_id = db.insert(TABLE_POINT_KONSUMEN, null, values);
+
+        // insert tag_ids
+        //    for (long tag_id : tag_ids) {
+        //      createTodoTag(todo_id, tag_id);
+        //  }
+
+        return todo_id;
+    }
+
+    /**
+     * Creating a todo
+     */
+    public long createJarakKonsumen(Lokasi lokasi) {
+        SQLiteDatabase db = this.getWritableDatabase();
+
+        ContentValues values = new ContentValues();
+        values.put(KEY_DARI, lokasi.getKonsumenId());
+        values.put(KEY_TUJUAN, lokasi.getPemesananId());
+        values.put(KEY_JARAK, lokasi.getLatitude());
+        values.put(KEY_STATUS, lokasi.getStatus());
+        values.put(KEY_CREATED_AT, getDateTime());
+
+        // insert row
+
+        long todo_id = db.insert(TABLE_JARAK_KONSUMEN, null, values);
 
         // insert tag_ids
         //    for (long tag_id : tag_ids) {

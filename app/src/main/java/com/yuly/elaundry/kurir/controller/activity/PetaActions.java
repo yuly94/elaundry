@@ -59,7 +59,7 @@ import static android.content.ContentValues.TAG;
 public class PetaActions implements NavigatorListener, PetaHandlerListener {
     private Activity activity;
     protected FloatingActionButton showPositionBtn, navigationBtn, settingsBtn, controlBtn;
-    protected FloatingActionButton zoomInBtn, zoomOutBtn, fabNavigasi,fab_refresh, fab_dapatkan, fab_getpoint;
+    protected FloatingActionButton zoomInBtn, zoomOutBtn, fabNavigasi,fab_refresh, fab_dapatkan, fab_getpoint, fab_rute;
     private ViewGroup sideBarVP,  sideBarMenuVP, navSettingsVP, navSettingsFromVP, navSettingsToVP, navInstructionVP,
             navInstructionListVP;
     private boolean menuVisible;
@@ -82,6 +82,8 @@ public class PetaActions implements NavigatorListener, PetaHandlerListener {
         this.showPositionBtn = (FloatingActionButton) activity.findViewById(R.id.fab_location);
 
         this.controlBtn = (FloatingActionButton) activity.findViewById(R.id.fab_menu);
+
+        this.fab_rute = (FloatingActionButton) activity.findViewById(R.id.fab_rute);
 
         this.zoomInBtn = (FloatingActionButton) activity.findViewById(R.id.fab_besarkan);
         this.zoomOutBtn = (FloatingActionButton) activity.findViewById(R.id.fab_kecilkan);
@@ -139,6 +141,8 @@ public class PetaActions implements NavigatorListener, PetaHandlerListener {
         buatPoly();
 
         getPoint();
+
+        fabBuatTable();
     }
 
 
@@ -194,6 +198,32 @@ public class PetaActions implements NavigatorListener, PetaHandlerListener {
             // Writing Contacts to log
             Log.d("Name: ", log);
         }
+    }
+
+
+    private void buatTable() {
+        // Reading all lokasi konsumen
+        for(int i=1; i<= 6 ;i++){
+
+            for(int k=(i-1); k > 0 ;--k){
+
+
+                System.out.print("X"+i);
+                System.out.print("&"+k);
+                System.out.println("");
+            }
+
+            for(int j=(i+1); j <= 6 ;++j){
+
+                System.out.print("#"+i);
+
+                System.out.print("*"+j);
+                System.out.println("");
+            }
+            //generate a new line
+            // System.out.println();
+        }
+
     }
 
 
@@ -292,6 +322,18 @@ public class PetaActions implements NavigatorListener, PetaHandlerListener {
 
 
                 hitungJarakAbc();
+
+            }
+
+        });
+    }
+
+    private void fabBuatTable(){
+
+        fab_rute.setOnClickListener(new View.OnClickListener() {
+            @Override public void onClick(View v) {
+
+                buatTable();
 
             }
 

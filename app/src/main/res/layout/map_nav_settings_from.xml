@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout
-    android:id="@+id/nav_settings_from_layout"
+<RelativeLayout android:id="@+id/nav_settings_from_layout"
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:layout_alignParentBottom="true"
     android:background="@color/my_primary"
     android:fontFamily="sans-serif"
-    android:visibility="invisible">
+    android:visibility="invisible"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <!--header-->
     <RelativeLayout
@@ -27,7 +27,7 @@
             android:layout_height="wrap_content"
             android:layout_marginRight="16dp"
             android:padding="8dp"
-            android:src="@drawable/ic_place_white_24dp"
+            app:srcCompat="@drawable/ic_place_white_24dp"
             />
 
         <TextView
@@ -48,7 +48,7 @@
             android:clickable="true"
             android:focusable="true"
             android:padding="8dp"
-            android:src="@drawable/ic_arrow_downward_white_24dp"
+            app:srcCompat="@drawable/ic_arrow_downward_white_24dp"
             />
 
         <View
@@ -80,7 +80,7 @@
             android:layout_height="wrap_content"
             android:layout_marginRight="16dp"
             android:padding="8dp"
-            android:src="@drawable/ic_brightness_low_white_24dp"/>
+            app:srcCompat="@drawable/ic_brightness_low_white_24dp"/>
 
         <TextView
             android:layout_width="wrap_content"
@@ -108,7 +108,7 @@
             android:layout_height="wrap_content"
             android:layout_marginRight="16dp"
             android:padding="8dp"
-            android:src="@drawable/ic_center_focus_strong_white_24dp"/>
+            app:srcCompat="@drawable/ic_center_focus_strong_white_24dp"/>
 
         <TextView
             android:layout_width="wrap_content"
@@ -137,7 +137,7 @@
             android:layout_height="wrap_content"
             android:layout_marginRight="16dp"
             android:padding="8dp"
-            android:src="@drawable/ic_my_location_white_24dp"/>
+            app:srcCompat="@drawable/ic_my_location_white_24dp"/>
 
         <TextView
             android:layout_width="wrap_content"

@@ -19,10 +19,12 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.yuly.elaundry.kurir.R;
+import com.yuly.elaundry.kurir.model.dataType.DataRute;
 import com.yuly.elaundry.kurir.model.dataType.Destination;
 import com.yuly.elaundry.kurir.model.listeners.PetaRuteHandlerListener;
 import com.yuly.elaundry.kurir.model.listeners.NavigatorListener;
 import com.yuly.elaundry.kurir.model.map.Navigasi;
+import com.yuly.elaundry.kurir.model.peta.PetaHandler;
 import com.yuly.elaundry.kurir.model.peta.PetaRuteHandler;
 import com.yuly.elaundry.kurir.model.util.InstructionAdapter;
 import com.yuly.elaundry.kurir.model.util.MyUtility;
@@ -35,11 +37,13 @@ import org.mapsforge.map.model.MapViewPosition;
 
 public class PetaRuteActions implements NavigatorListener, PetaRuteHandlerListener {
     private Activity activity;
-    protected FloatingActionButton showPositionBtn, navigationBtn, settingsBtn, controlBtn;
+    protected FloatingActionButton showPositionBtn, navigationBtn, settingsBtn, controlBtn, fab_dapatkan;
     protected FloatingActionButton zoomInBtn, zoomOutBtn;
     private ViewGroup sideBarVP, sideBarMenuVP, navSettingsVP, navSettingsFromVP, navSettingsToVP, navInstructionVP,
             navInstructionListVP;
     private boolean menuVisible;
+
+    private PetaRuteHandler petaRuteHandler;
     /**
      * true handle on start point ; false handle on end point
      */
@@ -48,15 +52,16 @@ public class PetaRuteActions implements NavigatorListener, PetaRuteHandlerListen
 
     public PetaRuteActions(Activity activity, MapView mapView) {
         this.activity = activity;
-        this.showPositionBtn = (FloatingActionButton) activity.findViewById(R.id.map_show_my_position_fab);
-        this.navigationBtn = (FloatingActionButton) activity.findViewById(R.id.map_nav_fab);
-        this.settingsBtn = (FloatingActionButton) activity.findViewById(R.id.map_settings_fab);
-        this.controlBtn = (FloatingActionButton) activity.findViewById(R.id.map_sidebar_control_fab);
-        this.zoomInBtn = (FloatingActionButton) activity.findViewById(R.id.map_zoom_in_fab);
-        this.zoomOutBtn = (FloatingActionButton) activity.findViewById(R.id.map_zoom_out_fab);
+        this.showPositionBtn = (FloatingActionButton) activity.findViewById(R.id.fab_lokasi);
+        this.fab_dapatkan = (FloatingActionButton) activity.findViewById(R.id.fab_nafigasi);
+        this.settingsBtn = (FloatingActionButton) activity.findViewById(R.id.fab_setting);
+        this.controlBtn = (FloatingActionButton) activity.findViewById(R.id.fab_menu);
+        this.navigationBtn= (FloatingActionButton) activity.findViewById(R.id.fab_dapatkan);
+        this.zoomInBtn = (FloatingActionButton) activity.findViewById(R.id.fab_besarkan);
+        this.zoomOutBtn = (FloatingActionButton) activity.findViewById(R.id.fab_kecilkan);
         // view groups managed by separate layout xml file : //map_sidebar_layout/map_sidebar_menu_layout
-        this.sideBarVP = (ViewGroup) activity.findViewById(R.id.map_sidebar_layout);
-        this.sideBarMenuVP = (ViewGroup) activity.findViewById(R.id.map_sidebar_menu_layout);
+        this.sideBarVP = (ViewGroup) activity.findViewById(R.id.menu_nafigasi_peta);
+        this.sideBarMenuVP = (ViewGroup) activity.findViewById(R.id.group_tombol_navigasi);
         this.navSettingsVP = (ViewGroup) activity.findViewById(R.id.nav_settings_layout);
         this.navSettingsFromVP = (ViewGroup) activity.findViewById(R.id.nav_settings_from_layout);
         this.navSettingsToVP = (ViewGroup) activity.findViewById(R.id.nav_settings_to_layout);
@@ -76,6 +81,7 @@ public class PetaRuteActions implements NavigatorListener, PetaRuteHandlerListen
         navSettingsHandler();
         settingsBtnHandler();
 
+        showRute();
 
     }
 
@@ -146,7 +152,7 @@ public class PetaRuteActions implements NavigatorListener, PetaRuteHandlerListen
             addToMarker(tl);
             Destination.getDestination().setStartPoint(fl);
             Destination.getDestination().setEndPoint(tl);
-            activeNavigator(null,null);
+            activeNavigator();
         }
         if (fl == null && tl == null) {
             Toast.makeText(activity,
@@ -264,7 +270,7 @@ public class PetaRuteActions implements NavigatorListener, PetaRuteHandlerListen
                             addToMarker(Destination.getDestination().getEndPoint());
                             navSettingsToVP.setVisibility(View.INVISIBLE);
                             navSettingsVP.setVisibility(View.VISIBLE);
-                            activeNavigator(null,null);
+                            activeNavigator();
                         } else {
                             Toast.makeText(activity, "Current Location not available, Check your GPS signal!",
                                     Toast.LENGTH_SHORT).show();
@@ -403,7 +409,7 @@ public class PetaRuteActions implements NavigatorListener, PetaRuteHandlerListen
                             fromLocalET.setText(Destination.getDestination().getStartPointToString());
                             navSettingsFromVP.setVisibility(View.INVISIBLE);
                             navSettingsVP.setVisibility(View.VISIBLE);
-                            activeNavigator(null,null);
+                            activeNavigator();
                         } else {
                             Toast.makeText(activity, "Current Location not available, Check your GPS signal!",
                                     Toast.LENGTH_SHORT).show();
@@ -431,7 +437,7 @@ public class PetaRuteActions implements NavigatorListener, PetaRuteHandlerListen
             toLocalET.setText(Destination.getDestination().getEndPointToString());
         }
         navSettingsVP.setVisibility(View.VISIBLE);
-        activeNavigator(null,null);
+        activeNavigator();
     }
 
     /**
@@ -445,30 +451,50 @@ public class PetaRuteActions implements NavigatorListener, PetaRuteHandlerListen
         }
     }
 
+    protected void showRute() {
+        fab_dapatkan.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                activeNavigator();
+            }
+        });
+    }
+
     /**
      * drawer polyline on map , active navigator instructions(directions) if on
      */
-    public void activeNavigator(Double Lat, Double Lon) {
-        LatLong startPoint =  new LatLong(PetaRuteActivity.getmCurrentLocation().getLatitude(),
-                PetaRuteActivity.getmCurrentLocation().getLongitude());//Destination.getDestination().getStartPoint();
-        LatLong endPoint = new LatLong ( Lat, Lon);// Destination.getDestination().getEndPoint();
-        // show path finding process
-        navSettingsVP.setVisibility(View.INVISIBLE);
+    public void activeNavigator() {
+        if (PetaRuteActivity.getmCurrentLocation() != null) {
+                LatLong lokasiAwal = new LatLong(PetaRuteActivity.getmCurrentLocation().getLatitude(),
+            PetaRuteActivity.getmCurrentLocation().getLongitude());//new LatLong ( -7.8130979,112.0157406);
+            LatLong lokasiAkhir = DataRute.getDatarute().getEndPoint();
+            // show path finding process
+            navSettingsVP.setVisibility(View.INVISIBLE);
 
-        View pathfinding = activity.findViewById(R.id.map_nav_settings_path_finding);
-        pathfinding.setVisibility(View.VISIBLE);
-        pathfinding.bringToFront();
-        PetaRuteHandler mapHandler = PetaRuteHandler.getPetaRuteHandler();
-        mapHandler.calcPath(
-               startPoint.latitude, startPoint.longitude, endPoint.latitude, endPoint.longitude
+            View pathfinding = activity.findViewById(R.id.map_nav_settings_path_finding);
+            pathfinding.setVisibility(View.VISIBLE);
+            pathfinding.bringToFront();
+            PetaRuteHandler mapHandler = PetaRuteHandler.getPetaRuteHandler();
 
-        );
+            mapHandler.calcPath(
+                    lokasiAwal.latitude, lokasiAwal.longitude, lokasiAkhir.latitude, lokasiAkhir.longitude
 
-        mapHandler.addMarkers(startPoint,endPoint);
+            );
 
-        if (Variable.getVariable().isDirectionsON()) {
-            mapHandler.setNeedPathCal(true);
-            //rest running at
+
+
+            PetaRuteHandler.getPetaRuteHandler().tambahMarkerMerah(lokasiAkhir);
+           // petaRuteHandler.addMarkers(lokasiAwal, lokasiAkhir);
+
+            Log.d("Active", "navigator");
+
+            if (Variable.getVariable().isDirectionsON()) {
+                mapHandler.setNeedPathCal(true);
+                //rest running at
+            }
+        } else {
+
+            Toast.makeText(activity, "gagal mendapatkan lokasi anda",Toast.LENGTH_LONG).show();
         }
     }
 
@@ -610,7 +636,7 @@ public class PetaRuteActions implements NavigatorListener, PetaRuteHandlerListen
                     footBtn.setImageResource(R.drawable.ic_directions_walk_orange_24dp);
                     bikeBtn.setImageResource(R.drawable.ic_directions_bike_white_24dp);
                     carBtn.setImageResource(R.drawable.ic_directions_car_white_24dp);
-                    activeNavigator(null,null);
+                    activeNavigator();
                 }
             }
         });
@@ -622,7 +648,7 @@ public class PetaRuteActions implements NavigatorListener, PetaRuteHandlerListen
                     footBtn.setImageResource(R.drawable.ic_directions_walk_white_24dp);
                     bikeBtn.setImageResource(R.drawable.ic_directions_bike_orange_24dp);
                     carBtn.setImageResource(R.drawable.ic_directions_car_white_24dp);
-                    activeNavigator(null,null);
+                    activeNavigator();
                 }
             }
         });
@@ -634,7 +660,7 @@ public class PetaRuteActions implements NavigatorListener, PetaRuteHandlerListen
                     footBtn.setImageResource(R.drawable.ic_directions_walk_white_24dp);
                     bikeBtn.setImageResource(R.drawable.ic_directions_bike_white_24dp);
                     carBtn.setImageResource(R.drawable.ic_directions_car_orange_24dp);
-                    activeNavigator(null,null);
+                    activeNavigator();
                 }
             }
         });

@@ -1,13 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout
-    android:id="@+id/nav_instruction_list_layout"
+<RelativeLayout android:id="@+id/nav_instruction_list_layout"
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/my_divider"
     android:fontFamily="sans-serif"
     android:visibility="invisible"
-    >
+    xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <RelativeLayout
         android:id="@+id/nav_instruction_list_summary"
@@ -44,7 +43,7 @@
                 android:clickable="true"
                 android:focusable="true"
                 android:padding="8dp"
-                android:src="@drawable/ic_keyboard_arrow_down_white_24dp"
+                app:srcCompat="@drawable/ic_keyboard_arrow_down_white_24dp"
                 />
 
             <ImageButton
