@@ -64,7 +64,7 @@ public class MainActivity extends AppCompatActivity   implements NavigationView.
 		setContentView(R.layout.activity_main);
 
 		mTitle = mDrawerTitle = getTitle();
-		navMenuTitles = getResources().getStringArray(R.array.nav_drawer_items);
+		//navMenuTitles = getResources().getStringArray(R.array.nav_drawer_items);
 
 		mDrawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout);
 		//mLiearLayout = (LinearLayout) findViewById(R.id.drawer_view);
@@ -184,6 +184,16 @@ public class MainActivity extends AppCompatActivity   implements NavigationView.
 		}
 
 
+	}
+
+	@Override
+	public void onBackPressed() {
+		DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
+		if (drawer.isDrawerOpen(GravityCompat.START)) {
+			drawer.closeDrawer(GravityCompat.START);
+		} else {
+			super.onBackPressed();
+		}
 	}
 
 
