@@ -64,16 +64,6 @@
             android:name=".activity.LoginActivityNew"
             android:label="@string/app_name"
             android:launchMode="singleTop" />
-        <activity
-            android:name=".peta.PetaActivity"
-            android:configChanges="keyboardHidden|orientation|screenSize"
-            android:label="@string/app_name"
-            android:launchMode="singleTop" />
-        <activity
-            android:name=".activity.PemesananActivity"
-            android:configChanges="keyboardHidden|orientation|screenSize"
-            android:label="@string/app_name"
-            android:launchMode="singleTop" />
 
         <!--
              ATTENTION: This was auto-generated to add Google Play services to your project for
@@ -87,10 +77,6 @@
             android:name="com.google.android.gms.version"
             android:value="@integer/google_play_services_version" />
 
-        <activity
-            android:name=".activity.ScrollingActivity"
-            android:label="@string/title_activity_scrolling"
-            android:theme="@style/MyMaterialTheme.NoActionBar"></activity>
         <activity
             android:name=".activity.DetailPemesananActivity"
             android:label="@string/title_activity_detail_pemesanan"

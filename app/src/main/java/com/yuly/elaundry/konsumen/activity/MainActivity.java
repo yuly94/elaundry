@@ -3,11 +3,12 @@ package com.yuly.elaundry.konsumen.activity;
 import android.app.ProgressDialog;
 import android.content.Intent;
 import android.content.res.Configuration;
-import android.content.res.TypedArray;
 import android.os.Bundle;
 import android.os.Handler;
+import android.support.design.widget.NavigationView;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
+import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.util.Log;
@@ -20,7 +21,6 @@ import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.TextView;
 
-import java.util.ArrayList;
 import java.util.HashMap;
 
 
@@ -34,15 +34,15 @@ import com.yuly.elaundry.konsumen.fragment.TransaksiFragment;
 import com.yuly.elaundry.konsumen.fragment.ProfileFragment;
 import com.yuly.elaundry.konsumen.helper.KonsumenDbHandler;
 import com.yuly.elaundry.konsumen.helper.SessionManager;
-import com.yuly.elaundry.konsumen.navigation.NavDrawerItem;
-import com.yuly.elaundry.konsumen.navigation.NavDrawerListAdapter;
 import com.yuly.elaundry.konsumen.util.HelpUtils;
 
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 
+import static com.yuly.elaundry.konsumen.R.id.fragment;
 
-public class MainActivity extends AppCompatActivity {
+
+public class MainActivity extends AppCompatActivity   implements NavigationView.OnNavigationItemSelectedListener {
 
 	ColorGenerator generator = ColorGenerator.MATERIAL;
 
@@ -52,8 +52,6 @@ public class MainActivity extends AppCompatActivity {
 	private SessionManager session;
 
 	private DrawerLayout mDrawerLayout;
-	private LinearLayout mLiearLayout;
-	private ListView mDrawerList;
 	private ActionBarDrawerToggle mDrawerToggle;
 	private CharSequence mDrawerTitle;
 	private CharSequence mTitle;
@@ -69,8 +67,8 @@ public class MainActivity extends AppCompatActivity {
 		navMenuTitles = getResources().getStringArray(R.array.nav_drawer_items);
 
 		mDrawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout);
-		mLiearLayout = (LinearLayout) findViewById(R.id.drawer_view);
-		mDrawerList = (ListView) findViewById(R.id.list_slidermenu);
+		//mLiearLayout = (LinearLayout) findViewById(R.id.drawer_view);
+		//mDrawerList = (ListView) findViewById(R.id.list_slidermenu);
 
 		// SqLite database handler
 		db = new KonsumenDbHandler(getApplicationContext());
@@ -84,24 +82,27 @@ public class MainActivity extends AppCompatActivity {
 
 		myNamaHuruf = (ImageView) findViewById(R.id.draw_nama);
 
-		TypedArray navMenuIcons = getResources().obtainTypedArray(R.array.nav_drawer_icons);
+		//TypedArray navMenuIcons = getResources().obtainTypedArray(R.array.nav_drawer_icons);
 
-		ArrayList<NavDrawerItem> navDrawerItems = new ArrayList<NavDrawerItem>();
-		navDrawerItems.add(new NavDrawerItem(navMenuTitles[0], navMenuIcons.getResourceId(0, -1)));
-		navDrawerItems.add(new NavDrawerItem(navMenuTitles[1], navMenuIcons.getResourceId(1, -1)));
-		navDrawerItems.add(new NavDrawerItem(navMenuTitles[2], navMenuIcons.getResourceId(2, -1)));
-		navDrawerItems.add(new NavDrawerItem(navMenuTitles[3], navMenuIcons.getResourceId(3, -1)));
-		navDrawerItems.add(new NavDrawerItem(navMenuTitles[4], navMenuIcons.getResourceId(4, -1)));
-		navDrawerItems.add(new NavDrawerItem(navMenuTitles[5], navMenuIcons.getResourceId(5, -1)));
-		navDrawerItems.add(new NavDrawerItem(navMenuTitles[6], navMenuIcons.getResourceId(6, -1)));
-		navDrawerItems.add(new NavDrawerItem(navMenuTitles[7], navMenuIcons.getResourceId(7, -1)));
+//		ArrayList<NavDrawerItem> navDrawerItems = new ArrayList<NavDrawerItem>();
+//		navDrawerItems.add(new NavDrawerItem(navMenuTitles[0], navMenuIcons.getResourceId(0, -1)));
+//		navDrawerItems.add(new NavDrawerItem(navMenuTitles[1], navMenuIcons.getResourceId(1, -1)));
+//		navDrawerItems.add(new NavDrawerItem(navMenuTitles[2], navMenuIcons.getResourceId(2, -1)));
+//		navDrawerItems.add(new NavDrawerItem(navMenuTitles[3], navMenuIcons.getResourceId(3, -1)));
+//		navDrawerItems.add(new NavDrawerItem(navMenuTitles[4], navMenuIcons.getResourceId(4, -1)));
+//		navDrawerItems.add(new NavDrawerItem(navMenuTitles[5], navMenuIcons.getResourceId(5, -1)));
+//		navDrawerItems.add(new NavDrawerItem(navMenuTitles[6], navMenuIcons.getResourceId(6, -1)));
+//		navDrawerItems.add(new NavDrawerItem(navMenuTitles[7], navMenuIcons.getResourceId(7, -1)));
+//
+//		navMenuIcons.recycle();
+//
+//		mDrawerList.setOnItemClickListener(new SlideMenuClickListener());
+//
+//		NavDrawerListAdapter adapter = new NavDrawerListAdapter(getApplicationContext(), navDrawerItems);
+//		mDrawerList.setAdapter(adapter);
 
-		navMenuIcons.recycle();
-
-		mDrawerList.setOnItemClickListener(new SlideMenuClickListener());
-
-		NavDrawerListAdapter adapter = new NavDrawerListAdapter(getApplicationContext(), navDrawerItems);
-		mDrawerList.setAdapter(adapter);
+		NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
+		navigationView.setNavigationItemSelectedListener(this);
 
 		Toolbar mToolbar = (Toolbar) findViewById(R.id.toolbar);
 
@@ -135,17 +136,15 @@ public class MainActivity extends AppCompatActivity {
 
 		if (savedInstanceState == null) {
 
-			displayView(0);
+			fragmentSatu();
 		}
 
 		TextView txtName = (TextView) findViewById(R.id.text_nama);
 		TextView txtEmail = (TextView) findViewById(R.id.text_email);
 
 		// Progress dialog
-		ProgressDialog pDialog = new ProgressDialog(this);
-		pDialog.setCancelable(false);
-
-
+		//ProgressDialog pDialog = new ProgressDialog(this);
+		//pDialog.setCancelable(false);
 
 			// Fetching user details from SQLite
 			HashMap<String, String> user = db.getUserDetails();
@@ -183,35 +182,10 @@ public class MainActivity extends AppCompatActivity {
 			}
 
 		}
+
+
 	}
 
-
-
-
-
-	private class SlideMenuClickListener implements
-			ListView.OnItemClickListener {
-		@Override
-		public void onItemClick(AdapterView<?> parent, View view, final int position,
-								long id) {
-			mDrawerLayout.closeDrawer(mLiearLayout);
-			new Handler().postDelayed(new Runnable() {
-				@Override
-				public void run() {
-					displayView(position);
-				}
-			}, 300);
-		}
-	}
-
-/*
-	// memanggil menu drawer
-	@Override
-	public boolean onCreateOptionsMenu(Menu menu) {
-		getMenuInflater().inflate(R.menu.menu_main, menu);
-		return true;
-	}
-*/
 
 	// memanggil menu drawer
 	@Override
@@ -237,111 +211,6 @@ public class MainActivity extends AppCompatActivity {
 	public boolean onPrepareOptionsMenu(Menu menu) {
 	return super.onPrepareOptionsMenu(menu);
 	}
-
-
-	private void displayView(int position) {
-
-		Fragment fragment = null;
-		switch (position) {
-			case 0:
-				fragment = new TransaksiFragment();//Get Fragment Instance
-				Bundle data = new Bundle();//Use bundle to pass data
-				data.putString("TEXT_TOMBOL", "mengambil laundry");//put string, int, etc in bundle with a key value
-				data.putString("STATUS_SEBELUMNYA", "baru memesan");
-				data.putString("UPDATE_STATUS", "pengambilan laundry");
-
-				fragment.setArguments(data);//Finally set argument bundle to fragment
-				break;
-			case 1:
-				fragment = new TransaksiFragment();//Get Fragment Instance
-				Bundle data1 = new Bundle();//Use bundle to pass data
-				data1.putString("TEXT_TOMBOL", "menyerahkan ke agent");//put string, int, etc in bundle with a key value
-				data1.putString("STATUS_SEBELUMNYA", "pengambilan laundry");
-				data1.putString("UPDATE_STATUS", "diserahkan ke agent");
-
-				fragment.setArguments(data1);//Finally set argument bundle to fragment
-				break;
-			case 2:
-				fragment = new TransaksiFragment();//Get Fragment Instance
-				Bundle data2 = new Bundle();//Use bundle to pass data
-				data2.putString("TEXT_TOMBOL", "mengambil dari agent");//put string, int, etc in bundle with a key value
-				data2.putString("STATUS_SEBELUMNYA", "diserahkan ke agent");
-				data2.putString("UPDATE_STATUS", "mengambil dari agent");
-
-
-				//intent.putExtra("TEXT_TOMBOL", "mengantarkan laundry");
-				//intent.putExtra("STATUS_SEBELUMNYA", "mengambil dari agent");
-				//intent.putExtra("UPDATE_STATUS", "mengantarkan laundry");
-
-				fragment.setArguments(data2);//Finally set argument bundle to fragment
-				break;
-			case 3:
-				fragment = new TransaksiFragment();//Get Fragment Instance
-				Bundle data3 = new Bundle();//Use bundle to pass data
-				data3.putString("TEXT_TOMBOL", "mengantarkan laundry");//put string, int, etc in bundle with a key value
-				data3.putString("STATUS_SEBELUMNYA", "mengambil dari agent");
-				data3.putString("UPDATE_STATUS", "mengantarkan laundry");
-
-				fragment.setArguments(data3);//Finally set argument bundle to fragment
-				break;
-			case 4:
-			 	fragment = new ProfileFragment();
-				break;
-			case 5:
-				//	themes
-				HelpUtils.showThemes(this);
-				break;
-			case 6:
-
-		 	//	About
-				 HelpUtils.showAbout(this);
-
- /*				Intent intent = new Intent(getApplicationContext(), AboutActivity.class);
-				startActivity(intent);*//*
-
-
-                LibsSupportFragment AboutFragment = new LibsBuilder()
-                        .withLibraries()
-                        .withVersionShown(false)
-                        .withLicenseShown(true)
-                        .withLibraryModification("aboutlibraries", Libs.LibraryFields.LIBRARY_NAME, "_AboutLibraries")
-                        .supportFragment();
-
-*//*
-                FragmentManager fragmentManager = getSupportFragmentManager();
-                fragmentManager.beginTransaction().replace(R.id.frame_container, AboutFragment).commit();
-
-*//*
-
-                fragment = AboutFragment;
-*/
-            //    fragment = new AboutFragment();
-
-				break;
-			case 7:
-				// Logout
-				closeUser();
-				break;
-
-
-			default:
-				break;
-		}
-
-		if (fragment != null) {
-			FragmentManager fragmentManager = getSupportFragmentManager();
-			fragmentManager.beginTransaction()
-					.replace(R.id.frame_container, fragment).commit();
-
-			mDrawerList.setItemChecked(position, true);
-			mDrawerList.setSelection(position);
-			setTitle(navMenuTitles[position]);
-		} else {
-
-			Log.e(String.valueOf(getApplicationContext()), String.valueOf(R.string.error_in_creating_fragment));
-		}
-	}
-
 
 	/**
 	 * Logging out the user. Will set isLoggedIn flag to false in shared
@@ -383,4 +252,117 @@ public class MainActivity extends AppCompatActivity {
 		super.onConfigurationChanged(newConfig);
 		mDrawerToggle.onConfigurationChanged(newConfig);
 	}
+
+
+	private void fragmentSatu(){
+		Fragment fragment;
+
+			FragmentManager fragmentManager = getSupportFragmentManager();
+			fragmentManager.beginTransaction()
+					.replace(R.id.frame_container, fragment = new TransaksiFragment()).commit();
+
+			// Handle the camera action
+			;//Get Fragment Instance
+			Bundle data = new Bundle();//Use bundle to pass data
+			data.putString("TEXT_TOMBOL", "mengambil laundry");//put string, int, etc in bundle with a key value
+			data.putString("STATUS_SEBELUMNYA", "baru memesan");
+			data.putString("UPDATE_STATUS", "pengambilan laundry");
+
+			fragment.setArguments(data);//Finally set argument bundle to fragment
+
+
+			Log.e(String.valueOf(getApplicationContext()), String.valueOf(R.string.error_in_creating_fragment));
+
+	}
+
+	@SuppressWarnings("StatementWithEmptyBody")
+	@Override
+	public boolean onNavigationItemSelected(MenuItem item) {
+		// Handle navigation view item clicks here.
+		Fragment fragment = null;
+		int id = item.getItemId();
+
+		if (id == R.id.nav_pemesanan) {
+			// Handle the camera action
+			fragment = new TransaksiFragment();//Get Fragment Instance
+			Bundle data = new Bundle();//Use bundle to pass data
+			data.putString("TEXT_TOMBOL", "mengambil laundry");//put string, int, etc in bundle with a key value
+			data.putString("STATUS_SEBELUMNYA", "baru memesan");
+			data.putString("UPDATE_STATUS", "pengambilan laundry");
+
+			fragment.setArguments(data);//Finally set argument bundle to fragment
+		} else if (id == R.id.nav_penjemputan) {
+
+			fragment = new TransaksiFragment();//Get Fragment Instance
+			Bundle data1 = new Bundle();//Use bundle to pass data
+			data1.putString("TEXT_TOMBOL", "menyerahkan ke agent");//put string, int, etc in bundle with a key value
+			data1.putString("STATUS_SEBELUMNYA", "pengambilan laundry");
+			data1.putString("UPDATE_STATUS", "diserahkan ke agent");
+
+			fragment.setArguments(data1);//Finally set argument bundle to fragment
+
+		} else if (id == R.id.nav_pengambilan) {
+
+			fragment = new TransaksiFragment();//Get Fragment Instance
+			Bundle data2 = new Bundle();//Use bundle to pass data
+			data2.putString("TEXT_TOMBOL", "mengambil dari agent");//put string, int, etc in bundle with a key value
+			data2.putString("STATUS_SEBELUMNYA", "diserahkan ke agent");
+			data2.putString("UPDATE_STATUS", "mengambil dari agent");
+
+
+			//intent.putExtra("TEXT_TOMBOL", "mengantarkan laundry");
+			//intent.putExtra("STATUS_SEBELUMNYA", "mengambil dari agent");
+			//intent.putExtra("UPDATE_STATUS", "mengantarkan laundry");
+
+			fragment.setArguments(data2);//Finally set argument bundle to fragment
+
+		} else if (id == R.id.nav_pengantaran) {
+
+			fragment = new TransaksiFragment();//Get Fragment Instance
+			Bundle data3 = new Bundle();//Use bundle to pass data
+			data3.putString("TEXT_TOMBOL", "mengantarkan laundry");//put string, int, etc in bundle with a key value
+			data3.putString("STATUS_SEBELUMNYA", "mengambil dari agent");
+			data3.putString("UPDATE_STATUS", "mengantarkan laundry");
+
+			fragment.setArguments(data3);//Finally set argument bundle to fragment
+
+		} else if (id == R.id.nav_profile) {
+
+			fragment = new ProfileFragment();
+
+		} else if (id == R.id.nav_tema) {
+
+			//	themes
+			HelpUtils.showThemes(this);
+
+		} else if (id == R.id.nav_about) {
+
+			//	About
+			HelpUtils.showAbout(this);
+
+		} else if (id == R.id.nav_exit) {
+			// Logout
+			closeUser();
+
+		}
+
+		if (fragment != null) {
+			FragmentManager fragmentManager = getSupportFragmentManager();
+			fragmentManager.beginTransaction()
+					.replace(R.id.frame_container, fragment).commit();
+
+//			mDrawerList.setItemChecked(position, true);
+//			mDrawerList.setSelection(position);
+			//setTitle(navMenuTitles[id]);
+		} else {
+
+			Log.e(String.valueOf(getApplicationContext()), String.valueOf(R.string.error_in_creating_fragment));
+		}
+
+		DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
+		drawer.closeDrawer(GravityCompat.START);
+		return true;
+	}
+
+
 }

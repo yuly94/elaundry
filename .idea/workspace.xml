@@ -12,11 +12,6 @@
   <component name="ChangeListManager">
     <list default="true" id="79627681-5094-4df5-9f4f-e0da1fc243a5" name="Default" comment="">
       <change type="NEW" beforePath="" afterPath="/media/anonymous/data/AndroidStudioProjects/elaundry-konsumen/app/src/main/res/menu/activity_main_drawer.xml" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/libs/phpmailer/exception.php" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/libs/phpmailer/mail.php" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/libs/phpmailer/phpmailer.php" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/libs/phpmailer/pop3.php" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/libs/phpmailer/smtp.php" afterPath="" />
       <change type="DELETED" beforePath="/media/anonymous/data/AndroidStudioProjects/elaundry-konsumen/app/src/main/java/com/yuly/elaundry/konsumen/activity/PemesananActivity.java" afterPath="" />
       <change type="DELETED" beforePath="/media/anonymous/data/AndroidStudioProjects/elaundry-konsumen/app/src/main/java/com/yuly/elaundry/konsumen/activity/ScrollingActivity.java" afterPath="" />
       <change type="DELETED" beforePath="/media/anonymous/data/AndroidStudioProjects/elaundry-konsumen/app/src/main/java/com/yuly/elaundry/konsumen/adapter/AlamatAdapter.java" afterPath="" />
@@ -45,15 +40,9 @@
       <change type="DELETED" beforePath="/media/anonymous/data/AndroidStudioProjects/elaundry-konsumen/app/src/main/res/layout/view_empty.xml" afterPath="" />
       <change type="DELETED" beforePath="/media/anonymous/data/AndroidStudioProjects/elaundry-konsumen/app/src/main/res/layout/view_error.xml" afterPath="" />
       <change type="DELETED" beforePath="/media/anonymous/data/AndroidStudioProjects/elaundry-konsumen/app/src/main/res/layout/view_loading.xml" afterPath="" />
-      <change type="DELETED" beforePath="/media/anonymous/data/AndroidStudioProjects/elaundry-konsumen/libs/phpmailer/exception.php" afterPath="" />
-      <change type="DELETED" beforePath="/media/anonymous/data/AndroidStudioProjects/elaundry-konsumen/libs/phpmailer/mail.php" afterPath="" />
-      <change type="DELETED" beforePath="/media/anonymous/data/AndroidStudioProjects/elaundry-konsumen/libs/phpmailer/phpmailer.php" afterPath="" />
-      <change type="DELETED" beforePath="/media/anonymous/data/AndroidStudioProjects/elaundry-konsumen/libs/phpmailer/pop3.php" afterPath="" />
-      <change type="DELETED" beforePath="/media/anonymous/data/AndroidStudioProjects/elaundry-konsumen/libs/phpmailer/smtp.php" afterPath="" />
       <change type="MOVED" beforePath="/media/anonymous/data/AndroidStudioProjects/elaundry-konsumen/app/src/main/res/drawable/ic_collections_24dp.xml" afterPath="/media/anonymous/data/AndroidStudioProjects/elaundry-konsumen/app/src/main/res/drawable/ic_collections_green_24dp.xml" />
       <change type="MOVED" beforePath="/media/anonymous/data/AndroidStudioProjects/elaundry-konsumen/app/src/main/res/drawable/ic_face_24dp.xml" afterPath="/media/anonymous/data/AndroidStudioProjects/elaundry-konsumen/app/src/main/res/drawable/ic_face_green_24dp.xml" />
       <change type="MOVED" beforePath="/media/anonymous/data/AndroidStudioProjects/elaundry-konsumen/app/src/main/res/drawable/ic_settings_24dp.xml" afterPath="/media/anonymous/data/AndroidStudioProjects/elaundry-konsumen/app/src/main/res/drawable/ic_settings_green_24dp.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change type="MODIFICATION" beforePath="/media/anonymous/data/AndroidStudioProjects/elaundry-konsumen/.idea/workspace.xml" afterPath="/media/anonymous/data/AndroidStudioProjects/elaundry-konsumen/.idea/workspace.xml" />
       <change type="MODIFICATION" beforePath="/media/anonymous/data/AndroidStudioProjects/elaundry-konsumen/app/app.iml" afterPath="/media/anonymous/data/AndroidStudioProjects/elaundry-konsumen/app/app.iml" />
       <change type="MODIFICATION" beforePath="/media/anonymous/data/AndroidStudioProjects/elaundry-konsumen/app/build.gradle" afterPath="/media/anonymous/data/AndroidStudioProjects/elaundry-konsumen/app/build.gradle" />
@@ -3787,7 +3776,8 @@
     <MESSAGE value="mengupdate pemesanan, list dan detail" />
     <MESSAGE value="Mengupdate tombol pemesanan agar bisa hidden ketika melakukan scrolling" />
     <MESSAGE value="Update string" />
-    <option name="LAST_COMMIT_MESSAGE" value="Update string" />
+    <MESSAGE value="memperbarui drawer dan membuang file yang tidak dibutuhkan" />
+    <option name="LAST_COMMIT_MESSAGE" value="memperbarui drawer dan membuang file yang tidak dibutuhkan" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

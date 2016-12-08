@@ -226,6 +226,19 @@
     <string name="permintaan_melakukan_pemesanan">permintaan melakukan pemesanan</string>
     <string name="pemesanan_berhasil">pemesanan anda telah berhasil dikirim</string>
     <string name="title_activity_detail_pemesanan">Detail Pemesanan Activity</string>
+    <string name="belum_mendaftar_daftar_sekarang">belum mendaftar ? daftar sekarang ?</string>
+    <string name="lupa_password">lupa password</string>
+    <string name="masuk">masuk</string>
+    <string name="pemesanan">pemesanan</string>
+    <string name="pesanan_dijemput">pesanan dijemput</string>
+    <string name="pesanan_dikurir">pesanan dikurir</string>
+    <string name="pesanan_selesai">pesanan selesai</string>
+    <string name="pengaturan">pengaturan</string>
+    <string name="lainnya">lainnya</string>
+    <string name="keluar">keluar</string>
+    <string name="tentang_pengembang">tentang pengembang</string>
+    <string name="tema">tema</string>
+    <string name="profile">profile</string>
 
 
 </resources>
