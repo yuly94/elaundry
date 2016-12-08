@@ -283,6 +283,9 @@
     <string name="title_activity_proses_route">ProsesRouteActivity</string>
     <string name="title_activity_rute">RuteActivity</string>
     <string name="title_activity_app_settings">Settings</string>
+    <string name="lupa_password">lupa password</string>
+    <string name="belum_mendaftar_daftar_sekarang">belum mendaftar ? daftar sekarang ?</string>
+    <string name="masuk">masuk</string>
 
     <string-array name="list_preference_entries">
         <item>Entry 1</item>

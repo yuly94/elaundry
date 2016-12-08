@@ -9,9 +9,7 @@ package com.yuly.elaundry.kurir.controller.fragment;
 
 import android.app.ProgressDialog;
 import android.content.Intent;
-
 import android.os.Bundle;
-
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.util.Log;
@@ -20,11 +18,10 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
-
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.android.volley.Request.Method;
+import com.android.volley.Request;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.VolleyLog;
@@ -45,13 +42,13 @@ import java.util.Map;
 
 public class LoginFragmentVolley extends Fragment implements View.OnClickListener{
     private static final String TAG = LoginFragmentVolley.class.getSimpleName();
-    private EditText        inputEmail;
+    private EditText inputEmail;
     private EditText        inputPassword;
-    private ProgressDialog  pDialog;
-    private SessionManager  session;
+    private ProgressDialog pDialog;
+    private SessionManager session;
     private KurirDbHandler db;
-    private TextView        tv_register,tv_reset_password;
-    private Button          btnLogin;
+    private TextView tv_register,tv_reset_password;
+    private Button btnLogin;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -151,7 +148,7 @@ public class LoginFragmentVolley extends Fragment implements View.OnClickListene
         pDialog.setMessage("Logging in ...");
         showDialog();
 
-        StringRequest strReq = new StringRequest(Method.POST,
+        StringRequest strReq = new StringRequest(Request.Method.POST,
                 AppConfig.URL_LOGIN, new Response.Listener<String>() {
 
             @Override

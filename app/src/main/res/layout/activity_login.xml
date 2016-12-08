@@ -4,13 +4,12 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:fitsSystemWindows="true"
-    tools:context=".kurir.activity.LoginActivityNew">
+    tools:context=".controller.activity.LoginActivityNew">
 
     <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:tools="http://schemas.android.com/tools"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        tools:context="com.learn2crack.loginregistration.MainActivity">
+        android:layout_height="match_parent">
 
         <FrameLayout
             android:id="@+id/fragment_frame"
