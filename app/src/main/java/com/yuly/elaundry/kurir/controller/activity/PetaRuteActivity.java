@@ -1,13 +1,16 @@
 package com.yuly.elaundry.kurir.controller.activity;
 
 import android.Manifest;
+import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.location.Location;
 import android.location.LocationListener;
 import android.location.LocationManager;
+import android.os.Build;
 import android.os.Bundle;
+import android.os.Environment;
 import android.provider.Settings;
 import android.support.v4.app.ActivityCompat;
 import android.support.v7.app.AppCompatActivity;
@@ -20,11 +23,17 @@ import android.view.ViewGroup;
 import android.widget.Toast;
 
 import com.graphhopper.GraphHopper;
+import com.graphhopper.util.Helper;
+import com.graphhopper.util.ProgressListener;
 import com.yuly.elaundry.kurir.R;
 
 import com.yuly.elaundry.kurir.model.dataType.DataRute;
 import com.yuly.elaundry.kurir.model.dataType.Destination;
+import com.yuly.elaundry.kurir.model.map.DownloadFiles;
 import com.yuly.elaundry.kurir.model.map.Tracking;
+import com.yuly.elaundry.kurir.model.peta.AndroidDownloader;
+import com.yuly.elaundry.kurir.model.peta.AndroidHelper;
+import com.yuly.elaundry.kurir.model.peta.GHAsyncTask;
 import com.yuly.elaundry.kurir.model.peta.PetaHandler;
 import com.yuly.elaundry.kurir.model.peta.PetaRuteHandler;
 import com.yuly.elaundry.kurir.model.util.Variable;
@@ -46,11 +55,13 @@ public class PetaRuteActivity extends AppCompatActivity implements LocationListe
     private PetaRuteActions petaRuteActions;
     private LocationManager locationManager;
 
-
+    private File mapsFolder;
     private String pemLatitude;
     private String pemLongitude;
 
     private GraphHopper hopper;
+                               //http://elaundry.pe.hu/assets/maps/indonesia_jawatimur_kediringanjuk.ghz
+    private String downloadURL ="http://elaundry.pe.hu/assets/maps/indonesia_jawatimur_kediringanjuk.ghz";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -93,29 +104,46 @@ public class PetaRuteActivity extends AppCompatActivity implements LocationListe
         }
         locationManager.requestLocationUpdates(LocationManager.GPS_PROVIDER, 3000, 5, this);
 
-        Variable.getVariable().setContext(getApplicationContext());
-        Variable.getVariable().setZoomLevels(22, 1);
-        AndroidGraphicFactory.createInstance(getApplication());
-        mapView = new MapView(this);
-        mapView.setClickable(true);
-        mapView.setBuiltInZoomControls(false);
 
-        PetaRuteHandler.getPetaRuteHandler()
-                .init(this, mapView, Variable.getVariable().getCountry(), Variable.getVariable().getMapsFolder());
+        boolean greaterOrEqKitkat = Build.VERSION.SDK_INT >= 19;
+        if (greaterOrEqKitkat) {
+            if (!Environment.getExternalStorageState().equals(Environment.MEDIA_MOUNTED)) {
+                logUser("Elaundry is not usable without an external storage!");
+                return;
+            }
+            mapsFolder = new File(Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOWNLOADS),
+                    Variable.getVariable().getMapDirectory());
+        } else
+            mapsFolder = new File(Environment.getExternalStorageDirectory(), Variable.getVariable().getMapDownloadDirectory());
 
-        PetaRuteHandler.getPetaRuteHandler().loadMap(new File(Variable.getVariable().getMapsFolder().getAbsolutePath(),
-                Variable.getVariable().getCountry() + "-gh"));
+         Variable.getVariable().setContext(getApplicationContext());
+            Variable.getVariable().setZoomLevels(22, 1);
+            AndroidGraphicFactory.createInstance(getApplication());
+            mapView = new MapView(this);
+            mapView.setClickable(true);
+            mapView.setBuiltInZoomControls(false);
+
+            PetaRuteHandler.getPetaRuteHandler()
+                    //  .init(this, mapView, Variable.getVariable().getCountry(), Variable.getVariable().getMapsFolder());
+
+                    .init(this, mapView, Variable.getVariable().getCountry(), mapsFolder);
+
+            PetaRuteHandler.getPetaRuteHandler().loadMap(new File(mapsFolder,
+                    Variable.getVariable().getCountry() + "-gh"));
 
 
-        customMapView();
-        checkGpsAvailability();
+            customMapView();
+            checkGpsAvailability();
+            getMyLastLocation();
+            updateCurrentLocation(null);
 
-        getMyLastLocation();
-        updateCurrentLocation(null);
+            Log.d("oncreate : ", PetaRuteActivity.class.getSimpleName());
 
-        Log.d("oncreate : ",PetaRuteActivity.class.getSimpleName());
 
     }
+
+
+
 
 
     public void getRute(){
@@ -339,6 +367,16 @@ public class PetaRuteActivity extends AppCompatActivity implements LocationListe
      */
     private void log(String str) {
         Log.i(this.getClass().getSimpleName(), "-------" + str);
+    }
+
+
+    private void log(String str, Throwable t) {
+        Log.i("GH", str, t);
+    }
+
+    private void logUser(String str) {
+        log(str);
+        Toast.makeText(this, str, Toast.LENGTH_LONG).show();
     }
 
     @Override public boolean onOptionsItemSelected(MenuItem item) {

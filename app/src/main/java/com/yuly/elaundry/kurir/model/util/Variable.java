@@ -72,6 +72,10 @@ public class Variable {
      * map directory name: pocketmaps/maps/
      */
     private String mapDirectory;
+
+    private String mapDownloadDirectory;
+
+    private String downloadUrl;
     /**
      * map directory name: pocketmaps/tracking/
      */
@@ -178,8 +182,10 @@ public class Variable {
         this.context = null;
         this.advancedSetting = false;
         this.directionsON = true;
+        this.mapDownloadDirectory = "/Download/elaundrymaps/maps/";
         this.mapDirectory = "/elaundrymaps/maps/";
         this.trackingDirectory = "/elaundrymaps/tracking/";
+        this.downloadUrl ="http://elaundry.pe.hu/assets/maps/indonesia_jawatimur_kediringanjuk.ghz";
         
         this.mapUrlList = "http://elaundry.pe.hu/konsumen/peta/map_url_list";
         this.localMaps = new ArrayList<>();
@@ -303,6 +309,11 @@ public class Variable {
         return mapDirectory;
     }
 
+    public String getMapDownloadDirectory() {
+        return mapDownloadDirectory;
+    }
+
+
     public String getTrackingDirectory() {
         return trackingDirectory;
     }
@@ -321,6 +332,14 @@ public class Variable {
 
     public File getMapsFolder() {
         return mapsFolder;
+    }
+
+    public String getDownloadUrl() {
+        return downloadUrl;
+    }
+
+    public void setDownloadUrl() {
+        this.downloadUrl = downloadUrl;
     }
 
     public void setMapsFolder(File mapsFolder) {

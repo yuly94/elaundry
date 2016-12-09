@@ -24,7 +24,7 @@ public class RouteDbHelper extends SQLiteOpenHelper {
     private static final String LOG = "DatabaseHelper";
 
     // Database Version
-    private static final int DATABASE_VERSION = 1;
+    private static final int DATABASE_VERSION = 2;
 
     // Database Name
     private static final String DATABASE_NAME = "djikstra_route.db";
@@ -96,6 +96,7 @@ public class RouteDbHelper extends SQLiteOpenHelper {
             + KEY_DARI + " TEXT,"
             + KEY_TUJUAN + " TEXT,"
             + KEY_JARAK + " TEXT,"
+            + KEY_STATUS + " INTEGER,"
             + KEY_CREATED_AT
             + " DATETIME" + ")";
 
@@ -160,27 +161,6 @@ public class RouteDbHelper extends SQLiteOpenHelper {
 
     // ------------------------ "todos" table methods ----------------//
 
-    /**
-     * Creating a todo
-     */
-    public long createToDo(Todo todo, long[] tag_ids) {
-        SQLiteDatabase db = this.getWritableDatabase();
-
-        ContentValues values = new ContentValues();
-        values.put(KEY_TODO, todo.getNote());
-        values.put(KEY_STATUS, todo.getStatus());
-        values.put(KEY_CREATED_AT, getDateTime());
-
-        // insert row
-        long todo_id = db.insert(TABLE_TODO, null, values);
-
-        // insert tag_ids
-        for (long tag_id : tag_ids) {
-            createTodoTag(todo_id, tag_id);
-        }
-
-        return todo_id;
-    }
 
     /**
      * Creating a todo
@@ -240,13 +220,13 @@ public class RouteDbHelper extends SQLiteOpenHelper {
     /**
      * Creating a todo
      */
-    public long createJarakKonsumen(Lokasi lokasi) {
+    public long buatJarakKonsumen(Lokasi lokasi) {
         SQLiteDatabase db = this.getWritableDatabase();
 
         ContentValues values = new ContentValues();
-        values.put(KEY_DARI, lokasi.getKonsumenId());
-        values.put(KEY_TUJUAN, lokasi.getPemesananId());
-        values.put(KEY_JARAK, lokasi.getLatitude());
+        values.put(KEY_DARI, lokasi.getDari());
+        values.put(KEY_TUJUAN, lokasi.getTujuan());
+        values.put(KEY_JARAK, lokasi.getJarak());
         values.put(KEY_STATUS, lokasi.getStatus());
         values.put(KEY_CREATED_AT, getDateTime());
 
@@ -336,6 +316,44 @@ public class RouteDbHelper extends SQLiteOpenHelper {
         return listlokasi;
     }
 
+
+    // Lokasi Pesanan
+    public List<Lokasi> getAllJarak() {
+        List<Lokasi> listlokasi = new ArrayList<Lokasi>();
+        // Select All Query
+        String selectQuery = "SELECT  * FROM " + TABLE_JARAK_KONSUMEN;
+
+        SQLiteDatabase db = this.getWritableDatabase();
+        Cursor cursor = db.rawQuery(selectQuery, null);
+
+        // looping through all rows and adding to list
+        if (cursor.moveToFirst()) {
+            do {
+                Lokasi lokasi = new Lokasi();
+                lokasi.setId(Integer.parseInt(cursor.getString(0)));
+                lokasi.setDari(Integer.parseInt(cursor.getString(1)));
+                lokasi.setTujuan(Integer.parseInt(cursor.getString(2)));
+                lokasi.setJarak(cursor.getString(3));
+                // Adding contact to list
+                listlokasi.add(lokasi);
+            } while (cursor.moveToNext());
+        }
+
+        // return contact list
+        cursor.close();
+        return listlokasi;
+    }
+
+
+    /**
+     * Deleting a todo
+     */
+    public long deleteJarak(long tado_id) {
+        SQLiteDatabase db = this.getWritableDatabase();
+        db.delete(TABLE_JARAK_KONSUMEN, KEY_ID + " = ?",
+                new String[] { String.valueOf(tado_id) });
+        return tado_id;
+    }
 
 
 
@@ -641,6 +659,29 @@ public class RouteDbHelper extends SQLiteOpenHelper {
         return db.update(TABLE_TODO, values, KEY_ID + " = ?",
                 new String[] { String.valueOf(id) });
     }
+
+    /**
+     * Creating a todo
+     */
+    public long createToDo(Todo todo, long[] tag_ids) {
+        SQLiteDatabase db = this.getWritableDatabase();
+
+        ContentValues values = new ContentValues();
+        values.put(KEY_TODO, todo.getNote());
+        values.put(KEY_STATUS, todo.getStatus());
+        values.put(KEY_CREATED_AT, getDateTime());
+
+        // insert row
+        long todo_id = db.insert(TABLE_TODO, null, values);
+
+        // insert tag_ids
+        for (long tag_id : tag_ids) {
+            createTodoTag(todo_id, tag_id);
+        }
+
+        return todo_id;
+    }
+
 
     /**
      * Deleting a todo tag

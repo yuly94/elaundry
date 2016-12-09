@@ -9,7 +9,6 @@
     android:orientation="vertical"
     tools:context="com.yuly.elaundry.kurir.controller.activity.MapActivity">
 
-    <android.support.v4.widget.ContentLoadingProgressBar
-        android:layout_width="match_parent"
-        android:layout_height="match_parent" />
+
 </LinearLayout>
+

@@ -202,18 +202,61 @@ public class PetaActions implements NavigatorListener, PetaHandlerListener {
 
 
     private void buatTable() {
+
+
+        hapusSemuaJarak();
+
+
+        List<Lokasi> listlokasi = db_rute.getAllLokasi();
         // Reading all lokasi konsumen
-        for(int i=1; i<= 6 ;i++){
+
+        for(int i=1; i<= listlokasi.size() ;i++){
 
             for(int k=(i-1); k > 0 ;--k){
 
+                Lokasi jarak_konsumen = new Lokasi( i,k, "12", 1);
+
+                long id =  db_rute.buatJarakKonsumen(jarak_konsumen);
+
+                Lokasi lokA = db_rute.getLokasi(i);
+                // Writing Contacts to log
+                Log.d("daftar lokasi dari : ",+lokA.getId() + " : "+lokA.getLatitude()+ " : "+ lokA.getLongitude());
+
+                Lokasi lokB = db_rute.getLokasi(k);
+                // Writing Contacts to log
+                Log.d("daftar lokasi tujuan: ",+lokB.getId() + " : "+lokB.getLatitude()+ " : "+ lokB.getLongitude());
+
+
+                String jarak = PetaHandler.getPetaHandler().hitungJarak(Double.parseDouble(lokA.getLatitude()), Double.parseDouble(lokA.getLongitude()),
+                        Double.parseDouble(lokB.getLatitude()),Double.parseDouble(lokB.getLongitude()));
+
+                Log.d("Jarak ", jarak+"Km");
 
                 System.out.print("X"+i);
                 System.out.print("&"+k);
                 System.out.println("");
             }
 
-            for(int j=(i+1); j <= 6 ;++j){
+            for(int j=(i+1); j <= listlokasi.size() ;++j){
+
+                Lokasi jarak_konsumen = new Lokasi( i,j, "12", 1);
+
+                long id =  db_rute.buatJarakKonsumen(jarak_konsumen);
+
+                Lokasi lokA = db_rute.getLokasi(i);
+                // Writing Contacts to log
+                Log.d("daftar lokasi dari : ",+lokA.getId() + " : "+lokA.getLatitude()+ " : "+ lokA.getLongitude());
+
+                Lokasi lokB = db_rute.getLokasi(j);
+                // Writing Contacts to log
+                Log.d("daftar lokasi tujuan: ",+lokB.getId() + " : "+lokB.getLatitude()+ " : "+ lokB.getLongitude());
+
+
+                String jarak = PetaHandler.getPetaHandler().hitungJarak(Double.parseDouble(lokA.getLatitude()), Double.parseDouble(lokA.getLongitude()),
+                        Double.parseDouble(lokB.getLatitude()),Double.parseDouble(lokB.getLongitude()));
+
+                Log.d("Jarak ", jarak+"Km");
+
 
                 System.out.print("#"+i);
 
@@ -224,7 +267,30 @@ public class PetaActions implements NavigatorListener, PetaHandlerListener {
             // System.out.println();
         }
 
+        Log.d("table jarak","tabel berhasil dibuat ");
+
+        Toast.makeText(activity, "tabel jarak berhasil dibuat", Toast.LENGTH_LONG).show();
     }
+
+
+
+
+    private void hapusSemuaJarak() {
+        // Reading all lokasi konsumen
+        Log.d("Reading: ", "Reading all lokasi..");
+        List<Lokasi> lok = db_rute.getAllJarak();
+
+        for (Lokasi lokasi : lok) {
+            String log = "Delete Id: " + lokasi.getId();
+
+            long id = db_rute.deleteJarak(lokasi.getId());
+            // Writing Contacts to log
+            Log.d("Delete : ", String.valueOf(id));
+        }
+
+        Toast.makeText(activity, "membuat ulang table jarak", Toast.LENGTH_LONG).show();
+    }
+
 
 
 
@@ -350,6 +416,7 @@ public class PetaActions implements NavigatorListener, PetaHandlerListener {
     private void mengambilDataPemesanan() {
 
         hapusSemuaLokasi();
+        Toast.makeText(activity, "membuat ulang lokasi konsumen", Toast.LENGTH_LONG).show();
 
         if (CariRuteActivity.getmCurrentLocation() != null) {
 
@@ -450,7 +517,10 @@ public class PetaActions implements NavigatorListener, PetaHandlerListener {
                                     CariRuteActivity maps2 = new CariRuteActivity();
                                     maps2.tambakanMarker(Double.valueOf(pemesanan_latitude),Double.valueOf(pemesanan_longitude));
 
-                                }
+
+                                     }
+                                Toast.makeText(activity, "lokasi konsumen berhasil didapatkan", Toast.LENGTH_LONG).show();
+
 
                                 //updateList();
                             } else {

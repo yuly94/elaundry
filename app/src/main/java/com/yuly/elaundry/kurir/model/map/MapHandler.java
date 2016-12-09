@@ -108,7 +108,7 @@ public class MapHandler {
     public void loadMap(File areaFolder) {
         logToast(activity.getString(R.string.memuat_peta) + currentArea);
        // File mapFile = new File(areaFolder, currentArea + activity.getString(R.string.dotmap));
-        MapDataStore mapDataStore = new MapFile(new File(areaFolder,"indonesia_jawatimur_kediringanjuk.map"));
+        MapDataStore mapDataStore = new MapFile(new File(areaFolder, currentArea+".map"));
 
         mapView.getLayerManager().getLayers().clear();
         tileRendererLayer =

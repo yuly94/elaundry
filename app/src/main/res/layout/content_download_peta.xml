@@ -13,4 +13,8 @@
     tools:context="com.yuly.elaundry.kurir.controller.activity.DownloadPetaActivity"
     tools:showIn="@layout/activity_download_peta">
 
+    <android.support.v4.widget.ContentLoadingProgressBar
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
+
 </RelativeLayout>

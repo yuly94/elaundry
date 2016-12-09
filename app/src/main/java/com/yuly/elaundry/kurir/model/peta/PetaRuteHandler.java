@@ -1,6 +1,7 @@
 package com.yuly.elaundry.kurir.model.peta;
 
 import android.app.Activity;
+import android.app.ProgressDialog;
 import android.graphics.Path;
 import android.graphics.drawable.Drawable;
 import android.os.AsyncTask;
@@ -13,7 +14,9 @@ import com.graphhopper.GHRequest;
 import com.graphhopper.GHResponse;
 import com.graphhopper.GraphHopper;
 import com.graphhopper.routing.AlgorithmOptions;
+import com.graphhopper.util.Helper;
 import com.graphhopper.util.PointList;
+import com.graphhopper.util.ProgressListener;
 import com.graphhopper.util.StopWatch;
 import com.yuly.elaundry.kurir.R;
 import com.yuly.elaundry.kurir.controller.activity.PetaRuteActions;
@@ -60,6 +63,7 @@ public class PetaRuteHandler {
     private Polyline polylinePath, polylineTrack;
     private PetaRuteHandlerListener rutePetaHandlerListener;
     private static PetaRuteHandler petaRuteHandler;
+    private String downloadURL ="http://elaundry.pe.hu/assets/maps/";
     /**
      * if user going to point on map to gain a location
      */
@@ -104,15 +108,19 @@ public class PetaRuteHandler {
                         1f, mapView.getModel().frameBufferModel.getOverdrawFactor());
     }
 
+
+
+    //
+
     /**
      * load map to mapView
      *
      * @param areaFolder
      */
     public void loadMap(File areaFolder) {
-        logToast(activity.getString(R.string.memuat_peta) + currentArea);
+        logToast("memuat peta" + currentArea);
        // File mapFile = new File(areaFolder, currentArea + activity.getString(R.string.dotmap));
-        MapDataStore mapDataStore = new MapFile(new File(areaFolder,"indonesia_jawatimur_kediringanjuk.map"));
+        MapDataStore mapDataStore = new MapFile(new File(areaFolder,currentArea+".map"));
 
         mapView.getLayerManager().getLayers().clear();
         tileRendererLayer =
@@ -144,33 +152,6 @@ public class PetaRuteHandler {
         ViewGroup.LayoutParams params =
                 new ViewGroup.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT);
         activity.addContentView(mapView, params);
-        loadGraphStorage();
-    }
-
-
-    void loadMapx( File areaFolder )
-    {
-        logUser("loading map");
-        MapDataStore mapDataStore = new MapFile(new File(areaFolder, currentArea + ".map"));
-
-        mapView.getLayerManager().getLayers().clear();
-
-        tileRendererLayer = new TileRendererLayer(tileCache, mapDataStore,
-                mapView.getModel().mapViewPosition, false, true, AndroidGraphicFactory.INSTANCE)
-        {
-            @Override
-            public boolean onLongPress( LatLong tapLatLong, Point layerXY, Point tapXY )
-            {
-                return myOnTap(tapLatLong, layerXY, tapXY);
-            }
-        };
-        tileRendererLayer.setTextScale(1.5f);
-        tileRendererLayer.setXmlRenderTheme(InternalRenderTheme.OSMARENDER);
-        mapView.getModel().mapViewPosition.setMapPosition(new MapPosition(mapDataStore.boundingBox().getCenterPoint(), (byte) 15));
-        mapView.getLayerManager().getLayers().add(tileRendererLayer);
-
-       // setContentView(mapView);
-
         loadGraphStorage();
     }
 
@@ -544,6 +525,10 @@ public class PetaRuteHandler {
     private void logToast(String str) {
         log(str);
         Toast.makeText(activity, str, Toast.LENGTH_LONG).show();
+    }
+
+    private void log(String str, Throwable t) {
+        Log.i("GH", str, t);
     }
 
 

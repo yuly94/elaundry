@@ -300,5 +300,6 @@
     </string-array>
 
     <string-array name="multi_select_list_preference_default_value" />
+    <string name="title_activity_download_peta">DownloadPetaActivity</string>
 
 </resources>

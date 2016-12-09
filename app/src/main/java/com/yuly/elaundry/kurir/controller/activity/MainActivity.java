@@ -4,7 +4,9 @@ import android.app.ProgressDialog;
 import android.content.Intent;
 import android.content.res.Configuration;
 import android.content.res.TypedArray;
+import android.os.Build;
 import android.os.Bundle;
+import android.os.Environment;
 import android.os.Handler;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
@@ -20,11 +22,13 @@ import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.TextView;
 
+import java.io.File;
 import java.util.ArrayList;
 import java.util.HashMap;
 
 
-
+import com.graphhopper.util.Helper;
+import com.graphhopper.util.ProgressListener;
 import com.yuly.elaundry.kurir.R;
 //import com.yuly.elaundry.kurir.controller.fragment.AboutFragment;
 
@@ -35,6 +39,11 @@ import com.yuly.elaundry.kurir.controller.fragment.ProfileFragment;
 import com.yuly.elaundry.kurir.controller.fragment.LaundryPenjemputanFragment;
 import com.yuly.elaundry.kurir.model.database.KurirDbHandler;
 import com.yuly.elaundry.kurir.model.helper.SessionManager;
+import com.yuly.elaundry.kurir.model.peta.AndroidDownloader;
+import com.yuly.elaundry.kurir.model.peta.AndroidHelper;
+import com.yuly.elaundry.kurir.model.peta.GHAsyncTask;
+import com.yuly.elaundry.kurir.model.peta.PetaRuteHandler;
+import com.yuly.elaundry.kurir.model.util.Variable;
 import com.yuly.elaundry.kurir.view.navigation.NavDrawerItem;
 import com.yuly.elaundry.kurir.view.navigation.NavDrawerListAdapter;
 import com.yuly.elaundry.kurir.view.util.HelpUtils;
@@ -44,6 +53,7 @@ import com.yuly.elaundry.kurir.view.widgets.TextDrawable;
 
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.widget.Toast;
 
 
 public class MainActivity extends AppCompatActivity {
@@ -63,6 +73,10 @@ public class MainActivity extends AppCompatActivity {
 	private CharSequence mTitle;
 	private String[] navMenuTitles;
 	private ImageView myNamaHuruf;
+
+	private String downloadURL ="http://elaundry.pe.hu/assets/maps/indonesia_jawatimur_kediringanjuk.ghz";
+	private File mapsFolder;
+
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -191,9 +205,84 @@ public class MainActivity extends AppCompatActivity {
 				Log.d("Main Activity","User not found");
 			}
 
+
+
 		}
+
+
+		boolean greaterOrEqKitkat = Build.VERSION.SDK_INT >= 19;
+		if (greaterOrEqKitkat) {
+			if (!Environment.getExternalStorageState().equals(Environment.MEDIA_MOUNTED)) {
+				logUser("Elaundry is not usable without an external storage!");
+				return;
+			}
+			mapsFolder = new File(Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOWNLOADS),
+					Variable.getVariable().getMapDirectory());
+		} else
+			mapsFolder = new File(Environment.getExternalStorageDirectory(), Variable.getVariable().getMapDownloadDirectory());
+
+		if (!mapsFolder.exists()) {
+
+			downloadPeta();
+		}
+
 	}
 
+
+	public void downloadPeta() {
+
+		mapsFolder.mkdirs();
+		final File areaFolder = new File(mapsFolder, Variable.getVariable().getCountry() + "-gh");
+		if (downloadURL == null || areaFolder.exists()) {
+			PetaRuteHandler.getPetaRuteHandler().loadMap(areaFolder);
+			return;
+		}
+
+		final ProgressDialog dialog = new ProgressDialog(this);
+		dialog.setMessage("Downloading and uncompressing " + downloadURL);
+		dialog.setIndeterminate(false);
+		dialog.setMax(100);
+		dialog.setProgressStyle(ProgressDialog.STYLE_HORIZONTAL);
+		dialog.show();
+
+		new GHAsyncTask<Void, Integer, Object>() {
+			protected Object saveDoInBackground(Void... _ignore)
+					throws Exception {
+
+				String localFolder = Helper.pruneFileEnd(AndroidHelper.getFileName(downloadURL));
+				localFolder = new File(mapsFolder, localFolder + "-gh").getAbsolutePath();
+				//log("downloading & unzipping " + downloadURL + " to " + localFolder);
+				AndroidDownloader downloader = new AndroidDownloader();
+				downloader.setTimeout(30000);
+				downloader.downloadAndUnzip(downloadURL, localFolder,
+						new ProgressListener() {
+							@Override
+							public void update(long val) {
+								publishProgress((int) val);
+							}
+						});
+				return null;
+			}
+
+			protected void onProgressUpdate(Integer... values) {
+				super.onProgressUpdate(values);
+				dialog.setProgress(values[0]);
+			}
+
+			protected void onPostExecute(Object _ignore) {
+				dialog.dismiss();
+				if (hasError()) {
+					String str = "An error happened while retrieving maps:" + getErrorMessage();
+					log(str, getError());
+					logUser(str);
+				} else {
+					//  PetaRuteHandler.getPetaRuteHandler().loadMap(areaFolder);
+
+					logUser("Peta berhasil di download");
+				}
+			}
+		}.execute();
+	}
 
 
 
@@ -241,6 +330,8 @@ public class MainActivity extends AppCompatActivity {
 
 	}
 
+
+
 	// memanggil menu drawer
 	@Override
 	public boolean onPrepareOptionsMenu(Menu menu) {
@@ -278,7 +369,7 @@ public class MainActivity extends AppCompatActivity {
 			//  fragment tempa
 				// fragment = new AlamatFragment();
 
-				Intent intentMap = new Intent(this, MainActivityPeta.class);
+				Intent intentMap = new Intent(this, MapActivity.class);
 				startActivity(intentMap);
 
 				break;
@@ -413,5 +504,14 @@ public class MainActivity extends AppCompatActivity {
 	public void onConfigurationChanged(Configuration newConfig) {
 		super.onConfigurationChanged(newConfig);
 		mDrawerToggle.onConfigurationChanged(newConfig);
+	}
+
+	private void logUser(String str) {
+
+		Toast.makeText(this, str, Toast.LENGTH_LONG).show();
+	}
+
+	private void log(String str, Throwable t) {
+		Log.i("GH", str, t);
 	}
 }

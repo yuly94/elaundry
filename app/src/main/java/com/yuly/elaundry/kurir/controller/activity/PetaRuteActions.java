@@ -634,7 +634,7 @@ public class PetaRuteActions implements NavigatorListener, PetaRuteHandlerListen
                 bikeBtn.setImageResource(R.drawable.ic_directions_bike_orange_24dp);
                 break;
             case "car":
-                carBtn.setImageResource(R.drawable.ic_directions_car_orange_24dp);
+                carBtn.setImageResource(R.drawable.ic_add_shopping_cart_24dp);
                 break;
         }
 

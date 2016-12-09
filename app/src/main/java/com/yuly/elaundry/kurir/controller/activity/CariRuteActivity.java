@@ -1,13 +1,16 @@
 package com.yuly.elaundry.kurir.controller.activity;
 
 import android.Manifest;
+import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.location.Location;
 import android.location.LocationListener;
 import android.location.LocationManager;
+import android.os.Build;
 import android.os.Bundle;
+import android.os.Environment;
 import android.provider.Settings;
 import android.support.v4.app.ActivityCompat;
 import android.support.v7.app.AppCompatActivity;
@@ -20,8 +23,15 @@ import android.view.ViewGroup;
 import android.widget.Toast;
 
 import com.graphhopper.GraphHopper;
+import com.graphhopper.util.Helper;
+import com.graphhopper.util.ProgressListener;
 import com.yuly.elaundry.kurir.R;
+import com.yuly.elaundry.kurir.model.peta.AndroidDownloader;
+import com.yuly.elaundry.kurir.model.peta.AndroidHelper;
+import com.yuly.elaundry.kurir.model.peta.GHAsyncTask;
 import com.yuly.elaundry.kurir.model.peta.PetaHandler;
+import com.yuly.elaundry.kurir.model.peta.PetaRuteHandler;
+import com.yuly.elaundry.kurir.model.util.SetStatusBarColor;
 import com.yuly.elaundry.kurir.model.util.Variable;
 
 import org.mapsforge.core.model.LatLong;
@@ -42,6 +52,9 @@ public class CariRuteActivity extends AppCompatActivity implements LocationListe
 
     private GraphHopper hopper;
 
+    private String downloadURL ="http://elaundry.pe.hu/assets/maps/indonesia_jawatimur_kediringanjuk.ghz";
+    private File mapsFolder;
+
 
 
     @Override
@@ -49,14 +62,10 @@ public class CariRuteActivity extends AppCompatActivity implements LocationListe
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_map);
 
+       //         set status bar
+      //  new SetStatusBarColor().setStatusBarColor(findViewById(R.id.statusBarBackgroundDownload),
+        //        getResources().getColor(R.color.my_primary_dark), this);
 
-
-
-
-/*        //         set status bar
-        new SetStatusBarColor().setStatusBarColor(findViewById(R.id.statusBarBackgroundDownload),
-                getResources().getColor(R.color.my_primary_dark), this);
-        */
 
      /*   //         set status bar
         new SetStatusBarColor().setStatusBarColor(findViewById(R.id.statusBarBackgroundSettings),
@@ -76,32 +85,42 @@ public class CariRuteActivity extends AppCompatActivity implements LocationListe
             return;
         }
         locationManager.requestLocationUpdates(LocationManager.GPS_PROVIDER, 3000, 5, this);
-        Variable.getVariable().setContext(getApplicationContext());
-        Variable.getVariable().setZoomLevels(22, 1);
-        AndroidGraphicFactory.createInstance(getApplication());
-        mapView = new MapView(this);
-        mapView.setClickable(true);
-        mapView.setBuiltInZoomControls(false);
-        //mapView.getModel().mapViewPosition.setZoomLevel((byte) 12);
-        PetaHandler.getPetaHandler()
-          .init(this, mapView, Variable.getVariable().getCountry(), Variable.getVariable().getMapsFolder());
-              //  .init(this, mapView, Variable.getVariable().getCountry(), Variable.getVariable().getMapsFolder());
-        //indonesia_jawatimur_kediringanjuk
-       // MapHandler.getPetaHandler().loadMap(new File(Variable.getVariable().getMapsFolder().getAbsolutePath(),
-         //       Variable.getVariable().getCountry() + "-gh"));
 
-        PetaHandler.getPetaHandler().loadMap(new File(Variable.getVariable().getMapsFolder().getAbsolutePath(),
-                Variable.getVariable().getCountry() + "-gh"));
+        boolean greaterOrEqKitkat = Build.VERSION.SDK_INT >= 19;
+        if (greaterOrEqKitkat) {
+            if (!Environment.getExternalStorageState().equals(Environment.MEDIA_MOUNTED)) {
+                logUser("Elaundry is not usable without an external storage!");
+                return;
+            }
+            mapsFolder = new File(Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOWNLOADS),
+                    Variable.getVariable().getMapDirectory());
+        } else
+            mapsFolder = new File(Environment.getExternalStorageDirectory(), Variable.getVariable().getMapDownloadDirectory());
+
+            Variable.getVariable().setContext(getApplicationContext());
+            Variable.getVariable().setZoomLevels(22, 1);
+            AndroidGraphicFactory.createInstance(getApplication());
+            mapView = new MapView(this);
+            mapView.setClickable(true);
+            mapView.setBuiltInZoomControls(false);
+
+            PetaHandler.getPetaHandler()
+                    //  .init(this, mapView, Variable.getVariable().getCountry(), Variable.getVariable().getMapsFolder());
+
+                    .init(this, mapView, Variable.getVariable().getCountry(), mapsFolder);
+
+            PetaHandler.getPetaHandler().loadMap(new File(mapsFolder,
+                    Variable.getVariable().getCountry() + "-gh"));
 
 
-        customMapView();
-        checkGpsAvailability();
+            customMapView();
+            checkGpsAvailability();
+            getMyLastLocation();
+            updateCurrentLocation(null);
 
-        getMyLastLocation();
-        updateCurrentLocation(null);
+            Log.d("oncreate : ", PetaRuteActivity.class.getSimpleName());
 
 
-       //tambakanMarker();
 
     }
 
@@ -337,6 +356,16 @@ public class CariRuteActivity extends AppCompatActivity implements LocationListe
                 return true;
         }
         return super.onOptionsItemSelected(item);
+    }
+
+    private void logUser(String str) {
+        log(str);
+        Toast.makeText(this, str, Toast.LENGTH_LONG).show();
+    }
+
+
+    private void log(String str, Throwable t) {
+        Log.i("GH", str, t);
     }
 
 }

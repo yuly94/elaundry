@@ -14,7 +14,7 @@
         android:layout_gravity="right|bottom"
         android:layout_marginBottom="@dimen/activity_vertical_margin"
         android:layout_marginRight="@dimen/activity_horizontal_margin"
-        app:srcCompat="@drawable/ic_arrow_drop_down_black_24dp"
+        android:src="@drawable/ic_arrow_drop_down_white_18dp"
         android:cropToPadding="false"
         app:fabSize="mini"
         android:layout_weight="1" />
@@ -38,7 +38,7 @@
         android:layout_gravity="right|bottom"
         android:layout_marginBottom="@dimen/activity_vertical_margin"
         android:layout_marginRight="@dimen/activity_horizontal_margin"
-        app:srcCompat="@drawable/ic_settings_white_24dp"
+        android:src="@drawable/ic_settings_white_24dp"
         android:cropToPadding="false"
         app:fabSize="mini" />
 
@@ -52,7 +52,7 @@
         android:layout_gravity="right|bottom"
         android:layout_marginBottom="@dimen/activity_vertical_margin"
         android:layout_marginRight="@dimen/activity_horizontal_margin"
-        app:srcCompat="@drawable/ic_gps_fixed_24dp"
+        android:src="@drawable/ic_gps_fixed_24dp"
         android:cropToPadding="false"
         app:fabSize="mini" />
 
@@ -68,7 +68,7 @@
             android:layout_height="wrap_content"
             android:clickable="true"
             app:fabSize="mini"
-            app:srcCompat="@drawable/ic_place_white_24dp"
+            android:src="@drawable/ic_place_white_24dp"
             android:id="@+id/fab_navigasi"
             android:layout_marginBottom="@dimen/activity_vertical_margin"
             android:layout_marginRight="@dimen/activity_horizontal_margin"
@@ -82,7 +82,7 @@
             android:layout_gravity="right|bottom"
             android:layout_marginBottom="@dimen/activity_vertical_margin"
             android:layout_marginRight="@dimen/activity_horizontal_margin"
-            app:srcCompat="@drawable/ic_directions_white_24dp"
+            android:src="@drawable/ic_directions_white_24dp"
             android:cropToPadding="false"
             app:fabSize="mini"
             android:layout_weight="1" />
@@ -95,7 +95,7 @@
             android:layout_gravity="right|bottom"
             android:layout_marginBottom="@dimen/activity_vertical_margin"
             android:layout_marginRight="@dimen/activity_horizontal_margin"
-            app:srcCompat="@drawable/ic_add_24dp"
+            android:src="@drawable/ic_add_24dp"
             android:cropToPadding="false"
             app:fabSize="mini"
             android:layout_weight="1" />
@@ -108,7 +108,7 @@
             android:layout_gravity="right|bottom"
             android:layout_marginBottom="@dimen/activity_vertical_margin"
             android:layout_marginRight="@dimen/activity_horizontal_margin"
-            app:srcCompat="@drawable/ic_minus_black_24dp"
+            android:src="@drawable/ic_minus_black_24dp"
             android:cropToPadding="false"
             app:fabSize="mini"
             android:layout_weight="1" />
