@@ -7,7 +7,7 @@ package com.yuly.elaundry.kurir.model.database;
 public class Lokasi {
 
     int id;
-    String note;
+    String note, jarakAb;
     int status,dari, tujuan;
     String created_at, konsumen_id,pemesanan_id, latitude, longitude,  jarak;
 
@@ -81,6 +81,16 @@ public class Lokasi {
 
 
     // getters
+    public String getJarakAb() {
+        return this.jarakAb;
+    }
+
+    public void setJarakAb(String jarakAb){
+        this.jarakAb = jarakAb;
+    }
+
+
+    // getters
     public long getTujuan() {
         return this.tujuan;
     }
@@ -88,7 +98,6 @@ public class Lokasi {
     public void setTujuan(int tujuan){
         this.tujuan = tujuan;
     }
-
 
 
 

@@ -15,7 +15,7 @@ import java.util.TreeSet;
  *
  * @author Yuly Nurhidayati <elaundry.pe.hu>
  */
-class Graph {
+public class Graph {
    private final Map<String, Vertex> graph; // mapping of vertex names to Vertex objects, built from a set of Edges
  
    /** One edge of the graph (only used by Graph constructor) */

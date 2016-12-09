@@ -30,6 +30,7 @@ import com.yuly.elaundry.kurir.model.dataType.Destination;
 import com.yuly.elaundry.kurir.model.database.KurirDbHandler;
 import com.yuly.elaundry.kurir.model.database.Lokasi;
 import com.yuly.elaundry.kurir.model.database.RouteDbHelper;
+import com.yuly.elaundry.kurir.model.dijkstra.Graph;
 import com.yuly.elaundry.kurir.model.geterseter.TransaksiModel;
 import com.yuly.elaundry.kurir.model.helper.VolleyErrorHelper;
 import com.yuly.elaundry.kurir.model.listeners.NavigatorListener;
@@ -54,6 +55,7 @@ import java.util.List;
 import java.util.Map;
 
 import static android.content.ContentValues.TAG;
+import static android.provider.CalendarContract.Instances.END;
 
 
 public class PetaActions implements NavigatorListener, PetaHandlerListener {
@@ -69,6 +71,8 @@ public class PetaActions implements NavigatorListener, PetaHandlerListener {
     private KurirDbHandler db_user;
     private RouteDbHelper db_rute;
     private PetaHandler petaHandler;
+
+
 
     /**
      * true handle on start point ; false handle on end point
@@ -203,6 +207,12 @@ public class PetaActions implements NavigatorListener, PetaHandlerListener {
 
     private void buatTable() {
 
+        pDialog = new ProgressDialog(this.activity);
+        pDialog.setMessage("memuat ....");
+        pDialog.setCancelable(false);
+
+        showProgressDialog();
+
 
         hapusSemuaJarak();
 
@@ -214,10 +224,6 @@ public class PetaActions implements NavigatorListener, PetaHandlerListener {
 
             for(int k=(i-1); k > 0 ;--k){
 
-                Lokasi jarak_konsumen = new Lokasi( i,k, "12", 1);
-
-                long id =  db_rute.buatJarakKonsumen(jarak_konsumen);
-
                 Lokasi lokA = db_rute.getLokasi(i);
                 // Writing Contacts to log
                 Log.d("daftar lokasi dari : ",+lokA.getId() + " : "+lokA.getLatitude()+ " : "+ lokA.getLongitude());
@@ -227,11 +233,17 @@ public class PetaActions implements NavigatorListener, PetaHandlerListener {
                 Log.d("daftar lokasi tujuan: ",+lokB.getId() + " : "+lokB.getLatitude()+ " : "+ lokB.getLongitude());
 
 
-                String jarak = PetaHandler.getPetaHandler().hitungJarak(Double.parseDouble(lokA.getLatitude()), Double.parseDouble(lokA.getLongitude()),
+                String jarak = PetaHandler.getPetaHandler().menghitungJarak(Double.parseDouble(lokA.getLatitude()), Double.parseDouble(lokA.getLongitude()),
                         Double.parseDouble(lokB.getLatitude()),Double.parseDouble(lokB.getLongitude()));
 
-                Log.d("Jarak ", jarak+"Km");
+                Log.d("Jarak ", jarak+" Km");
 
+                Lokasi jarak_konsumen_01 = new Lokasi( i,k, jarak, 1);
+
+                long id_01 =  db_rute.buatJarakKonsumen(jarak_konsumen_01);
+
+
+                System.out.print("daftar id : "+id_01);
                 System.out.print("X"+i);
                 System.out.print("&"+k);
                 System.out.println("");
@@ -239,9 +251,6 @@ public class PetaActions implements NavigatorListener, PetaHandlerListener {
 
             for(int j=(i+1); j <= listlokasi.size() ;++j){
 
-                Lokasi jarak_konsumen = new Lokasi( i,j, "12", 1);
-
-                long id =  db_rute.buatJarakKonsumen(jarak_konsumen);
 
                 Lokasi lokA = db_rute.getLokasi(i);
                 // Writing Contacts to log
@@ -252,11 +261,17 @@ public class PetaActions implements NavigatorListener, PetaHandlerListener {
                 Log.d("daftar lokasi tujuan: ",+lokB.getId() + " : "+lokB.getLatitude()+ " : "+ lokB.getLongitude());
 
 
-                String jarak = PetaHandler.getPetaHandler().hitungJarak(Double.parseDouble(lokA.getLatitude()), Double.parseDouble(lokA.getLongitude()),
+                String jarak = PetaHandler.getPetaHandler().menghitungJarak(Double.parseDouble(lokA.getLatitude()), Double.parseDouble(lokA.getLongitude()),
                         Double.parseDouble(lokB.getLatitude()),Double.parseDouble(lokB.getLongitude()));
 
-                Log.d("Jarak ", jarak+"Km");
+                Log.d("Jarak ", jarak+" Km");
 
+                Lokasi jarak_konsumen_02 = new Lokasi( i,j, jarak, 1);
+
+                long id_02 =  db_rute.buatJarakKonsumen(jarak_konsumen_02);
+
+
+                System.out.print("daftar id : "+id_02);
 
                 System.out.print("#"+i);
 
@@ -269,7 +284,34 @@ public class PetaActions implements NavigatorListener, PetaHandlerListener {
 
         Log.d("table jarak","tabel berhasil dibuat ");
 
+        hideProgressDialog();
+
         Toast.makeText(activity, "tabel jarak berhasil dibuat", Toast.LENGTH_LONG).show();
+    }
+
+
+    private void hitungDijkstra(){
+
+
+        Graph.Edge[] GRAPH = {
+                new Graph.Edge("a", "b", 7),
+                new Graph.Edge("a", "c", 9),
+                new Graph.Edge("a", "f", 14),
+                new Graph.Edge("b", "c", 10),
+                new Graph.Edge("b", "d", 15),
+                new Graph.Edge("c", "d", 11),
+                new Graph.Edge("c", "f", 2),
+                new Graph.Edge("d", "e", 6),
+                new Graph.Edge("e", "f", 9),
+        };
+
+            String START = "a";
+            String END = "e";
+
+        Graph g = new Graph(GRAPH);
+        g.dijkstra(START);
+        g.printPath(END);
+        // g.printAllPaths();
     }
 
 
@@ -288,7 +330,7 @@ public class PetaActions implements NavigatorListener, PetaHandlerListener {
             Log.d("Delete : ", String.valueOf(id));
         }
 
-        Toast.makeText(activity, "membuat ulang table jarak", Toast.LENGTH_LONG).show();
+       // Toast.makeText(activity, "membuat ulang table jarak", Toast.LENGTH_LONG).show();
     }
 
 
@@ -379,7 +421,6 @@ public class PetaActions implements NavigatorListener, PetaHandlerListener {
 
         });
     }
-
 
     private void buatPoly(){
 

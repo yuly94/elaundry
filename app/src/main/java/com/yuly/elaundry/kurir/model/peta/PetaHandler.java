@@ -375,7 +375,7 @@ public class PetaHandler {
                     logUser("the route is " + (int) (resp.getDistance() / 100) / 10f
                             + "km long, time:" + resp.getTime() / 60000f + "min, debug:" + time);*/
 
-                    jarakPesanan = String.valueOf((int) resp.getDistance() /  1000f);
+                    jarakPesanan = "AA";
 
                 } else {
                     logToast(activity.getString(R.string.error_titikdua) + resp.getErrors());
@@ -387,6 +387,24 @@ public class PetaHandler {
         return jarakPesanan;
     }
 
+
+    public String menghitungJarak(double fromLat, double fromLon, double toLat, double toLon){
+
+        GHRequest req = new GHRequest(fromLat, fromLon, toLat, toLon);
+        req.setAlgorithm(AlgorithmOptions.DIJKSTRA_BI);
+        req.getHints().put(activity.getString(R.string.instruksi),
+                //  Variable.getVariable().getDirectionsON()
+                false
+
+        );
+        req.setVehicle(Variable.getVariable().getTravelMode());
+        //req.setVehicle("car");
+        req.setWeighting(Variable.getVariable().getWeighting());
+        //req.setWeighting("fastest");
+        GHResponse resp = hopper.route(req);
+
+        return String.valueOf(resp.getDistance()/1000f);
+    }
 
 
     /**
