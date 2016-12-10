@@ -330,10 +330,11 @@ public class RouteDbHelper extends SQLiteOpenHelper {
         if (cursor.moveToFirst()) {
             do {
                 Lokasi lokasi = new Lokasi();
-                lokasi.setId(Integer.parseInt(cursor.getString(0)));
+
+                //lokasi.setId(Integer.parseInt(cursor.getString(0)));
                 lokasi.setDari(Integer.parseInt(cursor.getString(1)));
                 lokasi.setTujuan(Integer.parseInt(cursor.getString(2)));
-                lokasi.setJarak(cursor.getString(3));
+                lokasi.setJarakAb(cursor.getString(3));
                 // Adding contact to list
                 listlokasi.add(lokasi);
             } while (cursor.moveToNext());

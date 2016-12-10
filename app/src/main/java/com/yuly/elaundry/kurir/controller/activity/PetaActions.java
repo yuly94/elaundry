@@ -30,6 +30,7 @@ import com.yuly.elaundry.kurir.model.dataType.Destination;
 import com.yuly.elaundry.kurir.model.database.KurirDbHandler;
 import com.yuly.elaundry.kurir.model.database.Lokasi;
 import com.yuly.elaundry.kurir.model.database.RouteDbHelper;
+import com.yuly.elaundry.kurir.model.dijikstra.TestDijkstraAlgorithm;
 import com.yuly.elaundry.kurir.model.dijkstra.Graph;
 import com.yuly.elaundry.kurir.model.geterseter.TransaksiModel;
 import com.yuly.elaundry.kurir.model.helper.VolleyErrorHelper;
@@ -50,6 +51,8 @@ import org.mapsforge.map.layer.Layers;
 import org.mapsforge.map.layer.overlay.Marker;
 import org.mapsforge.map.model.MapViewPosition;
 
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -205,7 +208,7 @@ public class PetaActions implements NavigatorListener, PetaHandlerListener {
     }
 
 
-    private void buatTable() {
+    private void buatTablec() {
 
         pDialog = new ProgressDialog(this.activity);
         pDialog.setMessage("memuat ....");
@@ -290,27 +293,95 @@ public class PetaActions implements NavigatorListener, PetaHandlerListener {
     }
 
 
-    private void hitungDijkstra(){
+
+    private Graph.Edge graph () {
+        List<Lokasi> listJarak = db_rute.getAllJarak();
+
+        Graph.Edge abc = null;
+
+        for (Lokasi jarak : listJarak) {
+
+           abc = new Graph.Edge(String.valueOf(jarak.getDari()), String.valueOf(jarak.getTujuan()),  Integer.parseInt(jarak.getJarakAb()));
+        }
+
+        return abc;
+    }
 
 
-        Graph.Edge[] GRAPH = {
-                new Graph.Edge("a", "b", 7),
-                new Graph.Edge("a", "c", 9),
-                new Graph.Edge("a", "f", 14),
-                new Graph.Edge("b", "c", 10),
-                new Graph.Edge("b", "d", 15),
-                new Graph.Edge("c", "d", 11),
-                new Graph.Edge("c", "f", 2),
-                new Graph.Edge("d", "e", 6),
-                new Graph.Edge("e", "f", 9),
-        };
+    private void buatTable(){
+        TestDijkstraAlgorithm test = new TestDijkstraAlgorithm();
+        test.testExcute();
+    }
 
+    private void buatTablex(){
+/*
+
+        List<Lokasi> listJarak = db_rute.getAllJarak();
+        // Reading all lokasi konsumen
+
+        for(int i=1; i<= listJarak.size() ;i++){
+
+            new Graph.Edge("e", "f", 9);
+
+            return;
+        }
+
+
+*/
+        Log.d("Reading: ", "Reading all lokasi..");
+        List<Lokasi> listlokasi = db_rute.getAllJarak();
+
+        for (Lokasi lokasi : listlokasi) {
+            String log = "Id: " + lokasi.getDari() + " ,Latitude : " + lokasi.getTujuan() + " ,Longitude : " + lokasi.getJarakAb();
+            // Writing Contacts to log
+            Log.d("Name: ", log);
+        }
+
+        List<Lokasi> listJarak = db_rute.getAllJarak();
+
+
+
+
+        //Graph.Edge[] stockArr = new Graph.Edge[listJarak.size()];
+        String[] stockArr = new String[listJarak.size()];
+        stockArr = listJarak.toArray(stockArr);
+
+        System.out.print(Arrays.toString(stockArr));
+        Log.d("Tag", String.valueOf(stockArr));
+
+        Log.d("Tag", "ini");
+
+
+
+/*        Graph.Edge[] GRAPH = {
+
+               // graph ()
+
+                new Graph.Edge("a", "b", (int) 7.5),
+                new Graph.Edge("a", "c", (int) 9.9),
+                new Graph.Edge("a", "f", (int) 14.3),
+                new Graph.Edge("b", "c", (int) 10.7),
+                new Graph.Edge("b", "d", (int) 4.4),
+                new Graph.Edge("c", "d", (int) 11.4),
+                new Graph.Edge("c", "f", (int) 2.1),
+                new Graph.Edge("d", "e", (int) 6.2),
+
+                new Graph.Edge("e", "f", (int) 9.3)
+        };*/
+
+
+/*
             String START = "a";
             String END = "e";
 
-        Graph g = new Graph(GRAPH);
+
+        Graph g = new Graph(stockArr);
         g.dijkstra(START);
+        System.out.println("&");
         g.printPath(END);
+
+*/
+
         // g.printAllPaths();
     }
 

@@ -5,6 +5,8 @@ import java.util.Map;
 import java.util.NavigableSet;
 import java.util.TreeSet;
 
+import static java.lang.Integer.compare;
+
 /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
@@ -22,11 +24,15 @@ public class Graph {
    public static class Edge {
       public final String v1, v2;
       public final int dist;
+
       public Edge(String v1, String v2, int dist) {
          this.v1 = v1;
          this.v2 = v2;
          this.dist = dist;
+
       }
+
+
    }
  
    /** One vertex of the graph, complete with mappings to neighbouring vertices */
@@ -54,7 +60,9 @@ public class Graph {
 		else
 		{
 			this.previous.printPath();
-			System.out.printf(" -> %s(%d)", this.name, this.dist);
+			//System.out.printf(" -> %s(%d)", this.name, this.dist);
+
+            System.out.printf("%s", this.name, this.dist);
 		}
 	}
  
@@ -63,7 +71,7 @@ public class Graph {
 		if (dist == other.dist)
 			return name.compareTo(other.name);
  
-		return Integer.compare(dist, other.dist);
+		return compare(dist, other.dist);
 	}
  
 	@Override public String toString()
@@ -140,6 +148,7 @@ public class Graph {
  
       graph.get(endName).printPath();
       System.out.println();
+       return;
    }
    /** Prints the path from the source to every vertex (output order is not guaranteed) */
    public void printAllPaths() {
