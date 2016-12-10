@@ -478,7 +478,7 @@ public class PetaActivity2 extends AppCompatActivity implements LocationListener
                                     listPesanan.setAlamat(pemesanan_alamat);
                                     listPesanan.setTanggal(pemesanan_tanggal);
 
-                                    Lokasi lokasi_konsumen = new Lokasi(listPesanan.getPemesananId(), String.valueOf(listPesanan.getLatitude()), String.valueOf(listPesanan.getLongitude()), "sada", 1);
+                                    Lokasi lokasi_konsumen = new Lokasi(listPesanan.getPemesananId(), String.valueOf(listPesanan.getLatitude()),  listPesanan.getLongitude(), 0, 1);
 
                                     long id = db_rute.createLokasiKonsumen(lokasi_konsumen);
 
@@ -978,7 +978,7 @@ public class PetaActivity2 extends AppCompatActivity implements LocationListener
             //
             Log.d(String.valueOf(tmp.getLatitude(i)), String.valueOf(tmp.getLongitude(i)));
 
-            Lokasi lokasi_konsumen = new Lokasi("123", String.valueOf(tmp.getLatitude(i)), String.valueOf(tmp.getLongitude(i)), String.valueOf(response.getDistance()), 1);
+            Lokasi lokasi_konsumen = new Lokasi("123", String.valueOf(tmp.getLatitude(i)), String.valueOf(tmp.getLongitude(i)), (int) response.getDistance(), 1);
 
             long id = db.createLokasiKonsumen(lokasi_konsumen);
 

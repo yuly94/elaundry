@@ -535,7 +535,7 @@ public class PetaActivity extends AppCompatActivity
             //
             Log.d(String.valueOf(tmp.getLatitude(i)), String.valueOf(tmp.getLongitude(i)));
 
-            Lokasi lokasi_konsumen = new Lokasi("123",String.valueOf(tmp.getLatitude(i)), String.valueOf(tmp.getLongitude(i)),String.valueOf(response.getDistance()),1);
+            Lokasi lokasi_konsumen = new Lokasi("123",String.valueOf(tmp.getLatitude(i)), String.valueOf(tmp.getLongitude(i)), (int) response.getDistance(),1);
 
            long id = db.createLokasiKonsumen(lokasi_konsumen);
 

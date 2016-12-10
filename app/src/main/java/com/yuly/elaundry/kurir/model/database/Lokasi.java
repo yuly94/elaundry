@@ -6,8 +6,9 @@ package com.yuly.elaundry.kurir.model.database;
 
 public class Lokasi {
 
-    int id;
-    String note, jarakAb;
+    int id, jarakAb;
+    double jarakDouble;
+    String note ;
     int status,dari, tujuan;
     String created_at, konsumen_id,pemesanan_id, latitude, longitude,  jarak;
 
@@ -20,11 +21,11 @@ public class Lokasi {
         this.status = status;
     }
 
-    public Lokasi(String konsumen_id,String latitude, String longitude,String jarak,int status) {
+    public Lokasi(String konsumen_id,String latitude, String longitude,int jarakAb,int status) {
         this.konsumen_id = konsumen_id;
         this.latitude = latitude;
         this.longitude = longitude;
-        this.jarak = jarak;
+        this.jarakAb = jarakAb;
         this.status = status;
     }
 
@@ -34,7 +35,7 @@ public class Lokasi {
         this.longitude = longitude;
     }
 
-    public Lokasi( int dari, int tujuan, String jarak, int status) {
+    public Lokasi(int dari, int tujuan, String jarak, int status) {
 
         this.dari = dari;
         this.tujuan = tujuan;
@@ -71,7 +72,7 @@ public class Lokasi {
     }
 
     // getters
-    public long getDari() {
+    public int getDari() {
         return this.dari;
     }
 
@@ -81,17 +82,17 @@ public class Lokasi {
 
 
     // getters
-    public String getJarakAb() {
+    public int getJarakAb() {
         return this.jarakAb;
     }
 
-    public void setJarakAb(String jarakAb){
+    public void setJarakAb(int jarakAb){
         this.jarakAb = jarakAb;
     }
 
 
     // getters
-    public long getTujuan() {
+    public int getTujuan() {
         return this.tujuan;
     }
 
@@ -102,7 +103,7 @@ public class Lokasi {
 
 
     // getters
-    public long getId() {
+    public int getId() {
         return this.id;
     }
 
@@ -153,5 +154,13 @@ public class Lokasi {
 
     public void setJarak(String jarak) {
         this.jarak = jarak;
+    }
+
+    public double getJarakDouble() {
+        return this.jarakDouble;
+    }
+
+    public void setJarakDouble(double jarakDouble) {
+        this.jarakDouble = jarakDouble;
     }
 }

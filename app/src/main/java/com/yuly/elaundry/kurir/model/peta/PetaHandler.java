@@ -403,7 +403,7 @@ public class PetaHandler {
         //req.setWeighting("fastest");
         GHResponse resp = hopper.route(req);
 
-        return String.valueOf(resp.getDistance()/1000f);
+        return String.valueOf(Math.round(resp.getDistance()/1f));
     }
 
 

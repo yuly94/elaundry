@@ -30,7 +30,10 @@ import com.yuly.elaundry.kurir.model.dataType.Destination;
 import com.yuly.elaundry.kurir.model.database.KurirDbHandler;
 import com.yuly.elaundry.kurir.model.database.Lokasi;
 import com.yuly.elaundry.kurir.model.database.RouteDbHelper;
+import com.yuly.elaundry.kurir.model.dijikstra.DijkstraAlgorithm;
+import com.yuly.elaundry.kurir.model.dijikstra.Edge;
 import com.yuly.elaundry.kurir.model.dijikstra.TestDijkstraAlgorithm;
+import com.yuly.elaundry.kurir.model.dijikstra.Vertex;
 import com.yuly.elaundry.kurir.model.dijkstra.Graph;
 import com.yuly.elaundry.kurir.model.geterseter.TransaksiModel;
 import com.yuly.elaundry.kurir.model.helper.VolleyErrorHelper;
@@ -54,11 +57,14 @@ import org.mapsforge.map.model.MapViewPosition;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
+import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
 
 import static android.content.ContentValues.TAG;
 import static android.provider.CalendarContract.Instances.END;
+import static junit.framework.Assert.assertNotNull;
+import static junit.framework.Assert.assertTrue;
 
 
 public class PetaActions implements NavigatorListener, PetaHandlerListener {
@@ -74,6 +80,10 @@ public class PetaActions implements NavigatorListener, PetaHandlerListener {
     private KurirDbHandler db_user;
     private RouteDbHelper db_rute;
     private PetaHandler petaHandler;
+
+    private List<Vertex> nodes;
+    private List<Edge> edges;
+
 
 
 
@@ -134,13 +144,10 @@ public class PetaActions implements NavigatorListener, PetaHandlerListener {
         // SqLite database handler
         db_rute = new RouteDbHelper(this.activity);
 
-
-
         controlBtnHandler();
         zoomControlHandler(mapView);
         showMyLocation(mapView);
         //navBtnHandler();
-
 
         mengambilData();
         menghitungJarak();
@@ -149,9 +156,154 @@ public class PetaActions implements NavigatorListener, PetaHandlerListener {
 
         getPoint();
 
-        fabBuatTable();
+        fabProsesRute();
     }
 
+
+    private void fabProsesRute(){
+
+        fab_rute.setOnClickListener(new View.OnClickListener() {
+            @Override public void onClick(View v) {
+
+                membuatTable();
+                memproseDijkstra();
+
+            }
+
+        });
+    }
+
+
+    private void membuatTable() {
+
+        pDialog = new ProgressDialog(this.activity);
+        pDialog.setMessage("memuat ....");
+        pDialog.setCancelable(false);
+
+        showProgressDialog();
+
+
+        hapusSemuaJarak();
+
+
+        List<Lokasi> listlokasi = db_rute.getAllLokasi();
+        // Reading all lokasi konsumen
+
+        for(int i=1; i<= listlokasi.size() ;i++){
+
+            for(int k=(i-1); k > 0 ;--k){
+
+                Lokasi lokA = db_rute.getLokasi(i);
+                // Writing Contacts to log
+                Log.d("daftar lokasi dari : ",+lokA.getId() + " : "+lokA.getLatitude()+ " : "+ lokA.getLongitude());
+
+                Lokasi lokB = db_rute.getLokasi(k);
+                // Writing Contacts to log
+                Log.d("daftar lokasi tujuan: ",+lokB.getId() + " : "+lokB.getLatitude()+ " : "+ lokB.getLongitude());
+
+
+                String jarak = PetaHandler.getPetaHandler().menghitungJarak(Double.parseDouble(lokA.getLatitude()), Double.parseDouble(lokA.getLongitude()),
+                        Double.parseDouble(lokB.getLatitude()),Double.parseDouble(lokB.getLongitude()));
+
+
+
+                Log.d("Jarak lokasi :", jarak+" Meter");
+
+                Lokasi jarak_konsumen_01 = new Lokasi( i,k, jarak, 1);
+
+                long id_01 =  db_rute.buatJarakKonsumen(jarak_konsumen_01);
+
+
+                System.out.print("daftar id : "+id_01);
+                System.out.print("X"+i);
+                System.out.print("&"+k);
+                System.out.println("");
+            }
+
+            for(int j=(i+1); j <= listlokasi.size() ;++j){
+
+
+                Lokasi lokA = db_rute.getLokasi(i);
+                // Writing Contacts to log
+                Log.d("daftar lokasi dari : ",+lokA.getId() + " : "+lokA.getLatitude()+ " : "+ lokA.getLongitude());
+
+                Lokasi lokB = db_rute.getLokasi(j);
+                // Writing Contacts to log
+                Log.d("daftar lokasi tujuan: ",+lokB.getId() + " : "+lokB.getLatitude()+ " : "+ lokB.getLongitude());
+
+
+                String jarak = PetaHandler.getPetaHandler().menghitungJarak(Double.parseDouble(lokA.getLatitude()), Double.parseDouble(lokA.getLongitude()),
+                        Double.parseDouble(lokB.getLatitude()),Double.parseDouble(lokB.getLongitude()));
+
+                Log.d("Jarak lokasi :", jarak+" Meter");
+
+                Lokasi jarak_konsumen_01 = new Lokasi( i,j, jarak, 1);
+
+                long id_02 =  db_rute.buatJarakKonsumen(jarak_konsumen_01);
+
+
+                System.out.print("daftar id : "+id_02);
+
+                System.out.print("#"+i);
+
+                System.out.print("*"+j);
+                System.out.println("");
+            }
+            //generate a new line
+            // System.out.println();
+        }
+
+        Log.d("table jarak","tabel berhasil dibuat ");
+
+        hideProgressDialog();
+
+        Toast.makeText(activity, "tabel jarak berhasil dibuat", Toast.LENGTH_LONG).show();
+    }
+
+
+    private void memproseDijkstra() {
+
+        nodes = new ArrayList<Vertex>();
+
+        edges = new ArrayList<Edge>();
+
+        List<Lokasi> listJarak = db_rute.getAllJarak();
+
+
+        for (int i = 0; i <= listJarak.size(); i++) {
+            Vertex location = new Vertex("Node_" + i, "Node_" + i);
+            nodes.add(location);
+        }
+/*
+        for (Lokasi jarak : listJarak) {
+
+          //  Integer integer = (int) Math.round(Float.parseFloat(jarak.getJarakAb()));
+
+            addLane("Edge_"+jarak.getId(),  jarak.getDari(),   jarak.getTujuan(), 1);
+
+            Log.d("daftar Edge :", jarak.getId()+" : "+  jarak.getDari() +" : "+ jarak.getTujuan()+" : "+ jarak.getJarakAb());
+        }
+
+        // Lets check from location Loc_1 to Loc_10
+        com.yuly.elaundry.kurir.model.dijikstra.Graph graph = new com.yuly.elaundry.kurir.model.dijikstra.Graph(nodes, edges);
+        DijkstraAlgorithm dijkstra = new DijkstraAlgorithm(graph);
+        dijkstra.execute(nodes.get(0));
+        LinkedList<Vertex> path = dijkstra.getPath(nodes.get(10));
+
+        assertNotNull(path);
+        assertTrue(path.size() > 0);
+
+        for (Vertex vertex : path) {
+            System.out.println(vertex);
+        }*/
+
+    }
+
+    private void addLane(String laneId, int sourceLocNo, int destLocNo,
+                         int duration) {
+        Edge lane = new Edge(laneId,nodes.get(sourceLocNo), nodes.get(destLocNo), duration );
+        edges.add(lane);
+    }
 
 
     /**
@@ -208,126 +360,15 @@ public class PetaActions implements NavigatorListener, PetaHandlerListener {
     }
 
 
-    private void buatTablec() {
-
-        pDialog = new ProgressDialog(this.activity);
-        pDialog.setMessage("memuat ....");
-        pDialog.setCancelable(false);
-
-        showProgressDialog();
 
 
-        hapusSemuaJarak();
-
-
-        List<Lokasi> listlokasi = db_rute.getAllLokasi();
-        // Reading all lokasi konsumen
-
-        for(int i=1; i<= listlokasi.size() ;i++){
-
-            for(int k=(i-1); k > 0 ;--k){
-
-                Lokasi lokA = db_rute.getLokasi(i);
-                // Writing Contacts to log
-                Log.d("daftar lokasi dari : ",+lokA.getId() + " : "+lokA.getLatitude()+ " : "+ lokA.getLongitude());
-
-                Lokasi lokB = db_rute.getLokasi(k);
-                // Writing Contacts to log
-                Log.d("daftar lokasi tujuan: ",+lokB.getId() + " : "+lokB.getLatitude()+ " : "+ lokB.getLongitude());
-
-
-                String jarak = PetaHandler.getPetaHandler().menghitungJarak(Double.parseDouble(lokA.getLatitude()), Double.parseDouble(lokA.getLongitude()),
-                        Double.parseDouble(lokB.getLatitude()),Double.parseDouble(lokB.getLongitude()));
-
-                Log.d("Jarak ", jarak+" Km");
-
-                Lokasi jarak_konsumen_01 = new Lokasi( i,k, jarak, 1);
-
-                long id_01 =  db_rute.buatJarakKonsumen(jarak_konsumen_01);
-
-
-                System.out.print("daftar id : "+id_01);
-                System.out.print("X"+i);
-                System.out.print("&"+k);
-                System.out.println("");
-            }
-
-            for(int j=(i+1); j <= listlokasi.size() ;++j){
-
-
-                Lokasi lokA = db_rute.getLokasi(i);
-                // Writing Contacts to log
-                Log.d("daftar lokasi dari : ",+lokA.getId() + " : "+lokA.getLatitude()+ " : "+ lokA.getLongitude());
-
-                Lokasi lokB = db_rute.getLokasi(j);
-                // Writing Contacts to log
-                Log.d("daftar lokasi tujuan: ",+lokB.getId() + " : "+lokB.getLatitude()+ " : "+ lokB.getLongitude());
-
-
-                String jarak = PetaHandler.getPetaHandler().menghitungJarak(Double.parseDouble(lokA.getLatitude()), Double.parseDouble(lokA.getLongitude()),
-                        Double.parseDouble(lokB.getLatitude()),Double.parseDouble(lokB.getLongitude()));
-
-                Log.d("Jarak ", jarak+" Km");
-
-                Lokasi jarak_konsumen_02 = new Lokasi( i,j, jarak, 1);
-
-                long id_02 =  db_rute.buatJarakKonsumen(jarak_konsumen_02);
-
-
-                System.out.print("daftar id : "+id_02);
-
-                System.out.print("#"+i);
-
-                System.out.print("*"+j);
-                System.out.println("");
-            }
-            //generate a new line
-            // System.out.println();
-        }
-
-        Log.d("table jarak","tabel berhasil dibuat ");
-
-        hideProgressDialog();
-
-        Toast.makeText(activity, "tabel jarak berhasil dibuat", Toast.LENGTH_LONG).show();
-    }
-
-
-
-    private Graph.Edge graph () {
-        List<Lokasi> listJarak = db_rute.getAllJarak();
-
-        Graph.Edge abc = null;
-
-        for (Lokasi jarak : listJarak) {
-
-           abc = new Graph.Edge(String.valueOf(jarak.getDari()), String.valueOf(jarak.getTujuan()),  Integer.parseInt(jarak.getJarakAb()));
-        }
-
-        return abc;
-    }
-
-
-    private void buatTable(){
+    private void buatTablexxxx(){
         TestDijkstraAlgorithm test = new TestDijkstraAlgorithm();
         test.testExcute();
     }
 
     private void buatTablex(){
-/*
 
-        List<Lokasi> listJarak = db_rute.getAllJarak();
-        // Reading all lokasi konsumen
-
-        for(int i=1; i<= listJarak.size() ;i++){
-
-            new Graph.Edge("e", "f", 9);
-
-            return;
-        }
-
-
-*/
         Log.d("Reading: ", "Reading all lokasi..");
         List<Lokasi> listlokasi = db_rute.getAllJarak();
 
@@ -338,8 +379,6 @@ public class PetaActions implements NavigatorListener, PetaHandlerListener {
         }
 
         List<Lokasi> listJarak = db_rute.getAllJarak();
-
-
 
 
         //Graph.Edge[] stockArr = new Graph.Edge[listJarak.size()];
@@ -386,8 +425,6 @@ public class PetaActions implements NavigatorListener, PetaHandlerListener {
     }
 
 
-
-
     private void hapusSemuaJarak() {
         // Reading all lokasi konsumen
         Log.d("Reading: ", "Reading all lokasi..");
@@ -403,8 +440,6 @@ public class PetaActions implements NavigatorListener, PetaHandlerListener {
 
        // Toast.makeText(activity, "membuat ulang table jarak", Toast.LENGTH_LONG).show();
     }
-
-
 
 
     private void bacaPoint() {
@@ -506,17 +541,6 @@ public class PetaActions implements NavigatorListener, PetaHandlerListener {
         });
     }
 
-    private void fabBuatTable(){
-
-        fab_rute.setOnClickListener(new View.OnClickListener() {
-            @Override public void onClick(View v) {
-
-                buatTable();
-
-            }
-
-        });
-    }
 
 
 
@@ -532,8 +556,8 @@ public class PetaActions implements NavigatorListener, PetaHandlerListener {
 
         if (CariRuteActivity.getmCurrentLocation() != null) {
 
-            Lokasi lokasi_konsumen = new Lokasi("000", String.valueOf(CariRuteActivity.getmCurrentLocation().getLatitude()),
-                    String.valueOf(CariRuteActivity.getmCurrentLocation().getLongitude()), "sada", 1);
+            Lokasi lokasi_konsumen = new Lokasi("000", "0",String.valueOf(CariRuteActivity.getmCurrentLocation().getLatitude()),
+                    String.valueOf(CariRuteActivity.getmCurrentLocation().getLongitude()), "0", 1);
 
             long id_kurir = db_rute.createLokasiKonsumen(lokasi_konsumen);
             Log.d("ID Kurir ", String.valueOf(id_kurir));

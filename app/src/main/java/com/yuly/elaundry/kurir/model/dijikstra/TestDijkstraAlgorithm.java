@@ -1,5 +1,11 @@
 package com.yuly.elaundry.kurir.model.dijikstra;
 
+import android.app.Activity;
+import android.util.Log;
+
+import com.yuly.elaundry.kurir.model.database.Lokasi;
+import com.yuly.elaundry.kurir.model.database.RouteDbHelper;
+
 import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
@@ -14,21 +20,51 @@ import static junit.framework.Assert.assertTrue;
 
 public class TestDijkstraAlgorithm {
 
+    private RouteDbHelper db_rute;
+
     private List<Vertex> nodes;
     private List<Edge> edges;
 
+    private Activity activity;
+
 
     public void testExcute() {
+
+        // SqLite database handler
+        db_rute = new RouteDbHelper(this.activity);
+
+        List<Lokasi> listJarak = db_rute.getAllJarak();
+
+        for (Lokasi jarak : listJarak) {
+
+           // addLane("Edge_"+jarak.getId(), (int) jarak.getDari(), (int) jarak.getTujuan(), Integer.parseInt(jarak.getJarakAb()));
+
+            Log.d("Edge : ", String.valueOf(jarak.getId()));
+        }
+
+    }
+
+
+    public void testExcutex() {
         nodes = new ArrayList<Vertex>();
 
         edges = new ArrayList<Edge>();
 
-        for (int i = 0; i < 11; i++) {
+        List<Lokasi> listJarak = db_rute.getAllJarak();
+
+        for (int i = 0; i <= listJarak.size(); i++) {
             Vertex location = new Vertex("Node_" + i, "Node_" + i);
             nodes.add(location);
         }
 
-        addLane("Edge_0", 0, 1, 85);
+        for (Lokasi jarak : listJarak) {
+
+            addLane("Edge_"+jarak.getId(), (int) jarak.getDari(), (int) jarak.getTujuan(), jarak.getJarakAb());
+
+            Log.d("Edge : ", String.valueOf(jarak.getId()));
+        }
+
+/*        addLane("Edge_0", 0, 1, 85);
         addLane("Edge_1", 0, 2, 217);
         addLane("Edge_2", 0, 4, 173);
         addLane("Edge_3", 2, 6, 186);
@@ -39,7 +75,7 @@ public class TestDijkstraAlgorithm {
         addLane("Edge_8", 7, 9, 167);
         addLane("Edge_9", 4, 9, 502);
         addLane("Edge_10", 9, 10, 40);
-        addLane("Edge_11", 1, 10, 600);
+        addLane("Edge_11", 1, 10, 600);*/
 
         // Lets check from location Loc_1 to Loc_10
         Graph graph = new Graph(nodes, edges);

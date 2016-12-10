@@ -252,7 +252,7 @@ public class RuteActivity extends AppCompatActivity {
                                     listPesanan.setAlamat(pemesanan_alamat);
                                     listPesanan.setTanggal(pemesanan_tanggal);
 
-                                    Lokasi lokasi_konsumen = new Lokasi(listPesanan.getPemesananId(),String.valueOf(listPesanan.getLatitude()), String.valueOf(listPesanan.getLongitude()),"sada",1);
+                                    Lokasi lokasi_konsumen = new Lokasi(listPesanan.getPemesananId(),String.valueOf(listPesanan.getLatitude()), String.valueOf(listPesanan.getLongitude()),1,1);
 
                                     long id = db_rute.createLokasiKonsumen(lokasi_konsumen);
 
