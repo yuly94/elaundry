@@ -30,11 +30,13 @@ import com.yuly.elaundry.kurir.model.dataType.Destination;
 import com.yuly.elaundry.kurir.model.database.KurirDbHandler;
 import com.yuly.elaundry.kurir.model.database.Lokasi;
 import com.yuly.elaundry.kurir.model.database.RouteDbHelper;
+
+
 import com.yuly.elaundry.kurir.model.dijikstra.DijkstraAlgorithm;
 import com.yuly.elaundry.kurir.model.dijikstra.Edge;
+import com.yuly.elaundry.kurir.model.dijikstra.Graph;
 import com.yuly.elaundry.kurir.model.dijikstra.TestDijkstraAlgorithm;
 import com.yuly.elaundry.kurir.model.dijikstra.Vertex;
-import com.yuly.elaundry.kurir.model.dijkstra.Graph;
 import com.yuly.elaundry.kurir.model.geterseter.TransaksiModel;
 import com.yuly.elaundry.kurir.model.helper.VolleyErrorHelper;
 import com.yuly.elaundry.kurir.model.listeners.NavigatorListener;
@@ -166,7 +168,7 @@ public class PetaActions implements NavigatorListener, PetaHandlerListener {
             @Override public void onClick(View v) {
 
                 membuatTable();
-                memproseDijkstra();
+                memprosesDijkstra();
 
             }
 
@@ -261,7 +263,7 @@ public class PetaActions implements NavigatorListener, PetaHandlerListener {
     }
 
 
-    private void memproseDijkstra() {
+    private void memprosesDijkstra() {
 
         nodes = new ArrayList<Vertex>();
 
@@ -270,32 +272,70 @@ public class PetaActions implements NavigatorListener, PetaHandlerListener {
         List<Lokasi> listJarak = db_rute.getAllJarak();
 
 
-        for (int i = 0; i <= listJarak.size(); i++) {
+        for (int i = 0; i <10; i++) {
             Vertex location = new Vertex("Node_" + i, "Node_" + i);
             nodes.add(location);
         }
-/*
-        for (Lokasi jarak : listJarak) {
 
-          //  Integer integer = (int) Math.round(Float.parseFloat(jarak.getJarakAb()));
+/*        for (Lokasi jarak : listJarak) {
 
             addLane("Edge_"+jarak.getId(),  jarak.getDari(),   jarak.getTujuan(), 1);
 
             Log.d("daftar Edge :", jarak.getId()+" : "+  jarak.getDari() +" : "+ jarak.getTujuan()+" : "+ jarak.getJarakAb());
-        }
+
+
+        }*/
+
+
+        addLane("Edge_1",  1, 2, 6658); //
+        addLane("Edge_2",  1, 3, 8845);
+        addLane("Edge_3",  1, 4, 8716);
+        addLane("Edge_4",  1, 5, 9251);
+       // addLane("Edge_5",  2, 1, 6658);
+        addLane("Edge_5",  2, 3, 5777);
+        addLane("Edge_6",  2, 4, 5649);
+        addLane("Edge_7",  2, 5, 4945);//
+       // addLane("Edge_9",  3, 2, 4609);
+       // addLane("Edge_10", 3, 1, 7677);
+        addLane("Edge_8",  3, 4, 2014);
+        addLane("Edge_9",  3, 5, 3344);
+      //  addLane("Edge_13",  4, 3, 2083); //4
+      //  addLane("Edge_14",  4, 2, 5812);
+      //  addLane("Edge_15",  4, 1, 8880);
+        addLane("Edge_10",  4, 5, 4291);
+       // addLane("Edge_17",  5, 4, 4312); //3
+       // addLane("Edge_18",  5, 3, 3434);
+       // addLane("Edge_19",  5, 2, 5627);
+      //  addLane("Edge_20",  5, 1, 19905);
+
+/*
+        addLane("Edge_0", 0, 1, 85);
+        addLane("Edge_1", 0, 2, 217);
+        addLane("Edge_2", 0, 4, 173);
+        addLane("Edge_3", 2, 6, 186);
+        addLane("Edge_4", 2, 7, 103);
+        addLane("Edge_5", 3, 7, 183);
+        addLane("Edge_6", 5, 8, 250);
+        addLane("Edge_7", 8, 9, 84);
+        addLane("Edge_8", 7, 9, 167);
+        addLane("Edge_9", 4, 9, 502);
+        addLane("Edge_10", 9, 10, 40);
+        addLane("Edge_11", 1, 10, 600);*/
+
+        //tambahLane();
 
         // Lets check from location Loc_1 to Loc_10
-        com.yuly.elaundry.kurir.model.dijikstra.Graph graph = new com.yuly.elaundry.kurir.model.dijikstra.Graph(nodes, edges);
+        Graph graph = new Graph(nodes, edges);
         DijkstraAlgorithm dijkstra = new DijkstraAlgorithm(graph);
-        dijkstra.execute(nodes.get(0));
-        LinkedList<Vertex> path = dijkstra.getPath(nodes.get(10));
+        dijkstra.execute(nodes.get(1));
+        LinkedList<Vertex> path = dijkstra.getPath(nodes.get(5));
 
         assertNotNull(path);
-        assertTrue(path.size() > 0);
+        assertTrue(path.size() > 1);
 
         for (Vertex vertex : path) {
             System.out.println(vertex);
-        }*/
+        }
 
     }
 
@@ -305,6 +345,20 @@ public class PetaActions implements NavigatorListener, PetaHandlerListener {
         edges.add(lane);
     }
 
+    private void tambahLane() {
+        List<Lokasi> listJarak = db_rute.getAllJarak();
+        for (Lokasi jarak : listJarak) {
+
+            addLane("Edge_"+jarak.getId(),  jarak.getDari(),   jarak.getTujuan(), 1);
+
+            Log.d("daftar Edge :", jarak.getId()+" : "+  jarak.getDari() +" : "+ jarak.getTujuan()+" : "+ jarak.getJarakAb());
+
+            Edge lane = new Edge("Edge_"+jarak.getId(),nodes.get(jarak.getDari()), nodes.get(jarak.getTujuan()), jarak.getJarakAb() );
+            edges.add(lane);
+
+        }
+
+    }
 
     /**
      * add end point marker to map
@@ -360,12 +414,6 @@ public class PetaActions implements NavigatorListener, PetaHandlerListener {
     }
 
 
-
-
-    private void buatTablexxxx(){
-        TestDijkstraAlgorithm test = new TestDijkstraAlgorithm();
-        test.testExcute();
-    }
 
     private void buatTablex(){
 

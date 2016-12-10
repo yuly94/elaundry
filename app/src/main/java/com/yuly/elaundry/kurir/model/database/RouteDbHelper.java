@@ -334,7 +334,7 @@ public class RouteDbHelper extends SQLiteOpenHelper {
                 jarak.setId(Integer.parseInt(cursor.getString(0)));
                 jarak.setDari(Integer.parseInt(cursor.getString(1)));
                 jarak.setTujuan(Integer.parseInt(cursor.getString(2)));
-                jarak.setJarak(cursor.getString(3));
+                jarak.setJarakAb(Integer.parseInt(cursor.getString(3)));
                 // Adding contact to list
                 listlokasi.add(jarak);
             } while (cursor.moveToNext());
