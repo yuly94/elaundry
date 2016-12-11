@@ -32,11 +32,8 @@ import com.graphhopper.util.ProgressListener;
 import com.yuly.elaundry.kurir.R;
 //import com.yuly.elaundry.kurir.controller.fragment.AboutFragment;
 
-import com.yuly.elaundry.kurir.controller.fragment.LaundryPengambilanAgentFragment;
-import com.yuly.elaundry.kurir.controller.fragment.LaundryPengantaranFragment;
 import com.yuly.elaundry.kurir.controller.fragment.LaundryPemesananFragment;
 import com.yuly.elaundry.kurir.controller.fragment.ProfileFragment;
-import com.yuly.elaundry.kurir.controller.fragment.LaundryPenjemputanFragment;
 import com.yuly.elaundry.kurir.model.database.KurirDbHandler;
 import com.yuly.elaundry.kurir.model.helper.SessionManager;
 import com.yuly.elaundry.kurir.model.peta.AndroidDownloader;

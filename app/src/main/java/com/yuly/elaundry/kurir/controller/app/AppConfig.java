@@ -2,6 +2,8 @@ package com.yuly.elaundry.kurir.controller.app;
 
 public class AppConfig {
 
+	public static final String TAG = "elaundry-apps";
+
 	private static String URL = "http://elaundry.pe.hu/";
 
 	private static String API = "kurir/";

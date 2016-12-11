@@ -98,11 +98,6 @@
             android:screenOrientation="portrait"
             android:theme="@style/MYAppTheme.NoActionBar" />
         <activity
-            android:name=".controller.activity.PetaActivity2"
-            android:label="@string/title_activity_download"
-            android:screenOrientation="portrait"
-            android:theme="@style/MYAppTheme.NoActionBar" />
-        <activity
             android:name=".controller.activity.DetailPemesananActivity"
             android:label="detail pesanan"
             android:screenOrientation="portrait"

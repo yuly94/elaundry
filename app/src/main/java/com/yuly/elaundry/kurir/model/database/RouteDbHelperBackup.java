@@ -10,7 +10,6 @@ import android.util.Log;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
-import java.util.HashMap;
 import java.util.List;
 import java.util.Locale;
 
@@ -18,7 +17,7 @@ import java.util.Locale;
  * Created by yuly nurhidayati on 28/11/16.
  */
 
-public class RouteDbHelper extends SQLiteOpenHelper {
+public class RouteDbHelperBackup extends SQLiteOpenHelper {
 
     // Logcat tag
     private static final String LOG = "DatabaseHelper";
@@ -146,7 +145,7 @@ public class RouteDbHelper extends SQLiteOpenHelper {
             + KEY_TODO_ID + " INTEGER," + KEY_TAG_ID + " INTEGER,"
             + KEY_CREATED_AT + " DATETIME" + ")";
 
-    public RouteDbHelper(Context context) {
+    public RouteDbHelperBackup(Context context) {
         super(context, DATABASE_NAME, null, DATABASE_VERSION);
     }
 
@@ -200,12 +199,14 @@ public class RouteDbHelper extends SQLiteOpenHelper {
 
         // insert row
 
+        long todo_id = db.insert(TABLE_LOKASI_KONSUMEN, null, values);
+
         // insert tag_ids
     //    for (long tag_id : tag_ids) {
       //      createTodoTag(todo_id, tag_id);
       //  }
 
-        return db.insert(TABLE_LOKASI_KONSUMEN, null, values);
+        return todo_id;
     }
 
 
@@ -226,12 +227,14 @@ public class RouteDbHelper extends SQLiteOpenHelper {
 
         // insert row
 
+        long todo_id = db.insert(TABLE_POINT_KONSUMEN, null, values);
+
         // insert tag_ids
         //    for (long tag_id : tag_ids) {
         //      createTodoTag(todo_id, tag_id);
         //  }
 
-        return db.insert(TABLE_POINT_KONSUMEN, null, values);
+        return todo_id;
     }
 
     /**
@@ -271,41 +274,158 @@ public class RouteDbHelper extends SQLiteOpenHelper {
 
         // insert row
 
+        long todo_id = db.insert(TABLE_PATH_KONSUMEN, null, values);
+
         // insert tag_ids
         //    for (long tag_id : tag_ids) {
         //      createTodoTag(todo_id, tag_id);
         //  }
 
-        return db.insert(TABLE_PATH_KONSUMEN, null, values);
+        return todo_id;
     }
 
     // Getting single lokasi
     public Lokasi getLokasi(long id) {
         SQLiteDatabase db = this.getReadableDatabase();
 
-        Cursor mCursor = db.query(TABLE_LOKASI_KONSUMEN, new String[]{KEY_ID, KEY_KONSUMEN_ID,
-                        KEY_KONSUMEN_LATITUDE, KEY_KONSUMEN_LONGITUDE}, KEY_ID + "=?",
-                new String[]{String.valueOf(id)}, null, null, null, null);
+        Cursor cursor = db.query(TABLE_LOKASI_KONSUMEN, new String[] { KEY_ID, KEY_KONSUMEN_ID,
+                        KEY_KONSUMEN_LATITUDE, KEY_KONSUMEN_LONGITUDE }, KEY_ID + "=?",
+                new String[] { String.valueOf(id) }, null, null, null, null);
 
         // looping through all rows and adding to list
-        if (mCursor.getCount() >= 1 && mCursor.moveToFirst()) {
+        if (cursor != null)
+            cursor.moveToFirst();
 
-            Lokasi lokasi = new Lokasi();
-            lokasi.setId(Integer.parseInt(mCursor.getString(0)));
-            lokasi.setKonsumenId(mCursor.getString(1));
-            lokasi.setLatitude(mCursor.getString(2));
-            lokasi.setLongitude(mCursor.getString(3));
+        Lokasi lokasi = new Lokasi();
+                lokasi.setId(Integer.parseInt(cursor.getString(0)));
+                lokasi.setKonsumenId(cursor.getString(1));
+                lokasi.setLatitude(cursor.getString(2));
+                lokasi.setLongitude(cursor.getString(3));
 
-            // Adding contact to list
-            // return contact list
-            mCursor.close();
-            return lokasi;
-        } else {
+                // Adding contact to list
+        // return contact list
+        cursor.close();
+        return lokasi;
 
-            return null;
         }
+
+
+    // Getting single lokasi
+    public Lokasi getJarak(long jarak_dari, long jarak_tujuan) {
+        SQLiteDatabase db = this.getReadableDatabase();
+
+        Cursor mCursor = db.query(TABLE_JARAK_KONSUMEN, new String[] { KEY_ID, KEY_DARI,
+                        KEY_TUJUAN, KEY_JARAK }, KEY_DARI+ "=?" + " and "  +
+                        KEY_TUJUAN+ "=?",
+                new String[] {String.valueOf(jarak_dari),String.valueOf(jarak_tujuan) }, null, null, KEY_JARAK +" DESC", "1");
+
+        // looping through all rows and adding to list
+        if (mCursor != null)
+            mCursor.moveToFirst();
+
+        Lokasi lokasi = new Lokasi();
+        lokasi.setId(Integer.parseInt(mCursor.getString(0)));
+        lokasi.setDari(Integer.parseInt(mCursor.getString(1)));
+        lokasi.setTujuan(Integer.parseInt(mCursor.getString(2)));
+        lokasi.setJarakAb(Integer.parseInt(mCursor.getString(3)));
+
+        // Adding contact to list
+        // return contact list
+        if (mCursor != null && !mCursor.isClosed()) {
+            mCursor.close();
+        }
+
+        return lokasi;
+
     }
 
+
+    // Getting single lokasi
+    public Lokasi getJarak(int jarak_dari) {
+        SQLiteDatabase db = this.getReadableDatabase();
+
+        Cursor mCursor = db.query(TABLE_JARAK_KONSUMEN, new String[] { KEY_ID, KEY_DARI,
+                        KEY_TUJUAN, KEY_JARAK }, null,
+                new String[] {String.valueOf(jarak_dari) }, null, null, KEY_JARAK +" DESC", "1");
+
+        // looping through all rows and adding to list
+        if (mCursor != null)
+            mCursor.moveToFirst();
+
+        Lokasi lokasi = new Lokasi();
+        lokasi.setId(Integer.parseInt(mCursor.getString(0)));
+        lokasi.setDari(Integer.parseInt(mCursor.getString(1)));
+        lokasi.setTujuan(Integer.parseInt(mCursor.getString(2)));
+        lokasi.setJarakAb(Integer.parseInt(mCursor.getString(3)));
+
+        // Adding contact to list
+        // return contact list
+        if (mCursor != null && !mCursor.isClosed()) {
+            mCursor.close();
+        }
+
+        return lokasi;
+
+    }
+
+
+    // Getting single lokasi
+    public Lokasi getPath(long jarak_dari, long jarak_tujuan) {
+        SQLiteDatabase db = this.getReadableDatabase();
+
+        Cursor mCursor = db.query(TABLE_JARAK_KONSUMEN, new String[] { KEY_ID, KEY_DARI,
+                        KEY_TUJUAN, KEY_JARAK }, KEY_DARI+ "=?" + " and "  +
+                        KEY_TUJUAN+ "=?",
+                new String[] {String.valueOf(jarak_dari),String.valueOf(jarak_tujuan) }, null, null, KEY_JARAK +" DESC", "1");
+
+        // looping through all rows and adding to list
+        if (mCursor != null)
+            mCursor.moveToFirst();
+
+        Lokasi lokasi = new Lokasi();
+        lokasi.setId(Integer.parseInt(mCursor.getString(0)));
+        lokasi.setDari(Integer.parseInt(mCursor.getString(1)));
+        lokasi.setTujuan(Integer.parseInt(mCursor.getString(2)));
+        lokasi.setJarakAb(Integer.parseInt(mCursor.getString(3)));
+
+        // Adding contact to list
+        // return contact list
+        if (mCursor != null && !mCursor.isClosed()) {
+            mCursor.close();
+        }
+
+        return lokasi;
+
+    }
+
+
+    // Getting single lokasi
+    public Lokasi getJarak() {
+        SQLiteDatabase db = this.getReadableDatabase();
+
+        Cursor mCursor = db.query(TABLE_JARAK_KONSUMEN, new String[] { KEY_ID, KEY_DARI,
+                        KEY_TUJUAN, KEY_JARAK }, null,
+                null, null, null, KEY_ID +" DESC", "1");
+
+        // looping through all rows and adding to list
+        if (mCursor != null)
+            mCursor.moveToFirst();
+
+        Lokasi lokasi = new Lokasi();
+        lokasi.setId(Integer.parseInt(mCursor.getString(0)));
+        lokasi.setDari(Integer.parseInt(mCursor.getString(1)));
+        lokasi.setTujuan(Integer.parseInt(mCursor.getString(2)));
+        lokasi.setJarakAb(Integer.parseInt(mCursor.getString(3)));
+
+        // Adding contact to list
+        // return contact list
+        if (mCursor != null && !mCursor.isClosed()) {
+            mCursor.close();
+        }
+
+        return lokasi;
+
+    }
 
     // Getting single lokasi
     public Lokasi getTujuan(int dariJarak) {
@@ -316,25 +436,22 @@ public class RouteDbHelper extends SQLiteOpenHelper {
                 new String[] {String.valueOf(dariJarak)}, null, null, KEY_JARAK +" ASC", "1");
 
         // looping through all rows and adding to list
-        if (mCursor.getCount() >= 1 &&  mCursor.moveToFirst()){
+        if (mCursor != null)
+            mCursor.moveToFirst();
 
-            Lokasi lokasi = new Lokasi();
-            lokasi.setId(Integer.parseInt(mCursor.getString(0)));
-            lokasi.setDari(Integer.parseInt(mCursor.getString(1)));
-            lokasi.setTujuan(Integer.parseInt(mCursor.getString(2)));
-            lokasi.setJarakAb(Integer.parseInt(mCursor.getString(3)));
+        Lokasi lokasi = new Lokasi();
+        lokasi.setId(Integer.parseInt(mCursor.getString(0)));
+        lokasi.setDari(Integer.parseInt(mCursor.getString(1)));
+        lokasi.setTujuan(Integer.parseInt(mCursor.getString(2)));
+        lokasi.setJarakAb(Integer.parseInt(mCursor.getString(3)));
 
+        // Adding contact to list
+        // return contact list
+        if (mCursor != null && !mCursor.isClosed()) {
+            mCursor.close();
+        }
 
-            // Adding contact to list
-            // return contact list
-            if (mCursor.getCount() >= 1 && !mCursor.isClosed()) {
-
-                mCursor.close();
-            }
-
-            return lokasi;
-
-        } else return null;
+        return lokasi;
 
     }
 
@@ -375,6 +492,21 @@ public class RouteDbHelper extends SQLiteOpenHelper {
 
 
 
+    /**
+     * Deleting a todo
+     */
+    public long deleteLokasxi(long tado_id) {
+        SQLiteDatabase db = this.getWritableDatabase();
+        db.delete(TABLE_LOKASI_KONSUMEN, KEY_ID + " = ?",
+                new String[] { String.valueOf(tado_id) });
+        return tado_id;
+    }
+
+    /**
+     * getting all lokasi
+     * */
+
+
     // Lokasi Pesanan
     public List<Lokasi> getAllLokasi() {
         List<Lokasi> listlokasi = new ArrayList<Lokasi>();
@@ -413,8 +545,7 @@ public class RouteDbHelper extends SQLiteOpenHelper {
         Cursor cursor = db.rawQuery(selectQuery, null);
 
         // looping through all rows and adding to list
-        if (cursor.getCount() >= 1 &&  cursor.moveToFirst()) {
-
+        if (cursor.moveToFirst()) {
             do {
                 Lokasi jarak = new Lokasi();
 
@@ -443,7 +574,7 @@ public class RouteDbHelper extends SQLiteOpenHelper {
         Cursor cursor = db.rawQuery(selectQuery, null);
 
         // looping through all rows and adding to list
-        if (cursor.getCount() >= 1 &&  cursor.moveToFirst()) {
+        if (cursor.moveToFirst()) {
             do {
                 Lokasi jarak = new Lokasi();
 
@@ -462,6 +593,31 @@ public class RouteDbHelper extends SQLiteOpenHelper {
     }
 
 
+    /**
+     * get single todo
+     */
+
+    public Lokasi getJarakx(long jarak_dari, long jarak_tujuan) {
+        SQLiteDatabase db = this.getReadableDatabase();
+
+        String selectQuery = "SELECT  * FROM " + TABLE_JARAK_KONSUMEN + " WHERE "
+                + KEY_DARI + " = " + jarak_dari +" AND " + KEY_TUJUAN + " = " + jarak_tujuan +" ORDER BY " + KEY_JARAK +" ASC LIMIT 1";
+
+        Log.e(LOG, selectQuery);
+
+        Cursor c = db.rawQuery(selectQuery, null);
+
+        if (c != null)
+            c.moveToFirst();
+
+        Lokasi lok = new Lokasi();
+        lok.setId(c.getInt(c.getColumnIndex(KEY_ID)));
+        lok.setNote((c.getString(c.getColumnIndex(KEY_DARI))));
+        lok.setCreatedAt(c.getString(c.getColumnIndex(KEY_TUJUAN)));
+
+        return lok;
+    }
+
 
     /**
      * Deleting a jarak
@@ -473,6 +629,15 @@ public class RouteDbHelper extends SQLiteOpenHelper {
         return tado_id;
     }
 
+    /**
+     * Deleting a jarak
+     */
+    public long deleteJarakByTujuan(long tujuan_id) {
+        SQLiteDatabase db = this.getWritableDatabase();
+        db.delete(TABLE_JARAK_KONSUMEN, KEY_TUJUAN + " = ?",
+                new String[] { String.valueOf(tujuan_id) });
+        return tujuan_id;
+    }
 
     /**
      * Deleting a jarak
@@ -499,7 +664,7 @@ public class RouteDbHelper extends SQLiteOpenHelper {
         Cursor cursor = db.rawQuery(selectQuery, null);
 
         // looping through all rows and adding to list
-        if (cursor.getCount() >= 1 &&  cursor.moveToFirst()) {
+        if (cursor.moveToFirst()) {
             do {
                 Lokasi lokasi = new Lokasi();
                 lokasi.setId(Integer.parseInt(cursor.getString(0)));
@@ -551,6 +716,289 @@ public class RouteDbHelper extends SQLiteOpenHelper {
         return path_id;
     }
 
+
+    private Lokasi cursorToComment(Cursor cursor) {
+        Lokasi lokasi = new Lokasi();
+        lokasi.setLatitude(cursor.getString(1));
+        lokasi.setLongitude(cursor.getString(2));
+
+        //Log.d("LOKASI DB", lokasi[1]);
+
+        return lokasi;
+    }
+
+    /**
+     * get single todo
+     */
+    public Todo getTodo(long todo_id) {
+        SQLiteDatabase db = this.getReadableDatabase();
+
+        String selectQuery = "SELECT  * FROM " + TABLE_TODO + " WHERE "
+                + KEY_ID + " = " + todo_id;
+
+        Log.e(LOG, selectQuery);
+
+        Cursor c = db.rawQuery(selectQuery, null);
+
+        if (c != null)
+            c.moveToFirst();
+
+        Todo td = new Todo();
+        td.setId(c.getInt(c.getColumnIndex(KEY_ID)));
+        td.setNote((c.getString(c.getColumnIndex(KEY_TODO))));
+        td.setCreatedAt(c.getString(c.getColumnIndex(KEY_CREATED_AT)));
+
+        return td;
+    }
+
+
+
+
+    /**
+     * getting all todos
+     * */
+    public List<Todo> getAllToDos() {
+        List<Todo> todos = new ArrayList<Todo>();
+        String selectQuery = "SELECT  * FROM " + TABLE_TODO;
+
+        Log.e(LOG, selectQuery);
+
+        SQLiteDatabase db = this.getReadableDatabase();
+        Cursor c = db.rawQuery(selectQuery, null);
+
+        // looping through all rows and adding to list
+        if (c.moveToFirst()) {
+            do {
+                Todo td = new Todo();
+                td.setId(c.getInt((c.getColumnIndex(KEY_ID))));
+                td.setNote((c.getString(c.getColumnIndex(KEY_TODO))));
+                td.setCreatedAt(c.getString(c.getColumnIndex(KEY_CREATED_AT)));
+
+                // adding to todo list
+                todos.add(td);
+            } while (c.moveToNext());
+        }
+
+        return todos;
+    }
+
+    /**
+     * getting all todos under single tag
+     * */
+    public List<Todo> getAllToDosByTag(String tag_name) {
+        List<Todo> todos = new ArrayList<Todo>();
+
+        String selectQuery = "SELECT  * FROM " + TABLE_TODO + " td, "
+                + TABLE_TAG + " tg, " + TABLE_TODO_TAG + " tt WHERE tg."
+                + KEY_TAG_NAME + " = '" + tag_name + "'" + " AND tg." + KEY_ID
+                + " = " + "tt." + KEY_TAG_ID + " AND td." + KEY_ID + " = "
+                + "tt." + KEY_TODO_ID;
+
+        Log.e(LOG, selectQuery);
+
+        SQLiteDatabase db = this.getReadableDatabase();
+        Cursor c = db.rawQuery(selectQuery, null);
+
+        // looping through all rows and adding to list
+        if (c.moveToFirst()) {
+            do {
+                Todo td = new Todo();
+                td.setId(c.getInt((c.getColumnIndex(KEY_ID))));
+                td.setNote((c.getString(c.getColumnIndex(KEY_TODO))));
+                td.setCreatedAt(c.getString(c.getColumnIndex(KEY_CREATED_AT)));
+
+                // adding to todo list
+                todos.add(td);
+            } while (c.moveToNext());
+        }
+
+        return todos;
+    }
+
+    /**
+     * getting todo count
+     */
+    public int getToDoCount() {
+        String countQuery = "SELECT  * FROM " + TABLE_TODO;
+        SQLiteDatabase db = this.getReadableDatabase();
+        Cursor cursor = db.rawQuery(countQuery, null);
+
+        int count = cursor.getCount();
+        cursor.close();
+
+        // return count
+        return count;
+    }
+
+    /**
+     * Updating a todo
+     */
+    public int updateToDo(Todo todo) {
+        SQLiteDatabase db = this.getWritableDatabase();
+
+        ContentValues values = new ContentValues();
+        values.put(KEY_TODO, todo.getNote());
+        values.put(KEY_STATUS, todo.getStatus());
+
+        // updating row
+        return db.update(TABLE_TODO, values, KEY_ID + " = ?",
+                new String[] { String.valueOf(todo.getId()) });
+    }
+
+    /**
+     * Deleting a todo
+     */
+    public void deleteToDo(long tado_id) {
+        SQLiteDatabase db = this.getWritableDatabase();
+        db.delete(TABLE_TODO, KEY_ID + " = ?",
+                new String[] { String.valueOf(tado_id) });
+    }
+
+    // ------------------------ "tags" table methods ----------------//
+
+    /**
+     * Creating tag
+     */
+    public long createTag(Tag tag) {
+        SQLiteDatabase db = this.getWritableDatabase();
+
+        ContentValues values = new ContentValues();
+        values.put(KEY_TAG_NAME, tag.getTagName());
+        values.put(KEY_CREATED_AT, getDateTime());
+
+        // insert row
+        long tag_id = db.insert(TABLE_TAG, null, values);
+
+        return tag_id;
+    }
+
+    /**
+     * getting all tags
+     * */
+    public List<Tag> getAllTags() {
+        List<Tag> tags = new ArrayList<Tag>();
+        String selectQuery = "SELECT  * FROM " + TABLE_TAG;
+
+        Log.e(LOG, selectQuery);
+
+        SQLiteDatabase db = this.getReadableDatabase();
+        Cursor c = db.rawQuery(selectQuery, null);
+
+        // looping through all rows and adding to list
+        if (c.moveToFirst()) {
+            do {
+                Tag t = new Tag();
+                t.setId(c.getInt((c.getColumnIndex(KEY_ID))));
+                t.setTagName(c.getString(c.getColumnIndex(KEY_TAG_NAME)));
+
+                // adding to tags list
+                tags.add(t);
+            } while (c.moveToNext());
+        }
+        return tags;
+    }
+
+    /**
+     * Updating a tag
+     */
+    public int updateTag(Tag tag) {
+        SQLiteDatabase db = this.getWritableDatabase();
+
+        ContentValues values = new ContentValues();
+        values.put(KEY_TAG_NAME, tag.getTagName());
+
+        // updating row
+        return db.update(TABLE_TAG, values, KEY_ID + " = ?",
+                new String[] { String.valueOf(tag.getId()) });
+    }
+
+    /**
+     * Deleting a tag
+     */
+    public void deleteTag(Tag tag, boolean should_delete_all_tag_todos) {
+        SQLiteDatabase db = this.getWritableDatabase();
+
+        // before deleting tag
+        // check if todos under this tag should also be deleted
+        if (should_delete_all_tag_todos) {
+            // get all todos under this tag
+            List<Todo> allTagToDos = getAllToDosByTag(tag.getTagName());
+
+            // delete all todos
+            for (Todo todo : allTagToDos) {
+                // delete todo
+                deleteToDo(todo.getId());
+            }
+        }
+
+        // now delete the tag
+        db.delete(TABLE_TAG, KEY_ID + " = ?",
+                new String[] { String.valueOf(tag.getId()) });
+    }
+
+    // ------------------------ "todo_tags" table methods ----------------//
+
+    /**
+     * Creating todo_tag
+     */
+    public long createTodoTag(long todo_id, long tag_id) {
+        SQLiteDatabase db = this.getWritableDatabase();
+
+        ContentValues values = new ContentValues();
+        values.put(KEY_TODO_ID, todo_id);
+        values.put(KEY_TAG_ID, tag_id);
+        values.put(KEY_CREATED_AT, getDateTime());
+
+        long id = db.insert(TABLE_TODO_TAG, null, values);
+
+        return id;
+    }
+
+    /**
+     * Updating a todo tag
+     */
+    public int updateNoteTag(long id, long tag_id) {
+        SQLiteDatabase db = this.getWritableDatabase();
+
+        ContentValues values = new ContentValues();
+        values.put(KEY_TAG_ID, tag_id);
+
+        // updating row
+        return db.update(TABLE_TODO, values, KEY_ID + " = ?",
+                new String[] { String.valueOf(id) });
+    }
+
+    /**
+     * Creating a todo
+     */
+    public long createToDo(Todo todo, long[] tag_ids) {
+        SQLiteDatabase db = this.getWritableDatabase();
+
+        ContentValues values = new ContentValues();
+        values.put(KEY_TODO, todo.getNote());
+        values.put(KEY_STATUS, todo.getStatus());
+        values.put(KEY_CREATED_AT, getDateTime());
+
+        // insert row
+        long todo_id = db.insert(TABLE_TODO, null, values);
+
+        // insert tag_ids
+        for (long tag_id : tag_ids) {
+            createTodoTag(todo_id, tag_id);
+        }
+
+        return todo_id;
+    }
+
+
+    /**
+     * Deleting a todo tag
+     */
+    public void deleteToDoTag(long id) {
+        SQLiteDatabase db = this.getWritableDatabase();
+        db.delete(TABLE_TODO, KEY_ID + " = ?",
+                new String[] { String.valueOf(id) });
+    }
 
     // closing database
     public void closeDB() {

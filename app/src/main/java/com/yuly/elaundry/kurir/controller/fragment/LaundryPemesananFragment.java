@@ -67,8 +67,6 @@ public class LaundryPemesananFragment extends Fragment implements SearchView.OnQ
 
     private ProgressDialog pDialog;
 
-    private String apiKey;
-
     private FastScroller mFastScroller;
     private FloatingActionButton mFab;
 
@@ -76,20 +74,14 @@ public class LaundryPemesananFragment extends Fragment implements SearchView.OnQ
     private JSONObject result;
 
 
-    private static final String TAG = "RecyclerViewExample";
-    //  private List<Anggota> feedItemList = new ArrayList<Anggota>();
-    private RecyclerView mRecyclerView;
- //   private RecyclerView rv;
+    private static final String TAG = LaundryPemesananFragment.class.getSimpleName();
 
- //   private StatesRecyclerViewAdapter statesRecyclerViewAdapter;
-    private View loadingView;
-    private View emptyView;
-    private View errorView;
+    private RecyclerView mRecyclerView;
 
     //Creating Views
     private LayoutManager layoutManager;
     private PemesananAdapter adapter;
-    private String pemesanan_status = "baru memesan";
+   // private String pemesanan_status = "baru memesan";
    // private SimpleStringAdapter adapter;
 
     private String text_tombol, status_sebelumnya,update_status;
@@ -100,7 +92,7 @@ public class LaundryPemesananFragment extends Fragment implements SearchView.OnQ
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
 
-        View v = inflater.inflate(R.layout.fragment_transaksi_new, container,
+        View v = inflater.inflate(R.layout.fragment_pemesanan, container,
                 false);
 
         final ActionBar ab = ((AppCompatActivity) getActivity()).getSupportActionBar();
@@ -164,8 +156,6 @@ public class LaundryPemesananFragment extends Fragment implements SearchView.OnQ
 
         // Fetching user details from SQLite
         HashMap<String, String> user = db.getUserDetails();
-
-        apiKey = user.get("kurir_kunci_api");
 
         pDialog = new ProgressDialog(getContext());
         pDialog.setMessage("Loading...");
@@ -277,7 +267,7 @@ public class LaundryPemesananFragment extends Fragment implements SearchView.OnQ
 
         // Posting parameters untuk mengambil data pemesanan
         HashMap<String, String> params = new HashMap<String, String>();
-        params.put("pemesanan_status", pemesanan_status);
+        params.put("pemesanan_status", status_sebelumnya);
 
         JsonObjectRequest jsonObjReq = new JsonObjectRequest(Request.Method.POST,
                 AppConfig.URL_PEMESANAN,new JSONObject(params),
