@@ -53,7 +53,6 @@ public class MapActivity extends AppCompatActivity implements LocationListener {
     private MapActions mapActions;
     private LocationManager locationManager;
 
-    private String downloadURL ="http://elaundry.pe.hu/assets/maps/indonesia_jawatimur_kediringanjuk.ghz";
     private File mapsFolder;
 
     @Override

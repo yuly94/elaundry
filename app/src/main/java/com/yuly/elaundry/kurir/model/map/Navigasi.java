@@ -193,7 +193,7 @@ public class Navigasi {
             case 3:
                 return R.drawable.ic_turn_sharp_right;
             case 4:
-                return R.drawable.ic_finish_flag;
+                return R.drawable.ic_shopping_cart_green_24dp;
             case 5:
                 return R.drawable.ic_reached_via;
             case 6:

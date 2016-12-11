@@ -4,10 +4,10 @@
     <!-- Nav Drawer List Item Icons -->
     <!-- Keep them in order as the titles are in -->
     <array name="nav_drawer_icons">
-        <item>@drawable/ic_shopping_cart_24dp</item>
-        <item>@drawable/ic_shopping_cart_24dp</item>
-        <item>@drawable/ic_shopping_cart_24dp</item>
-        <item>@drawable/ic_shopping_cart_24dp</item>
+        <item>@drawable/ic_shopping_cart_green_24dp</item>
+        <item>@drawable/ic_shopping_cart_green_24dp</item>
+        <item>@drawable/ic_shopping_cart_green_24dp</item>
+        <item>@drawable/ic_shopping_cart_green_24dp</item>
         <item>@drawable/ic_map_24dp</item>
         <item>@drawable/ic_dashboard_24dp</item>
         <item>@drawable/ic_face_24dp</item>
