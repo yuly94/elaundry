@@ -14,7 +14,7 @@
         android:checkable="true"
         android:checked="false"
         android:orderInCategory="100"
-        android:icon="@drawable/ic_search_24dp"
+        android:icon="@drawable/ic_search_white_24dp"
         android:title="@string/action_zoom"
         android:id="@+id/action_zoom"
         app:showAsAction="never" />
