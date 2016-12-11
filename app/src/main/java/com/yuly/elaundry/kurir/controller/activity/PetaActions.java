@@ -2,7 +2,6 @@ package com.yuly.elaundry.kurir.controller.activity;
 
 import android.app.Activity;
 import android.app.ProgressDialog;
-import android.renderscript.Sampler;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
@@ -32,11 +31,11 @@ import com.yuly.elaundry.kurir.model.database.Lokasi;
 import com.yuly.elaundry.kurir.model.database.RouteDbHelper;
 
 
-import com.yuly.elaundry.kurir.model.dijikstra.DijkstraAlgorithm;
-import com.yuly.elaundry.kurir.model.dijikstra.Edge;
-import com.yuly.elaundry.kurir.model.dijikstra.Graph;
-import com.yuly.elaundry.kurir.model.dijikstra.TestDijkstraAlgorithm;
-import com.yuly.elaundry.kurir.model.dijikstra.Vertex;
+import com.yuly.elaundry.kurir.model.dijkstra.DijkstraAlgorithm;
+import com.yuly.elaundry.kurir.model.dijkstra.Edge;
+import com.yuly.elaundry.kurir.model.dijkstra.Graph;
+import com.yuly.elaundry.kurir.model.dijkstra.Vertex;
+import com.yuly.elaundry.kurir.model.dijkstra2.Dijkstra_dua;
 import com.yuly.elaundry.kurir.model.geterseter.TransaksiModel;
 import com.yuly.elaundry.kurir.model.helper.VolleyErrorHelper;
 import com.yuly.elaundry.kurir.model.listeners.NavigatorListener;
@@ -64,7 +63,6 @@ import java.util.List;
 import java.util.Map;
 
 import static android.content.ContentValues.TAG;
-import static android.provider.CalendarContract.Instances.END;
 import static junit.framework.Assert.assertNotNull;
 import static junit.framework.Assert.assertTrue;
 
@@ -168,7 +166,11 @@ public class PetaActions implements NavigatorListener, PetaHandlerListener {
             @Override public void onClick(View v) {
 
                 membuatTable();
-                memprosesDijkstra();
+/*
+                Dijkstra_dua eks = new Dijkstra_dua();
+                eks.eksekusi();*/
+               // memprosesDijkstra();
+                memprosesRute();
 
             }
 
@@ -184,9 +186,7 @@ public class PetaActions implements NavigatorListener, PetaHandlerListener {
 
         showProgressDialog();
 
-
         hapusSemuaJarak();
-
 
         List<Lokasi> listlokasi = db_rute.getAllLokasi();
         // Reading all lokasi konsumen
@@ -262,6 +262,64 @@ public class PetaActions implements NavigatorListener, PetaHandlerListener {
         Toast.makeText(activity, "tabel jarak berhasil dibuat", Toast.LENGTH_LONG).show();
     }
 
+    private void memprosesRute(){
+
+        hapusSemuaPath();
+
+        List<Lokasi> listJarak = db_rute.getAllJarak();
+
+        List<Lokasi> listLokasi = db_rute.getAllLokasi();
+
+        List<Lokasi> listPath = db_rute.getAllPath();
+
+/*
+        for (int i = 0; i <9; i++) {
+            Vertex location = new Vertex("Node_" + i, "Node_" + i);
+            nodes.add(location);
+        }*/
+
+/*        for (Lokasi jarak : listJarak) {
+
+            addLane("Edge_"+jarak.getId(),  jarak.getDari(),   jarak.getTujuan(), 1);
+
+            Log.d("daftar Edge :", jarak.getId()+" : "+  jarak.getDari() +" : "+ jarak.getTujuan()+" : "+ jarak.getJarakAb());
+
+
+        }*/
+        for(Lokasi lok : listLokasi) {
+
+
+           Log.d("Jalur id :",
+                   String.valueOf(lok.getId()));
+
+            // Lokasi urutan = db_rute.getPath(dariJarak);
+            Lokasi lastPath = db_rute.getLastPath();
+
+            int dariJarak = (lastPath.getTujuan() < 1) ? 1 : lastPath.getTujuan();
+
+            Log.d("dari jarak", String.valueOf(dariJarak));
+
+           // Lokasi urutan = db_rute.getPath(dariJarak);
+            Lokasi urutan = db_rute.getTujuan(dariJarak);
+
+            Log.d("urutan :", "dari : "+ String.valueOf(urutan.getDari()) +
+                    " tujuan : " + String.valueOf(urutan.getTujuan()));
+
+      /*  String jarak = PetaHandler.getPetaHandler().menghitungJarak(Double.parseDouble(lok.getLatitude()), Double.parseDouble(lokA.getLongitude()),
+                Double.parseDouble(lok.getLatitude()),Double.parseDouble(lok.getLongitude()));
+*/
+
+
+            // Log.d("Jarak lokasi :", jarak+" Meter");
+
+            Lokasi jarak_konsumen_01 = new Lokasi(urutan.getDari(), urutan.getTujuan(), "0", 1);
+
+            long id_02 = db_rute.buatPathKonsumen(jarak_konsumen_01);
+
+            System.out.print("daftar id : " + id_02);
+        }
+
+    }
 
     private void memprosesDijkstra() {
 
@@ -272,7 +330,7 @@ public class PetaActions implements NavigatorListener, PetaHandlerListener {
         List<Lokasi> listJarak = db_rute.getAllJarak();
 
 
-        for (int i = 0; i <10; i++) {
+        for (int i = 0; i <9; i++) {
             Vertex location = new Vertex("Node_" + i, "Node_" + i);
             nodes.add(location);
         }
@@ -286,11 +344,11 @@ public class PetaActions implements NavigatorListener, PetaHandlerListener {
 
         }*/
 
-
+/*
         addLane("Edge_1",  1, 2, 6658); //
         addLane("Edge_2",  1, 3, 8845);
         addLane("Edge_3",  1, 4, 8716);
-        addLane("Edge_4",  1, 5, 9251);
+        addLane("Edge_4",  1, 5, 19251);
        // addLane("Edge_5",  2, 1, 6658);
         addLane("Edge_5",  2, 3, 5777);
         addLane("Edge_6",  2, 4, 5649);
@@ -306,7 +364,17 @@ public class PetaActions implements NavigatorListener, PetaHandlerListener {
        // addLane("Edge_17",  5, 4, 4312); //3
        // addLane("Edge_18",  5, 3, 3434);
        // addLane("Edge_19",  5, 2, 5627);
-      //  addLane("Edge_20",  5, 1, 19905);
+      //  addLane("Edge_20",  5, 1, 19905);*/
+
+        addLane("Edge_1",1,2,7);
+        addLane("Edge_2",1,3,9);
+        addLane("Edge_3",1,6,14);
+        addLane("Edge_4",2,3,10);
+        addLane("Edge_5",2,4,15);
+        addLane("Edge_6",3,4,11);
+        addLane("Edge_7",3,6,2);
+        addLane("Edge_8",4,5,6);
+        addLane("Edge_9",5,6,9);
 
 /*
         addLane("Edge_0", 0, 1, 85);
@@ -328,7 +396,7 @@ public class PetaActions implements NavigatorListener, PetaHandlerListener {
         Graph graph = new Graph(nodes, edges);
         DijkstraAlgorithm dijkstra = new DijkstraAlgorithm(graph);
         dijkstra.execute(nodes.get(1));
-        LinkedList<Vertex> path = dijkstra.getPath(nodes.get(5));
+        LinkedList<Vertex> path = dijkstra.getPath(nodes.get(6));
 
         assertNotNull(path);
         assertTrue(path.size() > 1);
@@ -415,6 +483,7 @@ public class PetaActions implements NavigatorListener, PetaHandlerListener {
 
 
 
+
     private void buatTablex(){
 
         Log.d("Reading: ", "Reading all lokasi..");
@@ -488,6 +557,25 @@ public class PetaActions implements NavigatorListener, PetaHandlerListener {
 
        // Toast.makeText(activity, "membuat ulang table jarak", Toast.LENGTH_LONG).show();
     }
+
+    private void hapusSemuaPath() {
+        // Reading all lokasi konsumen
+        Log.d("Reading: ", "Reading all lokasi..");
+        List<Lokasi> lok = db_rute.getAllPath();
+
+        for (Lokasi lokasi : lok) {
+            String log = "Delete Id: " + lokasi.getId();
+
+            long id = db_rute.deletePath(lokasi.getId());
+            // Writing Contacts to log
+            Log.d("Delete : ", String.valueOf(id));
+        }
+
+        // Toast.makeText(activity, "membuat ulang table jarak", Toast.LENGTH_LONG).show();
+    }
+
+
+
 
 
     private void bacaPoint() {

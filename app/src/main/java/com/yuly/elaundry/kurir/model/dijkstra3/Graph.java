@@ -1,4 +1,4 @@
-package com.yuly.elaundry.kurir.model.dijkstra;
+package com.yuly.elaundry.kurir.model.dijkstra3;
 
 /**
  * Created by anonymous on 09/12/16.
@@ -6,11 +6,11 @@ package com.yuly.elaundry.kurir.model.dijkstra;
 
 import java.util.List;
 
-public class GraphNew {
+public class Graph {
 
     private final List<Edge> edges;
 
-    public GraphNew(List<Edge> edges) {
+    public Graph(List<Edge> edges) {
 
         this.edges = edges;
     }

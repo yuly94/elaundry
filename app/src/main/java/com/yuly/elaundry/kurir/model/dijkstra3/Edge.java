@@ -1,25 +1,21 @@
-package com.yuly.elaundry.kurir.model.dijikstra;
+package com.yuly.elaundry.kurir.model.dijkstra3;
 
 /**
- * Created by anonymous on 10/12/16.
+ * Created by yuly nurhidayati on 09/12/16.
  */
 
-public class Edge  {
-    private final String id;
+public class Edge {
+
     private final Vertex source;
     private final Vertex destination;
     private final int weight;
 
-    public Edge(String id, Vertex source, Vertex destination, int weight) {
-        this.id = id;
+    public Edge(Vertex source, Vertex destination, int weight) {
         this.source = source;
         this.destination = destination;
         this.weight = weight;
     }
 
-    public String getId() {
-        return id;
-    }
     public Vertex getDestination() {
         return destination;
     }
@@ -27,14 +23,14 @@ public class Edge  {
     public Vertex getSource() {
         return source;
     }
+
     public int getWeight() {
         return weight;
     }
 
     @Override
     public String toString() {
-        return source + " " + destination;
+        return source + " -(" + weight + ")- " + destination;
     }
-
 
 }

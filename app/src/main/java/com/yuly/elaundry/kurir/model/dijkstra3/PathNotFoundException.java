@@ -1,4 +1,4 @@
-package com.yuly.elaundry.kurir.model.dijkstra;
+package com.yuly.elaundry.kurir.model.dijkstra3;
 
 /**
  * Created by anonymous on 09/12/16.

@@ -1,4 +1,4 @@
-package com.yuly.elaundry.kurir.model.dijikstra;
+package com.yuly.elaundry.kurir.model.dijkstra;
 
 import android.app.Activity;
 import android.util.Log;
