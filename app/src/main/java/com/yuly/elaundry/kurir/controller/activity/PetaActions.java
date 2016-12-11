@@ -266,26 +266,8 @@ public class PetaActions implements NavigatorListener, PetaHandlerListener {
 
         hapusSemuaPath();
 
-        List<Lokasi> listJarak = db_rute.getAllJarak();
-
         List<Lokasi> listLokasi = db_rute.getAllLokasi();
 
-        List<Lokasi> listPath = db_rute.getAllPath();
-
-/*
-        for (int i = 0; i <9; i++) {
-            Vertex location = new Vertex("Node_" + i, "Node_" + i);
-            nodes.add(location);
-        }*/
-
-/*        for (Lokasi jarak : listJarak) {
-
-            addLane("Edge_"+jarak.getId(),  jarak.getDari(),   jarak.getTujuan(), 1);
-
-            Log.d("daftar Edge :", jarak.getId()+" : "+  jarak.getDari() +" : "+ jarak.getTujuan()+" : "+ jarak.getJarakAb());
-
-
-        }*/
       //  for(Lokasi daftarLokasi : listLokasi) {
         for(int i=1; i < listLokasi.size() ;i++){
 
@@ -298,19 +280,15 @@ public class PetaActions implements NavigatorListener, PetaHandlerListener {
             int dariJarak = (lastPath.getTujuan() < 1) ? 1 : lastPath.getTujuan();
 
 
-
             Log.d("dari jarak", String.valueOf(dariJarak));
 
-           // Lokasi urutan = db_rute.getPath(dariJarak);
+
             Lokasi urutan = db_rute.getTujuan(dariJarak);
 
             Log.d("urutan :", "dari : "+ String.valueOf(urutan.getDari()) +
                     " tujuan : " + String.valueOf(urutan.getTujuan()));
 
 
-      /*  String jarak = PetaHandler.getPetaHandler().menghitungJarak(Double.parseDouble(lok.getLatitude()), Double.parseDouble(lokA.getLongitude()),
-                Double.parseDouble(lok.getLatitude()),Double.parseDouble(lok.getLongitude()));
-*/
 
             Lokasi lokasiDari = db_rute.getLokasi(urutan.getDari());
             Lokasi lokasiTujuan = db_rute.getLokasi(urutan.getTujuan());
@@ -318,7 +296,11 @@ public class PetaActions implements NavigatorListener, PetaHandlerListener {
             Log.d("Lokasi Dari : ", " latitude : " +lokasiDari.getLatitude() +" longitude : " +lokasiDari.getLongitude());
             Log.d("Lokasi Tujuan : "," latitude : " +lokasiTujuan.getLatitude() +" longitude : " +lokasiTujuan.getLongitude());
 
-             String jarakLokasi = PetaHandler.getPetaHandler().menghitungJarak(Double.parseDouble(lokasiDari.getLatitude()), Double.parseDouble(lokasiDari.getLongitude()),
+            String jarakLokasi = PetaHandler.getPetaHandler().menghitungJarak(Double.parseDouble(lokasiDari.getLatitude()), Double.parseDouble(lokasiDari.getLongitude()),
+                    Double.parseDouble(lokasiTujuan.getLatitude()),Double.parseDouble(lokasiTujuan.getLongitude()));
+
+
+            PetaHandler.getPetaHandler().calcPath(Double.parseDouble(lokasiDari.getLatitude()), Double.parseDouble(lokasiDari.getLongitude()),
                     Double.parseDouble(lokasiTujuan.getLatitude()),Double.parseDouble(lokasiTujuan.getLongitude()));
 
 
@@ -326,6 +308,10 @@ public class PetaActions implements NavigatorListener, PetaHandlerListener {
 
 
             Lokasi jarak_konsumen_01 = new Lokasi(urutan.getDari(), urutan.getTujuan(), jarakLokasi, 1);
+
+            Toast.makeText(activity,"Jarak dari lokasi : "+ String.valueOf(urutan.getDari()) +
+                    " ke lokasi : " + String.valueOf(urutan.getTujuan() +
+                    " berjarak : " +jarakLokasi+" Meter"),Toast.LENGTH_SHORT).show();
 
             long id_02 = db_rute.buatPathKonsumen(jarak_konsumen_01);
 

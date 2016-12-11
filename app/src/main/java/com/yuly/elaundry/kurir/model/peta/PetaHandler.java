@@ -320,74 +320,6 @@ public class PetaHandler {
     }
 
 
-
-    /**
-     * calculate a path: start to end
-     *
-     * @param fromLat
-     * @param fromLon
-     * @param toLat
-     * @param toLon
-     */
-    public String hitungJarak(final double fromLat, final double fromLon, final double toLat, final double toLon) {
-        Layers layers = mapView.getLayerManager().getLayers();
-        removeLayer(layers, polylinePath);
-        polylinePath = null;
-
-
-        new AsyncTask<Void, Void, GHResponse>() {
-            float time;
-
-            protected GHResponse doInBackground(Void... v) {
-                StopWatch sw = new StopWatch().start();
-                GHRequest req = new GHRequest(fromLat, fromLon, toLat, toLon);
-                req.setAlgorithm(AlgorithmOptions.DIJKSTRA_BI);
-                req.getHints().put(activity.getString(R.string.instruksi),
-                        //  Variable.getVariable().getDirectionsON()
-                        false
-
-                );
-                req.setVehicle(Variable.getVariable().getTravelMode());
-                //req.setVehicle("car");
-                req.setWeighting(Variable.getVariable().getWeighting());
-                //req.setWeighting("fastest");
-                GHResponse resp = hopper.route(req);
-                time = sw.stop().getSeconds();
-                return resp;
-            }
-
-            protected void onPreExecute() {
-                super.onPreExecute();
-                setShortestPathRunning(true);
-            }
-
-            protected void onPostExecute(GHResponse resp) {
-                if (!resp.hasErrors()) {
-
-
-                    log("from:" + fromLat + "," + fromLon + " to:" + toLat + ","
-                            + toLon + " found path with distance:" + resp.getDistance()
-                            / 1000f + ", nodes:" + resp.getPoints().getSize() + ", time:"
-                            + time + " " + resp.getDebugInfo());
-
-                    // Log.d("respone get point ", String.valueOf(resp.getPoints()));
-/*
-                    logUser("the route is " + (int) (resp.getDistance() / 100) / 10f
-                            + "km long, time:" + resp.getTime() / 60000f + "min, debug:" + time);*/
-
-                    jarakPesanan = "AA";
-
-                } else {
-                    logToast(activity.getString(R.string.error_titikdua) + resp.getErrors());
-                }
-
-            }
-        }.execute();
-
-        return jarakPesanan;
-    }
-
-
     public String menghitungJarak(double fromLat, double fromLon, double toLat, double toLon){
 
         GHRequest req = new GHRequest(fromLat, fromLon, toLat, toLon);
@@ -510,7 +442,7 @@ public class PetaHandler {
             protected void onPostExecute(GHResponse resp) {
                 if (!resp.hasErrors()) {
                     polylinePath = createPolyline(resp.getPoints(),
-                            activity.getResources().getColor((R.color.pink)), 10);
+                            activity.getResources().getColor((R.color.purple)), 10);
 
 
                     mapView.getLayerManager().getLayers().add(polylinePath);
@@ -527,8 +459,10 @@ public class PetaHandler {
 
                    // Log.d("respone get point ", String.valueOf(resp.getPoints()));
 
-                    logUser("the route is " + (int) (resp.getDistance() / 100) / 10f
-                            + "km long, time:" + resp.getTime() / 60000f + "min, debug:" + time);
+/*
+                    logUser("rute sejauh " + (int) (resp.getDistance() / 100) / 10f
+                            + "km, waktu tempuh :" + resp.getTime() / 60000f + " menit, lama perhitungan :" + time);
+*/
 
                 } else {
                     logToast(activity.getString(R.string.error_titikdua) + resp.getErrors());
