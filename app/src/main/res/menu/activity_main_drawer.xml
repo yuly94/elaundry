@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <group android:checkableBehavior="single">
+        <item
+            android:id="@+id/nav_pemesanan"
+            android:icon="@drawable/ic_shopping_cart_green_24dp"
+            android:title="@string/pemesanan_baru" />
+        <item
+            android:id="@+id/nav_penjemputan"
+            android:icon="@drawable/ic_shopping_cart_green_24dp"
+            android:title="@string/pesanan_diagent" />
+        <item
+            android:id="@+id/nav_pengambilan"
+            android:icon="@drawable/ic_shopping_cart_green_24dp"
+            android:title="@string/pesanan_dikurir" />
+        <item
+            android:id="@+id/nav_pengantaran"
+            android:icon="@drawable/ic_shopping_cart_green_24dp"
+            android:title="@string/pesanan_selesai" />
+        <item
+            android:id="@+id/nav_peta_saya"
+            android:icon="@drawable/ic_map_24dp"
+            android:title="@string/peta_saya" />
+        <item
+            android:id="@+id/nav_peta_rute"
+            android:icon="@drawable/ic_map_24dp"
+            android:title="@string/peta_rute" />
+        <item
+            android:id="@+id/nav_profile"
+            android:icon="@drawable/ic_face_green_24dp"
+            android:title="@string/profile" />
+    </group>
+
+    <item android:title="@string/lainnya">
+        <menu>
+            <item
+                android:id="@+id/nav_pengaturan"
+                android:icon="@drawable/ic_settings_24dp"
+                android:title="@string/pengaturan" />
+            <item
+                android:id="@+id/nav_tema"
+                android:icon="@drawable/ic_collections_green_24dp"
+                android:title="@string/tema" />
+            <item
+                android:id="@+id/nav_about"
+                android:icon="@drawable/ic_info_outline_24dp"
+                android:title="@string/tentang_pengembang" />
+            <item
+                android:id="@+id/nav_exit"
+                android:icon="@drawable/ic_exit_to_app_24dp"
+                android:title="@string/keluar" />
+        </menu>
+    </item>
+
+</menu>

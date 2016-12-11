@@ -301,5 +301,19 @@
 
     <string-array name="multi_select_list_preference_default_value" />
     <string name="title_activity_download_peta">DownloadPetaActivity</string>
+    <string name="pemesanan">pemesanan</string>
+    <string name="pesanan_dijemput">pemesanan dijemput</string>
+    <string name="pesanan_dikurir">pemesanan diagent</string>
+    <string name="pesanan_selesai">pemesanan diantar</string>
+    <string name="pesanan_diagent">pesanan diagent</string>
+    <string name="pemesanan_baru">pemesanan baru</string>
+    <string name="profile">profile</string>
+    <string name="lainnya">lainnya</string>
+    <string name="tema">tema</string>
+    <string name="tentang_pengembang">tentang pengembang</string>
+    <string name="keluar">keluar</string>
+    <string name="pengaturan">pengaturan</string>
+    <string name="peta_rute">peta rute</string>
+    <string name="peta_saya">peta saya</string>
 
 </resources>

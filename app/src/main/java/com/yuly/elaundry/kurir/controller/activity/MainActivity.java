@@ -8,8 +8,10 @@ import android.os.Build;
 import android.os.Bundle;
 import android.os.Environment;
 import android.os.Handler;
+import android.support.design.widget.NavigationView;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
+import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.util.Log;
@@ -32,6 +34,7 @@ import com.graphhopper.util.ProgressListener;
 import com.yuly.elaundry.kurir.R;
 //import com.yuly.elaundry.kurir.controller.fragment.AboutFragment;
 
+import com.yuly.elaundry.kurir.controller.app.AppConfig;
 import com.yuly.elaundry.kurir.controller.fragment.LaundryPemesananFragment;
 import com.yuly.elaundry.kurir.controller.fragment.ProfileFragment;
 import com.yuly.elaundry.kurir.model.database.KurirDbHandler;
@@ -53,7 +56,7 @@ import android.support.v7.widget.Toolbar;
 import android.widget.Toast;
 
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity  implements NavigationView.OnNavigationItemSelectedListener {
 
 	ColorGenerator generator = ColorGenerator.MATERIAL;
 
@@ -70,8 +73,9 @@ public class MainActivity extends AppCompatActivity {
 	private CharSequence mTitle;
 	private String[] navMenuTitles;
 	private ImageView myNamaHuruf;
+	private TextView txtName, txtEmail;
+	private TextDrawable txDrawable;
 
-	private String downloadURL ="http://elaundry.pe.hu/assets/maps/indonesia_jawatimur_kediringanjuk.ghz";
 	private File mapsFolder;
 
 
@@ -84,8 +88,8 @@ public class MainActivity extends AppCompatActivity {
 		navMenuTitles = getResources().getStringArray(R.array.nav_drawer_items);
 
 		mDrawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout);
-		mLiearLayout = (LinearLayout) findViewById(R.id.drawer_view);
-		mDrawerList = (ListView) findViewById(R.id.list_slidermenu);
+		//mLiearLayout = (LinearLayout) findViewById(R.id.drawer_view);
+		//mDrawerList = (ListView) findViewById(R.id.list_slidermenu);
 
 		// SqLite database handler
 		db = new KurirDbHandler(getApplicationContext());
@@ -97,9 +101,9 @@ public class MainActivity extends AppCompatActivity {
 			logoutUser();
 		} else {
 
-		myNamaHuruf = (ImageView) findViewById(R.id.draw_nama);
 
-		TypedArray navMenuIcons = getResources().obtainTypedArray(R.array.nav_drawer_icons);
+
+	/*	TypedArray navMenuIcons = getResources().obtainTypedArray(R.array.nav_drawer_icons);
 
 		ArrayList<NavDrawerItem> navDrawerItems = new ArrayList<NavDrawerItem>();
 		navDrawerItems.add(new NavDrawerItem(navMenuTitles[0], navMenuIcons.getResourceId(0, -1)));
@@ -115,11 +119,17 @@ public class MainActivity extends AppCompatActivity {
 		navDrawerItems.add(new NavDrawerItem(navMenuTitles[10], navMenuIcons.getResourceId(10,-1)));
 
 		navMenuIcons.recycle();
-
+*/
+/*
 		mDrawerList.setOnItemClickListener(new SlideMenuClickListener());
 
 		NavDrawerListAdapter adapter = new NavDrawerListAdapter(getApplicationContext(), navDrawerItems);
 		mDrawerList.setAdapter(adapter);
+*/
+		NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
+		navigationView.setNavigationItemSelectedListener(this);
+
+		View header=navigationView.getHeaderView(0);
 
 		Toolbar mToolbar = (Toolbar) findViewById(R.id.toolbar);
 
@@ -151,13 +161,14 @@ public class MainActivity extends AppCompatActivity {
 
 
 
-		if (savedInstanceState == null) {
+			if (savedInstanceState == null) {
 
-			displayView(0);
-		}
+				fragmentSatu();
+			}
 
-		TextView txtName = (TextView) findViewById(R.id.text_nama);
-		TextView txtEmail = (TextView) findViewById(R.id.text_email);
+			txtName = (TextView) header.findViewById(R.id.text_nama);
+			txtEmail = (TextView) header.findViewById(R.id.text_email);
+			myNamaHuruf = (ImageView) header.findViewById(R.id.draw_nama);
 
 		// Progress dialog
 		ProgressDialog pDialog = new ProgressDialog(this);
@@ -230,13 +241,13 @@ public class MainActivity extends AppCompatActivity {
 
 		mapsFolder.mkdirs();
 		final File areaFolder = new File(mapsFolder, Variable.getVariable().getCountry() + "-gh");
-		if (downloadURL == null || areaFolder.exists()) {
+		if (AppConfig.downloadURL == null || areaFolder.exists()) {
 			PetaRuteHandler.getPetaRuteHandler().loadMap(areaFolder);
 			return;
 		}
 
 		final ProgressDialog dialog = new ProgressDialog(this);
-		dialog.setMessage("Downloading and uncompressing " + downloadURL);
+		dialog.setMessage("Downloading and uncompressing " + AppConfig.downloadURL);
 		dialog.setIndeterminate(false);
 		dialog.setMax(100);
 		dialog.setProgressStyle(ProgressDialog.STYLE_HORIZONTAL);
@@ -246,12 +257,12 @@ public class MainActivity extends AppCompatActivity {
 			protected Object saveDoInBackground(Void... _ignore)
 					throws Exception {
 
-				String localFolder = Helper.pruneFileEnd(AndroidHelper.getFileName(downloadURL));
+				String localFolder = Helper.pruneFileEnd(AndroidHelper.getFileName(AppConfig.downloadURL));
 				localFolder = new File(mapsFolder, localFolder + "-gh").getAbsolutePath();
 				//log("downloading & unzipping " + downloadURL + " to " + localFolder);
 				AndroidDownloader downloader = new AndroidDownloader();
 				downloader.setTimeout(30000);
-				downloader.downloadAndUnzip(downloadURL, localFolder,
+				downloader.downloadAndUnzip(AppConfig.downloadURL, localFolder,
 						new ProgressListener() {
 							@Override
 							public void update(long val) {
@@ -284,21 +295,6 @@ public class MainActivity extends AppCompatActivity {
 
 
 
-	private class SlideMenuClickListener implements
-			ListView.OnItemClickListener {
-		@Override
-		public void onItemClick(AdapterView<?> parent, View view, final int position,
-								long id) {
-			mDrawerLayout.closeDrawer(mLiearLayout);
-			new Handler().postDelayed(new Runnable() {
-				@Override
-				public void run() {
-					displayView(position);
-				}
-			}, 300);
-		}
-	}
-
 /*
 	// memanggil menu drawer
 	@Override
@@ -307,6 +303,18 @@ public class MainActivity extends AppCompatActivity {
 		return true;
 	}
 */
+
+
+	@Override
+	public void onBackPressed() {
+		DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
+		if (drawer.isDrawerOpen(GravityCompat.START)) {
+			drawer.closeDrawer(GravityCompat.START);
+		} else {
+			super.onBackPressed();
+		}
+	}
+
 
 	// memanggil menu drawer
 	@Override
@@ -327,151 +335,25 @@ public class MainActivity extends AppCompatActivity {
 
 	}
 
-
-
 	// memanggil menu drawer
 	@Override
 	public boolean onPrepareOptionsMenu(Menu menu) {
-	return super.onPrepareOptionsMenu(menu);
+		return super.onPrepareOptionsMenu(menu);
 	}
-
-
-	private void displayView(int position) {
-
-		Fragment fragment = null;
-		switch (position) {
-			case 0:
-			//  fragment pesanan
-				fragment = new LaundryPemesananFragment();
-				Bundle data = new Bundle();//Use bundle to pass data
-				data.putString("TEXT_TOMBOL", "mengambil laundry");//put string, int, etc in bundle with a key value
-				data.putString("STATUS_SEBELUMNYA", "baru memesan");
-				data.putString("UPDATE_STATUS", "pengambilan laundry");
-				fragment.setArguments(data);
-				break;
-
-			case 1:
-
-				//  fragment pesanan
-				fragment = new LaundryPemesananFragment();
-				Bundle data1 = new Bundle();//Use bundle to pass data
-				data1.putString("TEXT_TOMBOL", "menyerahkan ke agent");//put string, int, etc in bundle with a key value
-				data1.putString("STATUS_SEBELUMNYA", "pengambilan laundry");
-				data1.putString("UPDATE_STATUS", "diserahkan ke agent");
-				fragment.setArguments(data1);
-				break;
-
-			case 2:
-				//  fragment pesanan
-				fragment = new LaundryPemesananFragment();
-				Bundle data2 = new Bundle();//Use bundle to pass data
-				data2.putString("TEXT_TOMBOL", "mengambil dari agent");//put string, int, etc in bundle with a key value
-				data2.putString("STATUS_SEBELUMNYA", "diserahkan ke agent");
-				data2.putString("UPDATE_STATUS", "mengambil dari agent");
-				fragment.setArguments(data2);
-				break;
-			case 3:
-
-				//  fragment pesanan
-				fragment = new LaundryPemesananFragment();
-				Bundle data3 = new Bundle();//Use bundle to pass data
-				data3.putString("TEXT_TOMBOL", "mengantarkan laundry");//put string, int, etc in bundle with a key value
-				data3.putString("STATUS_SEBELUMNYA", "mengambil dari agent");
-				data3.putString("UPDATE_STATUS", "mengantarkan laundry");
-
-				fragment.setArguments(data3);//Finally set argument bundle to fragment
-
-				break;
-
-			case 4:
-			//  fragment tempa
-				// fragment = new AlamatFragment();
-
-				Intent intentMap = new Intent(this, MapActivity.class);
-				startActivity(intentMap);
-
-				break;
-			case 5:
-			  //	fragment = new MapsFragmentLocation();
-			//	fragment =new Example3Fragment();
-
-				Intent intent = new Intent(this, CariRuteActivity.class);
-				startActivity(intent);
-
-				break;
-			case 6:
-				fragment = new ProfileFragment();
-				break;
-			case 7:
-			 	//fragment = new SettingsFragment();
-
-				Intent intentSet = new Intent(this, AppSettingsActivity.class);
-				startActivity(intentSet);
-				break;
-			case 8:
-				//	themes
-				HelpUtils.showThemes(this);
-				break;
-			case 9:
-
-			//	Intent intentx = new Intent(this, PetaActivity.class);
-			///	startActivity(intentx);
-
-		 		//	About
-				HelpUtils.showAbout(this);
-
-/*				Intent intent = new Intent(getApplicationContext(), AboutActivity.class);
-				startActivity(intent);*//*
-
-
-                LibsSupportFragment AboutFragment = new LibsBuilder()
-                        .withLibraries()
-                        .withVersionShown(false)
-                        .withLicenseShown(true)
-                        .withLibraryModification("aboutlibraries", Libs.LibraryFields.LIBRARY_NAME, "_AboutLibraries")
-                        .supportFragment();
-
-*//*
-                FragmentManager fragmentManager = getSupportFragmentManager();
-                fragmentManager.beginTransaction().replace(R.id.frame_container, AboutFragment).commit();
-
-*//*
-
-                fragment = AboutFragment;
-*/
-            //    fragment = new AboutFragment();
-
-				break;
-			case 10:
-				// Close
-				closeUser();
-
-				break;
-
-
-			default:
-				break;
-		}
-
-		if (fragment != null) {
-			FragmentManager fragmentManager = getSupportFragmentManager();
-			fragmentManager.beginTransaction()
-					.replace(R.id.frame_container, fragment).commit();
-
-			mDrawerList.setItemChecked(position, true);
-			mDrawerList.setSelection(position);
-			setTitle(navMenuTitles[position]);
-		} else {
-
-			Log.e(String.valueOf(getApplicationContext()), String.valueOf(R.string.error_in_creating_fragment));
-		}
-	}
-
 
 	/**
 	 * Logging out the user. Will set isLoggedIn flag to false in shared
 	 * preferences Clears the user data from sqlite users table
 	 * */
+	private void closeUser() {
+
+
+		finish();
+
+	}
+
+
+
 	private void logoutUser() {
 		session.setLogin(false);
 		db.deleteUsers();
@@ -499,9 +381,6 @@ public class MainActivity extends AppCompatActivity {
 
 	}
 
-	private void closeUser() {
-		finish();
-	}
 
 
 	@Override
@@ -532,4 +411,133 @@ public class MainActivity extends AppCompatActivity {
 	private void log(String str, Throwable t) {
 		Log.i("GH", str, t);
 	}
+
+
+	private void fragmentSatu(){
+		Fragment fragment;
+
+		FragmentManager fragmentManager = getSupportFragmentManager();
+		fragmentManager.beginTransaction()
+				.replace(R.id.frame_container, fragment = new LaundryPemesananFragment()).commit();
+
+		// Handle the camera action
+		;//Get Fragment Instance
+		Bundle data = new Bundle();//Use bundle to pass data
+		data.putString("TEXT_TOMBOL", "mengambil laundry");//put string, int, etc in bundle with a key value
+		data.putString("STATUS_SEBELUMNYA", "baru memesan");
+		data.putString("UPDATE_STATUS", "pengambilan laundry");
+
+		fragment.setArguments(data);//Finally set argument bundle to fragment
+
+
+		Log.e(String.valueOf(getApplicationContext()), String.valueOf(R.string.error_in_creating_fragment));
+
+	}
+
+	@SuppressWarnings("StatementWithEmptyBody")
+	@Override
+	public boolean onNavigationItemSelected(MenuItem item) {
+		// Handle navigation view item clicks here.
+		Fragment fragment = null;
+		int id = item.getItemId();
+
+		if (id == R.id.nav_pemesanan) {
+			// Handle the camera action
+			fragment = new LaundryPemesananFragment();//Get Fragment Instance
+			Bundle data = new Bundle();//Use bundle to pass data
+			data.putString("TEXT_TOMBOL", "mengambil laundry");//put string, int, etc in bundle with a key value
+			data.putString("STATUS_SEBELUMNYA", "baru memesan");
+			data.putString("UPDATE_STATUS", "pengambilan laundry");
+
+			fragment.setArguments(data);//Finally set argument bundle to fragment
+		} else if (id == R.id.nav_penjemputan) {
+
+			fragment = new LaundryPemesananFragment();//Get Fragment Instance
+			Bundle data1 = new Bundle();//Use bundle to pass data
+			data1.putString("TEXT_TOMBOL", "menyerahkan ke agent");//put string, int, etc in bundle with a key value
+			data1.putString("STATUS_SEBELUMNYA", "pengambilan laundry");
+			data1.putString("UPDATE_STATUS", "diserahkan ke agent");
+
+			fragment.setArguments(data1);//Finally set argument bundle to fragment
+
+		} else if (id == R.id.nav_pengambilan) {
+
+			fragment = new LaundryPemesananFragment();//Get Fragment Instance
+			Bundle data2 = new Bundle();//Use bundle to pass data
+			data2.putString("TEXT_TOMBOL", "mengambil dari agent");//put string, int, etc in bundle with a key value
+			data2.putString("STATUS_SEBELUMNYA", "diserahkan ke agent");
+			data2.putString("UPDATE_STATUS", "mengambil dari agent");
+
+
+			//intent.putExtra("TEXT_TOMBOL", "mengantarkan laundry");
+			//intent.putExtra("STATUS_SEBELUMNYA", "mengambil dari agent");
+			//intent.putExtra("UPDATE_STATUS", "mengantarkan laundry");
+
+			fragment.setArguments(data2);//Finally set argument bundle to fragment
+
+		} else if (id == R.id.nav_pengantaran) {
+
+			fragment = new LaundryPemesananFragment();//Get Fragment Instance
+			Bundle data3 = new Bundle();//Use bundle to pass data
+			data3.putString("TEXT_TOMBOL", "mengantarkan laundry");//put string, int, etc in bundle with a key value
+			data3.putString("STATUS_SEBELUMNYA", "mengambil dari agent");
+			data3.putString("UPDATE_STATUS", "mengantarkan laundry");
+
+			fragment.setArguments(data3);//Finally set argument bundle to fragment
+
+		}	else if (id == R.id.nav_peta_saya) {
+
+			Intent intentMap = new Intent(this, MapActivity.class);
+			startActivity(intentMap);
+
+		}  else if (id == R.id.nav_peta_rute) {
+			Intent intent = new Intent(this, CariRuteActivity.class);
+			startActivity(intent);
+
+		} else if (id == R.id.nav_profile) {
+
+			fragment = new ProfileFragment();
+
+		} 	else if (id == R.id.nav_pengaturan) {
+
+			Intent intentSet = new Intent(this, AppSettingsActivity.class);
+			startActivity(intentSet);
+
+		}  else if (id == R.id.nav_tema) {
+
+			//	themes
+			HelpUtils.showThemes(this);
+
+		}
+
+		else if (id == R.id.nav_about) {
+
+			//	About
+			HelpUtils.showAbout(this);
+
+		} else if (id == R.id.nav_exit) {
+			// Logout
+			closeUser();
+
+		}
+
+		if (fragment != null) {
+			FragmentManager fragmentManager = getSupportFragmentManager();
+			fragmentManager.beginTransaction()
+					.replace(R.id.frame_container, fragment).commit();
+
+//			mDrawerList.setItemChecked(position, true);
+//			mDrawerList.setSelection(position);
+			//setTitle(navMenuTitles[id]);
+		} else {
+
+			Log.e(String.valueOf(getApplicationContext()), String.valueOf(R.string.error_in_creating_fragment));
+		}
+
+		DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
+		drawer.closeDrawer(GravityCompat.START);
+		return true;
+	}
+
+
 }

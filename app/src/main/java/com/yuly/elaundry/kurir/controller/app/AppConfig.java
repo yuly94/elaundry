@@ -13,6 +13,8 @@ public class AppConfig {
 	// Server user login url
 	public static String URL_LOGIN = LINKAPI+"login/";
 
+	public static String downloadURL ="http://elaundry.pe.hu/assets/maps/indonesia_jawatimur_kediringanjuk.ghz";
+
 	// Server user register url
 	public static String URL_REGISTRASI = LINKAPI+"registrasi/";
 
