@@ -92,6 +92,8 @@ public class LaundryPemesananFragment extends Fragment implements SearchView.OnQ
     private String pemesanan_status = "baru memesan";
    // private SimpleStringAdapter adapter;
 
+    private String text_tombol, status_sebelumnya,update_status;
+
     private  SwipeRefreshLayout mSwipeRefreshLayout;
 
     @Override
@@ -193,6 +195,10 @@ public class LaundryPemesananFragment extends Fragment implements SearchView.OnQ
                 android.R.color.holo_red_light);
 
 
+        //Get Argument that passed from activity in "data" key value
+        text_tombol = getArguments().getString("TEXT_TOMBOL");
+        status_sebelumnya = getArguments().getString("STATUS_SEBELUMNYA");
+        update_status = getArguments().getString("UPDATE_STATUS");
 
         mRecyclerView.addOnItemTouchListener(new RecyclerTouchListener(getActivity(), mRecyclerView, new RecyclerTouchListener.ClickListener() {
             @Override
@@ -201,12 +207,17 @@ public class LaundryPemesananFragment extends Fragment implements SearchView.OnQ
               //  Toast.makeText(getActivity(), transaksi.getNoId() + " is selected!", Toast.LENGTH_SHORT).show();
 
                 Intent intent = new Intent(getActivity(), DetailPemesananActivity.class);
+
                 intent.putExtra("PEMESANAN_ID", transaksi.getNoId());
                 intent.putExtra("PEMESANAN_LATITUDE", transaksi.getLatitude());
                 intent.putExtra("PEMESANAN_LONGITUDE", transaksi.getLongitude());
-                intent.putExtra("TEXT_TOMBOL", "mengambil laundry");
+/*                intent.putExtra("TEXT_TOMBOL", "mengambil laundry");
                 intent.putExtra("STATUS_SEBELUMNYA", "baru memesan");
-                intent.putExtra("UPDATE_STATUS", "pengambilan laundry");
+                intent.putExtra("UPDATE_STATUS", "pengambilan laundry");*/
+
+                intent.putExtra("TEXT_TOMBOL", text_tombol);
+                intent.putExtra("STATUS_SEBELUMNYA", status_sebelumnya);
+                intent.putExtra("UPDATE_STATUS", update_status);
 
                 startActivity(intent);
 

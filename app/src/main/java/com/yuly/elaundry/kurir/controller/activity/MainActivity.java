@@ -346,22 +346,43 @@ public class MainActivity extends AppCompatActivity {
 			case 0:
 			//  fragment pesanan
 				fragment = new LaundryPemesananFragment();
+				Bundle data = new Bundle();//Use bundle to pass data
+				data.putString("TEXT_TOMBOL", "mengambil laundry");//put string, int, etc in bundle with a key value
+				data.putString("STATUS_SEBELUMNYA", "baru memesan");
+				data.putString("UPDATE_STATUS", "pengambilan laundry");
+				fragment.setArguments(data);
 				break;
+
 			case 1:
 
 				//  fragment pesanan
-				fragment = new LaundryPenjemputanFragment();
-
+				fragment = new LaundryPemesananFragment();
+				Bundle data1 = new Bundle();//Use bundle to pass data
+				data1.putString("TEXT_TOMBOL", "menyerahkan ke agent");//put string, int, etc in bundle with a key value
+				data1.putString("STATUS_SEBELUMNYA", "pengambilan laundry");
+				data1.putString("UPDATE_STATUS", "diserahkan ke agent");
+				fragment.setArguments(data1);
 				break;
 
 			case 2:
 				//  fragment pesanan
-				fragment = new LaundryPengambilanAgentFragment();
+				fragment = new LaundryPemesananFragment();
+				Bundle data2 = new Bundle();//Use bundle to pass data
+				data2.putString("TEXT_TOMBOL", "mengambil dari agent");//put string, int, etc in bundle with a key value
+				data2.putString("STATUS_SEBELUMNYA", "diserahkan ke agent");
+				data2.putString("UPDATE_STATUS", "mengambil dari agent");
+				fragment.setArguments(data2);
 				break;
 			case 3:
 
 				//  fragment pesanan
-				fragment = new LaundryPengantaranFragment();
+				fragment = new LaundryPemesananFragment();
+				Bundle data3 = new Bundle();//Use bundle to pass data
+				data3.putString("TEXT_TOMBOL", "mengantarkan laundry");//put string, int, etc in bundle with a key value
+				data3.putString("STATUS_SEBELUMNYA", "mengambil dari agent");
+				data3.putString("UPDATE_STATUS", "mengantarkan laundry");
+
+				fragment.setArguments(data3);//Finally set argument bundle to fragment
 
 				break;
 
