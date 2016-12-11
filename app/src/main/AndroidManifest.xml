@@ -73,7 +73,7 @@
         -->
 
         <activity
-            android:name=".controller.activity.MapActivity"
+            android:name=".controller.activity.PetaSayaActivity"
             android:label="@string/title_activity_map"
             android:screenOrientation="portrait"
             android:theme="@style/MYAppTheme.NoActionBar" />
@@ -103,7 +103,7 @@
             android:screenOrientation="portrait"
             android:theme="@style/MYAppTheme.NoActionBar" />
         <activity
-            android:name=".controller.activity.PetaRuteActivity"
+            android:name=".controller.activity.DetailPetaRuteActivity"
             android:screenOrientation="portrait"
             android:theme="@style/MYAppTheme.NoActionBar" />
         <activity
@@ -115,10 +115,6 @@
             android:name=".controller.activity.Analytics"
             android:label="@string/title_activity_analytics"
             android:screenOrientation="portrait"
-            android:theme="@style/MyAppThemeActionBar" />
-        <activity
-            android:name=".controller.activity.ScrollingActivity"
-            android:label="@string/title_activity_scrolling"
             android:theme="@style/MyAppThemeActionBar" />
         <activity
             android:name=".model.database.ProsesRouteActivity"

@@ -39,9 +39,9 @@ import com.yuly.elaundry.kurir.model.geterseter.TransaksiModel;
 import com.yuly.elaundry.kurir.model.helper.VolleyErrorHelper;
 import com.yuly.elaundry.kurir.model.listeners.NavigatorListener;
 import com.yuly.elaundry.kurir.model.listeners.PetaHandlerListener;
-import com.yuly.elaundry.kurir.model.map.Navigasi;
+import com.yuly.elaundry.kurir.model.map.DetailPetaNavigasi;
 
-import com.yuly.elaundry.kurir.model.peta.PetaHandler;
+import com.yuly.elaundry.kurir.model.peta.CariRuteHandler;
 import com.yuly.elaundry.kurir.model.util.InstructionAdapter;
 import com.yuly.elaundry.kurir.model.util.Variable;
 
@@ -66,7 +66,7 @@ import static junit.framework.Assert.assertNotNull;
 import static junit.framework.Assert.assertTrue;
 
 
-public class PetaActions implements NavigatorListener, PetaHandlerListener {
+public class CariRuteActions implements NavigatorListener, PetaHandlerListener {
     private Activity activity;
     protected FloatingActionButton showPositionBtn, navigationBtn, settingsBtn, controlBtn;
     protected FloatingActionButton zoomInBtn, zoomOutBtn, fabNavigasi,fab_refresh, fab_dapatkan, fab_getpoint, fab_rute;
@@ -78,7 +78,7 @@ public class PetaActions implements NavigatorListener, PetaHandlerListener {
 
     private KurirDbHandler db_user;
     private RouteDbHelper db_rute;
-    private PetaHandler petaHandler;
+    private CariRuteHandler petaHandler;
 
     private List<Vertex> nodes;
     private List<Edge> edges;
@@ -92,7 +92,7 @@ public class PetaActions implements NavigatorListener, PetaHandlerListener {
     private boolean onStartPoint;
     private EditText fromLocalET, toLocalET;
 
-    public PetaActions(AppCompatActivity activity, MapView mapView) {
+    public CariRuteActions(AppCompatActivity activity, MapView mapView) {
         this.activity = activity;
 
         this.showPositionBtn = (FloatingActionButton) activity.findViewById(R.id.fab_location);
@@ -203,7 +203,7 @@ public class PetaActions implements NavigatorListener, PetaHandlerListener {
                 Log.d("daftar lokasi tujuan: ",+lokB.getId() + " : "+lokB.getLatitude()+ " : "+ lokB.getLongitude());
 
 
-                String jarak = PetaHandler.getPetaHandler().menghitungJarak(Double.parseDouble(lokA.getLatitude()), Double.parseDouble(lokA.getLongitude()),
+                String jarak = CariRuteHandler.getPetaHandler().menghitungJarak(Double.parseDouble(lokA.getLatitude()), Double.parseDouble(lokA.getLongitude()),
                         Double.parseDouble(lokB.getLatitude()),Double.parseDouble(lokB.getLongitude()));
 
 
@@ -233,7 +233,7 @@ public class PetaActions implements NavigatorListener, PetaHandlerListener {
                 Log.d("daftar lokasi tujuan: ",+lokB.getId() + " : "+lokB.getLatitude()+ " : "+ lokB.getLongitude());
 
 
-                String jarak = PetaHandler.getPetaHandler().menghitungJarak(Double.parseDouble(lokA.getLatitude()), Double.parseDouble(lokA.getLongitude()),
+                String jarak = CariRuteHandler.getPetaHandler().menghitungJarak(Double.parseDouble(lokA.getLatitude()), Double.parseDouble(lokA.getLongitude()),
                         Double.parseDouble(lokB.getLatitude()),Double.parseDouble(lokB.getLongitude()));
 
                 Log.d("Jarak lokasi :", jarak+" Meter");
@@ -295,11 +295,11 @@ public class PetaActions implements NavigatorListener, PetaHandlerListener {
             Log.d("Lokasi Dari : ", " latitude : " +lokasiDari.getLatitude() +" longitude : " +lokasiDari.getLongitude());
             Log.d("Lokasi Tujuan : "," latitude : " +lokasiTujuan.getLatitude() +" longitude : " +lokasiTujuan.getLongitude());
 
-            String jarakLokasi = PetaHandler.getPetaHandler().menghitungJarak(Double.parseDouble(lokasiDari.getLatitude()), Double.parseDouble(lokasiDari.getLongitude()),
+            String jarakLokasi = CariRuteHandler.getPetaHandler().menghitungJarak(Double.parseDouble(lokasiDari.getLatitude()), Double.parseDouble(lokasiDari.getLongitude()),
                     Double.parseDouble(lokasiTujuan.getLatitude()),Double.parseDouble(lokasiTujuan.getLongitude()));
 
 
-            PetaHandler.getPetaHandler().calcPath(Double.parseDouble(lokasiDari.getLatitude()), Double.parseDouble(lokasiDari.getLongitude()),
+            CariRuteHandler.getPetaHandler().calcPath(Double.parseDouble(lokasiDari.getLatitude()), Double.parseDouble(lokasiDari.getLongitude()),
                     Double.parseDouble(lokasiTujuan.getLatitude()),Double.parseDouble(lokasiTujuan.getLongitude()));
 
 
@@ -462,7 +462,7 @@ public class PetaActions implements NavigatorListener, PetaHandlerListener {
      * @param endPoint
      */
     private void addToMarker(LatLong endPoint) {
-        PetaHandler.getPetaHandler().addEndMarker(endPoint);
+        CariRuteHandler.getPetaHandler().addEndMarker(endPoint);
     }
 
     /**
@@ -471,7 +471,7 @@ public class PetaActions implements NavigatorListener, PetaHandlerListener {
      * @param startPoint
      */
     private void addFromMarker(LatLong startPoint) {
-        PetaHandler.getPetaHandler().addStartMarker(startPoint);
+        CariRuteHandler.getPetaHandler().addStartMarker(startPoint);
     }
 
 
@@ -481,19 +481,19 @@ public class PetaActions implements NavigatorListener, PetaHandlerListener {
      * @param Point
      */
     private void addMarker(LatLong Point) {
-        PetaHandler.getPetaHandler().tambahMarkerMerah(Point);
+        CariRuteHandler.getPetaHandler().tambahMarkerMerah(Point);
     }
 
 
     private void hitungJarak() {
 
-        PetaHandler.getPetaHandler().hitungPath(-7.768428684206199,112.00151054708566,
+        CariRuteHandler.getPetaHandler().hitungPath(-7.768428684206199,112.00151054708566,
                 -7.767706382776794,112.01162539826053);
     }
 
     private void hitungJarakAbc() {
 
-        PetaHandler.getPetaHandler().calcPathX();
+        CariRuteHandler.getPetaHandler().calcPathX();
     }
 
 
@@ -962,7 +962,7 @@ public class PetaActions implements NavigatorListener, PetaHandlerListener {
                         //touch on map
                         Toast.makeText(activity, "Touch on Map to choose your start Location", Toast.LENGTH_SHORT)
                                 .show();
-                        PetaHandler.getPetaHandler().setNeedLocation(true);
+                        CariRuteHandler.getPetaHandler().setNeedLocation(true);
                         return true;
                 }
                 return false;
@@ -1051,7 +1051,7 @@ public class PetaActions implements NavigatorListener, PetaHandlerListener {
      * @param shortestPathRunning
      */
     @Override public void pathCalculating(boolean shortestPathRunning) {
-        if (!shortestPathRunning && Navigasi.getNavigator().getGhResponse() != null) {
+        if (!shortestPathRunning && DetailPetaNavigasi.getNavigator().getGhResponse() != null) {
             activeDirections();
         }
     }
@@ -1069,7 +1069,7 @@ public class PetaActions implements NavigatorListener, PetaHandlerListener {
             View pathfinding = activity.findViewById(R.id.map_nav_settings_path_finding);
             pathfinding.setVisibility(View.VISIBLE);
             pathfinding.bringToFront();
-            PetaHandler petaHandler = PetaHandler.getPetaHandler();
+            CariRuteHandler petaHandler = CariRuteHandler.getPetaHandler();
             petaHandler.calcPath(startPoint.latitude, startPoint.longitude, endPoint.latitude, endPoint.longitude);
             if (Variable.getVariable().isDirectionsON()) {
                 petaHandler.setNeedPathCal(true);
@@ -1097,7 +1097,7 @@ public class PetaActions implements NavigatorListener, PetaHandlerListener {
         instructionsRV.setLayoutManager(instructionsLayoutManager);
 
         // specify an adapter (see also next example)
-        instructionsAdapter = new InstructionAdapter(Navigasi.getNavigator().getGhResponse().getInstructions());
+        instructionsAdapter = new InstructionAdapter(DetailPetaNavigasi.getNavigator().getGhResponse().getInstructions());
         instructionsRV.setAdapter(instructionsAdapter);
 
     }
@@ -1189,7 +1189,7 @@ public class PetaActions implements NavigatorListener, PetaHandlerListener {
             @Override public void onClick(View v) {
                 if (CariRuteActivity.getmCurrentLocation() != null) {
                     showPositionBtn.setImageResource(R.drawable.ic_my_location_white_24dp);
-                    PetaHandler.getPetaHandler().centerPointOnMap(
+                    CariRuteHandler.getPetaHandler().centerPointOnMap(
                             new LatLong(CariRuteActivity.getmCurrentLocation().getLatitude(),
                                     CariRuteActivity.getmCurrentLocation().getLongitude()), 0);
 

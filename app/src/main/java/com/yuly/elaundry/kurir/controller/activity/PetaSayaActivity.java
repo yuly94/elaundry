@@ -1,7 +1,6 @@
 package com.yuly.elaundry.kurir.controller.activity;
 
 import android.Manifest;
-import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
@@ -22,20 +21,8 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Toast;
 
-import com.graphhopper.GraphHopper;
-import com.graphhopper.util.Helper;
-import com.graphhopper.util.ProgressListener;
 import com.yuly.elaundry.kurir.R;
-
-import com.yuly.elaundry.kurir.model.dataType.DataRute;
-import com.yuly.elaundry.kurir.model.dataType.Destination;
-import com.yuly.elaundry.kurir.model.map.DownloadFiles;
-import com.yuly.elaundry.kurir.model.map.Tracking;
-import com.yuly.elaundry.kurir.model.peta.AndroidDownloader;
-import com.yuly.elaundry.kurir.model.peta.AndroidHelper;
-import com.yuly.elaundry.kurir.model.peta.GHAsyncTask;
-import com.yuly.elaundry.kurir.model.peta.PetaHandler;
-import com.yuly.elaundry.kurir.model.peta.PetaRuteHandler;
+import com.yuly.elaundry.kurir.model.map.PetaSayaHandler;
 import com.yuly.elaundry.kurir.model.util.Variable;
 
 import org.mapsforge.core.model.LatLong;
@@ -46,27 +33,20 @@ import org.mapsforge.map.layer.overlay.Marker;
 
 import java.io.File;
 
-public class PetaRuteActivity extends AppCompatActivity implements LocationListener {
+public class PetaSayaActivity extends AppCompatActivity implements LocationListener {
     private MapView mapView;
     private static Location mCurrentLocation;
     private Marker mPositionMarker;
-    private Marker konPositionMarker;
     private Location mLastLocation;
-    private PetaRuteActions petaRuteActions;
+    private PetaSayaActions mapActions;
     private LocationManager locationManager;
 
     private File mapsFolder;
-    private String pemLatitude;
-    private String pemLongitude;
-
-    private GraphHopper hopper;
-                               //http://elaundry.pe.hu/assets/maps/indonesia_jawatimur_kediringanjuk.ghz
-    private String downloadURL ="http://elaundry.pe.hu/assets/maps/indonesia_jawatimur_kediringanjuk.ghz";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.petarute_activity_map);
+        setContentView(R.layout.activity_map);
 
 
 
@@ -81,16 +61,6 @@ public class PetaRuteActivity extends AppCompatActivity implements LocationListe
 
 */
 
-        pemLatitude = getIntent().getStringExtra("PESANAN_LATITUDE");
-        pemLongitude = getIntent().getStringExtra("PESANAN_LONGITUDE");
-
-         DataRute.getDatarute().setEndPoint(
-                 new LatLong(Double.valueOf(pemLatitude), Double.valueOf(pemLongitude)));
-
-        Log.d("pem latitude", "M "+pemLatitude);
-        Log.d("pem longitude", "M "+pemLongitude);
-
-
         locationManager = (LocationManager) getSystemService(Context.LOCATION_SERVICE);
         if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
             // TODO: Consider calling
@@ -103,8 +73,6 @@ public class PetaRuteActivity extends AppCompatActivity implements LocationListe
             return;
         }
         locationManager.requestLocationUpdates(LocationManager.GPS_PROVIDER, 3000, 5, this);
-
-
         boolean greaterOrEqKitkat = Build.VERSION.SDK_INT >= 19;
         if (greaterOrEqKitkat) {
             if (!Environment.getExternalStorageState().equals(Environment.MEDIA_MOUNTED)) {
@@ -116,19 +84,20 @@ public class PetaRuteActivity extends AppCompatActivity implements LocationListe
         } else
             mapsFolder = new File(Environment.getExternalStorageDirectory(), Variable.getVariable().getMapDownloadDirectory());
 
-         Variable.getVariable().setContext(getApplicationContext());
+
+            Variable.getVariable().setContext(getApplicationContext());
             Variable.getVariable().setZoomLevels(22, 1);
             AndroidGraphicFactory.createInstance(getApplication());
             mapView = new MapView(this);
             mapView.setClickable(true);
             mapView.setBuiltInZoomControls(false);
 
-            PetaRuteHandler.getPetaRuteHandler()
+            PetaSayaHandler.getMapHandler()
                     //  .init(this, mapView, Variable.getVariable().getCountry(), Variable.getVariable().getMapsFolder());
 
                     .init(this, mapView, Variable.getVariable().getCountry(), mapsFolder);
 
-            PetaRuteHandler.getPetaRuteHandler().loadMap(new File(mapsFolder,
+            PetaSayaHandler.getMapHandler().loadMap(new File(mapsFolder,
                     Variable.getVariable().getCountry() + "-gh"));
 
 
@@ -137,33 +106,20 @@ public class PetaRuteActivity extends AppCompatActivity implements LocationListe
             getMyLastLocation();
             updateCurrentLocation(null);
 
-            Log.d("oncreate : ", PetaRuteActivity.class.getSimpleName());
-
-
-    }
-
-
-
-
-
-    public void getRute(){
-
-
-
-        PetaRuteHandler.getPetaRuteHandler().calcPath(Double.valueOf(pemLatitude), Double.valueOf(pemLongitude), PetaRuteActivity.getmCurrentLocation().getLatitude(), PetaRuteActivity.getmCurrentLocation().getLongitude());
-
-
-        Log.d("Pemesanan Latitude : ", String.valueOf(pemLatitude));
-        Log.d("Pemesanan Longitude : ", String.valueOf(pemLongitude));
+            Log.d("oncreate : ", DetailPetaRuteActivity.class.getSimpleName());
 
     }
+
+
+
+
 
     /**
      * inject and inflate activity map content to map activity context and bring it to front
      */
     private void customMapView() {
         ViewGroup inclusionViewGroup = (ViewGroup) findViewById(R.id.custom_map_view_layout);
-        View inflate = LayoutInflater.from(this).inflate(R.layout.petarute_activity_content, null);
+        View inflate = LayoutInflater.from(this).inflate(R.layout.activity_map_content_saya, null);
         inclusionViewGroup.addView(inflate);
 
         Toolbar mToolbar = (Toolbar) findViewById(R.id.map_toolbar);
@@ -188,9 +144,7 @@ public class PetaRuteActivity extends AppCompatActivity implements LocationListe
 
 */
 
-        petaRuteActions = new PetaRuteActions(this, mapView);
-
-
+        mapActions = new PetaSayaActions(this, mapView);
     }
 
     /**
@@ -205,8 +159,6 @@ public class PetaRuteActivity extends AppCompatActivity implements LocationListe
         }
     }
 
-
-
     /**
      * Updates the users location based on the location
      *
@@ -214,56 +166,36 @@ public class PetaRuteActivity extends AppCompatActivity implements LocationListe
      */
     private void updateCurrentLocation(Location location) {
         if (location != null) {
-
-
             mCurrentLocation = location;
         } else if (mLastLocation != null && mCurrentLocation == null) {
             mCurrentLocation = mLastLocation;
         }
         if (mCurrentLocation != null) {
-
-
-
             LatLong mcLatLong = new LatLong(mCurrentLocation.getLatitude(), mCurrentLocation.getLongitude());
 /*            if (Tracking.getTracking().isTracking()) {
-                MapHandler.getPetaHandler().addTrackPoint(mcLatLong);
+                MapHandler.getMapHandler().addTrackPoint(mcLatLong);
                 Tracking.getTracking().addPoint(mCurrentLocation);
             }*/
             Layers layers = mapView.getLayerManager().getLayers();
-            PetaRuteHandler.getPetaRuteHandler().removeLayer(layers, mPositionMarker);
-            mPositionMarker = PetaRuteHandler.getPetaRuteHandler().createMarker(mcLatLong, R.drawable.ic_place_blue_24dp);
-/*
-
-            LatLong konLatLong = new LatLong(pemLatitude, pemLongitude);
-            konPositionMarker = PetaRuteHandler.getPetaRuteHandler().createMarker(konLatLong, R.drawable.ic_place_blue_24dp);
-            layers.add(konPositionMarker);
-*/
-
-
+            PetaSayaHandler.getMapHandler().removeLayer(layers, mPositionMarker);
+            mPositionMarker = PetaSayaHandler.getMapHandler().createMarker(mcLatLong, R.drawable.ic_place_blue_24dp);
             layers.add(mPositionMarker);
-
-            petaRuteActions.showPositionBtn.setImageResource(R.drawable.ic_my_location_white_24dp);
+            mapActions.showPositionBtn.setImageResource(R.drawable.ic_my_location_white_24dp);
         } else {
-            petaRuteActions.showPositionBtn.setImageResource(R.drawable.ic_location_searching_white_24dp);
+            mapActions.showPositionBtn.setImageResource(R.drawable.ic_location_searching_white_24dp);
         }
     }
 
     @Override
     public void onBackPressed() {
-      /*  boolean back = PetaActions.homeBackKeyPressed();
+        boolean back = mapActions.homeBackKeyPressed();
         if (back) {
              moveTaskToBack(true);
-*/
-        finish();
 
-        //}
+           // finish();
+
+        }
         // if false do nothing
-    }
-
-    public void markerPemesanan(LatLong mcLatLong){
-        Layers layers = mapView.getLayerManager().getLayers();
-        mPositionMarker = PetaHandler.getPetaHandler().createMarker(mcLatLong, R.drawable.ic_place_blue_24dp);
-        layers.add(mPositionMarker);
     }
 
     @Override
@@ -286,27 +218,23 @@ public class PetaRuteActivity extends AppCompatActivity implements LocationListe
         super.onStop();
         if (mCurrentLocation != null) {
             Variable.getVariable().setLastLocation(mapView.getModel().mapViewPosition.getMapPosition().latLong);
-            //                        log("last browsed location : "+mapView.getModel().mapViewPosition
-            // .getMapPosition().latLong);
+            //logging
+              log("lokasi terahir : "+mapView.getModel().mapViewPosition
+             .getMapPosition().latLong);
         }
-/*
         if (mapView != null)
             Variable.getVariable().setLastZoomLevel(mapView.getModel().mapViewPosition.getZoomLevel());
-        Variable.getVariable().saveVariables();*/
+        Variable.getVariable().saveVariables();
     }
 
     @Override
     protected void onDestroy() {
-
         super.onDestroy();
-        if (hopper != null)
-            hopper.close();
-
-        hopper = null;
-        // necessary?
+        if (PetaSayaHandler.getMapHandler().getHopper() != null)
+            PetaSayaHandler.getMapHandler().getHopper().close();
+        PetaSayaHandler.getMapHandler().setHopper(null);
         System.gc();
     }
-
 
     /**
      * @return my currentLocation
@@ -357,7 +285,7 @@ public class PetaRuteActivity extends AppCompatActivity implements LocationListe
     }
 
     public void onProviderDisabled(String provider) {
-        Toast.makeText(getBaseContext(), "Gps mati!!", Toast.LENGTH_SHORT).show();
+        Toast.makeText(getBaseContext(), "Gps mati !!", Toast.LENGTH_SHORT).show();
     }
 
     /**
@@ -367,16 +295,6 @@ public class PetaRuteActivity extends AppCompatActivity implements LocationListe
      */
     private void log(String str) {
         Log.i(this.getClass().getSimpleName(), "-------" + str);
-    }
-
-
-    private void log(String str, Throwable t) {
-        Log.i("GH", str, t);
-    }
-
-    private void logUser(String str) {
-        log(str);
-        Toast.makeText(this, str, Toast.LENGTH_LONG).show();
     }
 
     @Override public boolean onOptionsItemSelected(MenuItem item) {
@@ -389,4 +307,11 @@ public class PetaRuteActivity extends AppCompatActivity implements LocationListe
         return super.onOptionsItemSelected(item);
     }
 
+    private void logUser(String str) {
+        log(str);
+        Toast.makeText(this, str, Toast.LENGTH_LONG).show();
+    }
+    private void log(String str, Throwable t) {
+        Log.i("GH", str, t);
+    }
 }

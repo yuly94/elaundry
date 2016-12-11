@@ -1,7 +1,6 @@
 package com.yuly.elaundry.kurir.controller.activity;
 
 import android.Manifest;
-import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
@@ -23,15 +22,8 @@ import android.view.ViewGroup;
 import android.widget.Toast;
 
 import com.graphhopper.GraphHopper;
-import com.graphhopper.util.Helper;
-import com.graphhopper.util.ProgressListener;
 import com.yuly.elaundry.kurir.R;
-import com.yuly.elaundry.kurir.model.peta.AndroidDownloader;
-import com.yuly.elaundry.kurir.model.peta.AndroidHelper;
-import com.yuly.elaundry.kurir.model.peta.GHAsyncTask;
-import com.yuly.elaundry.kurir.model.peta.PetaHandler;
-import com.yuly.elaundry.kurir.model.peta.PetaRuteHandler;
-import com.yuly.elaundry.kurir.model.util.SetStatusBarColor;
+import com.yuly.elaundry.kurir.model.peta.CariRuteHandler;
 import com.yuly.elaundry.kurir.model.util.Variable;
 
 import org.mapsforge.core.model.LatLong;
@@ -47,7 +39,7 @@ public class CariRuteActivity extends AppCompatActivity implements LocationListe
     private static Location mCurrentLocation;
     private Marker mPositionMarker;
     private Location mLastLocation;
-    private PetaActions PetaActions;
+    private CariRuteActions PetaActions;
     private LocationManager locationManager;
 
     private GraphHopper hopper;
@@ -104,12 +96,12 @@ public class CariRuteActivity extends AppCompatActivity implements LocationListe
             mapView.setClickable(true);
             mapView.setBuiltInZoomControls(false);
 
-            PetaHandler.getPetaHandler()
+            CariRuteHandler.getPetaHandler()
                     //  .init(this, mapView, Variable.getVariable().getCountry(), Variable.getVariable().getMapsFolder());
 
                     .init(this, mapView, Variable.getVariable().getCountry(), mapsFolder);
 
-            PetaHandler.getPetaHandler().loadMap(new File(mapsFolder,
+            CariRuteHandler.getPetaHandler().loadMap(new File(mapsFolder,
                     Variable.getVariable().getCountry() + "-gh"));
 
 
@@ -118,7 +110,7 @@ public class CariRuteActivity extends AppCompatActivity implements LocationListe
             getMyLastLocation();
             updateCurrentLocation(null);
 
-            Log.d("oncreate : ", PetaRuteActivity.class.getSimpleName());
+            Log.d("oncreate : ", DetailPetaRuteActivity.class.getSimpleName());
 
 
 
@@ -132,7 +124,7 @@ public class CariRuteActivity extends AppCompatActivity implements LocationListe
         LatLong mcLatLong = new LatLong(-7.817117399999998,112.0287791);
         //   Layers layers = mapView.getLayerManager().getLayers();
 
-        PetaHandler.getPetaHandler().tambahMarkerMerah(mcLatLong);
+        CariRuteHandler.getPetaHandler().tambahMarkerMerah(mcLatLong);
 
         //  mPositionMarker = PetaHandler.getPetaHandler().createMarker(mcLatLong, R.drawable.ic_place_green_24dp);
         // layers.add(mPositionMarker);
@@ -146,7 +138,7 @@ public class CariRuteActivity extends AppCompatActivity implements LocationListe
          LatLong mcLatLong = new LatLong(lat,lon);
      //   Layers layers = mapView.getLayerManager().getLayers();
 
-        PetaHandler.getPetaHandler().tambahMarkerMerah(mcLatLong);
+        CariRuteHandler.getPetaHandler().tambahMarkerMerah(mcLatLong);
 
       //  mPositionMarker = PetaHandler.getPetaHandler().createMarker(mcLatLong, R.drawable.ic_place_green_24dp);
        // layers.add(mPositionMarker);
@@ -181,7 +173,7 @@ public class CariRuteActivity extends AppCompatActivity implements LocationListe
                 getResources().getColor(R.color.my_primary_dark_transparent), this);*/
 
 
-        PetaActions = new PetaActions(this, mapView);
+        PetaActions = new CariRuteActions(this, mapView);
 
 
     }
@@ -218,8 +210,8 @@ public class CariRuteActivity extends AppCompatActivity implements LocationListe
                 Tracking.getTracking().addPoint(mCurrentLocation);
             }*/
             Layers layers = mapView.getLayerManager().getLayers();
-            PetaHandler.getPetaHandler().removeLayer(layers, mPositionMarker);
-            mPositionMarker = PetaHandler.getPetaHandler().createMarker(mcLatLong, R.drawable.ic_place_blue_24dp);
+            CariRuteHandler.getPetaHandler().removeLayer(layers, mPositionMarker);
+            mPositionMarker = CariRuteHandler.getPetaHandler().createMarker(mcLatLong, R.drawable.ic_place_blue_24dp);
             layers.add(mPositionMarker);
             PetaActions.showPositionBtn.setImageResource(R.drawable.ic_my_location_white_24dp);
         } else {
@@ -241,7 +233,7 @@ public class CariRuteActivity extends AppCompatActivity implements LocationListe
 
     public void markerPemesanan(LatLong mcLatLong){
         Layers layers = mapView.getLayerManager().getLayers();
-        mPositionMarker = PetaHandler.getPetaHandler().createMarker(mcLatLong, R.drawable.ic_place_blue_24dp);
+        mPositionMarker = CariRuteHandler.getPetaHandler().createMarker(mcLatLong, R.drawable.ic_place_blue_24dp);
         layers.add(mPositionMarker);
     }
 

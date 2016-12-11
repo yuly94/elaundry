@@ -3,11 +3,9 @@ package com.yuly.elaundry.kurir.controller.activity;
 import android.app.ProgressDialog;
 import android.content.Intent;
 import android.content.res.Configuration;
-import android.content.res.TypedArray;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Environment;
-import android.os.Handler;
 import android.support.design.widget.NavigationView;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
@@ -18,14 +16,12 @@ import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.AdapterView;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.TextView;
 
 import java.io.File;
-import java.util.ArrayList;
 import java.util.HashMap;
 
 
@@ -44,8 +40,6 @@ import com.yuly.elaundry.kurir.model.peta.AndroidHelper;
 import com.yuly.elaundry.kurir.model.peta.GHAsyncTask;
 import com.yuly.elaundry.kurir.model.peta.PetaRuteHandler;
 import com.yuly.elaundry.kurir.model.util.Variable;
-import com.yuly.elaundry.kurir.view.navigation.NavDrawerItem;
-import com.yuly.elaundry.kurir.view.navigation.NavDrawerListAdapter;
 import com.yuly.elaundry.kurir.view.util.HelpUtils;
 
 import com.yuly.elaundry.kurir.view.widgets.ColorGenerator;
@@ -487,7 +481,7 @@ public class MainActivity extends AppCompatActivity  implements NavigationView.O
 
 		}	else if (id == R.id.nav_peta_saya) {
 
-			Intent intentMap = new Intent(this, MapActivity.class);
+			Intent intentMap = new Intent(this, PetaSayaActivity.class);
 			startActivity(intentMap);
 
 		}  else if (id == R.id.nav_peta_rute) {

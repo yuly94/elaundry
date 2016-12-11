@@ -23,8 +23,7 @@ import com.yuly.elaundry.kurir.model.dataType.DataRute;
 import com.yuly.elaundry.kurir.model.dataType.Destination;
 import com.yuly.elaundry.kurir.model.listeners.PetaRuteHandlerListener;
 import com.yuly.elaundry.kurir.model.listeners.NavigatorListener;
-import com.yuly.elaundry.kurir.model.map.Navigasi;
-import com.yuly.elaundry.kurir.model.peta.PetaHandler;
+import com.yuly.elaundry.kurir.model.map.DetailPetaNavigasi;
 import com.yuly.elaundry.kurir.model.peta.PetaRuteHandler;
 import com.yuly.elaundry.kurir.model.util.InstructionAdapter;
 import com.yuly.elaundry.kurir.model.util.MyUtility;
@@ -35,7 +34,7 @@ import org.mapsforge.map.android.view.MapView;
 import org.mapsforge.map.model.MapViewPosition;
 
 
-public class PetaRuteActions implements NavigatorListener, PetaRuteHandlerListener {
+public class DetailPetaRuteActions implements NavigatorListener, PetaRuteHandlerListener {
     private Activity activity;
     protected FloatingActionButton showPositionBtn, navigationBtn, settingsBtn, controlBtn, fab_dapatkan;
     protected FloatingActionButton zoomInBtn, zoomOutBtn;
@@ -51,7 +50,7 @@ public class PetaRuteActions implements NavigatorListener, PetaRuteHandlerListen
     private boolean onStartPoint;
     private EditText fromLocalET, toLocalET;
 
-    public PetaRuteActions(Activity activity, MapView mapView) {
+    public DetailPetaRuteActions(Activity activity, MapView mapView) {
         this.activity = activity;
         this.showPositionBtn = (FloatingActionButton) activity.findViewById(R.id.fab_lokasi);
         this.fab_dapatkan = (FloatingActionButton) activity.findViewById(R.id.fab_nafigasi);
@@ -74,13 +73,13 @@ public class PetaRuteActions implements NavigatorListener, PetaRuteHandlerListen
         this.fromLocalET = (EditText) activity.findViewById(R.id.nav_settings_from_local_et);
         this.toLocalET = (EditText) activity.findViewById(R.id.nav_settings_to_local_et);
 
-        this.tv_dari = (TextView) activity.findViewById(R.id.nav_instruction_list_summary_to_tv);
-        this.tv_tujuan = (TextView) activity.findViewById(R.id.nav_instruction_list_summary_from_tv);
+/*        this.tv_dari = (TextView) activity.findViewById(R.id.nav_instruction_list_summary_to_tv);
+        this.tv_tujuan = (TextView) activity.findViewById(R.id.nav_instruction_list_summary_from_tv);*/
 
         this.menuVisible = false;
         this.onStartPoint = true;
         PetaRuteHandler.getPetaRuteHandler().setRutePetaHandlerListener(this);
-        Navigasi.getNavigator().addListener(this);
+        DetailPetaNavigasi.getNavigator().addListener(this);
         controlBtnHandler();
         zoomControlHandler(mapView);
         showMyLocation(mapView);
@@ -269,10 +268,10 @@ public class PetaRuteActions implements NavigatorListener, PetaRuteHandlerListen
                         return true;
                     case MotionEvent.ACTION_UP:
                         useCurrentLocal.setBackgroundColor(activity.getResources().getColor(R.color.my_primary));
-                        if (PetaRuteActivity.getmCurrentLocation() != null) {
+                        if (DetailPetaRuteActivity.getmCurrentLocation() != null) {
                             Destination.getDestination().setEndPoint(
-                                    new LatLong(PetaRuteActivity.getmCurrentLocation().getLatitude(),
-                                            PetaRuteActivity.getmCurrentLocation().getLongitude()));
+                                    new LatLong(DetailPetaRuteActivity.getmCurrentLocation().getLatitude(),
+                                            DetailPetaRuteActivity.getmCurrentLocation().getLongitude()));
                             toLocalET.setText(Destination.getDestination().getEndPointToString());
                             addToMarker(Destination.getDestination().getEndPoint());
                             navSettingsToVP.setVisibility(View.INVISIBLE);
@@ -408,10 +407,10 @@ public class PetaRuteActions implements NavigatorListener, PetaRuteHandlerListen
                         return true;
                     case MotionEvent.ACTION_UP:
                         useCurrentLocal.setBackgroundColor(activity.getResources().getColor(R.color.my_primary));
-                        if (PetaRuteActivity.getmCurrentLocation() != null) {
+                        if (DetailPetaRuteActivity.getmCurrentLocation() != null) {
                             Destination.getDestination().setStartPoint(
-                                    new LatLong(PetaRuteActivity.getmCurrentLocation().getLatitude(),
-                                            PetaRuteActivity.getmCurrentLocation().getLongitude()));
+                                    new LatLong(DetailPetaRuteActivity.getmCurrentLocation().getLatitude(),
+                                            DetailPetaRuteActivity.getmCurrentLocation().getLongitude()));
                             addFromMarker(Destination.getDestination().getStartPoint());
                             fromLocalET.setText(Destination.getDestination().getStartPointToString());
                             navSettingsFromVP.setVisibility(View.INVISIBLE);
@@ -453,7 +452,7 @@ public class PetaRuteActions implements NavigatorListener, PetaRuteHandlerListen
      * @param shortestPathRunning
      */
     @Override public void pathCalculating(boolean shortestPathRunning) {
-        if (!shortestPathRunning && Navigasi.getNavigator().getGhResponse() != null) {
+        if (!shortestPathRunning && DetailPetaNavigasi.getNavigator().getGhResponse() != null) {
             activeDirections();
         }
     }
@@ -471,9 +470,9 @@ public class PetaRuteActions implements NavigatorListener, PetaRuteHandlerListen
      * drawer polyline on map , active navigator instructions(directions) if on
      */
     public void activeNavigator() {
-        if (PetaRuteActivity.getmCurrentLocation() != null) {
-                LatLong lokasiAwal = new LatLong(PetaRuteActivity.getmCurrentLocation().getLatitude(),
-            PetaRuteActivity.getmCurrentLocation().getLongitude());//new LatLong ( -7.8130979,112.0157406);
+        if (DetailPetaRuteActivity.getmCurrentLocation() != null) {
+                LatLong lokasiAwal = new LatLong(DetailPetaRuteActivity.getmCurrentLocation().getLatitude(),
+            DetailPetaRuteActivity.getmCurrentLocation().getLongitude());//new LatLong ( -7.8130979,112.0157406);
             LatLong lokasiAkhir = DataRute.getDatarute().getEndPoint();
             // show path finding process
             navSettingsVP.setVisibility(View.INVISIBLE);
@@ -492,8 +491,8 @@ public class PetaRuteActions implements NavigatorListener, PetaRuteHandlerListen
 
             PetaRuteHandler.getPetaRuteHandler().tambahMarkerMerah(lokasiAkhir);
 
-            tv_dari.setText(lokasiAwal.latitude+","+lokasiAwal.longitude);
-            tv_tujuan.setText(lokasiAkhir.latitude+","+lokasiAkhir.longitude);
+           /* tv_dari.setText(lokasiAwal.latitude+","+lokasiAwal.longitude);
+            tv_tujuan.setText(lokasiAkhir.latitude+","+lokasiAkhir.longitude);*/
            // petaRuteHandler.addMarkers(lokasiAwal, lokasiAkhir);
 
             Log.d("Active", "navigator");
@@ -527,7 +526,7 @@ public class PetaRuteActions implements NavigatorListener, PetaRuteHandlerListen
         instructionsRV.setLayoutManager(instructionsLayoutManager);
 
         // specify an adapter (see also next example)
-        instructionsAdapter = new InstructionAdapter(Navigasi.getNavigator().getGhResponse().getInstructions());
+        instructionsAdapter = new InstructionAdapter(DetailPetaNavigasi.getNavigator().getGhResponse().getInstructions());
         instructionsRV.setAdapter(instructionsAdapter);
         initNavListView();
     }
@@ -555,7 +554,7 @@ public class PetaRuteActions implements NavigatorListener, PetaRuteHandlerListen
                         .setPositiveButton(R.string.ok, new DialogInterface.OnClickListener() {
                             public void onClick(DialogInterface dialog, int id) {
                                 // stop!
-                                Navigasi.getNavigator().setOn(false);
+                                DetailPetaNavigasi.getNavigator().setOn(false);
                                 //delete polyline and markers
                                 removeNavigation();
                                 navInstructionListVP.setVisibility(View.INVISIBLE);
@@ -592,15 +591,15 @@ public class PetaRuteActions implements NavigatorListener, PetaRuteHandlerListen
        // travelMode = (ImageView) activity.findViewById(R.id.nav_instruction_list_travel_mode_iv);
        // travelMode.setImageResource(Navigasi.getNavigator().getTravelModeResId(true));
         TextView from, to, distance, time;
-        from = (TextView) activity.findViewById(R.id.nav_instruction_list_summary_from_tv);
-        to = (TextView) activity.findViewById(R.id.nav_instruction_list_summary_to_tv);
+/*        from = (TextView) activity.findViewById(R.id.nav_instruction_list_summary_from_tv);
+        to = (TextView) activity.findViewById(R.id.nav_instruction_list_summary_to_tv);*/
         distance = (TextView) activity.findViewById(R.id.nav_instruction_list_summary_distance_tv);
         time = (TextView) activity.findViewById(R.id.nav_instruction_list_summary_time_tv);
 
-        from.setText(Destination.getDestination().getStartPointToString());
-        to.setText(Destination.getDestination().getEndPointToString());
-        distance.setText(Navigasi.getNavigator().getDistance());
-        time.setText(Navigasi.getNavigator().getTime());
+    /*    from.setText(Destination.getDestination().getStartPointToString());
+        to.setText(Destination.getDestination().getEndPointToString());*/
+        distance.setText(DetailPetaNavigasi.getNavigator().getDistance());
+        time.setText(DetailPetaNavigasi.getNavigator().getTime());
     }
 
     /**
@@ -612,7 +611,7 @@ public class PetaRuteActions implements NavigatorListener, PetaRuteHandlerListen
         PetaRuteHandler.getPetaRuteHandler().removeMarkers();
         fromLocalET.setText("");
         toLocalET.setText("");
-        Navigasi.getNavigator().setOn(false);
+        DetailPetaNavigasi.getNavigator().setOn(false);
         Destination.getDestination().setStartPoint(null);
         Destination.getDestination().setEndPoint(null);
     }
@@ -683,7 +682,7 @@ public class PetaRuteActions implements NavigatorListener, PetaRuteHandlerListen
         navigationBtn.setOnClickListener(new View.OnClickListener() {
             @Override public void onClick(View v) {
                 sideBarVP.setVisibility(View.INVISIBLE);
-                if (Navigasi.getNavigator().isOn()) {
+                if (DetailPetaNavigasi.getNavigator().isOn()) {
                     navInstructionListVP.setVisibility(View.VISIBLE);
                 } else {
                     navSettingsVP.setVisibility(View.VISIBLE);
@@ -751,11 +750,11 @@ public class PetaRuteActions implements NavigatorListener, PetaRuteHandlerListen
     protected void showMyLocation(final MapView mapView) {
         showPositionBtn.setOnClickListener(new View.OnClickListener() {
             @Override public void onClick(View v) {
-                if (PetaRuteActivity.getmCurrentLocation() != null) {
+                if (DetailPetaRuteActivity.getmCurrentLocation() != null) {
                     showPositionBtn.setImageResource(R.drawable.ic_my_location_white_24dp);
                     PetaRuteHandler.getPetaRuteHandler().centerPointOnMap(
-                            new LatLong(PetaRuteActivity.getmCurrentLocation().getLatitude(),
-                                    PetaRuteActivity.getmCurrentLocation().getLongitude()), 0);
+                            new LatLong(DetailPetaRuteActivity.getmCurrentLocation().getLatitude(),
+                                    DetailPetaRuteActivity.getmCurrentLocation().getLongitude()), 0);
 
  /*                                       mapView.getModel().mapViewPosition.setMapPosition(new MapPosition(
                                                new LatLong(PetaRuteActivity.getmCurrentLocation().getLatitude(),

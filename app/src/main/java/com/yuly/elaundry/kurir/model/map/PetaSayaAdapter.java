@@ -15,7 +15,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 
-public class MyMapAdapter extends RecyclerView.Adapter<MyMapAdapter.ViewHolder> {
+public class PetaSayaAdapter extends RecyclerView.Adapter<PetaSayaAdapter.ViewHolder> {
     private List<MyMap> myMaps;
     private MapFABonClickListener mapFABonClick;
 
@@ -50,13 +50,13 @@ public class MyMapAdapter extends RecyclerView.Adapter<MyMapAdapter.ViewHolder> 
     }
 
     // Provide a suitable constructor (depends on the kind of dataset)
-    public MyMapAdapter(List myMaps, MapFABonClickListener mapFABonClick) {
+    public PetaSayaAdapter(List myMaps, MapFABonClickListener mapFABonClick) {
         this.myMaps = myMaps;
         this.mapFABonClick = mapFABonClick;
     }
 
     // Create new views (invoked by the layout manager)
-    @Override public MyMapAdapter.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+    @Override public PetaSayaAdapter.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         // create a new view
         View v = LayoutInflater.from(parent.getContext()).inflate(R.layout.my_maps_item, parent, false);
         ViewHolder vh = new ViewHolder(v, mapFABonClick);

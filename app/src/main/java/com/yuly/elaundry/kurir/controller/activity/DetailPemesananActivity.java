@@ -128,7 +128,7 @@ public class DetailPemesananActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
-                Intent intentPeta = new Intent(getApplication(), PetaRuteActivity.class);
+                Intent intentPeta = new Intent(getApplication(), DetailPetaRuteActivity.class);
 
                 intentPeta.putExtra("PESANAN_LATITUDE", pem_latitude);
                 intentPeta.putExtra("PESANAN_LONGITUDE", pem_longitude);

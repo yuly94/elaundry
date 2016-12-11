@@ -20,7 +20,7 @@ import com.yuly.elaundry.kurir.R;
 import com.yuly.elaundry.kurir.model.database.Lokasi;
 import com.yuly.elaundry.kurir.model.database.RouteDbHelper;
 import com.yuly.elaundry.kurir.model.listeners.PetaHandlerListener;
-import com.yuly.elaundry.kurir.model.map.Navigasi;
+import com.yuly.elaundry.kurir.model.map.DetailPetaNavigasi;
 import com.yuly.elaundry.kurir.model.util.Variable;
 
 import org.mapsforge.core.graphics.Bitmap;
@@ -48,7 +48,7 @@ import java.io.File;
 import java.util.List;
 
 
-public class PetaHandler {
+public class CariRuteHandler {
     private Activity activity;
     private MapView mapView;
     private String currentArea;
@@ -60,7 +60,7 @@ public class PetaHandler {
     private Marker startMarker, endMarker;
     private Polyline polylinePath, polylineTrack;
     private PetaHandlerListener petaHandlerListener;
-    private static PetaHandler petaHandler;
+    private static CariRuteHandler petaHandler;
 
     private String jarakPesanan;
     /**
@@ -72,7 +72,7 @@ public class PetaHandler {
      */
     private boolean needPathCal;
 
-    public static PetaHandler getPetaHandler() {
+    public static CariRuteHandler getPetaHandler() {
         if (petaHandler == null) {
             reset();
         }
@@ -83,10 +83,10 @@ public class PetaHandler {
      * reset class, build a new instance
      */
     public static void reset() {
-        petaHandler = new PetaHandler();
+        petaHandler = new CariRuteHandler();
     }
 
-    private PetaHandler() {
+    private CariRuteHandler() {
         setShortestPathRunning(false);
         startMarker = null;
         endMarker = null;
@@ -448,7 +448,7 @@ public class PetaHandler {
                     mapView.getLayerManager().getLayers().add(polylinePath);
 
                     if (Variable.getVariable().isDirectionsON()) {
-                        Navigasi.getNavigator().setGhResponse(resp);
+                        DetailPetaNavigasi.getNavigator().setGhResponse(resp);
                         //                        log("navigator: " + Navigator.getNavigator().toString());
                     }
 

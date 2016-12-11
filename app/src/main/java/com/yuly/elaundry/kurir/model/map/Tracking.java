@@ -31,7 +31,7 @@ public class Tracking {
 
     private Tracking() {
         isOnTracking = false;
-        dBtrackingPoints = new DBtrackingPoints(MapHandler.getMapHandler().getActivity().getApplicationContext());
+        dBtrackingPoints = new DBtrackingPoints(PetaSayaHandler.getMapHandler().getActivity().getApplicationContext());
         listeners = new ArrayList<>();
     }
 
@@ -68,7 +68,7 @@ public class Tracking {
     public void startTracking() {
         init();
         intAnalytics();
-        MapHandler.getMapHandler().startTrack();
+        PetaSayaHandler.getMapHandler().startTrack();
         isOnTracking = true;
     }
 

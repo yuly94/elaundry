@@ -22,21 +22,20 @@ import com.yuly.elaundry.kurir.R;
 import com.yuly.elaundry.kurir.model.dataType.Destination;
 import com.yuly.elaundry.kurir.model.listeners.MapHandlerListener;
 import com.yuly.elaundry.kurir.model.listeners.NavigatorListener;
-import com.yuly.elaundry.kurir.model.map.MapHandler;
-import com.yuly.elaundry.kurir.model.map.Navigasi;
+import com.yuly.elaundry.kurir.model.map.PetaSayaHandler;
+import com.yuly.elaundry.kurir.model.map.PetaSayaNavigasi;
 import com.yuly.elaundry.kurir.model.util.InstructionAdapter;
 import com.yuly.elaundry.kurir.model.util.MyUtility;
 import com.yuly.elaundry.kurir.model.util.Variable;
 
 import org.mapsforge.core.model.LatLong;
-import org.mapsforge.core.model.MapPosition;
 import org.mapsforge.map.android.view.MapView;
 import org.mapsforge.map.model.MapViewPosition;
 
 
-public class MapActions implements NavigatorListener, MapHandlerListener {
+public class PetaSayaActions implements NavigatorListener, MapHandlerListener {
     private Activity activity;
-    protected FloatingActionButton showPositionBtn, navigationBtn, settingsBtn, controlBtn, fab_turun;
+    protected FloatingActionButton showPositionBtn, navigationBtn, settingsBtn, controlBtn;
     protected FloatingActionButton zoomInBtn, zoomOutBtn;
     private ViewGroup sideBarVP, sideBarMenuVP, navSettingsVP, navSettingsFromVP, navSettingsToVP, navInstructionVP,
             navInstructionListVP;
@@ -47,11 +46,8 @@ public class MapActions implements NavigatorListener, MapHandlerListener {
     private boolean onStartPoint;
     private EditText fromLocalET, toLocalET;
 
-    public MapActions(Activity activity, MapView mapView) {
+    public PetaSayaActions(Activity activity, MapView mapView) {
         this.activity = activity;
-
-        this.fab_turun = (FloatingActionButton) activity.findViewById(R.id.fab_turun);
-
         this.showPositionBtn = (FloatingActionButton) activity.findViewById(R.id.fab_lokasi);
         this.navigationBtn = (FloatingActionButton) activity.findViewById(R.id.fab_navigasi);
         this.settingsBtn = (FloatingActionButton) activity.findViewById(R.id.fab_setting);
@@ -71,8 +67,8 @@ public class MapActions implements NavigatorListener, MapHandlerListener {
         this.toLocalET = (EditText) activity.findViewById(R.id.nav_settings_to_local_et);
         this.menuVisible = false;
         this.onStartPoint = true;
-        MapHandler.getMapHandler().setMapHandlerListener(this);
-        Navigasi.getNavigator().addListener(this);
+        PetaSayaHandler.getMapHandler().setMapHandlerListener(this);
+        PetaSayaNavigasi.getNavigator().addListener(this);
         controlBtnHandler();
         zoomControlHandler(mapView);
         showMyLocation(mapView);
@@ -138,11 +134,11 @@ public class MapActions implements NavigatorListener, MapHandlerListener {
             tl = MyUtility.getLatLong(tls);
         }
         if (fl != null && tl == null) {
-            MapHandler.getMapHandler().centerPointOnMap(fl, 0);
+            PetaSayaHandler.getMapHandler().centerPointOnMap(fl, 0);
             addFromMarker(fl);
         }
         if (fl == null && tl != null) {
-            MapHandler.getMapHandler().centerPointOnMap(tl, 0);
+            PetaSayaHandler.getMapHandler().centerPointOnMap(tl, 0);
             addToMarker(tl);
         }
         if (fl != null && tl != null) {
@@ -216,7 +212,7 @@ public class MapActions implements NavigatorListener, MapHandlerListener {
                         //touch on map
                         //                        Toast.makeText(activity, "Touch on Map to choose your
                         // destination!", Toast.LENGTH_SHORT).show();
-                        MapHandler.getMapHandler().setNeedLocation(true);
+                        PetaSayaHandler.getMapHandler().setNeedLocation(true);
                         return true;
                 }
                 return false;
@@ -260,10 +256,10 @@ public class MapActions implements NavigatorListener, MapHandlerListener {
                         return true;
                     case MotionEvent.ACTION_UP:
                         useCurrentLocal.setBackgroundColor(activity.getResources().getColor(R.color.my_primary));
-                        if (MapActivity.getmCurrentLocation() != null) {
+                        if (PetaSayaActivity.getmCurrentLocation() != null) {
                             Destination.getDestination().setEndPoint(
-                                    new LatLong(MapActivity.getmCurrentLocation().getLatitude(),
-                                            MapActivity.getmCurrentLocation().getLongitude()));
+                                    new LatLong(PetaSayaActivity.getmCurrentLocation().getLatitude(),
+                                            PetaSayaActivity.getmCurrentLocation().getLongitude()));
                             toLocalET.setText(Destination.getDestination().getEndPointToString());
                             addToMarker(Destination.getDestination().getEndPoint());
                             navSettingsToVP.setVisibility(View.INVISIBLE);
@@ -286,7 +282,7 @@ public class MapActions implements NavigatorListener, MapHandlerListener {
      * @param endPoint
      */
     private void addToMarker(LatLong endPoint) {
-        MapHandler.getMapHandler().addEndMarker(endPoint);
+        PetaSayaHandler.getMapHandler().addEndMarker(endPoint);
     }
 
     /**
@@ -295,7 +291,7 @@ public class MapActions implements NavigatorListener, MapHandlerListener {
      * @param startPoint
      */
     private void addFromMarker(LatLong startPoint) {
-        MapHandler.getMapHandler().addStartMarker(startPoint);
+        PetaSayaHandler.getMapHandler().addStartMarker(startPoint);
     }
 
     /**
@@ -355,7 +351,7 @@ public class MapActions implements NavigatorListener, MapHandlerListener {
                         //touch on map
                         Toast.makeText(activity, "Touch on Map to choose your start Location", Toast.LENGTH_SHORT)
                                 .show();
-                        MapHandler.getMapHandler().setNeedLocation(true);
+                        PetaSayaHandler.getMapHandler().setNeedLocation(true);
                         return true;
                 }
                 return false;
@@ -399,10 +395,10 @@ public class MapActions implements NavigatorListener, MapHandlerListener {
                         return true;
                     case MotionEvent.ACTION_UP:
                         useCurrentLocal.setBackgroundColor(activity.getResources().getColor(R.color.my_primary));
-                        if (MapActivity.getmCurrentLocation() != null) {
+                        if (PetaSayaActivity.getmCurrentLocation() != null) {
                             Destination.getDestination().setStartPoint(
-                                    new LatLong(MapActivity.getmCurrentLocation().getLatitude(),
-                                            MapActivity.getmCurrentLocation().getLongitude()));
+                                    new LatLong(PetaSayaActivity.getmCurrentLocation().getLatitude(),
+                                            PetaSayaActivity.getmCurrentLocation().getLongitude()));
                             addFromMarker(Destination.getDestination().getStartPoint());
                             fromLocalET.setText(Destination.getDestination().getStartPointToString());
                             navSettingsFromVP.setVisibility(View.INVISIBLE);
@@ -444,7 +440,7 @@ public class MapActions implements NavigatorListener, MapHandlerListener {
      * @param shortestPathRunning
      */
     @Override public void pathCalculating(boolean shortestPathRunning) {
-        if (!shortestPathRunning && Navigasi.getNavigator().getGhResponse() != null) {
+        if (!shortestPathRunning && PetaSayaNavigasi.getNavigator().getGhResponse() != null) {
             activeDirections();
         }
     }
@@ -462,7 +458,7 @@ public class MapActions implements NavigatorListener, MapHandlerListener {
             View pathfinding = activity.findViewById(R.id.map_nav_settings_path_finding);
             pathfinding.setVisibility(View.VISIBLE);
             pathfinding.bringToFront();
-            MapHandler mapHandler = MapHandler.getMapHandler();
+            PetaSayaHandler mapHandler = PetaSayaHandler.getMapHandler();
             mapHandler.calcPath(startPoint.latitude, startPoint.longitude, endPoint.latitude, endPoint.longitude);
             if (Variable.getVariable().isDirectionsON()) {
                 mapHandler.setNeedPathCal(true);
@@ -490,7 +486,7 @@ public class MapActions implements NavigatorListener, MapHandlerListener {
         instructionsRV.setLayoutManager(instructionsLayoutManager);
 
         // specify an adapter (see also next example)
-        instructionsAdapter = new InstructionAdapter(Navigasi.getNavigator().getGhResponse().getInstructions());
+        instructionsAdapter = new InstructionAdapter(PetaSayaNavigasi.getNavigator().getGhResponse().getInstructions());
         instructionsRV.setAdapter(instructionsAdapter);
         initNavListView();
     }
@@ -518,7 +514,7 @@ public class MapActions implements NavigatorListener, MapHandlerListener {
                         .setPositiveButton(R.string.ok, new DialogInterface.OnClickListener() {
                             public void onClick(DialogInterface dialog, int id) {
                                 // stop!
-                                Navigasi.getNavigator().setOn(false);
+                                PetaSayaNavigasi.getNavigator().setOn(false);
                                 //delete polyline and markers
                                 removeNavigation();
                                 navInstructionListVP.setVisibility(View.INVISIBLE);
@@ -539,7 +535,7 @@ public class MapActions implements NavigatorListener, MapHandlerListener {
             }
         });
 
-        fab_turun.setOnClickListener(new View.OnClickListener() {
+        clearBtn.setOnClickListener(new View.OnClickListener() {
             @Override public void onClick(View v) {
                 navInstructionListVP.setVisibility(View.INVISIBLE);
                 sideBarVP.setVisibility(View.VISIBLE);
@@ -555,16 +551,15 @@ public class MapActions implements NavigatorListener, MapHandlerListener {
         //travelMode = (ImageView) activity.findViewById(R.id.nav_instruction_list_travel_mode_iv);
        // travelMode.setImageResource(Navigasi.getNavigator().getTravelModeResId(true));
         TextView from, to, distance, time;
-
-        from = (TextView) activity.findViewById(R.id.nav_instruction_list_summary_from_tv);
-        to = (TextView) activity.findViewById(R.id.nav_instruction_list_summary_to_tv);
+/*        from = (TextView) activity.findViewById(R.id.nav_instruction_list_summary_from_tv);
+        to = (TextView) activity.findViewById(R.id.nav_instruction_list_summary_to_tv);*/
         distance = (TextView) activity.findViewById(R.id.nav_instruction_list_summary_distance_tv);
         time = (TextView) activity.findViewById(R.id.nav_instruction_list_summary_time_tv);
-
+/*
         from.setText(Destination.getDestination().getStartPointToString());
-        to.setText(Destination.getDestination().getEndPointToString());
-        distance.setText(Navigasi.getNavigator().getDistance());
-        time.setText(Navigasi.getNavigator().getTime());
+        to.setText(Destination.getDestination().getEndPointToString());*/
+        distance.setText(PetaSayaNavigasi.getNavigator().getDistance());
+        time.setText(PetaSayaNavigasi.getNavigator().getTime());
     }
 
     /**
@@ -573,10 +568,10 @@ public class MapActions implements NavigatorListener, MapHandlerListener {
      * set from & to = null
      */
     private void removeNavigation() {
-        MapHandler.getMapHandler().removeMarkers();
+        PetaSayaHandler.getMapHandler().removeMarkers();
         fromLocalET.setText("");
         toLocalET.setText("");
-        Navigasi.getNavigator().setOn(false);
+        PetaSayaNavigasi.getNavigator().setOn(false);
         Destination.getDestination().setStartPoint(null);
         Destination.getDestination().setEndPoint(null);
     }
@@ -647,7 +642,7 @@ public class MapActions implements NavigatorListener, MapHandlerListener {
         navigationBtn.setOnClickListener(new View.OnClickListener() {
             @Override public void onClick(View v) {
                 sideBarVP.setVisibility(View.INVISIBLE);
-                if (Navigasi.getNavigator().isOn()) {
+                if (PetaSayaNavigasi.getNavigator().isOn()) {
                     navInstructionListVP.setVisibility(View.VISIBLE);
                 } else {
                     navSettingsVP.setVisibility(View.VISIBLE);
@@ -715,11 +710,11 @@ public class MapActions implements NavigatorListener, MapHandlerListener {
     protected void showMyLocation(final MapView mapView) {
         showPositionBtn.setOnClickListener(new View.OnClickListener() {
             @Override public void onClick(View v) {
-                if (MapActivity.getmCurrentLocation() != null) {
+                if (PetaSayaActivity.getmCurrentLocation() != null) {
                     showPositionBtn.setImageResource(R.drawable.ic_my_location_white_24dp);
-                    MapHandler.getMapHandler().centerPointOnMap(
-                            new LatLong(MapActivity.getmCurrentLocation().getLatitude(),
-                                    MapActivity.getmCurrentLocation().getLongitude()), 0);
+                    PetaSayaHandler.getMapHandler().centerPointOnMap(
+                            new LatLong(PetaSayaActivity.getmCurrentLocation().getLatitude(),
+                                    PetaSayaActivity.getmCurrentLocation().getLongitude()), 0);
 
  /*                                       mapView.getModel().mapViewPosition.setMapPosition(new MapPosition(
                                                new LatLong(MapActivity.getmCurrentLocation().getLatitude(),

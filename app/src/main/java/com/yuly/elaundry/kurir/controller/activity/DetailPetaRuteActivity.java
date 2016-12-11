@@ -1,8 +1,6 @@
 package com.yuly.elaundry.kurir.controller.activity;
 
 import android.Manifest;
-import android.app.Activity;
-import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
@@ -14,7 +12,6 @@ import android.os.Bundle;
 import android.os.Environment;
 import android.provider.Settings;
 import android.support.v4.app.ActivityCompat;
-import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
@@ -24,20 +21,15 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Toast;
 
-import com.graphhopper.util.Helper;
-import com.graphhopper.util.ProgressListener;
+import com.graphhopper.GraphHopper;
 import com.yuly.elaundry.kurir.R;
-import com.yuly.elaundry.kurir.model.map.MapHandler;
-import com.yuly.elaundry.kurir.model.map.Tracking;
-import com.yuly.elaundry.kurir.model.peta.AndroidDownloader;
-import com.yuly.elaundry.kurir.model.peta.AndroidHelper;
-import com.yuly.elaundry.kurir.model.peta.GHAsyncTask;
+
+import com.yuly.elaundry.kurir.model.dataType.DataRute;
+import com.yuly.elaundry.kurir.model.peta.CariRuteHandler;
 import com.yuly.elaundry.kurir.model.peta.PetaRuteHandler;
-import com.yuly.elaundry.kurir.model.util.SetStatusBarColor;
 import com.yuly.elaundry.kurir.model.util.Variable;
 
 import org.mapsforge.core.model.LatLong;
-import org.mapsforge.core.model.MapPosition;
 import org.mapsforge.map.android.graphics.AndroidGraphicFactory;
 import org.mapsforge.map.android.view.MapView;
 import org.mapsforge.map.layer.Layers;
@@ -45,20 +37,27 @@ import org.mapsforge.map.layer.overlay.Marker;
 
 import java.io.File;
 
-public class MapActivity extends AppCompatActivity implements LocationListener {
+public class DetailPetaRuteActivity extends AppCompatActivity implements LocationListener {
     private MapView mapView;
     private static Location mCurrentLocation;
     private Marker mPositionMarker;
+    private Marker konPositionMarker;
     private Location mLastLocation;
-    private MapActions mapActions;
+    private DetailPetaRuteActions petaRuteActions;
     private LocationManager locationManager;
 
     private File mapsFolder;
+    private String pemLatitude;
+    private String pemLongitude;
+
+    private GraphHopper hopper;
+                               //http://elaundry.pe.hu/assets/maps/indonesia_jawatimur_kediringanjuk.ghz
+    private String downloadURL ="http://elaundry.pe.hu/assets/maps/indonesia_jawatimur_kediringanjuk.ghz";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_map);
+        setContentView(R.layout.petarute_activity_map);
 
 
 
@@ -73,6 +72,16 @@ public class MapActivity extends AppCompatActivity implements LocationListener {
 
 */
 
+        pemLatitude = getIntent().getStringExtra("PESANAN_LATITUDE");
+        pemLongitude = getIntent().getStringExtra("PESANAN_LONGITUDE");
+
+         DataRute.getDatarute().setEndPoint(
+                 new LatLong(Double.valueOf(pemLatitude), Double.valueOf(pemLongitude)));
+
+        Log.d("pem latitude", "M "+pemLatitude);
+        Log.d("pem longitude", "M "+pemLongitude);
+
+
         locationManager = (LocationManager) getSystemService(Context.LOCATION_SERVICE);
         if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
             // TODO: Consider calling
@@ -85,6 +94,8 @@ public class MapActivity extends AppCompatActivity implements LocationListener {
             return;
         }
         locationManager.requestLocationUpdates(LocationManager.GPS_PROVIDER, 3000, 5, this);
+
+
         boolean greaterOrEqKitkat = Build.VERSION.SDK_INT >= 19;
         if (greaterOrEqKitkat) {
             if (!Environment.getExternalStorageState().equals(Environment.MEDIA_MOUNTED)) {
@@ -96,20 +107,19 @@ public class MapActivity extends AppCompatActivity implements LocationListener {
         } else
             mapsFolder = new File(Environment.getExternalStorageDirectory(), Variable.getVariable().getMapDownloadDirectory());
 
-
-            Variable.getVariable().setContext(getApplicationContext());
+         Variable.getVariable().setContext(getApplicationContext());
             Variable.getVariable().setZoomLevels(22, 1);
             AndroidGraphicFactory.createInstance(getApplication());
             mapView = new MapView(this);
             mapView.setClickable(true);
             mapView.setBuiltInZoomControls(false);
 
-            MapHandler.getMapHandler()
+            PetaRuteHandler.getPetaRuteHandler()
                     //  .init(this, mapView, Variable.getVariable().getCountry(), Variable.getVariable().getMapsFolder());
 
                     .init(this, mapView, Variable.getVariable().getCountry(), mapsFolder);
 
-            MapHandler.getMapHandler().loadMap(new File(mapsFolder,
+            PetaRuteHandler.getPetaRuteHandler().loadMap(new File(mapsFolder,
                     Variable.getVariable().getCountry() + "-gh"));
 
 
@@ -118,7 +128,8 @@ public class MapActivity extends AppCompatActivity implements LocationListener {
             getMyLastLocation();
             updateCurrentLocation(null);
 
-            Log.d("oncreate : ", PetaRuteActivity.class.getSimpleName());
+            Log.d("oncreate : ", DetailPetaRuteActivity.class.getSimpleName());
+
 
     }
 
@@ -126,12 +137,24 @@ public class MapActivity extends AppCompatActivity implements LocationListener {
 
 
 
+    public void getRute(){
+
+
+
+        PetaRuteHandler.getPetaRuteHandler().calcPath(Double.valueOf(pemLatitude), Double.valueOf(pemLongitude), DetailPetaRuteActivity.getmCurrentLocation().getLatitude(), DetailPetaRuteActivity.getmCurrentLocation().getLongitude());
+
+
+        Log.d("Pemesanan Latitude : ", String.valueOf(pemLatitude));
+        Log.d("Pemesanan Longitude : ", String.valueOf(pemLongitude));
+
+    }
+
     /**
      * inject and inflate activity map content to map activity context and bring it to front
      */
     private void customMapView() {
         ViewGroup inclusionViewGroup = (ViewGroup) findViewById(R.id.custom_map_view_layout);
-        View inflate = LayoutInflater.from(this).inflate(R.layout.activity_map_content_saya, null);
+        View inflate = LayoutInflater.from(this).inflate(R.layout.petarute_activity_content, null);
         inclusionViewGroup.addView(inflate);
 
         Toolbar mToolbar = (Toolbar) findViewById(R.id.map_toolbar);
@@ -156,7 +179,9 @@ public class MapActivity extends AppCompatActivity implements LocationListener {
 
 */
 
-        mapActions = new MapActions(this, mapView);
+        petaRuteActions = new DetailPetaRuteActions(this, mapView);
+
+
     }
 
     /**
@@ -171,6 +196,8 @@ public class MapActivity extends AppCompatActivity implements LocationListener {
         }
     }
 
+
+
     /**
      * Updates the users location based on the location
      *
@@ -178,36 +205,56 @@ public class MapActivity extends AppCompatActivity implements LocationListener {
      */
     private void updateCurrentLocation(Location location) {
         if (location != null) {
+
+
             mCurrentLocation = location;
         } else if (mLastLocation != null && mCurrentLocation == null) {
             mCurrentLocation = mLastLocation;
         }
         if (mCurrentLocation != null) {
+
+
+
             LatLong mcLatLong = new LatLong(mCurrentLocation.getLatitude(), mCurrentLocation.getLongitude());
 /*            if (Tracking.getTracking().isTracking()) {
-                MapHandler.getMapHandler().addTrackPoint(mcLatLong);
+                MapHandler.getPetaHandler().addTrackPoint(mcLatLong);
                 Tracking.getTracking().addPoint(mCurrentLocation);
             }*/
             Layers layers = mapView.getLayerManager().getLayers();
-            MapHandler.getMapHandler().removeLayer(layers, mPositionMarker);
-            mPositionMarker = MapHandler.getMapHandler().createMarker(mcLatLong, R.drawable.ic_place_blue_24dp);
+            PetaRuteHandler.getPetaRuteHandler().removeLayer(layers, mPositionMarker);
+            mPositionMarker = PetaRuteHandler.getPetaRuteHandler().createMarker(mcLatLong, R.drawable.ic_place_blue_24dp);
+/*
+
+            LatLong konLatLong = new LatLong(pemLatitude, pemLongitude);
+            konPositionMarker = PetaRuteHandler.getPetaRuteHandler().createMarker(konLatLong, R.drawable.ic_place_blue_24dp);
+            layers.add(konPositionMarker);
+*/
+
+
             layers.add(mPositionMarker);
-            mapActions.showPositionBtn.setImageResource(R.drawable.ic_my_location_white_24dp);
+
+            petaRuteActions.showPositionBtn.setImageResource(R.drawable.ic_my_location_white_24dp);
         } else {
-            mapActions.showPositionBtn.setImageResource(R.drawable.ic_location_searching_white_24dp);
+            petaRuteActions.showPositionBtn.setImageResource(R.drawable.ic_location_searching_white_24dp);
         }
     }
 
     @Override
     public void onBackPressed() {
-        boolean back = mapActions.homeBackKeyPressed();
+      /*  boolean back = PetaActions.homeBackKeyPressed();
         if (back) {
              moveTaskToBack(true);
+*/
+        finish();
 
-           // finish();
-
-        }
+        //}
         // if false do nothing
+    }
+
+    public void markerPemesanan(LatLong mcLatLong){
+        Layers layers = mapView.getLayerManager().getLayers();
+        mPositionMarker = CariRuteHandler.getPetaHandler().createMarker(mcLatLong, R.drawable.ic_place_blue_24dp);
+        layers.add(mPositionMarker);
     }
 
     @Override
@@ -230,23 +277,27 @@ public class MapActivity extends AppCompatActivity implements LocationListener {
         super.onStop();
         if (mCurrentLocation != null) {
             Variable.getVariable().setLastLocation(mapView.getModel().mapViewPosition.getMapPosition().latLong);
-            //logging
-              log("lokasi terahir : "+mapView.getModel().mapViewPosition
-             .getMapPosition().latLong);
+            //                        log("last browsed location : "+mapView.getModel().mapViewPosition
+            // .getMapPosition().latLong);
         }
+/*
         if (mapView != null)
             Variable.getVariable().setLastZoomLevel(mapView.getModel().mapViewPosition.getZoomLevel());
-        Variable.getVariable().saveVariables();
+        Variable.getVariable().saveVariables();*/
     }
 
     @Override
     protected void onDestroy() {
+
         super.onDestroy();
-        if (MapHandler.getMapHandler().getHopper() != null)
-            MapHandler.getMapHandler().getHopper().close();
-        MapHandler.getMapHandler().setHopper(null);
+        if (hopper != null)
+            hopper.close();
+
+        hopper = null;
+        // necessary?
         System.gc();
     }
+
 
     /**
      * @return my currentLocation
@@ -297,7 +348,7 @@ public class MapActivity extends AppCompatActivity implements LocationListener {
     }
 
     public void onProviderDisabled(String provider) {
-        Toast.makeText(getBaseContext(), "Gps mati !!", Toast.LENGTH_SHORT).show();
+        Toast.makeText(getBaseContext(), "Gps mati!!", Toast.LENGTH_SHORT).show();
     }
 
     /**
@@ -307,6 +358,16 @@ public class MapActivity extends AppCompatActivity implements LocationListener {
      */
     private void log(String str) {
         Log.i(this.getClass().getSimpleName(), "-------" + str);
+    }
+
+
+    private void log(String str, Throwable t) {
+        Log.i("GH", str, t);
+    }
+
+    private void logUser(String str) {
+        log(str);
+        Toast.makeText(this, str, Toast.LENGTH_LONG).show();
     }
 
     @Override public boolean onOptionsItemSelected(MenuItem item) {
@@ -319,11 +380,4 @@ public class MapActivity extends AppCompatActivity implements LocationListener {
         return super.onOptionsItemSelected(item);
     }
 
-    private void logUser(String str) {
-        log(str);
-        Toast.makeText(this, str, Toast.LENGTH_LONG).show();
-    }
-    private void log(String str, Throwable t) {
-        Log.i("GH", str, t);
-    }
 }

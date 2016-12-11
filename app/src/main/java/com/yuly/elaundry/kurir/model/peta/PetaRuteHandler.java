@@ -1,7 +1,6 @@
 package com.yuly.elaundry.kurir.model.peta;
 
 import android.app.Activity;
-import android.app.ProgressDialog;
 import android.graphics.Path;
 import android.graphics.drawable.Drawable;
 import android.os.AsyncTask;
@@ -14,15 +13,11 @@ import com.graphhopper.GHRequest;
 import com.graphhopper.GHResponse;
 import com.graphhopper.GraphHopper;
 import com.graphhopper.routing.AlgorithmOptions;
-import com.graphhopper.util.Helper;
 import com.graphhopper.util.PointList;
-import com.graphhopper.util.ProgressListener;
 import com.graphhopper.util.StopWatch;
 import com.yuly.elaundry.kurir.R;
-import com.yuly.elaundry.kurir.controller.activity.PetaRuteActions;
-import com.yuly.elaundry.kurir.controller.activity.PetaRuteActivity;
 import com.yuly.elaundry.kurir.model.listeners.PetaRuteHandlerListener;
-import com.yuly.elaundry.kurir.model.map.Navigasi;
+import com.yuly.elaundry.kurir.model.map.DetailPetaNavigasi;
 import com.yuly.elaundry.kurir.model.util.Variable;
 
 import org.mapsforge.core.graphics.Bitmap;
@@ -375,7 +370,7 @@ public class PetaRuteHandler {
                             activity.getResources().getColor(R.color.pink), 20);
                     mapView.getLayerManager().getLayers().add(polylinePath);
                     if (Variable.getVariable().isDirectionsON()) {
-                        Navigasi.getNavigator().setGhResponse(resp);
+                        DetailPetaNavigasi.getNavigator().setGhResponse(resp);
                         //                        log("navigator: " + Navigator.getNavigator().toString());
                     }
                 } else {

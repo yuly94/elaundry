@@ -44,7 +44,7 @@ import java.io.File;
 import java.util.List;
 
 
-public class MapHandler {
+public class PetaSayaHandler {
     private Activity activity;
     private MapView mapView;
     private String currentArea;
@@ -56,7 +56,7 @@ public class MapHandler {
     private Marker startMarker, endMarker;
     private Polyline polylinePath, polylineTrack;
     private MapHandlerListener mapHandlerListener;
-    private static MapHandler mapHandler;
+    private static PetaSayaHandler mapHandler;
     /**
      * if user going to point on map to gain a location
      */
@@ -66,7 +66,7 @@ public class MapHandler {
      */
     private boolean needPathCal;
 
-    public static MapHandler getMapHandler() {
+    public static PetaSayaHandler getMapHandler() {
         if (mapHandler == null) {
             reset();
         }
@@ -77,10 +77,10 @@ public class MapHandler {
      * reset class, build a new instance
      */
     public static void reset() {
-        mapHandler = new MapHandler();
+        mapHandler = new PetaSayaHandler();
     }
 
-    private MapHandler() {
+    private PetaSayaHandler() {
         setShortestPathRunning(false);
         startMarker = null;
         endMarker = null;
@@ -360,7 +360,7 @@ public class MapHandler {
                             activity.getResources().getColor(R.color.my_primary_dark_transparent), 20);
                     mapView.getLayerManager().getLayers().add(polylinePath);
                     if (Variable.getVariable().isDirectionsON()) {
-                        Navigasi.getNavigator().setGhResponse(resp);
+                        DetailPetaNavigasi.getNavigator().setGhResponse(resp);
                         //                        log("navigator: " + Navigator.getNavigator().toString());
                     }
                 } else {

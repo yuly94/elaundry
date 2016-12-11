@@ -11,7 +11,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 
-public class Navigasi {
+public class PetaSayaNavigasi {
     /**
      * get from MapHandler calculate path
      */
@@ -21,10 +21,10 @@ public class Navigasi {
      */
     private boolean on;
     private List<NavigatorListener> listeners;
-    private static Navigasi navigator = null;
+    private static PetaSayaNavigasi navigator = null;
 
 
-    private Navigasi() {
+    private PetaSayaNavigasi() {
         this.ghResponse = null;
         this.on = false;
         this.listeners = new ArrayList<>();
@@ -33,9 +33,9 @@ public class Navigasi {
     /**
      * @return Navigator object
      */
-    public static Navigasi getNavigator() {
+    public static PetaSayaNavigasi getNavigator() {
         if (navigator == null) {
-            navigator = new Navigasi();
+            navigator = new PetaSayaNavigasi();
         }
         return navigator;
     }

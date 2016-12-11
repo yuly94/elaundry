@@ -40,7 +40,8 @@
         android:layout_marginRight="@dimen/activity_horizontal_margin"
         android:src="@drawable/ic_settings_white_24dp"
         android:cropToPadding="false"
-        app:fabSize="mini" />
+        app:fabSize="mini"
+        android:visibility="gone" />
 
     <android.support.design.widget.FloatingActionButton
 

@@ -8,7 +8,6 @@ import android.os.Build;
 import android.os.Bundle;
 import android.os.Environment;
 import android.support.design.widget.FloatingActionButton;
-import android.support.v4.content.LocalBroadcastManager;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.DefaultItemAnimator;
@@ -27,9 +26,8 @@ import com.yuly.elaundry.kurir.model.dataType.MyMap;
 import com.yuly.elaundry.kurir.model.listeners.MapDownloadListener;
 import com.yuly.elaundry.kurir.model.listeners.MapFABonClickListener;
 import com.yuly.elaundry.kurir.model.map.DownloadFiles;
-import com.yuly.elaundry.kurir.model.map.MapHandler;
-import com.yuly.elaundry.kurir.model.map.MyMapAdapter;
-import com.yuly.elaundry.kurir.model.util.SetStatusBarColor;
+import com.yuly.elaundry.kurir.model.map.PetaSayaHandler;
+import com.yuly.elaundry.kurir.model.map.DetailPetaRuteAdapter;
 import com.yuly.elaundry.kurir.model.util.Variable;
 
 import java.io.File;
@@ -39,7 +37,7 @@ import java.util.List;
 
 
 public class MainActivityPeta extends AppCompatActivity implements MapDownloadListener, MapFABonClickListener {
-    private MyMapAdapter mapAdapter;
+    private DetailPetaRuteAdapter mapAdapter;
     //    private Location mLastLocation;           ?
     private boolean changeMap;
     private RecyclerView mapsRV;
@@ -160,7 +158,7 @@ public class MainActivityPeta extends AppCompatActivity implements MapDownloadLi
         layoutManager = new LinearLayoutManager(this);
         mapsRV.setLayoutManager(layoutManager);
         // specify an adapter (see also next example)
-        mapAdapter = new MyMapAdapter(myMaps, this);
+        mapAdapter = new DetailPetaRuteAdapter(myMaps, this);
         mapsRV.setAdapter(mapAdapter);
 
         deleteItemHandler();
@@ -202,7 +200,7 @@ public class MainActivityPeta extends AppCompatActivity implements MapDownloadLi
             if (changeMap) {
                 Variable.getVariable().setLastLocation(null);
                                log("lokasi terahir " + Variable.getVariable().getLastLocation());
-                MapHandler.reset();
+                PetaSayaHandler.reset();
                 System.gc();
             }
             startMapActivity();
@@ -241,7 +239,7 @@ public class MainActivityPeta extends AppCompatActivity implements MapDownloadLi
      * move to map screen
      */
     private void startMapActivity() {
-        Intent intent = new Intent(this, MapActivity.class);
+        Intent intent = new Intent(this, PetaSayaActivity.class);
       /*  // clear every thing before start map activity
         intent.addFlags(
                 Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
