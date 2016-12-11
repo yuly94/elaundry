@@ -621,7 +621,7 @@ public class RouteDbHelper extends SQLiteOpenHelper {
 
 
     /**
-     * Deleting a todo
+     * Deleting a jarak
      */
     public long deleteJarak(long tado_id) {
         SQLiteDatabase db = this.getWritableDatabase();
@@ -629,6 +629,29 @@ public class RouteDbHelper extends SQLiteOpenHelper {
                 new String[] { String.valueOf(tado_id) });
         return tado_id;
     }
+
+    /**
+     * Deleting a jarak
+     */
+    public long deleteJarakByTujuan(long tujuan_id) {
+        SQLiteDatabase db = this.getWritableDatabase();
+        db.delete(TABLE_JARAK_KONSUMEN, KEY_TUJUAN + " = ?",
+                new String[] { String.valueOf(tujuan_id) });
+        return tujuan_id;
+    }
+
+    /**
+     * Deleting a jarak
+     */
+    public long deleteJarakBkeA(long dari_id,long tujuan_id) {
+        SQLiteDatabase db = this.getWritableDatabase();
+        db.delete(TABLE_JARAK_KONSUMEN, KEY_TUJUAN + "=?" + " and "  +
+                        KEY_DARI+ "=?",
+                new String[] { String.valueOf(tujuan_id), String.valueOf(dari_id)  });
+
+        return tujuan_id;
+    }
+
 
 
 

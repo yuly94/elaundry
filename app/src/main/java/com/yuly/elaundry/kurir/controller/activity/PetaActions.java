@@ -286,16 +286,18 @@ public class PetaActions implements NavigatorListener, PetaHandlerListener {
 
 
         }*/
-        for(Lokasi lok : listLokasi) {
-
+      //  for(Lokasi daftarLokasi : listLokasi) {
+        for(int i=1; i < listLokasi.size() ;i++){
 
            Log.d("Jalur id :",
-                   String.valueOf(lok.getId()));
+                   String.valueOf(listLokasi.get(i).getId()));
 
             // Lokasi urutan = db_rute.getPath(dariJarak);
             Lokasi lastPath = db_rute.getLastPath();
 
             int dariJarak = (lastPath.getTujuan() < 1) ? 1 : lastPath.getTujuan();
+
+
 
             Log.d("dari jarak", String.valueOf(dariJarak));
 
@@ -305,18 +307,34 @@ public class PetaActions implements NavigatorListener, PetaHandlerListener {
             Log.d("urutan :", "dari : "+ String.valueOf(urutan.getDari()) +
                     " tujuan : " + String.valueOf(urutan.getTujuan()));
 
+
       /*  String jarak = PetaHandler.getPetaHandler().menghitungJarak(Double.parseDouble(lok.getLatitude()), Double.parseDouble(lokA.getLongitude()),
                 Double.parseDouble(lok.getLatitude()),Double.parseDouble(lok.getLongitude()));
 */
 
+            Lokasi lokasiDari = db_rute.getLokasi(urutan.getDari());
+            Lokasi lokasiTujuan = db_rute.getLokasi(urutan.getTujuan());
 
-            // Log.d("Jarak lokasi :", jarak+" Meter");
+            Log.d("Lokasi Dari : ", " latitude : " +lokasiDari.getLatitude() +" longitude : " +lokasiDari.getLongitude());
+            Log.d("Lokasi Tujuan : "," latitude : " +lokasiTujuan.getLatitude() +" longitude : " +lokasiTujuan.getLongitude());
 
-            Lokasi jarak_konsumen_01 = new Lokasi(urutan.getDari(), urutan.getTujuan(), "0", 1);
+             String jarakLokasi = PetaHandler.getPetaHandler().menghitungJarak(Double.parseDouble(lokasiDari.getLatitude()), Double.parseDouble(lokasiDari.getLongitude()),
+                    Double.parseDouble(lokasiTujuan.getLatitude()),Double.parseDouble(lokasiTujuan.getLongitude()));
+
+
+            Log.d("Jarak lokasi :", jarakLokasi+" Meter");
+
+
+            Lokasi jarak_konsumen_01 = new Lokasi(urutan.getDari(), urutan.getTujuan(), jarakLokasi, 1);
 
             long id_02 = db_rute.buatPathKonsumen(jarak_konsumen_01);
 
             System.out.print("daftar id : " + id_02);
+
+
+            long id = db_rute.deleteJarakBkeA(urutan.getTujuan(),urutan.getDari());
+            // Writing Contacts to log
+            Log.d("Delete : ", String.valueOf(id));
         }
 
     }
