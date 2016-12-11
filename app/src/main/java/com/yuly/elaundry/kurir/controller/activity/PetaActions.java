@@ -35,7 +35,6 @@ import com.yuly.elaundry.kurir.model.dijkstra.DijkstraAlgorithm;
 import com.yuly.elaundry.kurir.model.dijkstra.Edge;
 import com.yuly.elaundry.kurir.model.dijkstra.Graph;
 import com.yuly.elaundry.kurir.model.dijkstra.Vertex;
-import com.yuly.elaundry.kurir.model.dijkstra2.Dijkstra_dua;
 import com.yuly.elaundry.kurir.model.geterseter.TransaksiModel;
 import com.yuly.elaundry.kurir.model.helper.VolleyErrorHelper;
 import com.yuly.elaundry.kurir.model.listeners.NavigatorListener;
@@ -269,7 +268,7 @@ public class PetaActions implements NavigatorListener, PetaHandlerListener {
         List<Lokasi> listLokasi = db_rute.getAllLokasi();
 
       //  for(Lokasi daftarLokasi : listLokasi) {
-        for(int i=1; i < listLokasi.size() ;i++){
+        for(int i=0; i < (listLokasi.size()) ;i++){
 
            Log.d("Jalur id :",
                    String.valueOf(listLokasi.get(i).getId()));
@@ -318,9 +317,34 @@ public class PetaActions implements NavigatorListener, PetaHandlerListener {
             System.out.print("daftar id : " + id_02);
 
 
-            long id = db_rute.deleteJarakBkeA(urutan.getTujuan(),urutan.getDari());
+
+
+            long id_AB = db_rute.deleteJarakAB(urutan.getTujuan(),urutan.getDari());
             // Writing Contacts to log
-            Log.d("Delete : ", String.valueOf(id));
+            Log.d("Delete : ", String.valueOf(id_AB));
+
+            // Reading all lokasi konsumen
+            Log.d("Delete : ", "all lokasi tujuan yg sudah dilewati ..");
+            List<Lokasi> deleteLokB = db_rute.getAllJarakB(urutan.getTujuan());
+
+            for (Lokasi lokasiB : deleteLokB) {
+                String log = "Delete Id: " + lokasiB.getId();
+
+                long id_BA = db_rute.deleteJarakB(urutan.getTujuan());
+                // Writing Contacts to log
+                Log.d("Delete : ", String.valueOf(id_BA));
+            }
+
+
+/*
+            long id_AB = db_rute.deleteJarakAB(urutan.getDari(),urutan.getTujuan());
+            // Writing Contacts to log
+            Log.d("Delete : ", String.valueOf(id_AB));
+*/
+
+
+
+
         }
 
     }

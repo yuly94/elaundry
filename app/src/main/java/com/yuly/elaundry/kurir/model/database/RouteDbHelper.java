@@ -201,9 +201,9 @@ public class RouteDbHelper extends SQLiteOpenHelper {
         // insert row
 
         // insert tag_ids
-    //    for (long tag_id : tag_ids) {
-      //      createTodoTag(todo_id, tag_id);
-      //  }
+        //    for (long tag_id : tag_ids) {
+        //      createTodoTag(todo_id, tag_id);
+        //  }
 
         return db.insert(TABLE_LOKASI_KONSUMEN, null, values);
     }
@@ -348,7 +348,7 @@ public class RouteDbHelper extends SQLiteOpenHelper {
                 null, null, null, KEY_ID +" DESC", "1");
 
         // looping through all rows and adding to list
-         if(mCursor.getCount() >= 1 &&  mCursor.moveToFirst()){
+        if(mCursor.getCount() >= 1 &&  mCursor.moveToFirst()){
 
             Lokasi lokasi = new Lokasi();
             lokasi.setId(Integer.parseInt(mCursor.getString(0)));
@@ -356,20 +356,20 @@ public class RouteDbHelper extends SQLiteOpenHelper {
             lokasi.setTujuan(Integer.parseInt(mCursor.getString(2)));
             lokasi.setJarakAb(Integer.parseInt(mCursor.getString(3)));
 
-        // Adding contact to list
-        // return contact list
-        if (mCursor.getCount() >= 1 && !mCursor.isClosed()) {
-            mCursor.close();
-        }
+            // Adding contact to list
+            // return contact list
+            if (mCursor.getCount() >= 1 && !mCursor.isClosed()) {
+                mCursor.close();
+            }
 
-        return lokasi;
+            return lokasi;
         } else {
-             Lokasi lokasiNull = new Lokasi();
-             lokasiNull.setDari(0);
-             lokasiNull.setTujuan(0);
+            Lokasi lokasiNull = new Lokasi();
+            lokasiNull.setDari(0);
+            lokasiNull.setTujuan(0);
 
-             return lokasiNull;
-         }
+            return lokasiNull;
+        }
 
     }
 
@@ -433,6 +433,8 @@ public class RouteDbHelper extends SQLiteOpenHelper {
     }
 
 
+
+
     // Lokasi Pesanan
     public List<Lokasi> getAllPath() {
         List<Lokasi> listlokasi = new ArrayList<Lokasi>();
@@ -477,7 +479,7 @@ public class RouteDbHelper extends SQLiteOpenHelper {
     /**
      * Deleting a jarak
      */
-    public long deleteJarakBkeA(long dari_id,long tujuan_id) {
+    public long deleteJarakAB(long dari_id,long tujuan_id) {
         SQLiteDatabase db = this.getWritableDatabase();
         db.delete(TABLE_JARAK_KONSUMEN, KEY_TUJUAN + "=?" + " and "  +
                         KEY_DARI+ "=?",
@@ -485,6 +487,48 @@ public class RouteDbHelper extends SQLiteOpenHelper {
 
         return tujuan_id;
     }
+
+    // Lokasi Pesanan
+    public List<Lokasi> getAllJarakB(long tujuan_id) {
+
+        List<Lokasi> listlokasi = new ArrayList<Lokasi>();
+        SQLiteDatabase db = this.getWritableDatabase();
+        // Select All Query
+        Cursor mCursor = db.query(TABLE_JARAK_KONSUMEN, new String[]{KEY_ID, KEY_DARI,
+                       KEY_TUJUAN, KEY_JARAK}, KEY_TUJUAN + "=?",
+                new String[]{String.valueOf(tujuan_id)}, null, null, null, null);
+
+        // looping through all rows and adding to list
+
+        if(mCursor.getCount() >= 1 &&  mCursor.moveToFirst()){
+
+            do {
+                Lokasi jarak = new Lokasi();
+
+                jarak.setId(Integer.parseInt(mCursor.getString(0)));
+                jarak.setDari(Integer.parseInt(mCursor.getString(1)));
+                jarak.setTujuan(Integer.parseInt(mCursor.getString(2)));
+                jarak.setJarakAb(Integer.parseInt(mCursor.getString(3)));
+                // Adding contact to list
+                listlokasi.add(jarak);
+            } while (mCursor.moveToNext());
+        }
+
+        // return contact list
+        mCursor.close();
+        return listlokasi;
+    }
+
+    /**
+     * Deleting a jarak
+     */
+    public long deleteJarakB(long tado_id) {
+        SQLiteDatabase db = this.getWritableDatabase();
+        db.delete(TABLE_JARAK_KONSUMEN, KEY_TUJUAN + " = ?",
+                new String[] { String.valueOf(tado_id) });
+        return tado_id;
+    }
+
 
 
 

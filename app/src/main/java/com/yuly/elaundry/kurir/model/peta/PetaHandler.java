@@ -612,14 +612,14 @@ public class PetaHandler {
         for (int i = 0; i < pointList.getSize(); i++) {
             geoPoints.add(new LatLong(tmp.getLatitude(i), tmp.getLongitude(i)));
 
-            //
+/*            //
             Log.d(String.valueOf(tmp.getLatitude(i)), String.valueOf(tmp.getLongitude(i)));
 
             Lokasi lokasi_konsumen = new Lokasi( "kon id","pemesanan id", String.valueOf(tmp.getLatitude(i)), String.valueOf(tmp.getLongitude(i)), "0",1);
 
             long id = db_rute.createPointKonsumen(lokasi_konsumen);
 
-            Log.d("ID Point", String.valueOf(id));
+            Log.d("ID Point", String.valueOf(id));*/
 
         }
         return line;
