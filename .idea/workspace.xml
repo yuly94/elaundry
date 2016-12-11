@@ -243,11 +243,7 @@
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/libraries/shadows_core_3_0.xml" afterPath="$PROJECT_DIR$/.idea/libraries/shadows_core_3_0.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/libraries/sqlite4java_0_282.xml" afterPath="$PROJECT_DIR$/.idea/libraries/sqlite4java_0_282.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/libraries/vtd_xml_2_11.xml" afterPath="$PROJECT_DIR$/.idea/libraries/vtd_xml_2_11.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/misc.xml" afterPath="$PROJECT_DIR$/.idea/misc.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build.gradle" afterPath="$PROJECT_DIR$/app/build.gradle" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/com/yuly/elaundry/kurir/controller/activity/PetaActions.java" afterPath="$PROJECT_DIR$/app/src/main/java/com/yuly/elaundry/kurir/controller/activity/PetaActions.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/settings.gradle" afterPath="$PROJECT_DIR$/settings.gradle" />
     </list>
     <list id="0627501d-700a-4e34-8188-9973888d7651" name="New changelist" comment="" />
     <ignored path="elaundry-kurir.iws" />
@@ -382,7 +378,14 @@
             <state relative-caret-position="60">
               <caret line="30" column="13" selection-start-line="30" selection-start-column="13" selection-end-line="30" selection-end-column="13" />
               <folding>
-                <element signature="imports" expanded="true" />
+                <element signature="e#11528#11529#0" expanded="false" />
+                <element signature="e#11563#11564#0" expanded="false" />
+                <element signature="e#11614#11615#0" expanded="false" />
+                <element signature="e#11651#11652#0" expanded="false" />
+                <element signature="e#11702#11703#0" expanded="false" />
+                <element signature="e#11739#11740#0" expanded="false" />
+                <element signature="e#13325#13326#0" expanded="false" />
+                <element signature="e#13391#13392#0" expanded="false" />
               </folding>
             </state>
           </provider>
@@ -4479,7 +4482,7 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="53" y="24" width="1313" height="744" extended-state="6" />
-    <editor active="true" />
+    <editor active="false" />
     <layout>
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Nl-Palette" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
@@ -4488,10 +4491,10 @@
       <window_info id="Palette&#9;" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Image Layers" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Capture Analysis" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
-      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.42096773" sideWeight="0.50276244" order="8" side_tool="true" content_ui="tabs" />
+      <window_info id="Event Log" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.21129033" sideWeight="0.50513023" order="8" side_tool="true" content_ui="tabs" />
       <window_info id="Android Monitor" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.22580644" sideWeight="0.49092343" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.31451613" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.20806451" sideWeight="0.49802685" order="9" side_tool="false" content_ui="tabs" />
+      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.21129033" sideWeight="0.49486977" order="9" side_tool="false" content_ui="tabs" />
       <window_info id="Properties" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32903227" sideWeight="0.5" order="12" side_tool="false" content_ui="tabs" />
       <window_info id="Captures" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.24940805" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
@@ -4565,7 +4568,6 @@
     <option name="myLimit" value="2678400000" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Memperbaiki drawer, layout  pemesanan" />
     <MESSAGE value="Mengupdate menu exit di main aktifity&#10;&#10;mengupdate tombol log out di profile" />
     <MESSAGE value="Mengupdate menu exit di main aktifity&#10;&#10;mengupdate tombol log out di profile&#10;&#10;menambah color generator di widget" />
     <MESSAGE value="Mengupdate mainactivity memperbarui tampilan peta dan app config" />
@@ -4590,7 +4592,8 @@
     <MESSAGE value="menghapus beberapa file yang tidak dipakai" />
     <MESSAGE value="redesign drawer menu" />
     <MESSAGE value="memperbaiki rumus tabel jarak" />
-    <option name="LAST_COMMIT_MESSAGE" value="memperbaiki rumus tabel jarak" />
+    <MESSAGE value="memperbaiki bugs perhitungan rute" />
+    <option name="LAST_COMMIT_MESSAGE" value="memperbaiki bugs perhitungan rute" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -4820,6 +4823,9 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="326">
           <caret line="262" column="0" selection-start-line="262" selection-start-column="0" selection-end-line="262" selection-end-column="0" />
+          <folding>
+            <element signature="imports" expanded="false" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -4846,6 +4852,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="120">
           <caret line="19" column="13" selection-start-line="19" selection-start-column="13" selection-end-line="19" selection-end-column="13" />
+          <folding />
         </state>
       </provider>
     </entry>
@@ -4861,6 +4868,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="381">
           <caret line="42" column="4" selection-start-line="42" selection-start-column="4" selection-end-line="42" selection-end-column="4" />
+          <folding />
         </state>
       </provider>
     </entry>
@@ -4868,6 +4876,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="105">
           <caret line="23" column="7" selection-start-line="23" selection-start-column="7" selection-end-line="23" selection-end-column="16" />
+          <folding />
         </state>
       </provider>
     </entry>
@@ -4875,6 +4884,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="105">
           <caret line="42" column="30" selection-start-line="42" selection-start-column="30" selection-end-line="42" selection-end-column="30" />
+          <folding />
         </state>
       </provider>
     </entry>
@@ -4890,6 +4900,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-924">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
         </state>
       </provider>
     </entry>
@@ -4933,6 +4944,9 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="282">
           <caret line="56" column="19" selection-start-line="56" selection-start-column="19" selection-end-line="56" selection-end-column="19" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -4977,7 +4991,14 @@
         <state relative-caret-position="60">
           <caret line="30" column="13" selection-start-line="30" selection-start-column="13" selection-end-line="30" selection-end-column="13" />
           <folding>
-            <element signature="imports" expanded="true" />
+            <element signature="e#11528#11529#0" expanded="false" />
+            <element signature="e#11563#11564#0" expanded="false" />
+            <element signature="e#11614#11615#0" expanded="false" />
+            <element signature="e#11651#11652#0" expanded="false" />
+            <element signature="e#11702#11703#0" expanded="false" />
+            <element signature="e#11739#11740#0" expanded="false" />
+            <element signature="e#13325#13326#0" expanded="false" />
+            <element signature="e#13391#13392#0" expanded="false" />
           </folding>
         </state>
       </provider>
