@@ -589,8 +589,8 @@ public class PetaRuteActions implements NavigatorListener, PetaRuteHandlerListen
      */
     private void fillNavListSummaryValues() {
         ImageView travelMode;
-        travelMode = (ImageView) activity.findViewById(R.id.nav_instruction_list_travel_mode_iv);
-        travelMode.setImageResource(Navigasi.getNavigator().getTravelModeResId(true));
+       // travelMode = (ImageView) activity.findViewById(R.id.nav_instruction_list_travel_mode_iv);
+       // travelMode.setImageResource(Navigasi.getNavigator().getTravelModeResId(true));
         TextView from, to, distance, time;
         from = (TextView) activity.findViewById(R.id.nav_instruction_list_summary_from_tv);
         to = (TextView) activity.findViewById(R.id.nav_instruction_list_summary_to_tv);

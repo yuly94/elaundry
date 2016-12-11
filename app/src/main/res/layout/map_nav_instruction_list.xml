@@ -1,11 +1,18 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout android:id="@+id/nav_instruction_list_layout"
+<android.support.design.widget.CoordinatorLayout xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/nav_instruction_list_layout"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+
+
+<RelativeLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/my_divider"
     android:fontFamily="sans-serif"
-    android:visibility="invisible"
+    android:visibility="visible"
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <RelativeLayout
@@ -33,18 +40,7 @@
                 android:layout_alignParentLeft="true"
                 android:padding="8dp"
                 android:src="@drawable/ic_directions_walk_orange_24dp"
-                />
-
-            <ImageButton
-                android:id="@+id/nav_instruction_list_clear_btn"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_alignParentRight="true"
-                android:clickable="true"
-                android:focusable="true"
-                android:padding="8dp"
-                app:srcCompat="@drawable/ic_keyboard_arrow_down_white_24dp"
-                />
+                android:visibility="gone" />
 
             <ImageButton
                 android:id="@+id/nav_instruction_list_stop_btn"
@@ -55,10 +51,20 @@
                 android:focusable="true"
                 android:padding="8dp"
                 android:src="@drawable/ic_stop_white_24dp"
-                />
+                android:visibility="gone" />
         </RelativeLayout>
 
         <!--from-->
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"></LinearLayout>
+
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"></LinearLayout>
+
         <LinearLayout
             android:id="@+id/nav_instruction_list_from"
             android:layout_width="match_parent"
@@ -147,7 +153,7 @@
                 android:layout_alignParentLeft="true"
                 android:layout_marginRight="16dp"
                 android:padding="8dp"
-                android:src="@drawable/ic_space_bar_white_24dp"
+                android:src="@drawable/ic_brightness_low_white_24dp"
                 />
 
             <TextView
@@ -212,4 +218,22 @@
         android:layout_height="match_parent"
         android:layout_below="@id/nav_instruction_list_summary"
         android:scrollbars="vertical"/>
+
+
 </RelativeLayout>
+
+<android.support.design.widget.FloatingActionButton
+
+
+android:id="@+id/fab_turun"
+android:layout_width="wrap_content"
+android:layout_height="wrap_content"
+android:layout_alignParentBottom="true"
+android:layout_gravity="right|bottom"
+android:layout_marginBottom="@dimen/activity_vertical_margin"
+android:layout_marginRight="@dimen/activity_horizontal_margin"
+android:src="@drawable/ic_keyboard_arrow_down_white_24dp"
+android:cropToPadding="false"
+android:visibility="visible"
+    app:fabSize="mini" />
+    </android.support.design.widget.CoordinatorLayout>

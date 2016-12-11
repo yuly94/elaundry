@@ -36,7 +36,7 @@ import org.mapsforge.map.model.MapViewPosition;
 
 public class MapActions implements NavigatorListener, MapHandlerListener {
     private Activity activity;
-    protected FloatingActionButton showPositionBtn, navigationBtn, settingsBtn, controlBtn;
+    protected FloatingActionButton showPositionBtn, navigationBtn, settingsBtn, controlBtn, fab_turun;
     protected FloatingActionButton zoomInBtn, zoomOutBtn;
     private ViewGroup sideBarVP, sideBarMenuVP, navSettingsVP, navSettingsFromVP, navSettingsToVP, navInstructionVP,
             navInstructionListVP;
@@ -49,6 +49,9 @@ public class MapActions implements NavigatorListener, MapHandlerListener {
 
     public MapActions(Activity activity, MapView mapView) {
         this.activity = activity;
+
+        this.fab_turun = (FloatingActionButton) activity.findViewById(R.id.fab_turun);
+
         this.showPositionBtn = (FloatingActionButton) activity.findViewById(R.id.fab_lokasi);
         this.navigationBtn = (FloatingActionButton) activity.findViewById(R.id.fab_navigasi);
         this.settingsBtn = (FloatingActionButton) activity.findViewById(R.id.fab_setting);
@@ -536,7 +539,7 @@ public class MapActions implements NavigatorListener, MapHandlerListener {
             }
         });
 
-        clearBtn.setOnClickListener(new View.OnClickListener() {
+        fab_turun.setOnClickListener(new View.OnClickListener() {
             @Override public void onClick(View v) {
                 navInstructionListVP.setVisibility(View.INVISIBLE);
                 sideBarVP.setVisibility(View.VISIBLE);
@@ -549,9 +552,10 @@ public class MapActions implements NavigatorListener, MapHandlerListener {
      */
     private void fillNavListSummaryValues() {
         ImageView travelMode;
-        travelMode = (ImageView) activity.findViewById(R.id.nav_instruction_list_travel_mode_iv);
-        travelMode.setImageResource(Navigasi.getNavigator().getTravelModeResId(true));
+        //travelMode = (ImageView) activity.findViewById(R.id.nav_instruction_list_travel_mode_iv);
+       // travelMode.setImageResource(Navigasi.getNavigator().getTravelModeResId(true));
         TextView from, to, distance, time;
+
         from = (TextView) activity.findViewById(R.id.nav_instruction_list_summary_from_tv);
         to = (TextView) activity.findViewById(R.id.nav_instruction_list_summary_to_tv);
         distance = (TextView) activity.findViewById(R.id.nav_instruction_list_summary_distance_tv);

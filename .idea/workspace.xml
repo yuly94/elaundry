@@ -3,7 +3,7 @@
   <component name="AndroidLayouts">
     <shared>
       <config>
-        <target>android-16</target>
+        <target>android-25</target>
       </config>
     </shared>
   </component>
@@ -14,210 +14,10 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="4ab180e6-566d-47d6-8acc-d99cddfd8721" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/libs_graphhopper/.gitignore" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/libs_graphhopper/build.gradle" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/libs_graphhopper/src/main/java/com/graphhopper/GHRequest.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/libs_graphhopper/src/main/java/com/graphhopper/GHResponse.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/libs_graphhopper/src/main/java/com/graphhopper/GraphHopper.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/libs_graphhopper/src/main/java/com/graphhopper/GraphHopperAPI.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/libs_graphhopper/src/main/java/com/graphhopper/MyClass.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/libs_graphhopper/src/main/java/com/graphhopper/coll/BigLongIntMap.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/libs_graphhopper/src/main/java/com/graphhopper/coll/BinHeapWrapper.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/libs_graphhopper/src/main/java/com/graphhopper/coll/CompressedArray.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/libs_graphhopper/src/main/java/com/graphhopper/coll/GHBitSet.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/libs_graphhopper/src/main/java/com/graphhopper/coll/GHBitSetImpl.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/libs_graphhopper/src/main/java/com/graphhopper/coll/GHLongIntBTree.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/libs_graphhopper/src/main/java/com/graphhopper/coll/GHSortedCollection.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/libs_graphhopper/src/main/java/com/graphhopper/coll/GHTBitSet.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/libs_graphhopper/src/main/java/com/graphhopper/coll/GHTreeMapComposed.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/libs_graphhopper/src/main/java/com/graphhopper/coll/IntDoubleBinHeap.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/libs_graphhopper/src/main/java/com/graphhopper/coll/IntIntBinHeap.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/libs_graphhopper/src/main/java/com/graphhopper/coll/LongIntMap.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/libs_graphhopper/src/main/java/com/graphhopper/coll/MapEntry.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/libs_graphhopper/src/main/java/com/graphhopper/coll/OSMIDMap.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/libs_graphhopper/src/main/java/com/graphhopper/coll/OSMIDSegmentedMap.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/libs_graphhopper/src/main/java/com/graphhopper/coll/SparseArray.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/libs_graphhopper/src/main/java/com/graphhopper/coll/SparseIntIntArray.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/libs_graphhopper/src/main/java/com/graphhopper/coll/SparseLongLongArray.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/libs_graphhopper/src/main/java/com/graphhopper/geohash/KeyAlgo.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/libs_graphhopper/src/main/java/com/graphhopper/geohash/LinearKeyAlgo.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/libs_graphhopper/src/main/java/com/graphhopper/geohash/SpatialKeyAlgo.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/libs_graphhopper/src/main/java/com/graphhopper/reader/DataReader.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/libs_graphhopper/src/main/java/com/graphhopper/reader/OSMElement.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/libs_graphhopper/src/main/java/com/graphhopper/reader/OSMInputFile.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/libs_graphhopper/src/main/java/com/graphhopper/reader/OSMNode.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/libs_graphhopper/src/main/java/com/graphhopper/reader/OSMReader.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/libs_graphhopper/src/main/java/com/graphhopper/reader/OSMRelation.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/libs_graphhopper/src/main/java/com/graphhopper/reader/OSMTurnRelation.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/libs_graphhopper/src/main/java/com/graphhopper/reader/OSMWay.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/libs_graphhopper/src/main/java/com/graphhopper/reader/PillarInfo.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/libs_graphhopper/src/main/java/com/graphhopper/reader/PrinctonReader.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/libs_graphhopper/src/main/java/com/graphhopper/reader/dem/CGIARProvider.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/libs_graphhopper/src/main/java/com/graphhopper/reader/dem/ElevationProvider.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/libs_graphhopper/src/main/java/com/graphhopper/reader/dem/HeightTile.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/libs_graphhopper/src/main/java/com/graphhopper/reader/dem/SRTMProvider.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/libs_graphhopper/src/main/java/com/graphhopper/reader/pbf/PbfBlobDecoder.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/libs_graphhopper/src/main/java/com/graphhopper/reader/pbf/PbfBlobDecoderListener.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/libs_graphhopper/src/main/java/com/graphhopper/reader/pbf/PbfBlobResult.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/libs_graphhopper/src/main/java/com/graphhopper/reader/pbf/PbfDecoder.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/libs_graphhopper/src/main/java/com/graphhopper/reader/pbf/PbfFieldDecoder.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/libs_graphhopper/src/main/java/com/graphhopper/reader/pbf/PbfRawBlob.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/libs_graphhopper/src/main/java/com/graphhopper/reader/pbf/PbfReader.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/libs_graphhopper/src/main/java/com/graphhopper/reader/pbf/PbfStreamSplitter.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/libs_graphhopper/src/main/java/com/graphhopper/reader/pbf/Sink.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/libs_graphhopper/src/main/java/com/graphhopper/routing/AStar.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/libs_graphhopper/src/main/java/com/graphhopper/routing/AStarBidirection.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/libs_graphhopper/src/main/java/com/graphhopper/routing/AbstractBidirAlgo.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/libs_graphhopper/src/main/java/com/graphhopper/routing/AbstractRoutingAlgorithm.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/libs_graphhopper/src/main/java/com/graphhopper/routing/AlgorithmOptions.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/libs_graphhopper/src/main/java/com/graphhopper/routing/Dijkstra.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/libs_graphhopper/src/main/java/com/graphhopper/routing/DijkstraBidirectionRef.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/libs_graphhopper/src/main/java/com/graphhopper/routing/DijkstraOneToMany.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/libs_graphhopper/src/main/java/com/graphhopper/routing/Path.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/libs_graphhopper/src/main/java/com/graphhopper/routing/PathBidir.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/libs_graphhopper/src/main/java/com/graphhopper/routing/PathBidirRef.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/libs_graphhopper/src/main/java/com/graphhopper/routing/PathNative.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/libs_graphhopper/src/main/java/com/graphhopper/routing/QueryGraph.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/libs_graphhopper/src/main/java/com/graphhopper/routing/RoutingAlgorithm.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/libs_graphhopper/src/main/java/com/graphhopper/routing/RoutingAlgorithmFactory.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/libs_graphhopper/src/main/java/com/graphhopper/routing/RoutingAlgorithmFactorySimple.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/libs_graphhopper/src/main/java/com/graphhopper/routing/VirtualEdgeIterator.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/libs_graphhopper/src/main/java/com/graphhopper/routing/VirtualEdgeIteratorState.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/libs_graphhopper/src/main/java/com/graphhopper/routing/ch/Path4CH.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/libs_graphhopper/src/main/java/com/graphhopper/routing/ch/PreparationWeighting.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/libs_graphhopper/src/main/java/com/graphhopper/routing/ch/PrepareContractionHierarchies.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/libs_graphhopper/src/main/java/com/graphhopper/routing/ch/PrepareEncoder.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/libs_graphhopper/src/main/java/com/graphhopper/routing/util/AbstractAlgoPreparation.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/libs_graphhopper/src/main/java/com/graphhopper/routing/util/AbstractFlagEncoder.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/libs_graphhopper/src/main/java/com/graphhopper/routing/util/AllCHEdgesIterator.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/libs_graphhopper/src/main/java/com/graphhopper/routing/util/AllEdgesIterator.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/libs_graphhopper/src/main/java/com/graphhopper/routing/util/BeelineWeightApproximator.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/libs_graphhopper/src/main/java/com/graphhopper/routing/util/Bike2WeightFlagEncoder.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/libs_graphhopper/src/main/java/com/graphhopper/routing/util/BikeCommonFlagEncoder.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/libs_graphhopper/src/main/java/com/graphhopper/routing/util/BikeFlagEncoder.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/libs_graphhopper/src/main/java/com/graphhopper/routing/util/CarFlagEncoder.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/libs_graphhopper/src/main/java/com/graphhopper/routing/util/ConsistentWeightApproximator.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/libs_graphhopper/src/main/java/com/graphhopper/routing/util/DefaultEdgeFilter.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/libs_graphhopper/src/main/java/com/graphhopper/routing/util/EdgeFilter.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/libs_graphhopper/src/main/java/com/graphhopper/routing/util/EncodedDoubleValue.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/libs_graphhopper/src/main/java/com/graphhopper/routing/util/EncodedValue.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/libs_graphhopper/src/main/java/com/graphhopper/routing/util/EncodingManager.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/libs_graphhopper/src/main/java/com/graphhopper/routing/util/FastestWeighting.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/libs_graphhopper/src/main/java/com/graphhopper/routing/util/FlagEncoder.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/libs_graphhopper/src/main/java/com/graphhopper/routing/util/FootFlagEncoder.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/libs_graphhopper/src/main/java/com/graphhopper/routing/util/LevelEdgeFilter.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/libs_graphhopper/src/main/java/com/graphhopper/routing/util/MotorcycleFlagEncoder.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/libs_graphhopper/src/main/java/com/graphhopper/routing/util/MountainBikeFlagEncoder.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/libs_graphhopper/src/main/java/com/graphhopper/routing/util/PrepareRoutingSubnetworks.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/libs_graphhopper/src/main/java/com/graphhopper/routing/util/PriorityCode.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/libs_graphhopper/src/main/java/com/graphhopper/routing/util/PriorityWeighting.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/libs_graphhopper/src/main/java/com/graphhopper/routing/util/RacingBikeFlagEncoder.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/libs_graphhopper/src/main/java/com/graphhopper/routing/util/ShortestWeighting.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/libs_graphhopper/src/main/java/com/graphhopper/routing/util/TarjansStronglyConnectedComponentsAlgorithm.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/libs_graphhopper/src/main/java/com/graphhopper/routing/util/TestAlgoCollector.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/libs_graphhopper/src/main/java/com/graphhopper/routing/util/TraversalMode.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/libs_graphhopper/src/main/java/com/graphhopper/routing/util/TurnCostEncoder.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/libs_graphhopper/src/main/java/com/graphhopper/routing/util/TurnWeighting.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/libs_graphhopper/src/main/java/com/graphhopper/routing/util/WeightApproximator.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/libs_graphhopper/src/main/java/com/graphhopper/routing/util/Weighting.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/libs_graphhopper/src/main/java/com/graphhopper/routing/util/WeightingMap.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/libs_graphhopper/src/main/java/com/graphhopper/search/Geocoding.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/libs_graphhopper/src/main/java/com/graphhopper/search/NameIndex.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/libs_graphhopper/src/main/java/com/graphhopper/search/ReverseGeocoding.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/libs_graphhopper/src/main/java/com/graphhopper/storage/AbstractDataAccess.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/libs_graphhopper/src/main/java/com/graphhopper/storage/BaseGraph.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/libs_graphhopper/src/main/java/com/graphhopper/storage/CHGraph.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/libs_graphhopper/src/main/java/com/graphhopper/storage/CHGraphImpl.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/libs_graphhopper/src/main/java/com/graphhopper/storage/DAType.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/libs_graphhopper/src/main/java/com/graphhopper/storage/DataAccess.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/libs_graphhopper/src/main/java/com/graphhopper/storage/Directory.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/libs_graphhopper/src/main/java/com/graphhopper/storage/EdgeAccess.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/libs_graphhopper/src/main/java/com/graphhopper/storage/EdgeEntry.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/libs_graphhopper/src/main/java/com/graphhopper/storage/GHDirectory.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/libs_graphhopper/src/main/java/com/graphhopper/storage/GHNodeAccess.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/libs_graphhopper/src/main/java/com/graphhopper/storage/Graph.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/libs_graphhopper/src/main/java/com/graphhopper/storage/GraphBuilder.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/libs_graphhopper/src/main/java/com/graphhopper/storage/GraphExtension.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/libs_graphhopper/src/main/java/com/graphhopper/storage/GraphHopperStorage.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/libs_graphhopper/src/main/java/com/graphhopper/storage/GraphStorage.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/libs_graphhopper/src/main/java/com/graphhopper/storage/IntIterator.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/libs_graphhopper/src/main/java/com/graphhopper/storage/InternalGraphEventListener.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/libs_graphhopper/src/main/java/com/graphhopper/storage/Lock.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/libs_graphhopper/src/main/java/com/graphhopper/storage/LockFactory.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/libs_graphhopper/src/main/java/com/graphhopper/storage/MMapDataAccess.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/libs_graphhopper/src/main/java/com/graphhopper/storage/MMapDirectory.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/libs_graphhopper/src/main/java/com/graphhopper/storage/NativeFSLockFactory.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/libs_graphhopper/src/main/java/com/graphhopper/storage/NodeAccess.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/libs_graphhopper/src/main/java/com/graphhopper/storage/RAMDataAccess.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/libs_graphhopper/src/main/java/com/graphhopper/storage/RAMDirectory.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/libs_graphhopper/src/main/java/com/graphhopper/storage/RAMIntDataAccess.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/libs_graphhopper/src/main/java/com/graphhopper/storage/SimpleFSLockFactory.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/libs_graphhopper/src/main/java/com/graphhopper/storage/Storable.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/libs_graphhopper/src/main/java/com/graphhopper/storage/StorableProperties.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/libs_graphhopper/src/main/java/com/graphhopper/storage/SynchedDAWrapper.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/libs_graphhopper/src/main/java/com/graphhopper/storage/TurnCostExtension.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/libs_graphhopper/src/main/java/com/graphhopper/storage/UnsafeDataAccess.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/libs_graphhopper/src/main/java/com/graphhopper/storage/VLongStorage.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/libs_graphhopper/src/main/java/com/graphhopper/storage/index/BresenhamLine.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/libs_graphhopper/src/main/java/com/graphhopper/storage/index/Location2IDFullIndex.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/libs_graphhopper/src/main/java/com/graphhopper/storage/index/Location2IDFullWithEdgesIndex.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/libs_graphhopper/src/main/java/com/graphhopper/storage/index/Location2IDQuadtree.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/libs_graphhopper/src/main/java/com/graphhopper/storage/index/LocationIndex.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/libs_graphhopper/src/main/java/com/graphhopper/storage/index/LocationIndexTree.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/libs_graphhopper/src/main/java/com/graphhopper/storage/index/PointEmitter.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/libs_graphhopper/src/main/java/com/graphhopper/storage/index/QueryResult.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/libs_graphhopper/src/main/java/com/graphhopper/util/AngleCalc.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/libs_graphhopper/src/main/java/com/graphhopper/util/BitUtil.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/libs_graphhopper/src/main/java/com/graphhopper/util/BitUtilBig.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/libs_graphhopper/src/main/java/com/graphhopper/util/BitUtilLittle.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/libs_graphhopper/src/main/java/com/graphhopper/util/BreadthFirstSearch.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/libs_graphhopper/src/main/java/com/graphhopper/util/CHEdgeExplorer.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/libs_graphhopper/src/main/java/com/graphhopper/util/CHEdgeIterator.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/libs_graphhopper/src/main/java/com/graphhopper/util/CHEdgeIteratorState.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/libs_graphhopper/src/main/java/com/graphhopper/util/CmdArgs.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/libs_graphhopper/src/main/java/com/graphhopper/util/Constants.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/libs_graphhopper/src/main/java/com/graphhopper/util/DepthFirstSearch.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/libs_graphhopper/src/main/java/com/graphhopper/util/DistanceCalc.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/libs_graphhopper/src/main/java/com/graphhopper/util/DistanceCalc2D.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/libs_graphhopper/src/main/java/com/graphhopper/util/DistanceCalc3D.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/libs_graphhopper/src/main/java/com/graphhopper/util/DistanceCalcEarth.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/libs_graphhopper/src/main/java/com/graphhopper/util/DistancePlaneProjection.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/libs_graphhopper/src/main/java/com/graphhopper/util/DouglasPeucker.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/libs_graphhopper/src/main/java/com/graphhopper/util/Downloader.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/libs_graphhopper/src/main/java/com/graphhopper/util/EdgeExplorer.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/libs_graphhopper/src/main/java/com/graphhopper/util/EdgeIterator.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/libs_graphhopper/src/main/java/com/graphhopper/util/EdgeIteratorState.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/libs_graphhopper/src/main/java/com/graphhopper/util/EdgeWrapper.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/libs_graphhopper/src/main/java/com/graphhopper/util/FinishInstruction.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/libs_graphhopper/src/main/java/com/graphhopper/util/GHUtility.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/libs_graphhopper/src/main/java/com/graphhopper/util/GPXEntry.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/libs_graphhopper/src/main/java/com/graphhopper/util/Helper.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/libs_graphhopper/src/main/java/com/graphhopper/util/Helper7.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/libs_graphhopper/src/main/java/com/graphhopper/util/Instruction.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/libs_graphhopper/src/main/java/com/graphhopper/util/InstructionAnnotation.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/libs_graphhopper/src/main/java/com/graphhopper/util/InstructionList.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/libs_graphhopper/src/main/java/com/graphhopper/util/MiniPerfTest.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/libs_graphhopper/src/main/java/com/graphhopper/util/NotThreadSafe.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/libs_graphhopper/src/main/java/com/graphhopper/util/NumHelper.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/libs_graphhopper/src/main/java/com/graphhopper/util/PMap.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/libs_graphhopper/src/main/java/com/graphhopper/util/PathMerger.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/libs_graphhopper/src/main/java/com/graphhopper/util/PointAccess.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/libs_graphhopper/src/main/java/com/graphhopper/util/PointList.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/libs_graphhopper/src/main/java/com/graphhopper/util/ProgressListener.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/libs_graphhopper/src/main/java/com/graphhopper/util/RoundaboutInstruction.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/libs_graphhopper/src/main/java/com/graphhopper/util/SimpleIntDeque.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/libs_graphhopper/src/main/java/com/graphhopper/util/StopWatch.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/libs_graphhopper/src/main/java/com/graphhopper/util/Translation.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/libs_graphhopper/src/main/java/com/graphhopper/util/TranslationMap.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/libs_graphhopper/src/main/java/com/graphhopper/util/Unzipper.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/libs_graphhopper/src/main/java/com/graphhopper/util/ViaInstruction.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/libs_graphhopper/src/main/java/com/graphhopper/util/XFirstSearch.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/libs_graphhopper/src/main/java/com/graphhopper/util/shapes/BBox.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/libs_graphhopper/src/main/java/com/graphhopper/util/shapes/Circle.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/libs_graphhopper/src/main/java/com/graphhopper/util/shapes/GHPlace.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/libs_graphhopper/src/main/java/com/graphhopper/util/shapes/GHPoint.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/libs_graphhopper/src/main/java/com/graphhopper/util/shapes/GHPoint3D.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/libs_graphhopper/src/main/java/com/graphhopper/util/shapes/Shape.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/src/main/res/layout/contact_item.xml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/src/main/res/layout/content_profile.xml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/src/main/res/layout/item_divider.xml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/src/main/res/layout/profile_layout.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/libraries/accessibility_test_framework_1_0.xml" afterPath="$PROJECT_DIR$/.idea/libraries/accessibility_test_framework_1_0.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/libraries/ant_1_8_0.xml" afterPath="$PROJECT_DIR$/.idea/libraries/ant_1_8_0.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/libraries/ant_launcher_1_8_0.xml" afterPath="$PROJECT_DIR$/.idea/libraries/ant_launcher_1_8_0.xml" />
@@ -243,7 +43,14 @@
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/libraries/shadows_core_3_0.xml" afterPath="$PROJECT_DIR$/.idea/libraries/shadows_core_3_0.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/libraries/sqlite4java_0_282.xml" afterPath="$PROJECT_DIR$/.idea/libraries/sqlite4java_0_282.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/libraries/vtd_xml_2_11.xml" afterPath="$PROJECT_DIR$/.idea/libraries/vtd_xml_2_11.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/misc.xml" afterPath="$PROJECT_DIR$/.idea/misc.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/app.iml" afterPath="$PROJECT_DIR$/app/app.iml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/com/yuly/elaundry/kurir/controller/activity/MapActions.java" afterPath="$PROJECT_DIR$/app/src/main/java/com/yuly/elaundry/kurir/controller/activity/MapActions.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/com/yuly/elaundry/kurir/controller/activity/PetaRuteActions.java" afterPath="$PROJECT_DIR$/app/src/main/java/com/yuly/elaundry/kurir/controller/activity/PetaRuteActions.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/res/drawable/ic_brightness_low_white_24dp.xml" afterPath="$PROJECT_DIR$/app/src/main/res/drawable/ic_brightness_low_white_24dp.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/res/layout/map_nav_instruction_list.xml" afterPath="$PROJECT_DIR$/app/src/main/res/layout/map_nav_instruction_list.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/res/values/theme_colors.xml" afterPath="$PROJECT_DIR$/app/src/main/res/values/theme_colors.xml" />
     </list>
     <list id="0627501d-700a-4e34-8188-9973888d7651" name="New changelist" comment="" />
     <ignored path="elaundry-kurir.iws" />
@@ -277,144 +84,92 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="build.gradle" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/build.gradle">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="411">
-              <caret line="81" column="3" selection-start-line="81" selection-start-column="3" selection-end-line="81" selection-end-column="3" />
+      <file leaf-file-name="map_nav_instruction.xml" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/map_nav_instruction.xml">
+          <provider selected="true" editor-type-id="android-designer2">
+            <state />
+          </provider>
+          <provider editor-type-id="text-editor">
+            <state relative-caret-position="0">
+              <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="PetaActions.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/src/main/java/com/yuly/elaundry/kurir/controller/activity/PetaActions.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="132">
-              <caret line="270" column="42" selection-start-line="270" selection-start-column="42" selection-end-line="270" selection-end-column="42" />
+      <file leaf-file-name="map_nav_instruction_item.xml" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/map_nav_instruction_item.xml">
+          <provider selected="true" editor-type-id="android-designer2">
+            <state />
+          </provider>
+          <provider editor-type-id="text-editor">
+            <state relative-caret-position="0">
+              <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="Variable.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/src/main/java/com/yuly/elaundry/kurir/model/util/Variable.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="57">
-              <caret line="172" column="27" selection-start-line="172" selection-start-column="27" selection-end-line="172" selection-end-column="30" />
+      <file leaf-file-name="map_nav_instruction_list.xml" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/map_nav_instruction_list.xml">
+          <provider selected="true" editor-type-id="android-designer2">
+            <state />
+          </provider>
+          <provider editor-type-id="text-editor">
+            <state relative-caret-position="179">
+              <caret line="48" column="68" selection-start-line="48" selection-start-column="68" selection-end-line="48" selection-end-column="68" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="SettingsActivity.java" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/app/src/main/java/com/yuly/elaundry/kurir/controller/activity/SettingsActivity.java">
+      <file leaf-file-name="MapActivity.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/src/main/java/com/yuly/elaundry/kurir/controller/activity/MapActivity.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-291">
-              <caret line="69" column="38" selection-start-line="69" selection-start-column="38" selection-end-line="69" selection-end-column="38" />
-              <folding>
-                <element signature="e#1779#2015#0" expanded="true" />
-                <element signature="e#2014#2015#0" expanded="true" />
-                <element signature="e#2363#2753#0" expanded="true" />
-                <element signature="e#2752#2753#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="settings.gradle" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/settings.gradle">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="15">
-              <caret line="1" column="0" selection-start-line="1" selection-start-column="0" selection-end-line="1" selection-end-column="0" />
+            <state relative-caret-position="-3540">
+              <caret line="47" column="13" selection-start-line="47" selection-start-column="13" selection-end-line="47" selection-end-column="13" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="UnsafeDataAccess.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/libs_graphhopper/src/main/java/com/graphhopper/storage/UnsafeDataAccess.java">
+      <file leaf-file-name="MapActions.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/src/main/java/com/yuly/elaundry/kurir/controller/activity/MapActions.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="255">
-              <caret line="39" column="3" selection-start-line="39" selection-start-column="3" selection-end-line="39" selection-end-column="3" />
+            <state relative-caret-position="6988">
+              <caret line="539" column="11" selection-start-line="539" selection-start-column="11" selection-end-line="539" selection-end-column="11" />
               <folding>
-                <element signature="e#0#8717#0" expanded="false" />
-                <element signature="e#2946#2947#0" expanded="false" />
-                <element signature="e#2996#2997#0" expanded="false" />
-                <element signature="e#6902#6903#0" expanded="false" />
-                <element signature="e#6957#6958#0" expanded="false" />
-                <element signature="e#7022#7023#0" expanded="false" />
-                <element signature="e#7077#7078#0" expanded="false" />
-                <element signature="e#7140#7141#0" expanded="false" />
-                <element signature="e#7197#7198#0" expanded="false" />
-                <element signature="e#7272#7273#0" expanded="false" />
-                <element signature="e#7329#7330#0" expanded="false" />
-                <element signature="e#8034#8035#0" expanded="false" />
-                <element signature="e#8065#8066#0" expanded="false" />
-                <element signature="e#8121#8122#0" expanded="false" />
-                <element signature="e#8181#8182#0" expanded="false" />
-                <element signature="e#8671#8672#0" expanded="false" />
-                <element signature="e#8713#8714#0" expanded="false" />
+                <element signature="e#22625#24245#0" expanded="true" />
+                <element signature="e#22996#23024#0" expanded="true" />
+                <element signature="e#23035#23059#0" expanded="true" />
+                <element signature="e#23117#23728#0" expanded="true" />
+                <element signature="e#23727#23728#0" expanded="true" />
+                <element signature="e#24244#24245#0" expanded="true" />
+                <element signature="e#24286#24513#0" expanded="true" />
+                <element signature="e#24512#24513#0" expanded="true" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="Helper7.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/libs_graphhopper/src/main/java/com/graphhopper/util/Helper7.java">
+      <file leaf-file-name="PetaRuteActions.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/src/main/java/com/yuly/elaundry/kurir/controller/activity/PetaRuteActions.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="570">
-              <caret line="55" column="80" selection-start-line="55" selection-start-column="80" selection-end-line="55" selection-end-column="80" />
-              <folding>
-                <element signature="e#0#2511#0" expanded="false" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="Analytics.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/src/main/java/com/yuly/elaundry/kurir/controller/activity/Analytics.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="60">
-              <caret line="30" column="13" selection-start-line="30" selection-start-column="13" selection-end-line="30" selection-end-column="13" />
-              <folding>
-                <element signature="e#11528#11529#0" expanded="false" />
-                <element signature="e#11563#11564#0" expanded="false" />
-                <element signature="e#11614#11615#0" expanded="false" />
-                <element signature="e#11651#11652#0" expanded="false" />
-                <element signature="e#11702#11703#0" expanded="false" />
-                <element signature="e#11739#11740#0" expanded="false" />
-                <element signature="e#13325#13326#0" expanded="false" />
-                <element signature="e#13391#13392#0" expanded="false" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="HeightTile.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/libs_graphhopper/src/main/java/com/graphhopper/reader/dem/HeightTile.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="75">
-              <caret line="22" column="16" selection-start-line="22" selection-start-column="7" selection-end-line="22" selection-end-column="16" />
-              <folding>
-                <element signature="e#0#5951#0" expanded="false" />
-                <element signature="e#2072#2073#0" expanded="false" />
-                <element signature="e#2120#2121#0" expanded="false" />
-                <element signature="e#2164#2165#0" expanded="false" />
-                <element signature="e#2197#2198#0" expanded="false" />
-                <element signature="e#5903#5904#0" expanded="false" />
-                <element signature="e#5947#5948#0" expanded="false" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="PbfBlobDecoder.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/libs_graphhopper/src/main/java/com/graphhopper/reader/pbf/PbfBlobDecoder.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="30">
-              <caret line="2" column="0" selection-start-line="2" selection-start-column="0" selection-end-line="2" selection-end-column="0" />
+            <state relative-caret-position="7815">
+              <caret line="592" column="9" selection-start-line="592" selection-start-column="9" selection-end-line="592" selection-end-column="9" />
               <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="CariRuteActivity.java" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/app/src/main/java/com/yuly/elaundry/kurir/controller/activity/CariRuteActivity.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="194">
+              <caret line="44" column="13" selection-start-line="44" selection-start-column="13" selection-end-line="44" selection-end-column="13" />
+              <folding>
+                <element signature="imports" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -425,8 +180,8 @@
     <option name="RECENT_TEMPLATES">
       <list>
         <option value="valueResourceFile" />
-        <option value="layoutResourceFile_vertical" />
         <option value="ASClass" />
+        <option value="layoutResourceFile_vertical" />
       </list>
     </option>
   </component>
@@ -2625,7 +2380,7 @@
     </option>
     <option name="modificationStamps">
       <map>
-        <entry key="$PROJECT_DIR$" value="8883224538745" />
+        <entry key="$PROJECT_DIR$" value="8883236462979" />
       </map>
     </option>
     <option name="projectBuildClasspath">
@@ -3463,15 +3218,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/app/src/main/java/com/yuly/elaundry/kurir/model/dijkstra/DijkstraAlogaritm.java" />
-        <option value="$PROJECT_DIR$/app/src/main/java/com/yuly/elaundry/kurir/model/dijkstra/DijkstraAlgorithm.java" />
-        <option value="$PROJECT_DIR$/app/src/main/java/com/yuly/elaundry/kurir/model/dijikstra/Vertex.java" />
-        <option value="$PROJECT_DIR$/app/src/main/java/com/yuly/elaundry/kurir/model/dijikstra/Edge.java" />
-        <option value="$PROJECT_DIR$/app/src/main/java/com/yuly/elaundry/kurir/model/dijikstra/Graph.java" />
-        <option value="$PROJECT_DIR$/app/src/main/java/com/yuly/elaundry/kurir/model/dijikstra/DijkstraAlgorithm.java" />
-        <option value="$PROJECT_DIR$/app/src/main/java/com/yuly/elaundry/kurir/model/dijikstra/Test.java" />
-        <option value="$PROJECT_DIR$/app/src/main/java/com/yuly/elaundry/kurir/controller/activity/PetaActivity.java" />
-        <option value="$PROJECT_DIR$/app/src/main/java/com/yuly/elaundry/kurir/controller/activity/PetaActivity2.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/yuly/elaundry/kurir/controller/activity/PetaActivity3.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/yuly/elaundry/kurir/controller/activity/RuteActivity.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/yuly/elaundry/kurir/model/dijikstra/TestDijkstraAlgorithm.java" />
@@ -3483,7 +3229,6 @@
         <option value="$PROJECT_DIR$/app/src/main/java/com/yuly/elaundry/kurir/model/map/Navigasi.java" />
         <option value="$PROJECT_DIR$/app/src/main/AndroidManifest.xml" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/yuly/elaundry/kurir/controller/activity/MapActivity.java" />
-        <option value="$PROJECT_DIR$/app/src/main/res/layout/peta_navigasi_saya.xml" />
         <option value="$PROJECT_DIR$/app/src/main/res/drawable/ic_search_white_24dp.xml" />
         <option value="$PROJECT_DIR$/app/src/main/res/values/styles.xml" />
         <option value="$PROJECT_DIR$/app/src/main/res/values-v11/styles.xml" />
@@ -3514,6 +3259,16 @@
         <option value="$PROJECT_DIR$/app/build.gradle" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/yuly/elaundry/kurir/controller/activity/PetaActions.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/yuly/elaundry/kurir/model/util/Variable.java" />
+        <option value="$PROJECT_DIR$/app/src/main/java/com/yuly/elaundry/kurir/controller/activity/PetaRuteActions.java" />
+        <option value="$PROJECT_DIR$/app/src/main/res/layout/peta_navigasi_saya.xml" />
+        <option value="$PROJECT_DIR$/app/src/main/res/drawable/ic_brightness_low_white_24dp.xml" />
+        <option value="$PROJECT_DIR$/app/src/main/res/layout/profile_layout.xml" />
+        <option value="$PROJECT_DIR$/app/src/main/res/layout/contact_item.xml" />
+        <option value="$PROJECT_DIR$/app/src/main/res/layout/item_divider.xml" />
+        <option value="$PROJECT_DIR$/app/src/main/res/layout/content_profile.xml" />
+        <option value="$PROJECT_DIR$/app/src/main/res/drawable/ic_keyboard_arrow_down_white_24dp.xml" />
+        <option value="$PROJECT_DIR$/app/src/main/java/com/yuly/elaundry/kurir/controller/activity/MapActions.java" />
+        <option value="$PROJECT_DIR$/app/src/main/res/layout/map_nav_instruction_list.xml" />
       </list>
     </option>
   </component>
@@ -3548,233 +3303,8 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="PackagesPane" />
-      <pane id="AndroidView">
-        <subPane>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="elaundry-kurir" />
-              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Gradle Scripts" />
-              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidBuildScriptsGroupNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="elaundry-kurir" />
-              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidViewProjectNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="elaundry-kurir" />
-              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="app" />
-              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidModuleNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="elaundry-kurir" />
-              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="app" />
-              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidModuleNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="java" />
-              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidSourceTypeNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="elaundry-kurir" />
-              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="app" />
-              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidModuleNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="java" />
-              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidSourceTypeNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="kurir" />
-              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidPsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="elaundry-kurir" />
-              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="app" />
-              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidModuleNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="java" />
-              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidSourceTypeNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="kurir" />
-              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidPsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="model" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="util" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="elaundry-kurir" />
-              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="app" />
-              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidModuleNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="java" />
-              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidSourceTypeNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="kurir" />
-              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidPsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="model" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="elaundry-kurir" />
-              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="app" />
-              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidModuleNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="java" />
-              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidSourceTypeNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="kurir" />
-              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidPsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="controller" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="elaundry-kurir" />
-              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="app" />
-              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidModuleNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="java" />
-              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidSourceTypeNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="kurir" />
-              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidPsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="controller" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="app" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="elaundry-kurir" />
-              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="app" />
-              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidModuleNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="java" />
-              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidSourceTypeNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="kurir" />
-              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidPsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="controller" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="adapter" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="elaundry-kurir" />
-              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="app" />
-              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidModuleNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="java" />
-              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidSourceTypeNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="kurir" />
-              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidPsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="controller" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="activity" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="elaundry-kurir" />
-              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="app" />
-              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidModuleNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="manifests" />
-              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidManifestsGroupNode" />
-            </PATH_ELEMENT>
-          </PATH>
-        </subPane>
-      </pane>
-      <pane id="Scratches" />
       <pane id="ProjectPane" />
+      <pane id="PackagesPane" />
       <pane id="Scope">
         <subPane subId="Project Files">
           <PATH>
@@ -3827,6 +3357,161 @@
           </PATH>
         </subPane>
       </pane>
+      <pane id="AndroidView">
+        <subPane>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="elaundry-kurir" />
+              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Gradle Scripts" />
+              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidBuildScriptsGroupNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="elaundry-kurir" />
+              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidViewProjectNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="elaundry-kurir" />
+              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="app" />
+              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidModuleNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="res" />
+              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidResFolderNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="elaundry-kurir" />
+              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="app" />
+              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidModuleNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="java" />
+              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidSourceTypeNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="elaundry-kurir" />
+              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="app" />
+              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidModuleNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="java" />
+              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidSourceTypeNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="kurir" />
+              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidPsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="elaundry-kurir" />
+              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="app" />
+              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidModuleNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="java" />
+              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidSourceTypeNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="kurir" />
+              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidPsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="controller" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="fragment" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="elaundry-kurir" />
+              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="app" />
+              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidModuleNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="java" />
+              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidSourceTypeNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="kurir" />
+              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidPsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="controller" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="elaundry-kurir" />
+              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="app" />
+              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidModuleNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="java" />
+              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidSourceTypeNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="kurir" />
+              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidPsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="controller" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="activity" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="elaundry-kurir" />
+              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="app" />
+              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidModuleNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="manifests" />
+              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidManifestsGroupNode" />
+            </PATH_ELEMENT>
+          </PATH>
+        </subPane>
+      </pane>
+      <pane id="Scratches" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -3836,10 +3521,10 @@
     <property name="android.project.structure.last.selected" value="libs_graphhopper" />
     <property name="android.project.structure.proportion" value="0.15" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$/libs/java-rt-jar-stubs-1.5.0.jar" />
-    <property name="device.picker.selection" value="192.168.81.101:5555" />
+    <property name="device.picker.selection" value="192.168.81.102:5555" />
     <property name="UI_DESIGNER_EDITOR_MODE.NlPaletteManager-NlPreviewForm.SHOW" value="false" />
-    <property name="UI_DESIGNER_EDITOR_MODE.NlPropertiesWindowManager-NlEditorPanel.WIDTH" value="164" />
-    <property name="UI_DESIGNER_EDITOR_MODE.NlPaletteManager-NlEditorPanel.WIDTH" value="284" />
+    <property name="UI_DESIGNER_EDITOR_MODE.NlPropertiesWindowManager-NlEditorPanel.WIDTH" value="243" />
+    <property name="UI_DESIGNER_EDITOR_MODE.NlPaletteManager-NlEditorPanel.WIDTH" value="180" />
     <property name="FileHistory.git4idea.history.GitHistoryProvider_flatWidth0" value="67" />
     <property name="FileHistory.git4idea.history.GitHistoryProvider_flatOrder0" value="0" />
     <property name="FileHistory.git4idea.history.GitHistoryProvider_flatWidth1" value="85" />
@@ -3856,7 +3541,7 @@
     <property name="FileHistory.git4idea.history.GitHistoryProvider_treeOrder2" value="2" />
     <property name="FileHistory.git4idea.history.GitHistoryProvider_treeWidth3" value="962" />
     <property name="FileHistory.git4idea.history.GitHistoryProvider_treeOrder3" value="3" />
-    <property name="VectorAssetImportPath" value="$PROJECT_DIR$/../.." />
+    <property name="VectorAssetImportPath" value="$PROJECT_DIR$/../../.." />
     <property name="ExportApk.ApkPath" value="$PROJECT_DIR$/app" />
     <property name="ExportApk.Flavors" value="" />
     <property name="ExportApk.BuildType" value="release" />
@@ -4484,29 +4169,30 @@
     <frame x="53" y="24" width="1313" height="744" extended-state="6" />
     <editor active="false" />
     <layout>
-      <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Nl-Palette" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3951613" sideWeight="0.49092343" order="13" side_tool="false" content_ui="tabs" />
       <window_info id="Build Variants" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="true" content_ui="tabs" />
+      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.21129033" sideWeight="0.5082873" order="8" side_tool="true" content_ui="tabs" />
+      <window_info id="Android Monitor" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.009677419" sideWeight="0.49092343" order="6" side_tool="false" content_ui="tabs" />
+      <window_info id="Properties" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
+      <window_info id="Capture Tool" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
+      <window_info id="Designer" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Android Model" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.24546172" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.7652027" sideWeight="0.49723756" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3951613" sideWeight="0.49092343" order="13" side_tool="false" content_ui="tabs" />
       <window_info id="Palette&#9;" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Image Layers" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Capture Analysis" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
-      <window_info id="Event Log" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.21129033" sideWeight="0.50513023" order="8" side_tool="true" content_ui="tabs" />
-      <window_info id="Android Monitor" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.22580644" sideWeight="0.49092343" order="6" side_tool="false" content_ui="tabs" />
+      <window_info id="Preview" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.31451613" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.21129033" sideWeight="0.49486977" order="9" side_tool="false" content_ui="tabs" />
-      <window_info id="Properties" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
+      <window_info id="Version Control" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.5419355" sideWeight="0.49171272" order="9" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32903227" sideWeight="0.5" order="12" side_tool="false" content_ui="tabs" />
       <window_info id="Captures" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.24940805" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Capture Tool" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Gradle Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.58709675" sideWeight="0.50907654" order="10" side_tool="true" content_ui="tabs" />
-      <window_info id="Designer" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.34490922" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.2549329" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Gradle" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
-      <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Android Model" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.24546172" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Theme Preview" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
-      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.7652027" sideWeight="0.49723756" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="5" side_tool="true" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
@@ -4516,7 +4202,6 @@
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.24940805" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
-      <window_info id="Preview" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32903227" sideWeight="0.49723756" order="1" side_tool="false" content_ui="tabs" />
     </layout>
     <layout-to-restore>
@@ -4616,118 +4301,6 @@
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/yuly/elaundry/kurir/controller/activity/MapActions.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="75">
-          <caret line="36" column="13" selection-start-line="36" selection-start-column="13" selection-end-line="36" selection-end-column="13" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/yuly/elaundry/kurir/controller/activity/MapActivity.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-537">
-          <caret line="127" column="0" selection-start-line="127" selection-start-column="0" selection-end-line="127" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/yuly/elaundry/kurir/controller/activity/PetaActivity2.java" />
-    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/activity_map_baru.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="90">
-          <caret line="6" column="44" selection-start-line="6" selection-start-column="44" selection-end-line="6" selection-end-column="44" />
-        </state>
-      </provider>
-      <provider editor-type-id="android-designer2">
-        <state />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/activity_peta_baru.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="90">
-          <caret line="6" column="39" selection-start-line="6" selection-start-column="32" selection-end-line="6" selection-end-column="39" />
-          <folding />
-        </state>
-      </provider>
-      <provider editor-type-id="android-designer2">
-        <state />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/yuly/elaundry/kurir/controller/activity/PetaActivity.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="6195">
-          <caret line="549" column="0" selection-start-line="549" selection-start-column="0" selection-end-line="549" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/yuly/elaundry/kurir/controller/activity/RuteActivity.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="60">
-          <caret line="42" column="13" selection-start-line="42" selection-start-column="13" selection-end-line="42" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/yuly/elaundry/kurir/model/database/RouteDbHelperBackup.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/peta_navigasi_saya.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-613">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-      <provider editor-type-id="android-designer2">
-        <state />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/fragment_pemesanan.xml">
-      <provider editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-      <provider selected="true" editor-type-id="android-designer2">
-        <state />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/res/drawable/menu/menu_main.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="60">
-          <caret line="4" column="52" selection-start-line="4" selection-start-column="52" selection-end-line="4" selection-end-column="52" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/res/drawable/ic_add_shopping_cart_24dp.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/activity_main.xml">
-      <provider editor-type-id="text-editor">
-        <state relative-caret-position="75">
-          <caret line="5" column="52" selection-start-line="5" selection-start-column="52" selection-end-line="5" selection-end-column="52" />
-        </state>
-      </provider>
-      <provider selected="true" editor-type-id="android-designer2">
-        <state />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/yuly/elaundry/kurir/controller/app/AppConfig.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="225">
-          <caret line="15" column="112" selection-start-line="15" selection-start-column="112" selection-end-line="15" selection-end-column="112" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/java/com/yuly/elaundry/kurir/controller/activity/MainActivity.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="216">
@@ -4736,13 +4309,13 @@
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/res/menu/activity_main_drawer.xml">
+      <provider selected="true" editor-type-id="android-designer2">
+        <state />
+      </provider>
       <provider editor-type-id="text-editor">
         <state relative-caret-position="160">
           <caret line="11" column="18" selection-start-line="11" selection-start-column="18" selection-end-line="11" selection-end-column="18" />
         </state>
-      </provider>
-      <provider selected="true" editor-type-id="android-designer2">
-        <state />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/java/com/yuly/elaundry/kurir/controller/fragment/LaundryPemesananFragment.java">
@@ -4760,14 +4333,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/yuly/elaundry/kurir/controller/activity/PetaRuteActions.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="75">
-          <caret line="37" column="13" selection-start-line="37" selection-start-column="13" selection-end-line="37" selection-end-column="13" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/java/com/yuly/elaundry/kurir/model/peta/PetaRuteHandler.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-6227">
@@ -4780,14 +4345,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="75">
           <caret line="491" column="52" selection-start-line="491" selection-start-column="24" selection-end-line="491" selection-end-column="52" />
-          <folding>
-            <element signature="imports" expanded="false" />
-            <element signature="e#13361#13369#0" expanded="false" />
-            <element signature="e#14319#14327#0" expanded="false" />
-            <element signature="e#15344#15352#0" expanded="false" />
-            <element signature="e#17060#17068#0" expanded="false" />
-            <element signature="e#18493#18501#0" expanded="false" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -4819,75 +4376,24 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/libs_graphhopper/src/main/java/com/graphhopper/GHRequest.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="326">
-          <caret line="262" column="0" selection-start-line="262" selection-start-column="0" selection-end-line="262" selection-end-column="0" />
-          <folding>
-            <element signature="imports" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
+    <entry file="file://$PROJECT_DIR$/libs_graphhopper/src/main/java/com/graphhopper/GHRequest.java" />
     <entry file="file://$PROJECT_DIR$/app/src/main/AndroidManifest.xml">
+      <provider editor-type-id="android-manifest">
+        <state />
+      </provider>
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="205">
           <caret line="139" column="33" selection-start-line="139" selection-start-column="28" selection-end-line="139" selection-end-column="33" />
           <folding />
         </state>
       </provider>
-      <provider editor-type-id="android-manifest">
-        <state />
-      </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/yuly/elaundry/kurir/controller/activity/CariRuteActivity.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="269">
-          <caret line="31" column="54" selection-start-line="31" selection-start-column="54" selection-end-line="31" selection-end-column="54" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/libs_graphhopper/src/main/java/com/graphhopper/coll/IntIntBinHeap.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="120">
-          <caret line="19" column="13" selection-start-line="19" selection-start-column="13" selection-end-line="19" selection-end-column="13" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
+    <entry file="file://$PROJECT_DIR$/libs_graphhopper/src/main/java/com/graphhopper/coll/IntIntBinHeap.java" />
     <entry file="file://$PROJECT_DIR$/libs_graphhopper/src/main/java/com/graphhopper/TLongIntHashMap.java" />
-    <entry file="file://$PROJECT_DIR$/libs_graphhopper/rules.gradle">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/libs_graphhopper/build.gradle">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="381">
-          <caret line="42" column="4" selection-start-line="42" selection-start-column="4" selection-end-line="42" selection-end-column="4" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/libs_graphhopper/src/main/java/com/graphhopper/coll/GHLongIntBTree.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="105">
-          <caret line="23" column="7" selection-start-line="23" selection-start-column="7" selection-end-line="23" selection-end-column="16" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/libs_graphhopper/src/main/java/com/graphhopper/reader/OSMReader.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="105">
-          <caret line="42" column="30" selection-start-line="42" selection-start-column="30" selection-end-line="42" selection-end-column="30" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
+    <entry file="file://$PROJECT_DIR$/libs_graphhopper/rules.gradle" />
+    <entry file="file://$PROJECT_DIR$/libs_graphhopper/build.gradle" />
+    <entry file="file://$PROJECT_DIR$/libs_graphhopper/src/main/java/com/graphhopper/coll/GHLongIntBTree.java" />
+    <entry file="file://$PROJECT_DIR$/libs_graphhopper/src/main/java/com/graphhopper/reader/OSMReader.java" />
     <entry file="file://$PROJECT_DIR$/libs_google_volley/build.gradle">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
@@ -4896,101 +4402,19 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/libs_graphhopper/bintray.gradle">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-924">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/libs_graphhopper/src/main/java/com/graphhopper/coll/BigLongIntMap.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="60">
-          <caret line="20" column="18" selection-start-line="20" selection-start-column="18" selection-end-line="20" selection-end-column="18" />
-          <folding>
-            <element signature="e#0#3322#0" expanded="false" />
-            <element signature="e#3190#3191#0" expanded="false" />
-            <element signature="e#3264#3265#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/libs_graphhopper/src/main/java/com/graphhopper/reader/pbf/PbfBlobDecoder.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="30">
-          <caret line="2" column="0" selection-start-line="2" selection-start-column="0" selection-end-line="2" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/libs_graphhopper/src/main/java/com/graphhopper/reader/dem/HeightTile.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="75">
-          <caret line="22" column="16" selection-start-line="22" selection-start-column="7" selection-end-line="22" selection-end-column="16" />
-          <folding>
-            <element signature="e#0#5951#0" expanded="false" />
-            <element signature="e#2072#2073#0" expanded="false" />
-            <element signature="e#2120#2121#0" expanded="false" />
-            <element signature="e#2164#2165#0" expanded="false" />
-            <element signature="e#2197#2198#0" expanded="false" />
-            <element signature="e#5903#5904#0" expanded="false" />
-            <element signature="e#5947#5948#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/libs_graphhopper/src/main/java/com/graphhopper/reader/dem/CGIARProvider.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="282">
-          <caret line="56" column="19" selection-start-line="56" selection-start-column="19" selection-end-line="56" selection-end-column="19" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/libs_graphhopper/src/main/java/com/graphhopper/storage/UnsafeDataAccess.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="255">
-          <caret line="39" column="3" selection-start-line="39" selection-start-column="3" selection-end-line="39" selection-end-column="3" />
-          <folding>
-            <element signature="e#0#8717#0" expanded="false" />
-            <element signature="e#2946#2947#0" expanded="false" />
-            <element signature="e#2996#2997#0" expanded="false" />
-            <element signature="e#6902#6903#0" expanded="false" />
-            <element signature="e#6957#6958#0" expanded="false" />
-            <element signature="e#7022#7023#0" expanded="false" />
-            <element signature="e#7077#7078#0" expanded="false" />
-            <element signature="e#7140#7141#0" expanded="false" />
-            <element signature="e#7197#7198#0" expanded="false" />
-            <element signature="e#7272#7273#0" expanded="false" />
-            <element signature="e#7329#7330#0" expanded="false" />
-            <element signature="e#8034#8035#0" expanded="false" />
-            <element signature="e#8065#8066#0" expanded="false" />
-            <element signature="e#8121#8122#0" expanded="false" />
-            <element signature="e#8181#8182#0" expanded="false" />
-            <element signature="e#8671#8672#0" expanded="false" />
-            <element signature="e#8713#8714#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/libs_graphhopper/src/main/java/com/graphhopper/util/Helper7.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="570">
-          <caret line="55" column="80" selection-start-line="55" selection-start-column="80" selection-end-line="55" selection-end-column="80" />
-          <folding>
-            <element signature="e#0#2511#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
+    <entry file="file://$PROJECT_DIR$/libs_graphhopper/bintray.gradle" />
+    <entry file="file://$PROJECT_DIR$/libs_graphhopper/src/main/java/com/graphhopper/coll/BigLongIntMap.java" />
+    <entry file="file://$PROJECT_DIR$/libs_graphhopper/src/main/java/com/graphhopper/reader/pbf/PbfBlobDecoder.java" />
+    <entry file="file://$PROJECT_DIR$/libs_graphhopper/src/main/java/com/graphhopper/reader/dem/HeightTile.java" />
+    <entry file="file://$PROJECT_DIR$/libs_graphhopper/src/main/java/com/graphhopper/reader/dem/CGIARProvider.java" />
+    <entry file="file://$PROJECT_DIR$/libs_graphhopper/src/main/java/com/graphhopper/storage/UnsafeDataAccess.java" />
+    <entry file="file://$PROJECT_DIR$/libs_graphhopper/src/main/java/com/graphhopper/util/Helper7.java" />
     <entry file="file://$PROJECT_DIR$/app/src/main/java/com/yuly/elaundry/kurir/controller/activity/Analytics.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="60">
           <caret line="30" column="13" selection-start-line="30" selection-start-column="13" selection-end-line="30" selection-end-column="13" />
           <folding>
+            <element signature="imports" expanded="false" />
             <element signature="e#11528#11529#0" expanded="false" />
             <element signature="e#11563#11564#0" expanded="false" />
             <element signature="e#11614#11615#0" expanded="false" />
@@ -5013,7 +4437,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/app/build.gradle">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="411">
+        <state relative-caret-position="1215">
           <caret line="81" column="3" selection-start-line="81" selection-start-column="3" selection-end-line="81" selection-end-column="3" />
           <folding />
         </state>
@@ -5021,29 +4445,304 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/java/com/yuly/elaundry/kurir/controller/activity/PetaActions.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="132">
+        <state relative-caret-position="3105">
           <caret line="270" column="42" selection-start-line="270" selection-start-column="42" selection-end-line="270" selection-end-column="42" />
-          <folding />
+          <folding>
+            <element signature="imports" expanded="false" />
+            <element signature="e#16637#16638#0" expanded="false" />
+            <element signature="e#16706#16707#0" expanded="false" />
+            <element signature="e#43531#43532#0" expanded="false" />
+            <element signature="e#43565#43566#0" expanded="false" />
+            <element signature="e#43701#43702#0" expanded="false" />
+            <element signature="e#43747#43748#0" expanded="false" />
+          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/java/com/yuly/elaundry/kurir/model/util/Variable.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="57">
+        <state relative-caret-position="2295">
           <caret line="172" column="27" selection-start-line="172" selection-start-column="27" selection-end-line="172" selection-end-column="30" />
-          <folding />
+          <folding>
+            <element signature="imports" expanded="false" />
+            <element signature="e#6008#6009#0" expanded="false" />
+            <element signature="e#6041#6042#0" expanded="false" />
+            <element signature="e#6078#6079#0" expanded="false" />
+            <element signature="e#6111#6112#0" expanded="false" />
+            <element signature="e#6163#6164#0" expanded="false" />
+            <element signature="e#6207#6208#0" expanded="false" />
+            <element signature="e#6243#6244#0" expanded="false" />
+            <element signature="e#6275#6276#0" expanded="false" />
+            <element signature="e#6325#6326#0" expanded="false" />
+            <element signature="e#6367#6368#0" expanded="false" />
+            <element signature="e#6411#6412#0" expanded="false" />
+            <element signature="e#6451#6452#0" expanded="false" />
+            <element signature="e#6617#6618#0" expanded="false" />
+            <element signature="e#6655#6656#0" expanded="false" />
+            <element signature="e#6811#6812#0" expanded="false" />
+            <element signature="e#6846#6847#0" expanded="false" />
+            <element signature="e#6903#6904#0" expanded="false" />
+            <element signature="e#6951#6952#0" expanded="false" />
+            <element signature="e#7065#7066#0" expanded="false" />
+            <element signature="e#7123#7124#0" expanded="false" />
+            <element signature="e#7159#7160#0" expanded="false" />
+            <element signature="e#7194#7195#0" expanded="false" />
+            <element signature="e#7247#7248#0" expanded="false" />
+            <element signature="e#7295#7296#0" expanded="false" />
+            <element signature="e#7331#7332#0" expanded="false" />
+            <element signature="e#7366#7367#0" expanded="false" />
+            <element signature="e#7419#7420#0" expanded="false" />
+            <element signature="e#7467#7468#0" expanded="false" />
+            <element signature="e#7757#7758#0" expanded="false" />
+            <element signature="e#7793#7794#0" expanded="false" />
+            <element signature="e#7848#7849#0" expanded="false" />
+            <element signature="e#7898#7899#0" expanded="false" />
+            <element signature="e#7938#7939#0" expanded="false" />
+            <element signature="e#7973#7974#0" expanded="false" />
+            <element signature="e#8030#8031#0" expanded="false" />
+            <element signature="e#8078#8079#0" expanded="false" />
+            <element signature="e#8117#8118#0" expanded="false" />
+            <element signature="e#8152#8153#0" expanded="false" />
+            <element signature="e#8199#8200#0" expanded="false" />
+            <element signature="e#8242#8243#0" expanded="false" />
+            <element signature="e#8287#8288#0" expanded="false" />
+            <element signature="e#8327#8328#0" expanded="false" />
+            <element signature="e#8383#8384#0" expanded="false" />
+            <element signature="e#8431#8432#0" expanded="false" />
+            <element signature="e#8465#8466#0" expanded="false" />
+            <element signature="e#8495#8496#0" expanded="false" />
+            <element signature="e#8541#8542#0" expanded="false" />
+            <element signature="e#8579#8580#0" expanded="false" />
+            <element signature="e#8614#8615#0" expanded="false" />
+            <element signature="e#8647#8648#0" expanded="false" />
+            <element signature="e#8685#8686#0" expanded="false" />
+            <element signature="e#8719#8720#0" expanded="false" />
+            <element signature="e#8755#8756#0" expanded="false" />
+            <element signature="e#8801#8802#0" expanded="false" />
+            <element signature="e#8851#8852#0" expanded="false" />
+            <element signature="e#8895#8896#0" expanded="false" />
+            <element signature="e#8934#8935#0" expanded="false" />
+            <element signature="e#8971#8972#0" expanded="false" />
+            <element signature="e#9029#9030#0" expanded="false" />
+            <element signature="e#9081#9082#0" expanded="false" />
+            <element signature="e#9116#9117#0" expanded="false" />
+            <element signature="e#9146#9147#0" expanded="false" />
+            <element signature="e#9193#9194#0" expanded="false" />
+            <element signature="e#9231#9232#0" expanded="false" />
+            <element signature="e#9275#9276#0" expanded="false" />
+            <element signature="e#9315#9316#0" expanded="false" />
+            <element signature="e#9481#9482#0" expanded="false" />
+            <element signature="e#9513#9514#0" expanded="false" />
+            <element signature="e#9551#9552#0" expanded="false" />
+            <element signature="e#9588#9589#0" expanded="false" />
+            <element signature="e#9645#9646#0" expanded="false" />
+            <element signature="e#9697#9698#0" expanded="false" />
+            <element signature="e#9742#9743#0" expanded="false" />
+            <element signature="e#9786#9787#0" expanded="false" />
+            <element signature="e#9965#9966#0" expanded="false" />
+            <element signature="e#10003#10004#0" expanded="false" />
+            <element signature="e#10397#10398#0" expanded="false" />
+            <element signature="e#10433#10434#0" expanded="false" />
+            <element signature="e#10491#10492#0" expanded="false" />
+            <element signature="e#10541#10542#0" expanded="false" />
+            <element signature="e#10695#10696#0" expanded="false" />
+            <element signature="e#10743#10744#0" expanded="false" />
+            <element signature="e#11055#11056#0" expanded="false" />
+            <element signature="e#11102#11103#0" expanded="false" />
+            <element signature="e#11157#11158#0" expanded="false" />
+            <element signature="e#11199#11200#0" expanded="false" />
+            <element signature="e#11538#11539#0" expanded="false" />
+            <element signature="e#11581#11582#0" expanded="false" />
+            <element signature="e#11636#11637#0" expanded="false" />
+            <element signature="e#11683#11684#0" expanded="false" />
+            <element signature="e#12097#12098#0" expanded="false" />
+            <element signature="e#12129#12130#0" expanded="false" />
+            <element signature="e#12184#12185#0" expanded="false" />
+            <element signature="e#12226#12227#0" expanded="false" />
+            <element signature="e#12375#12376#0" expanded="false" />
+            <element signature="e#12416#12417#0" expanded="false" />
+            <element signature="e#19205#19206#0" expanded="false" />
+            <element signature="e#19276#19277#0" expanded="false" />
+          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/java/com/yuly/elaundry/kurir/controller/activity/SettingsActivity.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-291">
-          <caret line="69" column="38" selection-start-line="69" selection-start-column="38" selection-end-line="69" selection-end-column="38" />
+        <state relative-caret-position="330">
+          <caret line="91" column="79" selection-start-line="91" selection-start-column="79" selection-end-line="91" selection-end-column="79" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/peta_navigasi_saya.xml">
+      <provider selected="true" editor-type-id="android-designer2">
+        <state />
+      </provider>
+      <provider editor-type-id="text-editor">
+        <state relative-caret-position="870">
+          <caret line="58" column="4" selection-start-line="58" selection-start-column="4" selection-end-line="58" selection-end-column="17" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/map_nav_instruction.xml">
+      <provider selected="true" editor-type-id="android-designer2">
+        <state />
+      </provider>
+      <provider editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/res/drawable/ic_brightness_low_white_24dp.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/item_divider.xml">
+      <provider editor-type-id="android-designer2">
+        <state />
+      </provider>
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="60">
+          <caret line="4" column="37" selection-start-line="4" selection-start-column="37" selection-end-line="4" selection-end-column="37" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/res/drawable/ic_keyboard_arrow_down_white_24dp.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/profile_layout.xml">
+      <provider selected="true" editor-type-id="android-designer2">
+        <state />
+      </provider>
+      <provider editor-type-id="text-editor">
+        <state relative-caret-position="505">
+          <caret line="55" column="50" selection-start-line="55" selection-start-column="50" selection-end-line="55" selection-end-column="50" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/content_profile.xml">
+      <provider editor-type-id="android-designer2">
+        <state />
+      </provider>
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="259">
+          <caret line="61" column="18" selection-start-line="61" selection-start-column="18" selection-end-line="61" selection-end-column="18" />
           <folding>
-            <element signature="e#1779#2015#0" expanded="true" />
-            <element signature="e#2014#2015#0" expanded="true" />
-            <element signature="e#2363#2753#0" expanded="true" />
-            <element signature="e#2752#2753#0" expanded="true" />
+            <element signature="e#2898#2933#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/res/menu/menu_profile.xml">
+      <provider editor-type-id="android-designer2">
+        <state />
+      </provider>
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/contact_item.xml">
+      <provider selected="true" editor-type-id="android-designer2">
+        <state />
+      </provider>
+      <provider editor-type-id="text-editor">
+        <state relative-caret-position="193">
+          <caret line="25" column="42" selection-start-line="25" selection-start-column="42" selection-end-line="25" selection-end-column="42" />
+          <folding>
+            <element signature="e#526#561#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/fragment_pemesanan.xml">
+      <provider selected="true" editor-type-id="android-designer2">
+        <state />
+      </provider>
+      <provider editor-type-id="text-editor">
+        <state relative-caret-position="250">
+          <caret line="93" column="0" selection-start-line="93" selection-start-column="0" selection-end-line="106" selection-end-column="50" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/yuly/elaundry/kurir/controller/activity/MapActions.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="6988">
+          <caret line="539" column="11" selection-start-line="539" selection-start-column="11" selection-end-line="539" selection-end-column="11" />
+          <folding>
+            <element signature="e#22625#24245#0" expanded="true" />
+            <element signature="e#22996#23024#0" expanded="true" />
+            <element signature="e#23035#23059#0" expanded="true" />
+            <element signature="e#23117#23728#0" expanded="true" />
+            <element signature="e#23727#23728#0" expanded="true" />
+            <element signature="e#24244#24245#0" expanded="true" />
+            <element signature="e#24286#24513#0" expanded="true" />
+            <element signature="e#24512#24513#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/map_nav_instruction_item.xml">
+      <provider selected="true" editor-type-id="android-designer2">
+        <state />
+      </provider>
+      <provider editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/map_nav_instruction_list.xml">
+      <provider selected="true" editor-type-id="android-designer2">
+        <state />
+      </provider>
+      <provider editor-type-id="text-editor">
+        <state relative-caret-position="179">
+          <caret line="48" column="68" selection-start-line="48" selection-start-column="68" selection-end-line="48" selection-end-column="68" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/yuly/elaundry/kurir/controller/activity/MapActivity.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-3540">
+          <caret line="47" column="13" selection-start-line="47" selection-start-column="13" selection-end-line="47" selection-end-column="13" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/yuly/elaundry/kurir/controller/activity/PetaRuteActions.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="7815">
+          <caret line="592" column="9" selection-start-line="592" selection-start-column="9" selection-end-line="592" selection-end-column="9" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/yuly/elaundry/kurir/controller/activity/CariRuteActivity.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="194">
+          <caret line="44" column="13" selection-start-line="44" selection-start-column="13" selection-end-line="44" selection-end-column="13" />
+          <folding>
+            <element signature="imports" expanded="true" />
           </folding>
         </state>
       </provider>
