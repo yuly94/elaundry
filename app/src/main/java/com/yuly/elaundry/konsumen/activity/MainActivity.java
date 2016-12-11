@@ -57,6 +57,8 @@ public class MainActivity extends AppCompatActivity   implements NavigationView.
 	private CharSequence mTitle;
 	private String[] navMenuTitles;
 	private ImageView myNamaHuruf;
+	private TextView txtName, txtEmail;
+	private TextDrawable txDrawable;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -80,7 +82,7 @@ public class MainActivity extends AppCompatActivity   implements NavigationView.
 			logOutUser();
 		} else {
 
-		myNamaHuruf = (ImageView) findViewById(R.id.draw_nama);
+
 
 		//TypedArray navMenuIcons = getResources().obtainTypedArray(R.array.nav_drawer_icons);
 
@@ -103,6 +105,8 @@ public class MainActivity extends AppCompatActivity   implements NavigationView.
 
 		NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
 		navigationView.setNavigationItemSelectedListener(this);
+
+		View header=navigationView.getHeaderView(0);
 
 		Toolbar mToolbar = (Toolbar) findViewById(R.id.toolbar);
 
@@ -139,8 +143,9 @@ public class MainActivity extends AppCompatActivity   implements NavigationView.
 			fragmentSatu();
 		}
 
-		TextView txtName = (TextView) findViewById(R.id.text_nama);
-		TextView txtEmail = (TextView) findViewById(R.id.text_email);
+		txtName = (TextView) header.findViewById(R.id.text_nama);
+		txtEmail = (TextView) header.findViewById(R.id.text_email);
+		myNamaHuruf = (ImageView) header.findViewById(R.id.draw_nama);
 
 		// Progress dialog
 		//ProgressDialog pDialog = new ProgressDialog(this);
@@ -170,11 +175,11 @@ public class MainActivity extends AppCompatActivity   implements NavigationView.
 					String letter = String.valueOf(nama.charAt(0));
 
 					// Create a new TextDrawable for our image's background
-					TextDrawable drawable = TextDrawable.builder()
+					txDrawable = TextDrawable.builder()
 							.buildRound(letter, generator.getRandomColor());
 
 					if (myNamaHuruf != null) {
-						myNamaHuruf.setImageDrawable(drawable);
+						myNamaHuruf.setImageDrawable(txDrawable);
 					}
 				}
 			} else {
