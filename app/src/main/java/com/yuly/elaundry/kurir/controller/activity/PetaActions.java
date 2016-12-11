@@ -268,7 +268,7 @@ public class PetaActions implements NavigatorListener, PetaHandlerListener {
         List<Lokasi> listLokasi = db_rute.getAllLokasi();
 
       //  for(Lokasi daftarLokasi : listLokasi) {
-        for(int i=0; i < (listLokasi.size()) ;i++){
+        for(int i=1; i < listLokasi.size() ;i++){
 
            Log.d("Jalur id :",
                    String.valueOf(listLokasi.get(i).getId()));
