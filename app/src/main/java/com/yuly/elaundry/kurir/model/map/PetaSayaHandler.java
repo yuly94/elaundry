@@ -303,6 +303,7 @@ public class PetaSayaHandler {
             protected Path doInBackground(Void... v) {
                 try {
                     GraphHopper tmpHopp = new GraphHopper().forMobile();
+                    tmpHopp.setCHWeighting(Variable.getVariable().getWeighting());
                     tmpHopp.load(new File(mapsFolder, currentArea).getAbsolutePath());
                     hopper = tmpHopp;
                 } catch (Exception e) {

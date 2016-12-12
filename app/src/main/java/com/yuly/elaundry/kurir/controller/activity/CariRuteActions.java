@@ -265,19 +265,26 @@ public class CariRuteActions implements NavigatorListener, PetaHandlerListener {
 
         hapusSemuaPath();
 
+        CariRuteHandler.getPetaHandler().hapusPath();
+
         List<Lokasi> listLokasi = db_rute.getAllLokasi();
 
       //  for(Lokasi daftarLokasi : listLokasi) {
-        for(int i=1; i < listLokasi.size() ;i++){
+        for(int i=0; i < (listLokasi.size()-1) ;i++){
 
            Log.d("Jalur id :",
                    String.valueOf(listLokasi.get(i).getId()));
+
+            Log.d("Nilai I :",
+                    String.valueOf(i));
 
             // Lokasi urutan = db_rute.getPath(dariJarak);
             Lokasi lastPath = db_rute.getLastPath();
 
             int dariJarak = (lastPath.getTujuan() < 1) ? 1 : lastPath.getTujuan();
 
+            Log.d("Next Path :",
+                    String.valueOf(dariJarak));
 
             Log.d("dari jarak", String.valueOf(dariJarak));
 
@@ -318,6 +325,11 @@ public class CariRuteActions implements NavigatorListener, PetaHandlerListener {
 
 
 
+            if (listLokasi.get(i).getId() == 1){
+                long id_01 = db_rute.deleteJarakB(1);
+                // Writing Contacts to log
+                Log.d("Delete : ", String.valueOf(id_01));
+            }
 
             long id_AB = db_rute.deleteJarakAB(urutan.getTujuan(),urutan.getDari());
             // Writing Contacts to log

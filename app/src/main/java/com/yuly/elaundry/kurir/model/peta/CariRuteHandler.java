@@ -301,6 +301,7 @@ public class CariRuteHandler {
             protected Path doInBackground(Void... v) {
                 try {
                     GraphHopper tmpHopp = new GraphHopper().forMobile();
+                    tmpHopp.setCHWeighting(Variable.getVariable().getWeighting());
                     tmpHopp.load(new File(mapsFolder, currentArea).getAbsolutePath());
                     hopper = tmpHopp;
                 } catch (Exception e) {
@@ -400,6 +401,10 @@ public class CariRuteHandler {
     }
 
 
+    public void hapusPath(){
+
+      //  mapView.getLayerManager().getLayers().remove(polylinePath);
+    }
 
     /**
      * calculate a path: start to end
@@ -442,15 +447,18 @@ public class CariRuteHandler {
             protected void onPostExecute(GHResponse resp) {
                 if (!resp.hasErrors()) {
                     polylinePath = createPolyline(resp.getPoints(),
-                            activity.getResources().getColor((R.color.purple)), 10);
+                            activity.getResources().getColor((R.color.my_primary_dark_transparent)), 10);
+
 
 
                     mapView.getLayerManager().getLayers().add(polylinePath);
 
+/*
                     if (Variable.getVariable().isDirectionsON()) {
                         DetailPetaNavigasi.getNavigator().setGhResponse(resp);
                         //                        log("navigator: " + Navigator.getNavigator().toString());
                     }
+                    */
 
                     log("from:" + fromLat + "," + fromLon + " to:" + toLat + ","
                             + toLon + " found path with distance:" + resp.getDistance()

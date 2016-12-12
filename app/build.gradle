@@ -79,7 +79,12 @@ dependencies {
     compile 'org.slf4j:slf4j-android:1.7.21'
     compile 'org.slf4j:slf4j-api:1.7.21'
     compile 'com.android.support:support-vector-drawable:25.0.1'
+
+    compile 'com.getbase:floatingactionbutton:1.10.1'
+
     testCompile 'junit:junit:4.12'
+
+
 
    // compile project(':libs_graphhopper')
 

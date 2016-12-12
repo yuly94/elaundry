@@ -24,7 +24,7 @@ import com.yuly.elaundry.kurir.model.dataType.Destination;
 import com.yuly.elaundry.kurir.model.listeners.PetaRuteHandlerListener;
 import com.yuly.elaundry.kurir.model.listeners.NavigatorListener;
 import com.yuly.elaundry.kurir.model.map.DetailPetaNavigasi;
-import com.yuly.elaundry.kurir.model.peta.PetaRuteHandler;
+import com.yuly.elaundry.kurir.model.peta.DetailPetaRuteHandler;
 import com.yuly.elaundry.kurir.model.util.InstructionAdapter;
 import com.yuly.elaundry.kurir.model.util.MyUtility;
 import com.yuly.elaundry.kurir.model.util.Variable;
@@ -42,7 +42,7 @@ public class DetailPetaRuteActions implements NavigatorListener, PetaRuteHandler
             navInstructionListVP;
     private boolean menuVisible;
 
-    private PetaRuteHandler petaRuteHandler;
+    private DetailPetaRuteHandler petaRuteHandler;
     private TextView tv_dari, tv_tujuan;
     /**
      * true handle on start point ; false handle on end point
@@ -78,7 +78,7 @@ public class DetailPetaRuteActions implements NavigatorListener, PetaRuteHandler
 
         this.menuVisible = false;
         this.onStartPoint = true;
-        PetaRuteHandler.getPetaRuteHandler().setRutePetaHandlerListener(this);
+        DetailPetaRuteHandler.getPetaRuteHandler().setRutePetaHandlerListener(this);
         DetailPetaNavigasi.getNavigator().addListener(this);
         controlBtnHandler();
         zoomControlHandler(mapView);
@@ -146,11 +146,11 @@ public class DetailPetaRuteActions implements NavigatorListener, PetaRuteHandler
             tl = MyUtility.getLatLong(tls);
         }
         if (fl != null && tl == null) {
-            PetaRuteHandler.getPetaRuteHandler().centerPointOnMap(fl, 0);
+            DetailPetaRuteHandler.getPetaRuteHandler().centerPointOnMap(fl, 0);
             addFromMarker(fl);
         }
         if (fl == null && tl != null) {
-            PetaRuteHandler.getPetaRuteHandler().centerPointOnMap(tl, 0);
+            DetailPetaRuteHandler.getPetaRuteHandler().centerPointOnMap(tl, 0);
             addToMarker(tl);
         }
         if (fl != null && tl != null) {
@@ -224,7 +224,7 @@ public class DetailPetaRuteActions implements NavigatorListener, PetaRuteHandler
                         //touch on map
                         //                        Toast.makeText(activity, "Touch on Map to choose your
                         // destination!", Toast.LENGTH_SHORT).show();
-                        PetaRuteHandler.getPetaRuteHandler().setNeedLocation(true);
+                        DetailPetaRuteHandler.getPetaRuteHandler().setNeedLocation(true);
                         return true;
                 }
                 return false;
@@ -294,7 +294,7 @@ public class DetailPetaRuteActions implements NavigatorListener, PetaRuteHandler
      * @param endPoint
      */
     private void addToMarker(LatLong endPoint) {
-        PetaRuteHandler.getPetaRuteHandler().addEndMarker(endPoint);
+        DetailPetaRuteHandler.getPetaRuteHandler().addEndMarker(endPoint);
     }
 
     /**
@@ -303,7 +303,7 @@ public class DetailPetaRuteActions implements NavigatorListener, PetaRuteHandler
      * @param startPoint
      */
     private void addFromMarker(LatLong startPoint) {
-        PetaRuteHandler.getPetaRuteHandler().addStartMarker(startPoint);
+        DetailPetaRuteHandler.getPetaRuteHandler().addStartMarker(startPoint);
     }
 
     /**
@@ -363,7 +363,7 @@ public class DetailPetaRuteActions implements NavigatorListener, PetaRuteHandler
                         //touch on map
                         Toast.makeText(activity, "Touch on Map to choose your start Location", Toast.LENGTH_SHORT)
                                 .show();
-                        PetaRuteHandler.getPetaRuteHandler().setNeedLocation(true);
+                        DetailPetaRuteHandler.getPetaRuteHandler().setNeedLocation(true);
                         return true;
                 }
                 return false;
@@ -480,7 +480,7 @@ public class DetailPetaRuteActions implements NavigatorListener, PetaRuteHandler
             View pathfinding = activity.findViewById(R.id.map_nav_settings_path_finding);
             pathfinding.setVisibility(View.VISIBLE);
             pathfinding.bringToFront();
-            PetaRuteHandler mapHandler = PetaRuteHandler.getPetaRuteHandler();
+            DetailPetaRuteHandler mapHandler = DetailPetaRuteHandler.getPetaRuteHandler();
 
             mapHandler.calcPath(
                     lokasiAwal.latitude, lokasiAwal.longitude, lokasiAkhir.latitude, lokasiAkhir.longitude
@@ -489,7 +489,7 @@ public class DetailPetaRuteActions implements NavigatorListener, PetaRuteHandler
 
 
 
-            PetaRuteHandler.getPetaRuteHandler().tambahMarkerMerah(lokasiAkhir);
+            DetailPetaRuteHandler.getPetaRuteHandler().tambahMarkerMerah(lokasiAkhir);
 
            /* tv_dari.setText(lokasiAwal.latitude+","+lokasiAwal.longitude);
             tv_tujuan.setText(lokasiAkhir.latitude+","+lokasiAkhir.longitude);*/
@@ -608,7 +608,7 @@ public class DetailPetaRuteActions implements NavigatorListener, PetaRuteHandler
      * set from & to = null
      */
     private void removeNavigation() {
-        PetaRuteHandler.getPetaRuteHandler().removeMarkers();
+        DetailPetaRuteHandler.getPetaRuteHandler().removeMarkers();
         fromLocalET.setText("");
         toLocalET.setText("");
         DetailPetaNavigasi.getNavigator().setOn(false);
@@ -752,7 +752,7 @@ public class DetailPetaRuteActions implements NavigatorListener, PetaRuteHandler
             @Override public void onClick(View v) {
                 if (DetailPetaRuteActivity.getmCurrentLocation() != null) {
                     showPositionBtn.setImageResource(R.drawable.ic_my_location_white_24dp);
-                    PetaRuteHandler.getPetaRuteHandler().centerPointOnMap(
+                    DetailPetaRuteHandler.getPetaRuteHandler().centerPointOnMap(
                             new LatLong(DetailPetaRuteActivity.getmCurrentLocation().getLatitude(),
                                     DetailPetaRuteActivity.getmCurrentLocation().getLongitude()), 0);
 

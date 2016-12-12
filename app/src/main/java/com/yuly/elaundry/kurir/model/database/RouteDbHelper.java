@@ -97,7 +97,7 @@ public class RouteDbHelper extends SQLiteOpenHelper {
             + TABLE_JARAK_KONSUMEN + "(" + KEY_ID + " INTEGER PRIMARY KEY,"
             + KEY_DARI + " TEXT,"
             + KEY_TUJUAN + " TEXT,"
-            + KEY_JARAK + " TEXT,"
+            + KEY_JARAK + " INTEGER,"
             + KEY_STATUS + " INTEGER,"
             + KEY_CREATED_AT
             + " DATETIME" + ")";

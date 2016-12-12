@@ -84,6 +84,8 @@
                 </item>-->
         <item name="android:textColorPrimaryInverse">@color/bg_login</item>
         <item name="colorPrimary">@color/my_primary_dark</item>
+
+        <item name="android:textColorPrimary">@android:color/black</item>
     </style>
 
     <!---->
@@ -151,5 +153,11 @@
     <style name="MYAppTheme.NoActionBar.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
 
     <style name="MYAppTheme.NoActionBar.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
+
+
+    <style name="menu_labels_style">
+        <item name="android:background">@drawable/fab_label_background</item>
+        <item name="android:textColor">@color/white</item>
+    </style>
 
 </resources>

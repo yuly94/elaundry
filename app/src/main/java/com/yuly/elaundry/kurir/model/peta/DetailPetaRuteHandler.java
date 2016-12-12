@@ -45,7 +45,7 @@ import java.io.File;
 import java.util.List;
 
 
-public class PetaRuteHandler {
+public class DetailPetaRuteHandler {
     private Activity activity;
     private MapView mapView;
     private String currentArea;
@@ -57,8 +57,8 @@ public class PetaRuteHandler {
     private Marker startMarker, endMarker;
     private Polyline polylinePath, polylineTrack;
     private PetaRuteHandlerListener rutePetaHandlerListener;
-    private static PetaRuteHandler petaRuteHandler;
-    private String downloadURL ="http://elaundry.pe.hu/assets/maps/";
+    private static DetailPetaRuteHandler petaRuteHandler;
+
     /**
      * if user going to point on map to gain a location
      */
@@ -68,7 +68,7 @@ public class PetaRuteHandler {
      */
     private boolean needPathCal;
 
-    public static PetaRuteHandler getPetaRuteHandler() {
+    public static DetailPetaRuteHandler getPetaRuteHandler() {
         if (petaRuteHandler == null) {
             reset();
         }
@@ -79,11 +79,11 @@ public class PetaRuteHandler {
      * reset class, build a new instance
      */
     public static void reset() {
-        petaRuteHandler = new PetaRuteHandler();
-        petaRuteHandler = new PetaRuteHandler();
+        petaRuteHandler = new DetailPetaRuteHandler();
+        petaRuteHandler = new DetailPetaRuteHandler();
     }
 
-    private PetaRuteHandler() {
+    private DetailPetaRuteHandler() {
         setShortestPathRunning(false);
         startMarker = null;
         endMarker = null;
@@ -297,6 +297,13 @@ public class PetaRuteHandler {
             protected Path doInBackground(Void... v) {
                 try {
                     GraphHopper tmpHopp = new GraphHopper().forMobile();
+
+
+                     tmpHopp.setCHWeighting(Variable.getVariable().getWeighting());
+
+
+                    //req.setVehicle(Variable.getVariable().getTravelMode());
+                    //req.setWeighting(Variable.getVariable().getWeighting());
                     tmpHopp.load(new File(mapsFolder, currentArea).getAbsolutePath());
 
                     log("menemukan graph " + tmpHopp.getGraphHopperStorage().toString() + ", nodes:" + tmpHopp.getGraphHopperStorage().getNodes());

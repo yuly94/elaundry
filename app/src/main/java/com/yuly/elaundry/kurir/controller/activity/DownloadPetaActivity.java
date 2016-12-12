@@ -5,11 +5,9 @@ import android.os.Build;
 import android.os.Bundle;
 import android.os.Environment;
 import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
-import android.view.MenuItem;
 import android.view.View;
 import android.widget.Toast;
 
@@ -20,7 +18,7 @@ import com.yuly.elaundry.kurir.R;
 import com.yuly.elaundry.kurir.model.peta.AndroidDownloader;
 import com.yuly.elaundry.kurir.model.peta.AndroidHelper;
 import com.yuly.elaundry.kurir.model.peta.GHAsyncTask;
-import com.yuly.elaundry.kurir.model.peta.PetaRuteHandler;
+import com.yuly.elaundry.kurir.model.peta.DetailPetaRuteHandler;
 import com.yuly.elaundry.kurir.model.util.Variable;
 
 
@@ -69,7 +67,7 @@ public class DownloadPetaActivity extends AppCompatActivity {
 
         final File areaFolder = new File(mapsFolder, Variable.getVariable().getCountry() + "-gh");
         if (downloadURL == null || areaFolder.exists()) {
-            PetaRuteHandler.getPetaRuteHandler().loadMap(areaFolder);
+            DetailPetaRuteHandler.getPetaRuteHandler().loadMap(areaFolder);
             return;
         }
 

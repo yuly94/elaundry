@@ -44,7 +44,7 @@ public class CariRuteActivity extends AppCompatActivity implements LocationListe
 
     private GraphHopper hopper;
 
-    private String downloadURL ="http://elaundry.pe.hu/assets/maps/indonesia_jawatimur_kediringanjuk.ghz";
+
     private File mapsFolder;
 
 
@@ -161,6 +161,7 @@ public class CariRuteActivity extends AppCompatActivity implements LocationListe
 
         if (getSupportActionBar()!=null) {
             getSupportActionBar().setTitle("Peta");
+
             getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
             // Thema

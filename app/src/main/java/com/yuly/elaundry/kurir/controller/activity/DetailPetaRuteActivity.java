@@ -26,7 +26,7 @@ import com.yuly.elaundry.kurir.R;
 
 import com.yuly.elaundry.kurir.model.dataType.DataRute;
 import com.yuly.elaundry.kurir.model.peta.CariRuteHandler;
-import com.yuly.elaundry.kurir.model.peta.PetaRuteHandler;
+import com.yuly.elaundry.kurir.model.peta.DetailPetaRuteHandler;
 import com.yuly.elaundry.kurir.model.util.Variable;
 
 import org.mapsforge.core.model.LatLong;
@@ -51,8 +51,6 @@ public class DetailPetaRuteActivity extends AppCompatActivity implements Locatio
     private String pemLongitude;
 
     private GraphHopper hopper;
-                               //http://elaundry.pe.hu/assets/maps/indonesia_jawatimur_kediringanjuk.ghz
-    private String downloadURL ="http://elaundry.pe.hu/assets/maps/indonesia_jawatimur_kediringanjuk.ghz";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -114,12 +112,12 @@ public class DetailPetaRuteActivity extends AppCompatActivity implements Locatio
             mapView.setClickable(true);
             mapView.setBuiltInZoomControls(false);
 
-            PetaRuteHandler.getPetaRuteHandler()
+            DetailPetaRuteHandler.getPetaRuteHandler()
                     //  .init(this, mapView, Variable.getVariable().getCountry(), Variable.getVariable().getMapsFolder());
 
                     .init(this, mapView, Variable.getVariable().getCountry(), mapsFolder);
 
-            PetaRuteHandler.getPetaRuteHandler().loadMap(new File(mapsFolder,
+            DetailPetaRuteHandler.getPetaRuteHandler().loadMap(new File(mapsFolder,
                     Variable.getVariable().getCountry() + "-gh"));
 
 
@@ -141,7 +139,7 @@ public class DetailPetaRuteActivity extends AppCompatActivity implements Locatio
 
 
 
-        PetaRuteHandler.getPetaRuteHandler().calcPath(Double.valueOf(pemLatitude), Double.valueOf(pemLongitude), DetailPetaRuteActivity.getmCurrentLocation().getLatitude(), DetailPetaRuteActivity.getmCurrentLocation().getLongitude());
+        DetailPetaRuteHandler.getPetaRuteHandler().calcPath(Double.valueOf(pemLatitude), Double.valueOf(pemLongitude), DetailPetaRuteActivity.getmCurrentLocation().getLatitude(), DetailPetaRuteActivity.getmCurrentLocation().getLongitude());
 
 
         Log.d("Pemesanan Latitude : ", String.valueOf(pemLatitude));
@@ -221,8 +219,8 @@ public class DetailPetaRuteActivity extends AppCompatActivity implements Locatio
                 Tracking.getTracking().addPoint(mCurrentLocation);
             }*/
             Layers layers = mapView.getLayerManager().getLayers();
-            PetaRuteHandler.getPetaRuteHandler().removeLayer(layers, mPositionMarker);
-            mPositionMarker = PetaRuteHandler.getPetaRuteHandler().createMarker(mcLatLong, R.drawable.ic_place_blue_24dp);
+            DetailPetaRuteHandler.getPetaRuteHandler().removeLayer(layers, mPositionMarker);
+            mPositionMarker = DetailPetaRuteHandler.getPetaRuteHandler().createMarker(mcLatLong, R.drawable.ic_place_blue_24dp);
 /*
 
             LatLong konLatLong = new LatLong(pemLatitude, pemLongitude);

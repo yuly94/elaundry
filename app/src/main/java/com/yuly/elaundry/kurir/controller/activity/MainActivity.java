@@ -38,7 +38,7 @@ import com.yuly.elaundry.kurir.model.helper.SessionManager;
 import com.yuly.elaundry.kurir.model.peta.AndroidDownloader;
 import com.yuly.elaundry.kurir.model.peta.AndroidHelper;
 import com.yuly.elaundry.kurir.model.peta.GHAsyncTask;
-import com.yuly.elaundry.kurir.model.peta.PetaRuteHandler;
+import com.yuly.elaundry.kurir.model.peta.DetailPetaRuteHandler;
 import com.yuly.elaundry.kurir.model.util.Variable;
 import com.yuly.elaundry.kurir.view.util.HelpUtils;
 
@@ -79,7 +79,7 @@ public class MainActivity extends AppCompatActivity  implements NavigationView.O
 		setContentView(R.layout.activity_main);
 
 		mTitle = mDrawerTitle = getTitle();
-		navMenuTitles = getResources().getStringArray(R.array.nav_drawer_items);
+		//navMenuTitles = getResources().getStringArray(R.array.nav_drawer_items);
 
 		mDrawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout);
 		//mLiearLayout = (LinearLayout) findViewById(R.id.drawer_view);
@@ -236,7 +236,7 @@ public class MainActivity extends AppCompatActivity  implements NavigationView.O
 		mapsFolder.mkdirs();
 		final File areaFolder = new File(mapsFolder, Variable.getVariable().getCountry() + "-gh");
 		if (AppConfig.downloadURL == null || areaFolder.exists()) {
-			PetaRuteHandler.getPetaRuteHandler().loadMap(areaFolder);
+			DetailPetaRuteHandler.getPetaRuteHandler().loadMap(areaFolder);
 			return;
 		}
 
@@ -341,8 +341,8 @@ public class MainActivity extends AppCompatActivity  implements NavigationView.O
 	 * */
 	private void closeUser() {
 
-
-		finish();
+		this.finish();
+		System.exit(0);
 
 	}
 

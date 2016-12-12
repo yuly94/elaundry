@@ -57,7 +57,7 @@
     <color name="my_polyline_calculate">#9900796B</color>
     <color name="my_polyline_track">#BF448AFF</color>
 
-
+<!--Fab color disini-->
     <color name="my_dark_transparent_bg">#2D000000</color>
 
     <color name="primary">#009688</color>
@@ -69,5 +69,17 @@
     <color name="icons">#FFFFFF</color>
     <color name="divider">#7986cb</color>
 
+    <?xml version="1.0" encoding="utf-8"?>
+    <resources>
+        <color name="black_semi_transparent">#B2000000</color>
+        <color name="background">#e5e5e5</color>
+        <color name="half_black">#808080</color>
+        <!--<color name="white">#fafafa</color>-->
+        <color name="white_pressed">#f1f1f1</color>
+        <color name="pink">#e91e63</color>
+        <color name="pink_pressed">#ec407a</color>
+        <color name="blue_semi_transparent">#805677fc</color>
+        <color name="blue_semi_transparent_pressed">#80738ffe</color>
+    </resources>
 
 </resources>

@@ -170,8 +170,8 @@ public class Variable {
     private static Variable variable;
 
     private Variable() {
-        this.travelMode = "car";
-        this.weighting = "fastest";
+        this.travelMode = "motorcycle";
+        this.weighting = "shortest";
         this.routingAlgorithms = "dijkstrabi";
         this.zoomLevelMax = 22;
         this.zoomLevelMin = 1;

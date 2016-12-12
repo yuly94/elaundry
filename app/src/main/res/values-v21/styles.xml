@@ -16,5 +16,6 @@
         <item name="colorPrimary">@color/my_primary_dark</item>
         <item name="android:statusBarColor">?attr/colorPrimary</item>
         <item name="android:navigationBarColor">?attr/colorPrimary</item>
+        <item name="android:textColorPrimary">@android:color/black</item>
     </style>
 </resources>
