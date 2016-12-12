@@ -6,6 +6,8 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
+import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
@@ -27,6 +29,7 @@ import com.android.volley.toolbox.StringRequest;
 import com.yuly.elaundry.kurir.R;
 import com.yuly.elaundry.kurir.controller.app.AppConfig;
 import com.yuly.elaundry.kurir.controller.app.AppController;
+import com.yuly.elaundry.kurir.controller.fragment.DownloadPetaFragment;
 import com.yuly.elaundry.kurir.model.database.KurirDbHandler;
 import com.yuly.elaundry.kurir.model.geterseter.TransaksiModel;
 import com.yuly.elaundry.kurir.model.helper.VolleyErrorHelper;
@@ -128,18 +131,42 @@ public class DetailPemesananActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
-                Intent intentPeta = new Intent(getApplication(), DetailPetaRuteActivity.class);
+                if (!MendownloadPeta.getMendownloadPeta().checkFilePetaAda()){
 
-                intentPeta.putExtra("PESANAN_LATITUDE", pem_latitude);
-                intentPeta.putExtra("PESANAN_LONGITUDE", pem_longitude);
+                    //MendownloadPeta.getMendownloadPeta().dialogDownloadPeta();
 
-                startActivity(intentPeta);
+                    panggilDialogDownload();
 
+                } else {
+
+                    Intent intentPeta = new Intent(getApplication(), DetailPetaRuteActivity.class);
+
+                    intentPeta.putExtra("PESANAN_LATITUDE", pem_latitude);
+                    intentPeta.putExtra("PESANAN_LONGITUDE", pem_longitude);
+
+                    startActivity(intentPeta);
+                }
 
             }
         });
     }
 
+
+
+    private void panggilDialogDownload(){
+
+        FragmentManager fragmentManager = getSupportFragmentManager();
+
+        Fragment frag = fragmentManager.findFragmentByTag("download_dialog");
+
+        if (frag != null) {
+            fragmentManager.beginTransaction().remove(frag).commit();
+        }
+
+        DownloadPetaFragment alertDialogFragment = new DownloadPetaFragment();
+        alertDialogFragment.show(fragmentManager, "download_dialog");
+
+    }
 
 
     /**

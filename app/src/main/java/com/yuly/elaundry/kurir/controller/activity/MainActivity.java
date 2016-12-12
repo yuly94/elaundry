@@ -31,6 +31,7 @@ import com.yuly.elaundry.kurir.R;
 //import com.yuly.elaundry.kurir.controller.fragment.AboutFragment;
 
 import com.yuly.elaundry.kurir.controller.app.AppConfig;
+import com.yuly.elaundry.kurir.controller.fragment.DownloadPetaFragment;
 import com.yuly.elaundry.kurir.controller.fragment.LaundryPemesananFragment;
 import com.yuly.elaundry.kurir.controller.fragment.ProfileFragment;
 import com.yuly.elaundry.kurir.model.database.KurirDbHandler;
@@ -212,81 +213,25 @@ public class MainActivity extends AppCompatActivity  implements NavigationView.O
 		}
 
 
-		boolean greaterOrEqKitkat = Build.VERSION.SDK_INT >= 19;
-		if (greaterOrEqKitkat) {
-			if (!Environment.getExternalStorageState().equals(Environment.MEDIA_MOUNTED)) {
-				logUser("Elaundry is not usable without an external storage!");
-				return;
-			}
-			mapsFolder = new File(Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOWNLOADS),
-					Variable.getVariable().getMapDirectory());
-		} else
-			mapsFolder = new File(Environment.getExternalStorageDirectory(), Variable.getVariable().getMapDownloadDirectory());
-
-		if (!mapsFolder.exists()) {
-
-			downloadPeta();
-		}
-
 	}
 
 
-	public void downloadPeta() {
 
-		mapsFolder.mkdirs();
-		final File areaFolder = new File(mapsFolder, Variable.getVariable().getCountry() + "-gh");
-		if (AppConfig.downloadURL == null || areaFolder.exists()) {
-			DetailPetaRuteHandler.getPetaRuteHandler().loadMap(areaFolder);
-			return;
+
+	private void panggilDialogDownload(){
+
+		FragmentManager fragmentManager = getSupportFragmentManager();
+
+		Fragment frag = fragmentManager.findFragmentByTag("download_dialog");
+
+		if (frag != null) {
+			fragmentManager.beginTransaction().remove(frag).commit();
 		}
 
-		final ProgressDialog dialog = new ProgressDialog(this);
-		dialog.setMessage("Downloading and uncompressing " + AppConfig.downloadURL);
-		dialog.setIndeterminate(false);
-		dialog.setMax(100);
-		dialog.setProgressStyle(ProgressDialog.STYLE_HORIZONTAL);
-		dialog.show();
+		DownloadPetaFragment alertDialogFragment = new DownloadPetaFragment();
+		alertDialogFragment.show(fragmentManager, "download_dialog");
 
-		new GHAsyncTask<Void, Integer, Object>() {
-			protected Object saveDoInBackground(Void... _ignore)
-					throws Exception {
-
-				String localFolder = Helper.pruneFileEnd(AndroidHelper.getFileName(AppConfig.downloadURL));
-				localFolder = new File(mapsFolder, localFolder + "-gh").getAbsolutePath();
-				//log("downloading & unzipping " + downloadURL + " to " + localFolder);
-				AndroidDownloader downloader = new AndroidDownloader();
-				downloader.setTimeout(30000);
-				downloader.downloadAndUnzip(AppConfig.downloadURL, localFolder,
-						new ProgressListener() {
-							@Override
-							public void update(long val) {
-								publishProgress((int) val);
-							}
-						});
-				return null;
-			}
-
-			protected void onProgressUpdate(Integer... values) {
-				super.onProgressUpdate(values);
-				dialog.setProgress(values[0]);
-			}
-
-			protected void onPostExecute(Object _ignore) {
-				dialog.dismiss();
-				if (hasError()) {
-					String str = "An error happened while retrieving maps:" + getErrorMessage();
-					log(str, getError());
-					logUser(str);
-				} else {
-					//  PetaRuteHandler.getPetaRuteHandler().loadMap(areaFolder);
-
-					logUser("Peta berhasil di download");
-				}
-			}
-		}.execute();
 	}
-
-
 
 
 /*
@@ -481,12 +426,26 @@ public class MainActivity extends AppCompatActivity  implements NavigationView.O
 
 		}	else if (id == R.id.nav_peta_saya) {
 
+			if (!MendownloadPeta.getMendownloadPeta().checkFilePetaAda()){
+
+				//MendownloadPeta.getMendownloadPeta().dialogDownloadPeta();
+				panggilDialogDownload();
+			} else {
+
 			Intent intentMap = new Intent(this, PetaSayaActivity.class);
 			startActivity(intentMap);
+			}
 
 		}  else if (id == R.id.nav_peta_rute) {
-			Intent intent = new Intent(this, CariRuteActivity.class);
-			startActivity(intent);
+
+			if (!MendownloadPeta.getMendownloadPeta().checkFilePetaAda()){
+
+				//MendownloadPeta.getMendownloadPeta().dialogDownloadPeta();
+				panggilDialogDownload();
+			} else {
+				Intent intent = new Intent(this, CariRuteActivity.class);
+				startActivity(intent);
+			}
 
 		} else if (id == R.id.nav_profile) {
 
