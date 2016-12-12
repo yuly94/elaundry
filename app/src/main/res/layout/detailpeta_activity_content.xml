@@ -14,7 +14,7 @@
 
     <include layout="@layout/map_toolbar"/>
 
-    <include layout="@layout/peta_navigasi_rute"/>
+    <include layout="@layout/peta_navigasi_detail"/>
 
     <include layout="@layout/app_settings"/>
 

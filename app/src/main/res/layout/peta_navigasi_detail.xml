@@ -1,0 +1,138 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<RelativeLayout
+    xmlns:fab="http://schemas.android.com/apk/res-auto"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/menu_nafigasi_peta"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <com.getbase.floatingactionbutton.FloatingActionsMenu
+        android:id="@+id/multiple_actions"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        fab:fab_addButtonColorNormal="@color/my_primary"
+        fab:fab_addButtonColorPressed="@color/primary_dark"
+        fab:fab_addButtonSize="mini"
+        fab:fab_addButtonPlusIconColor="@color/white"
+        fab:fab_addButtonStrokeVisible="false"
+        fab:fab_expandDirection="left"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true">
+
+        <android.support.design.widget.FloatingActionButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:clickable="true"
+            app:fabSize="mini"
+            android:src="@drawable/ic_directions_white_24dp"
+            android:id="@+id/fab_nafigasi"
+
+
+            android:layout_weight="1" />
+
+        <android.support.design.widget.FloatingActionButton
+            android:id="@+id/fab_besarkan"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+
+            android:src="@drawable/ic_add_24dp"
+            android:cropToPadding="false"
+            app:fabSize="mini"
+            android:layout_weight="1" />
+
+        <android.support.design.widget.FloatingActionButton
+            android:id="@+id/fab_kecilkan"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+
+
+            android:src="@drawable/ic_minus_black_24dp"
+            android:cropToPadding="false"
+            app:fabSize="mini"
+            android:layout_weight="1" />
+
+        <android.support.design.widget.FloatingActionButton
+
+
+            android:id="@+id/fab_lokasi"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/ic_gps_fixed_24dp"
+            android:cropToPadding="false"
+            app:fabSize="mini" />
+
+
+
+    </com.getbase.floatingactionbutton.FloatingActionsMenu>
+
+    <LinearLayout
+    android:id="@+id/fab_menu"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="274dp"
+    android:layout_alignParentBottom="true"
+    android:layout_alignParentRight="true"
+    android:layout_gravity="bottom"
+    android:visibility="gone">
+
+    <android.support.design.widget.FloatingActionButton
+        android:id="@+id/fab_setting"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_gravity="right|bottom"
+        android:layout_marginBottom="@dimen/activity_vertical_margin"
+        android:layout_marginRight="@dimen/activity_horizontal_margin"
+        android:src="@drawable/ic_autorenew_black_24dp"
+        android:cropToPadding="false"
+        app:fabSize="mini"
+        android:visibility="invisible" />
+
+    <android.support.design.widget.FloatingActionButton
+        android:id="@+id/fab_dapatkan"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_gravity="right|bottom"
+        android:layout_marginBottom="@dimen/activity_vertical_margin"
+        android:layout_marginRight="@dimen/activity_horizontal_margin"
+        android:src="@drawable/ic_autorenew_black_24dp"
+        android:cropToPadding="false"
+        app:fabSize="mini"
+        android:visibility="invisible" />
+
+        <android.support.design.widget.FloatingActionButton
+        android:id="@+id/fab_refresh"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_gravity="right|bottom"
+        android:layout_marginBottom="@dimen/activity_vertical_margin"
+        android:layout_marginRight="@dimen/activity_horizontal_margin"
+        android:src="@drawable/ic_autorenew_black_24dp"
+        android:cropToPadding="false"
+        app:fabSize="mini"
+        android:visibility="invisible" />
+
+        <android.support.design.widget.FloatingActionButton
+        android:id="@+id/fab_navigasi"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_gravity="right|bottom"
+        android:layout_marginBottom="@dimen/activity_vertical_margin"
+        android:layout_marginRight="@dimen/activity_horizontal_margin"
+        android:src="@drawable/ic_add_24dp"
+        android:cropToPadding="false"
+        app:fabSize="mini"
+        android:visibility="invisible" />
+
+    </LinearLayout>
+
+</RelativeLayout>

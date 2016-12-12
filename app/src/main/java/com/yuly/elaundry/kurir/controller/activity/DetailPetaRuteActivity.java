@@ -152,7 +152,7 @@ public class DetailPetaRuteActivity extends AppCompatActivity implements Locatio
      */
     private void customMapView() {
         ViewGroup inclusionViewGroup = (ViewGroup) findViewById(R.id.custom_map_view_layout);
-        View inflate = LayoutInflater.from(this).inflate(R.layout.petarute_activity_content, null);
+        View inflate = LayoutInflater.from(this).inflate(R.layout.detailpeta_activity_content, null);
         inclusionViewGroup.addView(inflate);
 
         Toolbar mToolbar = (Toolbar) findViewById(R.id.map_toolbar);

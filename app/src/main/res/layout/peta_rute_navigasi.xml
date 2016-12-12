@@ -1,8 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.design.widget.CoordinatorLayout
+
+
+<RelativeLayout
+    android:id="@+id/menu_nafigasi_peta"
+    xmlns:fab="http://schemas.android.com/apk/res-auto"
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:id="@+id/menu_nafigasi_peta"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
@@ -17,10 +20,11 @@
         android:src="@drawable/ic_arrow_drop_down_white_24dp"
         android:cropToPadding="false"
         app:fabSize="mini"
-        android:layout_weight="1" />
+        android:layout_weight="1"
+        android:visibility="gone" />
 
 
-<LinearLayout
+    <LinearLayout
     android:id="@+id/group_tombol_navigasi"
     android:orientation="vertical"
     android:layout_width="match_parent"
@@ -69,28 +73,28 @@
         app:fabSize="mini"
         android:visibility="invisible" />
 
-    <android.support.design.widget.FloatingActionButton
+
+    </LinearLayout>
 
 
-        android:id="@+id/fab_location"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:layout_gravity="right|bottom"
-        android:layout_marginBottom="@dimen/activity_vertical_margin"
-        android:layout_marginRight="@dimen/activity_horizontal_margin"
-        android:src="@drawable/ic_gps_fixed_24dp"
-        android:cropToPadding="false"
-        app:fabSize="mini" />
+        <com.getbase.floatingactionbutton.FloatingActionsMenu
+            android:id="@+id/multiple_actions"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            fab:fab_addButtonColorNormal="@color/my_primary"
+            fab:fab_addButtonColorPressed="@color/primary_dark"
+            fab:fab_addButtonSize="mini"
+            fab:fab_addButtonPlusIconColor="@color/white"
+            fab:fab_addButtonStrokeVisible="false"
+            fab:fab_expandDirection="left"
+            android:layout_alignParentBottom="true"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentTop="true">
 
-    <LinearLayout
-        android:orientation="horizontal"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:gravity="right"
-        android:layout_marginRight="60dp">
-
-        <android.support.design.widget.FloatingActionButton
+            <android.support.design.widget.FloatingActionButton
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:clickable="true"
@@ -141,8 +145,24 @@
             android:layout_weight="1" />
 
 
-    </LinearLayout>
+</com.getbase.floatingactionbutton.FloatingActionsMenu>
 
-</LinearLayout>
+    <android.support.design.widget.FloatingActionButton
 
-</android.support.design.widget.CoordinatorLayout>
+
+        android:id="@+id/fab_location"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="right|bottom"
+        android:layout_marginBottom="61dp"
+        android:src="@drawable/ic_gps_fixed_24dp"
+        android:cropToPadding="false"
+        app:fabSize="mini"
+
+        android:layout_marginEnd="10dp"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true" />
+
+
+</RelativeLayout>

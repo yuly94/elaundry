@@ -31,7 +31,7 @@
         android:layout_height="match_parent"
         android:orientation="vertical">
 
-        <include layout="@layout/peta_navigasi"/>
+        <include layout="@layout/peta_rute_navigasi"/>
     </RelativeLayout>
 
 

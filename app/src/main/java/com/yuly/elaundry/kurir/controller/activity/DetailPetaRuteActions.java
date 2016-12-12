@@ -55,7 +55,8 @@ public class DetailPetaRuteActions implements NavigatorListener, PetaRuteHandler
         this.showPositionBtn = (FloatingActionButton) activity.findViewById(R.id.fab_lokasi);
         this.fab_dapatkan = (FloatingActionButton) activity.findViewById(R.id.fab_nafigasi);
         this.settingsBtn = (FloatingActionButton) activity.findViewById(R.id.fab_setting);
-        this.controlBtn = (FloatingActionButton) activity.findViewById(R.id.fab_menu);
+       // this.controlBtn = (FloatingActionButton) activity.findViewById(R.id.fab_menu);
+
         this.navigationBtn= (FloatingActionButton) activity.findViewById(R.id.fab_dapatkan);
 
 
@@ -80,7 +81,7 @@ public class DetailPetaRuteActions implements NavigatorListener, PetaRuteHandler
         this.onStartPoint = true;
         DetailPetaRuteHandler.getPetaRuteHandler().setRutePetaHandlerListener(this);
         DetailPetaNavigasi.getNavigator().addListener(this);
-        controlBtnHandler();
+        //controlBtnHandler();
         zoomControlHandler(mapView);
         showMyLocation(mapView);
         navBtnHandler();
@@ -691,10 +692,13 @@ public class DetailPetaRuteActions implements NavigatorListener, PetaRuteHandler
         });
     }
 
+/*
 
-    /**
+    */
+/**
      * start button: control button handler FAB
-     */
+     *//*
+
 
     private void controlBtnHandler() {
         final ScaleAnimation anim = new ScaleAnimation(0, 1, 0, 1);
@@ -720,6 +724,7 @@ public class DetailPetaRuteActions implements NavigatorListener, PetaRuteHandler
             }
         });
     }
+*/
 
     /**
      * implement zoom btn

@@ -123,7 +123,7 @@
     <string name="distance">Jarak</string>
     <string name="directions">Arah</string>
     <string name="dialog_stop_save_tracking">Berhenti dan menyimpan jejak ?</string>
-    <string name="description_permissions">Aplikasi ini membutuhkan kamera dan penyimpanan</string>
+
     <string name="elaundryconfigdottxt">elaundryconfig.txt</string>
     <string name="error_grafik">Kesalahan terjadi ketika membuat grafik :</string>
     <string name="error_in_creating_fragment">Error ketika membuat fragment</string>
@@ -151,9 +151,7 @@
     <string name="json_request_error">permintaan json error</string>
     <string name="konfirmasi_password">Konfirmasi kata sandi</string>
 
-    <string name="label_fill_out_form">Silahkan mengisi form sebelum melanjudkan</string>
-    <string name="label_grant_permissions">Silahkan memberikan izin sebelum melanjudkan</string>
-    <string name="label_option_permissions">Mengizinkan permintaan</string>
+
     <string name="loading_dotdotdot">Memuat ...</string>
     <string name="location_permission_denied"></string>
     <string name="memuat">memuat</string>
