@@ -55,8 +55,7 @@ public class DetailPetaRuteActions implements NavigatorListener, PetaRuteHandler
         this.showPositionBtn = (FloatingActionButton) activity.findViewById(R.id.fab_lokasi);
         this.fab_dapatkan = (FloatingActionButton) activity.findViewById(R.id.fab_nafigasi);
         this.settingsBtn = (FloatingActionButton) activity.findViewById(R.id.fab_setting);
-       // this.controlBtn = (FloatingActionButton) activity.findViewById(R.id.fab_menu);
-
+        this.controlBtn = (FloatingActionButton) activity.findViewById(R.id.fab_menu);
         this.navigationBtn= (FloatingActionButton) activity.findViewById(R.id.fab_dapatkan);
 
 
@@ -81,7 +80,7 @@ public class DetailPetaRuteActions implements NavigatorListener, PetaRuteHandler
         this.onStartPoint = true;
         DetailPetaRuteHandler.getPetaRuteHandler().setRutePetaHandlerListener(this);
         DetailPetaNavigasi.getNavigator().addListener(this);
-        //controlBtnHandler();
+        controlBtnHandler();
         zoomControlHandler(mapView);
         showMyLocation(mapView);
         navBtnHandler();
@@ -472,8 +471,8 @@ public class DetailPetaRuteActions implements NavigatorListener, PetaRuteHandler
      */
     public void activeNavigator() {
         if (DetailPetaRuteActivity.getmCurrentLocation() != null) {
-                LatLong lokasiAwal = new LatLong(DetailPetaRuteActivity.getmCurrentLocation().getLatitude(),
-            DetailPetaRuteActivity.getmCurrentLocation().getLongitude());//new LatLong ( -7.8130979,112.0157406);
+            LatLong lokasiAwal = new LatLong(DetailPetaRuteActivity.getmCurrentLocation().getLatitude(),
+                    DetailPetaRuteActivity.getmCurrentLocation().getLongitude());//new LatLong ( -7.8130979,112.0157406);
             LatLong lokasiAkhir = DataRute.getDatarute().getEndPoint();
             // show path finding process
             navSettingsVP.setVisibility(View.INVISIBLE);
@@ -494,7 +493,7 @@ public class DetailPetaRuteActions implements NavigatorListener, PetaRuteHandler
 
            /* tv_dari.setText(lokasiAwal.latitude+","+lokasiAwal.longitude);
             tv_tujuan.setText(lokasiAkhir.latitude+","+lokasiAkhir.longitude);*/
-           // petaRuteHandler.addMarkers(lokasiAwal, lokasiAkhir);
+            // petaRuteHandler.addMarkers(lokasiAwal, lokasiAkhir);
 
             Log.d("Active", "navigator");
 
@@ -589,8 +588,8 @@ public class DetailPetaRuteActions implements NavigatorListener, PetaRuteHandler
      */
     private void fillNavListSummaryValues() {
         ImageView travelMode;
-       // travelMode = (ImageView) activity.findViewById(R.id.nav_instruction_list_travel_mode_iv);
-       // travelMode.setImageResource(Navigasi.getNavigator().getTravelModeResId(true));
+        // travelMode = (ImageView) activity.findViewById(R.id.nav_instruction_list_travel_mode_iv);
+        // travelMode.setImageResource(Navigasi.getNavigator().getTravelModeResId(true));
         TextView from, to, distance, time;
 /*        from = (TextView) activity.findViewById(R.id.nav_instruction_list_summary_from_tv);
         to = (TextView) activity.findViewById(R.id.nav_instruction_list_summary_to_tv);*/
@@ -692,13 +691,10 @@ public class DetailPetaRuteActions implements NavigatorListener, PetaRuteHandler
         });
     }
 
-/*
 
-    */
-/**
+    /**
      * start button: control button handler FAB
-     *//*
-
+     */
 
     private void controlBtnHandler() {
         final ScaleAnimation anim = new ScaleAnimation(0, 1, 0, 1);
@@ -724,7 +720,6 @@ public class DetailPetaRuteActions implements NavigatorListener, PetaRuteHandler
             }
         });
     }
-*/
 
     /**
      * implement zoom btn

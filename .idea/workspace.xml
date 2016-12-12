@@ -3,7 +3,7 @@
   <component name="AndroidLayouts">
     <shared>
       <config>
-        <target>android-25</target>
+        <target>android-16</target>
       </config>
     </shared>
   </component>
@@ -13,10 +13,10 @@
     <option name="TOOL_WINDOW_REGEXP_FILTER" value="false" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="4ab180e6-566d-47d6-8acc-d99cddfd8721" name="Default" comment="">
-      <change type="MOVED" beforePath="$PROJECT_DIR$/app/src/main/res/layout/peta_navigasi.xml" afterPath="$PROJECT_DIR$/app/src/main/res/layout/peta_rute_navigasi.xml" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/app/src/main/res/layout/peta_navigasi_rute.xml" afterPath="$PROJECT_DIR$/app/src/main/res/layout/peta_navigasi_detail.xml" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/app/src/main/res/layout/petarute_activity_content.xml" afterPath="$PROJECT_DIR$/app/src/main/res/layout/detailpeta_activity_content.xml" />
+    <list default="true" id="4ab180e6-566d-47d6-8acc-d99cddfd8721" name="Default" comment="mengupdate layout menjadi dua versi">
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/src/main/res/layout-v21/peta_navigasi_detail.xml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/src/main/res/layout-v21/peta_navigasi_saya.xml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/src/main/res/layout-v21/peta_rute_navigasi.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/libraries/accessibility_test_framework_1_0.xml" afterPath="$PROJECT_DIR$/.idea/libraries/accessibility_test_framework_1_0.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/libraries/ant_1_8_0.xml" afterPath="$PROJECT_DIR$/.idea/libraries/ant_1_8_0.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/libraries/ant_launcher_1_8_0.xml" afterPath="$PROJECT_DIR$/.idea/libraries/ant_launcher_1_8_0.xml" />
@@ -42,14 +42,10 @@
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/libraries/shadows_core_3_0.xml" afterPath="$PROJECT_DIR$/.idea/libraries/shadows_core_3_0.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/libraries/sqlite4java_0_282.xml" afterPath="$PROJECT_DIR$/.idea/libraries/sqlite4java_0_282.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/libraries/vtd_xml_2_11.xml" afterPath="$PROJECT_DIR$/.idea/libraries/vtd_xml_2_11.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/misc.xml" afterPath="$PROJECT_DIR$/.idea/misc.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/com/yuly/elaundry/kurir/controller/activity/DetailPetaRuteActions.java" afterPath="$PROJECT_DIR$/app/src/main/java/com/yuly/elaundry/kurir/controller/activity/DetailPetaRuteActions.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/com/yuly/elaundry/kurir/controller/activity/DetailPetaRuteActivity.java" afterPath="$PROJECT_DIR$/app/src/main/java/com/yuly/elaundry/kurir/controller/activity/DetailPetaRuteActivity.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/res/layout/activity_map_baru.xml" afterPath="$PROJECT_DIR$/app/src/main/res/layout/activity_map_baru.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/res/layout/peta_navigasi_saya.xml" afterPath="$PROJECT_DIR$/app/src/main/res/layout/peta_navigasi_saya.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/res/values-in/strings.xml" afterPath="$PROJECT_DIR$/app/src/main/res/values-in/strings.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/res/values/colors.xml" afterPath="$PROJECT_DIR$/app/src/main/res/values/colors.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/res/layout/peta_rute_navigasi.xml" afterPath="$PROJECT_DIR$/app/src/main/res/layout/peta_rute_navigasi.xml" />
     </list>
     <list id="0627501d-700a-4e34-8188-9973888d7651" name="New changelist" comment="" />
     <ignored path="elaundry-kurir.iws" />
@@ -85,16 +81,6 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="CariRuteActions.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/src/main/java/com/yuly/elaundry/kurir/controller/activity/CariRuteActions.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="30">
-              <caret line="65" column="48" selection-start-line="65" selection-start-column="48" selection-end-line="65" selection-end-column="48" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
       <file leaf-file-name="CariRuteHandler.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/src/main/java/com/yuly/elaundry/kurir/model/peta/CariRuteHandler.java">
           <provider selected="true" editor-type-id="text-editor">
@@ -109,8 +95,8 @@
       </file>
       <file leaf-file-name="peta_navigasi_detail.xml" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/peta_navigasi_detail.xml">
-          <provider editor-type-id="text-editor">
-            <state relative-caret-position="299">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="321">
               <caret line="62" column="39" selection-start-line="62" selection-start-column="33" selection-end-line="62" selection-end-column="39" />
               <folding>
                 <element signature="e#3249#3282#0" expanded="true" />
@@ -124,6 +110,38 @@
               </folding>
             </state>
           </provider>
+          <provider editor-type-id="android-designer2">
+            <state />
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="peta_navigasi_detail.xml" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/src/main/res/layout-v21/peta_navigasi_detail.xml">
+          <provider editor-type-id="text-editor">
+            <state relative-caret-position="505">
+              <caret line="147" column="50" selection-start-line="147" selection-start-column="50" selection-end-line="147" selection-end-column="50" />
+              <folding>
+                <element signature="e#641#674#0" expanded="true" />
+                <element signature="e#710#745#0" expanded="true" />
+                <element signature="e#1623#1656#0" expanded="true" />
+                <element signature="e#1696#1731#0" expanded="true" />
+                <element signature="e#2254#2287#0" expanded="true" />
+                <element signature="e#2327#2362#0" expanded="true" />
+                <element signature="e#2884#2917#0" expanded="true" />
+                <element signature="e#2957#2992#0" expanded="true" />
+                <element signature="e#3515#3548#0" expanded="true" />
+                <element signature="e#3588#3623#0" expanded="true" />
+                <element signature="e#4134#4167#0" expanded="true" />
+                <element signature="e#4207#4242#0" expanded="true" />
+                <element signature="e#5023#5056#0" expanded="true" />
+                <element signature="e#5100#5135#0" expanded="true" />
+                <element signature="e#5552#5585#0" expanded="true" />
+                <element signature="e#5629#5664#0" expanded="true" />
+                <element signature="e#6214#6247#0" expanded="true" />
+                <element signature="e#6291#6326#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
           <provider selected="true" editor-type-id="android-designer2">
             <state />
           </provider>
@@ -131,28 +149,29 @@
       </file>
       <file leaf-file-name="peta_rute_navigasi.xml" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/peta_rute_navigasi.xml">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="340">
-              <caret line="160" column="0" selection-start-line="160" selection-start-column="0" selection-end-line="160" selection-end-column="0" />
+          <provider editor-type-id="text-editor">
+            <state relative-caret-position="255">
+              <caret line="90" column="44" selection-start-line="90" selection-start-column="44" selection-end-line="90" selection-end-column="44" />
               <folding>
-                <marker date="1481540454083" expanded="false" signature="1623:1656" ph="&quot;16dp&quot;" />
-                <marker date="1481540454083" expanded="false" signature="1692:1727" ph="&quot;16dp&quot;" />
-                <marker date="1481540454083" expanded="false" signature="2206:2239" ph="&quot;16dp&quot;" />
-                <marker date="1481540454083" expanded="false" signature="2275:2310" ph="&quot;16dp&quot;" />
-                <marker date="1481540454083" expanded="false" signature="2788:2821" ph="&quot;16dp&quot;" />
-                <marker date="1481540454083" expanded="false" signature="2857:2892" ph="&quot;16dp&quot;" />
-                <marker date="1481540454083" expanded="false" signature="4276:4309" ph="&quot;16dp&quot;" />
-                <marker date="1481540454083" expanded="false" signature="4349:4384" ph="&quot;16dp&quot;" />
-                <marker date="1481540454083" expanded="false" signature="4765:4798" ph="&quot;16dp&quot;" />
-                <marker date="1481540454083" expanded="false" signature="4838:4873" ph="&quot;16dp&quot;" />
-                <marker date="1481540454083" expanded="false" signature="5392:5425" ph="&quot;16dp&quot;" />
-                <marker date="1481540454083" expanded="false" signature="5465:5500" ph="&quot;16dp&quot;" />
-                <marker date="1481540454083" expanded="false" signature="6006:6039" ph="&quot;16dp&quot;" />
-                <marker date="1481540454083" expanded="false" signature="6079:6114" ph="&quot;16dp&quot;" />
+                <element signature="e#6168#6203#0" expanded="true" />
+                <element signature="e#6241#6276#0" expanded="true" />
+                <marker date="1481542236904" expanded="false" signature="1623:1656" ph="&quot;16dp&quot;" />
+                <marker date="1481542236904" expanded="false" signature="1692:1727" ph="&quot;16dp&quot;" />
+                <marker date="1481542236904" expanded="false" signature="2206:2239" ph="&quot;16dp&quot;" />
+                <marker date="1481542236904" expanded="false" signature="2275:2310" ph="&quot;16dp&quot;" />
+                <marker date="1481542236904" expanded="false" signature="2788:2821" ph="&quot;16dp&quot;" />
+                <marker date="1481542236904" expanded="false" signature="2857:2892" ph="&quot;16dp&quot;" />
+                <marker date="1481542236904" expanded="false" signature="4367:4400" ph="&quot;16dp&quot;" />
+                <marker date="1481542236904" expanded="false" signature="4440:4475" ph="&quot;16dp&quot;" />
+                <marker date="1481542236904" expanded="false" signature="4856:4889" ph="&quot;16dp&quot;" />
+                <marker date="1481542236904" expanded="false" signature="4929:4964" ph="&quot;16dp&quot;" />
+                <marker date="1481542236904" expanded="false" signature="5483:5516" ph="&quot;16dp&quot;" />
+                <marker date="1481542236904" expanded="false" signature="5556:5591" ph="&quot;16dp&quot;" />
+                <marker date="1481542236904" expanded="false" signature="6095:6128" ph="&quot;16dp&quot;" />
               </folding>
             </state>
           </provider>
-          <provider editor-type-id="android-designer2">
+          <provider selected="true" editor-type-id="android-designer2">
             <state />
           </provider>
         </entry>
@@ -160,23 +179,21 @@
       <file leaf-file-name="peta_navigasi_saya.xml" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/peta_navigasi_saya.xml">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="0">
-              <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="8" selection-end-column="45" />
+            <state relative-caret-position="292">
+              <caret line="47" column="0" selection-start-line="47" selection-start-column="0" selection-end-line="48" selection-end-column="44" />
               <folding>
                 <element signature="e#721#754#0" expanded="true" />
                 <element signature="e#794#829#0" expanded="true" />
-                <element signature="e#2682#2715#0" expanded="true" />
-                <element signature="e#2759#2794#0" expanded="true" />
-                <element signature="e#3355#3388#0" expanded="true" />
-                <element signature="e#3432#3467#0" expanded="true" />
-                <element signature="e#4010#4043#0" expanded="true" />
-                <element signature="e#4087#4122#0" expanded="true" />
-                <element signature="e#4535#4568#0" expanded="true" />
-                <element signature="e#4612#4647#0" expanded="true" />
-                <element signature="e#5210#5243#0" expanded="true" />
-                <element signature="e#5287#5322#0" expanded="true" />
-                <element signature="e#5872#5905#0" expanded="true" />
-                <element signature="e#5949#5984#0" expanded="true" />
+                <element signature="e#2767#2800#0" expanded="true" />
+                <element signature="e#2844#2879#0" expanded="true" />
+                <element signature="e#3467#3500#0" expanded="true" />
+                <element signature="e#3544#3579#0" expanded="true" />
+                <element signature="e#3992#4025#0" expanded="true" />
+                <element signature="e#4069#4104#0" expanded="true" />
+                <element signature="e#4667#4700#0" expanded="true" />
+                <element signature="e#4744#4779#0" expanded="true" />
+                <element signature="e#5329#5362#0" expanded="true" />
+                <element signature="e#5406#5441#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -190,7 +207,58 @@
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="33">
               <caret line="57" column="9" selection-start-line="57" selection-start-column="9" selection-end-line="57" selection-end-column="9" />
-              <folding />
+              <folding>
+                <element signature="e#4686#4862#0" expanded="true" />
+                <element signature="e#4861#4862#0" expanded="true" />
+                <element signature="e#5212#5432#0" expanded="true" />
+                <element signature="e#5431#5432#0" expanded="true" />
+                <element signature="e#5593#5783#0" expanded="true" />
+                <element signature="e#5782#5783#0" expanded="true" />
+                <element signature="e#7557#8306#0" expanded="true" />
+                <element signature="e#8305#8306#0" expanded="true" />
+                <element signature="e#8512#8738#0" expanded="true" />
+                <element signature="e#8737#8738#0" expanded="true" />
+                <element signature="e#9220#10253#0" expanded="true" />
+                <element signature="e#10252#10253#0" expanded="true" />
+                <element signature="e#10680#11334#0" expanded="true" />
+                <element signature="e#11333#11334#0" expanded="true" />
+                <element signature="e#11665#13270#0" expanded="true" />
+                <element signature="e#13269#13270#0" expanded="true" />
+                <element signature="e#14009#14766#0" expanded="true" />
+                <element signature="e#14765#14766#0" expanded="true" />
+                <element signature="e#14980#15208#0" expanded="true" />
+                <element signature="e#15207#15208#0" expanded="true" />
+                <element signature="e#15684#16700#0" expanded="true" />
+                <element signature="e#16699#16700#0" expanded="true" />
+                <element signature="e#17112#17766#0" expanded="true" />
+                <element signature="e#17765#17766#0" expanded="true" />
+                <element signature="e#18082#19699#0" expanded="true" />
+                <element signature="e#19698#19699#0" expanded="true" />
+                <element signature="e#20813#20964#0" expanded="true" />
+                <element signature="e#20963#20964#0" expanded="true" />
+                <element signature="e#24193#25823#0" expanded="true" />
+                <element signature="e#24564#24592#0" expanded="true" />
+                <element signature="e#24603#24627#0" expanded="true" />
+                <element signature="e#24672#24683#0" expanded="true" />
+                <element signature="e#24685#25306#0" expanded="true" />
+                <element signature="e#25305#25306#0" expanded="true" />
+                <element signature="e#25326#25341#0" expanded="true" />
+                <element signature="e#25343#25591#0" expanded="true" />
+                <element signature="e#25590#25591#0" expanded="true" />
+                <element signature="e#25822#25823#0" expanded="true" />
+                <element signature="e#25863#26090#0" expanded="true" />
+                <element signature="e#26089#26090#0" expanded="true" />
+                <element signature="e#28516#29094#0" expanded="true" />
+                <element signature="e#29093#29094#0" expanded="true" />
+                <element signature="e#29147#29725#0" expanded="true" />
+                <element signature="e#29724#29725#0" expanded="true" />
+                <element signature="e#29777#30353#0" expanded="true" />
+                <element signature="e#30352#30353#0" expanded="true" />
+                <element signature="e#30491#30892#0" expanded="true" />
+                <element signature="e#30891#30892#0" expanded="true" />
+                <element signature="e#31306#31999#0" expanded="true" />
+                <element signature="e#31998#31999#0" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -222,8 +290,8 @@
       <list>
         <option value="valueResourceFile" />
         <option value="ASClass" />
-        <option value="layoutResourceFile_vertical" />
         <option value="resourceFile" />
+        <option value="layoutResourceFile_vertical" />
       </list>
     </option>
   </component>
@@ -3270,9 +3338,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/app/src/main/res/layout/activity_peta_baru.xml" />
-        <option value="$PROJECT_DIR$/app/src/main/java/com/yuly/elaundry/kurir/model/database/RouteDbHelperBackup.java" />
-        <option value="$PROJECT_DIR$/app/src/main/java/com/yuly/elaundry/kurir/controller/fragment/LaundryPemesananFragment.java" />
         <option value="$PROJECT_DIR$/app/src/main/res/layout/fragment_pemesanan.xml" />
         <option value="$PROJECT_DIR$/app/src/main/res/layout/activity_main.xml" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/yuly/elaundry/kurir/controller/app/AppConfig.java" />
@@ -3317,8 +3382,11 @@
         <option value="$PROJECT_DIR$/app/src/main/res/values/colors.xml" />
         <option value="$PROJECT_DIR$/app/src/main/res/values-in/strings.xml" />
         <option value="$PROJECT_DIR$/app/src/main/res/layout/peta_navigasi.xml" />
-        <option value="$PROJECT_DIR$/app/src/main/java/com/yuly/elaundry/kurir/controller/activity/DetailPetaRuteActions.java" />
         <option value="$PROJECT_DIR$/app/src/main/res/layout/peta_navigasi_rute.xml" />
+        <option value="$PROJECT_DIR$/app/src/main/res/layout-v21/peta_rute_navigasi.xml" />
+        <option value="$PROJECT_DIR$/app/src/main/res/layout-v21/peta_navigasi_saya.xml" />
+        <option value="$PROJECT_DIR$/app/src/main/res/layout-v21/peta_navigasi_detail.xml" />
+        <option value="$PROJECT_DIR$/app/src/main/java/com/yuly/elaundry/kurir/controller/activity/DetailPetaRuteActions.java" />
         <option value="$PROJECT_DIR$/app/src/main/res/layout/peta_navigasi_saya.xml" />
         <option value="$PROJECT_DIR$/app/src/main/res/layout/peta_rute_navigasi.xml" />
       </list>
@@ -3568,6 +3636,72 @@
               <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidModuleNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
+              <option name="myItemId" value="res" />
+              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidResFolderNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="layout" />
+              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidResFolderTypeNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="peta_rute_navigasi.xml" />
+              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidResGroupNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="elaundry-kurir" />
+              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="app" />
+              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidModuleNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="res" />
+              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidResFolderNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="layout" />
+              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidResFolderTypeNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="peta_navigasi_saya.xml" />
+              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidResGroupNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="elaundry-kurir" />
+              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="app" />
+              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidModuleNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="res" />
+              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidResFolderNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="layout" />
+              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidResFolderTypeNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="peta_navigasi_detail.xml" />
+              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidResGroupNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="elaundry-kurir" />
+              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="app" />
+              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidModuleNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
               <option name="myItemId" value="java" />
               <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidSourceTypeNode" />
             </PATH_ELEMENT>
@@ -3659,9 +3793,9 @@
     <property name="android.project.structure.last.selected" value="libs_graphhopper" />
     <property name="android.project.structure.proportion" value="0.15" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$/libs/java-rt-jar-stubs-1.5.0.jar" />
-    <property name="device.picker.selection" value="192.168.81.101:5555" />
+    <property name="device.picker.selection" value="192.168.81.102:5555" />
     <property name="UI_DESIGNER_EDITOR_MODE.NlPaletteManager-NlPreviewForm.SHOW" value="false" />
-    <property name="UI_DESIGNER_EDITOR_MODE.NlPropertiesWindowManager-NlEditorPanel.WIDTH" value="370" />
+    <property name="UI_DESIGNER_EDITOR_MODE.NlPropertiesWindowManager-NlEditorPanel.WIDTH" value="223" />
     <property name="UI_DESIGNER_EDITOR_MODE.NlPaletteManager-NlEditorPanel.WIDTH" value="277" />
     <property name="FileHistory.git4idea.history.GitHistoryProvider_flatWidth0" value="67" />
     <property name="FileHistory.git4idea.history.GitHistoryProvider_flatOrder0" value="0" />
@@ -4328,7 +4462,14 @@
       <option name="project" value="LOCAL" />
       <updated>1481535760344</updated>
     </task>
-    <option name="localTasksCounter" value="44" />
+    <task id="LOCAL-00044" summary="mengupdate tombol navigasi peta">
+      <created>1481540475116</created>
+      <option name="number" value="00044" />
+      <option name="presentableId" value="LOCAL-00044" />
+      <option name="project" value="LOCAL" />
+      <updated>1481540475116</updated>
+    </task>
+    <option name="localTasksCounter" value="45" />
     <servers />
   </component>
   <component name="TodoView">
@@ -4361,11 +4502,11 @@
       <window_info id="Capture Analysis" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Preview" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.31451613" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Version Control" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.5483871" sideWeight="0.49171272" order="9" side_tool="false" content_ui="tabs" />
+      <window_info id="Version Control" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.32903227" sideWeight="0.49171272" order="9" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32903227" sideWeight="0.5" order="12" side_tool="false" content_ui="tabs" />
       <window_info id="Captures" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.24940805" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Gradle Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.58709675" sideWeight="0.50907654" order="10" side_tool="true" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.27466455" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.3038674" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32903227" sideWeight="0.49723756" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Gradle" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32991317" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
       <window_info id="Theme Preview" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
@@ -4428,8 +4569,6 @@
     <option name="myLimit" value="2678400000" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Menambahkan template setting" />
-    <MESSAGE value="Menambahkan point lokasi di peta" />
     <MESSAGE value="mengupdate preload variable dan menampilakan jalur rute di peta" />
     <MESSAGE value="update : memanggil polyline" />
     <MESSAGE value="update : memanggil lokasi id" />
@@ -4453,7 +4592,9 @@
     <MESSAGE value="menambah layout profile baru" />
     <MESSAGE value="merename dan merapikan file2" />
     <MESSAGE value="memperbaiki perhitungan" />
-    <option name="LAST_COMMIT_MESSAGE" value="memperbaiki perhitungan" />
+    <MESSAGE value="mengupdate tombol navigasi peta" />
+    <MESSAGE value="mengupdate layout menjadi dua versi" />
+    <option name="LAST_COMMIT_MESSAGE" value="mengupdate layout menjadi dua versi" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -4476,39 +4617,6 @@
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/app/src/main/res/menu/activity_main_drawer.xml">
-      <provider editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-      <provider selected="true" editor-type-id="android-designer2">
-        <state />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/res/menu/item_menu_main.xml">
-      <provider editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-      <provider selected="true" editor-type-id="android-designer2">
-        <state />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/res/menu/item_menu_search.xml">
-      <provider editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-      <provider selected="true" editor-type-id="android-designer2">
-        <state />
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/res/menu/menu_drawer.xml" />
     <entry file="file://$PROJECT_DIR$/app/src/main/res/menu/menu_main.xml" />
     <entry file="file://$PROJECT_DIR$/app/src/main/res/menu/menu_main_ori.xml" />
@@ -4924,40 +5032,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/yuly/elaundry/kurir/controller/activity/DetailPetaRuteActions.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="33">
-          <caret line="57" column="9" selection-start-line="57" selection-start-column="9" selection-end-line="57" selection-end-column="9" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/peta_navigasi_saya.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="8" selection-end-column="45" />
-          <folding>
-            <element signature="e#721#754#0" expanded="true" />
-            <element signature="e#794#829#0" expanded="true" />
-            <element signature="e#2682#2715#0" expanded="true" />
-            <element signature="e#2759#2794#0" expanded="true" />
-            <element signature="e#3355#3388#0" expanded="true" />
-            <element signature="e#3432#3467#0" expanded="true" />
-            <element signature="e#4010#4043#0" expanded="true" />
-            <element signature="e#4087#4122#0" expanded="true" />
-            <element signature="e#4535#4568#0" expanded="true" />
-            <element signature="e#4612#4647#0" expanded="true" />
-            <element signature="e#5210#5243#0" expanded="true" />
-            <element signature="e#5287#5322#0" expanded="true" />
-            <element signature="e#5872#5905#0" expanded="true" />
-            <element signature="e#5949#5984#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-      <provider editor-type-id="android-designer2">
-        <state />
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/java/com/yuly/elaundry/kurir/model/peta/CariRuteHandler.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="229">
@@ -4968,9 +5042,178 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/peta_navigasi_detail.xml">
+    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout-v21/peta_rute_navigasi.xml">
       <provider editor-type-id="text-editor">
-        <state relative-caret-position="299">
+        <state relative-caret-position="505">
+          <caret line="147" column="50" selection-start-line="147" selection-start-column="50" selection-end-line="147" selection-end-column="50" />
+          <folding>
+            <element signature="e#641#674#0" expanded="true" />
+            <element signature="e#710#745#0" expanded="true" />
+            <element signature="e#1624#1657#0" expanded="true" />
+            <element signature="e#1697#1732#0" expanded="true" />
+            <element signature="e#2255#2288#0" expanded="true" />
+            <element signature="e#2328#2363#0" expanded="true" />
+            <element signature="e#2885#2918#0" expanded="true" />
+            <element signature="e#2958#2993#0" expanded="true" />
+            <element signature="e#3518#3551#0" expanded="true" />
+            <element signature="e#3591#3626#0" expanded="true" />
+            <element signature="e#4402#4435#0" expanded="true" />
+            <element signature="e#4479#4514#0" expanded="true" />
+            <element signature="e#4927#4960#0" expanded="true" />
+            <element signature="e#5004#5039#0" expanded="true" />
+            <element signature="e#5602#5635#0" expanded="true" />
+            <element signature="e#5679#5714#0" expanded="true" />
+            <element signature="e#6264#6297#0" expanded="true" />
+            <element signature="e#6341#6376#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+      <provider selected="true" editor-type-id="android-designer2">
+        <state />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout-v21/peta_navigasi_detail.xml">
+      <provider editor-type-id="text-editor">
+        <state relative-caret-position="505">
+          <caret line="147" column="50" selection-start-line="147" selection-start-column="50" selection-end-line="147" selection-end-column="50" />
+          <folding>
+            <element signature="e#641#674#0" expanded="true" />
+            <element signature="e#710#745#0" expanded="true" />
+            <element signature="e#1623#1656#0" expanded="true" />
+            <element signature="e#1696#1731#0" expanded="true" />
+            <element signature="e#2254#2287#0" expanded="true" />
+            <element signature="e#2327#2362#0" expanded="true" />
+            <element signature="e#2884#2917#0" expanded="true" />
+            <element signature="e#2957#2992#0" expanded="true" />
+            <element signature="e#3515#3548#0" expanded="true" />
+            <element signature="e#3588#3623#0" expanded="true" />
+            <element signature="e#4134#4167#0" expanded="true" />
+            <element signature="e#4207#4242#0" expanded="true" />
+            <element signature="e#5023#5056#0" expanded="true" />
+            <element signature="e#5100#5135#0" expanded="true" />
+            <element signature="e#5552#5585#0" expanded="true" />
+            <element signature="e#5629#5664#0" expanded="true" />
+            <element signature="e#6214#6247#0" expanded="true" />
+            <element signature="e#6291#6326#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+      <provider selected="true" editor-type-id="android-designer2">
+        <state />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/yuly/elaundry/kurir/controller/activity/DetailPetaRuteActions.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="33">
+          <caret line="57" column="9" selection-start-line="57" selection-start-column="9" selection-end-line="57" selection-end-column="9" />
+          <folding>
+            <element signature="e#4686#4862#0" expanded="true" />
+            <element signature="e#4861#4862#0" expanded="true" />
+            <element signature="e#5212#5432#0" expanded="true" />
+            <element signature="e#5431#5432#0" expanded="true" />
+            <element signature="e#5593#5783#0" expanded="true" />
+            <element signature="e#5782#5783#0" expanded="true" />
+            <element signature="e#7557#8306#0" expanded="true" />
+            <element signature="e#8305#8306#0" expanded="true" />
+            <element signature="e#8512#8738#0" expanded="true" />
+            <element signature="e#8737#8738#0" expanded="true" />
+            <element signature="e#9220#10253#0" expanded="true" />
+            <element signature="e#10252#10253#0" expanded="true" />
+            <element signature="e#10680#11334#0" expanded="true" />
+            <element signature="e#11333#11334#0" expanded="true" />
+            <element signature="e#11665#13270#0" expanded="true" />
+            <element signature="e#13269#13270#0" expanded="true" />
+            <element signature="e#14009#14766#0" expanded="true" />
+            <element signature="e#14765#14766#0" expanded="true" />
+            <element signature="e#14980#15208#0" expanded="true" />
+            <element signature="e#15207#15208#0" expanded="true" />
+            <element signature="e#15684#16700#0" expanded="true" />
+            <element signature="e#16699#16700#0" expanded="true" />
+            <element signature="e#17112#17766#0" expanded="true" />
+            <element signature="e#17765#17766#0" expanded="true" />
+            <element signature="e#18082#19699#0" expanded="true" />
+            <element signature="e#19698#19699#0" expanded="true" />
+            <element signature="e#20813#20964#0" expanded="true" />
+            <element signature="e#20963#20964#0" expanded="true" />
+            <element signature="e#24193#25823#0" expanded="true" />
+            <element signature="e#24564#24592#0" expanded="true" />
+            <element signature="e#24603#24627#0" expanded="true" />
+            <element signature="e#24672#24683#0" expanded="true" />
+            <element signature="e#24685#25306#0" expanded="true" />
+            <element signature="e#25305#25306#0" expanded="true" />
+            <element signature="e#25326#25341#0" expanded="true" />
+            <element signature="e#25343#25591#0" expanded="true" />
+            <element signature="e#25590#25591#0" expanded="true" />
+            <element signature="e#25822#25823#0" expanded="true" />
+            <element signature="e#25863#26090#0" expanded="true" />
+            <element signature="e#26089#26090#0" expanded="true" />
+            <element signature="e#28516#29094#0" expanded="true" />
+            <element signature="e#29093#29094#0" expanded="true" />
+            <element signature="e#29147#29725#0" expanded="true" />
+            <element signature="e#29724#29725#0" expanded="true" />
+            <element signature="e#29777#30353#0" expanded="true" />
+            <element signature="e#30352#30353#0" expanded="true" />
+            <element signature="e#30491#30892#0" expanded="true" />
+            <element signature="e#30891#30892#0" expanded="true" />
+            <element signature="e#31306#31999#0" expanded="true" />
+            <element signature="e#31998#31999#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout-v21/peta_navigasi_saya.xml">
+      <provider editor-type-id="text-editor">
+        <state relative-caret-position="505">
+          <caret line="123" column="50" selection-start-line="123" selection-start-column="50" selection-end-line="123" selection-end-column="50" />
+          <folding>
+            <element signature="e#641#674#0" expanded="true" />
+            <element signature="e#710#745#0" expanded="true" />
+            <element signature="e#1623#1656#0" expanded="true" />
+            <element signature="e#1696#1731#0" expanded="true" />
+            <element signature="e#2248#2281#0" expanded="true" />
+            <element signature="e#2321#2356#0" expanded="true" />
+            <element signature="e#3212#3245#0" expanded="true" />
+            <element signature="e#3289#3324#0" expanded="true" />
+            <element signature="e#3737#3770#0" expanded="true" />
+            <element signature="e#3814#3849#0" expanded="true" />
+            <element signature="e#4412#4445#0" expanded="true" />
+            <element signature="e#4489#4524#0" expanded="true" />
+            <element signature="e#5074#5107#0" expanded="true" />
+            <element signature="e#5151#5186#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+      <provider selected="true" editor-type-id="android-designer2">
+        <state />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/peta_navigasi_saya.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="292">
+          <caret line="47" column="0" selection-start-line="47" selection-start-column="0" selection-end-line="48" selection-end-column="44" />
+          <folding>
+            <element signature="e#721#754#0" expanded="true" />
+            <element signature="e#794#829#0" expanded="true" />
+            <element signature="e#2767#2800#0" expanded="true" />
+            <element signature="e#2844#2879#0" expanded="true" />
+            <element signature="e#3467#3500#0" expanded="true" />
+            <element signature="e#3544#3579#0" expanded="true" />
+            <element signature="e#3992#4025#0" expanded="true" />
+            <element signature="e#4069#4104#0" expanded="true" />
+            <element signature="e#4667#4700#0" expanded="true" />
+            <element signature="e#4744#4779#0" expanded="true" />
+            <element signature="e#5329#5362#0" expanded="true" />
+            <element signature="e#5406#5441#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+      <provider editor-type-id="android-designer2">
+        <state />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/peta_navigasi_detail.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="321">
           <caret line="62" column="39" selection-start-line="62" selection-start-column="33" selection-end-line="62" selection-end-column="39" />
           <folding>
             <element signature="e#3249#3282#0" expanded="true" />
@@ -4984,33 +5227,34 @@
           </folding>
         </state>
       </provider>
-      <provider selected="true" editor-type-id="android-designer2">
+      <provider editor-type-id="android-designer2">
         <state />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/peta_rute_navigasi.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="340">
-          <caret line="160" column="0" selection-start-line="160" selection-start-column="0" selection-end-line="160" selection-end-column="0" />
+      <provider editor-type-id="text-editor">
+        <state relative-caret-position="255">
+          <caret line="90" column="44" selection-start-line="90" selection-start-column="44" selection-end-line="90" selection-end-column="44" />
           <folding>
-            <marker date="1481540454083" expanded="false" signature="1623:1656" ph="&quot;16dp&quot;" />
-            <marker date="1481540454083" expanded="false" signature="1692:1727" ph="&quot;16dp&quot;" />
-            <marker date="1481540454083" expanded="false" signature="2206:2239" ph="&quot;16dp&quot;" />
-            <marker date="1481540454083" expanded="false" signature="2275:2310" ph="&quot;16dp&quot;" />
-            <marker date="1481540454083" expanded="false" signature="2788:2821" ph="&quot;16dp&quot;" />
-            <marker date="1481540454083" expanded="false" signature="2857:2892" ph="&quot;16dp&quot;" />
-            <marker date="1481540454083" expanded="false" signature="4276:4309" ph="&quot;16dp&quot;" />
-            <marker date="1481540454083" expanded="false" signature="4349:4384" ph="&quot;16dp&quot;" />
-            <marker date="1481540454083" expanded="false" signature="4765:4798" ph="&quot;16dp&quot;" />
-            <marker date="1481540454083" expanded="false" signature="4838:4873" ph="&quot;16dp&quot;" />
-            <marker date="1481540454083" expanded="false" signature="5392:5425" ph="&quot;16dp&quot;" />
-            <marker date="1481540454083" expanded="false" signature="5465:5500" ph="&quot;16dp&quot;" />
-            <marker date="1481540454083" expanded="false" signature="6006:6039" ph="&quot;16dp&quot;" />
-            <marker date="1481540454083" expanded="false" signature="6079:6114" ph="&quot;16dp&quot;" />
+            <element signature="e#6168#6203#0" expanded="true" />
+            <element signature="e#6241#6276#0" expanded="true" />
+            <marker date="1481542236904" expanded="false" signature="1623:1656" ph="&quot;16dp&quot;" />
+            <marker date="1481542236904" expanded="false" signature="1692:1727" ph="&quot;16dp&quot;" />
+            <marker date="1481542236904" expanded="false" signature="2206:2239" ph="&quot;16dp&quot;" />
+            <marker date="1481542236904" expanded="false" signature="2275:2310" ph="&quot;16dp&quot;" />
+            <marker date="1481542236904" expanded="false" signature="2788:2821" ph="&quot;16dp&quot;" />
+            <marker date="1481542236904" expanded="false" signature="2857:2892" ph="&quot;16dp&quot;" />
+            <marker date="1481542236904" expanded="false" signature="4367:4400" ph="&quot;16dp&quot;" />
+            <marker date="1481542236904" expanded="false" signature="4440:4475" ph="&quot;16dp&quot;" />
+            <marker date="1481542236904" expanded="false" signature="4856:4889" ph="&quot;16dp&quot;" />
+            <marker date="1481542236904" expanded="false" signature="4929:4964" ph="&quot;16dp&quot;" />
+            <marker date="1481542236904" expanded="false" signature="5483:5516" ph="&quot;16dp&quot;" />
+            <marker date="1481542236904" expanded="false" signature="5556:5591" ph="&quot;16dp&quot;" />
+            <marker date="1481542236904" expanded="false" signature="6095:6128" ph="&quot;16dp&quot;" />
           </folding>
         </state>
       </provider>
-      <provider editor-type-id="android-designer2">
+      <provider selected="true" editor-type-id="android-designer2">
         <state />
       </provider>
     </entry>
