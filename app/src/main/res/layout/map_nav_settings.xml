@@ -28,30 +28,18 @@
             android:clickable="true"
             android:focusable="true"
             android:padding="10dp"
-
-            android:src="@drawable/ic_directions_walk_white_24dp"
+            android:src="@drawable/ic_accessibility_white_24dp"
             />
 
         <ImageButton
-            android:id="@+id/nav_settings_bike_btn"
+            android:id="@+id/nav_settings_motor_btn"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_toRightOf="@+id/nav_settings_foot_btn"
             android:clickable="true"
             android:focusable="true"
             android:padding="10dp"
-            android:src="@drawable/ic_directions_bike_white_24dp"
-            />
-
-        <ImageButton
-            android:id="@+id/nav_settings_car_btn"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_toRightOf="@+id/nav_settings_bike_btn"
-            android:clickable="true"
-            android:focusable="true"
-            android:padding="10dp"
-            android:src="@drawable/ic_directions_car_white_24dp"
+            android:src="@drawable/ic_motorcycle_white_24dp"
             />
 
 
@@ -63,7 +51,7 @@
             android:clickable="true"
             android:focusable="true"
             android:padding="10dp"
-            app:srcCompat="@drawable/ic_keyboard_arrow_down_white_24dp"
+            android:src="@drawable/ic_keyboard_arrow_down_white_24dp"
             />
 
         <ImageButton

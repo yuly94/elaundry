@@ -21,9 +21,12 @@ import android.widget.Toast;
 import com.yuly.elaundry.kurir.R;
 import com.yuly.elaundry.kurir.model.dataType.Destination;
 import com.yuly.elaundry.kurir.model.listeners.MapHandlerListener;
-import com.yuly.elaundry.kurir.model.listeners.NavigatorListener;
+import com.yuly.elaundry.kurir.model.listeners.NavigasiSayaListener;
+
+import com.yuly.elaundry.kurir.model.map.DetailPetaNavigasi;
 import com.yuly.elaundry.kurir.model.map.PetaSayaHandler;
 import com.yuly.elaundry.kurir.model.map.PetaSayaNavigasi;
+import com.yuly.elaundry.kurir.model.peta.DetailPetaRuteHandler;
 import com.yuly.elaundry.kurir.model.util.InstructionAdapter;
 import com.yuly.elaundry.kurir.model.util.MyUtility;
 import com.yuly.elaundry.kurir.model.util.Variable;
@@ -33,7 +36,7 @@ import org.mapsforge.map.android.view.MapView;
 import org.mapsforge.map.model.MapViewPosition;
 
 
-public class PetaSayaActions implements NavigatorListener, MapHandlerListener {
+public class PetaSayaActions implements NavigasiSayaListener, MapHandlerListener {
     private Activity activity;
     protected FloatingActionButton showPositionBtn, navigationBtn, settingsBtn, controlBtn;
     protected FloatingActionButton zoomInBtn, zoomOutBtn;
@@ -458,10 +461,10 @@ public class PetaSayaActions implements NavigatorListener, MapHandlerListener {
             View pathfinding = activity.findViewById(R.id.map_nav_settings_path_finding);
             pathfinding.setVisibility(View.VISIBLE);
             pathfinding.bringToFront();
-            PetaSayaHandler mapHandler = PetaSayaHandler.getMapHandler();
-            mapHandler.calcPath(startPoint.latitude, startPoint.longitude, endPoint.latitude, endPoint.longitude);
+            PetaSayaHandler petaSayaHandler = PetaSayaHandler.getMapHandler();
+            petaSayaHandler.calcPath(startPoint.latitude, startPoint.longitude, endPoint.latitude, endPoint.longitude);
             if (Variable.getVariable().isDirectionsON()) {
-                mapHandler.setNeedPathCal(true);
+                petaSayaHandler.setNeedPathCal(true);
                 //rest running at
             }
         }
@@ -548,8 +551,8 @@ public class PetaSayaActions implements NavigatorListener, MapHandlerListener {
      */
     private void fillNavListSummaryValues() {
         ImageView travelMode;
-        //travelMode = (ImageView) activity.findViewById(R.id.nav_instruction_list_travel_mode_iv);
-       // travelMode.setImageResource(Navigasi.getNavigator().getTravelModeResId(true));
+        travelMode = (ImageView) activity.findViewById(R.id.nav_instruction_list_travel_mode_iv);
+        travelMode.setImageResource(PetaSayaNavigasi.getNavigator().getTravelModeResId(true));
         TextView from, to, distance, time;
 /*        from = (TextView) activity.findViewById(R.id.nav_instruction_list_summary_from_tv);
         to = (TextView) activity.findViewById(R.id.nav_instruction_list_summary_to_tv);*/
@@ -576,63 +579,65 @@ public class PetaSayaActions implements NavigatorListener, MapHandlerListener {
         Destination.getDestination().setEndPoint(null);
     }
 
+
+    /**
+     * remove polyline, markers from map layers
+     * <p>
+     * set from & to = null
+     */
+    private void hapusPath() {
+        DetailPetaRuteHandler.getPetaRuteHandler().removeMarkers();
+        fromLocalET.setText("");
+        toLocalET.setText("");
+        DetailPetaNavigasi.getNavigator().setOn(false);
+        Destination.getDestination().setStartPoint(null);
+        Destination.getDestination().setEndPoint(null);
+    }
+
+
     /**
      * set up travel mode
      */
     private void travelModeSetting() {
-        final ImageButton footBtn, bikeBtn, carBtn;
-        footBtn = (ImageButton) activity.findViewById(R.id.nav_settings_foot_btn);
-        bikeBtn = (ImageButton) activity.findViewById(R.id.nav_settings_bike_btn);
-        carBtn = (ImageButton) activity.findViewById(R.id.nav_settings_car_btn);
+        final ImageButton jalanKakiBtn, motorBtn;
+        jalanKakiBtn = (ImageButton) activity.findViewById(R.id.nav_settings_foot_btn);
+        motorBtn = (ImageButton) activity.findViewById(R.id.nav_settings_motor_btn);
+
         // init travel mode
         switch (Variable.getVariable().getTravelMode()) {
             case "foot":
-                footBtn.setImageResource(R.drawable.ic_directions_walk_orange_24dp);
+                jalanKakiBtn.setImageResource(R.drawable.ic_accessibility_black_24dp);
                 break;
-            case "bike":
-                bikeBtn.setImageResource(R.drawable.ic_directions_bike_orange_24dp);
-                break;
-            case "car":
-                carBtn.setImageResource(R.drawable.ic_directions_car_orange_24dp);
+            case "motorcycle":
+                motorBtn.setImageResource(R.drawable.ic_motorcycle_black_24dp);
                 break;
         }
 
         //foot
-        footBtn.setOnClickListener(new View.OnClickListener() {
+        jalanKakiBtn.setOnClickListener(new View.OnClickListener() {
             @Override public void onClick(View v) {
                 if (!Variable.getVariable().getTravelMode().equalsIgnoreCase("foot")) {
                     Variable.getVariable().setTravelMode("foot");
-                    footBtn.setImageResource(R.drawable.ic_directions_walk_orange_24dp);
-                    bikeBtn.setImageResource(R.drawable.ic_directions_bike_white_24dp);
-                    carBtn.setImageResource(R.drawable.ic_directions_car_white_24dp);
+                    jalanKakiBtn.setImageResource(R.drawable.ic_accessibility_black_24dp);
+                    motorBtn.setImageResource(R.drawable.ic_motorcycle_white_24dp);
+
                     activeNavigator();
                 }
             }
         });
         //bike
-        bikeBtn.setOnClickListener(new View.OnClickListener() {
+        motorBtn.setOnClickListener(new View.OnClickListener() {
             @Override public void onClick(View v) {
-                if (!Variable.getVariable().getTravelMode().equalsIgnoreCase("bike")) {
-                    Variable.getVariable().setTravelMode("bike");
-                    footBtn.setImageResource(R.drawable.ic_directions_walk_white_24dp);
-                    bikeBtn.setImageResource(R.drawable.ic_directions_bike_orange_24dp);
-                    carBtn.setImageResource(R.drawable.ic_directions_car_white_24dp);
+                if (!Variable.getVariable().getTravelMode().equalsIgnoreCase("motorcycle")) {
+                    Variable.getVariable().setTravelMode("motorcycle");
+                    jalanKakiBtn.setImageResource(R.drawable.ic_accessibility_white_24dp);
+                    motorBtn.setImageResource(R.drawable.ic_motorcycle_black_24dp);
+                 
                     activeNavigator();
                 }
             }
         });
-        // car
-        carBtn.setOnClickListener(new View.OnClickListener() {
-            @Override public void onClick(View v) {
-                if (!Variable.getVariable().getTravelMode().equalsIgnoreCase("car")) {
-                    Variable.getVariable().setTravelMode("car");
-                    footBtn.setImageResource(R.drawable.ic_directions_walk_white_24dp);
-                    bikeBtn.setImageResource(R.drawable.ic_directions_bike_white_24dp);
-                    carBtn.setImageResource(R.drawable.ic_directions_car_orange_24dp);
-                    activeNavigator();
-                }
-            }
-        });
+ 
     }
 
     /**

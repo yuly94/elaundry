@@ -2,6 +2,7 @@ package com.yuly.elaundry.kurir.controller.activity;
 
 import android.app.Activity;
 import android.content.DialogInterface;
+import android.os.Build;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.widget.LinearLayoutManager;
@@ -83,7 +84,11 @@ public class DetailPetaRuteActions implements NavigatorListener, PetaRuteHandler
         controlBtnHandler();
         zoomControlHandler(mapView);
         showMyLocation(mapView);
-        navBtnHandler();
+        boolean greaterOr21 = Build.VERSION.SDK_INT >= 21;
+        if (greaterOr21){
+            navBtnHandler();
+        }
+
         navSettingsHandler();
         settingsBtnHandler();
 
@@ -620,59 +625,45 @@ public class DetailPetaRuteActions implements NavigatorListener, PetaRuteHandler
      * set up travel mode
      */
     private void travelModeSetting() {
-        final ImageButton footBtn, bikeBtn, carBtn;
-        footBtn = (ImageButton) activity.findViewById(R.id.nav_settings_foot_btn);
-        bikeBtn = (ImageButton) activity.findViewById(R.id.nav_settings_bike_btn);
-        carBtn = (ImageButton) activity.findViewById(R.id.nav_settings_car_btn);
+        final ImageButton jalanKakiBtn, motorBtn, carBtn;
+        jalanKakiBtn = (ImageButton) activity.findViewById(R.id.nav_settings_foot_btn);
+        motorBtn = (ImageButton) activity.findViewById(R.id.nav_settings_motor_btn);
+
         // init travel mode
         switch (Variable.getVariable().getTravelMode()) {
             case "foot":
-                footBtn.setImageResource(R.drawable.ic_directions_walk_orange_24dp);
+                jalanKakiBtn.setImageResource(R.drawable.ic_accessibility_black_24dp);
                 break;
-            case "bike":
-                bikeBtn.setImageResource(R.drawable.ic_directions_bike_orange_24dp);
-                break;
-            case "car":
-                carBtn.setImageResource(R.drawable.ic_add_shopping_cart_24dp);
+            case "motorcycle":
+                motorBtn.setImageResource(R.drawable.ic_motorcycle_black_24dp);
                 break;
         }
 
         //foot
-        footBtn.setOnClickListener(new View.OnClickListener() {
+        jalanKakiBtn.setOnClickListener(new View.OnClickListener() {
             @Override public void onClick(View v) {
                 if (!Variable.getVariable().getTravelMode().equalsIgnoreCase("foot")) {
                     Variable.getVariable().setTravelMode("foot");
-                    footBtn.setImageResource(R.drawable.ic_directions_walk_orange_24dp);
-                    bikeBtn.setImageResource(R.drawable.ic_directions_bike_white_24dp);
-                    carBtn.setImageResource(R.drawable.ic_directions_car_white_24dp);
+                    jalanKakiBtn.setImageResource(R.drawable.ic_accessibility_black_24dp);
+                    motorBtn.setImageResource(R.drawable.ic_motorcycle_white_24dp);
+                   
                     activeNavigator();
                 }
             }
         });
         //bike
-        bikeBtn.setOnClickListener(new View.OnClickListener() {
+        motorBtn.setOnClickListener(new View.OnClickListener() {
             @Override public void onClick(View v) {
                 if (!Variable.getVariable().getTravelMode().equalsIgnoreCase("bike")) {
                     Variable.getVariable().setTravelMode("bike");
-                    footBtn.setImageResource(R.drawable.ic_directions_walk_white_24dp);
-                    bikeBtn.setImageResource(R.drawable.ic_directions_bike_orange_24dp);
-                    carBtn.setImageResource(R.drawable.ic_directions_car_white_24dp);
+                    jalanKakiBtn.setImageResource(R.drawable.ic_directions_walk_white_24dp);
+                    motorBtn.setImageResource(R.drawable.ic_motorcycle_black_24dp);
+                  
                     activeNavigator();
                 }
             }
         });
-        // car
-        carBtn.setOnClickListener(new View.OnClickListener() {
-            @Override public void onClick(View v) {
-                if (!Variable.getVariable().getTravelMode().equalsIgnoreCase("car")) {
-                    Variable.getVariable().setTravelMode("car");
-                    footBtn.setImageResource(R.drawable.ic_directions_walk_white_24dp);
-                    bikeBtn.setImageResource(R.drawable.ic_directions_bike_white_24dp);
-                    carBtn.setImageResource(R.drawable.ic_directions_car_orange_24dp);
-                    activeNavigator();
-                }
-            }
-        });
+ 
     }
 
     /**
@@ -791,10 +782,14 @@ public class DetailPetaRuteActions implements NavigatorListener, PetaRuteHandler
      * @param on
      */
     @Override public void statusChanged(boolean on) {
+        boolean greaterOr21 = Build.VERSION.SDK_INT >= 21;
+        if (greaterOr21) {
         if (on) {
-            navigationBtn.setImageResource(R.drawable.ic_directions_white_24dp);
-        } else {
-            navigationBtn.setImageResource(R.drawable.ic_navigation_white_24dp);
+
+                navigationBtn.setImageResource(R.drawable.ic_directions_white_24dp);
+            } else {
+                navigationBtn.setImageResource(R.drawable.ic_navigation_white_24dp);
+            }
         }
     }
 

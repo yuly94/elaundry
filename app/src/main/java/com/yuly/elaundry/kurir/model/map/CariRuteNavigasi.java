@@ -4,7 +4,6 @@ import com.graphhopper.GHResponse;
 import com.graphhopper.util.Helper;
 import com.graphhopper.util.Instruction;
 import com.yuly.elaundry.kurir.R;
-import com.yuly.elaundry.kurir.model.listeners.NavigasiSayaListener;
 import com.yuly.elaundry.kurir.model.listeners.NavigatorListener;
 import com.yuly.elaundry.kurir.model.util.Variable;
 
@@ -12,7 +11,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 
-public class PetaSayaNavigasi {
+public class CariRuteNavigasi {
     /**
      * get from MapHandler calculate path
      */
@@ -21,11 +20,11 @@ public class PetaSayaNavigasi {
      * navigator is on or off
      */
     private boolean on;
-    private List<NavigasiSayaListener> listeners;
-    private static PetaSayaNavigasi navigator = null;
+    private List<NavigatorListener> listeners;
+    private static CariRuteNavigasi navigator = null;
 
 
-    private PetaSayaNavigasi() {
+    private CariRuteNavigasi() {
         this.ghResponse = null;
         this.on = false;
         this.listeners = new ArrayList<>();
@@ -34,9 +33,9 @@ public class PetaSayaNavigasi {
     /**
      * @return Navigator object
      */
-    public static PetaSayaNavigasi getNavigator() {
+    public static CariRuteNavigasi getNavigator() {
         if (navigator == null) {
-            navigator = new PetaSayaNavigasi();
+            navigator = new CariRuteNavigasi();
         }
         return navigator;
     }
@@ -114,7 +113,7 @@ public class PetaSayaNavigasi {
      * broadcast changes to listeners
      */
     protected void broadcast() {
-        for (NavigasiSayaListener listener : listeners) {
+        for (NavigatorListener listener : listeners) {
             listener.statusChanged(isOn());
         }
     }
@@ -124,7 +123,7 @@ public class PetaSayaNavigasi {
      *
      * @param listener
      */
-    public void addListener(NavigasiSayaListener listener) {
+    public void addListener(NavigatorListener listener) {
         listeners.add(listener);
     }
 
@@ -153,16 +152,19 @@ public class PetaSayaNavigasi {
             switch (Variable.getVariable().getTravelMode()) {
                 case "foot":
                     return R.drawable.ic_add_shopping_cart_24dp;
-                case "motorcycle":
-                    return R.drawable.ic_motorcycle_black_24dp;
-
+                case "bike":
+                    return R.drawable.ic_directions_bike_orange_24dp;
+                case "car":
+                    return R.drawable.ic_add_shopping_cart_24dp;
             }
         } else {
             switch (Variable.getVariable().getTravelMode()) {
                 case "foot":
                     return R.drawable.ic_add_shopping_cart_24dp;
-                case "motorcycle":
-                    return R.drawable.ic_motorcycle_black_24dp;
+                case "bike":
+                    return R.drawable.ic_directions_bike_white_24dp;
+                case "car":
+                    return R.drawable.ic_add_shopping_cart_24dp;
             }
         }
         throw new NullPointerException("hanya tersedian ketika class ada");

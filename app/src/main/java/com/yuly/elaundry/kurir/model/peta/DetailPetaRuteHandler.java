@@ -275,16 +275,18 @@ public class DetailPetaRuteHandler {
      * remove all markers and polyline from layers
      */
     public void removeMarkers() {
-        Layers layers = mapView.getLayerManager().getLayers();
-        if (startMarker != null) {
+      //  Layers layers = mapView.getLayerManager().getLayers();
+
+
+/*        if (startMarker != null) {
             removeLayer(layers, startMarker);
         }
         if (startMarker != null) {
             removeLayer(layers, endMarker);
-        }
-        if (polylinePath != null) {
+        }*/
+/*        if (polylinePath != null) {
             removeLayer(layers, polylinePath);
-        }
+        }*/
     }
 
     /**
@@ -374,7 +376,7 @@ public class DetailPetaRuteHandler {
             protected void onPostExecute(GHResponse resp) {
                 if (!resp.hasErrors()) {
                     polylinePath = createPolyline(resp.getPoints(),
-                            activity.getResources().getColor(R.color.pink), 20);
+                            activity.getResources().getColor(R.color.my_primary_dark_transparent), 10);
                     mapView.getLayerManager().getLayers().add(polylinePath);
                     if (Variable.getVariable().isDirectionsON()) {
                         DetailPetaNavigasi.getNavigator().setGhResponse(resp);

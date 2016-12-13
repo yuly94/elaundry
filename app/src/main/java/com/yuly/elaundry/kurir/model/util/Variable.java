@@ -51,6 +51,8 @@ public class Variable {
      * instructions on or off; default true (on)
      */
     private boolean directionsON;
+
+    private boolean petunjukArahSayaON;
     /**
      * maximum zoom level on map
      */
@@ -182,6 +184,7 @@ public class Variable {
         this.context = null;
         this.advancedSetting = false;
         this.directionsON = true;
+        this.petunjukArahSayaON = true;
         this.mapDownloadDirectory = "/Download/elaundrymaps/maps/";
         this.mapDirectory = "/elaundrymaps/maps/";
         this.trackingDirectory = "/elaundrymaps/tracking/";
@@ -263,6 +266,27 @@ public class Variable {
     public String getDirectionsON() {
         return isDirectionsON() ? "true" : "false";
     }
+
+
+    public boolean isPetunjukArahSayaON() {
+        return petunjukArahSayaON;
+    }
+
+    public void setPetunjukArahSayaON(boolean petunjukArahSayaON) {
+        this.petunjukArahSayaON = petunjukArahSayaON;
+    }
+
+    /**
+     * @return is DirectionsON as string : "true or false"
+     */
+    public String getPetunjukArahSayaON() {
+        return isPetunjukArahSayaON() ? "true" : "false";
+    }
+
+
+
+
+
 
     public int getZoomLevelMax() {
         return zoomLevelMax;
@@ -513,6 +537,7 @@ public class Variable {
             setWeighting(jo.getString("weighting"));
             setRoutingAlgorithms(jo.getString("routingAlgorithms"));
             setDirectionsON(jo.getBoolean("directionsON"));
+            setPetunjukArahSayaON(jo.getBoolean("petunjukArahSayaON"));
             setAdvancedSetting(jo.getBoolean("advancedSetting"));
             setZoomLevelMax(jo.getInt("zoomLevelMax"));
             setZoomLevelMin(jo.getInt("zoomLevelMin"));
