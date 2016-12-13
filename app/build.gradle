@@ -30,7 +30,6 @@ android {
             minifyEnabled true
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
             signingConfig signingConfigs.release
-            proguardFile '/home/anonymous/AndroidStudioProjects/myelaundry/app/proguard-android-optimize.txt'
             debuggable false
         }
         debug {
@@ -40,6 +39,14 @@ android {
         }
     }
     productFlavors {
+        releaseConfig {
+        }
+        debugConfig {
+            minSdkVersion 15
+            applicationId 'com.yuly.elaundry.kurir'
+            signingConfig signingConfigs.debug
+            targetSdkVersion 25
+        }
     }
     compileOptions {
         sourceCompatibility JavaVersion.VERSION_1_7
@@ -54,12 +61,12 @@ dependencies {
     //compile 'com.android.support:multidex:1.0.1'
     compile project(':libs_google_volley')
     //Android Graph Library for creating zoomable and scrollable line and bar graphs
-       compile('com.graphhopper:graphhopper:0.5.0') {
-            //An open source routing library and server using OpenStreetMap
-            exclude group: 'com.google.protobuf', module: 'protobuf-java'
-            exclude group: 'org.openstreetmap.osmosis', module: 'osmosis-osm-binary'
-            exclude group: 'org.apache.xmlgraphics', module: 'xmlgraphics-commons'
-        }
+    compile('com.graphhopper:graphhopper:0.5.0') {
+        //An open source routing library and server using OpenStreetMap
+        exclude group: 'com.google.protobuf', module: 'protobuf-java'
+        exclude group: 'org.openstreetmap.osmosis', module: 'osmosis-osm-binary'
+        exclude group: 'org.apache.xmlgraphics', module: 'xmlgraphics-commons'
+    }
     //Vector map library written in Java - running on Android and Desktop.
     //Vector map library written in Java - running on Android and Desktop.
     //Vector map library written in Java - running on Android and Desktop.
@@ -79,13 +86,7 @@ dependencies {
     compile 'org.slf4j:slf4j-android:1.7.21'
     compile 'org.slf4j:slf4j-api:1.7.21'
     compile 'com.android.support:support-vector-drawable:25.0.1'
-
     compile 'com.getbase:floatingactionbutton:1.10.1'
-
     testCompile 'junit:junit:4.12'
-
-
-
-   // compile project(':libs_graphhopper')
-
+    // compile project(':libs_graphhopper')
 }
