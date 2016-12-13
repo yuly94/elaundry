@@ -78,7 +78,7 @@
             android:screenOrientation="portrait"
             android:theme="@style/MYAppTheme.NoActionBar" />
         <activity
-            android:name=".controller.activity.MapActivity2"
+            android:name=".controller.activity.CariRuteActivity"
             android:label="@string/title_activity_map"
             android:screenOrientation="portrait"
             android:theme="@style/MYAppTheme.NoActionBar" />
@@ -104,6 +104,11 @@
             android:theme="@style/MYAppTheme.NoActionBar" />
         <activity
             android:name=".controller.activity.DetailPemesananActivity"
+            android:label="detail pesanan"
+            android:screenOrientation="portrait"
+            android:theme="@style/MYAppTheme.NoActionBar" />
+        <activity
+            android:name=".controller.activity.PetaRuteActivity"
             android:label="detail pesanan"
             android:screenOrientation="portrait"
             android:theme="@style/MYAppTheme.NoActionBar" />

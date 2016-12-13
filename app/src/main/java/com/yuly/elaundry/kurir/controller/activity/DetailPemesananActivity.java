@@ -1,8 +1,10 @@
 package com.yuly.elaundry.kurir.controller.activity;
 
 import android.app.ProgressDialog;
+import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
+import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
@@ -27,6 +29,8 @@ import com.yuly.elaundry.kurir.controller.app.AppConfig;
 import com.yuly.elaundry.kurir.controller.app.AppController;
 import com.yuly.elaundry.kurir.controller.app.Constants;
 import com.yuly.elaundry.kurir.model.database.KurirDbHandler;
+import com.yuly.elaundry.kurir.model.geterseter.PesananModels;
+import com.yuly.elaundry.kurir.model.geterseter.TransaksiModel;
 import com.yuly.elaundry.kurir.model.helper.VolleyErrorHelper;
 
 import org.json.JSONArray;
@@ -47,12 +51,14 @@ public class DetailPemesananActivity extends AppCompatActivity {
     private Button btnEdit, btnSave;
 
     private ProgressDialog pDialog;
-    private String id_pemesanan, text_tombol,text_update_status, text_status_sebelumnya;
+    private String id_pemesanan, text_tombol,text_update_status, text_status_sebelumnya, pem_latitude, pem_longitude;
     private View parentLayout;
 
     private Button btnAmbil;
 
     private static final String TAG = DetailPemesananActivity.class.getSimpleName();
+
+    TransaksiModel transaksiModel = new TransaksiModel();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -100,6 +106,8 @@ public class DetailPemesananActivity extends AppCompatActivity {
 
         id_pemesanan = getIntent().getStringExtra("PEMESANAN_ID");
         text_tombol = getIntent().getStringExtra("TEXT_TOMBOL");
+        pem_latitude = getIntent().getStringExtra("PEMESANAN_LATITUDE");
+        pem_longitude = getIntent().getStringExtra("PEMESANAN_LONGITUDE");
         text_status_sebelumnya = getIntent().getStringExtra("STATUS_SEBELUMNYA");
         text_update_status = getIntent().getStringExtra("UPDATE_STATUS");
 
@@ -114,6 +122,22 @@ public class DetailPemesananActivity extends AppCompatActivity {
             public void onClick(View v) {
 
                 updatePemesanan(text_update_status);
+            }
+        });
+
+        FloatingActionButton mFab = (FloatingActionButton)findViewById(R.id.fab_lokasi);
+        mFab.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                Intent intentPeta = new Intent(getApplication(), PetaRuteActivity.class);
+
+                intentPeta.putExtra("PESANAN_LATITUDE", pem_latitude);
+                intentPeta.putExtra("PESANAN_LONGITUDE", pem_longitude);
+
+                startActivity(intentPeta);
+
+
             }
         });
     }
@@ -186,6 +210,10 @@ public class DetailPemesananActivity extends AppCompatActivity {
                             tvRok.setText(pemesanan_rok);
                             tvTanggal.setText(pemesanan_tanggal);
                             tvStatus.setText(pemesanan_status);
+
+
+                            transaksiModel.setLatitude(pemesanan_latitude);
+                            transaksiModel.setLongitude(pemesanan_longitude);
 
                         }
 

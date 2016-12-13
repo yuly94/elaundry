@@ -21,7 +21,7 @@ import android.widget.Toast;
 
 import com.graphhopper.GraphHopper;
 import com.yuly.elaundry.kurir.R;
-import com.yuly.elaundry.kurir.model.map.PetaHandler;
+import com.yuly.elaundry.kurir.model.peta.PetaHandler;
 import com.yuly.elaundry.kurir.model.util.Variable;
 
 import org.mapsforge.core.model.LatLong;
@@ -32,7 +32,7 @@ import org.mapsforge.map.layer.overlay.Marker;
 
 import java.io.File;
 
-public class MapActivity2 extends AppCompatActivity implements LocationListener {
+public class CariRuteActivity extends AppCompatActivity implements LocationListener {
     private MapView mapView;
     private static Location mCurrentLocation;
     private Marker mPositionMarker;
@@ -84,13 +84,14 @@ public class MapActivity2 extends AppCompatActivity implements LocationListener 
         mapView.setBuiltInZoomControls(false);
         //mapView.getModel().mapViewPosition.setZoomLevel((byte) 12);
         PetaHandler.getPetaHandler()
-                .init(this, mapView, Variable.getVariable().getCountry(), Variable.getVariable().getMapsFolder());
-        //
+          .init(this, mapView, Variable.getVariable().getCountry(), Variable.getVariable().getMapsFolder());
+              //  .init(this, mapView, Variable.getVariable().getCountry(), Variable.getVariable().getMapsFolder());
+        //indonesia_jawatimur_kediringanjuk
        // MapHandler.getPetaHandler().loadMap(new File(Variable.getVariable().getMapsFolder().getAbsolutePath(),
          //       Variable.getVariable().getCountry() + "-gh"));
 
-        PetaHandler.getPetaHandler().loadMap(new File("/storage/emulated/0/Download/elaundrymaps/maps/",
-               "indonesia_jawatimur_kediringanjuk-gh"));
+        PetaHandler.getPetaHandler().loadMap(new File(Variable.getVariable().getMapsFolder().getAbsolutePath(),
+                Variable.getVariable().getCountry() + "-gh"));
 
 
         customMapView();

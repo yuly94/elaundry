@@ -92,6 +92,8 @@ public class Variable {
      * <p/>
      * <li> mapsFolder   =   new File("/storage/emulated/0/Download/pocketmaps/maps")</li>
      */
+    private String petaFolder;
+
     private File mapsFolder;
     /**
      * a folder to save tracking files
@@ -171,8 +173,8 @@ public class Variable {
         this.zoomLevelMin = 1;
         this.lastZoomLevel = 15;
         this.lastLocation = null;
-        this.country = null;
-        this.mapsFolder = null;
+        this.country = "indonesia_jawatimur_kediringanjuk";
+        this.mapsFolder = new File("/storage/emulated/0/Download/elaundrymaps/maps/");
         this.context = null;
         this.advancedSetting = false;
         this.directionsON = true;

@@ -1,4 +1,4 @@
-package com.yuly.elaundry.kurir.model.map;
+package com.yuly.elaundry.kurir.model.peta;
 
 import android.app.Activity;
 import android.graphics.Path;
@@ -17,7 +17,10 @@ import com.graphhopper.routing.AlgorithmOptions;
 import com.graphhopper.util.PointList;
 import com.graphhopper.util.StopWatch;
 import com.yuly.elaundry.kurir.R;
+import com.yuly.elaundry.kurir.model.database.Lokasi;
+import com.yuly.elaundry.kurir.model.database.RouteDbHelper;
 import com.yuly.elaundry.kurir.model.listeners.PetaHandlerListener;
+import com.yuly.elaundry.kurir.model.map.Navigasi;
 import com.yuly.elaundry.kurir.model.util.Variable;
 
 import org.mapsforge.core.graphics.Bitmap;
@@ -109,7 +112,9 @@ public class PetaHandler {
     public void loadMap(File areaFolder) {
         logToast(activity.getString(R.string.memuat_peta) + currentArea);
        // File mapFile = new File(areaFolder, currentArea + activity.getString(R.string.dotmap));
-        MapDataStore mapDataStore = new MapFile(new File(areaFolder,"indonesia_jawatimur_kediringanjuk.map"));
+     //   MapDataStore mapDataStore = new MapFile(new File(areaFolder,"indonesia_jawatimur_kediringanjuk.map"));
+
+        MapDataStore mapDataStore = new MapFile(new File(areaFolder,currentArea +".map"));
 
         mapView.getLayerManager().getLayers().clear();
         tileRendererLayer =
@@ -304,7 +309,7 @@ public class PetaHandler {
 
             protected void onPostExecute(Path o) {
                 if (error != "") {
-                    logToast(activity.getString(R.string.error_grafik) + error);
+                    logToast(activity.getString(R.string.error_grafik) +" : "+ error +" mapfolder : "+ mapsFolder +" current area : "+ currentArea +" hopper : "+hopper);
                 } else {
                 }
                 Variable.getVariable().setPrepareInProgress(false);
@@ -313,52 +318,66 @@ public class PetaHandler {
     }
 
 
-    public void calcPathx(final double fromLat, final double fromLon,
-                         final double toLat, final double toLon) {
-
-        log("mengkalkulasi path ...");
-
+    /**
+     * calculate a path: start to end
+     *
+     * @param fromLat
+     * @param fromLon
+     * @param toLat
+     * @param toLon
+     */
+    public void hitungPath(final double fromLat, final double fromLon, final double toLat, final double toLon) {
+        Layers layers = mapView.getLayerManager().getLayers();
+        removeLayer(layers, polylinePath);
+        polylinePath = null;
         new AsyncTask<Void, Void, GHResponse>() {
             float time;
 
             protected GHResponse doInBackground(Void... v) {
                 StopWatch sw = new StopWatch().start();
+                GHRequest req = new GHRequest(fromLat, fromLon, toLat, toLon);
+                req.setAlgorithm(AlgorithmOptions.DIJKSTRA_BI);
+                req.getHints().put(activity.getString(R.string.instruksi),
+                        //  Variable.getVariable().getDirectionsON()
+                        false
 
-                GHRequest req = new GHRequest(fromLat, fromLon, toLat, toLon).
-                        setAlgorithm(AlgorithmOptions.DIJKSTRA_BI);
-
-                req.getHints().
-                        put("instructions", "false");
+                );
+                req.setVehicle(Variable.getVariable().getTravelMode());
+                //req.setVehicle("car");
+                req.setWeighting(Variable.getVariable().getWeighting());
+                //req.setWeighting("fastest");
                 GHResponse resp = hopper.route(req);
                 time = sw.stop().getSeconds();
                 return resp;
             }
 
+            protected void onPreExecute() {
+                super.onPreExecute();
+                setShortestPathRunning(true);
+            }
+
             protected void onPostExecute(GHResponse resp) {
                 if (!resp.hasErrors()) {
+
+
                     log("from:" + fromLat + "," + fromLon + " to:" + toLat + ","
                             + toLon + " found path with distance:" + resp.getDistance()
                             / 1000f + ", nodes:" + resp.getPoints().getSize() + ", time:"
                             + time + " " + resp.getDebugInfo());
+
+                    // Log.d("respone get point ", String.valueOf(resp.getPoints()));
+
                     logUser("the route is " + (int) (resp.getDistance() / 100) / 10f
                             + "km long, time:" + resp.getTime() / 60000f + "min, debug:" + time);
 
-                //    mapView.getLayerManager().getLayers().add(createPolyline(resp.getPoints(),activity.getResources().getColor(R.color.my_accent_transparent), 25));
-
-                 //   mapView.getLayerManager().getLayers().add(createPolyline(resp.getPoints(),activity.getResources().getColor(R.color.my_accent_transparent), 25));
-
-                    Log.d("Resp", resp.toString());
-
-
-                 //   mapView.getLayerManager().getLayers().add(createPolyline(resp.getPoints(),activity.getResources().getColor(R.color.my_accent_transparent), 25));
-                    //mapView.redraw();
                 } else {
-                    logUser("Error:" + resp.getErrors());
+                    logToast(activity.getString(R.string.error_titikdua) + resp.getErrors());
                 }
-                shortestPathRunning = false;
+
             }
         }.execute();
     }
+
 
 
     /**
@@ -402,12 +421,26 @@ public class PetaHandler {
             protected void onPostExecute(GHResponse resp) {
                 if (!resp.hasErrors()) {
                     polylinePath = createPolyline(resp.getPoints(),
-                            activity.getResources().getColor(R.color.my_primary_dark_transparent), 20);
+                            activity.getResources().getColor((R.color.pink)), 10);
+
+
                     mapView.getLayerManager().getLayers().add(polylinePath);
+
                     if (Variable.getVariable().isDirectionsON()) {
                         Navigasi.getNavigator().setGhResponse(resp);
                         //                        log("navigator: " + Navigator.getNavigator().toString());
                     }
+
+                    log("from:" + fromLat + "," + fromLon + " to:" + toLat + ","
+                            + toLon + " found path with distance:" + resp.getDistance()
+                            / 1000f + ", nodes:" + resp.getPoints().getSize() + ", time:"
+                            + time + " " + resp.getDebugInfo());
+
+                   // Log.d("respone get point ", String.valueOf(resp.getPoints()));
+
+                    logUser("the route is " + (int) (resp.getDistance() / 100) / 10f
+                            + "km long, time:" + resp.getTime() / 60000f + "min, debug:" + time);
+
                 } else {
                     logToast(activity.getString(R.string.error_titikdua) + resp.getErrors());
                 }
@@ -416,8 +449,69 @@ public class PetaHandler {
                     activity.findViewById(R.id.nav_settings_layout).setVisibility(View.VISIBLE);
                 } catch (Exception e) {e.getStackTrace();}
                 setShortestPathRunning(false);
+
+
+
             }
         }.execute();
+    }
+
+
+    public void calcPathX() {
+
+       polylinePath = buatPolyline(activity.getResources().getColor((R.color.pink)), 10);
+
+       mapView.getLayerManager().getLayers().add(polylinePath);
+
+        Log.d("text","coba");
+    }
+
+
+    /**
+     * draws a connected series of line segments specified by a list of LatLongs.
+     *
+     * @param color:       the color of the olyline
+     * @param strokeWidth: the stroke width of the polyline
+     * @return Polylinep
+     */
+    public Polyline buatPolyline( int color, int strokeWidth) {
+        Paint paintStroke = AndroidGraphicFactory.INSTANCE.createPaint();
+
+        paintStroke.setStyle(Style.STROKE);
+        paintStroke.setStrokeJoin(Join.ROUND);
+        paintStroke.setStrokeCap(Cap.ROUND);
+        paintStroke.setColor(color);
+        paintStroke.setDashPathEffect(new float[]{25, 8});
+        paintStroke.setStrokeWidth(strokeWidth);
+
+        // TODO: new mapsforge version wants an mapsforge-paint, not an android paint.
+        // This doesn't seem to support transparceny
+        //paintStroke.setAlpha(128);
+        Polyline line = new Polyline((Paint) paintStroke, AndroidGraphicFactory.INSTANCE);
+        List<LatLong> geoPoints = line.getLatLongs();
+        // SqLite database handler
+        // SqLite database handler
+
+        RouteDbHelper db_rute = new RouteDbHelper(this.activity);
+
+        List<Lokasi> listpoint = db_rute.getAllPoint();
+
+        for (Lokasi lokasi : listpoint) {
+
+             geoPoints.add(new LatLong(Double.valueOf(lokasi.getLatitude()), Double.valueOf(lokasi.getLongitude())));
+
+            //
+            Log.d("lokasi ",lokasi.getLatitude()+" : " +lokasi.getLongitude());
+
+          //  Lokasi lokasi_konsumen = new Lokasi( "kon id","pemesanan id", lokasi.getLatitude(), lokasi.getLongitude(), "0",1);
+
+          //  long id = db_rute.createPointKonsumen(lokasi_konsumen);
+
+         //   Log.d("ID Point", String.valueOf(id));
+
+        }
+
+        return line;
     }
 
     /**
@@ -480,7 +574,7 @@ public class PetaHandler {
         paintStroke.setStrokeJoin(Join.ROUND);
         paintStroke.setStrokeCap(Cap.ROUND);
         paintStroke.setColor(color);
-                paintStroke.setDashPathEffect(new float[]{25, 25});
+                paintStroke.setDashPathEffect(new float[]{25, 8});
         paintStroke.setStrokeWidth(strokeWidth);
 
         // TODO: new mapsforge version wants an mapsforge-paint, not an android paint.
@@ -488,9 +582,22 @@ public class PetaHandler {
         //paintStroke.setAlpha(128);
         Polyline line = new Polyline((Paint) paintStroke, AndroidGraphicFactory.INSTANCE);
         List<LatLong> geoPoints = line.getLatLongs();
+        // SqLite database handler
+        RouteDbHelper db_rute = new RouteDbHelper(this.activity);
+
         PointList tmp = pointList;
         for (int i = 0; i < pointList.getSize(); i++) {
             geoPoints.add(new LatLong(tmp.getLatitude(i), tmp.getLongitude(i)));
+
+            //
+            Log.d(String.valueOf(tmp.getLatitude(i)), String.valueOf(tmp.getLongitude(i)));
+
+            Lokasi lokasi_konsumen = new Lokasi( "kon id","pemesanan id", String.valueOf(tmp.getLatitude(i)), String.valueOf(tmp.getLongitude(i)), "0",1);
+
+            long id = db_rute.createPointKonsumen(lokasi_konsumen);
+
+            Log.d("ID Point", String.valueOf(id));
+
         }
         return line;
     }

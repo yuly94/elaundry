@@ -202,6 +202,8 @@ public class LaundryPemesananFragment extends Fragment implements SearchView.OnQ
 
                 Intent intent = new Intent(getActivity(), DetailPemesananActivity.class);
                 intent.putExtra("PEMESANAN_ID", transaksi.getNoId());
+                intent.putExtra("PEMESANAN_LATITUDE", transaksi.getLatitude());
+                intent.putExtra("PEMESANAN_LONGITUDE", transaksi.getLongitude());
                 intent.putExtra("TEXT_TOMBOL", "mengambil laundry");
                 intent.putExtra("STATUS_SEBELUMNYA", "baru memesan");
                 intent.putExtra("UPDATE_STATUS", "pengambilan laundry");
@@ -319,6 +321,8 @@ public class LaundryPemesananFragment extends Fragment implements SearchView.OnQ
                             Log.i(AppController.TAG, "parsing berhasil");
 
                             listPesanan.setNoId(pemesanan_id);
+                            listPesanan.setLatitude(pemesanan_latitude);
+                            listPesanan.setLongitude(pemesanan_longitude);
                             listPesanan.setNama(konsumen_nama);
                             listPesanan.setNoHp(konsumen_nohp);
                             listPesanan.setHarga(pemesanan_harga);

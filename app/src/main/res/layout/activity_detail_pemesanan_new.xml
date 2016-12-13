@@ -25,4 +25,16 @@
 
     <include layout="@layout/conten_detail_pemesanan" />
 
+    <android.support.design.widget.FloatingActionButton
+        android:id="@+id/fab_lokasi"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="end|bottom"
+        android:layout_marginBottom="@dimen/fab_margin"
+        android:layout_marginRight="@dimen/fab_margin"
+        app:srcCompat="@drawable/ic_directions_white_24dp"
+        app:layout_behavior="com.yuly.elaundry.kurir.view.widgets.ScrollAwareFABBehavior"
+        app:layout_anchorGravity="bottom|right|end"/>
+
+
 </android.support.design.widget.CoordinatorLayout>

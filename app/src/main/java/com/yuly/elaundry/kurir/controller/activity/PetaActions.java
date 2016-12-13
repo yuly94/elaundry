@@ -2,6 +2,7 @@ package com.yuly.elaundry.kurir.controller.activity;
 
 import android.app.Activity;
 import android.app.ProgressDialog;
+import android.renderscript.Sampler;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
@@ -33,9 +34,9 @@ import com.yuly.elaundry.kurir.model.geterseter.TransaksiModel;
 import com.yuly.elaundry.kurir.model.helper.VolleyErrorHelper;
 import com.yuly.elaundry.kurir.model.listeners.NavigatorListener;
 import com.yuly.elaundry.kurir.model.listeners.PetaHandlerListener;
-import com.yuly.elaundry.kurir.model.map.MapHandler;
 import com.yuly.elaundry.kurir.model.map.Navigasi;
-import com.yuly.elaundry.kurir.model.map.PetaHandler;
+
+import com.yuly.elaundry.kurir.model.peta.PetaHandler;
 import com.yuly.elaundry.kurir.model.util.InstructionAdapter;
 import com.yuly.elaundry.kurir.model.util.Variable;
 
@@ -58,7 +59,7 @@ import static android.content.ContentValues.TAG;
 public class PetaActions implements NavigatorListener, PetaHandlerListener {
     private Activity activity;
     protected FloatingActionButton showPositionBtn, navigationBtn, settingsBtn, controlBtn;
-    protected FloatingActionButton zoomInBtn, zoomOutBtn, fabNavigasi,fab_data;
+    protected FloatingActionButton zoomInBtn, zoomOutBtn, fabNavigasi,fab_refresh, fab_dapatkan, fab_getpoint, fab_rute;
     private ViewGroup sideBarVP,  sideBarMenuVP, navSettingsVP, navSettingsFromVP, navSettingsToVP, navInstructionVP,
             navInstructionListVP;
     private boolean menuVisible;
@@ -82,13 +83,18 @@ public class PetaActions implements NavigatorListener, PetaHandlerListener {
 
         this.controlBtn = (FloatingActionButton) activity.findViewById(R.id.fab_menu);
 
+        this.fab_rute = (FloatingActionButton) activity.findViewById(R.id.fab_rute);
+
         this.zoomInBtn = (FloatingActionButton) activity.findViewById(R.id.fab_besarkan);
         this.zoomOutBtn = (FloatingActionButton) activity.findViewById(R.id.fab_kecilkan);
 
-        this.fabNavigasi = (FloatingActionButton) activity.findViewById(R.id.fab_nafigasi);
+        this.fabNavigasi = (FloatingActionButton) activity.findViewById(R.id.fab_navigasi);
 
-        this.fab_data = (FloatingActionButton) activity.findViewById(R.id.fab_refresh);
+        this.fab_getpoint = (FloatingActionButton) activity.findViewById(R.id.fab_getpoint);
 
+        this.fab_refresh = (FloatingActionButton) activity.findViewById(R.id.fab_refresh);
+
+        this.fab_dapatkan = (FloatingActionButton) activity.findViewById(R.id.fab_dapatkan);
 
        // view groups managed by separate layout xml file : //map_sidebar_layout/map_sidebar_menu_layout
         this.sideBarVP = (ViewGroup) activity.findViewById(R.id.menu_nafigasi_peta);
@@ -131,6 +137,12 @@ public class PetaActions implements NavigatorListener, PetaHandlerListener {
 
         mengambilData();
         menghitungJarak();
+
+        buatPoly();
+
+        getPoint();
+
+        fabBuatTable();
     }
 
 
@@ -166,9 +178,13 @@ public class PetaActions implements NavigatorListener, PetaHandlerListener {
 
     private void hitungJarak() {
 
-        PetaHandler petaHandler = PetaHandler.getPetaHandler();
-        petaHandler.calcPath(-7.768428684206199,112.00151054708566,
+        PetaHandler.getPetaHandler().hitungPath(-7.768428684206199,112.00151054708566,
                 -7.767706382776794,112.01162539826053);
+    }
+
+    private void hitungJarakAbc() {
+
+        PetaHandler.getPetaHandler().calcPathX();
     }
 
 
@@ -183,6 +199,67 @@ public class PetaActions implements NavigatorListener, PetaHandlerListener {
             Log.d("Name: ", log);
         }
     }
+
+
+    private void buatTable() {
+        // Reading all lokasi konsumen
+        for(int i=1; i<= 6 ;i++){
+
+            for(int k=(i-1); k > 0 ;--k){
+
+
+                System.out.print("X"+i);
+                System.out.print("&"+k);
+                System.out.println("");
+            }
+
+            for(int j=(i+1); j <= 6 ;++j){
+
+                System.out.print("#"+i);
+
+                System.out.print("*"+j);
+                System.out.println("");
+            }
+            //generate a new line
+            // System.out.println();
+        }
+
+    }
+
+
+
+    private void bacaPoint() {
+        // Reading all lokasi konsumen
+        Log.d("Reading: ", "Reading all lokasi..");
+        List<Lokasi> listpoint = db_rute.getAllPoint();
+
+        for (Lokasi lokasi : listpoint) {
+            String log = "Id: " + lokasi.getId() + " ,Latitude : " + lokasi.getLatitude() + " ,Longitude : " + lokasi.getLongitude();
+            // Writing Contacts to log
+            Log.d("Name: ", log);
+
+
+        }
+
+
+    }
+
+
+    private void bacaSemuaPoint() {
+        // Reading all lokasi konsumen
+        Log.d("Reading: ", "Reading point...");
+        List<Lokasi> lokasiList = db_rute.getAllLokasi();
+
+        for (Lokasi lokasi : lokasiList) {
+
+            Lokasi lok = db_rute.getLokasi(lokasi.getId());
+            // Writing Contacts to log
+            Log.d("daftar lokasi : ",+lok.getId() + " : "+lok.getLatitude()+ " : "+ lok.getLongitude());
+
+
+        }
+    }
+
 
 
     private void hapusSemuaLokasi() {
@@ -216,7 +293,7 @@ public class PetaActions implements NavigatorListener, PetaHandlerListener {
 
     private void menghitungJarak(){
 
-        fab_data.setOnClickListener(new View.OnClickListener() {
+        fab_refresh.setOnClickListener(new View.OnClickListener() {
             @Override public void onClick(View v) {
                 hitungJarak();
 
@@ -225,6 +302,45 @@ public class PetaActions implements NavigatorListener, PetaHandlerListener {
         });
     }
 
+    private void getPoint(){
+
+        fab_getpoint.setOnClickListener(new View.OnClickListener() {
+            @Override public void onClick(View v) {
+
+                bacaSemuaPoint();
+
+            }
+
+        });
+    }
+
+
+    private void buatPoly(){
+
+        fab_dapatkan.setOnClickListener(new View.OnClickListener() {
+            @Override public void onClick(View v) {
+
+
+                hitungJarakAbc();
+
+            }
+
+        });
+    }
+
+    private void fabBuatTable(){
+
+        fab_rute.setOnClickListener(new View.OnClickListener() {
+            @Override public void onClick(View v) {
+
+                buatTable();
+
+            }
+
+        });
+    }
+
+
 
     /**
      * Mengambil data pemesanan baru
@@ -232,6 +348,17 @@ public class PetaActions implements NavigatorListener, PetaHandlerListener {
 
     //http://stackoverflow.com/questions/28344448/how-to-send-json-object-to-server-using-volley-in-andorid
     private void mengambilDataPemesanan() {
+
+        hapusSemuaLokasi();
+
+        if (CariRuteActivity.getmCurrentLocation() != null) {
+
+            Lokasi lokasi_konsumen = new Lokasi("000", String.valueOf(CariRuteActivity.getmCurrentLocation().getLatitude()),
+                    String.valueOf(CariRuteActivity.getmCurrentLocation().getLongitude()), "sada", 1);
+
+            long id_kurir = db_rute.createLokasiKonsumen(lokasi_konsumen);
+            Log.d("ID Kurir ", String.valueOf(id_kurir));
+        }
 
         pDialog = new ProgressDialog(this.activity);
         pDialog.setMessage("memuat ....");
@@ -301,7 +428,7 @@ public class PetaActions implements NavigatorListener, PetaHandlerListener {
                                     listPesanan.setAlamat(pemesanan_alamat);
                                     listPesanan.setTanggal(pemesanan_tanggal);*/
 
-                                    Lokasi lokasi_konsumen = new Lokasi(listPesanan.getPemesananId(), String.valueOf(listPesanan.getLatitude()), String.valueOf(listPesanan.getLongitude()), "sada", 1);
+                                    Lokasi lokasi_konsumen = new Lokasi( konsumen_id,pemesanan_id, pemesanan_latitude, pemesanan_longitude, "0",1);
 
                                     long id = db_rute.createLokasiKonsumen(lokasi_konsumen);
 
@@ -320,7 +447,7 @@ public class PetaActions implements NavigatorListener, PetaHandlerListener {
 
 
                                    // addMarker(mcLatLong);
-                                    MapActivity2 maps2 = new MapActivity2();
+                                    CariRuteActivity maps2 = new CariRuteActivity();
                                     maps2.tambakanMarker(Double.valueOf(pemesanan_latitude),Double.valueOf(pemesanan_longitude));
 
                                 }
@@ -509,10 +636,10 @@ public class PetaActions implements NavigatorListener, PetaHandlerListener {
                         return true;
                     case MotionEvent.ACTION_UP:
                         useCurrentLocal.setBackgroundColor(activity.getResources().getColor(R.color.my_primary));
-                        if (MapActivity.getmCurrentLocation() != null) {
+                        if (CariRuteActivity.getmCurrentLocation() != null) {
                             Destination.getDestination().setStartPoint(
-                                    new LatLong(MapActivity.getmCurrentLocation().getLatitude(),
-                                            MapActivity.getmCurrentLocation().getLongitude()));
+                                    new LatLong(CariRuteActivity.getmCurrentLocation().getLatitude(),
+                                            CariRuteActivity.getmCurrentLocation().getLongitude()));
                             addFromMarker(Destination.getDestination().getStartPoint());
                             fromLocalET.setText(Destination.getDestination().getStartPointToString());
                             navSettingsFromVP.setVisibility(View.INVISIBLE);
@@ -690,11 +817,11 @@ public class PetaActions implements NavigatorListener, PetaHandlerListener {
     protected void showMyLocation(final MapView mapView) {
         showPositionBtn.setOnClickListener(new View.OnClickListener() {
             @Override public void onClick(View v) {
-                if (MapActivity2.getmCurrentLocation() != null) {
+                if (CariRuteActivity.getmCurrentLocation() != null) {
                     showPositionBtn.setImageResource(R.drawable.ic_my_location_white_24dp);
                     PetaHandler.getPetaHandler().centerPointOnMap(
-                            new LatLong(MapActivity2.getmCurrentLocation().getLatitude(),
-                                    MapActivity2.getmCurrentLocation().getLongitude()), 0);
+                            new LatLong(CariRuteActivity.getmCurrentLocation().getLatitude(),
+                                    CariRuteActivity.getmCurrentLocation().getLongitude()), 0);
 
  /*                                       mapView.getModel().mapViewPosition.setMapPosition(new MapPosition(
                                                new LatLong(MapActivity.getmCurrentLocation().getLatitude(),

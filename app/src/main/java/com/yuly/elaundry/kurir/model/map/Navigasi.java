@@ -151,20 +151,20 @@ public class Navigasi {
         if (dark) {
             switch (Variable.getVariable().getTravelMode()) {
                 case "foot":
-                    return R.drawable.ic_directions_walk_orange_24dp;
+                    return R.drawable.ic_add_shopping_cart_24dp;
                 case "bike":
                     return R.drawable.ic_directions_bike_orange_24dp;
                 case "car":
-                    return R.drawable.ic_directions_car_orange_24dp;
+                    return R.drawable.ic_add_shopping_cart_24dp;
             }
         } else {
             switch (Variable.getVariable().getTravelMode()) {
                 case "foot":
-                    return R.drawable.ic_directions_walk_white_24dp;
+                    return R.drawable.ic_add_shopping_cart_24dp;
                 case "bike":
                     return R.drawable.ic_directions_bike_white_24dp;
                 case "car":
-                    return R.drawable.ic_directions_car_white_24dp;
+                    return R.drawable.ic_add_shopping_cart_24dp;
             }
         }
         throw new NullPointerException("hanya tersedian ketika class ada");
@@ -177,27 +177,27 @@ public class Navigasi {
     public int getDirectionSign(Instruction itemData) {
         switch (itemData.getSign()) {
             case -6:
-                return R.drawable.ic_camera_black_24dp;
+                return R.drawable.ic_roundabout;
             case -3:
-                return R.drawable.ic_call_received_black_24dp;
+                return R.drawable.ic_turn_sharp_left;
             case -2:
-                return R.drawable.ic_arrow_back_black_24dp;
+                return R.drawable.ic_turn_left;
             case -1:
                 return R.drawable.ic_turn_slight_left;
             case 0:
-                return R.drawable.ic_arrow_upward_black_24dp;
+                return R.drawable.ic_continue_on_street;
             case 1:
-                return R.drawable.ic_call_made_black_24dp;
+                return R.drawable.ic_turn_slight_right;
             case 2:
-                return R.drawable.ic_arrow_forward_black_24dp;
+                return R.drawable.ic_turn_right;
             case 3:
                 return R.drawable.ic_turn_sharp_right;
             case 4:
-                return R.drawable.ic_shopping_cart_black_24dp;
+                return R.drawable.ic_finish_flag;
             case 5:
-                return R.drawable.ic_navigation_black_24dp;
+                return R.drawable.ic_reached_via;
             case 6:
-                return R.drawable.ic_camera_black_24dp;
+                return R.drawable.ic_roundabout;
         }
         return 0;
     }
@@ -229,7 +229,7 @@ public class Navigasi {
      * @return direction
      */
     public String getDirectionDescription(Instruction instruction) {
-        if (instruction.getSign() == 4) return "Navigation End";//4
+        if (instruction.getSign() == 4) return "Sampai tujuan";//4
         String str;
         String streetName = instruction.getName();
         int sign = instruction.getSign();

@@ -19,40 +19,47 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.yuly.elaundry.kurir.R;
+import com.yuly.elaundry.kurir.model.dataType.DataRute;
 import com.yuly.elaundry.kurir.model.dataType.Destination;
-import com.yuly.elaundry.kurir.model.listeners.MapHandlerListener;
+import com.yuly.elaundry.kurir.model.listeners.PetaRuteHandlerListener;
 import com.yuly.elaundry.kurir.model.listeners.NavigatorListener;
-import com.yuly.elaundry.kurir.model.map.MapHandler;
 import com.yuly.elaundry.kurir.model.map.Navigasi;
+import com.yuly.elaundry.kurir.model.peta.PetaHandler;
+import com.yuly.elaundry.kurir.model.peta.PetaRuteHandler;
 import com.yuly.elaundry.kurir.model.util.InstructionAdapter;
 import com.yuly.elaundry.kurir.model.util.MyUtility;
 import com.yuly.elaundry.kurir.model.util.Variable;
 
 import org.mapsforge.core.model.LatLong;
-import org.mapsforge.core.model.MapPosition;
 import org.mapsforge.map.android.view.MapView;
 import org.mapsforge.map.model.MapViewPosition;
 
 
-public class MapActions implements NavigatorListener, MapHandlerListener {
+public class PetaRuteActions implements NavigatorListener, PetaRuteHandlerListener {
     private Activity activity;
-    protected FloatingActionButton showPositionBtn, navigationBtn, settingsBtn, controlBtn;
+    protected FloatingActionButton showPositionBtn, navigationBtn, settingsBtn, controlBtn, fab_dapatkan;
     protected FloatingActionButton zoomInBtn, zoomOutBtn;
     private ViewGroup sideBarVP, sideBarMenuVP, navSettingsVP, navSettingsFromVP, navSettingsToVP, navInstructionVP,
             navInstructionListVP;
     private boolean menuVisible;
+
+    private PetaRuteHandler petaRuteHandler;
+    private TextView tv_dari, tv_tujuan;
     /**
      * true handle on start point ; false handle on end point
      */
     private boolean onStartPoint;
     private EditText fromLocalET, toLocalET;
 
-    public MapActions(Activity activity, MapView mapView) {
+    public PetaRuteActions(Activity activity, MapView mapView) {
         this.activity = activity;
         this.showPositionBtn = (FloatingActionButton) activity.findViewById(R.id.fab_lokasi);
-        this.navigationBtn = (FloatingActionButton) activity.findViewById(R.id.fab_navigasi);
+        this.fab_dapatkan = (FloatingActionButton) activity.findViewById(R.id.fab_nafigasi);
         this.settingsBtn = (FloatingActionButton) activity.findViewById(R.id.fab_setting);
         this.controlBtn = (FloatingActionButton) activity.findViewById(R.id.fab_menu);
+        this.navigationBtn= (FloatingActionButton) activity.findViewById(R.id.fab_dapatkan);
+
+
         this.zoomInBtn = (FloatingActionButton) activity.findViewById(R.id.fab_besarkan);
         this.zoomOutBtn = (FloatingActionButton) activity.findViewById(R.id.fab_kecilkan);
         // view groups managed by separate layout xml file : //map_sidebar_layout/map_sidebar_menu_layout
@@ -66,9 +73,13 @@ public class MapActions implements NavigatorListener, MapHandlerListener {
         //form location and to location textView
         this.fromLocalET = (EditText) activity.findViewById(R.id.nav_settings_from_local_et);
         this.toLocalET = (EditText) activity.findViewById(R.id.nav_settings_to_local_et);
+
+        this.tv_dari = (TextView) activity.findViewById(R.id.nav_instruction_list_summary_to_tv);
+        this.tv_tujuan = (TextView) activity.findViewById(R.id.nav_instruction_list_summary_from_tv);
+
         this.menuVisible = false;
         this.onStartPoint = true;
-        MapHandler.getMapHandler().setMapHandlerListener(this);
+        PetaRuteHandler.getPetaRuteHandler().setRutePetaHandlerListener(this);
         Navigasi.getNavigator().addListener(this);
         controlBtnHandler();
         zoomControlHandler(mapView);
@@ -77,6 +88,7 @@ public class MapActions implements NavigatorListener, MapHandlerListener {
         navSettingsHandler();
         settingsBtnHandler();
 
+        showRute();
 
     }
 
@@ -135,11 +147,11 @@ public class MapActions implements NavigatorListener, MapHandlerListener {
             tl = MyUtility.getLatLong(tls);
         }
         if (fl != null && tl == null) {
-            MapHandler.getMapHandler().centerPointOnMap(fl, 0);
+            PetaRuteHandler.getPetaRuteHandler().centerPointOnMap(fl, 0);
             addFromMarker(fl);
         }
         if (fl == null && tl != null) {
-            MapHandler.getMapHandler().centerPointOnMap(tl, 0);
+            PetaRuteHandler.getPetaRuteHandler().centerPointOnMap(tl, 0);
             addToMarker(tl);
         }
         if (fl != null && tl != null) {
@@ -190,7 +202,7 @@ public class MapActions implements NavigatorListener, MapHandlerListener {
         //  to layout: items
         toUseCurrentLocationHandler();
         toChooseFromFavoriteHandler();
-        toPointOnMapHandler();
+        toPointOnRutePetaHandler();
     }
 
     /**
@@ -198,7 +210,7 @@ public class MapActions implements NavigatorListener, MapHandlerListener {
      * <p>
      * preform actions when point on map item is clicked
      */
-    private void toPointOnMapHandler() {
+    private void toPointOnRutePetaHandler() {
         final ViewGroup pointItem = (ViewGroup) activity.findViewById(R.id.map_nav_settings_to_point);
         pointItem.setOnTouchListener(new View.OnTouchListener() {
             @Override public boolean onTouch(View v, MotionEvent event) {
@@ -213,7 +225,7 @@ public class MapActions implements NavigatorListener, MapHandlerListener {
                         //touch on map
                         //                        Toast.makeText(activity, "Touch on Map to choose your
                         // destination!", Toast.LENGTH_SHORT).show();
-                        MapHandler.getMapHandler().setNeedLocation(true);
+                        PetaRuteHandler.getPetaRuteHandler().setNeedLocation(true);
                         return true;
                 }
                 return false;
@@ -257,10 +269,10 @@ public class MapActions implements NavigatorListener, MapHandlerListener {
                         return true;
                     case MotionEvent.ACTION_UP:
                         useCurrentLocal.setBackgroundColor(activity.getResources().getColor(R.color.my_primary));
-                        if (MapActivity.getmCurrentLocation() != null) {
+                        if (PetaRuteActivity.getmCurrentLocation() != null) {
                             Destination.getDestination().setEndPoint(
-                                    new LatLong(MapActivity.getmCurrentLocation().getLatitude(),
-                                            MapActivity.getmCurrentLocation().getLongitude()));
+                                    new LatLong(PetaRuteActivity.getmCurrentLocation().getLatitude(),
+                                            PetaRuteActivity.getmCurrentLocation().getLongitude()));
                             toLocalET.setText(Destination.getDestination().getEndPointToString());
                             addToMarker(Destination.getDestination().getEndPoint());
                             navSettingsToVP.setVisibility(View.INVISIBLE);
@@ -283,7 +295,7 @@ public class MapActions implements NavigatorListener, MapHandlerListener {
      * @param endPoint
      */
     private void addToMarker(LatLong endPoint) {
-        MapHandler.getMapHandler().addEndMarker(endPoint);
+        PetaRuteHandler.getPetaRuteHandler().addEndMarker(endPoint);
     }
 
     /**
@@ -292,7 +304,7 @@ public class MapActions implements NavigatorListener, MapHandlerListener {
      * @param startPoint
      */
     private void addFromMarker(LatLong startPoint) {
-        MapHandler.getMapHandler().addStartMarker(startPoint);
+        PetaRuteHandler.getPetaRuteHandler().addStartMarker(startPoint);
     }
 
     /**
@@ -329,7 +341,7 @@ public class MapActions implements NavigatorListener, MapHandlerListener {
         //  from layout: items
         useCurrentLocationHandler();
         //        chooseFromFavoriteHandler();TODO
-        pointOnMapHandler();
+        pointOnRutePetaHandler();
     }
 
     /**
@@ -337,7 +349,7 @@ public class MapActions implements NavigatorListener, MapHandlerListener {
      * <p>
      * preform actions when point on map item is clicked
      */
-    private void pointOnMapHandler() {
+    private void pointOnRutePetaHandler() {
         final ViewGroup pointItem = (ViewGroup) activity.findViewById(R.id.map_nav_settings_from_point);
         pointItem.setOnTouchListener(new View.OnTouchListener() {
             @Override public boolean onTouch(View v, MotionEvent event) {
@@ -352,7 +364,7 @@ public class MapActions implements NavigatorListener, MapHandlerListener {
                         //touch on map
                         Toast.makeText(activity, "Touch on Map to choose your start Location", Toast.LENGTH_SHORT)
                                 .show();
-                        MapHandler.getMapHandler().setNeedLocation(true);
+                        PetaRuteHandler.getPetaRuteHandler().setNeedLocation(true);
                         return true;
                 }
                 return false;
@@ -396,10 +408,10 @@ public class MapActions implements NavigatorListener, MapHandlerListener {
                         return true;
                     case MotionEvent.ACTION_UP:
                         useCurrentLocal.setBackgroundColor(activity.getResources().getColor(R.color.my_primary));
-                        if (MapActivity.getmCurrentLocation() != null) {
+                        if (PetaRuteActivity.getmCurrentLocation() != null) {
                             Destination.getDestination().setStartPoint(
-                                    new LatLong(MapActivity.getmCurrentLocation().getLatitude(),
-                                            MapActivity.getmCurrentLocation().getLongitude()));
+                                    new LatLong(PetaRuteActivity.getmCurrentLocation().getLatitude(),
+                                            PetaRuteActivity.getmCurrentLocation().getLongitude()));
                             addFromMarker(Destination.getDestination().getStartPoint());
                             fromLocalET.setText(Destination.getDestination().getStartPointToString());
                             navSettingsFromVP.setVisibility(View.INVISIBLE);
@@ -446,25 +458,53 @@ public class MapActions implements NavigatorListener, MapHandlerListener {
         }
     }
 
+    protected void showRute() {
+        fab_dapatkan.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                activeNavigator();
+            }
+        });
+    }
+
     /**
      * drawer polyline on map , active navigator instructions(directions) if on
      */
-    private void activeNavigator() {
-        LatLong startPoint = Destination.getDestination().getStartPoint();
-        LatLong endPoint = Destination.getDestination().getEndPoint();
-        if (startPoint != null && endPoint != null) {
+    public void activeNavigator() {
+        if (PetaRuteActivity.getmCurrentLocation() != null) {
+                LatLong lokasiAwal = new LatLong(PetaRuteActivity.getmCurrentLocation().getLatitude(),
+            PetaRuteActivity.getmCurrentLocation().getLongitude());//new LatLong ( -7.8130979,112.0157406);
+            LatLong lokasiAkhir = DataRute.getDatarute().getEndPoint();
             // show path finding process
             navSettingsVP.setVisibility(View.INVISIBLE);
 
             View pathfinding = activity.findViewById(R.id.map_nav_settings_path_finding);
             pathfinding.setVisibility(View.VISIBLE);
             pathfinding.bringToFront();
-            MapHandler mapHandler = MapHandler.getMapHandler();
-            mapHandler.calcPath(startPoint.latitude, startPoint.longitude, endPoint.latitude, endPoint.longitude);
+            PetaRuteHandler mapHandler = PetaRuteHandler.getPetaRuteHandler();
+
+            mapHandler.calcPath(
+                    lokasiAwal.latitude, lokasiAwal.longitude, lokasiAkhir.latitude, lokasiAkhir.longitude
+
+            );
+
+
+
+            PetaRuteHandler.getPetaRuteHandler().tambahMarkerMerah(lokasiAkhir);
+
+            tv_dari.setText(lokasiAwal.latitude+","+lokasiAwal.longitude);
+            tv_tujuan.setText(lokasiAkhir.latitude+","+lokasiAkhir.longitude);
+           // petaRuteHandler.addMarkers(lokasiAwal, lokasiAkhir);
+
+            Log.d("Active", "navigator");
+
             if (Variable.getVariable().isDirectionsON()) {
                 mapHandler.setNeedPathCal(true);
                 //rest running at
             }
+        } else {
+
+            Toast.makeText(activity, "gagal mendapatkan lokasi anda",Toast.LENGTH_LONG).show();
         }
     }
 
@@ -569,7 +609,7 @@ public class MapActions implements NavigatorListener, MapHandlerListener {
      * set from & to = null
      */
     private void removeNavigation() {
-        MapHandler.getMapHandler().removeMarkers();
+        PetaRuteHandler.getPetaRuteHandler().removeMarkers();
         fromLocalET.setText("");
         toLocalET.setText("");
         Navigasi.getNavigator().setOn(false);
@@ -711,15 +751,15 @@ public class MapActions implements NavigatorListener, MapHandlerListener {
     protected void showMyLocation(final MapView mapView) {
         showPositionBtn.setOnClickListener(new View.OnClickListener() {
             @Override public void onClick(View v) {
-                if (MapActivity.getmCurrentLocation() != null) {
+                if (PetaRuteActivity.getmCurrentLocation() != null) {
                     showPositionBtn.setImageResource(R.drawable.ic_my_location_white_24dp);
-                    MapHandler.getMapHandler().centerPointOnMap(
-                            new LatLong(MapActivity.getmCurrentLocation().getLatitude(),
-                                    MapActivity.getmCurrentLocation().getLongitude()), 0);
+                    PetaRuteHandler.getPetaRuteHandler().centerPointOnMap(
+                            new LatLong(PetaRuteActivity.getmCurrentLocation().getLatitude(),
+                                    PetaRuteActivity.getmCurrentLocation().getLongitude()), 0);
 
  /*                                       mapView.getModel().mapViewPosition.setMapPosition(new MapPosition(
-                                               new LatLong(MapActivity.getmCurrentLocation().getLatitude(),
-                                                       MapActivity.getmCurrentLocation().getLongitude()),
+                                               new LatLong(PetaRuteActivity.getmCurrentLocation().getLatitude(),
+                                                       PetaRuteActivity.getmCurrentLocation().getLongitude()),
                                                 mapView.getModel().mapViewPosition.getZoomLevel()));*/
 
                 } else {
@@ -762,7 +802,7 @@ public class MapActions implements NavigatorListener, MapHandlerListener {
     /**
      * called from Map activity when onBackpressed
      *
-     * @return false no actions will perform; return true MapActivity will be placed back in the activity stack
+     * @return false no actions will perform; return true PetaRuteActivity will be placed back in the activity stack
      */
     public boolean homeBackKeyPressed() {
         if (navSettingsVP.getVisibility() == View.VISIBLE) {

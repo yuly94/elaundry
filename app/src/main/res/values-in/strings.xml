@@ -168,4 +168,5 @@
     <string name="tracking_stop">Berhenti ?</string>
     <string name="weighting_fastest">Tercepat</string>
     <string name="weighting_shortest">Terpendek</string>
+    <string name="nav_logout">log out</string>
 </resources>

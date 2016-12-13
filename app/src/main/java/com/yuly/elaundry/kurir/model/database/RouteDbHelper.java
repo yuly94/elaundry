@@ -31,7 +31,9 @@ public class RouteDbHelper extends SQLiteOpenHelper {
 
     // Table Names
     private static final String TABLE_LOKASI_KONSUMEN = "lokasi_konsumen";
+    private static final String TABLE_POINT_KONSUMEN = "point_konsumen";
     private static final String TABLE_PATH_KONSUMEN = "path_konsumen";
+    private static final String TABLE_JARAK_KONSUMEN = "jarak_konsumen";
     private static final String TABLE_TODO = "todos";
     private static final String TABLE_TAG = "tags";
     private static final String TABLE_TODO_TAG = "todo_tags";
@@ -43,9 +45,13 @@ public class RouteDbHelper extends SQLiteOpenHelper {
     // NOTES Table - column nmaes
 
     private static final String KEY_KONSUMEN_ID = "konsumen_id";
+    private static final String KEY_PEMESANAN_ID = "pemesanan_id";
     private static final String KEY_KONSUMEN_LONGITUDE = "konsumen_longitude";
     private static final String KEY_KONSUMEN_LATITUDE = "konsumen_latitude";
     private static final String KEY_KONSUMEN_JARAK = "konsumen_jarak";
+    private static final String KEY_DARI = "konsumen_dari";
+    private static final String KEY_TUJUAN = "konsumen_tujuan";
+    private static final String KEY_JARAK = "konsumen_jarak";
 
 
 
@@ -65,10 +71,31 @@ public class RouteDbHelper extends SQLiteOpenHelper {
     private static final String CREATE_TABLE_LOKASI_KONSUMEN = "CREATE TABLE "
             + TABLE_LOKASI_KONSUMEN + "(" + KEY_ID + " INTEGER PRIMARY KEY,"
             + KEY_KONSUMEN_ID + " TEXT,"
+            + KEY_PEMESANAN_ID + " TEXT,"
             + KEY_KONSUMEN_LATITUDE + " TEXT,"
             + KEY_KONSUMEN_LONGITUDE + " TEXT,"
             + KEY_KONSUMEN_JARAK + " TEXT,"
             + KEY_STATUS + " INTEGER,"
+            + KEY_CREATED_AT
+            + " DATETIME" + ")";
+
+    private static final String CREATE_TABLE_POINT_KONSUMEN = "CREATE TABLE "
+            + TABLE_POINT_KONSUMEN + "(" + KEY_ID + " INTEGER PRIMARY KEY,"
+            + KEY_KONSUMEN_ID + " TEXT,"
+            + KEY_PEMESANAN_ID + " TEXT,"
+            + KEY_KONSUMEN_LATITUDE + " TEXT,"
+            + KEY_KONSUMEN_LONGITUDE + " TEXT,"
+            + KEY_KONSUMEN_JARAK + " TEXT,"
+            + KEY_STATUS + " INTEGER,"
+            + KEY_CREATED_AT
+            + " DATETIME" + ")";
+
+
+    private static final String CREATE_TABLE_JARAK_KONSUMEN = "CREATE TABLE "
+            + TABLE_JARAK_KONSUMEN + "(" + KEY_ID + " INTEGER PRIMARY KEY,"
+            + KEY_DARI + " TEXT,"
+            + KEY_TUJUAN + " TEXT,"
+            + KEY_JARAK + " TEXT,"
             + KEY_CREATED_AT
             + " DATETIME" + ")";
 
@@ -107,7 +134,9 @@ public class RouteDbHelper extends SQLiteOpenHelper {
 
         // creating required tables
         db.execSQL(CREATE_TABLE_LOKASI_KONSUMEN);
+        db.execSQL(CREATE_TABLE_POINT_KONSUMEN);
         db.execSQL(CREATE_TABLE_PATH_KONSUMEN);
+        db.execSQL(CREATE_TABLE_JARAK_KONSUMEN);
         db.execSQL(CREATE_TABLE_TODO);
         db.execSQL(CREATE_TABLE_TAG);
         db.execSQL(CREATE_TABLE_TODO_TAG);
@@ -117,7 +146,9 @@ public class RouteDbHelper extends SQLiteOpenHelper {
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
         // on upgrade drop older tables
         db.execSQL("DROP TABLE IF EXISTS " + TABLE_LOKASI_KONSUMEN);
+        db.execSQL("DROP TABLE IF EXISTS " + TABLE_POINT_KONSUMEN);
         db.execSQL("DROP TABLE IF EXISTS " + TABLE_PATH_KONSUMEN);
+        db.execSQL("DROP TABLE IF EXISTS " + TABLE_JARAK_KONSUMEN);
         db.execSQL("DROP TABLE IF EXISTS " + TABLE_TODO);
         db.execSQL("DROP TABLE IF EXISTS " + TABLE_TAG);
         db.execSQL("DROP TABLE IF EXISTS " + TABLE_TODO_TAG);
@@ -159,6 +190,7 @@ public class RouteDbHelper extends SQLiteOpenHelper {
 
         ContentValues values = new ContentValues();
         values.put(KEY_KONSUMEN_ID, lokasi.getKonsumenId());
+        values.put(KEY_PEMESANAN_ID, lokasi.getPemesananId());
         values.put(KEY_KONSUMEN_LATITUDE, lokasi.getLatitude());
         values.put(KEY_KONSUMEN_LONGITUDE, lokasi.getLongitude());
         values.put(KEY_KONSUMEN_JARAK, lokasi.getJarak());
@@ -178,6 +210,99 @@ public class RouteDbHelper extends SQLiteOpenHelper {
     }
 
 
+    /**
+     * Creating a todo
+     */
+    public long createPointKonsumen(Lokasi lokasi) {
+        SQLiteDatabase db = this.getWritableDatabase();
+
+        ContentValues values = new ContentValues();
+        values.put(KEY_KONSUMEN_ID, lokasi.getKonsumenId());
+        values.put(KEY_PEMESANAN_ID, lokasi.getPemesananId());
+        values.put(KEY_KONSUMEN_LATITUDE, lokasi.getLatitude());
+        values.put(KEY_KONSUMEN_LONGITUDE, lokasi.getLongitude());
+        values.put(KEY_KONSUMEN_JARAK, lokasi.getJarak());
+        values.put(KEY_STATUS, lokasi.getStatus());
+        values.put(KEY_CREATED_AT, getDateTime());
+
+        // insert row
+
+        long todo_id = db.insert(TABLE_POINT_KONSUMEN, null, values);
+
+        // insert tag_ids
+        //    for (long tag_id : tag_ids) {
+        //      createTodoTag(todo_id, tag_id);
+        //  }
+
+        return todo_id;
+    }
+
+    /**
+     * Creating a todo
+     */
+    public long createJarakKonsumen(Lokasi lokasi) {
+        SQLiteDatabase db = this.getWritableDatabase();
+
+        ContentValues values = new ContentValues();
+        values.put(KEY_DARI, lokasi.getKonsumenId());
+        values.put(KEY_TUJUAN, lokasi.getPemesananId());
+        values.put(KEY_JARAK, lokasi.getLatitude());
+        values.put(KEY_STATUS, lokasi.getStatus());
+        values.put(KEY_CREATED_AT, getDateTime());
+
+        // insert row
+
+        long todo_id = db.insert(TABLE_JARAK_KONSUMEN, null, values);
+
+        // insert tag_ids
+        //    for (long tag_id : tag_ids) {
+        //      createTodoTag(todo_id, tag_id);
+        //  }
+
+        return todo_id;
+    }
+
+
+    // Getting single lokasi
+    public Lokasi getLokasi(long id) {
+        SQLiteDatabase db = this.getReadableDatabase();
+
+        Cursor cursor = db.query(TABLE_LOKASI_KONSUMEN, new String[] { KEY_ID, KEY_KONSUMEN_ID,
+                        KEY_KONSUMEN_LATITUDE, KEY_KONSUMEN_LONGITUDE }, KEY_ID + "=?",
+                new String[] { String.valueOf(id) }, null, null, null, null);
+
+        // looping through all rows and adding to list
+        if (cursor != null)
+            cursor.moveToFirst();
+
+        Lokasi lokasi = new Lokasi();
+                lokasi.setId(Integer.parseInt(cursor.getString(0)));
+                lokasi.setKonsumenId(cursor.getString(1));
+                lokasi.setLatitude(cursor.getString(2));
+                lokasi.setLongitude(cursor.getString(3));
+
+                // Adding contact to list
+        // return contact list
+        cursor.close();
+        return lokasi;
+
+        }
+
+
+
+
+
+
+
+    /**
+     * Deleting a todo
+     */
+    public long deleteLokasxi(long tado_id) {
+        SQLiteDatabase db = this.getWritableDatabase();
+        db.delete(TABLE_LOKASI_KONSUMEN, KEY_ID + " = ?",
+                new String[] { String.valueOf(tado_id) });
+        return tado_id;
+    }
 
     /**
      * getting all lokasi
@@ -209,6 +334,48 @@ public class RouteDbHelper extends SQLiteOpenHelper {
         // return contact list
         cursor.close();
         return listlokasi;
+    }
+
+
+
+
+    // Lokasi Pesanan
+    public List<Lokasi> getAllPoint() {
+        List<Lokasi> listlokasi = new ArrayList<Lokasi>();
+        // Select All Query
+        String selectQuery = "SELECT  * FROM " + TABLE_POINT_KONSUMEN;
+
+        SQLiteDatabase db = this.getWritableDatabase();
+        Cursor cursor = db.rawQuery(selectQuery, null);
+
+        // looping through all rows and adding to list
+        if (cursor.moveToFirst()) {
+            do {
+                Lokasi lokasi = new Lokasi();
+                lokasi.setId(Integer.parseInt(cursor.getString(0)));
+                lokasi.setKonsumenId(cursor.getString(1));
+                lokasi.setPemesananId(cursor.getString(2));
+                lokasi.setLatitude(cursor.getString(3));
+                lokasi.setLongitude(cursor.getString(4));
+                // Adding contact to list
+                listlokasi.add(lokasi);
+            } while (cursor.moveToNext());
+        }
+
+        // return contact list
+        cursor.close();
+        return listlokasi;
+    }
+
+
+    /**
+     * Deleting a todo
+     */
+    public long deletePoint(long tado_id) {
+        SQLiteDatabase db = this.getWritableDatabase();
+        db.delete(TABLE_POINT_KONSUMEN, KEY_ID + " = ?",
+                new String[] { String.valueOf(tado_id) });
+        return tado_id;
     }
 
 
