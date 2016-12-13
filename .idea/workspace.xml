@@ -11,10 +11,12 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="79627681-5094-4df5-9f4f-e0da1fc243a5" name="Default" comment="">
+      <change type="NEW" beforePath="" afterPath="/media/anonymous/data/AndroidStudioProjects/elaundry-konsumen/app/src/main/res/drawable/ic_add_shopping_cart_white_24dp.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change type="MODIFICATION" beforePath="/media/anonymous/data/AndroidStudioProjects/elaundry-konsumen/.idea/workspace.xml" afterPath="/media/anonymous/data/AndroidStudioProjects/elaundry-konsumen/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="/media/anonymous/data/AndroidStudioProjects/elaundry-konsumen/app/app.iml" afterPath="/media/anonymous/data/AndroidStudioProjects/elaundry-konsumen/app/app.iml" />
-      <change type="MODIFICATION" beforePath="/media/anonymous/data/AndroidStudioProjects/elaundry-konsumen/app/src/main/res/layout/fragment_profile_new.xml" afterPath="/media/anonymous/data/AndroidStudioProjects/elaundry-konsumen/app/src/main/res/layout/fragment_profile_new.xml" />
+      <change type="MODIFICATION" beforePath="/media/anonymous/data/AndroidStudioProjects/elaundry-konsumen/app/src/main/res/layout-v21/fragment_pemesanan.xml" afterPath="/media/anonymous/data/AndroidStudioProjects/elaundry-konsumen/app/src/main/res/layout-v21/fragment_pemesanan.xml" />
+      <change type="MODIFICATION" beforePath="/media/anonymous/data/AndroidStudioProjects/elaundry-konsumen/app/src/main/res/layout-v23/fragment_pemesanan.xml" afterPath="/media/anonymous/data/AndroidStudioProjects/elaundry-konsumen/app/src/main/res/layout-v23/fragment_pemesanan.xml" />
+      <change type="MODIFICATION" beforePath="/media/anonymous/data/AndroidStudioProjects/elaundry-konsumen/app/src/main/res/layout/fragment_pemesanan.xml" afterPath="/media/anonymous/data/AndroidStudioProjects/elaundry-konsumen/app/src/main/res/layout/fragment_pemesanan.xml" />
     </list>
     <list id="bf8c04de-1dbb-4a5f-a27e-6c2d7c2c198e" name="New changelist" comment="Commit update compiler 23 =&gt; 24&#10;" />
     <ignored path="elaundry_backup.iws" />
@@ -50,50 +52,7 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="MainActivity.java" pinned="false" current-in-tab="false">
-        <entry file="file:///media/anonymous/data/AndroidStudioProjects/elaundry-konsumen/app/src/main/java/com/yuly/elaundry/konsumen/activity/MainActivity.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="164">
-              <caret line="237" column="23" selection-start-line="237" selection-start-column="23" selection-end-line="237" selection-end-column="23" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
       <file leaf-file-name="build.gradle" pinned="false" current-in-tab="false">
-        <entry file="file:///media/anonymous/data/AndroidStudioProjects/elaundry-konsumen/app/build.gradle">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-40">
-              <caret line="15" column="9" selection-start-line="15" selection-start-column="9" selection-end-line="15" selection-end-column="9" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="ProfileFragment.java" pinned="false" current-in-tab="false">
-        <entry file="file:///media/anonymous/data/AndroidStudioProjects/elaundry-konsumen/app/src/main/java/com/yuly/elaundry/konsumen/fragment/ProfileFragment.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="65">
-              <caret line="73" column="0" selection-start-line="73" selection-start-column="0" selection-end-line="73" selection-end-column="0" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="fragment_profile_new.xml" pinned="false" current-in-tab="false">
-        <entry file="file:///media/anonymous/data/AndroidStudioProjects/elaundry-konsumen/app/src/main/res/layout/fragment_profile_new.xml">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="132">
-              <caret line="112" column="46" selection-start-line="112" selection-start-column="46" selection-end-line="112" selection-end-column="46" />
-              <folding />
-            </state>
-          </provider>
-          <provider editor-type-id="android-designer2">
-            <state />
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="build.gradle" pinned="false" current-in-tab="true">
         <entry file="file:///media/anonymous/data/AndroidStudioProjects/elaundry-konsumen/build.gradle">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="345">
@@ -103,61 +62,116 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="settings.gradle" pinned="false" current-in-tab="false">
-        <entry file="file:///media/anonymous/data/AndroidStudioProjects/elaundry-konsumen/settings.gradle">
+      <file leaf-file-name="AndroidManifest.xml" pinned="false" current-in-tab="false">
+        <entry file="file:///media/anonymous/data/AndroidStudioProjects/elaundry-konsumen/app/src/main/AndroidManifest.xml">
           <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="195">
+              <caret line="79" column="17" selection-start-line="79" selection-start-column="17" selection-end-line="79" selection-end-column="17" />
+              <folding>
+                <element signature="e#3483#3524#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+          <provider editor-type-id="android-manifest">
+            <state />
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="activity_detail_pemesanan_new.xml" pinned="false" current-in-tab="false">
+        <entry file="file:///media/anonymous/data/AndroidStudioProjects/elaundry-konsumen/app/src/main/res/layout/activity_detail_pemesanan_new.xml">
+          <provider editor-type-id="text-editor">
+            <state relative-caret-position="285">
+              <caret line="19" column="54" selection-start-line="19" selection-start-column="54" selection-end-line="19" selection-end-column="54" />
+              <folding />
+            </state>
+          </provider>
+          <provider selected="true" editor-type-id="android-designer2">
+            <state />
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="content_detail_pemesanan_new.xml" pinned="false" current-in-tab="false">
+        <entry file="file:///media/anonymous/data/AndroidStudioProjects/elaundry-konsumen/app/src/main/res/layout/content_detail_pemesanan_new.xml">
+          <provider editor-type-id="text-editor">
             <state relative-caret-position="0">
               <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
               <folding />
             </state>
           </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="activity_main_drawer.xml" pinned="false" current-in-tab="false">
-        <entry file="file:///media/anonymous/data/AndroidStudioProjects/elaundry-konsumen/app/src/main/res/menu/activity_main_drawer.xml">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="330">
-              <caret line="22" column="42" selection-start-line="22" selection-start-column="42" selection-end-line="22" selection-end-column="42" />
-              <folding />
-            </state>
-          </provider>
-          <provider editor-type-id="android-designer2">
+          <provider selected="true" editor-type-id="android-designer2">
             <state />
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="TransaksiFragment.java" pinned="false" current-in-tab="false">
-        <entry file="file:///media/anonymous/data/AndroidStudioProjects/elaundry-konsumen/app/src/main/java/com/yuly/elaundry/konsumen/fragment/TransaksiFragment.java">
+      <file leaf-file-name="fragment_transaksi.xml" pinned="false" current-in-tab="false">
+        <entry file="file:///media/anonymous/data/AndroidStudioProjects/elaundry-konsumen/app/src/main/res/layout/fragment_transaksi.xml">
+          <provider editor-type-id="text-editor">
+            <state relative-caret-position="1620">
+              <caret line="108" column="55" selection-start-line="108" selection-start-column="55" selection-end-line="108" selection-end-column="55" />
+              <folding />
+            </state>
+          </provider>
+          <provider selected="true" editor-type-id="android-designer2">
+            <state />
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="PemesananActivityNew.java" pinned="false" current-in-tab="false">
+        <entry file="file:///media/anonymous/data/AndroidStudioProjects/elaundry-konsumen/app/src/main/java/com/yuly/elaundry/konsumen/activity/PemesananActivityNew.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="675">
-              <caret line="96" column="0" selection-start-line="96" selection-start-column="0" selection-end-line="96" selection-end-column="64" />
+            <state relative-caret-position="-563">
+              <caret line="71" column="0" selection-start-line="71" selection-start-column="0" selection-end-line="71" selection-end-column="0" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="fragment_pemesanan.xml" pinned="false" current-in-tab="false">
+        <entry file="file:///media/anonymous/data/AndroidStudioProjects/elaundry-konsumen/app/src/main/res/layout/fragment_pemesanan.xml">
+          <provider editor-type-id="text-editor">
+            <state relative-caret-position="242">
+              <caret line="302" column="0" selection-start-line="302" selection-start-column="0" selection-end-line="303" selection-end-column="46" />
+              <folding />
+            </state>
+          </provider>
+          <provider selected="true" editor-type-id="android-designer2">
+            <state />
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="fragment_pemesanan.xml" pinned="false" current-in-tab="false">
+        <entry file="file:///media/anonymous/data/AndroidStudioProjects/elaundry-konsumen/app/src/main/res/layout-v21/fragment_pemesanan.xml">
+          <provider editor-type-id="text-editor">
+            <state relative-caret-position="168">
+              <caret line="36" column="0" selection-start-line="36" selection-start-column="0" selection-end-line="36" selection-end-column="0" />
               <folding>
-                <element signature="imports" expanded="false" />
-                <element signature="e#19116#19117#0" expanded="false" />
-                <element signature="e#19144#19145#0" expanded="false" />
+                <element signature="e#12209#12228#0" expanded="true" />
               </folding>
             </state>
           </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="activity_main.xml" pinned="false" current-in-tab="false">
-        <entry file="file:///media/anonymous/data/AndroidStudioProjects/elaundry-konsumen/app/src/main/res/layout/activity_main.xml">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1140">
-              <caret line="76" column="0" selection-start-line="76" selection-start-column="0" selection-end-line="76" selection-end-column="0" />
-              <folding />
-            </state>
-          </provider>
-          <provider editor-type-id="android-designer2">
+          <provider selected="true" editor-type-id="android-designer2">
             <state />
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="colors.xml" pinned="false" current-in-tab="false">
-        <entry file="file:///media/anonymous/data/AndroidStudioProjects/elaundry-konsumen/app/src/main/res/values/colors.xml">
+      <file leaf-file-name="fragment_pemesanan.xml" pinned="false" current-in-tab="true">
+        <entry file="file:///media/anonymous/data/AndroidStudioProjects/elaundry-konsumen/app/src/main/res/layout-v23/fragment_pemesanan.xml">
+          <provider editor-type-id="text-editor">
+            <state relative-caret-position="155">
+              <caret line="36" column="68" selection-start-line="36" selection-start-column="68" selection-end-line="36" selection-end-column="68" />
+              <folding />
+            </state>
+          </provider>
+          <provider selected="true" editor-type-id="android-designer2">
+            <state />
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="settings.gradle" pinned="false" current-in-tab="false">
+        <entry file="file:///media/anonymous/data/AndroidStudioProjects/elaundry-konsumen/settings.gradle">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="630">
-              <caret line="42" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="73" selection-end-column="0" />
+            <state relative-caret-position="0">
+              <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
               <folding />
             </state>
           </provider>
@@ -3352,7 +3366,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="/media/anonymous/data/AndroidStudioProjects/elaundry-konsumen/app/src/main/res/layout/content_detail_pemesanan_new.xml" />
         <option value="/media/anonymous/data/AndroidStudioProjects/elaundry-konsumen/app/src/main/res/values/colors.xml" />
         <option value="/media/anonymous/data/AndroidStudioProjects/elaundry-konsumen/app/src/main/res/values/styles.xml" />
         <option value="/media/anonymous/data/AndroidStudioProjects/elaundry-konsumen/app/src/main/res/values/dimens.xml" />
@@ -3367,13 +3380,10 @@
         <option value="/media/anonymous/data/AndroidStudioProjects/elaundry-konsumen/app/src/main/res/layout/activity_scrolling.xml" />
         <option value="/media/anonymous/data/AndroidStudioProjects/elaundry-konsumen/app/src/main/res/layout/content_scrolling.xml" />
         <option value="/media/anonymous/data/AndroidStudioProjects/elaundry-konsumen/app/src/main/res/layout/fragmen_pemesanan.xml" />
-        <option value="/media/anonymous/data/AndroidStudioProjects/elaundry-konsumen/app/src/main/res/layout/fragment_pemesanan.xml" />
-        <option value="/media/anonymous/data/AndroidStudioProjects/elaundry-konsumen/app/src/main/res/layout-v21/fragment_pemesanan.xml" />
         <option value="/media/anonymous/data/AndroidStudioProjects/elaundry-konsumen/app/src/main/res/values/theme_colors.xml" />
         <option value="/media/anonymous/data/AndroidStudioProjects/elaundry-konsumen/app/src/main/res/layout/dialog_themes.xml" />
         <option value="/media/anonymous/data/AndroidStudioProjects/elaundry-konsumen/app/src/main/java/com/yuly/elaundry/konsumen/fragment/ProfileFragment.java" />
         <option value="/media/anonymous/data/AndroidStudioProjects/elaundry-konsumen/app/src/main/res/menu/menu_profile.xml" />
-        <option value="/media/anonymous/data/AndroidStudioProjects/elaundry-konsumen/app/src/main/res/layout-v23/fragment_pemesanan.xml" />
         <option value="/media/anonymous/data/AndroidStudioProjects/elaundry-konsumen/app/src/main/res/layout/fragment_profile.xml" />
         <option value="/media/anonymous/data/AndroidStudioProjects/elaundry-konsumen/app/src/main/res/drawable/ic_address.xml" />
         <option value="/media/anonymous/data/AndroidStudioProjects/elaundry-konsumen/app/src/main/res/drawable/ic_phone.xml" />
@@ -3403,6 +3413,10 @@
         <option value="/media/anonymous/data/AndroidStudioProjects/elaundry-konsumen/app/src/main/res/layout/activity_main.xml" />
         <option value="/media/anonymous/data/AndroidStudioProjects/elaundry-konsumen/app/src/main/java/com/yuly/elaundry/konsumen/activity/MainActivity.java" />
         <option value="/media/anonymous/data/AndroidStudioProjects/elaundry-konsumen/app/src/main/res/layout/fragment_profile_new.xml" />
+        <option value="/media/anonymous/data/AndroidStudioProjects/elaundry-konsumen/app/src/main/res/drawable/ic_add_shopping_cart_white_24dp.xml" />
+        <option value="/media/anonymous/data/AndroidStudioProjects/elaundry-konsumen/app/src/main/res/layout/fragment_pemesanan.xml" />
+        <option value="/media/anonymous/data/AndroidStudioProjects/elaundry-konsumen/app/src/main/res/layout-v21/fragment_pemesanan.xml" />
+        <option value="/media/anonymous/data/AndroidStudioProjects/elaundry-konsumen/app/src/main/res/layout-v23/fragment_pemesanan.xml" />
       </list>
     </option>
   </component>
@@ -3468,6 +3482,144 @@
               <option name="myItemId" value="app" />
               <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidModuleNode" />
             </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="res" />
+              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidResFolderNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="elaundry-konsumen" />
+              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="app" />
+              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidModuleNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="res" />
+              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidResFolderNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="layout" />
+              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidResFolderTypeNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="elaundry-konsumen" />
+              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="app" />
+              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidModuleNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="res" />
+              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidResFolderNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="layout" />
+              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidResFolderTypeNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="fragment_pemesanan.xml" />
+              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidResGroupNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="elaundry-konsumen" />
+              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="app" />
+              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidModuleNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="java" />
+              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidSourceTypeNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="konsumen" />
+              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidPsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="elaundry-konsumen" />
+              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="app" />
+              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidModuleNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="java" />
+              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidSourceTypeNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="konsumen" />
+              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidPsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="adapter" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="elaundry-konsumen" />
+              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="app" />
+              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidModuleNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="java" />
+              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidSourceTypeNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="konsumen" />
+              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidPsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="activity" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="elaundry-konsumen" />
+              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="app" />
+              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidModuleNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="java" />
+              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidSourceTypeNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="elaundry" />
+              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidPsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="elaundry-konsumen" />
+              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="app" />
+              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidModuleNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="manifests" />
+              <option name="myItemType" value="com.android.tools.idea.navigator.nodes.AndroidManifestsGroupNode" />
+            </PATH_ELEMENT>
           </PATH>
         </subPane>
       </pane>
@@ -3488,7 +3640,7 @@
     <property name="project.structure.proportion" value="0.15" />
     <property name="project.structure.side.proportion" value="0.2" />
     <property name="device.picker.selection" value="192.168.81.102:5555" />
-    <property name="UI_DESIGNER_EDITOR_MODE.NlPaletteManager-NlEditorPanel.WIDTH" value="229" />
+    <property name="UI_DESIGNER_EDITOR_MODE.NlPaletteManager-NlEditorPanel.WIDTH" value="188" />
     <property name="UI_DESIGNER_EDITOR_MODE.NlPaletteManager-NlPreviewForm.SHOW" value="false" />
     <property name="android.project.structure.last.selected" value="app" />
     <property name="android.project.structure.proportion" value="0.15" />
@@ -3509,7 +3661,7 @@
     <property name="FileHistory.git4idea.history.GitHistoryProvider_treeWidth3" value="966" />
     <property name="FileHistory.git4idea.history.GitHistoryProvider_treeOrder3" value="3" />
     <property name="UI_DESIGNER_EDITOR_MODE.NlPropertiesWindowManager-NlEditorPanel.SHOW" value="true" />
-    <property name="VectorAssetImportPath" value="$PROJECT_DIR$/../../.." />
+    <property name="VectorAssetImportPath" value="/" />
     <property name="DEBUGGABLE_DEVICE" value="unknown-google_nexus_4___5_0_0___api_21___768x1280-192.168.71.101:5555" />
     <property name="DEBUGGABLE_PROCESS" value="hu.pe.elaundry.konsumen" />
     <property name="SHOW_ALL_PROCESSES" value="false" />
@@ -4005,7 +4157,14 @@
       <option name="project" value="LOCAL" />
       <updated>1481602111479</updated>
     </task>
-    <option name="localTasksCounter" value="25" />
+    <task id="LOCAL-00025" summary="memperbaiki bugs profile">
+      <created>1481609726998</created>
+      <option name="number" value="00025" />
+      <option name="presentableId" value="LOCAL-00025" />
+      <option name="project" value="LOCAL" />
+      <updated>1481609726998</updated>
+    </task>
+    <option name="localTasksCounter" value="26" />
     <servers />
   </component>
   <component name="ToolWindowManager">
@@ -4029,11 +4188,11 @@
       <window_info id="Capture Analysis" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Preview" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.12741935" sideWeight="0.43725336" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Version Control" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.6" sideWeight="0.4593528" order="9" side_tool="false" content_ui="tabs" />
+      <window_info id="Version Control" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.4983871" sideWeight="0.4593528" order="9" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.329582" sideWeight="0.5" order="12" side_tool="false" content_ui="tabs" />
       <window_info id="Captures" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Gradle Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="10" side_tool="true" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.28887135" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.29518548" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Gradle" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32991317" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Theme Preview" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="5" side_tool="true" content_ui="tabs" />
@@ -4118,7 +4277,8 @@
     <MESSAGE value="memperbaiki nama email dan textdrawable di header navview" />
     <MESSAGE value="mengupdate warna tampilan" />
     <MESSAGE value="mengupdate pemesanan dan mainativity exit fungsion" />
-    <option name="LAST_COMMIT_MESSAGE" value="mengupdate pemesanan dan mainativity exit fungsion" />
+    <MESSAGE value="memperbaiki bugs profile" />
+    <option name="LAST_COMMIT_MESSAGE" value="memperbaiki bugs profile" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -4127,91 +4287,6 @@
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file:///media/anonymous/data/AndroidStudioProjects/elaundry-konsumen/app/src/main/res/layout/list_row_pemesanan.xml">
-      <provider editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-      <provider selected="true" editor-type-id="android-designer2">
-        <state />
-      </provider>
-    </entry>
-    <entry file="file:///media/anonymous/data/AndroidStudioProjects/elaundry-konsumen/app/src/main/res/layout/fragment_pemesanan.xml">
-      <provider editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-      <provider selected="true" editor-type-id="android-designer2">
-        <state />
-      </provider>
-    </entry>
-    <entry file="file:///media/anonymous/data/AndroidStudioProjects/elaundry-konsumen/app/src/main/java/com/yuly/elaundry/konsumen/activity/DetailPemesananActivity.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="75">
-          <caret line="39" column="13" selection-start-line="39" selection-start-column="13" selection-end-line="39" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file:///media/anonymous/data/AndroidStudioProjects/elaundry-konsumen/app/src/main/res/layout/activity_detail_pemesanan_new.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="285">
-          <caret line="19" column="54" selection-start-line="19" selection-start-column="54" selection-end-line="19" selection-end-column="54" />
-          <folding />
-        </state>
-      </provider>
-      <provider editor-type-id="android-designer2">
-        <state />
-      </provider>
-    </entry>
-    <entry file="file:///media/anonymous/data/AndroidStudioProjects/elaundry-konsumen/app/src/main/java/com/yuly/elaundry/konsumen/widgets/ScrollAwareFABBehavior.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="30">
-          <caret line="2" column="0" selection-start-line="2" selection-start-column="0" selection-end-line="2" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file:///media/anonymous/data/AndroidStudioProjects/elaundry-konsumen/app/src/main/java/com/yuly/elaundry/konsumen/activity/PemesananActivityNew.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="180">
-          <caret line="71" column="0" selection-start-line="71" selection-start-column="0" selection-end-line="71" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file:///media/anonymous/data/AndroidStudioProjects/elaundry-konsumen/app/src/main/res/layout/fragment_transaksi.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="553">
-          <caret line="108" column="55" selection-start-line="108" selection-start-column="55" selection-end-line="108" selection-end-column="55" />
-          <folding />
-        </state>
-      </provider>
-      <provider editor-type-id="android-designer2">
-        <state />
-      </provider>
-    </entry>
-    <entry file="file:///media/anonymous/data/AndroidStudioProjects/elaundry-konsumen/app/src/main/AndroidManifest.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="272">
-          <caret line="88" column="41" selection-start-line="88" selection-start-column="41" selection-end-line="88" selection-end-column="41" />
-          <folding>
-            <element signature="e#2381#2399#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-      <provider editor-type-id="android-manifest">
-        <state />
-      </provider>
-    </entry>
-    <entry file="file:///media/anonymous/data/AndroidStudioProjects/elaundry-konsumen/app/src/main/res/drawable/ic_keyboard_arrow_left_white_24dp.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file:///media/anonymous/data/AndroidStudioProjects/elaundry-konsumen/app/src/main/res/layout/activity_login.xml">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="255">
@@ -4487,6 +4562,103 @@
           <caret line="23" column="1" selection-start-line="0" selection-start-column="0" selection-end-line="24" selection-end-column="0" />
           <folding />
         </state>
+      </provider>
+    </entry>
+    <entry file="file:///media/anonymous/data/AndroidStudioProjects/elaundry-konsumen/app/src/main/AndroidManifest.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="195">
+          <caret line="79" column="17" selection-start-line="79" selection-start-column="17" selection-end-line="79" selection-end-column="17" />
+          <folding>
+            <element signature="e#3483#3524#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+      <provider editor-type-id="android-manifest">
+        <state />
+      </provider>
+    </entry>
+    <entry file="file:///media/anonymous/data/AndroidStudioProjects/elaundry-konsumen/app/src/main/res/layout/activity_detail_pemesanan_new.xml">
+      <provider editor-type-id="text-editor">
+        <state relative-caret-position="285">
+          <caret line="19" column="54" selection-start-line="19" selection-start-column="54" selection-end-line="19" selection-end-column="54" />
+          <folding />
+        </state>
+      </provider>
+      <provider selected="true" editor-type-id="android-designer2">
+        <state />
+      </provider>
+    </entry>
+    <entry file="file:///media/anonymous/data/AndroidStudioProjects/elaundry-konsumen/app/src/main/res/layout/content_detail_pemesanan_new.xml">
+      <provider editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+      <provider selected="true" editor-type-id="android-designer2">
+        <state />
+      </provider>
+    </entry>
+    <entry file="file:///media/anonymous/data/AndroidStudioProjects/elaundry-konsumen/app/src/main/res/layout/fragment_transaksi.xml">
+      <provider editor-type-id="text-editor">
+        <state relative-caret-position="1620">
+          <caret line="108" column="55" selection-start-line="108" selection-start-column="55" selection-end-line="108" selection-end-column="55" />
+          <folding />
+        </state>
+      </provider>
+      <provider selected="true" editor-type-id="android-designer2">
+        <state />
+      </provider>
+    </entry>
+    <entry file="file:///media/anonymous/data/AndroidStudioProjects/elaundry-konsumen/app/src/main/java/com/yuly/elaundry/konsumen/activity/PemesananActivityNew.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-563">
+          <caret line="71" column="0" selection-start-line="71" selection-start-column="0" selection-end-line="71" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file:///media/anonymous/data/AndroidStudioProjects/elaundry-konsumen/app/src/main/res/drawable/ic_add_shopping_cart_white_24dp.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file:///media/anonymous/data/AndroidStudioProjects/elaundry-konsumen/app/src/main/res/layout/fragment_pemesanan.xml">
+      <provider editor-type-id="text-editor">
+        <state relative-caret-position="242">
+          <caret line="302" column="0" selection-start-line="302" selection-start-column="0" selection-end-line="303" selection-end-column="46" />
+          <folding />
+        </state>
+      </provider>
+      <provider selected="true" editor-type-id="android-designer2">
+        <state />
+      </provider>
+    </entry>
+    <entry file="file:///media/anonymous/data/AndroidStudioProjects/elaundry-konsumen/app/src/main/res/layout-v21/fragment_pemesanan.xml">
+      <provider editor-type-id="text-editor">
+        <state relative-caret-position="168">
+          <caret line="36" column="0" selection-start-line="36" selection-start-column="0" selection-end-line="36" selection-end-column="0" />
+          <folding>
+            <element signature="e#12209#12228#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+      <provider selected="true" editor-type-id="android-designer2">
+        <state />
+      </provider>
+    </entry>
+    <entry file="file:///media/anonymous/data/AndroidStudioProjects/elaundry-konsumen/app/src/main/res/layout-v23/fragment_pemesanan.xml">
+      <provider editor-type-id="text-editor">
+        <state relative-caret-position="155">
+          <caret line="36" column="68" selection-start-line="36" selection-start-column="68" selection-end-line="36" selection-end-column="68" />
+          <folding />
+        </state>
+      </provider>
+      <provider selected="true" editor-type-id="android-designer2">
+        <state />
       </provider>
     </entry>
   </component>
