@@ -23,7 +23,7 @@ android {
         minSdkVersion 15
         targetSdkVersion 25
         //multiDexEnabled true
-        signingConfig signingConfigs.release
+        signingConfig signingConfigs.debug
     }
     buildTypes {
         release {
@@ -40,6 +40,10 @@ android {
     }
     productFlavors {
         releaseConfig {
+            minSdkVersion 15
+            applicationId 'com.yuly.elaundry.kurir'
+            signingConfig signingConfigs.release
+            targetSdkVersion 25
         }
         debugConfig {
             minSdkVersion 15
