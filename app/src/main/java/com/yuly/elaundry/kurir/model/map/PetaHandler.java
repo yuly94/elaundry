@@ -211,7 +211,8 @@ public class PetaHandler {
     }
 
 
-    public void tambahMarkers(LatLong point) {
+    // TODO: 04/12/16 menambahkan marker merah
+    public void tambahMarkerMerah(LatLong point) {
         Layers layers = mapView.getLayerManager().getLayers();
         //        if (startPoint != null && endPoint != null) {
         //            setShortestPathRunning(true);
@@ -311,6 +312,55 @@ public class PetaHandler {
         }.execute();
     }
 
+
+    public void calcPathx(final double fromLat, final double fromLon,
+                         final double toLat, final double toLon) {
+
+        log("mengkalkulasi path ...");
+
+        new AsyncTask<Void, Void, GHResponse>() {
+            float time;
+
+            protected GHResponse doInBackground(Void... v) {
+                StopWatch sw = new StopWatch().start();
+
+                GHRequest req = new GHRequest(fromLat, fromLon, toLat, toLon).
+                        setAlgorithm(AlgorithmOptions.DIJKSTRA_BI);
+
+                req.getHints().
+                        put("instructions", "false");
+                GHResponse resp = hopper.route(req);
+                time = sw.stop().getSeconds();
+                return resp;
+            }
+
+            protected void onPostExecute(GHResponse resp) {
+                if (!resp.hasErrors()) {
+                    log("from:" + fromLat + "," + fromLon + " to:" + toLat + ","
+                            + toLon + " found path with distance:" + resp.getDistance()
+                            / 1000f + ", nodes:" + resp.getPoints().getSize() + ", time:"
+                            + time + " " + resp.getDebugInfo());
+                    logUser("the route is " + (int) (resp.getDistance() / 100) / 10f
+                            + "km long, time:" + resp.getTime() / 60000f + "min, debug:" + time);
+
+                //    mapView.getLayerManager().getLayers().add(createPolyline(resp.getPoints(),activity.getResources().getColor(R.color.my_accent_transparent), 25));
+
+                 //   mapView.getLayerManager().getLayers().add(createPolyline(resp.getPoints(),activity.getResources().getColor(R.color.my_accent_transparent), 25));
+
+                    Log.d("Resp", resp.toString());
+
+
+                 //   mapView.getLayerManager().getLayers().add(createPolyline(resp.getPoints(),activity.getResources().getColor(R.color.my_accent_transparent), 25));
+                    //mapView.redraw();
+                } else {
+                    logUser("Error:" + resp.getErrors());
+                }
+                shortestPathRunning = false;
+            }
+        }.execute();
+    }
+
+
     /**
      * calculate a path: start to end
      *
@@ -330,9 +380,15 @@ public class PetaHandler {
                 StopWatch sw = new StopWatch().start();
                 GHRequest req = new GHRequest(fromLat, fromLon, toLat, toLon);
                 req.setAlgorithm(AlgorithmOptions.DIJKSTRA_BI);
-                req.getHints().put(activity.getString(R.string.instruksi), Variable.getVariable().getDirectionsON());
-                req.setVehicle(Variable.getVariable().getTravelMode());
-                req.setWeighting(Variable.getVariable().getWeighting());
+                req.getHints().put(activity.getString(R.string.instruksi),
+                      //  Variable.getVariable().getDirectionsON()
+                        false
+
+                );
+              req.setVehicle(Variable.getVariable().getTravelMode());
+                //req.setVehicle("car");
+              req.setWeighting(Variable.getVariable().getWeighting());
+                //req.setWeighting("fastest");
                 GHResponse resp = hopper.route(req);
                 time = sw.stop().getSeconds();
                 return resp;

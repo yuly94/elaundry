@@ -33,6 +33,7 @@ import com.yuly.elaundry.kurir.model.geterseter.TransaksiModel;
 import com.yuly.elaundry.kurir.model.helper.VolleyErrorHelper;
 import com.yuly.elaundry.kurir.model.listeners.NavigatorListener;
 import com.yuly.elaundry.kurir.model.listeners.PetaHandlerListener;
+import com.yuly.elaundry.kurir.model.map.MapHandler;
 import com.yuly.elaundry.kurir.model.map.Navigasi;
 import com.yuly.elaundry.kurir.model.map.PetaHandler;
 import com.yuly.elaundry.kurir.model.util.InstructionAdapter;
@@ -48,6 +49,7 @@ import org.mapsforge.map.layer.overlay.Marker;
 import org.mapsforge.map.model.MapViewPosition;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import static android.content.ContentValues.TAG;
@@ -56,8 +58,8 @@ import static android.content.ContentValues.TAG;
 public class PetaActions implements NavigatorListener, PetaHandlerListener {
     private Activity activity;
     protected FloatingActionButton showPositionBtn, navigationBtn, settingsBtn, controlBtn;
-    protected FloatingActionButton zoomInBtn, zoomOutBtn, fabNavigasi;
-    private ViewGroup sideBarVP, sideBarMenuVP, navSettingsVP, navSettingsFromVP, navSettingsToVP, navInstructionVP,
+    protected FloatingActionButton zoomInBtn, zoomOutBtn, fabNavigasi,fab_data;
+    private ViewGroup sideBarVP,  sideBarMenuVP, navSettingsVP, navSettingsFromVP, navSettingsToVP, navInstructionVP,
             navInstructionListVP;
     private boolean menuVisible;
 
@@ -84,6 +86,8 @@ public class PetaActions implements NavigatorListener, PetaHandlerListener {
         this.zoomOutBtn = (FloatingActionButton) activity.findViewById(R.id.fab_kecilkan);
 
         this.fabNavigasi = (FloatingActionButton) activity.findViewById(R.id.fab_nafigasi);
+
+        this.fab_data = (FloatingActionButton) activity.findViewById(R.id.fab_refresh);
 
 
        // view groups managed by separate layout xml file : //map_sidebar_layout/map_sidebar_menu_layout
@@ -126,6 +130,7 @@ public class PetaActions implements NavigatorListener, PetaHandlerListener {
 
 
         mengambilData();
+        menghitungJarak();
     }
 
 
@@ -155,8 +160,45 @@ public class PetaActions implements NavigatorListener, PetaHandlerListener {
      * @param Point
      */
     private void addMarker(LatLong Point) {
-        PetaHandler.getPetaHandler().tambahMarkers(Point);
+        PetaHandler.getPetaHandler().tambahMarkerMerah(Point);
     }
+
+
+    private void hitungJarak() {
+
+        PetaHandler petaHandler = PetaHandler.getPetaHandler();
+        petaHandler.calcPath(-7.768428684206199,112.00151054708566,
+                -7.767706382776794,112.01162539826053);
+    }
+
+
+    private void bacaLokasi() {
+        // Reading all lokasi konsumen
+        Log.d("Reading: ", "Reading all lokasi..");
+        List<Lokasi> listlokasi = db_rute.getAllLokasi();
+
+        for (Lokasi lokasi : listlokasi) {
+            String log = "Id: " + lokasi.getId() + " ,Latitude : " + lokasi.getLatitude() + " ,Longitude : " + lokasi.getLongitude();
+            // Writing Contacts to log
+            Log.d("Name: ", log);
+        }
+    }
+
+
+    private void hapusSemuaLokasi() {
+        // Reading all lokasi konsumen
+        Log.d("Reading: ", "Reading all lokasi..");
+        List<Lokasi> lok = db_rute.getAllLokasi();
+
+        for (Lokasi lokasi : lok) {
+            String log = "Delete Id: " + lokasi.getId();
+
+            long id = db_rute.deleteLokasi(lokasi.getId());
+            // Writing Contacts to log
+            Log.d("Delete : ", String.valueOf(id));
+        }
+    }
+
 
 
 
@@ -171,6 +213,18 @@ public class PetaActions implements NavigatorListener, PetaHandlerListener {
 
         });
     }
+
+    private void menghitungJarak(){
+
+        fab_data.setOnClickListener(new View.OnClickListener() {
+            @Override public void onClick(View v) {
+                hitungJarak();
+
+            }
+
+        });
+    }
+
 
     /**
      * Mengambil data pemesanan baru
@@ -260,7 +314,7 @@ public class PetaActions implements NavigatorListener, PetaHandlerListener {
                                     Log.i("TAG Lo : ",pemesanan_longitude);
                                  //   LatLong mcLatLong = new LatLong(Double.valueOf(pemesanan_latitude),Double.valueOf(pemesanan_longitude));
 
-                                   // petaHandler.tambahMarkers(mcLatLong);
+                                   // petaHandler.tambahMarkerMerah(mcLatLong);
 
                                    // buatMarkerHijau(mcLatLong,mapView);
 

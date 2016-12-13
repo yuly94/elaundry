@@ -112,7 +112,7 @@ public class MapActivity2 extends AppCompatActivity implements LocationListener 
         LatLong mcLatLong = new LatLong(-7.817117399999998,112.0287791);
         //   Layers layers = mapView.getLayerManager().getLayers();
 
-        PetaHandler.getPetaHandler().tambahMarkers(mcLatLong);
+        PetaHandler.getPetaHandler().tambahMarkerMerah(mcLatLong);
 
         //  mPositionMarker = PetaHandler.getPetaHandler().createMarker(mcLatLong, R.drawable.ic_place_green_24dp);
         // layers.add(mPositionMarker);
@@ -126,7 +126,7 @@ public class MapActivity2 extends AppCompatActivity implements LocationListener 
          LatLong mcLatLong = new LatLong(lat,lon);
      //   Layers layers = mapView.getLayerManager().getLayers();
 
-        PetaHandler.getPetaHandler().tambahMarkers(mcLatLong);
+        PetaHandler.getPetaHandler().tambahMarkerMerah(mcLatLong);
 
       //  mPositionMarker = PetaHandler.getPetaHandler().createMarker(mcLatLong, R.drawable.ic_place_green_24dp);
        // layers.add(mPositionMarker);

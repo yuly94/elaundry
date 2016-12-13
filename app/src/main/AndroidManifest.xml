@@ -137,7 +137,8 @@
         <activity
             android:name=".controller.activity.AppSettingsActivity"
             android:label="@string/title_activity_app_settings"
-            android:parentActivityName=".controller.activity.MainActivity">
+            android:parentActivityName=".controller.activity.MainActivity"
+            android:theme="@style/MyAppThemeActionBar">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.yuly.elaundry.kurir.controller.activity.MainActivity" />
