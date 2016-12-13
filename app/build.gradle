@@ -1,6 +1,5 @@
 apply plugin: 'com.android.application'
 
-
 android {
     signingConfigs {
         release {
@@ -23,7 +22,8 @@ android {
         minSdkVersion 15
         targetSdkVersion 25
         //multiDexEnabled true
-        signingConfig signingConfigs.debug
+        signingConfig signingConfigs.release
+        versionCode 1
     }
     buildTypes {
         release {
@@ -44,12 +44,7 @@ android {
             applicationId 'com.yuly.elaundry.kurir'
             signingConfig signingConfigs.release
             targetSdkVersion 25
-        }
-        debugConfig {
-            minSdkVersion 15
-            applicationId 'com.yuly.elaundry.kurir'
-            signingConfig signingConfigs.debug
-            targetSdkVersion 25
+            versionCode 1
         }
     }
     compileOptions {
@@ -57,11 +52,12 @@ android {
         targetCompatibility JavaVersion.VERSION_1_7
     }
 
+
     useLibrary 'org.apache.http.legacy'
 }
 
 dependencies {
-    //compile fileTree(include: ['*.jar'], dir: 'libs')
+    compile fileTree(include: ['*.jar'], dir: 'libs')
     //compile 'com.android.support:multidex:1.0.1'
     compile project(':libs_google_volley')
     //Android Graph Library for creating zoomable and scrollable line and bar graphs
@@ -92,5 +88,4 @@ dependencies {
     compile 'com.android.support:support-vector-drawable:25.0.1'
     compile 'com.getbase:floatingactionbutton:1.10.1'
     testCompile 'junit:junit:4.12'
-    // compile project(':libs_graphhopper')
 }

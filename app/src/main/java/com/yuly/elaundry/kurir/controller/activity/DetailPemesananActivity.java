@@ -175,19 +175,17 @@ public class DetailPemesananActivity extends AppCompatActivity {
     private void requestDetail() {
         showProgressDialog();
 
-
         // Posting parameters to change password
         HashMap<String, String> params = new HashMap<String, String>();
         params.put("pemesanan_status", text_status_sebelumnya);
 
         JsonObjectRequest jsonObjReq = new JsonObjectRequest(Request.Method.POST,
-                AppConfig.URL_PEMESANAN,new JSONObject(params),
+                AppConfig.URL_PEMESANAN_DETAIL+id_pemesanan,new JSONObject(params),
                 new Response.Listener<JSONObject>() {
 
             @Override
             public void onResponse(JSONObject response) {
                 Log.d(TAG, response.toString());
-
 
                 Log.d(AppController.TAG, "on Response " + response.toString());
                 //   msgResponse.setText(response.toString());
