@@ -29,7 +29,6 @@ android {
             minifyEnabled true
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
             signingConfig signingConfigs.release
-            proguardFile '/home/anonymous/AndroidStudioProjects/myelaundry/app/proguard-android-optimize.txt'
             debuggable false
         }
         debug {
@@ -39,6 +38,8 @@ android {
         }
     }
     productFlavors {
+        releaseConfig {
+        }
     }
     compileOptions {
         sourceCompatibility JavaVersion.VERSION_1_7

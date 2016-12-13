@@ -234,16 +234,20 @@ public class MainActivity extends AppCompatActivity   implements NavigationView.
 	private void closeUser() {
 
 
-		finish();
+		this.finish();
+		System.exit(0);
 
 	}
 
 
 	private void logOutUser() {
 
+		session.setLogin(false);
+		db.deleteUsers();
+
+		// Launching the login activity
 		Intent intent = new Intent(MainActivity.this, LoginActivityNew.class);
 		startActivity(intent);
-
 		finish();
 
 	}
