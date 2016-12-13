@@ -120,7 +120,13 @@ public class ProfileFragment extends Fragment {
         // SqLite database handler
         db = new KonsumenDbHandler(getContext());
 
+        try {
+
+
         updateDataProfile();
+        } catch (Exception e) {
+            Log.e(ProfileFragment.class.getSimpleName(), String.valueOf(e));
+        }
         disableView();
 
         return v;
@@ -376,8 +382,8 @@ public class ProfileFragment extends Fragment {
 
                 Log.d(Constants.TAG,"failed");
              //   progress.setVisibility(View.GONE);
-                tv_message.setVisibility(View.VISIBLE);
-                tv_message.setText(e);
+                //tv_message.setVisibility(View.VISIBLE);
+                //tv_message.setText(e);
 
                 hideDialog();
             }

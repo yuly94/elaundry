@@ -207,6 +207,10 @@ import java.util.Map;
         mRecyclerView.addOnItemTouchListener(new RecyclerTouchListener(getActivity(), mRecyclerView, new RecyclerTouchListener.ClickListener() {
             @Override
             public void onClick(View view, int position) {
+
+                try {
+
+
                 TransaksiModel transaksi = listPemesanan.get(position);
                // Toast.makeText(getActivity(), transaksi.getNoId() + " is selected!", Toast.LENGTH_SHORT).show();
 
@@ -220,6 +224,9 @@ import java.util.Map;
                 intent.putExtra("UPDATE_STATUS", update_status);
 
                 startActivity(intent);
+                } catch (Exception e) {
+                    Log.e("error", String.valueOf(e));
+                }
 
             }
 
@@ -230,9 +237,6 @@ import java.util.Map;
         }));
 
         mengambilDataPemesanan();
-
-
-
 
         return v;
 
@@ -432,6 +436,9 @@ import java.util.Map;
 
 
     private void showProgressDialog() {
+        try {
+
+
         if (!pDialog.isShowing()){
             pDialog.show();
         }
@@ -444,7 +451,11 @@ import java.util.Map;
             Log.d("Error", String.valueOf(e));
         }*/
 
+        } catch (Exception e) {
+            Log.e("error", String.valueOf(e));
+        }
         Log.d("Show Progress", "here");
+
 
     }
 
@@ -480,9 +491,15 @@ import java.util.Map;
                 new MenuItemCompat.OnActionExpandListener() {
                     @Override
                     public boolean onMenuItemActionCollapse(MenuItem item) {
+                        try {
+
+
                         // Do something when collapsed
                         //adapter.setFilter(mCountryModel);
                         adapter.setFilter(listPemesanan);
+                        } catch (Exception e) {
+                            Log.e(TransaksiFragment.class.getSimpleName(), String.valueOf(e));
+                        }
                         return true; // Return true to collapse action view
                     }
 
@@ -497,8 +514,13 @@ import java.util.Map;
 
     @Override
     public boolean onQueryTextChange(String newText) {
+        try {
+
         final List<TransaksiModel> filteredModelList = filter(listPemesanan, newText);
         adapter.setFilter(filteredModelList);
+        } catch (Exception e) {
+            Log.e("error", String.valueOf(e));
+        }
         return true;
     }
 
