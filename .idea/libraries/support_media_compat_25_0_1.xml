@@ -1,8 +1,5 @@
 <component name="libraryTable">
   <library name="support-media-compat-25.0.1">
-    <ANNOTATIONS>
-      <root url="jar:///media/anonymous/data/AndroidStudioProjects/elaundry-konsumen/app/build/intermediates/exploded-aar/com.android.support/support-media-compat/25.0.1/annotations.zip!/" />
-    </ANNOTATIONS>
     <CLASSES>
       <root url="file:///media/anonymous/data/AndroidStudioProjects/elaundry-konsumen/app/build/intermediates/exploded-aar/com.android.support/support-media-compat/25.0.1/res" />
       <root url="jar:///media/anonymous/data/AndroidStudioProjects/elaundry-konsumen/app/build/intermediates/exploded-aar/com.android.support/support-media-compat/25.0.1/jars/classes.jar!/" />

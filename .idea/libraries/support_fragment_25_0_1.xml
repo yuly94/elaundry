@@ -1,8 +1,5 @@
 <component name="libraryTable">
   <library name="support-fragment-25.0.1">
-    <ANNOTATIONS>
-      <root url="jar:///media/anonymous/data/AndroidStudioProjects/elaundry-konsumen/app/build/intermediates/exploded-aar/com.android.support/support-fragment/25.0.1/annotations.zip!/" />
-    </ANNOTATIONS>
     <CLASSES>
       <root url="jar:///media/anonymous/data/AndroidStudioProjects/elaundry-konsumen/app/build/intermediates/exploded-aar/com.android.support/support-fragment/25.0.1/jars/libs/internal_impl-25.0.1.jar!/" />
       <root url="file:///media/anonymous/data/AndroidStudioProjects/elaundry-konsumen/app/build/intermediates/exploded-aar/com.android.support/support-fragment/25.0.1/res" />
