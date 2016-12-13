@@ -1,0 +1,32 @@
+<?php
+
+/* 
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
+
+return array(
+    'mysql' => array(
+        'host'      => 'mysql.idhostinger.com',
+        'port'      => '3306',
+        'user'      => 'u442980053_yuly',
+        'password'  => 'elaundry',
+        'database'  => 'u442980053_elaun',
+        'options'   => array(
+            PDO::ATTR_PERSISTENT=>false,
+            PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION,
+            PDO::ATTR_DEFAULT_FETCH_MODE => PDO::FETCH_ASSOC,
+        ),
+        'execute'   => array(
+            'SET names "utf8"',
+            'SET collation_connection="utf8_general_ci"',
+            'SET collation_server="utf8_general_ci"',
+            'SET character_set_client="utf8"',
+            'SET character_set_connection="utf8"',
+            'SET character_set_results="utf8"',
+            'SET character_set_server="utf8"',
+            'SET time_zone = "UTC"',
+        ),
+    ),
+);
