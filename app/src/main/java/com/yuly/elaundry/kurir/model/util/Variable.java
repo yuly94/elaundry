@@ -1,6 +1,8 @@
 package com.yuly.elaundry.kurir.model.util;
 
 import android.content.Context;
+import android.os.Build;
+import android.os.Environment;
 import android.util.Log;
 
 import com.yuly.elaundry.kurir.R;
@@ -180,15 +182,29 @@ public class Variable {
         this.lastZoomLevel = 15;
         this.lastLocation = null;
         this.country = "indonesia_jawatimur_kediringanjuk";
-        this.mapsFolder = new File("/storage/emulated/0/Download/elaundrymaps/maps/");
+
+
+        //this.mapsFolder = new File("/storage/emulated/0/Download/petaelaundry/maps/");
         this.context = null;
         this.advancedSetting = false;
         this.directionsON = true;
         this.petunjukArahSayaON = true;
-        this.mapDownloadDirectory = "/Download/elaundrymaps/maps/";
-        this.mapDirectory = "/elaundrymaps/maps/";
-        this.trackingDirectory = "/elaundrymaps/tracking/";
+        this.mapDownloadDirectory = "/petaelaundry/peta/";
+        this.mapDirectory = "/petaelaundry/peta/";
+        this.trackingDirectory = "/petaelaundry/tracking/";
         this.downloadUrl ="http://elaundry.pe.hu/assets/maps/indonesia_jawatimur_kediringanjuk.ghz";
+
+        boolean greaterOrEqKitkat = Build.VERSION.SDK_INT >= 19;
+
+        if (greaterOrEqKitkat) {
+            if (!Environment.getExternalStorageState().equals(Environment.MEDIA_MOUNTED)) {
+                // logUser("Elaundry is not usable without an external storage!");
+                return;
+            }
+            this.mapsFolder = new File(Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOWNLOADS),
+                    mapDirectory);
+        } else
+            this.mapsFolder = new File(Environment.getExternalStorageDirectory(),mapDownloadDirectory);
         
         this.mapUrlList = "http://elaundry.pe.hu/konsumen/peta/map_url_list";
         this.localMaps = new ArrayList<>();

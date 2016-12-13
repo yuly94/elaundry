@@ -12,6 +12,8 @@ import android.os.Bundle;
 import android.os.Environment;
 import android.provider.Settings;
 import android.support.v4.app.ActivityCompat;
+import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
@@ -23,8 +25,11 @@ import android.widget.Toast;
 
 import com.graphhopper.GraphHopper;
 import com.yuly.elaundry.kurir.R;
+import com.yuly.elaundry.kurir.controller.fragment.DialogDownload;
+import com.yuly.elaundry.kurir.controller.fragment.DownloadPetaFragment;
 import com.yuly.elaundry.kurir.model.peta.CariRuteHandler;
 import com.yuly.elaundry.kurir.model.util.Variable;
+import com.yuly.elaundry.kurir.view.util.HelpUtils;
 
 import org.mapsforge.core.model.LatLong;
 import org.mapsforge.map.android.graphics.AndroidGraphicFactory;
@@ -46,6 +51,8 @@ public class CariRuteActivity extends AppCompatActivity implements LocationListe
 
 
     private File mapsFolder;
+    AppCompatActivity appCompatActivity;
+
 
 
 
@@ -130,6 +137,22 @@ public class CariRuteActivity extends AppCompatActivity implements LocationListe
         // layers.add(mPositionMarker);
 
 
+    }
+
+    public void panggilDialogDownload(){
+
+/*        FragmentManager fragmentManager = getSupportFragmentManager();
+
+        Fragment frag = fragmentManager.findFragmentByTag("download_dialog");
+
+        if (frag != null) {
+            fragmentManager.beginTransaction().remove(frag).commit();
+        }*/
+
+        //	About
+      //  HelpUtils.showAbout(this);
+
+        DialogDownload.showDownloadUlangDialog(this);
     }
 
     public void tambakanMarker(Double lat,Double lon){

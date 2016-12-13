@@ -154,9 +154,6 @@ public class LaundryPemesananFragment extends Fragment implements SearchView.OnQ
         // session manager
         session = new SessionManager(getContext());
 
-        // Fetching user details from SQLite
-        HashMap<String, String> user = db.getUserDetails();
-
         pDialog = new ProgressDialog(getContext());
         pDialog.setMessage("Loading...");
         pDialog.setCancelable(false);
@@ -193,6 +190,10 @@ public class LaundryPemesananFragment extends Fragment implements SearchView.OnQ
         mRecyclerView.addOnItemTouchListener(new RecyclerTouchListener(getActivity(), mRecyclerView, new RecyclerTouchListener.ClickListener() {
             @Override
             public void onClick(View view, int position) {
+
+                try {
+
+
                 TransaksiModel transaksi = listPemesanan.get(position);
               //  Toast.makeText(getActivity(), transaksi.getNoId() + " is selected!", Toast.LENGTH_SHORT).show();
 
@@ -210,7 +211,9 @@ public class LaundryPemesananFragment extends Fragment implements SearchView.OnQ
                 intent.putExtra("UPDATE_STATUS", update_status);
 
                 startActivity(intent);
-
+                } catch (Exception e) {
+                    Log.e(LaundryPemesananFragment.class.getSimpleName(), String.valueOf(e));
+                }
             }
 
             @Override
@@ -422,8 +425,12 @@ public class LaundryPemesananFragment extends Fragment implements SearchView.OnQ
 
 
     private void showProgressDialog() {
-        if (!pDialog.isShowing()){
-            pDialog.show();
+        try {
+            if (!pDialog.isShowing()) {
+                pDialog.show();
+            }
+        } catch (Exception e){
+                Log.e("error", String.valueOf(e));
         }
 
        //  getLoading();
@@ -470,9 +477,13 @@ public class LaundryPemesananFragment extends Fragment implements SearchView.OnQ
                 new MenuItemCompat.OnActionExpandListener() {
                     @Override
                     public boolean onMenuItemActionCollapse(MenuItem item) {
-                        // Do something when collapsed
-                        //adapter.setFilter(mCountryModel);
-                       adapter.setFilter(listPemesanan);
+                        try {
+                            // Do something when collapsed
+                            //adapter.setFilter(mCountryModel);
+                            adapter.setFilter(listPemesanan);
+                        } catch (Exception e) {
+                            Log.e("error", String.valueOf(e));
+                        }
                         return true; // Return true to collapse action view
                     }
 
@@ -487,9 +498,13 @@ public class LaundryPemesananFragment extends Fragment implements SearchView.OnQ
 
     @Override
     public boolean onQueryTextChange(String newText) {
-        final List<TransaksiModel> filteredModelList = filter(listPemesanan, newText);
-        adapter.setFilter(filteredModelList);
-        return true;
+        try {
+            final List<TransaksiModel> filteredModelList = filter(listPemesanan, newText);
+            adapter.setFilter(filteredModelList);
+        } catch (Exception e) {
+            Log.e("error", String.valueOf(e));
+        }
+            return true;
     }
 
     @Override

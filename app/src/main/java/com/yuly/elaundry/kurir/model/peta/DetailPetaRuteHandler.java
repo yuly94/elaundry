@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.graphics.Path;
 import android.graphics.drawable.Drawable;
 import android.os.AsyncTask;
+import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
@@ -16,6 +17,7 @@ import com.graphhopper.routing.AlgorithmOptions;
 import com.graphhopper.util.PointList;
 import com.graphhopper.util.StopWatch;
 import com.yuly.elaundry.kurir.R;
+import com.yuly.elaundry.kurir.controller.fragment.DialogDownload;
 import com.yuly.elaundry.kurir.model.listeners.PetaRuteHandlerListener;
 import com.yuly.elaundry.kurir.model.map.DetailPetaNavigasi;
 import com.yuly.elaundry.kurir.model.util.Variable;
@@ -46,7 +48,7 @@ import java.util.List;
 
 
 public class DetailPetaRuteHandler {
-    private Activity activity;
+    private AppCompatActivity activity;
     private MapView mapView;
     private String currentArea;
     private TileCache tileCache;
@@ -92,7 +94,7 @@ public class DetailPetaRuteHandler {
         needPathCal = false;
     }
 
-    public void init(Activity activity, MapView mapView, String currentArea, File mapsFolder) {
+    public void init(AppCompatActivity activity, MapView mapView, String currentArea, File mapsFolder) {
         this.activity = activity;
         this.mapView = mapView;
         this.currentArea = currentArea;
@@ -114,6 +116,10 @@ public class DetailPetaRuteHandler {
      */
     public void loadMap(File areaFolder) {
         logToast("memuat peta" + currentArea);
+
+        try {
+
+
        // File mapFile = new File(areaFolder, currentArea + activity.getString(R.string.dotmap));
         MapDataStore mapDataStore = new MapFile(new File(areaFolder,currentArea+".map"));
 
@@ -148,6 +154,14 @@ public class DetailPetaRuteHandler {
                 new ViewGroup.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT);
         activity.addContentView(mapView, params);
         loadGraphStorage();
+
+        } catch (Exception e){
+            Log.e("error", String.valueOf(e));
+           // Toast.makeText(getActivity(),String.valueOf(e),Toast.LENGTH_LONG).show();
+            DialogDownload.showDownloadUlangDialog(activity);
+
+        };
+
     }
 
 

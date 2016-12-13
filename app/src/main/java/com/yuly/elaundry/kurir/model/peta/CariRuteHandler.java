@@ -4,6 +4,8 @@ import android.app.Activity;
 import android.graphics.Path;
 import android.graphics.drawable.Drawable;
 import android.os.AsyncTask;
+import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
@@ -17,11 +19,16 @@ import com.graphhopper.routing.AlgorithmOptions;
 import com.graphhopper.util.PointList;
 import com.graphhopper.util.StopWatch;
 import com.yuly.elaundry.kurir.R;
+import com.yuly.elaundry.kurir.controller.activity.CariRuteActivity;
+import com.yuly.elaundry.kurir.controller.fragment.DialogDownload;
+import com.yuly.elaundry.kurir.controller.fragment.DownloadPetaFragment;
+import com.yuly.elaundry.kurir.controller.fragment.DownloadUlangPetaFragment;
 import com.yuly.elaundry.kurir.model.database.Lokasi;
 import com.yuly.elaundry.kurir.model.database.RouteDbHelper;
 import com.yuly.elaundry.kurir.model.listeners.PetaHandlerListener;
 import com.yuly.elaundry.kurir.model.map.DetailPetaNavigasi;
 import com.yuly.elaundry.kurir.model.util.Variable;
+import com.yuly.elaundry.kurir.view.util.HelpUtils;
 
 import org.mapsforge.core.graphics.Bitmap;
 import org.mapsforge.core.graphics.Cap;
@@ -49,7 +56,7 @@ import java.util.List;
 
 
 public class CariRuteHandler {
-    private Activity activity;
+    private AppCompatActivity activity;
     private MapView mapView;
     private String currentArea;
     private TileCache tileCache;
@@ -116,6 +123,9 @@ public class CariRuteHandler {
        // File mapFile = new File(areaFolder, currentArea + activity.getString(R.string.dotmap));
      //   MapDataStore mapDataStore = new MapFile(new File(areaFolder,"indonesia_jawatimur_kediringanjuk.map"));
 
+        try {
+
+
         MapDataStore mapDataStore = new MapFile(new File(areaFolder,currentArea +".map"));
 
         mapView.getLayerManager().getLayers().clear();
@@ -131,6 +141,7 @@ public class CariRuteHandler {
                         return myOnTap(tapLatLong, layerXY, tapXY);
                     }
                 };
+
        // tileRendererLayer.setMapFile(mapDataStore);
         tileRendererLayer.setTextScale(0.8f);
         tileRendererLayer.setXmlRenderTheme(InternalRenderTheme.OSMARENDER);
@@ -150,6 +161,18 @@ public class CariRuteHandler {
         activity.addContentView(mapView, params);
         loadGraphStorage();
 
+        } catch (Exception e){
+            Log.e("error", String.valueOf(e));
+           // Toast.makeText(activity,String.valueOf(e),Toast.LENGTH_LONG).show();
+
+            CariRuteActivity panggilDialog = new CariRuteActivity();
+            //panggilDialog.panggilDialogDownload();
+
+             //HelpUtils.showAbout(activity);
+
+            DialogDownload.showDownloadUlangDialog(activity);
+
+        };
 
     }
 

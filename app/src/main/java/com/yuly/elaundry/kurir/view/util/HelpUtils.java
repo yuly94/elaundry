@@ -16,17 +16,21 @@
 
 package com.yuly.elaundry.kurir.view.util;
 
+
 import android.app.Activity;
-import android.app.AlertDialog;
+
 import android.app.Dialog;
-import android.app.DialogFragment;
-import android.app.Fragment;
-import android.app.FragmentManager;
-import android.app.FragmentTransaction;
 import android.content.Context;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
+import android.support.v4.app.ActivityCompat;
+import android.support.v4.app.DialogFragment;
+import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
+import android.support.v4.app.FragmentTransaction;
+import android.support.v7.app.AlertDialog;
+import android.support.v7.app.AppCompatActivity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.ImageView;
@@ -40,8 +44,8 @@ import com.yuly.elaundry.kurir.controller.activity.themeUtils;
 public class HelpUtils {
 
 
-    public static void showThemes(Activity activity) {
-        FragmentManager fm = activity.getFragmentManager();
+    public static void showThemes(AppCompatActivity activity) {
+        FragmentManager fm = activity.getSupportFragmentManager();
         FragmentTransaction ft = fm.beginTransaction();
         Fragment prev = fm.findFragmentByTag("dialog_themes");
         if (prev != null) {
@@ -150,8 +154,8 @@ public class HelpUtils {
 
     }
 
-    public static void showAbout(Activity activity) {
-        FragmentManager fm = activity.getFragmentManager();
+    public static void showAbout(AppCompatActivity activity) {
+        FragmentManager fm = activity.getSupportFragmentManager();
         FragmentTransaction ft = fm.beginTransaction();
         Fragment prev = fm.findFragmentByTag("dialog_about");
         if (prev != null) {

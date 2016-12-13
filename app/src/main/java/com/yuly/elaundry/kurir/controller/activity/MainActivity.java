@@ -31,6 +31,7 @@ import com.yuly.elaundry.kurir.R;
 //import com.yuly.elaundry.kurir.controller.fragment.AboutFragment;
 
 import com.yuly.elaundry.kurir.controller.app.AppConfig;
+import com.yuly.elaundry.kurir.controller.fragment.DialogDownload;
 import com.yuly.elaundry.kurir.controller.fragment.DownloadPetaFragment;
 import com.yuly.elaundry.kurir.controller.fragment.LaundryPemesananFragment;
 import com.yuly.elaundry.kurir.controller.fragment.ProfileFragment;
@@ -429,7 +430,8 @@ public class MainActivity extends AppCompatActivity  implements NavigationView.O
 			if (!MendownloadPeta.getMendownloadPeta().checkFilePetaAda()){
 
 				//MendownloadPeta.getMendownloadPeta().dialogDownloadPeta();
-				panggilDialogDownload();
+				//panggilDialogDownload();
+				DialogDownload.showDownloadPetaDialog(this);
 			} else {
 
 			Intent intentMap = new Intent(this, PetaSayaActivity.class);
@@ -441,7 +443,9 @@ public class MainActivity extends AppCompatActivity  implements NavigationView.O
 			if (!MendownloadPeta.getMendownloadPeta().checkFilePetaAda()){
 
 				//MendownloadPeta.getMendownloadPeta().dialogDownloadPeta();
-				panggilDialogDownload();
+				//panggilDialogDownload();
+
+				DialogDownload.showDownloadPetaDialog(this);
 			} else {
 				Intent intent = new Intent(this, CariRuteActivity.class);
 				startActivity(intent);

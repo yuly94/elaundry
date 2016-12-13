@@ -28,7 +28,7 @@ import java.io.File;
 public class DownloadPetaActivity extends AppCompatActivity {
 
     private String downloadURL ="http://elaundry.pe.hu/assets/maps/indonesia_jawatimur_kediringanjuk.ghz";
-    private File mapsFolder;
+    private File mapsFolder = Variable.getVariable().getMapsFolder();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -52,8 +52,7 @@ public class DownloadPetaActivity extends AppCompatActivity {
 
     public void downloadPeta() {
 
-        mapsFolder.mkdirs();
-
+/*
         boolean greaterOrEqKitkat = Build.VERSION.SDK_INT >= 19;
         if (greaterOrEqKitkat) {
             if (!Environment.getExternalStorageState().equals(Environment.MEDIA_MOUNTED)) {
@@ -64,6 +63,10 @@ public class DownloadPetaActivity extends AppCompatActivity {
                     Variable.getVariable().getMapDirectory());
         } else
             mapsFolder = new File(Environment.getExternalStorageDirectory(), Variable.getVariable().getMapDownloadDirectory());
+*/
+
+
+        mapsFolder.mkdirs();
 
         final File areaFolder = new File(mapsFolder, Variable.getVariable().getCountry() + "-gh");
         if (downloadURL == null || areaFolder.exists()) {
@@ -116,6 +119,25 @@ public class DownloadPetaActivity extends AppCompatActivity {
             }
         }.execute();
     }
+
+    public static boolean deletePeta(File fileOrDirectory)
+    {
+        if (fileOrDirectory.isDirectory())
+        {
+            for (File child : fileOrDirectory.listFiles())
+            {
+                boolean success = deletePeta(child);
+
+                if (!success) {
+                    return false;
+                }
+            }
+        }
+
+        //fileOrDirectory.delete();
+        return fileOrDirectory.delete();
+    }
+
 
     private void log(String str) {
         Log.i(this.getClass().getSimpleName(), "-------" + str);

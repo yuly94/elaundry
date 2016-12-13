@@ -9,6 +9,7 @@ import android.support.annotation.NonNull;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.AttributeSet;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.MotionEvent;
 import android.view.View;
@@ -94,6 +95,9 @@ public class FastScroller extends LinearLayout {
     }
 
     private void setRecyclerViewPosition(float y) {
+        try {
+
+
         if (recyclerView != null) {
             int itemCount = recyclerView.getAdapter().getItemCount();
             float proportion;
@@ -108,6 +112,9 @@ public class FastScroller extends LinearLayout {
 //      recyclerView.oPositionWithOffset(targetPos);
             String bubbleText = ((BubbleTextGetter) recyclerView.getAdapter()).getTextToShowInBubble(targetPos);
             bubble.setText(bubbleText);
+        }
+        } catch (Exception e) {
+            Log.e("error", String.valueOf(e));
         }
     }
 
