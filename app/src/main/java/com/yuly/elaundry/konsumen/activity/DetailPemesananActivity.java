@@ -132,7 +132,7 @@ public class DetailPemesananActivity extends AppCompatActivity {
         params.put("pemesanan_status", text_status_sebelumnya);
 
         JsonObjectRequest jsonObjReq = new JsonObjectRequest(Request.Method.POST,
-                AppConfig.URL_PEMESANAN,new JSONObject(params),
+                AppConfig.URL_PEMESANAN_DETAIL+id_pemesanan,new JSONObject(params),
                 new Response.Listener<JSONObject>() {
 
                     @Override
@@ -237,6 +237,8 @@ public class DetailPemesananActivity extends AppCompatActivity {
                 headers.put("Authorization", db.getUserApi()); //"a72d24f68128083f2904c6ce38fa232f97f2cab1");//"ef9bd71d1a704132aa366d1aa870f8be1faa44db");
                 return headers;
             }
+
+
 
 
         };

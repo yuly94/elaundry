@@ -43,6 +43,8 @@ android {
             applicationId 'com.yuly.elaundry.konsumen'
             signingConfig signingConfigs.release
             targetSdkVersion 25
+            versionCode 1
+            versionName 'uno'
         }
     }
     compileOptions {

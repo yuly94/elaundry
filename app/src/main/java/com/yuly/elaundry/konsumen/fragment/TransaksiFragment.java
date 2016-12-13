@@ -210,6 +210,8 @@ import java.util.Map;
                 TransaksiModel transaksi = listPemesanan.get(position);
                // Toast.makeText(getActivity(), transaksi.getNoId() + " is selected!", Toast.LENGTH_SHORT).show();
 
+                Log.d("Pemesanan id",  transaksi.getNoId() + " is selected!");
+
                 Intent intent = new Intent(getActivity(), DetailPemesananActivity.class);
 
                 intent.putExtra("PEMESANAN_ID", transaksi.getNoId());
