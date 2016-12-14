@@ -55,7 +55,7 @@
                 android:focusable="true"
                 android:padding="8dp"
                 android:src="@drawable/ic_stop_white_24dp"
-                android:visibility="gone" />
+                android:visibility="visible" />
         </RelativeLayout>
 
         <!--from-->

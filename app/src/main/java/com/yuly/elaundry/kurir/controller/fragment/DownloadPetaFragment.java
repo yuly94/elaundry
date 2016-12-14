@@ -5,11 +5,9 @@ import android.app.Dialog;
 import android.content.DialogInterface;
 import android.os.Bundle;
 import android.support.v4.app.DialogFragment;
-import android.widget.Toast;
 
 import com.yuly.elaundry.kurir.R;
 import com.yuly.elaundry.kurir.controller.activity.MendownloadPeta;
-import com.yuly.elaundry.kurir.model.map.PetaSayaHandler;
 
 /**
  * Created by yuly on 13/12/16.

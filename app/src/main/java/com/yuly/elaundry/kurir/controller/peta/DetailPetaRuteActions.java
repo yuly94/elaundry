@@ -1,4 +1,4 @@
-package com.yuly.elaundry.kurir.controller.activity;
+package com.yuly.elaundry.kurir.controller.peta;
 
 import android.app.Activity;
 import android.content.DialogInterface;
@@ -22,7 +22,7 @@ import android.widget.Toast;
 import com.yuly.elaundry.kurir.R;
 import com.yuly.elaundry.kurir.model.dataType.DataRute;
 import com.yuly.elaundry.kurir.model.dataType.Destination;
-import com.yuly.elaundry.kurir.model.listeners.PetaRuteHandlerListener;
+import com.yuly.elaundry.kurir.model.listeners.PetaDetailHandlerListener;
 import com.yuly.elaundry.kurir.model.listeners.NavigatorListener;
 import com.yuly.elaundry.kurir.model.map.DetailPetaNavigasi;
 import com.yuly.elaundry.kurir.model.peta.DetailPetaRuteHandler;
@@ -35,11 +35,11 @@ import org.mapsforge.map.android.view.MapView;
 import org.mapsforge.map.model.MapViewPosition;
 
 
-public class DetailPetaRuteActions implements NavigatorListener, PetaRuteHandlerListener {
+public class DetailPetaRuteActions implements NavigatorListener, PetaDetailHandlerListener {
     private Activity activity;
-    protected FloatingActionButton showPositionBtn, navigationBtn, settingsBtn, controlBtn, fab_dapatkan;
+    protected FloatingActionButton showPositionBtn, navigationBtn, tombolSetting, tombolMenu, tombolNafigasi;
     protected FloatingActionButton zoomInBtn, zoomOutBtn;
-    private ViewGroup sideBarVP, sideBarMenuVP, navSettingsVP, navSettingsFromVP, navSettingsToVP, navInstructionVP,
+    private ViewGroup groupMenuNavigasi, sideBarMenuVP, navSettingsVP, navSettingsFromVP, navSettingsToVP, navInstructionVP,
             navInstructionListVP;
     private boolean menuVisible;
 
@@ -53,21 +53,23 @@ public class DetailPetaRuteActions implements NavigatorListener, PetaRuteHandler
 
     public DetailPetaRuteActions(Activity activity, MapView mapView) {
         this.activity = activity;
+
         this.showPositionBtn = (FloatingActionButton) activity.findViewById(R.id.fab_lokasi);
-        this.fab_dapatkan = (FloatingActionButton) activity.findViewById(R.id.fab_nafigasi);
-        this.settingsBtn = (FloatingActionButton) activity.findViewById(R.id.fab_setting);
-        this.controlBtn = (FloatingActionButton) activity.findViewById(R.id.fab_menu);
+        this.tombolNafigasi = (FloatingActionButton) activity.findViewById(R.id.fab_nafigasi);
+        this.tombolSetting = (FloatingActionButton) activity.findViewById(R.id.fab_setting);
+        this.tombolMenu = (FloatingActionButton) activity.findViewById(R.id.fab_menu);
         this.navigationBtn= (FloatingActionButton) activity.findViewById(R.id.fab_dapatkan);
 
 
         this.zoomInBtn = (FloatingActionButton) activity.findViewById(R.id.fab_besarkan);
         this.zoomOutBtn = (FloatingActionButton) activity.findViewById(R.id.fab_kecilkan);
         // view groups managed by separate layout xml file : //map_sidebar_layout/map_sidebar_menu_layout
-        this.sideBarVP = (ViewGroup) activity.findViewById(R.id.menu_nafigasi_peta);
+        this.groupMenuNavigasi = (ViewGroup) activity.findViewById(R.id.menu_nafigasi_peta);
         this.sideBarMenuVP = (ViewGroup) activity.findViewById(R.id.group_tombol_navigasi);
         this.navSettingsVP = (ViewGroup) activity.findViewById(R.id.nav_settings_layout);
         this.navSettingsFromVP = (ViewGroup) activity.findViewById(R.id.nav_settings_from_layout);
         this.navSettingsToVP = (ViewGroup) activity.findViewById(R.id.nav_settings_to_layout);
+
         //        this.navInstructionVP = (ViewGroup) activity.findViewById(R.id.nav_instruction_layout); // TODO
         this.navInstructionListVP = (ViewGroup) activity.findViewById(R.id.nav_instruction_list_layout);
         //form location and to location textView
@@ -79,8 +81,10 @@ public class DetailPetaRuteActions implements NavigatorListener, PetaRuteHandler
 
         this.menuVisible = false;
         this.onStartPoint = true;
-        DetailPetaRuteHandler.getPetaRuteHandler().setRutePetaHandlerListener(this);
+
+        DetailPetaRuteHandler.getPetaRuteHandler().setPetaDetailHandlerListener(this);
         DetailPetaNavigasi.getNavigator().addListener(this);
+
         controlBtnHandler();
         zoomControlHandler(mapView);
         showMyLocation(mapView);
@@ -90,7 +94,6 @@ public class DetailPetaRuteActions implements NavigatorListener, PetaRuteHandler
         }
 
         navSettingsHandler();
-
 
         showRute();
 
@@ -109,7 +112,7 @@ public class DetailPetaRuteActions implements NavigatorListener, PetaRuteHandler
         navSettingsClearBtn.setOnClickListener(new View.OnClickListener() {
             @Override public void onClick(View v) {
                 navSettingsVP.setVisibility(View.INVISIBLE);
-                sideBarVP.setVisibility(View.VISIBLE);
+                groupMenuNavigasi.setVisibility(View.VISIBLE);
             }
         });
         ImageButton navSettingsSearchBtn = (ImageButton) activity.findViewById(R.id.nav_settings_search_btn);
@@ -452,7 +455,7 @@ public class DetailPetaRuteActions implements NavigatorListener, PetaRuteHandler
     }
 
     protected void showRute() {
-        fab_dapatkan.setOnClickListener(new View.OnClickListener() {
+        tombolNafigasi.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 activeNavigator();
@@ -534,10 +537,12 @@ public class DetailPetaRuteActions implements NavigatorListener, PetaRuteHandler
         fillNavListSummaryValues();
         navSettingsVP.setVisibility(View.INVISIBLE);
         navInstructionListVP.setVisibility(View.VISIBLE);
-        ImageButton clearBtn, stopBtn;
-        stopBtn = (ImageButton) activity.findViewById(R.id.nav_instruction_list_stop_btn);
-        clearBtn = (ImageButton) activity.findViewById(R.id.nav_instruction_list_clear_btn);
-        stopBtn.setOnClickListener(new View.OnClickListener() {
+
+        ImageButton tombolHilangkanNavigasi, tombolStopNavigasi;
+        tombolStopNavigasi = (ImageButton) activity.findViewById(R.id.nav_instruction_list_stop_btn);
+        tombolStopNavigasi.setVisibility(View.GONE);
+        tombolHilangkanNavigasi = (ImageButton) activity.findViewById(R.id.nav_instruction_list_clear_btn);
+        tombolStopNavigasi.setOnClickListener(new View.OnClickListener() {
             @Override public void onClick(View v) {
 
                 // 1. Instantiate an AlertDialog.Builder with its constructor
@@ -569,10 +574,10 @@ public class DetailPetaRuteActions implements NavigatorListener, PetaRuteHandler
             }
         });
 
-        clearBtn.setOnClickListener(new View.OnClickListener() {
+        tombolHilangkanNavigasi.setOnClickListener(new View.OnClickListener() {
             @Override public void onClick(View v) {
                 navInstructionListVP.setVisibility(View.INVISIBLE);
-                sideBarVP.setVisibility(View.VISIBLE);
+                groupMenuNavigasi.setVisibility(View.VISIBLE);
             }
         });
     }
@@ -661,7 +666,7 @@ public class DetailPetaRuteActions implements NavigatorListener, PetaRuteHandler
     private void navBtnHandler() {
         navigationBtn.setOnClickListener(new View.OnClickListener() {
             @Override public void onClick(View v) {
-                sideBarVP.setVisibility(View.INVISIBLE);
+                groupMenuNavigasi.setVisibility(View.INVISIBLE);
                 if (DetailPetaNavigasi.getNavigator().isOn()) {
                     navInstructionListVP.setVisibility(View.VISIBLE);
                 } else {
@@ -684,18 +689,18 @@ public class DetailPetaRuteActions implements NavigatorListener, PetaRuteHandler
         anim.setDuration(300);
         anim.setInterpolator(new OvershootInterpolator());
 
-        controlBtn.setOnClickListener(new View.OnClickListener() {
+        tombolMenu.setOnClickListener(new View.OnClickListener() {
             @Override public void onClick(View v) {
                 if (isMenuVisible()) {
                     setMenuVisible(false);
                     sideBarMenuVP.setVisibility(View.INVISIBLE);
-                    controlBtn.setImageResource(R.drawable.ic_keyboard_arrow_up_white_24dp);
-                    controlBtn.startAnimation(anim);
+                    tombolMenu.setImageResource(R.drawable.ic_keyboard_arrow_up_white_24dp);
+                    tombolMenu.startAnimation(anim);
                 } else {
                     setMenuVisible(true);
                     sideBarMenuVP.setVisibility(View.VISIBLE);
-                    controlBtn.setImageResource(R.drawable.ic_keyboard_arrow_down_white_24dp);
-                    controlBtn.startAnimation(anim);
+                    tombolMenu.setImageResource(R.drawable.ic_keyboard_arrow_down_white_24dp);
+                    tombolMenu.startAnimation(anim);
                 }
             }
         });
@@ -790,7 +795,7 @@ public class DetailPetaRuteActions implements NavigatorListener, PetaRuteHandler
     public boolean homeBackKeyPressed() {
         if (navSettingsVP.getVisibility() == View.VISIBLE) {
             navSettingsVP.setVisibility(View.INVISIBLE);
-            sideBarVP.setVisibility(View.VISIBLE);
+            groupMenuNavigasi.setVisibility(View.VISIBLE);
             return false;
         } else if (navSettingsFromVP.getVisibility() == View.VISIBLE) {
             navSettingsFromVP.setVisibility(View.INVISIBLE);
@@ -802,7 +807,7 @@ public class DetailPetaRuteActions implements NavigatorListener, PetaRuteHandler
             return false;
         } else if (navInstructionListVP.getVisibility() == View.VISIBLE) {
             navInstructionListVP.setVisibility(View.INVISIBLE);
-            sideBarVP.setVisibility(View.VISIBLE);
+            groupMenuNavigasi.setVisibility(View.VISIBLE);
             return false;
         } else {
             return true;

@@ -14,16 +14,14 @@ import android.widget.Toast;
 import com.graphhopper.GHRequest;
 import com.graphhopper.GHResponse;
 import com.graphhopper.GraphHopper;
-import com.graphhopper.routing.AlgorithmOptions;
 import com.graphhopper.util.PointList;
 import com.graphhopper.util.StopWatch;
 import com.yuly.elaundry.kurir.R;
-import com.yuly.elaundry.kurir.controller.activity.CariRuteActivity;
+import com.yuly.elaundry.kurir.controller.peta.CariRuteActivity;
 import com.yuly.elaundry.kurir.controller.fragment.DialogDownload;
 
-import com.yuly.elaundry.kurir.model.database.Lokasi;
 import com.yuly.elaundry.kurir.model.database.RouteDbHelper;
-import com.yuly.elaundry.kurir.model.listeners.PetaHandlerListener;
+import com.yuly.elaundry.kurir.model.listeners.CariPetaHandlerListener;
 
 import com.yuly.elaundry.kurir.model.util.Variable;
 
@@ -34,7 +32,6 @@ import org.mapsforge.core.graphics.Paint;
 import org.mapsforge.core.graphics.Style;
 import org.mapsforge.core.model.LatLong;
 import org.mapsforge.core.model.MapPosition;
-import org.mapsforge.core.model.Point;
 import org.mapsforge.map.android.graphics.AndroidGraphicFactory;
 import org.mapsforge.map.android.util.AndroidUtil;
 import org.mapsforge.map.android.view.MapView;
@@ -63,8 +60,8 @@ public class CariRuteHandler {
     private volatile boolean shortestPathRunning;
     private Marker startMarker, endMarker;
     private Polyline polylinePath, polylineTrack;
-    private PetaHandlerListener petaHandlerListener;
-    private static CariRuteHandler petaHandler;
+    private CariPetaHandlerListener cariPetaHandlerListener;
+    private static CariRuteHandler cariRuteHandler;
 
     /**
      * if user going to point on map to gain a location
@@ -75,18 +72,18 @@ public class CariRuteHandler {
      */
     private boolean needPathCal;
 
-    public static CariRuteHandler getPetaHandler() {
-        if (petaHandler == null) {
+    public static CariRuteHandler getCariRuteHandler() {
+        if (cariRuteHandler == null) {
             reset();
         }
-        return petaHandler;
+        return cariRuteHandler;
     }
 
     /**
      * reset class, build a new instance
      */
     public static void reset() {
-        petaHandler = new CariRuteHandler();
+        cariRuteHandler = new CariRuteHandler();
     }
 
     private CariRuteHandler() {
@@ -262,7 +259,7 @@ public class CariRuteHandler {
     public String menghitungJarak(double fromLat, double fromLon, double toLat, double toLon){
 
         GHRequest req = new GHRequest(fromLat, fromLon, toLat, toLon);
-        req.setAlgorithm(AlgorithmOptions.DIJKSTRA_BI);
+        req.setAlgorithm(Variable.getVariable().getRoutingAlgorithms());
         req.getHints().put(activity.getString(R.string.instruksi),
                 //  Variable.getVariable().getDirectionsON()
                 false
@@ -296,7 +293,7 @@ public class CariRuteHandler {
             protected GHResponse doInBackground(Void... v) {
                 StopWatch sw = new StopWatch().start();
                 GHRequest req = new GHRequest(fromLat, fromLon, toLat, toLon);
-                req.setAlgorithm(AlgorithmOptions.DIJKSTRA_BI);
+                req.setAlgorithm(Variable.getVariable().getRoutingAlgorithms());
                 req.getHints().put(activity.getString(R.string.instruksi),
                       //  Variable.getVariable().getDirectionsON()
                         false
@@ -421,8 +418,19 @@ public class CariRuteHandler {
 
     private void setShortestPathRunning(boolean shortestPathRunning) {
         this.shortestPathRunning = shortestPathRunning;
-        if (petaHandlerListener != null && needPathCal) petaHandlerListener.pathCalculating(shortestPathRunning);
+        if (cariPetaHandlerListener != null && needPathCal) cariPetaHandlerListener.pathCalculating(shortestPathRunning);
     }
+
+
+    /**
+     * only tell on object
+     *
+     * @param rutePetaHandlerListener
+     */
+    public void setRutePetaHandlerListener(CariPetaHandlerListener rutePetaHandlerListener) {
+        this.cariPetaHandlerListener = rutePetaHandlerListener;
+    }
+
 
 
     public Activity getActivity() {

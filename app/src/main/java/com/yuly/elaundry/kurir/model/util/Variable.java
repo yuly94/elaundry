@@ -117,6 +117,8 @@ public class Variable {
      */
     private volatile boolean prepareInProgress;
 
+    private int tebalGarisPath;
+
     /**
      *
      */
@@ -158,6 +160,7 @@ public class Variable {
         this.country = "indonesia_jawatimur_kediringanjuk";
 
 
+        this.tebalGarisPath =10;
         //this.mapsFolder = new File("/storage/emulated/0/Download/petaelaundry/maps/");
         this.context = null;
         this.advancedSetting = false;
@@ -211,6 +214,10 @@ public class Variable {
         return weighting;
     }
 
+    public int getTebalGarisPath() {
+        return tebalGarisPath;
+    }
+
     public void setWeighting(String weighting) {
         this.weighting = weighting;
     }
@@ -261,8 +268,6 @@ public class Variable {
     public String getPetunjukArahSayaON() {
         return isPetunjukArahSayaON() ? "true" : "false";
     }
-
-
 
     public int getZoomLevelMax() {
         return zoomLevelMax;

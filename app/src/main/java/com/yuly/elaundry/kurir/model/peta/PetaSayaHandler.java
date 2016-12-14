@@ -1,6 +1,5 @@
-package com.yuly.elaundry.kurir.model.map;
+package com.yuly.elaundry.kurir.model.peta;
 
-import android.app.Activity;
 import android.graphics.Path;
 import android.graphics.drawable.Drawable;
 import android.os.AsyncTask;
@@ -13,12 +12,14 @@ import android.widget.Toast;
 import com.graphhopper.GHRequest;
 import com.graphhopper.GHResponse;
 import com.graphhopper.GraphHopper;
-import com.graphhopper.routing.AlgorithmOptions;
 import com.graphhopper.util.PointList;
 import com.graphhopper.util.StopWatch;
 import com.yuly.elaundry.kurir.R;
 import com.yuly.elaundry.kurir.controller.fragment.DialogDownload;
 import com.yuly.elaundry.kurir.model.listeners.MapHandlerListener;
+import com.yuly.elaundry.kurir.model.listeners.PetaHandlerListener;
+import com.yuly.elaundry.kurir.model.listeners.PetaSayaHandlerListener;
+import com.yuly.elaundry.kurir.model.map.DetailPetaNavigasi;
 import com.yuly.elaundry.kurir.model.util.Variable;
 
 import org.mapsforge.core.graphics.Bitmap;
@@ -57,8 +58,9 @@ public class PetaSayaHandler {
     private volatile boolean shortestPathRunning;
     private Marker startMarker, endMarker;
     private Polyline polylinePath, polylineTrack;
-    private MapHandlerListener mapHandlerListener;
-    private static PetaSayaHandler mapHandler;
+    private PetaSayaHandlerListener petaSayaHandlerListener;
+
+    private static PetaSayaHandler petaSayaHandler;
     /**
      * if user going to point on map to gain a location
      */
@@ -68,22 +70,22 @@ public class PetaSayaHandler {
      */
     private boolean needPathCal;
 
-    public static PetaSayaHandler getMapHandler() {
-        if (mapHandler == null) {
+    public static PetaSayaHandler getPetaSayaHandler() {
+        if (petaSayaHandler == null) {
             reset();
         }
-        return mapHandler;
+        return petaSayaHandler;
     }
 
     /**
      * reset class, build a new instance
      */
     public static void reset() {
-        mapHandler = new PetaSayaHandler();
+        petaSayaHandler = new PetaSayaHandler();
     }
 
     private PetaSayaHandler() {
-        setShortestPathRunning(false);
+        setPetaSayaShortestPathRunning(false);
         startMarker = null;
         endMarker = null;
         polylinePath = null;
@@ -158,33 +160,6 @@ public class PetaSayaHandler {
     }
 
 
-    void loadMapx( File areaFolder )
-    {
-        logUser("loading map");
-        MapDataStore mapDataStore = new MapFile(new File(areaFolder, currentArea + ".map"));
-
-        mapView.getLayerManager().getLayers().clear();
-
-        tileRendererLayer = new TileRendererLayer(tileCache, mapDataStore,
-                mapView.getModel().mapViewPosition, false, true, AndroidGraphicFactory.INSTANCE)
-        {
-            @Override
-            public boolean onLongPress( LatLong tapLatLong, Point layerXY, Point tapXY )
-            {
-                return myOnTap(tapLatLong, layerXY, tapXY);
-            }
-        };
-        tileRendererLayer.setTextScale(1.5f);
-        tileRendererLayer.setXmlRenderTheme(InternalRenderTheme.OSMARENDER);
-        mapView.getModel().mapViewPosition.setMapPosition(new MapPosition(mapDataStore.boundingBox().getCenterPoint(), (byte) 15));
-        mapView.getLayerManager().getLayers().add(tileRendererLayer);
-
-       // setContentView(mapView);
-
-        loadGraphStorage();
-    }
-
-
     /**
      * center the LatLong point in the map and zoom map to zoomLevel
      *
@@ -222,8 +197,8 @@ public class PetaSayaHandler {
             return false;
         }
         if (needLocation) {
-            if (mapHandlerListener != null) {
-                mapHandlerListener.onPressLocation(tapLatLong);
+            if (petaSayaHandlerListener != null) {
+                petaSayaHandlerListener.onPressLocation(tapLatLong);
             }
             needLocation = false;
             return true;
@@ -234,7 +209,7 @@ public class PetaSayaHandler {
     public void addMarkers(LatLong startPoint, LatLong endPoint) {
         Layers layers = mapView.getLayerManager().getLayers();
         //        if (startPoint != null && endPoint != null) {
-        //            setShortestPathRunning(true);
+        //            setPetaSayaShortestPathRunning(true);
         //        }
         if (startPoint != null) {
             removeLayer(layers, startMarker);
@@ -353,9 +328,9 @@ public class PetaSayaHandler {
 
             protected GHResponse doInBackground(Void... v) {
                 StopWatch sw = new StopWatch().start();
-                GHRequest req = new GHRequest(-7.768428684206199,112.00151054708566,
-                        -7.767706382776794,112.01162539826053);
-                req.setAlgorithm(AlgorithmOptions.DIJKSTRA_BI);
+                GHRequest req = new GHRequest(fromLat,fromLon,
+                        toLat,toLon);
+                req.setAlgorithm(Variable.getVariable().getRoutingAlgorithms());
                 req.getHints().put(activity.getString(R.string.instruksi), Variable.getVariable().getDirectionsON());
                 req.setVehicle(Variable.getVariable().getTravelMode());
                 req.setWeighting(Variable.getVariable().getWeighting());
@@ -366,15 +341,15 @@ public class PetaSayaHandler {
 
             protected void onPreExecute() {
                 super.onPreExecute();
-                setShortestPathRunning(true);
+                setPetaSayaShortestPathRunning(true);
             }
 
             protected void onPostExecute(GHResponse resp) {
                 if (!resp.hasErrors()) {
                     polylinePath = createPolyline(resp.getPoints(),
-                            activity.getResources().getColor(R.color.my_primary_dark_transparent), 20);
+                            activity.getResources().getColor(R.color.my_primary_dark_transparent), Variable.getVariable().getTebalGarisPath());
                     mapView.getLayerManager().getLayers().add(polylinePath);
-                    if (Variable.getVariable().isDirectionsON()) {
+                    if (Variable.getVariable().isPetunjukArahSayaON()) {
                         DetailPetaNavigasi.getNavigator().setGhResponse(resp);
                         //                        log("navigator: " + Navigator.getNavigator().toString());
                     }
@@ -385,7 +360,7 @@ public class PetaSayaHandler {
                     activity.findViewById(R.id.map_nav_settings_path_finding).setVisibility(View.GONE);
                     activity.findViewById(R.id.nav_settings_layout).setVisibility(View.VISIBLE);
                 } catch (Exception e) {e.getStackTrace();}
-                setShortestPathRunning(false);
+                setPetaSayaShortestPathRunning(false);
             }
         }.execute();
     }
@@ -405,35 +380,6 @@ public class PetaSayaHandler {
 
     private PointList trackingPointList;
 
-    /**
-     * start tracking : reset polylineTrack & trackingPointList & remove polylineTrack if exist
-     */
-    public void startTrack() {
-        if (polylineTrack != null) {
-            removeLayer(mapView.getLayerManager().getLayers(), polylineTrack);
-        }
-        polylineTrack = null;
-        trackingPointList = new PointList();
-
-        polylineTrack =
-                createPolyline(trackingPointList, activity.getResources().getColor(R.color.my_accent_transparent), 25);
-        mapView.getLayerManager().getLayers().add(polylineTrack);
-    }
-
-    /**
-     * add a tracking point
-     *
-     * @param point
-     */
-    public void addTrackPoint(LatLong point) {
-        int i = mapView.getLayerManager().getLayers().indexOf(polylineTrack);
-        ((Polyline) mapView.getLayerManager().getLayers().get(i)).getLatLongs().add(point);
-    }
-
-    public boolean saveTracking() {
-
-        return false;
-    }
 
     /**
      * draws a connected series of line segments specified by a list of LatLongs.
@@ -469,9 +415,9 @@ public class PetaSayaHandler {
         return shortestPathRunning;
     }
 
-    private void setShortestPathRunning(boolean shortestPathRunning) {
+    private void setPetaSayaShortestPathRunning(boolean shortestPathRunning) {
         this.shortestPathRunning = shortestPathRunning;
-        if (mapHandlerListener != null && needPathCal) mapHandlerListener.pathCalculating(shortestPathRunning);
+        if (petaSayaHandlerListener != null && needPathCal) petaSayaHandlerListener.pathCalculating(shortestPathRunning);
     }
 
     public void setNeedPathCal(boolean needPathCal) {
@@ -497,13 +443,13 @@ public class PetaSayaHandler {
     /**
      * only tell on object
      *
-     * @param mapHandlerListener
+     * @param petaSayaHandlerListener
      */
-    public void setMapHandlerListener(MapHandlerListener mapHandlerListener) {
-        this.mapHandlerListener = mapHandlerListener;
+    public void setPetaSayaHandlerListener(PetaSayaHandlerListener petaSayaHandlerListener) {
+        this.petaSayaHandlerListener = petaSayaHandlerListener;
     }
 
-    public Activity getActivity() {
+    public AppCompatActivity getActivity() {
         return activity;
     }
 

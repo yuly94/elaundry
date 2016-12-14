@@ -30,6 +30,7 @@ import com.yuly.elaundry.kurir.R;
 import com.yuly.elaundry.kurir.controller.app.AppConfig;
 import com.yuly.elaundry.kurir.controller.app.AppController;
 import com.yuly.elaundry.kurir.controller.fragment.DownloadPetaFragment;
+import com.yuly.elaundry.kurir.controller.peta.DetailPetaRuteActivity;
 import com.yuly.elaundry.kurir.model.database.KurirDbHandler;
 import com.yuly.elaundry.kurir.model.geterseter.TransaksiModel;
 import com.yuly.elaundry.kurir.model.helper.VolleyErrorHelper;

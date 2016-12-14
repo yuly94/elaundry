@@ -3,7 +3,7 @@ package com.yuly.elaundry.kurir.model.listeners;
 import org.mapsforge.core.model.LatLong;
 
 
-public interface PetaRuteHandlerListener {
+public interface PetaSayaHandlerListener {
     /**
      * when use press on the screen to get a location form map
      *

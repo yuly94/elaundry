@@ -4,20 +4,17 @@ import android.app.ProgressDialog;
 import android.content.Context;
 import android.os.Build;
 import android.os.Environment;
-import android.support.v4.app.ActivityCompat;
-import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentManager;
+
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
-import android.view.View;
+
 import android.widget.Toast;
 
 import com.graphhopper.util.Helper;
 import com.graphhopper.util.ProgressListener;
 import com.yuly.elaundry.kurir.R;
 import com.yuly.elaundry.kurir.controller.app.AppConfig;
-import com.yuly.elaundry.kurir.controller.fragment.DownloadPetaFragment;
-import com.yuly.elaundry.kurir.model.map.PetaSayaHandler;
+
 import com.yuly.elaundry.kurir.model.peta.AndroidDownloader;
 import com.yuly.elaundry.kurir.model.peta.AndroidHelper;
 import com.yuly.elaundry.kurir.model.peta.DetailPetaRuteHandler;
@@ -76,19 +73,6 @@ public class MendownloadPeta extends AppCompatActivity {
 
  }
 
-    public void dialogDownloadPeta(){
-
-        FragmentManager fragmentManager = getSupportFragmentManager();
-
-        Fragment frag = fragmentManager.findFragmentByTag("download_dialog");
-
-        if (frag != null) {
-            fragmentManager.beginTransaction().remove(frag).commit();
-        }
-
-        DownloadPetaFragment alertDialogFragment = new DownloadPetaFragment();
-        alertDialogFragment.show(fragmentManager, "download_dialog");
-    }
 
     public void downloadPeta(final Context cont) {
 

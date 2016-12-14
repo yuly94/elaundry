@@ -1,4 +1,4 @@
-package com.yuly.elaundry.kurir.controller.activity;
+package com.yuly.elaundry.kurir.controller.peta;
 
 import android.app.Activity;
 import android.content.DialogInterface;
@@ -20,11 +20,11 @@ import android.widget.Toast;
 
 import com.yuly.elaundry.kurir.R;
 import com.yuly.elaundry.kurir.model.dataType.Destination;
-import com.yuly.elaundry.kurir.model.listeners.MapHandlerListener;
+import com.yuly.elaundry.kurir.model.listeners.PetaSayaHandlerListener;
 import com.yuly.elaundry.kurir.model.listeners.NavigasiSayaListener;
 
 import com.yuly.elaundry.kurir.model.map.DetailPetaNavigasi;
-import com.yuly.elaundry.kurir.model.map.PetaSayaHandler;
+import com.yuly.elaundry.kurir.model.peta.PetaSayaHandler;
 import com.yuly.elaundry.kurir.model.map.PetaSayaNavigasi;
 import com.yuly.elaundry.kurir.model.peta.DetailPetaRuteHandler;
 import com.yuly.elaundry.kurir.model.util.PetunjukArahAdapter;
@@ -36,12 +36,12 @@ import org.mapsforge.map.android.view.MapView;
 import org.mapsforge.map.model.MapViewPosition;
 
 
-public class PetaSayaActions implements NavigasiSayaListener, MapHandlerListener {
+public class PetaSayaActions implements NavigasiSayaListener, PetaSayaHandlerListener {
     private Activity activity;
-    protected FloatingActionButton showPositionBtn, navigationBtn, settingsBtn, controlBtn;
-    protected FloatingActionButton zoomInBtn, zoomOutBtn;
+    protected FloatingActionButton tombolLokasi, tombolNavigasi, tombolSetting, tombolMenu;
+    protected FloatingActionButton tombolPerbesar, tombolPerkecil;
     private ViewGroup sideBarVP, sideBarMenuVP, navSettingsVP, navSettingsFromVP, navSettingsToVP, navInstructionVP,
-            navInstructionListVP;
+            navListPenunjukJalanVP;
     private boolean menuVisible;
     /**
      * true handle on start point ; false handle on end point
@@ -51,33 +51,39 @@ public class PetaSayaActions implements NavigasiSayaListener, MapHandlerListener
 
     public PetaSayaActions(Activity activity, MapView mapView) {
         this.activity = activity;
-        this.showPositionBtn = (FloatingActionButton) activity.findViewById(R.id.fab_lokasi);
-        this.navigationBtn = (FloatingActionButton) activity.findViewById(R.id.fab_navigasi);
-        this.settingsBtn = (FloatingActionButton) activity.findViewById(R.id.fab_setting);
-        this.controlBtn = (FloatingActionButton) activity.findViewById(R.id.fab_menu);
-        this.zoomInBtn = (FloatingActionButton) activity.findViewById(R.id.fab_besarkan);
-        this.zoomOutBtn = (FloatingActionButton) activity.findViewById(R.id.fab_kecilkan);
+        this.tombolLokasi = (FloatingActionButton) activity.findViewById(R.id.fab_lokasi);
+        this.tombolNavigasi = (FloatingActionButton) activity.findViewById(R.id.fab_navigasi);
+        this.tombolSetting = (FloatingActionButton) activity.findViewById(R.id.fab_setting);
+        this.tombolMenu = (FloatingActionButton) activity.findViewById(R.id.fab_menu);
+        this.tombolPerbesar = (FloatingActionButton) activity.findViewById(R.id.fab_besarkan);
+        this.tombolPerkecil = (FloatingActionButton) activity.findViewById(R.id.fab_kecilkan);
+
         // view groups managed by separate layout xml file : //map_sidebar_layout/map_sidebar_menu_layout
         this.sideBarVP = (ViewGroup) activity.findViewById(R.id.menu_nafigasi_peta);
         this.sideBarMenuVP = (ViewGroup) activity.findViewById(R.id.group_tombol_navigasi);
         this.navSettingsVP = (ViewGroup) activity.findViewById(R.id.nav_settings_layout);
         this.navSettingsFromVP = (ViewGroup) activity.findViewById(R.id.nav_settings_from_layout);
         this.navSettingsToVP = (ViewGroup) activity.findViewById(R.id.nav_settings_to_layout);
-        //        this.navInstructionVP = (ViewGroup) activity.findViewById(R.id.nav_instruction_layout); // TODO
-        this.navInstructionListVP = (ViewGroup) activity.findViewById(R.id.nav_instruction_list_layout);
+        //this.navInstructionVP = (ViewGroup) activity.findViewById(R.id.nav_instruction_layout); // TODO
+        this.navListPenunjukJalanVP = (ViewGroup) activity.findViewById(R.id.nav_instruction_list_layout);
         //form location and to location textView
         this.fromLocalET = (EditText) activity.findViewById(R.id.nav_settings_from_local_et);
         this.toLocalET = (EditText) activity.findViewById(R.id.nav_settings_to_local_et);
+
         this.menuVisible = false;
         this.onStartPoint = true;
-        PetaSayaHandler.getMapHandler().setMapHandlerListener(this);
+
+        PetaSayaHandler.getPetaSayaHandler().setPetaSayaHandlerListener(this);
         PetaSayaNavigasi.getNavigator().addListener(this);
+
         controlBtnHandler();
         zoomControlHandler(mapView);
         showMyLocation(mapView);
         navBtnHandler();
         navSettingsHandler();
     }
+
+
 
 
     /**
@@ -123,11 +129,11 @@ public class PetaSayaActions implements NavigasiSayaListener, MapHandlerListener
             tl = MyUtility.getLatLong(tls);
         }
         if (fl != null && tl == null) {
-            PetaSayaHandler.getMapHandler().centerPointOnMap(fl, 0);
+            PetaSayaHandler.getPetaSayaHandler().centerPointOnMap(fl, 0);
             addFromMarker(fl);
         }
         if (fl == null && tl != null) {
-            PetaSayaHandler.getMapHandler().centerPointOnMap(tl, 0);
+            PetaSayaHandler.getPetaSayaHandler().centerPointOnMap(tl, 0);
             addToMarker(tl);
         }
         if (fl != null && tl != null) {
@@ -201,7 +207,7 @@ public class PetaSayaActions implements NavigasiSayaListener, MapHandlerListener
                         //touch on map
                         //                        Toast.makeText(activity, "Touch on Map to choose your
                         // destination!", Toast.LENGTH_SHORT).show();
-                        PetaSayaHandler.getMapHandler().setNeedLocation(true);
+                        PetaSayaHandler.getPetaSayaHandler().setNeedLocation(true);
                         return true;
                 }
                 return false;
@@ -271,7 +277,7 @@ public class PetaSayaActions implements NavigasiSayaListener, MapHandlerListener
      * @param endPoint
      */
     private void addToMarker(LatLong endPoint) {
-        PetaSayaHandler.getMapHandler().addEndMarker(endPoint);
+        PetaSayaHandler.getPetaSayaHandler().addEndMarker(endPoint);
     }
 
     /**
@@ -280,7 +286,7 @@ public class PetaSayaActions implements NavigasiSayaListener, MapHandlerListener
      * @param startPoint
      */
     private void addFromMarker(LatLong startPoint) {
-        PetaSayaHandler.getMapHandler().addStartMarker(startPoint);
+        PetaSayaHandler.getPetaSayaHandler().addStartMarker(startPoint);
     }
 
     /**
@@ -340,7 +346,7 @@ public class PetaSayaActions implements NavigasiSayaListener, MapHandlerListener
                         //touch on map
                         Toast.makeText(activity, "Touch on Map to choose your start Location", Toast.LENGTH_SHORT)
                                 .show();
-                        PetaSayaHandler.getMapHandler().setNeedLocation(true);
+                        PetaSayaHandler.getPetaSayaHandler().setNeedLocation(true);
                         return true;
                 }
                 return false;
@@ -426,10 +432,10 @@ public class PetaSayaActions implements NavigasiSayaListener, MapHandlerListener
     /**
      * calculate path calculating (running) true NOT running or finished false
      *
-     * @param shortestPathRunning
+     * @param petasayashortestPathRunning
      */
-    @Override public void pathCalculating(boolean shortestPathRunning) {
-        if (!shortestPathRunning && PetaSayaNavigasi.getNavigator().getGhResponse() != null) {
+    @Override public void pathCalculating(boolean petasayashortestPathRunning) {
+        if (!petasayashortestPathRunning && PetaSayaNavigasi.getNavigator().getGhResponse() != null) {
             activeDirections();
         }
     }
@@ -447,14 +453,16 @@ public class PetaSayaActions implements NavigasiSayaListener, MapHandlerListener
             View pathfinding = activity.findViewById(R.id.map_nav_settings_path_finding);
             pathfinding.setVisibility(View.VISIBLE);
             pathfinding.bringToFront();
-            PetaSayaHandler petaSayaHandler = PetaSayaHandler.getMapHandler();
+            PetaSayaHandler petaSayaHandler = PetaSayaHandler.getPetaSayaHandler();
             petaSayaHandler.calcPath(startPoint.latitude, startPoint.longitude, endPoint.latitude, endPoint.longitude);
-            if (Variable.getVariable().isDirectionsON()) {
+            if (Variable.getVariable().isPetunjukArahSayaON()) {
                 petaSayaHandler.setNeedPathCal(true);
                 //rest running at
             }
         }
     }
+
+
 
     /**
      * active directions, and directions view
@@ -475,7 +483,7 @@ public class PetaSayaActions implements NavigasiSayaListener, MapHandlerListener
         instructionsRV.setLayoutManager(instructionsLayoutManager);
 
         // specify an adapter (see also next example)
-        instructionsAdapter = new PetunjukArahAdapter(PetaSayaNavigasi.getNavigator().getGhResponse().getInstructions());
+        instructionsAdapter = new PetunjukArahAdapter(DetailPetaNavigasi.getNavigator().getGhResponse().getInstructions());
         instructionsRV.setAdapter(instructionsAdapter);
         initNavListView();
     }
@@ -488,7 +496,7 @@ public class PetaSayaActions implements NavigasiSayaListener, MapHandlerListener
     private void initNavListView() {
         fillNavListSummaryValues();
         navSettingsVP.setVisibility(View.INVISIBLE);
-        navInstructionListVP.setVisibility(View.VISIBLE);
+        navListPenunjukJalanVP.setVisibility(View.VISIBLE);
         ImageButton clearBtn, stopBtn;
         stopBtn = (ImageButton) activity.findViewById(R.id.nav_instruction_list_stop_btn);
         clearBtn = (ImageButton) activity.findViewById(R.id.nav_instruction_list_clear_btn);
@@ -506,7 +514,7 @@ public class PetaSayaActions implements NavigasiSayaListener, MapHandlerListener
                                 PetaSayaNavigasi.getNavigator().setOn(false);
                                 //delete polyline and markers
                                 removeNavigation();
-                                navInstructionListVP.setVisibility(View.INVISIBLE);
+                                navListPenunjukJalanVP.setVisibility(View.INVISIBLE);
                                 navSettingsVP.setVisibility(View.VISIBLE);
                                 dialog.dismiss();
                             }
@@ -526,7 +534,7 @@ public class PetaSayaActions implements NavigasiSayaListener, MapHandlerListener
 
         clearBtn.setOnClickListener(new View.OnClickListener() {
             @Override public void onClick(View v) {
-                navInstructionListVP.setVisibility(View.INVISIBLE);
+                navListPenunjukJalanVP.setVisibility(View.INVISIBLE);
                 sideBarVP.setVisibility(View.VISIBLE);
             }
         });
@@ -557,7 +565,7 @@ public class PetaSayaActions implements NavigasiSayaListener, MapHandlerListener
      * set from & to = null
      */
     private void removeNavigation() {
-        PetaSayaHandler.getMapHandler().removeMarkers();
+        PetaSayaHandler.getPetaSayaHandler().removeMarkers();
         fromLocalET.setText("");
         toLocalET.setText("");
         PetaSayaNavigasi.getNavigator().setOn(false);
@@ -630,11 +638,11 @@ public class PetaSayaActions implements NavigasiSayaListener, MapHandlerListener
      * handler clicks on nav button
      */
     private void navBtnHandler() {
-        navigationBtn.setOnClickListener(new View.OnClickListener() {
+        tombolNavigasi.setOnClickListener(new View.OnClickListener() {
             @Override public void onClick(View v) {
                 sideBarVP.setVisibility(View.INVISIBLE);
                 if (PetaSayaNavigasi.getNavigator().isOn()) {
-                    navInstructionListVP.setVisibility(View.VISIBLE);
+                    navListPenunjukJalanVP.setVisibility(View.VISIBLE);
                 } else {
                     navSettingsVP.setVisibility(View.VISIBLE);
                 }
@@ -655,18 +663,18 @@ public class PetaSayaActions implements NavigasiSayaListener, MapHandlerListener
         anim.setDuration(300);
         anim.setInterpolator(new OvershootInterpolator());
 
-        controlBtn.setOnClickListener(new View.OnClickListener() {
+        tombolMenu.setOnClickListener(new View.OnClickListener() {
             @Override public void onClick(View v) {
                 if (isMenuVisible()) {
                     setMenuVisible(false);
                     sideBarMenuVP.setVisibility(View.INVISIBLE);
-                    controlBtn.setImageResource(R.drawable.ic_keyboard_arrow_up_white_24dp);
-                    controlBtn.startAnimation(anim);
+                    tombolMenu.setImageResource(R.drawable.ic_keyboard_arrow_up_white_24dp);
+                    tombolMenu.startAnimation(anim);
                 } else {
                     setMenuVisible(true);
                     sideBarMenuVP.setVisibility(View.VISIBLE);
-                    controlBtn.setImageResource(R.drawable.ic_keyboard_arrow_down_white_24dp);
-                    controlBtn.startAnimation(anim);
+                    tombolMenu.setImageResource(R.drawable.ic_keyboard_arrow_down_white_24dp);
+                    tombolMenu.startAnimation(anim);
                 }
             }
         });
@@ -676,17 +684,17 @@ public class PetaSayaActions implements NavigasiSayaListener, MapHandlerListener
      * implement zoom btn
      */
     protected void zoomControlHandler(final MapView mapView) {
-        zoomInBtn.setImageResource(R.drawable.ic_add_white_24dp);
-        zoomOutBtn.setImageResource(R.drawable.ic_remove_white_24dp);
+        tombolPerbesar.setImageResource(R.drawable.ic_add_white_24dp);
+        tombolPerkecil.setImageResource(R.drawable.ic_remove_white_24dp);
 
-        zoomInBtn.setOnClickListener(new View.OnClickListener() {
+        tombolPerbesar.setOnClickListener(new View.OnClickListener() {
             MapViewPosition mvp = mapView.getModel().mapViewPosition;
 
             @Override public void onClick(View v) {
                 if (mvp.getZoomLevel() < Variable.getVariable().getZoomLevelMax()) mvp.zoomIn();
             }
         });
-        zoomOutBtn.setOnClickListener(new View.OnClickListener() {
+        tombolPerkecil.setOnClickListener(new View.OnClickListener() {
             MapViewPosition mvp = mapView.getModel().mapViewPosition;
 
             @Override public void onClick(View v) {
@@ -699,11 +707,11 @@ public class PetaSayaActions implements NavigasiSayaListener, MapHandlerListener
      * move map to my current location as the center of the screen
      */
     protected void showMyLocation(final MapView mapView) {
-        showPositionBtn.setOnClickListener(new View.OnClickListener() {
+        tombolLokasi.setOnClickListener(new View.OnClickListener() {
             @Override public void onClick(View v) {
                 if (PetaSayaActivity.getmCurrentLocation() != null) {
-                    showPositionBtn.setImageResource(R.drawable.ic_my_location_white_24dp);
-                    PetaSayaHandler.getMapHandler().centerPointOnMap(
+                    tombolLokasi.setImageResource(R.drawable.ic_my_location_white_24dp);
+                    PetaSayaHandler.getPetaSayaHandler().centerPointOnMap(
                             new LatLong(PetaSayaActivity.getmCurrentLocation().getLatitude(),
                                     PetaSayaActivity.getmCurrentLocation().getLongitude()), 0);
 
@@ -713,7 +721,7 @@ public class PetaSayaActions implements NavigasiSayaListener, MapHandlerListener
                                                 mapView.getModel().mapViewPosition.getZoomLevel()));*/
 
                 } else {
-                    showPositionBtn.setImageResource(R.drawable.ic_location_searching_white_24dp);
+                    tombolLokasi.setImageResource(R.drawable.ic_location_searching_white_24dp);
                     Toast.makeText(activity, "No Location Available", Toast.LENGTH_SHORT).show();
                 }
             }
@@ -743,9 +751,9 @@ public class PetaSayaActions implements NavigasiSayaListener, MapHandlerListener
      */
     @Override public void statusChanged(boolean on) {
         if (on) {
-            navigationBtn.setImageResource(R.drawable.ic_directions_white_24dp);
+            tombolNavigasi.setImageResource(R.drawable.ic_directions_white_24dp);
         } else {
-            navigationBtn.setImageResource(R.drawable.ic_navigation_white_24dp);
+            tombolNavigasi.setImageResource(R.drawable.ic_navigation_white_24dp);
         }
     }
 
@@ -767,8 +775,8 @@ public class PetaSayaActions implements NavigasiSayaListener, MapHandlerListener
             navSettingsToVP.setVisibility(View.INVISIBLE);
             navSettingsVP.setVisibility(View.VISIBLE);
             return false;
-        } else if (navInstructionListVP.getVisibility() == View.VISIBLE) {
-            navInstructionListVP.setVisibility(View.INVISIBLE);
+        } else if (navListPenunjukJalanVP.getVisibility() == View.VISIBLE) {
+            navListPenunjukJalanVP.setVisibility(View.INVISIBLE);
             sideBarVP.setVisibility(View.VISIBLE);
             return false;
         } else {

@@ -73,12 +73,12 @@
         -->
 
         <activity
-            android:name=".controller.activity.PetaSayaActivity"
+            android:name=".controller.peta.PetaSayaActivity"
             android:label="@string/title_activity_map"
             android:screenOrientation="portrait"
             android:theme="@style/MYAppTheme.NoActionBar" />
         <activity
-            android:name=".controller.activity.CariRuteActivity"
+            android:name=".controller.peta.CariRuteActivity"
             android:label="@string/title_activity_map"
             android:screenOrientation="portrait"
             android:theme="@style/MYAppTheme.NoActionBar" />
@@ -93,7 +93,7 @@
             android:screenOrientation="portrait"
             android:theme="@style/MYAppTheme.NoActionBar" />
         <activity
-            android:name=".controller.activity.DetailPetaRuteActivity"
+            android:name=".controller.peta.DetailPetaRuteActivity"
             android:screenOrientation="portrait"
             android:theme="@style/MYAppTheme.NoActionBar" />
         <activity

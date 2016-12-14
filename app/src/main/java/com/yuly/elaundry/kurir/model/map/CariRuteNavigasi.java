@@ -4,7 +4,9 @@ import com.graphhopper.GHResponse;
 import com.graphhopper.util.Helper;
 import com.graphhopper.util.Instruction;
 import com.yuly.elaundry.kurir.R;
-import com.yuly.elaundry.kurir.model.listeners.NavigatorListener;
+import com.yuly.elaundry.kurir.controller.peta.CariRuteActions;
+import com.yuly.elaundry.kurir.model.listeners.NavigasiCariRuteListener;
+
 import com.yuly.elaundry.kurir.model.util.Variable;
 
 import java.util.ArrayList;
@@ -20,7 +22,7 @@ public class CariRuteNavigasi {
      * navigator is on or off
      */
     private boolean on;
-    private List<NavigatorListener> listeners;
+    private List<NavigasiCariRuteListener> listeners;
     private static CariRuteNavigasi navigator = null;
 
 
@@ -113,7 +115,7 @@ public class CariRuteNavigasi {
      * broadcast changes to listeners
      */
     protected void broadcast() {
-        for (NavigatorListener listener : listeners) {
+        for (NavigasiCariRuteListener listener : listeners) {
             listener.statusChanged(isOn());
         }
     }
@@ -123,7 +125,7 @@ public class CariRuteNavigasi {
      *
      * @param listener
      */
-    public void addListener(NavigatorListener listener) {
+    public void addListener(NavigasiCariRuteListener listener) {
         listeners.add(listener);
     }
 
@@ -131,9 +133,9 @@ public class CariRuteNavigasi {
         String s = "";
         if (ghResponse.getInstructions() != null) {
             for (Instruction i : ghResponse.getInstructions()) {
-                s += "------>\ntime <long>: " + i.getTime() + "\n" + "name: street name" + i.getName() + "\n" +
+                s += "------>\ntime <long>: " + i.getTime() + "\n" + "nama jalan :" + i.getName() + "\n" +
                         "annotation <InstructionAnnotation>" +
-                        i.getAnnotation() + "\n" + "distance" + i.getDistance() + "\n" + "sign <int>:" + i.getSign() +
+                        i.getAnnotation() + "\n" + "jarak" + i.getDistance() + "\n" + "sign <int>:" + i.getSign() +
                         "\n" + "Points <PointsList>: " + i.getPoints() + "\n";
             }
         }
@@ -151,20 +153,17 @@ public class CariRuteNavigasi {
         if (dark) {
             switch (Variable.getVariable().getTravelMode()) {
                 case "foot":
-                    return R.drawable.ic_add_shopping_cart_24dp;
-                case "bike":
-                    return R.drawable.ic_directions_bike_orange_24dp;
-                case "car":
-                    return R.drawable.ic_add_shopping_cart_24dp;
+                    return R.drawable.ic_accessibility_black_24dp;
+                case "motorcycle":
+                    return R.drawable.ic_motorcycle_black_24dp;
+
             }
         } else {
             switch (Variable.getVariable().getTravelMode()) {
                 case "foot":
-                    return R.drawable.ic_add_shopping_cart_24dp;
-                case "bike":
-                    return R.drawable.ic_directions_bike_white_24dp;
-                case "car":
-                    return R.drawable.ic_add_shopping_cart_24dp;
+                    return R.drawable.ic_accessibility_white_24dp;
+                case "motorcycle":
+                    return R.drawable.ic_motorcycle_white_24dp;
             }
         }
         throw new NullPointerException("hanya tersedian ketika class ada");

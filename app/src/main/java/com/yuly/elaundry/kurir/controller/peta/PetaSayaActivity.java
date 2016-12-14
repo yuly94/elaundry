@@ -1,4 +1,4 @@
-package com.yuly.elaundry.kurir.controller.activity;
+package com.yuly.elaundry.kurir.controller.peta;
 
 import android.Manifest;
 import android.content.Context;
@@ -22,7 +22,8 @@ import android.view.ViewGroup;
 import android.widget.Toast;
 
 import com.yuly.elaundry.kurir.R;
-import com.yuly.elaundry.kurir.model.map.PetaSayaHandler;
+import com.yuly.elaundry.kurir.controller.activity.themeUtils;
+import com.yuly.elaundry.kurir.model.peta.PetaSayaHandler;
 import com.yuly.elaundry.kurir.model.util.Variable;
 
 import org.mapsforge.core.model.LatLong;
@@ -92,12 +93,12 @@ public class PetaSayaActivity extends AppCompatActivity implements LocationListe
             mapView.setClickable(true);
             mapView.setBuiltInZoomControls(false);
 
-            PetaSayaHandler.getMapHandler()
+            PetaSayaHandler.getPetaSayaHandler()
                     //  .init(this, mapView, Variable.getVariable().getCountry(), Variable.getVariable().getMapsFolder());
 
                     .init(this, mapView, Variable.getVariable().getCountry(), mapsFolder);
 
-            PetaSayaHandler.getMapHandler().loadMap(new File(mapsFolder,
+            PetaSayaHandler.getPetaSayaHandler().loadMap(new File(mapsFolder,
                     Variable.getVariable().getCountry() + "-gh"));
 
 
@@ -119,7 +120,7 @@ public class PetaSayaActivity extends AppCompatActivity implements LocationListe
      */
     private void customMapView() {
         ViewGroup inclusionViewGroup = (ViewGroup) findViewById(R.id.custom_map_view_layout);
-        View inflate = LayoutInflater.from(this).inflate(R.layout.activity_map_content_saya, null);
+        View inflate = LayoutInflater.from(this).inflate(R.layout.activity_peta_saya_customview, null);
         inclusionViewGroup.addView(inflate);
 
         Toolbar mToolbar = (Toolbar) findViewById(R.id.map_toolbar);
@@ -173,16 +174,16 @@ public class PetaSayaActivity extends AppCompatActivity implements LocationListe
         if (mCurrentLocation != null) {
             LatLong mcLatLong = new LatLong(mCurrentLocation.getLatitude(), mCurrentLocation.getLongitude());
 /*            if (Tracking.getTracking().isTracking()) {
-                MapHandler.getMapHandler().addTrackPoint(mcLatLong);
+                MapHandler.getPetaSayaHandler().addTrackPoint(mcLatLong);
                 Tracking.getTracking().addPoint(mCurrentLocation);
             }*/
             Layers layers = mapView.getLayerManager().getLayers();
-            PetaSayaHandler.getMapHandler().removeLayer(layers, mPositionMarker);
-            mPositionMarker = PetaSayaHandler.getMapHandler().createMarker(mcLatLong, R.drawable.ic_place_blue_24dp);
+            PetaSayaHandler.getPetaSayaHandler().removeLayer(layers, mPositionMarker);
+            mPositionMarker = PetaSayaHandler.getPetaSayaHandler().createMarker(mcLatLong, R.drawable.ic_place_blue_24dp);
             layers.add(mPositionMarker);
-            mapActions.showPositionBtn.setImageResource(R.drawable.ic_my_location_white_24dp);
+            mapActions.tombolLokasi.setImageResource(R.drawable.ic_my_location_white_24dp);
         } else {
-            mapActions.showPositionBtn.setImageResource(R.drawable.ic_location_searching_white_24dp);
+            mapActions.tombolLokasi.setImageResource(R.drawable.ic_location_searching_white_24dp);
         }
     }
 
@@ -230,9 +231,9 @@ public class PetaSayaActivity extends AppCompatActivity implements LocationListe
     @Override
     protected void onDestroy() {
         super.onDestroy();
-        if (PetaSayaHandler.getMapHandler().getHopper() != null)
-            PetaSayaHandler.getMapHandler().getHopper().close();
-        PetaSayaHandler.getMapHandler().setHopper(null);
+        if (PetaSayaHandler.getPetaSayaHandler().getHopper() != null)
+            PetaSayaHandler.getPetaSayaHandler().getHopper().close();
+        PetaSayaHandler.getPetaSayaHandler().setHopper(null);
         System.gc();
     }
 

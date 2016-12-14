@@ -78,7 +78,7 @@ public class PetaActivity extends AppCompatActivity
     private Spinner remoteSpinner;
     private Button remoteButton;
     private volatile boolean prepareInProgress = false;
-    private volatile boolean shortestPathRunning = false;
+    private volatile boolean petaActivityShortestPathRunning = false;
     private String currentArea = "indonesia_jawatimur_kediringanjuk";
     private String fileListURL = "http://wachid.pe.hu/elaundrymaps/maps/";
     private String prefixURL = fileListURL;
@@ -92,7 +92,7 @@ public class PetaActivity extends AppCompatActivity
         if (!isReady())
             return false;
 
-        if (shortestPathRunning)
+        if (petaActivityShortestPathRunning)
         {
             logUser("Calculation still in progress");
             return false;
@@ -102,7 +102,7 @@ public class PetaActivity extends AppCompatActivity
         if (start != null && end == null)
         {
             end = tapLatLong;
-            shortestPathRunning = true;
+            petaActivityShortestPathRunning = true;
             Marker marker = createMarker(tapLatLong, R.drawable.ic_place_red_24dp);
             if (marker != null)
             {
@@ -606,7 +606,7 @@ public class PetaActivity extends AppCompatActivity
                 {
                     logUser("Error:" + resp.getErrors());
                 }
-                shortestPathRunning = false;
+                petaActivityShortestPathRunning = false;
             }
         }.execute();
     }

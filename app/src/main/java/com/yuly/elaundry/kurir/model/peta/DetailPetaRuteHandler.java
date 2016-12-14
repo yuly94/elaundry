@@ -18,7 +18,7 @@ import com.graphhopper.util.PointList;
 import com.graphhopper.util.StopWatch;
 import com.yuly.elaundry.kurir.R;
 import com.yuly.elaundry.kurir.controller.fragment.DialogDownload;
-import com.yuly.elaundry.kurir.model.listeners.PetaRuteHandlerListener;
+import com.yuly.elaundry.kurir.model.listeners.PetaDetailHandlerListener;
 import com.yuly.elaundry.kurir.model.map.DetailPetaNavigasi;
 import com.yuly.elaundry.kurir.model.util.Variable;
 
@@ -58,7 +58,7 @@ public class DetailPetaRuteHandler {
     private volatile boolean shortestPathRunning;
     private Marker startMarker, endMarker;
     private Polyline polylinePath, polylineTrack;
-    private PetaRuteHandlerListener rutePetaHandlerListener;
+    private PetaDetailHandlerListener petaDetailHandlerListener;
     private static DetailPetaRuteHandler petaRuteHandler;
 
     /**
@@ -202,8 +202,8 @@ public class DetailPetaRuteHandler {
             return false;
         }
         if (needLocation) {
-            if (rutePetaHandlerListener != null) {
-                rutePetaHandlerListener.onPressLocation(tapLatLong);
+            if (petaDetailHandlerListener != null) {
+                petaDetailHandlerListener.onPressLocation(tapLatLong);
             }
             needLocation = false;
             return true;
@@ -373,7 +373,7 @@ public class DetailPetaRuteHandler {
             protected GHResponse doInBackground(Void... v) {
                 StopWatch sw = new StopWatch().start();
                 GHRequest req = new GHRequest(fromLat, fromLon, toLat,toLon);
-                req.setAlgorithm(AlgorithmOptions.DIJKSTRA_BI);
+                req.setAlgorithm(Variable.getVariable().getRoutingAlgorithms());
                 req.getHints().put(activity.getString(R.string.instruksi), Variable.getVariable().getDirectionsON());
                 req.setVehicle(Variable.getVariable().getTravelMode());
                 req.setWeighting(Variable.getVariable().getWeighting());
@@ -423,35 +423,7 @@ public class DetailPetaRuteHandler {
 
     private PointList trackingPointList;
 
-    /**
-     * start tracking : reset polylineTrack & trackingPointList & remove polylineTrack if exist
-     */
-    public void startTrack() {
-        if (polylineTrack != null) {
-            removeLayer(mapView.getLayerManager().getLayers(), polylineTrack);
-        }
-        polylineTrack = null;
-        trackingPointList = new PointList();
 
-        polylineTrack =
-                createPolyline(trackingPointList, activity.getResources().getColor(R.color.my_accent_transparent), 25);
-        mapView.getLayerManager().getLayers().add(polylineTrack);
-    }
-
-    /**
-     * add a tracking point
-     *
-     * @param point
-     */
-    public void addTrackPoint(LatLong point) {
-        int i = mapView.getLayerManager().getLayers().indexOf(polylineTrack);
-        ((Polyline) mapView.getLayerManager().getLayers().get(i)).getLatLongs().add(point);
-    }
-
-    public boolean saveTracking() {
-
-        return false;
-    }
 
     /**
      * draws a connected series of line segments specified by a list of LatLongs.
@@ -489,7 +461,7 @@ public class DetailPetaRuteHandler {
 
     private void setShortestPathRunning(boolean shortestPathRunning) {
         this.shortestPathRunning = shortestPathRunning;
-        if (rutePetaHandlerListener != null && needPathCal) rutePetaHandlerListener.pathCalculating(shortestPathRunning);
+        if (petaDetailHandlerListener != null && needPathCal) petaDetailHandlerListener.pathCalculating(shortestPathRunning);
     }
 
     public void setNeedPathCal(boolean needPathCal) {
@@ -515,10 +487,10 @@ public class DetailPetaRuteHandler {
     /**
      * only tell on object
      *
-     * @param rutePetaHandlerListener
+     * @param petaDetailHandlerListener
      */
-    public void setRutePetaHandlerListener(PetaRuteHandlerListener rutePetaHandlerListener) {
-        this.rutePetaHandlerListener = rutePetaHandlerListener;
+    public void setPetaDetailHandlerListener(PetaDetailHandlerListener petaDetailHandlerListener) {
+        this.petaDetailHandlerListener = petaDetailHandlerListener;
     }
 
     public Activity getActivity() {

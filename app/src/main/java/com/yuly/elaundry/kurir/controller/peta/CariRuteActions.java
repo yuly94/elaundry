@@ -1,7 +1,8 @@
-package com.yuly.elaundry.kurir.controller.activity;
+package com.yuly.elaundry.kurir.controller.peta;
 
 import android.app.Activity;
 import android.app.ProgressDialog;
+import android.os.Build;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
 
@@ -12,6 +13,7 @@ import android.view.ViewGroup;
 import android.view.animation.OvershootInterpolator;
 import android.view.animation.ScaleAnimation;
 
+import android.widget.EditText;
 import android.widget.Toast;
 
 import com.android.volley.AuthFailureError;
@@ -31,6 +33,11 @@ import com.yuly.elaundry.kurir.model.database.RouteDbHelper;
 import com.yuly.elaundry.kurir.model.geterseter.TransaksiModel;
 import com.yuly.elaundry.kurir.model.helper.VolleyErrorHelper;
 
+import com.yuly.elaundry.kurir.model.listeners.CariPetaHandlerListener;
+import com.yuly.elaundry.kurir.model.listeners.NavigasiCariRuteListener;
+import com.yuly.elaundry.kurir.model.listeners.NavigatorListener;
+import com.yuly.elaundry.kurir.model.listeners.PetaDetailHandlerListener;
+import com.yuly.elaundry.kurir.model.map.CariRuteNavigasi;
 import com.yuly.elaundry.kurir.model.peta.CariRuteHandler;
 
 import com.yuly.elaundry.kurir.model.util.Variable;
@@ -49,11 +56,11 @@ import java.util.Map;
 
 import static android.content.ContentValues.TAG;
 
-public class CariRuteActions  {
+public class CariRuteActions  implements NavigasiCariRuteListener, CariPetaHandlerListener {
     private Activity activity;
     protected FloatingActionButton showPositionBtn, tombolMenu;
     protected FloatingActionButton zoomInBtn, zoomOutBtn, fabNavigasi,fab_refresh, fab_dapatkan, fab_getpoint, fab_rute;
-    private ViewGroup menuNavigasiPeta,  sideBarMenuVP;
+    private ViewGroup menuNavigasiPeta,  sideBarMenuVP, navInstructionListVP;
     private boolean menuVisible;
 
     private ProgressDialog pDialog;
@@ -61,8 +68,12 @@ public class CariRuteActions  {
     private KurirDbHandler db_user;
     private RouteDbHelper db_rute;
 
+    private CariRuteHandler cariRuteHandler;
+    private boolean onStartPoint;
+    private EditText fromLocalET, toLocalET;
 
-    public CariRuteActions(AppCompatActivity activity, MapView mapView) {
+
+    public CariRuteActions(Activity activity, MapView mapView) {
         this.activity = activity;
 
         this.showPositionBtn = (FloatingActionButton) activity.findViewById(R.id.fab_location);
@@ -76,6 +87,8 @@ public class CariRuteActions  {
 
         this.fabNavigasi = (FloatingActionButton) activity.findViewById(R.id.fab_navigasi);
 
+
+
         this.fab_getpoint = (FloatingActionButton) activity.findViewById(R.id.fab_getpoint);
 
         this.fab_refresh = (FloatingActionButton) activity.findViewById(R.id.fab_refresh);
@@ -85,17 +98,39 @@ public class CariRuteActions  {
        // view groups managed by separate layout xml file : //map_sidebar_layout/map_sidebar_menu_layout
         this.menuNavigasiPeta = (ViewGroup) activity.findViewById(R.id.menu_nafigasi_peta);
         this.sideBarMenuVP = (ViewGroup) activity.findViewById(R.id.group_tombol_navigasi);
-        
+
+        //        this.navInstructionVP = (ViewGroup) activity.findViewById(R.id.nav_instruction_layout); // TODO
+        //        this.navInstructionVP = (ViewGroup) activity.findViewById(R.id.nav_instruction_layout); // TODO
+        this.navInstructionListVP = (ViewGroup) activity.findViewById(R.id.nav_instruction_list_layout);
+        //form location and to location textView
+        this.fromLocalET = (EditText) activity.findViewById(R.id.nav_settings_from_local_et);
+        this.toLocalET = (EditText) activity.findViewById(R.id.nav_settings_to_local_et);
+
+/*        this.tv_dari = (TextView) activity.findViewById(R.id.nav_instruction_list_summary_to_tv);
+        this.tv_tujuan = (TextView) activity.findViewById(R.id.nav_instruction_list_summary_from_tv);*/
+
         this.menuVisible = false;
+        this.onStartPoint = true;
+
+        zoomControlHandler(mapView);
+        showMyLocation(mapView);
+        boolean greaterOr21 = Build.VERSION.SDK_INT >= 21;
+        if (greaterOr21){
+            tombolMenuHandler();
+        }
+
 
         //http://stackoverflow.com/questions/1561803/android-progressdialog-show-crashes-with-getapplicationcontext
+
+
+        CariRuteHandler.getCariRuteHandler().setRutePetaHandlerListener(this);
+        CariRuteNavigasi.getNavigator().addListener(this);
 
         // SqLite database handler
         db_user = new KurirDbHandler(this.activity);
         // SqLite database handler
         db_rute = new RouteDbHelper(this.activity);
 
-        tombolMenuHandler();
         
         zoomControlHandler(mapView);
         showMyLocation(mapView);
@@ -108,6 +143,8 @@ public class CariRuteActions  {
 
         fabProsesRute();
     }
+
+
 
 
     private void fabProsesRute(){
@@ -152,7 +189,7 @@ public class CariRuteActions  {
                 Log.d("daftar lokasi tujuan: ",+lokB.getId() + " : "+lokB.getLatitude()+ " : "+ lokB.getLongitude());
 
 
-                String jarak = CariRuteHandler.getPetaHandler().menghitungJarak(Double.parseDouble(lokA.getLatitude()), Double.parseDouble(lokA.getLongitude()),
+                String jarak = CariRuteHandler.getCariRuteHandler().menghitungJarak(Double.parseDouble(lokA.getLatitude()), Double.parseDouble(lokA.getLongitude()),
                         Double.parseDouble(lokB.getLatitude()),Double.parseDouble(lokB.getLongitude()));
 
                 Log.d("Jarak lokasi :", jarak+" Meter");
@@ -181,7 +218,7 @@ public class CariRuteActions  {
                 Log.d("daftar lokasi tujuan: ",+lokB.getId() + " : "+lokB.getLatitude()+ " : "+ lokB.getLongitude());
 
 
-                String jarak = CariRuteHandler.getPetaHandler().menghitungJarak(Double.parseDouble(lokA.getLatitude()), Double.parseDouble(lokA.getLongitude()),
+                String jarak = CariRuteHandler.getCariRuteHandler().menghitungJarak(Double.parseDouble(lokA.getLatitude()), Double.parseDouble(lokA.getLongitude()),
                         Double.parseDouble(lokB.getLatitude()),Double.parseDouble(lokB.getLongitude()));
 
                 Log.d("Jarak lokasi :", jarak+" Meter");
@@ -250,10 +287,10 @@ public class CariRuteActions  {
             Log.d("Lokasi Dari : ", " latitude : " +lokasiDari.getLatitude() +" longitude : " +lokasiDari.getLongitude());
             Log.d("Lokasi Tujuan : "," latitude : " +lokasiTujuan.getLatitude() +" longitude : " +lokasiTujuan.getLongitude());
 
-            String jarakLokasi = CariRuteHandler.getPetaHandler().menghitungJarak(Double.parseDouble(lokasiDari.getLatitude()), Double.parseDouble(lokasiDari.getLongitude()),
+            String jarakLokasi = CariRuteHandler.getCariRuteHandler().menghitungJarak(Double.parseDouble(lokasiDari.getLatitude()), Double.parseDouble(lokasiDari.getLongitude()),
                     Double.parseDouble(lokasiTujuan.getLatitude()),Double.parseDouble(lokasiTujuan.getLongitude()));
 
-            CariRuteHandler.getPetaHandler().calcPath(Double.parseDouble(lokasiDari.getLatitude()), Double.parseDouble(lokasiDari.getLongitude()),
+            CariRuteHandler.getCariRuteHandler().calcPath(Double.parseDouble(lokasiDari.getLatitude()), Double.parseDouble(lokasiDari.getLongitude()),
                     Double.parseDouble(lokasiTujuan.getLatitude()),Double.parseDouble(lokasiTujuan.getLongitude()));
 
             Log.d("Jarak lokasi :", jarakLokasi+" Meter");
@@ -623,7 +660,7 @@ public class CariRuteActions  {
             @Override public void onClick(View v) {
                 if (CariRuteActivity.getmCurrentLocation() != null) {
                     showPositionBtn.setImageResource(R.drawable.ic_my_location_white_24dp);
-                    CariRuteHandler.getPetaHandler().centerPointOnMap(
+                    CariRuteHandler.getCariRuteHandler().centerPointOnMap(
                             new LatLong(CariRuteActivity.getmCurrentLocation().getLatitude(),
                                     CariRuteActivity.getmCurrentLocation().getLongitude()), 0);
 
@@ -647,6 +684,9 @@ public class CariRuteActions  {
         return menuVisible;
     }
 
+
+
+
     /**
      * side bar menu visibility
      *
@@ -666,5 +706,20 @@ public class CariRuteActions  {
 
     private void log(String str) {
         Log.i(this.getClass().getSimpleName(), "-----------------" + str);
+    }
+
+    @Override
+    public void onPressLocation(LatLong latLong) {
+
+    }
+
+    @Override
+    public void pathCalculating(boolean shortestPathRunning) {
+
+    }
+
+    @Override
+    public void statusChanged(boolean on) {
+
     }
 }

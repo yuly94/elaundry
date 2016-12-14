@@ -32,6 +32,8 @@ import com.yuly.elaundry.kurir.controller.fragment.DialogDownload;
 import com.yuly.elaundry.kurir.controller.fragment.DownloadPetaFragment;
 import com.yuly.elaundry.kurir.controller.fragment.LaundryPemesananFragment;
 import com.yuly.elaundry.kurir.controller.fragment.ProfileFragment;
+import com.yuly.elaundry.kurir.controller.peta.CariRuteActivity;
+import com.yuly.elaundry.kurir.controller.peta.PetaSayaActivity;
 import com.yuly.elaundry.kurir.model.database.KurirDbHandler;
 import com.yuly.elaundry.kurir.model.helper.SessionManager;
 import com.yuly.elaundry.kurir.model.util.Variable;
