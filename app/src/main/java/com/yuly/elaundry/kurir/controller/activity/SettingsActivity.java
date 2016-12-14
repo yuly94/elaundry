@@ -14,12 +14,15 @@ import android.widget.RadioButton;
 import android.widget.RadioGroup;
 
 import com.yuly.elaundry.kurir.R;
+import com.yuly.elaundry.kurir.controller.fragment.DialogDownload;
+import com.yuly.elaundry.kurir.model.helper.DownloadActivity;
 import com.yuly.elaundry.kurir.model.util.SetStatusBarColor;
 import com.yuly.elaundry.kurir.model.util.Variable;
 
 public class SettingsActivity extends AppCompatActivity {
     private RadioGroup algoRG;
 
+    private AppCompatActivity activity;
     @Override protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_settings);
@@ -149,26 +152,25 @@ public class SettingsActivity extends AppCompatActivity {
     private void downloadBtn() {
         final ViewGroup cbtn = (ViewGroup) findViewById(R.id.activity_settings_download_map);
         cbtn.setOnTouchListener(new View.OnTouchListener() {
-            @Override public boolean onTouch(View v, MotionEvent event) {
-                switch (event.getAction()) {
-                    case MotionEvent.ACTION_DOWN:
-                        cbtn.setBackgroundColor(getResources().getColor(R.color.my_primary_light));
-                        return true;
-                    case MotionEvent.ACTION_UP:
-                        cbtn.setBackgroundColor(getResources().getColor(R.color.my_icons));
-                        startDownloadActivity();
-                        return true;
+
+            @Override
+            public boolean onTouch(View view, MotionEvent motionEvent) {
+                DownloadPetaActivity downloads = new DownloadPetaActivity();
+                if (!MendownloadPeta.getMendownloadPeta().checkFilePetaAda()){
+
+                    DialogDownload.showDownloadPetaDialog(activity);
+                } else {
+
+                    DialogDownload.showDownloadUlangDialog(activity);
+
                 }
                 return false;
             }
+            
+
         });
     }
 
-
-    private void startDownloadActivity() {
-        Intent intent = new Intent(this, DownloadMapActivity.class);
-        startActivity(intent);
-    }
 
     @Override public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {

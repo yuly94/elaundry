@@ -36,6 +36,7 @@ public class RouteDbHelper extends SQLiteOpenHelper {
     private static final String TABLE_PATH_KONSUMEN = "path_konsumen";
     private static final String TABLE_TEMP_PATH_KONSUMEN = "path_temp_konsumen";
     private static final String TABLE_JARAK_KONSUMEN = "jarak_konsumen";
+    private static final String TABLE_HISTORY_JARAK_KONSUMEN = "history_jarak_konsumen";
     private static final String TABLE_TODO = "todos";
     private static final String TABLE_TAG = "tags";
     private static final String TABLE_TODO_TAG = "todo_tags";
@@ -51,11 +52,10 @@ public class RouteDbHelper extends SQLiteOpenHelper {
     private static final String KEY_KONSUMEN_LONGITUDE = "konsumen_longitude";
     private static final String KEY_KONSUMEN_LATITUDE = "konsumen_latitude";
     private static final String KEY_KONSUMEN_JARAK = "konsumen_jarak";
+
     private static final String KEY_DARI = "konsumen_dari";
     private static final String KEY_TUJUAN = "konsumen_tujuan";
     private static final String KEY_JARAK = "konsumen_jarak";
-
-
 
     private static final String KEY_TODO = "todo";
     private static final String KEY_STATUS = "status";
@@ -92,6 +92,15 @@ public class RouteDbHelper extends SQLiteOpenHelper {
             + KEY_CREATED_AT
             + " DATETIME" + ")";
 
+
+    private static final String CREATE_TABLE_HISTORY_JARAK_KONSUMEN = "CREATE TABLE "
+            + TABLE_HISTORY_JARAK_KONSUMEN + "(" + KEY_ID + " INTEGER PRIMARY KEY,"
+            + KEY_DARI + " TEXT,"
+            + KEY_TUJUAN + " TEXT,"
+            + KEY_JARAK + " INTEGER,"
+            + KEY_STATUS + " INTEGER,"
+            + KEY_CREATED_AT
+            + " DATETIME" + ")";
 
     private static final String CREATE_TABLE_JARAK_KONSUMEN = "CREATE TABLE "
             + TABLE_JARAK_KONSUMEN + "(" + KEY_ID + " INTEGER PRIMARY KEY,"
@@ -158,9 +167,10 @@ public class RouteDbHelper extends SQLiteOpenHelper {
         db.execSQL(CREATE_TABLE_POINT_KONSUMEN);
         db.execSQL(CREATE_TABLE_PATH_KONSUMEN);
         db.execSQL(CREATE_TABLE_JARAK_KONSUMEN);
-        db.execSQL(CREATE_TABLE_TODO);
-        db.execSQL(CREATE_TABLE_TAG);
-        db.execSQL(CREATE_TABLE_TODO_TAG);
+        db.execSQL(CREATE_TABLE_HISTORY_JARAK_KONSUMEN);
+       // db.execSQL(CREATE_TABLE_TODO);
+       // db.execSQL(CREATE_TABLE_TAG);
+       // db.execSQL(CREATE_TABLE_TODO_TAG);
     }
 
     @Override
@@ -170,10 +180,10 @@ public class RouteDbHelper extends SQLiteOpenHelper {
         db.execSQL("DROP TABLE IF EXISTS " + TABLE_POINT_KONSUMEN);
         db.execSQL("DROP TABLE IF EXISTS " + TABLE_PATH_KONSUMEN);
         db.execSQL("DROP TABLE IF EXISTS " + TABLE_JARAK_KONSUMEN);
-
-        db.execSQL("DROP TABLE IF EXISTS " + TABLE_TODO);
-        db.execSQL("DROP TABLE IF EXISTS " + TABLE_TAG);
-        db.execSQL("DROP TABLE IF EXISTS " + TABLE_TODO_TAG);
+        db.execSQL("DROP TABLE IF EXISTS " + TABLE_HISTORY_JARAK_KONSUMEN);
+        //db.execSQL("DROP TABLE IF EXISTS " + TABLE_TODO);
+        //db.execSQL("DROP TABLE IF EXISTS " + TABLE_TAG);
+        //db.execSQL("DROP TABLE IF EXISTS " + TABLE_TODO_TAG);
 
         // create new tables
         onCreate(db);
@@ -250,6 +260,31 @@ public class RouteDbHelper extends SQLiteOpenHelper {
         // insert row
 
         long todo_id = db.insert(TABLE_JARAK_KONSUMEN, null, values);
+
+        // insert tag_ids
+        //    for (long tag_id : tag_ids) {
+        //      createTodoTag(todo_id, tag_id);
+        //  }
+
+        return todo_id;
+    }
+
+    /**
+     * Creating a todo
+     */
+    public long buatHistoryJarakKonsumen(Lokasi lokasi) {
+        SQLiteDatabase db = this.getWritableDatabase();
+
+        ContentValues values = new ContentValues();
+        values.put(KEY_DARI, lokasi.getDari());
+        values.put(KEY_TUJUAN, lokasi.getTujuan());
+        values.put(KEY_JARAK, lokasi.getJarak());
+        values.put(KEY_STATUS, lokasi.getStatus());
+        values.put(KEY_CREATED_AT, getDateTime());
+
+        // insert row
+
+        long todo_id = db.insert(TABLE_HISTORY_JARAK_KONSUMEN, null, values);
 
         // insert tag_ids
         //    for (long tag_id : tag_ids) {
@@ -434,6 +469,36 @@ public class RouteDbHelper extends SQLiteOpenHelper {
 
 
 
+    // Lokasi Pesanan
+    public List<Lokasi> getAllHistoryJarak() {
+        List<Lokasi> listlokasi = new ArrayList<Lokasi>();
+        // Select All Query
+        String selectQuery = "SELECT  * FROM " + TABLE_HISTORY_JARAK_KONSUMEN;
+
+        SQLiteDatabase db = this.getWritableDatabase();
+        Cursor cursor = db.rawQuery(selectQuery, null);
+
+        // looping through all rows and adding to list
+        if (cursor.getCount() >= 1 &&  cursor.moveToFirst()) {
+
+            do {
+                Lokasi jarak = new Lokasi();
+
+                jarak.setId(Integer.parseInt(cursor.getString(0)));
+                jarak.setDari(Integer.parseInt(cursor.getString(1)));
+                jarak.setTujuan(Integer.parseInt(cursor.getString(2)));
+                jarak.setJarakAb(Integer.parseInt(cursor.getString(3)));
+                // Adding contact to list
+                listlokasi.add(jarak);
+            } while (cursor.moveToNext());
+        }
+
+        // return contact list
+        cursor.close();
+        return listlokasi;
+    }
+
+
 
     // Lokasi Pesanan
     public List<Lokasi> getAllPath() {
@@ -471,6 +536,17 @@ public class RouteDbHelper extends SQLiteOpenHelper {
     public long deleteJarak(long tado_id) {
         SQLiteDatabase db = this.getWritableDatabase();
         db.delete(TABLE_JARAK_KONSUMEN, KEY_ID + " = ?",
+                new String[] { String.valueOf(tado_id) });
+        return tado_id;
+    }
+
+
+    /**
+     * Deleting a jarak
+     */
+    public long deleteHistoryJarak(long tado_id) {
+        SQLiteDatabase db = this.getWritableDatabase();
+        db.delete(TABLE_HISTORY_JARAK_KONSUMEN, KEY_ID + " = ?",
                 new String[] { String.valueOf(tado_id) });
         return tado_id;
     }

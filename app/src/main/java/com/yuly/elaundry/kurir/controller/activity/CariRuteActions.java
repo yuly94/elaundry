@@ -4,16 +4,14 @@ import android.app.Activity;
 import android.app.ProgressDialog;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.LinearLayoutManager;
-import android.support.v7.widget.RecyclerView;
+
 import android.util.Log;
-import android.view.MotionEvent;
+
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.animation.OvershootInterpolator;
 import android.view.animation.ScaleAnimation;
-import android.widget.EditText;
-import android.widget.ImageButton;
+
 import android.widget.Toast;
 
 import com.android.volley.AuthFailureError;
@@ -25,24 +23,16 @@ import com.android.volley.toolbox.JsonObjectRequest;
 import com.yuly.elaundry.kurir.R;
 import com.yuly.elaundry.kurir.controller.app.AppConfig;
 import com.yuly.elaundry.kurir.controller.app.AppController;
-import com.yuly.elaundry.kurir.model.dataType.Destination;
+
 import com.yuly.elaundry.kurir.model.database.KurirDbHandler;
 import com.yuly.elaundry.kurir.model.database.Lokasi;
 import com.yuly.elaundry.kurir.model.database.RouteDbHelper;
 
-
-import com.yuly.elaundry.kurir.model.dijkstra.DijkstraAlgorithm;
-import com.yuly.elaundry.kurir.model.dijkstra.Edge;
-import com.yuly.elaundry.kurir.model.dijkstra.Graph;
-import com.yuly.elaundry.kurir.model.dijkstra.Vertex;
 import com.yuly.elaundry.kurir.model.geterseter.TransaksiModel;
 import com.yuly.elaundry.kurir.model.helper.VolleyErrorHelper;
-import com.yuly.elaundry.kurir.model.listeners.NavigatorListener;
-import com.yuly.elaundry.kurir.model.listeners.PetaHandlerListener;
-import com.yuly.elaundry.kurir.model.map.DetailPetaNavigasi;
 
 import com.yuly.elaundry.kurir.model.peta.CariRuteHandler;
-import com.yuly.elaundry.kurir.model.util.InstructionAdapter;
+
 import com.yuly.elaundry.kurir.model.util.Variable;
 
 import org.json.JSONArray;
@@ -50,54 +40,34 @@ import org.json.JSONException;
 import org.json.JSONObject;
 import org.mapsforge.core.model.LatLong;
 import org.mapsforge.map.android.view.MapView;
-import org.mapsforge.map.layer.Layers;
-import org.mapsforge.map.layer.overlay.Marker;
-import org.mapsforge.map.model.MapViewPosition;
 
-import java.util.ArrayList;
-import java.util.Arrays;
+import org.mapsforge.map.model.MapViewPosition;
 import java.util.HashMap;
-import java.util.LinkedList;
+
 import java.util.List;
 import java.util.Map;
 
 import static android.content.ContentValues.TAG;
-import static junit.framework.Assert.assertNotNull;
-import static junit.framework.Assert.assertTrue;
 
-
-public class CariRuteActions implements NavigatorListener, PetaHandlerListener {
+public class CariRuteActions  {
     private Activity activity;
-    protected FloatingActionButton showPositionBtn, navigationBtn, settingsBtn, controlBtn;
+    protected FloatingActionButton showPositionBtn, tombolMenu;
     protected FloatingActionButton zoomInBtn, zoomOutBtn, fabNavigasi,fab_refresh, fab_dapatkan, fab_getpoint, fab_rute;
-    private ViewGroup sideBarVP,  sideBarMenuVP, navSettingsVP, navSettingsFromVP, navSettingsToVP, navInstructionVP,
-            navInstructionListVP;
+    private ViewGroup menuNavigasiPeta,  sideBarMenuVP;
     private boolean menuVisible;
 
     private ProgressDialog pDialog;
 
     private KurirDbHandler db_user;
     private RouteDbHelper db_rute;
-    private CariRuteHandler petaHandler;
 
-    private List<Vertex> nodes;
-    private List<Edge> edges;
-
-
-
-
-    /**
-     * true handle on start point ; false handle on end point
-     */
-    private boolean onStartPoint;
-    private EditText fromLocalET, toLocalET;
 
     public CariRuteActions(AppCompatActivity activity, MapView mapView) {
         this.activity = activity;
 
         this.showPositionBtn = (FloatingActionButton) activity.findViewById(R.id.fab_location);
 
-        this.controlBtn = (FloatingActionButton) activity.findViewById(R.id.fab_menu);
+        this.tombolMenu = (FloatingActionButton) activity.findViewById(R.id.fab_menu);
 
         this.fab_rute = (FloatingActionButton) activity.findViewById(R.id.fab_rute);
 
@@ -113,28 +83,10 @@ public class CariRuteActions implements NavigatorListener, PetaHandlerListener {
         this.fab_dapatkan = (FloatingActionButton) activity.findViewById(R.id.fab_dapatkan);
 
        // view groups managed by separate layout xml file : //map_sidebar_layout/map_sidebar_menu_layout
-        this.sideBarVP = (ViewGroup) activity.findViewById(R.id.menu_nafigasi_peta);
+        this.menuNavigasiPeta = (ViewGroup) activity.findViewById(R.id.menu_nafigasi_peta);
         this.sideBarMenuVP = (ViewGroup) activity.findViewById(R.id.group_tombol_navigasi);
-
- /*     this.navSettingsVP = (ViewGroup) activity.findViewById(R.id.nav_settings_layout);
-        this.navSettingsFromVP = (ViewGroup) activity.findViewById(R.id.nav_settings_from_layout);
-        this.navSettingsToVP = (ViewGroup) activity.findViewById(R.id.nav_settings_to_layout);*/
-
-        //this.navInstructionVP = (ViewGroup) activity.findViewById(R.id.nav_instruction_layout); // TODO
-/*
-        this.navInstructionListVP = (ViewGroup) activity.findViewById(R.id.nav_instruction_list_layout);
-        //form location and to location textView
-        this.fromLocalET = (EditText) activity.findViewById(R.id.nav_settings_from_local_et);
-        this.toLocalET = (EditText) activity.findViewById(R.id.nav_settings_to_local_et);
-
-        */
-
+        
         this.menuVisible = false;
-        this.onStartPoint = true;
-
-      //  MapHandler.getPetaHandler().setMapHandlerListener(this);
-        //Navigasi.getNavigator().addListener(this);
-
 
         //http://stackoverflow.com/questions/1561803/android-progressdialog-show-crashes-with-getapplicationcontext
 
@@ -143,15 +95,14 @@ public class CariRuteActions implements NavigatorListener, PetaHandlerListener {
         // SqLite database handler
         db_rute = new RouteDbHelper(this.activity);
 
-        controlBtnHandler();
+        tombolMenuHandler();
+        
         zoomControlHandler(mapView);
         showMyLocation(mapView);
         //navBtnHandler();
 
         mengambilData();
-        menghitungJarak();
-
-        buatPoly();
+        //menghitungJarak();
 
         getPoint();
 
@@ -165,10 +116,7 @@ public class CariRuteActions implements NavigatorListener, PetaHandlerListener {
             @Override public void onClick(View v) {
 
                 membuatTable();
-/*
-                Dijkstra_dua eks = new Dijkstra_dua();
-                eks.eksekusi();*/
-               // memprosesDijkstra();
+
                 memprosesRute();
 
             }
@@ -186,6 +134,7 @@ public class CariRuteActions implements NavigatorListener, PetaHandlerListener {
         showProgressDialog();
 
         hapusSemuaJarak();
+        hapusSemuaHistoryJarak();
 
         List<Lokasi> listlokasi = db_rute.getAllLokasi();
         // Reading all lokasi konsumen
@@ -206,14 +155,13 @@ public class CariRuteActions implements NavigatorListener, PetaHandlerListener {
                 String jarak = CariRuteHandler.getPetaHandler().menghitungJarak(Double.parseDouble(lokA.getLatitude()), Double.parseDouble(lokA.getLongitude()),
                         Double.parseDouble(lokB.getLatitude()),Double.parseDouble(lokB.getLongitude()));
 
-
-
                 Log.d("Jarak lokasi :", jarak+" Meter");
 
                 Lokasi jarak_konsumen_01 = new Lokasi( i,k, jarak, 1);
 
                 long id_01 =  db_rute.buatJarakKonsumen(jarak_konsumen_01);
 
+                db_rute.buatHistoryJarakKonsumen(jarak_konsumen_01);
 
                 System.out.print("daftar id : "+id_01);
                 System.out.print("X"+i);
@@ -242,6 +190,8 @@ public class CariRuteActions implements NavigatorListener, PetaHandlerListener {
 
                 long id_02 =  db_rute.buatJarakKonsumen(jarak_konsumen_01);
 
+                db_rute.buatHistoryJarakKonsumen(jarak_konsumen_01);
+
 
                 System.out.print("daftar id : "+id_02);
 
@@ -265,7 +215,7 @@ public class CariRuteActions implements NavigatorListener, PetaHandlerListener {
 
         hapusSemuaPath();
 
-        CariRuteHandler.getPetaHandler().hapusPath();
+        //CariRuteHandler.getPetaHandler().hapusPath();
 
         List<Lokasi> listLokasi = db_rute.getAllLokasi();
 
@@ -294,8 +244,6 @@ public class CariRuteActions implements NavigatorListener, PetaHandlerListener {
             Log.d("urutan :", "dari : "+ String.valueOf(urutan.getDari()) +
                     " tujuan : " + String.valueOf(urutan.getTujuan()));
 
-
-
             Lokasi lokasiDari = db_rute.getLokasi(urutan.getDari());
             Lokasi lokasiTujuan = db_rute.getLokasi(urutan.getTujuan());
 
@@ -305,13 +253,10 @@ public class CariRuteActions implements NavigatorListener, PetaHandlerListener {
             String jarakLokasi = CariRuteHandler.getPetaHandler().menghitungJarak(Double.parseDouble(lokasiDari.getLatitude()), Double.parseDouble(lokasiDari.getLongitude()),
                     Double.parseDouble(lokasiTujuan.getLatitude()),Double.parseDouble(lokasiTujuan.getLongitude()));
 
-
             CariRuteHandler.getPetaHandler().calcPath(Double.parseDouble(lokasiDari.getLatitude()), Double.parseDouble(lokasiDari.getLongitude()),
                     Double.parseDouble(lokasiTujuan.getLatitude()),Double.parseDouble(lokasiTujuan.getLongitude()));
 
-
             Log.d("Jarak lokasi :", jarakLokasi+" Meter");
-
 
             Lokasi jarak_konsumen_01 = new Lokasi(urutan.getDari(), urutan.getTujuan(), jarakLokasi, 1);
 
@@ -322,8 +267,6 @@ public class CariRuteActions implements NavigatorListener, PetaHandlerListener {
             long id_02 = db_rute.buatPathKonsumen(jarak_konsumen_01);
 
             System.out.print("daftar id : " + id_02);
-
-
 
             if (listLokasi.get(i).getId() == 1){
                 long id_01 = db_rute.deleteJarakB(1);
@@ -347,238 +290,8 @@ public class CariRuteActions implements NavigatorListener, PetaHandlerListener {
                 Log.d("Delete : ", String.valueOf(id_BA));
             }
 
-
-/*
-            long id_AB = db_rute.deleteJarakAB(urutan.getDari(),urutan.getTujuan());
-            // Writing Contacts to log
-            Log.d("Delete : ", String.valueOf(id_AB));
-*/
-
-
-
-
         }
 
-    }
-
-    private void memprosesDijkstra() {
-
-        nodes = new ArrayList<Vertex>();
-
-        edges = new ArrayList<Edge>();
-
-        List<Lokasi> listJarak = db_rute.getAllJarak();
-
-
-        for (int i = 0; i <9; i++) {
-            Vertex location = new Vertex("Node_" + i, "Node_" + i);
-            nodes.add(location);
-        }
-
-/*        for (Lokasi jarak : listJarak) {
-
-            addLane("Edge_"+jarak.getId(),  jarak.getDari(),   jarak.getTujuan(), 1);
-
-            Log.d("daftar Edge :", jarak.getId()+" : "+  jarak.getDari() +" : "+ jarak.getTujuan()+" : "+ jarak.getJarakAb());
-
-
-        }*/
-
-/*
-        addLane("Edge_1",  1, 2, 6658); //
-        addLane("Edge_2",  1, 3, 8845);
-        addLane("Edge_3",  1, 4, 8716);
-        addLane("Edge_4",  1, 5, 19251);
-       // addLane("Edge_5",  2, 1, 6658);
-        addLane("Edge_5",  2, 3, 5777);
-        addLane("Edge_6",  2, 4, 5649);
-        addLane("Edge_7",  2, 5, 4945);//
-       // addLane("Edge_9",  3, 2, 4609);
-       // addLane("Edge_10", 3, 1, 7677);
-        addLane("Edge_8",  3, 4, 2014);
-        addLane("Edge_9",  3, 5, 3344);
-      //  addLane("Edge_13",  4, 3, 2083); //4
-      //  addLane("Edge_14",  4, 2, 5812);
-      //  addLane("Edge_15",  4, 1, 8880);
-        addLane("Edge_10",  4, 5, 4291);
-       // addLane("Edge_17",  5, 4, 4312); //3
-       // addLane("Edge_18",  5, 3, 3434);
-       // addLane("Edge_19",  5, 2, 5627);
-      //  addLane("Edge_20",  5, 1, 19905);*/
-
-        addLane("Edge_1",1,2,7);
-        addLane("Edge_2",1,3,9);
-        addLane("Edge_3",1,6,14);
-        addLane("Edge_4",2,3,10);
-        addLane("Edge_5",2,4,15);
-        addLane("Edge_6",3,4,11);
-        addLane("Edge_7",3,6,2);
-        addLane("Edge_8",4,5,6);
-        addLane("Edge_9",5,6,9);
-
-/*
-        addLane("Edge_0", 0, 1, 85);
-        addLane("Edge_1", 0, 2, 217);
-        addLane("Edge_2", 0, 4, 173);
-        addLane("Edge_3", 2, 6, 186);
-        addLane("Edge_4", 2, 7, 103);
-        addLane("Edge_5", 3, 7, 183);
-        addLane("Edge_6", 5, 8, 250);
-        addLane("Edge_7", 8, 9, 84);
-        addLane("Edge_8", 7, 9, 167);
-        addLane("Edge_9", 4, 9, 502);
-        addLane("Edge_10", 9, 10, 40);
-        addLane("Edge_11", 1, 10, 600);*/
-
-        //tambahLane();
-
-        // Lets check from location Loc_1 to Loc_10
-        Graph graph = new Graph(nodes, edges);
-        DijkstraAlgorithm dijkstra = new DijkstraAlgorithm(graph);
-        dijkstra.execute(nodes.get(1));
-        LinkedList<Vertex> path = dijkstra.getPath(nodes.get(6));
-
-        assertNotNull(path);
-        assertTrue(path.size() > 1);
-
-        for (Vertex vertex : path) {
-            System.out.println(vertex);
-        }
-
-    }
-
-    private void addLane(String laneId, int sourceLocNo, int destLocNo,
-                         int duration) {
-        Edge lane = new Edge(laneId,nodes.get(sourceLocNo), nodes.get(destLocNo), duration );
-        edges.add(lane);
-    }
-
-    private void tambahLane() {
-        List<Lokasi> listJarak = db_rute.getAllJarak();
-        for (Lokasi jarak : listJarak) {
-
-            addLane("Edge_"+jarak.getId(),  jarak.getDari(),   jarak.getTujuan(), 1);
-
-            Log.d("daftar Edge :", jarak.getId()+" : "+  jarak.getDari() +" : "+ jarak.getTujuan()+" : "+ jarak.getJarakAb());
-
-            Edge lane = new Edge("Edge_"+jarak.getId(),nodes.get(jarak.getDari()), nodes.get(jarak.getTujuan()), jarak.getJarakAb() );
-            edges.add(lane);
-
-        }
-
-    }
-
-    /**
-     * add end point marker to map
-     *
-     * @param endPoint
-     */
-    private void addToMarker(LatLong endPoint) {
-        CariRuteHandler.getPetaHandler().addEndMarker(endPoint);
-    }
-
-    /**
-     * add start point marker to map
-     *
-     * @param startPoint
-     */
-    private void addFromMarker(LatLong startPoint) {
-        CariRuteHandler.getPetaHandler().addStartMarker(startPoint);
-    }
-
-
-    /**
-     * add start point marker to map
-     *
-     * @param Point
-     */
-    private void addMarker(LatLong Point) {
-        CariRuteHandler.getPetaHandler().tambahMarkerMerah(Point);
-    }
-
-
-    private void hitungJarak() {
-
-        CariRuteHandler.getPetaHandler().hitungPath(-7.768428684206199,112.00151054708566,
-                -7.767706382776794,112.01162539826053);
-    }
-
-    private void hitungJarakAbc() {
-
-        CariRuteHandler.getPetaHandler().calcPathX();
-    }
-
-
-    private void bacaLokasi() {
-        // Reading all lokasi konsumen
-        Log.d("Reading: ", "Reading all lokasi..");
-        List<Lokasi> listlokasi = db_rute.getAllLokasi();
-
-        for (Lokasi lokasi : listlokasi) {
-            String log = "Id: " + lokasi.getId() + " ,Latitude : " + lokasi.getLatitude() + " ,Longitude : " + lokasi.getLongitude();
-            // Writing Contacts to log
-            Log.d("Name: ", log);
-        }
-    }
-
-
-
-
-    private void buatTablex(){
-
-        Log.d("Reading: ", "Reading all lokasi..");
-        List<Lokasi> listlokasi = db_rute.getAllJarak();
-
-        for (Lokasi lokasi : listlokasi) {
-            String log = "Id: " + lokasi.getDari() + " ,Latitude : " + lokasi.getTujuan() + " ,Longitude : " + lokasi.getJarakAb();
-            // Writing Contacts to log
-            Log.d("Name: ", log);
-        }
-
-        List<Lokasi> listJarak = db_rute.getAllJarak();
-
-
-        //Graph.Edge[] stockArr = new Graph.Edge[listJarak.size()];
-        String[] stockArr = new String[listJarak.size()];
-        stockArr = listJarak.toArray(stockArr);
-
-        System.out.print(Arrays.toString(stockArr));
-        Log.d("Tag", String.valueOf(stockArr));
-
-        Log.d("Tag", "ini");
-
-
-
-/*        Graph.Edge[] GRAPH = {
-
-               // graph ()
-
-                new Graph.Edge("a", "b", (int) 7.5),
-                new Graph.Edge("a", "c", (int) 9.9),
-                new Graph.Edge("a", "f", (int) 14.3),
-                new Graph.Edge("b", "c", (int) 10.7),
-                new Graph.Edge("b", "d", (int) 4.4),
-                new Graph.Edge("c", "d", (int) 11.4),
-                new Graph.Edge("c", "f", (int) 2.1),
-                new Graph.Edge("d", "e", (int) 6.2),
-
-                new Graph.Edge("e", "f", (int) 9.3)
-        };*/
-
-
-/*
-            String START = "a";
-            String END = "e";
-
-
-        Graph g = new Graph(stockArr);
-        g.dijkstra(START);
-        System.out.println("&");
-        g.printPath(END);
-
-*/
-
-        // g.printAllPaths();
     }
 
 
@@ -598,6 +311,22 @@ public class CariRuteActions implements NavigatorListener, PetaHandlerListener {
        // Toast.makeText(activity, "membuat ulang table jarak", Toast.LENGTH_LONG).show();
     }
 
+    private void hapusSemuaHistoryJarak() {
+        // Reading all lokasi konsumen
+        Log.d("Reading: ", "Reading all lokasi..");
+        List<Lokasi> lok = db_rute.getAllHistoryJarak();
+
+        for (Lokasi lokasi : lok) {
+            String log = "Delete Id: " + lokasi.getId();
+
+            long id = db_rute.deleteHistoryJarak(lokasi.getId());
+            // Writing Contacts to log
+            Log.d("Delete : ", String.valueOf(id));
+        }
+
+        // Toast.makeText(activity, "membuat ulang table jarak", Toast.LENGTH_LONG).show();
+    }
+
     private void hapusSemuaPath() {
         // Reading all lokasi konsumen
         Log.d("Reading: ", "Reading all lokasi..");
@@ -612,26 +341,6 @@ public class CariRuteActions implements NavigatorListener, PetaHandlerListener {
         }
 
         // Toast.makeText(activity, "membuat ulang table jarak", Toast.LENGTH_LONG).show();
-    }
-
-
-
-
-
-    private void bacaPoint() {
-        // Reading all lokasi konsumen
-        Log.d("Reading: ", "Reading all lokasi..");
-        List<Lokasi> listpoint = db_rute.getAllPoint();
-
-        for (Lokasi lokasi : listpoint) {
-            String log = "Id: " + lokasi.getId() + " ,Latitude : " + lokasi.getLatitude() + " ,Longitude : " + lokasi.getLongitude();
-            // Writing Contacts to log
-            Log.d("Name: ", log);
-
-
-        }
-
-
     }
 
 
@@ -650,8 +359,6 @@ public class CariRuteActions implements NavigatorListener, PetaHandlerListener {
         }
     }
 
-
-
     private void hapusSemuaLokasi() {
         // Reading all lokasi konsumen
         Log.d("Reading: ", "Reading all lokasi..");
@@ -666,31 +373,16 @@ public class CariRuteActions implements NavigatorListener, PetaHandlerListener {
         }
     }
 
-
-
-
-
     private void mengambilData(){
 
         fabNavigasi.setOnClickListener(new View.OnClickListener() {
             @Override public void onClick(View v) {
                 mengambilDataPemesanan();
-
             }
 
         });
     }
 
-    private void menghitungJarak(){
-
-        fab_refresh.setOnClickListener(new View.OnClickListener() {
-            @Override public void onClick(View v) {
-                hitungJarak();
-
-            }
-
-        });
-    }
 
     private void getPoint(){
 
@@ -698,27 +390,10 @@ public class CariRuteActions implements NavigatorListener, PetaHandlerListener {
             @Override public void onClick(View v) {
 
                 bacaSemuaPoint();
-
             }
 
         });
     }
-
-    private void buatPoly(){
-
-        fab_dapatkan.setOnClickListener(new View.OnClickListener() {
-            @Override public void onClick(View v) {
-
-
-                hitungJarakAbc();
-
-            }
-
-        });
-    }
-
-
-
 
     /**
      * Mengambil data pemesanan baru
@@ -796,34 +471,14 @@ public class CariRuteActions implements NavigatorListener, PetaHandlerListener {
 
                                     // Log.i(AppController.TAG, "parsing berhasil");
 
-/*                                    listPesanan.setNoId(pemesanan_id);
-                                    listPesanan.setPemesananId(pemesanan_id);
-                                    listPesanan.setNama(konsumen_nama);
-                                    listPesanan.setNoHp(konsumen_nohp);
-                                    listPesanan.setHarga(pemesanan_harga);
-                                    listPesanan.setLatitude(pemesanan_latitude);
-                                    listPesanan.setLongitude(pemesanan_longitude);
-                                    listPesanan.setKonsumenId(konsumen_id);
-                                    listPesanan.setAlamat(pemesanan_alamat);
-                                    listPesanan.setTanggal(pemesanan_tanggal);*/
-
                                     Lokasi lokasi_konsumen = new Lokasi( konsumen_id,pemesanan_id, pemesanan_latitude, pemesanan_longitude, "0",1);
 
                                     long id = db_rute.createLokasiKonsumen(lokasi_konsumen);
-
-                                    // buatMarker((-7.817117399999998), (112.0287791));
-
 
 
                                     Log.d("ID", String.valueOf(id));
                                     Log.i("TAG La : ",pemesanan_latitude);
                                     Log.i("TAG Lo : ",pemesanan_longitude);
-                                 //   LatLong mcLatLong = new LatLong(Double.valueOf(pemesanan_latitude),Double.valueOf(pemesanan_longitude));
-
-                                   // petaHandler.tambahMarkerMerah(mcLatLong);
-
-                                   // buatMarkerHijau(mcLatLong,mapView);
-
 
                                    // addMarker(mcLatLong);
                                     CariRuteActivity maps2 = new CariRuteActivity();
@@ -832,7 +487,6 @@ public class CariRuteActions implements NavigatorListener, PetaHandlerListener {
 
                                      }
                                 Toast.makeText(activity, "lokasi konsumen berhasil didapatkan", Toast.LENGTH_LONG).show();
-
 
                                 //updateList();
                             } else {
@@ -891,16 +545,6 @@ public class CariRuteActions implements NavigatorListener, PetaHandlerListener {
         // ApplicationController.getInstance().getRequestQueue().cancelAll(tag_json_arry);
     }
 
-
-
-    private void buatMarkerHijau(LatLong latLong,  MapView mapView) {
-        Layers layers = mapView.getLayerManager().getLayers();
-        Marker marker = petaHandler.createMarker(latLong, R.drawable.ic_place_green_24dp);
-        if (marker != null) {
-            layers.add(marker);
-        }
-    }
-
     private void showProgressDialog() {
         if (!pDialog.isShowing()) {
             pDialog.show();
@@ -916,233 +560,11 @@ public class CariRuteActions implements NavigatorListener, PetaHandlerListener {
         }
     }
 
-
-    /**
-     * settings layout:
-     * <p>
-     * from item handler: when from item is clicked
-     */
-    private void settingsFromItemHandler() {
-        final ViewGroup fromFieldVG = (ViewGroup) activity.findViewById(R.id.map_nav_settings_from_item);
-        fromFieldVG.setOnTouchListener(new View.OnTouchListener() {
-            @Override public boolean onTouch(View v, MotionEvent event) {
-                switch (event.getAction()) {
-                    case MotionEvent.ACTION_DOWN:
-                        fromFieldVG.setBackgroundColor(activity.getResources().getColor(R.color.my_primary_light));
-                        return true;
-                    case MotionEvent.ACTION_UP:
-                        fromFieldVG.setBackgroundColor(activity.getResources().getColor(R.color.my_primary));
-                        navSettingsVP.setVisibility(View.INVISIBLE);
-                        navSettingsFromVP.setVisibility(View.VISIBLE);
-                        return true;
-                }
-                return false;
-            }
-        });
-        //        from layout
-        //clear button
-        ImageButton fromLayoutClearBtn = (ImageButton) activity.findViewById(R.id.nav_settings_from_clear_btn);
-        fromLayoutClearBtn.setOnClickListener(new View.OnClickListener() {
-            @Override public void onClick(View v) {
-                navSettingsVP.setVisibility(View.VISIBLE);
-                navSettingsFromVP.setVisibility(View.INVISIBLE);
-            }
-        });
-        //  from layout: items
-        useCurrentLocationHandler();
-        //        chooseFromFavoriteHandler();TODO
-        pointOnMapHandler();
-    }
-
-    /**
-     * from layout : point item view group
-     * <p>
-     * preform actions when point on map item is clicked
-     */
-    private void pointOnMapHandler() {
-        final ViewGroup pointItem = (ViewGroup) activity.findViewById(R.id.map_nav_settings_from_point);
-        pointItem.setOnTouchListener(new View.OnTouchListener() {
-            @Override public boolean onTouch(View v, MotionEvent event) {
-                switch (event.getAction()) {
-                    case MotionEvent.ACTION_DOWN:
-                        pointItem.setBackgroundColor(activity.getResources().getColor(R.color.my_primary_light));
-                        return true;
-                    case MotionEvent.ACTION_UP:
-                        pointItem.setBackgroundColor(activity.getResources().getColor(R.color.my_primary));
-                        onStartPoint = true;
-                        navSettingsFromVP.setVisibility(View.INVISIBLE);
-                        //touch on map
-                        Toast.makeText(activity, "Touch on Map to choose your start Location", Toast.LENGTH_SHORT)
-                                .show();
-                        CariRuteHandler.getPetaHandler().setNeedLocation(true);
-                        return true;
-                }
-                return false;
-            }
-        });
-    }
-
-    /**
-     * choose from favorite list handler: preform actions when choose from favorite item is clicked
-     */
-    private void chooseFromFavoriteHandler() {
-        //create a list view
-        //read from Json file inflater to RecyclerView
-        final ViewGroup chooseFavorite = (ViewGroup) activity.findViewById(R.id.map_nav_settings_from_favorite);
-        chooseFavorite.setOnTouchListener(new View.OnTouchListener() {
-            @Override public boolean onTouch(View v, MotionEvent event) {
-                switch (event.getAction()) {
-                    case MotionEvent.ACTION_DOWN:
-                        chooseFavorite.setBackgroundColor(activity.getResources().getColor(R.color.my_primary_light));
-                        return true;
-                    case MotionEvent.ACTION_UP:
-                        chooseFavorite.setBackgroundColor(activity.getResources().getColor(R.color.my_primary));
-                        //TODO
-                        return true;
-                }
-                return false;
-            }
-        });
-    }
-
-    /**
-     * current location handler: preform actions when current location item is clicked
-     */
-    private void useCurrentLocationHandler() {
-        final ViewGroup useCurrentLocal = (ViewGroup) activity.findViewById(R.id.map_nav_settings_from_current);
-        useCurrentLocal.setOnTouchListener(new View.OnTouchListener() {
-            @Override public boolean onTouch(View v, MotionEvent event) {
-                switch (event.getAction()) {
-                    case MotionEvent.ACTION_DOWN:
-                        useCurrentLocal.setBackgroundColor(activity.getResources().getColor(R.color.my_primary_light));
-                        return true;
-                    case MotionEvent.ACTION_UP:
-                        useCurrentLocal.setBackgroundColor(activity.getResources().getColor(R.color.my_primary));
-                        if (CariRuteActivity.getmCurrentLocation() != null) {
-                            Destination.getDestination().setStartPoint(
-                                    new LatLong(CariRuteActivity.getmCurrentLocation().getLatitude(),
-                                            CariRuteActivity.getmCurrentLocation().getLongitude()));
-                            addFromMarker(Destination.getDestination().getStartPoint());
-                            fromLocalET.setText(Destination.getDestination().getStartPointToString());
-                            navSettingsFromVP.setVisibility(View.INVISIBLE);
-                            navSettingsVP.setVisibility(View.VISIBLE);
-                            activeNavigator();
-                        } else {
-                            Toast.makeText(activity, "Current Location not available, Check your GPS signal!",
-                                    Toast.LENGTH_SHORT).show();
-                        }
-                        return true;
-                }
-                return false;
-            }
-        });
-    }
-
-    /**
-     * when use press on the screen to get a location form map
-     *
-     * @param latLong
-     */
-    @Override public void onPressLocation(LatLong latLong) {
-        if (onStartPoint) {
-            Destination.getDestination().setStartPoint(latLong);
-            addFromMarker(latLong);
-            fromLocalET.setText(Destination.getDestination().getStartPointToString());
-        } else {
-            Destination.getDestination().setEndPoint(latLong);
-            addToMarker(latLong);
-            toLocalET.setText(Destination.getDestination().getEndPointToString());
-        }
-        navSettingsVP.setVisibility(View.VISIBLE);
-        activeNavigator();
-    }
-
-    /**
-     * calculate path calculating (running) true NOT running or finished false
-     *
-     * @param shortestPathRunning
-     */
-    @Override public void pathCalculating(boolean shortestPathRunning) {
-        if (!shortestPathRunning && DetailPetaNavigasi.getNavigator().getGhResponse() != null) {
-            activeDirections();
-        }
-    }
-
-    /**
-     * drawer polyline on map , active navigator instructions(directions) if on
-     */
-    private void activeNavigator() {
-        LatLong startPoint = Destination.getDestination().getStartPoint();
-        LatLong endPoint = Destination.getDestination().getEndPoint();
-        if (startPoint != null && endPoint != null) {
-            // show path finding process
-            navSettingsVP.setVisibility(View.INVISIBLE);
-
-            View pathfinding = activity.findViewById(R.id.map_nav_settings_path_finding);
-            pathfinding.setVisibility(View.VISIBLE);
-            pathfinding.bringToFront();
-            CariRuteHandler petaHandler = CariRuteHandler.getPetaHandler();
-            petaHandler.calcPath(startPoint.latitude, startPoint.longitude, endPoint.latitude, endPoint.longitude);
-            if (Variable.getVariable().isDirectionsON()) {
-                petaHandler.setNeedPathCal(true);
-                //rest running at
-            }
-        }
-    }
-
-    /**
-     * active directions, and directions view
-     */
-    private void activeDirections() {
-        RecyclerView instructionsRV;
-        RecyclerView.Adapter instructionsAdapter;
-        RecyclerView.LayoutManager instructionsLayoutManager;
-
-        instructionsRV = (RecyclerView) activity.findViewById(R.id.nav_instruction_recycler_view);
-
-        // use this setting to improve performance if you know that changes
-        // in content do not change the layout size of the RecyclerView
-        instructionsRV.setHasFixedSize(true);
-
-        // use a linear layout manager
-        instructionsLayoutManager = new LinearLayoutManager(activity);
-        instructionsRV.setLayoutManager(instructionsLayoutManager);
-
-        // specify an adapter (see also next example)
-        instructionsAdapter = new InstructionAdapter(DetailPetaNavigasi.getNavigator().getGhResponse().getInstructions());
-        instructionsRV.setAdapter(instructionsAdapter);
-
-    }
-
-
-
-/*
-
-    */
-/**
-     * handler clicks on nav button
-     *//*
-
-    private void navBtnHandler() {
-        navigationBtn.setOnClickListener(new View.OnClickListener() {
-            @Override public void onClick(View v) {
-                sideBarVP.setVisibility(View.INVISIBLE);
-                if (Navigasi.getNavigator().isOn()) {
-                    navInstructionListVP.setVisibility(View.VISIBLE);
-                } else {
-                    navSettingsVP.setVisibility(View.VISIBLE);
-                }
-            }
-        });
-    }
-*/
-
-
     /**
      * start button: control button handler FAB
      */
 
-    private void controlBtnHandler() {
+    private void tombolMenuHandler() {
         final ScaleAnimation anim = new ScaleAnimation(0, 1, 0, 1);
         anim.setFillBefore(true);
         anim.setFillAfter(true);
@@ -1150,18 +572,18 @@ public class CariRuteActions implements NavigatorListener, PetaHandlerListener {
         anim.setDuration(300);
         anim.setInterpolator(new OvershootInterpolator());
 
-        controlBtn.setOnClickListener(new View.OnClickListener() {
+        tombolMenu.setOnClickListener(new View.OnClickListener() {
             @Override public void onClick(View v) {
                 if (isMenuVisible()) {
                     setMenuVisible(false);
                     sideBarMenuVP.setVisibility(View.INVISIBLE);
-                    controlBtn.setImageResource(R.drawable.ic_keyboard_arrow_up_white_24dp);
-                    controlBtn.startAnimation(anim);
+                    tombolMenu.setImageResource(R.drawable.ic_keyboard_arrow_up_white_24dp);
+                    tombolMenu.startAnimation(anim);
                 } else {
                     setMenuVisible(true);
                     sideBarMenuVP.setVisibility(View.VISIBLE);
-                    controlBtn.setImageResource(R.drawable.ic_keyboard_arrow_down_white_24dp);
-                    controlBtn.startAnimation(anim);
+                    tombolMenu.setImageResource(R.drawable.ic_keyboard_arrow_down_white_24dp);
+                    tombolMenu.startAnimation(anim);
                 }
             }
         });
@@ -1234,25 +656,12 @@ public class CariRuteActions implements NavigatorListener, PetaHandlerListener {
         this.menuVisible = menuVisible;
     }
 
-    /**
-     * the change on navigator: navigation is used or not
-     *
-     * @param on
-     */
-    @Override public void statusChanged(boolean on) {
-        if (on) {
-            navigationBtn.setImageResource(R.drawable.ic_directions_white_24dp);
-        } else {
-            navigationBtn.setImageResource(R.drawable.ic_navigation_white_24dp);
-        }
-    }
 
     /**
      * called from Map activity when onBackpressed
      *
      * @return false no actions will perform; return true MapActivity will be placed back in the activity stack
      */
-
 
 
     private void log(String str) {

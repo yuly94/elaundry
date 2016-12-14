@@ -270,7 +270,7 @@ public class RouteDbHelperBackup extends SQLiteOpenHelper {
         values.put(KEY_TUJUAN, lokasi.getTujuan());
         values.put(KEY_JARAK, lokasi.getJarak());
         values.put(KEY_STATUS, lokasi.getStatus());
-        values.put(KEY_CREATED_AT, getDateTime());
+       // values.put(KEY_CREATED_AT, getDateTime());
 
         // insert row
 
@@ -726,10 +726,10 @@ public class RouteDbHelperBackup extends SQLiteOpenHelper {
 
         return lokasi;
     }
-
-    /**
+/*
+    *//**
      * get single todo
-     */
+     *//*
     public Todo getTodo(long todo_id) {
         SQLiteDatabase db = this.getReadableDatabase();
 
@@ -754,9 +754,9 @@ public class RouteDbHelperBackup extends SQLiteOpenHelper {
 
 
 
-    /**
+    *//**
      * getting all todos
-     * */
+     * *//*
     public List<Todo> getAllToDos() {
         List<Todo> todos = new ArrayList<Todo>();
         String selectQuery = "SELECT  * FROM " + TABLE_TODO;
@@ -782,9 +782,9 @@ public class RouteDbHelperBackup extends SQLiteOpenHelper {
         return todos;
     }
 
-    /**
+    *//**
      * getting all todos under single tag
-     * */
+     * *//*
     public List<Todo> getAllToDosByTag(String tag_name) {
         List<Todo> todos = new ArrayList<Todo>();
 
@@ -815,9 +815,9 @@ public class RouteDbHelperBackup extends SQLiteOpenHelper {
         return todos;
     }
 
-    /**
+    *//**
      * getting todo count
-     */
+     *//*
     public int getToDoCount() {
         String countQuery = "SELECT  * FROM " + TABLE_TODO;
         SQLiteDatabase db = this.getReadableDatabase();
@@ -830,9 +830,9 @@ public class RouteDbHelperBackup extends SQLiteOpenHelper {
         return count;
     }
 
-    /**
+    *//**
      * Updating a todo
-     */
+     *//*
     public int updateToDo(Todo todo) {
         SQLiteDatabase db = this.getWritableDatabase();
 
@@ -845,9 +845,9 @@ public class RouteDbHelperBackup extends SQLiteOpenHelper {
                 new String[] { String.valueOf(todo.getId()) });
     }
 
-    /**
+    *//**
      * Deleting a todo
-     */
+     *//*
     public void deleteToDo(long tado_id) {
         SQLiteDatabase db = this.getWritableDatabase();
         db.delete(TABLE_TODO, KEY_ID + " = ?",
@@ -856,9 +856,9 @@ public class RouteDbHelperBackup extends SQLiteOpenHelper {
 
     // ------------------------ "tags" table methods ----------------//
 
-    /**
+    *//**
      * Creating tag
-     */
+     *//*
     public long createTag(Tag tag) {
         SQLiteDatabase db = this.getWritableDatabase();
 
@@ -872,9 +872,9 @@ public class RouteDbHelperBackup extends SQLiteOpenHelper {
         return tag_id;
     }
 
-    /**
+    *//**
      * getting all tags
-     * */
+     * *//*
     public List<Tag> getAllTags() {
         List<Tag> tags = new ArrayList<Tag>();
         String selectQuery = "SELECT  * FROM " + TABLE_TAG;
@@ -898,9 +898,9 @@ public class RouteDbHelperBackup extends SQLiteOpenHelper {
         return tags;
     }
 
-    /**
+    *//**
      * Updating a tag
-     */
+     *//*
     public int updateTag(Tag tag) {
         SQLiteDatabase db = this.getWritableDatabase();
 
@@ -912,9 +912,9 @@ public class RouteDbHelperBackup extends SQLiteOpenHelper {
                 new String[] { String.valueOf(tag.getId()) });
     }
 
-    /**
+    *//**
      * Deleting a tag
-     */
+     *//*
     public void deleteTag(Tag tag, boolean should_delete_all_tag_todos) {
         SQLiteDatabase db = this.getWritableDatabase();
 
@@ -938,9 +938,9 @@ public class RouteDbHelperBackup extends SQLiteOpenHelper {
 
     // ------------------------ "todo_tags" table methods ----------------//
 
-    /**
+    *//**
      * Creating todo_tag
-     */
+     *//*
     public long createTodoTag(long todo_id, long tag_id) {
         SQLiteDatabase db = this.getWritableDatabase();
 
@@ -954,9 +954,9 @@ public class RouteDbHelperBackup extends SQLiteOpenHelper {
         return id;
     }
 
-    /**
+    *//**
      * Updating a todo tag
-     */
+     *//*
     public int updateNoteTag(long id, long tag_id) {
         SQLiteDatabase db = this.getWritableDatabase();
 
@@ -968,9 +968,9 @@ public class RouteDbHelperBackup extends SQLiteOpenHelper {
                 new String[] { String.valueOf(id) });
     }
 
-    /**
+    *//**
      * Creating a todo
-     */
+     *//*
     public long createToDo(Todo todo, long[] tag_ids) {
         SQLiteDatabase db = this.getWritableDatabase();
 
@@ -991,15 +991,16 @@ public class RouteDbHelperBackup extends SQLiteOpenHelper {
     }
 
 
-    /**
+    *//**
      * Deleting a todo tag
-     */
+     *//*
     public void deleteToDoTag(long id) {
         SQLiteDatabase db = this.getWritableDatabase();
         db.delete(TABLE_TODO, KEY_ID + " = ?",
                 new String[] { String.valueOf(id) });
     }
 
+*/
     // closing database
     public void closeDB() {
         SQLiteDatabase db = this.getReadableDatabase();
@@ -1007,9 +1008,7 @@ public class RouteDbHelperBackup extends SQLiteOpenHelper {
             db.close();
     }
 
-    /**
-     * get datetime
-     * */
+
     private String getDateTime() {
         SimpleDateFormat dateFormat = new SimpleDateFormat(
                 "yyyy-MM-dd HH:mm:ss", Locale.getDefault());

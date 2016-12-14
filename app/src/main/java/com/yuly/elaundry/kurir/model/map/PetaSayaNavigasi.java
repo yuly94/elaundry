@@ -132,9 +132,9 @@ public class PetaSayaNavigasi {
         String s = "";
         if (ghResponse.getInstructions() != null) {
             for (Instruction i : ghResponse.getInstructions()) {
-                s += "------>\ntime <long>: " + i.getTime() + "\n" + "name: street name" + i.getName() + "\n" +
+                s += "------>\ntime <long>: " + i.getTime() + "\n" + "nama jalan :" + i.getName() + "\n" +
                         "annotation <InstructionAnnotation>" +
-                        i.getAnnotation() + "\n" + "distance" + i.getDistance() + "\n" + "sign <int>:" + i.getSign() +
+                        i.getAnnotation() + "\n" + "jarak" + i.getDistance() + "\n" + "sign <int>:" + i.getSign() +
                         "\n" + "Points <PointsList>: " + i.getPoints() + "\n";
             }
         }
@@ -152,7 +152,7 @@ public class PetaSayaNavigasi {
         if (dark) {
             switch (Variable.getVariable().getTravelMode()) {
                 case "foot":
-                    return R.drawable.ic_add_shopping_cart_24dp;
+                    return R.drawable.ic_accessibility_black_24dp;
                 case "motorcycle":
                     return R.drawable.ic_motorcycle_black_24dp;
 
@@ -160,9 +160,9 @@ public class PetaSayaNavigasi {
         } else {
             switch (Variable.getVariable().getTravelMode()) {
                 case "foot":
-                    return R.drawable.ic_add_shopping_cart_24dp;
+                    return R.drawable.ic_accessibility_white_24dp;
                 case "motorcycle":
-                    return R.drawable.ic_motorcycle_black_24dp;
+                    return R.drawable.ic_motorcycle_white_24dp;
             }
         }
         throw new NullPointerException("hanya tersedian ketika class ada");

@@ -12,8 +12,6 @@ import android.os.Bundle;
 import android.os.Environment;
 import android.provider.Settings;
 import android.support.v4.app.ActivityCompat;
-import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentManager;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
@@ -25,11 +23,9 @@ import android.widget.Toast;
 
 import com.graphhopper.GraphHopper;
 import com.yuly.elaundry.kurir.R;
-import com.yuly.elaundry.kurir.controller.fragment.DialogDownload;
-import com.yuly.elaundry.kurir.controller.fragment.DownloadPetaFragment;
+
 import com.yuly.elaundry.kurir.model.peta.CariRuteHandler;
 import com.yuly.elaundry.kurir.model.util.Variable;
-import com.yuly.elaundry.kurir.view.util.HelpUtils;
 
 import org.mapsforge.core.model.LatLong;
 import org.mapsforge.map.android.graphics.AndroidGraphicFactory;
@@ -49,28 +45,13 @@ public class CariRuteActivity extends AppCompatActivity implements LocationListe
 
     private GraphHopper hopper;
 
-
     private File mapsFolder;
-    AppCompatActivity appCompatActivity;
-
-
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_map);
+        setContentView(R.layout.activity_peta_dasar);
 
-       //         set status bar
-      //  new SetStatusBarColor().setStatusBarColor(findViewById(R.id.statusBarBackgroundDownload),
-        //        getResources().getColor(R.color.my_primary_dark), this);
-
-
-     /*   //         set status bar
-        new SetStatusBarColor().setStatusBarColor(findViewById(R.id.statusBarBackgroundSettings),
-                getResources().getColor(R.color.my_primary_dark), this.getActivity());
-
-*/
 
         locationManager = (LocationManager) getSystemService(Context.LOCATION_SERVICE);
         if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
@@ -119,41 +100,8 @@ public class CariRuteActivity extends AppCompatActivity implements LocationListe
 
             Log.d("oncreate : ", DetailPetaRuteActivity.class.getSimpleName());
 
-
-
     }
 
-
-
-    public void tambakan(){
-
-        // buatMarker((-7.817117399999998), (112.0287791));
-        LatLong mcLatLong = new LatLong(-7.817117399999998,112.0287791);
-        //   Layers layers = mapView.getLayerManager().getLayers();
-
-        CariRuteHandler.getPetaHandler().tambahMarkerMerah(mcLatLong);
-
-        //  mPositionMarker = PetaHandler.getPetaHandler().createMarker(mcLatLong, R.drawable.ic_place_green_24dp);
-        // layers.add(mPositionMarker);
-
-
-    }
-
-    public void panggilDialogDownload(){
-
-/*        FragmentManager fragmentManager = getSupportFragmentManager();
-
-        Fragment frag = fragmentManager.findFragmentByTag("download_dialog");
-
-        if (frag != null) {
-            fragmentManager.beginTransaction().remove(frag).commit();
-        }*/
-
-        //	About
-      //  HelpUtils.showAbout(this);
-
-        DialogDownload.showDownloadUlangDialog(this);
-    }
 
     public void tambakanMarker(Double lat,Double lon){
 
@@ -162,10 +110,6 @@ public class CariRuteActivity extends AppCompatActivity implements LocationListe
      //   Layers layers = mapView.getLayerManager().getLayers();
 
         CariRuteHandler.getPetaHandler().tambahMarkerMerah(mcLatLong);
-
-      //  mPositionMarker = PetaHandler.getPetaHandler().createMarker(mcLatLong, R.drawable.ic_place_green_24dp);
-       // layers.add(mPositionMarker);
-
 
     }
 
@@ -193,12 +137,7 @@ public class CariRuteActivity extends AppCompatActivity implements LocationListe
 
         inclusionViewGroup.getParent().bringChildToFront(inclusionViewGroup);
 
-/*        new SetStatusBarColor().setSystemBarColor(findViewById(R.id.statusBarBackgroundMap),
-                getResources().getColor(R.color.my_primary_dark_transparent), this);*/
-
-
         PetaActions = new CariRuteActions(this, mapView);
-
 
     }
 
@@ -214,8 +153,6 @@ public class CariRuteActivity extends AppCompatActivity implements LocationListe
         }
     }
 
-
-
     /**
      * Updates the users location based on the location
      *
@@ -229,10 +166,7 @@ public class CariRuteActivity extends AppCompatActivity implements LocationListe
         }
         if (mCurrentLocation != null) {
             LatLong mcLatLong = new LatLong(mCurrentLocation.getLatitude(), mCurrentLocation.getLongitude());
-/*            if (Tracking.getTracking().isTracking()) {
-                MapHandler.getPetaHandler().addTrackPoint(mcLatLong);
-                Tracking.getTracking().addPoint(mCurrentLocation);
-            }*/
+
             Layers layers = mapView.getLayerManager().getLayers();
             CariRuteHandler.getPetaHandler().removeLayer(layers, mPositionMarker);
             mPositionMarker = CariRuteHandler.getPetaHandler().createMarker(mcLatLong, R.drawable.ic_place_blue_24dp);
@@ -245,14 +179,9 @@ public class CariRuteActivity extends AppCompatActivity implements LocationListe
 
     @Override
     public void onBackPressed() {
-      /*  boolean back = PetaActions.homeBackKeyPressed();
-        if (back) {
-             moveTaskToBack(true);
-*/
+
              finish();
 
-        //}
-        // if false do nothing
     }
 
     public void markerPemesanan(LatLong mcLatLong){
@@ -284,10 +213,10 @@ public class CariRuteActivity extends AppCompatActivity implements LocationListe
             //                        log("last browsed location : "+mapView.getModel().mapViewPosition
             // .getMapPosition().latLong);
         }
-/*
+
         if (mapView != null)
             Variable.getVariable().setLastZoomLevel(mapView.getModel().mapViewPosition.getZoomLevel());
-        Variable.getVariable().saveVariables();*/
+        Variable.getVariable().saveVariables();
     }
 
     @Override

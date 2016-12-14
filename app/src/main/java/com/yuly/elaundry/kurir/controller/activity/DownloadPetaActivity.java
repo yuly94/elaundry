@@ -122,16 +122,12 @@ public class DownloadPetaActivity extends AppCompatActivity {
 
     public static boolean deletePeta(File fileOrDirectory)
     {
-        if (fileOrDirectory.isDirectory())
-        {
-            for (File child : fileOrDirectory.listFiles())
-            {
-                boolean success = deletePeta(child);
-
-                if (!success) {
-                    return false;
-                }
-            }
+        if (fileOrDirectory.isDirectory()) for (File child : fileOrDirectory.listFiles())
+            deletePeta(child);
+        try {
+            fileOrDirectory.delete();
+        } catch (Exception e) {
+            e.getStackTrace();
         }
 
         //fileOrDirectory.delete();

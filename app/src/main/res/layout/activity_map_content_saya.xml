@@ -18,13 +18,13 @@
 
     <include layout="@layout/map_nav_settings"/>
 
-    <include layout="@layout/map_nav_settings_from"/>
+    <include layout="@layout/map_nav_settings_dari"/>
 
-    <include layout="@layout/map_nav_settings_to"/>
+    <include layout="@layout/map_nav_settings_tujuan"/>
 
     <include layout="@layout/map_nav_instruction"/>
 
-    <include layout="@layout/map_nav_settings_cal"/>
+    <include layout="@layout/map_nav_settings_loading"/>
 
     <include layout="@layout/map_nav_instruction_list"
         android:layout_alignParentBottom="true"

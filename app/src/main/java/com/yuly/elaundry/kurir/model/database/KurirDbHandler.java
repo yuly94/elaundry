@@ -26,7 +26,7 @@ public class KurirDbHandler extends SQLiteOpenHelper {
 	private static final int DATABASE_VERSION = 1;
 
 	// Database Name
-	private static final String DATABASE_NAME = "android_api_kurir";
+	private static final String DATABASE_NAME = "android_api_kurir.db";
 
 	// Login table name
 	private static final String TABLE_KURIR = "kurir";

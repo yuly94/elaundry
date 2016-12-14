@@ -13,7 +13,7 @@ import com.yuly.elaundry.kurir.R;
 import com.yuly.elaundry.kurir.model.map.DetailPetaNavigasi;
 
 
-public class InstructionAdapter extends RecyclerView.Adapter<InstructionAdapter.ViewHolder> {
+public class PetunjukArahAdapter extends RecyclerView.Adapter<PetunjukArahAdapter.ViewHolder> {
     private InstructionList instructions;
 
 
@@ -33,7 +33,7 @@ public class InstructionAdapter extends RecyclerView.Adapter<InstructionAdapter.
         }
 
         public void setItemData(Instruction itemData) {
-                        icon.setImageResource(DetailPetaNavigasi.getNavigator().getDirectionSign(itemData));
+                        icon.setImageResource(DetailPetaNavigasi.getNavigator().getPetunjukJalan(itemData));
             description.setText(DetailPetaNavigasi.getNavigator().getDirectionDescription(itemData));
             distance.setText(DetailPetaNavigasi.getNavigator().getDistance(itemData));
 //            time.setText(String.valueOf(Navigator.getNavigator().getTime(itemData)));
@@ -41,14 +41,14 @@ public class InstructionAdapter extends RecyclerView.Adapter<InstructionAdapter.
     }
 
     // Provide a suitable constructor (depends on the kind of dataset)
-    public InstructionAdapter(InstructionList instructions) {
+    public PetunjukArahAdapter(InstructionList instructions) {
         this.instructions = instructions;
     }
 
     // Create new views (invoked by the layout manager)
-    @Override public InstructionAdapter.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+    @Override public PetunjukArahAdapter.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         // create a new view
-        View v = LayoutInflater.from(parent.getContext()).inflate(R.layout.map_nav_instruction_item, parent, false);
+        View v = LayoutInflater.from(parent.getContext()).inflate(R.layout.map_nav_item_penunjukjalan, parent, false);
         ViewHolder vh = new ViewHolder(v);
         return vh;
     }

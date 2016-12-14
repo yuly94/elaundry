@@ -25,24 +25,17 @@ import java.io.File;
 import java.util.HashMap;
 
 
-import com.graphhopper.util.Helper;
-import com.graphhopper.util.ProgressListener;
 import com.yuly.elaundry.kurir.R;
 //import com.yuly.elaundry.kurir.controller.fragment.AboutFragment;
 
-import com.yuly.elaundry.kurir.controller.app.AppConfig;
 import com.yuly.elaundry.kurir.controller.fragment.DialogDownload;
 import com.yuly.elaundry.kurir.controller.fragment.DownloadPetaFragment;
 import com.yuly.elaundry.kurir.controller.fragment.LaundryPemesananFragment;
 import com.yuly.elaundry.kurir.controller.fragment.ProfileFragment;
 import com.yuly.elaundry.kurir.model.database.KurirDbHandler;
 import com.yuly.elaundry.kurir.model.helper.SessionManager;
-import com.yuly.elaundry.kurir.model.peta.AndroidDownloader;
-import com.yuly.elaundry.kurir.model.peta.AndroidHelper;
-import com.yuly.elaundry.kurir.model.peta.GHAsyncTask;
-import com.yuly.elaundry.kurir.model.peta.DetailPetaRuteHandler;
 import com.yuly.elaundry.kurir.model.util.Variable;
-import com.yuly.elaundry.kurir.view.util.HelpUtils;
+import com.yuly.elaundry.kurir.model.util.HelpUtils;
 
 import com.yuly.elaundry.kurir.view.widgets.ColorGenerator;
 import com.yuly.elaundry.kurir.view.widgets.TextDrawable;
@@ -98,30 +91,24 @@ public class MainActivity extends AppCompatActivity  implements NavigationView.O
 		} else {
 
 
+			//greater Or Equal to Kitkat
+			//Mensetting folder peta
+			if (Build.VERSION.SDK_INT >= 19) {
+				if (!Environment.getExternalStorageState().equals(Environment.MEDIA_MOUNTED)) {
+					Toast.makeText(this, "Elaundry tidak bisa digunakan tanpa memori penyimpanan peta!", Toast.LENGTH_SHORT)
+							.show();
+					return;
+				}
+				Variable.getVariable().setMapsFolder(
+						new File(Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOWNLOADS),
+								Variable.getVariable().getMapDirectory()));
 
-	/*	TypedArray navMenuIcons = getResources().obtainTypedArray(R.array.nav_drawer_icons);
+			} else Variable.getVariable().setMapsFolder(
+					new File(Environment.getExternalStorageDirectory(), Variable.getVariable().getMapDirectory()));
 
-		ArrayList<NavDrawerItem> navDrawerItems = new ArrayList<NavDrawerItem>();
-		navDrawerItems.add(new NavDrawerItem(navMenuTitles[0], navMenuIcons.getResourceId(0, -1)));
-		navDrawerItems.add(new NavDrawerItem(navMenuTitles[1], navMenuIcons.getResourceId(1, -1)));
-		navDrawerItems.add(new NavDrawerItem(navMenuTitles[2], navMenuIcons.getResourceId(2, -1)));
-		navDrawerItems.add(new NavDrawerItem(navMenuTitles[3], navMenuIcons.getResourceId(3, -1)));
-		navDrawerItems.add(new NavDrawerItem(navMenuTitles[4], navMenuIcons.getResourceId(4, -1)));
-		navDrawerItems.add(new NavDrawerItem(navMenuTitles[5], navMenuIcons.getResourceId(5, -1)));
-		navDrawerItems.add(new NavDrawerItem(navMenuTitles[6], navMenuIcons.getResourceId(6, -1)));
-		navDrawerItems.add(new NavDrawerItem(navMenuTitles[7], navMenuIcons.getResourceId(7, -1)));
-		navDrawerItems.add(new NavDrawerItem(navMenuTitles[8], navMenuIcons.getResourceId(8, -1)));
-		navDrawerItems.add(new NavDrawerItem(navMenuTitles[9], navMenuIcons.getResourceId(9, -1)));
-		navDrawerItems.add(new NavDrawerItem(navMenuTitles[10], navMenuIcons.getResourceId(10,-1)));
+		//muat ulang settingan
+		Variable.getVariable().loadVariables();
 
-		navMenuIcons.recycle();
-*/
-/*
-		mDrawerList.setOnItemClickListener(new SlideMenuClickListener());
-
-		NavDrawerListAdapter adapter = new NavDrawerListAdapter(getApplicationContext(), navDrawerItems);
-		mDrawerList.setAdapter(adapter);
-*/
 		NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
 		navigationView.setNavigationItemSelectedListener(this);
 

@@ -1,4 +1,4 @@
-package com.yuly.elaundry.kurir.view.util;
+package com.yuly.elaundry.kurir.model.util;
 
 import android.animation.ObjectAnimator;
 import android.content.Context;

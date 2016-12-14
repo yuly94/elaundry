@@ -6,7 +6,6 @@ import android.os.Environment;
 import android.util.Log;
 
 import com.yuly.elaundry.kurir.R;
-import com.yuly.elaundry.kurir.model.dataType.MyMap;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -119,11 +118,6 @@ public class Variable {
     private volatile boolean prepareInProgress;
 
     /**
-     * list of downloaded maps in local storage; check and init when app started; used to avoid recheck local files
-     */
-    private List<MyMap> localMaps;
-
-    /**
      *
      */
     //    private String unFinishedMapURL;
@@ -144,26 +138,6 @@ public class Variable {
      * map download unfinished: downloaded percentage 0--100
      */
     private int mapFinishedPercentage;
-
-    /**
-     * temporary memorialize recent downloaded maps from DownloadMapActivity
-     */
-    private List<MyMap> recentDownloadedMaps;
-
-    /**
-     * temporary memorialize download list of cloud maps from DownloadMapActivity
-     */
-    private List<MyMap> cloudMaps;
-    /**
-     * default true for auto load;
-     * <p>
-     * when load: app open auto load = true, when load a new map from main activity we need to set auto load = false
-     */
-    //    private boolean autoLoad;
-    /**
-     * sport category spinner index at {@link com.yuly.elaundry.kurir.controller}
-     */
-    private int sportCategoryIndex;
 
 
     /**
@@ -207,20 +181,9 @@ public class Variable {
             this.mapsFolder = new File(Environment.getExternalStorageDirectory(),mapDownloadDirectory);
         
         this.mapUrlList = "http://elaundry.pe.hu/konsumen/peta/map_url_list";
-        this.localMaps = new ArrayList<>();
-        this.recentDownloadedMaps = new ArrayList<>();
-        this.cloudMaps = new ArrayList<>();
-        this.sportCategoryIndex = 0;
-        resetDownloadMapVariables();
+
     }
 
-    public void resetDownloadMapVariables() {
-        this.downloadStatus = Constant.ON_SERVER;
-        this.pausedMapName = "";
-        this.mapLastModified = "";
-        this.mapFinishedPercentage = -1;
-        //        this.unFinishedMapURL = "";
-    }
 
     public static Variable getVariable() {
         if (variable == null) {
@@ -298,9 +261,6 @@ public class Variable {
     public String getPetunjukArahSayaON() {
         return isPetunjukArahSayaON() ? "true" : "false";
     }
-
-
-
 
 
 
@@ -410,10 +370,6 @@ public class Variable {
         this.prepareInProgress = prepareInProgress;
     }
 
-    public List<MyMap> getLocalMaps() {
-        return localMaps;
-    }
-
     public int getDownloadStatus() {
         return downloadStatus;
     }
@@ -454,83 +410,7 @@ public class Variable {
         this.pausedMapName = pausedMapName;
     }
 
-    /**
-     * add a list of maps to localMaps
-     *
-     * @param localMaps list of maps
-     */
-    public void addLocalMaps(List<MyMap> localMaps) {
-        this.localMaps.addAll(localMaps);
-    }
 
-    /**
-     * add a map to local map list
-     *
-     * @param localMap MyMap
-     */
-    public void addLocalMap(MyMap localMap) {
-        if (!getLocalMapNameList().contains(localMap.getMapName())) {
-            this.localMaps.add(localMap);
-        }
-    }
-
-    public void removeLocalMap(MyMap localMap) {
-        this.localMaps.remove(localMap);
-    }
-
-    public void setLocalMaps(List<MyMap> localMaps) {
-        this.localMaps = localMaps;
-    }
-
-    /**
-     * @return a string list of local map names (continent_country)
-     */
-    public List getLocalMapNameList() {
-        ArrayList<String> al = new ArrayList();
-        for (MyMap mm : getLocalMaps()) {
-            al.add(mm.getMapName());
-        }
-        return al;
-    }
-
-    public List<MyMap> getRecentDownloadedMaps() {
-        return recentDownloadedMaps;
-    }
-
-    public void addRecentDownloadedMap(MyMap myMap) {
-        recentDownloadedMaps.add(myMap);
-    }
-
-    public MyMap removeRecentDownloadedMap(int index) throws Exception {
-        //        if (index >= 0 && index < getRecentDownloadedMaps().size()) {
-        return recentDownloadedMaps.remove(index);
-        //        }
-    }
-
-
-    public void setRecentDownloadedMaps(List<MyMap> recentDownloadedMaps) {
-        this.recentDownloadedMaps = recentDownloadedMaps;
-    }
-
-    public List<MyMap> getCloudMaps() {
-        return cloudMaps;
-    }
-
-    public void setCloudMaps(List<MyMap> cloudMaps) {
-        this.cloudMaps = cloudMaps;
-    }
-
-    //    public void setAutoLoad(boolean autoLoad) {
-    //        this.autoLoad = autoLoad;
-    //    }
-
-    public int getSportCategoryIndex() {
-        return sportCategoryIndex;
-    }
-
-    public void setSportCategoryIndex(int sportCategoryIndex) {
-        this.sportCategoryIndex = sportCategoryIndex;
-    }
 
     /**
      * run when app open at run time
@@ -570,20 +450,12 @@ public class Variable {
             }
             setMapDirectory(jo.getString("mapDirectory"));
             setMapsFolder(new File(jo.getString("mapsFolderAbsPath")));
-            setSportCategoryIndex(jo.getInt("sportCategoryIndex"));
             setDownloadStatus(jo.getInt("mapDownloadStatus"));
             setMapLastModified(jo.getString("mapLastModified"));
             setMapFinishedPercentage(jo.getInt("mapFinishedPercentage"));
             //            setUnFinishedMapURL(jo.getString("mapUnfinishedDownlURL"));
             setPausedMapName(jo.getString("pausedMapName"));
-            if (getPausedMapName() != "") {
-                loadMap = false;
-            }
-            if (!hasUnfinishedDownload()) {
 
-                log("reset download map variables");
-                resetDownloadMapVariables();
-            }
             return loadMap;
         } catch (JSONException e) {
             e.printStackTrace();
@@ -591,34 +463,6 @@ public class Variable {
         }
     }
 
-    private boolean hasUnfinishedDownload() {
-        String[] filesGHZ = getMapsFolder().list(new FilenameFilter() {
-            @Override public boolean accept(File dir, String filename) {
-                return (filename != null && (filename.endsWith(".ghz")));
-            }
-        });
-        String[] files_gh = getMapsFolder().list(new FilenameFilter() {
-            @Override public boolean accept(File dir, String filename) {
-                return (filename != null && (filename.endsWith("-gh")));
-            }
-        });
-
-        for (String file : filesGHZ) {
-            for (String f : files_gh) {
-                if( f.contains(file.replace(".ghz", ""))){
-                    (new File(getMapsFolder(), file)).delete();
-                }
-            }
-            Variable.getVariable().addLocalMap(new MyMap(file));
-            if (file.contains(getPausedMapName())) {
-                return true;
-            }
-            //            boolean del =
-            (new File(getMapsFolder(), file)).delete();
-            log("delete file " + file + " ? -" );
-        }
-        return false;
-    }
 
     /**
      * run before app destroyed at run time
@@ -651,7 +495,6 @@ public class Variable {
             }
             jo.put("mapDirectory", getMapDirectory());
             jo.put("mapsFolderAbsPath", getMapsFolder().getAbsolutePath());
-            jo.put("sportCategoryIndex", getSportCategoryIndex());
             jo.put("mapDownloadStatus", getDownloadStatus());
             jo.put("mapLastModified", getMapLastModified());
             jo.put("mapFinishedPercentage", getMapFinishedPercentage());

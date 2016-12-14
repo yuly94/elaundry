@@ -1,4 +1,4 @@
-package com.yuly.elaundry.kurir.view.navigation;
+package com.yuly.elaundry.kurir.model.navigation;
 
 import android.app.Activity;
 import android.content.Context;

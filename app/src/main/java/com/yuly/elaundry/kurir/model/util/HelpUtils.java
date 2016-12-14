@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package com.yuly.elaundry.kurir.view.util;
+package com.yuly.elaundry.kurir.model.util;
 
 
 import android.app.Activity;

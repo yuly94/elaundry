@@ -26,7 +26,7 @@ import com.yuly.elaundry.kurir.model.listeners.PetaRuteHandlerListener;
 import com.yuly.elaundry.kurir.model.listeners.NavigatorListener;
 import com.yuly.elaundry.kurir.model.map.DetailPetaNavigasi;
 import com.yuly.elaundry.kurir.model.peta.DetailPetaRuteHandler;
-import com.yuly.elaundry.kurir.model.util.InstructionAdapter;
+import com.yuly.elaundry.kurir.model.util.PetunjukArahAdapter;
 import com.yuly.elaundry.kurir.model.util.MyUtility;
 import com.yuly.elaundry.kurir.model.util.Variable;
 
@@ -90,23 +90,12 @@ public class DetailPetaRuteActions implements NavigatorListener, PetaRuteHandler
         }
 
         navSettingsHandler();
-        settingsBtnHandler();
+
 
         showRute();
 
     }
 
-    /**
-     * init and implement performance for settings
-     */
-    private void settingsBtnHandler() {
-        settingsBtn.setOnClickListener(new View.OnClickListener() {
-            @Override public void onClick(View v) {
-                AppSettings.getAppSettings().set(activity, sideBarVP);
-
-            }
-        });
-    }
 
     /**
      * navigation settings implementation
@@ -531,7 +520,7 @@ public class DetailPetaRuteActions implements NavigatorListener, PetaRuteHandler
         instructionsRV.setLayoutManager(instructionsLayoutManager);
 
         // specify an adapter (see also next example)
-        instructionsAdapter = new InstructionAdapter(DetailPetaNavigasi.getNavigator().getGhResponse().getInstructions());
+        instructionsAdapter = new PetunjukArahAdapter(DetailPetaNavigasi.getNavigator().getGhResponse().getInstructions());
         instructionsRV.setAdapter(instructionsAdapter);
         initNavListView();
     }
@@ -813,11 +802,6 @@ public class DetailPetaRuteActions implements NavigatorListener, PetaRuteHandler
             return false;
         } else if (navInstructionListVP.getVisibility() == View.VISIBLE) {
             navInstructionListVP.setVisibility(View.INVISIBLE);
-            sideBarVP.setVisibility(View.VISIBLE);
-            return false;
-        } else if (AppSettings.getAppSettings().getAppSettingsVP() != null &&
-                AppSettings.getAppSettings().getAppSettingsVP().getVisibility() == View.VISIBLE) {
-            AppSettings.getAppSettings().getAppSettingsVP().setVisibility(View.INVISIBLE);
             sideBarVP.setVisibility(View.VISIBLE);
             return false;
         } else {
