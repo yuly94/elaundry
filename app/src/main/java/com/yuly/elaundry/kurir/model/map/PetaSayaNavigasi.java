@@ -172,7 +172,7 @@ public class PetaSayaNavigasi {
      * @param itemData
      * @return int resId to instruction direction's sign icon
      */
-    public int getDirectionSign(Instruction itemData) {
+    public int getPetunjukArah(Instruction itemData) {
         switch (itemData.getSign()) {
             case -6:
                 return R.drawable.ic_roundabout;

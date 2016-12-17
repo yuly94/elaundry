@@ -158,8 +158,6 @@ public class Variable {
         this.lastZoomLevel = 15;
         this.lastLocation = null;
         this.country = "indonesia_jawatimur_kediringanjuk";
-
-
         this.tebalGarisPath =10;
         //this.mapsFolder = new File("/storage/emulated/0/Download/petaelaundry/maps/");
         this.context = null;

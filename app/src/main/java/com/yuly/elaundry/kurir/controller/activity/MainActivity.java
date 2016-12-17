@@ -29,7 +29,6 @@ import com.yuly.elaundry.kurir.R;
 //import com.yuly.elaundry.kurir.controller.fragment.AboutFragment;
 
 import com.yuly.elaundry.kurir.controller.fragment.DialogDownload;
-import com.yuly.elaundry.kurir.controller.fragment.DownloadPetaFragment;
 import com.yuly.elaundry.kurir.controller.fragment.LaundryPemesananFragment;
 import com.yuly.elaundry.kurir.controller.fragment.ProfileFragment;
 import com.yuly.elaundry.kurir.controller.peta.CariRuteActivity;
@@ -144,8 +143,6 @@ public class MainActivity extends AppCompatActivity  implements NavigationView.O
 		};
 		mDrawerLayout.setDrawerListener(mDrawerToggle);
 
-
-
 			if (savedInstanceState == null) {
 
 				fragmentSatu();
@@ -159,8 +156,6 @@ public class MainActivity extends AppCompatActivity  implements NavigationView.O
 		ProgressDialog pDialog = new ProgressDialog(this);
 		pDialog.setCancelable(false);
 
-
-
 			// Fetching user details from SQLite
 			HashMap<String, String> user = db.getUserDetails();
 
@@ -173,7 +168,6 @@ public class MainActivity extends AppCompatActivity  implements NavigationView.O
 				//String telepon = user.get("telepon");
 				String email = user.get("kurir_email");
 				api_key = user.get("api");
-
 
 				// Displaying the user details on the screen
 				if (txtName != null) {
@@ -198,28 +192,7 @@ public class MainActivity extends AppCompatActivity  implements NavigationView.O
 				Log.d("Main Activity","User not found");
 			}
 
-
-
 		}
-
-
-	}
-
-
-
-
-	private void panggilDialogDownload(){
-
-		FragmentManager fragmentManager = getSupportFragmentManager();
-
-		Fragment frag = fragmentManager.findFragmentByTag("download_dialog");
-
-		if (frag != null) {
-			fragmentManager.beginTransaction().remove(frag).commit();
-		}
-
-		DownloadPetaFragment alertDialogFragment = new DownloadPetaFragment();
-		alertDialogFragment.show(fragmentManager, "download_dialog");
 
 	}
 
@@ -332,14 +305,6 @@ public class MainActivity extends AppCompatActivity  implements NavigationView.O
 		mDrawerToggle.onConfigurationChanged(newConfig);
 	}
 
-	private void logUser(String str) {
-
-		Toast.makeText(this, str, Toast.LENGTH_LONG).show();
-	}
-
-	private void log(String str, Throwable t) {
-		Log.i("GH", str, t);
-	}
 
 
 	private void fragmentSatu(){
@@ -350,7 +315,7 @@ public class MainActivity extends AppCompatActivity  implements NavigationView.O
 				.replace(R.id.frame_container, fragment = new LaundryPemesananFragment()).commit();
 
 		// Handle the camera action
-		;//Get Fragment Instance
+		//Get Fragment Instance
 		Bundle data = new Bundle();//Use bundle to pass data
 		data.putString("TEXT_TOMBOL", "mengambil laundry");//put string, int, etc in bundle with a key value
 		data.putString("STATUS_SEBELUMNYA", "baru memesan");

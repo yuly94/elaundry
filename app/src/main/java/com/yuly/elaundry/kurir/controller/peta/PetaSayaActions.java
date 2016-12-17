@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.content.DialogInterface;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AlertDialog;
+import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
@@ -29,6 +30,7 @@ import com.yuly.elaundry.kurir.model.map.PetaSayaNavigasi;
 import com.yuly.elaundry.kurir.model.peta.DetailPetaRuteHandler;
 import com.yuly.elaundry.kurir.model.util.PetunjukArahAdapter;
 import com.yuly.elaundry.kurir.model.util.MyUtility;
+import com.yuly.elaundry.kurir.model.util.PetunjukArahPetaSayaAdapter;
 import com.yuly.elaundry.kurir.model.util.Variable;
 
 import org.mapsforge.core.model.LatLong;
@@ -37,7 +39,7 @@ import org.mapsforge.map.model.MapViewPosition;
 
 
 public class PetaSayaActions implements NavigasiSayaListener, PetaSayaHandlerListener {
-    private Activity activity;
+    private AppCompatActivity activity;
     protected FloatingActionButton tombolLokasi, tombolNavigasi, tombolSetting, tombolMenu;
     protected FloatingActionButton tombolPerbesar, tombolPerkecil;
     private ViewGroup sideBarVP, sideBarMenuVP, navSettingsVP, navSettingsFromVP, navSettingsToVP, navInstructionVP,
@@ -49,7 +51,7 @@ public class PetaSayaActions implements NavigasiSayaListener, PetaSayaHandlerLis
     private boolean onStartPoint;
     private EditText fromLocalET, toLocalET;
 
-    public PetaSayaActions(Activity activity, MapView mapView) {
+    public PetaSayaActions(AppCompatActivity activity, MapView mapView) {
         this.activity = activity;
         this.tombolLokasi = (FloatingActionButton) activity.findViewById(R.id.fab_lokasi);
         this.tombolNavigasi = (FloatingActionButton) activity.findViewById(R.id.fab_navigasi);
@@ -64,7 +66,7 @@ public class PetaSayaActions implements NavigasiSayaListener, PetaSayaHandlerLis
         this.navSettingsVP = (ViewGroup) activity.findViewById(R.id.nav_settings_layout);
         this.navSettingsFromVP = (ViewGroup) activity.findViewById(R.id.nav_settings_from_layout);
         this.navSettingsToVP = (ViewGroup) activity.findViewById(R.id.nav_settings_to_layout);
-        //this.navInstructionVP = (ViewGroup) activity.findViewById(R.id.nav_instruction_layout); // TODO
+        this.navInstructionVP = (ViewGroup) activity.findViewById(R.id.nav_instruction_layout); // TODO
         this.navListPenunjukJalanVP = (ViewGroup) activity.findViewById(R.id.nav_instruction_list_layout);
         //form location and to location textView
         this.fromLocalET = (EditText) activity.findViewById(R.id.nav_settings_from_local_et);
@@ -82,8 +84,6 @@ public class PetaSayaActions implements NavigasiSayaListener, PetaSayaHandlerLis
         navBtnHandler();
         navSettingsHandler();
     }
-
-
 
 
     /**
@@ -106,6 +106,9 @@ public class PetaSayaActions implements NavigasiSayaListener, PetaSayaHandlerLis
             public void onClick(View v) {
                 //TODO implement search for input locations
                 searchBtnActions();
+                //activeNavigator();
+
+
             }
         });
         travelModeSetting();
@@ -322,7 +325,7 @@ public class PetaSayaActions implements NavigasiSayaListener, PetaSayaHandlerLis
         });
         //  from layout: items
         useCurrentLocationHandler();
-        //        chooseFromFavoriteHandler();TODO
+        chooseFromFavoriteHandler();//TODO
         pointOnMapHandler();
     }
 
@@ -435,9 +438,9 @@ public class PetaSayaActions implements NavigasiSayaListener, PetaSayaHandlerLis
      * @param petasayashortestPathRunning
      */
     @Override public void pathCalculating(boolean petasayashortestPathRunning) {
-        if (!petasayashortestPathRunning && PetaSayaNavigasi.getNavigator().getGhResponse() != null) {
+         if (!petasayashortestPathRunning && PetaSayaNavigasi.getNavigator().getGhResponse() != null) {
             activeDirections();
-        }
+         }
     }
 
     /**
@@ -446,6 +449,8 @@ public class PetaSayaActions implements NavigasiSayaListener, PetaSayaHandlerLis
     private void activeNavigator() {
         LatLong startPoint = Destination.getDestination().getStartPoint();
         LatLong endPoint = Destination.getDestination().getEndPoint();
+
+
         if (startPoint != null && endPoint != null) {
             // show path finding process
             navSettingsVP.setVisibility(View.INVISIBLE);
@@ -483,7 +488,7 @@ public class PetaSayaActions implements NavigasiSayaListener, PetaSayaHandlerLis
         instructionsRV.setLayoutManager(instructionsLayoutManager);
 
         // specify an adapter (see also next example)
-        instructionsAdapter = new PetunjukArahAdapter(DetailPetaNavigasi.getNavigator().getGhResponse().getInstructions());
+        instructionsAdapter = new PetunjukArahPetaSayaAdapter(PetaSayaNavigasi.getNavigator().getGhResponse().getInstructions());
         instructionsRV.setAdapter(instructionsAdapter);
         initNavListView();
     }

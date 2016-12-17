@@ -24,6 +24,7 @@ import android.widget.Toast;
 import com.yuly.elaundry.kurir.R;
 import com.yuly.elaundry.kurir.controller.activity.themeUtils;
 import com.yuly.elaundry.kurir.model.peta.PetaSayaHandler;
+import com.yuly.elaundry.kurir.model.util.SetStatusBarColor;
 import com.yuly.elaundry.kurir.model.util.Variable;
 
 import org.mapsforge.core.model.LatLong;
@@ -112,9 +113,6 @@ public class PetaSayaActivity extends AppCompatActivity implements LocationListe
     }
 
 
-
-
-
     /**
      * inject and inflate activity map content to map activity context and bring it to front
      */
@@ -135,14 +133,11 @@ public class PetaSayaActivity extends AppCompatActivity implements LocationListe
             themeUtils.onActivityCreateSetTheme(this,getSupportActionBar(),this);
         }
 
-
-
         inclusionViewGroup.getParent().bringChildToFront(inclusionViewGroup);
 
-/*
-        new SetStatusBarColor().setSystemBarColor(findViewById(R.id.statusBarBackgroundMap),
-                getResources().getColor(R.color.my_primary_dark_transparent), this);
 
+     /*   new SetStatusBarColor().setSystemBarColor(findViewById(R.id.statusBarBackgroundMap),
+                getResources().getColor(R.color.my_primary_dark_transparent), this);
 */
 
         mapActions = new PetaSayaActions(this, mapView);

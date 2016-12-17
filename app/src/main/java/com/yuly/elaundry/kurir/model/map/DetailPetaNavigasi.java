@@ -152,19 +152,19 @@ public class DetailPetaNavigasi {
             switch (Variable.getVariable().getTravelMode()) {
                 case "foot":
                     return R.drawable.ic_add_shopping_cart_24dp;
-                case "bike":
+                case "motorbike":
                     return R.drawable.ic_directions_bike_orange_24dp;
-                case "car":
-                    return R.drawable.ic_add_shopping_cart_24dp;
+              /*  case "car":
+                    return R.drawable.ic_add_shopping_cart_24dp;*/
             }
         } else {
             switch (Variable.getVariable().getTravelMode()) {
                 case "foot":
                     return R.drawable.ic_add_shopping_cart_24dp;
-                case "bike":
+                case "motorbike":
                     return R.drawable.ic_directions_bike_white_24dp;
-                case "car":
-                    return R.drawable.ic_add_shopping_cart_24dp;
+              /*  case "car":
+                    return R.drawable.ic_add_shopping_cart_24dp;*/
             }
         }
         throw new NullPointerException("hanya tersedian ketika class ada");

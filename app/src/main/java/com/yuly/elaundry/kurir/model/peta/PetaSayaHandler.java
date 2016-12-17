@@ -20,6 +20,7 @@ import com.yuly.elaundry.kurir.model.listeners.MapHandlerListener;
 import com.yuly.elaundry.kurir.model.listeners.PetaHandlerListener;
 import com.yuly.elaundry.kurir.model.listeners.PetaSayaHandlerListener;
 import com.yuly.elaundry.kurir.model.map.DetailPetaNavigasi;
+import com.yuly.elaundry.kurir.model.map.PetaSayaNavigasi;
 import com.yuly.elaundry.kurir.model.util.Variable;
 
 import org.mapsforge.core.graphics.Bitmap;
@@ -331,7 +332,7 @@ public class PetaSayaHandler {
                 GHRequest req = new GHRequest(fromLat,fromLon,
                         toLat,toLon);
                 req.setAlgorithm(Variable.getVariable().getRoutingAlgorithms());
-                req.getHints().put(activity.getString(R.string.instruksi), Variable.getVariable().getDirectionsON());
+                req.getHints().put(activity.getString(R.string.instruksi), Variable.getVariable().getPetunjukArahSayaON());
                 req.setVehicle(Variable.getVariable().getTravelMode());
                 req.setWeighting(Variable.getVariable().getWeighting());
                 GHResponse resp = hopper.route(req);
@@ -349,10 +350,10 @@ public class PetaSayaHandler {
                     polylinePath = createPolyline(resp.getPoints(),
                             activity.getResources().getColor(R.color.my_primary_dark_transparent), Variable.getVariable().getTebalGarisPath());
                     mapView.getLayerManager().getLayers().add(polylinePath);
-                    if (Variable.getVariable().isPetunjukArahSayaON()) {
-                        DetailPetaNavigasi.getNavigator().setGhResponse(resp);
+                   // if (Variable.getVariable().isPetunjukArahSayaON()) {
+                        PetaSayaNavigasi.getNavigator().setGhResponse(resp);
                         //                        log("navigator: " + Navigator.getNavigator().toString());
-                    }
+                   // }
                 } else {
                     logToast(activity.getString(R.string.error_titikdua) + resp.getErrors());
                 }
@@ -478,5 +479,9 @@ public class PetaSayaHandler {
     {
         log(str);
         Toast.makeText(getActivity(), str, Toast.LENGTH_LONG).show();
+    }
+
+    public void setOn(boolean b) {
+
     }
 }

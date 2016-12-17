@@ -471,6 +471,8 @@ public class DetailPetaRuteActions implements NavigatorListener, PetaDetailHandl
             LatLong lokasiAwal = new LatLong(DetailPetaRuteActivity.getmCurrentLocation().getLatitude(),
                     DetailPetaRuteActivity.getmCurrentLocation().getLongitude());//new LatLong ( -7.8130979,112.0157406);
             LatLong lokasiAkhir = DataRute.getDatarute().getEndPoint();
+
+            if (lokasiAwal != null && lokasiAkhir != null) {
             // show path finding process
             navSettingsVP.setVisibility(View.INVISIBLE);
 
@@ -498,6 +500,7 @@ public class DetailPetaRuteActions implements NavigatorListener, PetaDetailHandl
                 mapHandler.setNeedPathCal(true);
                 //rest running at
             }
+        }
         } else {
 
             Toast.makeText(activity, "gagal mendapatkan lokasi anda",Toast.LENGTH_LONG).show();
