@@ -73,6 +73,21 @@ public class MendownloadPeta extends AppCompatActivity {
 
  }
 
+    public static boolean deletePeta(File fileOrDirectory)
+    {
+        if (fileOrDirectory.isDirectory()) for (File child : fileOrDirectory.listFiles())
+            deletePeta(child);
+        try {
+            fileOrDirectory.delete();
+        } catch (Exception e) {
+            e.getStackTrace();
+        }
+
+        //fileOrDirectory.delete();
+        return fileOrDirectory.delete();
+    }
+
+
 
     public void downloadPeta(final Context cont) {
 

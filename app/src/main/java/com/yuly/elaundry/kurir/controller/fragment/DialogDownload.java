@@ -10,7 +10,6 @@ import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
 
 import com.yuly.elaundry.kurir.R;
-import com.yuly.elaundry.kurir.controller.activity.DownloadPetaActivity;
 import com.yuly.elaundry.kurir.controller.activity.MendownloadPeta;
 import com.yuly.elaundry.kurir.model.util.Variable;
 
@@ -110,7 +109,7 @@ public class DialogDownload {
                         public void onClick(DialogInterface dialog, int which) {
                             //Toast.makeText(getActivity(), "Pressed OK", Toast.LENGTH_SHORT).show();
 
-                            boolean success = DownloadPetaActivity.deletePeta(Variable.getVariable().getMapsFolder());
+                            boolean success = MendownloadPeta.deletePeta(Variable.getVariable().getMapsFolder());
 
                             if (!success) {
                                 System.out.println("Deletion of directory failed!");

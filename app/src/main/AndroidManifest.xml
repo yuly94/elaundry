@@ -62,10 +62,6 @@
         <activity
             android:name=".controller.activity.LoginActivityNew"
             android:launchMode="singleTop" />
-        <activity
-            android:name=".controller.activity.PemesananActivity"
-            android:configChanges="keyboardHidden|orientation|screenSize"
-            android:launchMode="singleTop" />
 
         <!--
              ATTENTION: This was auto-generated to add Google Play services to your project for
@@ -97,11 +93,6 @@
             android:screenOrientation="portrait"
             android:theme="@style/MYAppTheme.NoActionBar" />
         <activity
-            android:name=".controller.activity.SettingsActivity"
-            android:label="@string/action_settings"
-            android:screenOrientation="portrait"
-            android:theme="@style/MyAppThemeActionBar" />
-        <activity
             android:name=".model.database.ProsesRouteActivity"
             android:label="@string/title_activity_proses_route"
             android:parentActivityName=".controller.activity.MainActivity"
@@ -119,15 +110,6 @@
             android:label="@string/title_activity_app_settings"
             android:parentActivityName=".controller.activity.MainActivity"
             android:theme="@style/MyAppThemeActionBar">
-            <meta-data
-                android:name="android.support.PARENT_ACTIVITY"
-                android:value="com.yuly.elaundry.kurir.controller.activity.MainActivity" />
-        </activity>
-        <activity
-            android:name=".controller.activity.DownloadPetaActivity"
-            android:label="@string/title_activity_download_peta"
-            android:parentActivityName=".controller.activity.MainActivity"
-            android:theme="@style/MYAppTheme.NoActionBar">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.yuly.elaundry.kurir.controller.activity.MainActivity" />
